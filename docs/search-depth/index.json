@@ -1,0 +1,98 @@
+{
+ "omni-d2det-vs-c3": {
+  "summary": {
+   "games": 200,
+   "wins": 170,
+   "losses": 17,
+   "truncations": 13,
+   "win_rate": 0.85,
+   "win_ci95": [
+    0.805,
+    0.895
+   ],
+   "score": 0.8825,
+   "score_ci95": [
+    0.8425,
+    0.9175
+   ],
+   "elo": 350.270738980842,
+   "elo_ci95": [
+    291.3157405671028,
+    418.46084974968056
+   ],
+   "seconds_per_search_turn": 8.268908609494234,
+   "sub_actions_per_turn": 12.223545990263899,
+   "lane_steps_per_turn": 1842.55777606969,
+   "override_rate": 0.8904529124212263,
+   "replans_per_turn": 2.1751217012554447,
+   "incomplete_lanes": 0,
+   "mean_turns": 38.17,
+   "mean_turns_decided": 33.80213903743316,
+   "game_seconds_mean": 327.31357736074,
+   "compile_seconds": 367.97829953671,
+   "unit_mix": {
+    "Catapult": 0.2726,
+    "Warrior": 0.2536,
+    "Cloak": 0.2207,
+    "Defender": 0.1642,
+    "Scoutship": 0.0432,
+    "Bomber": 0.0306,
+    "Archer": 0.008,
+    "Rammership": 0.0051,
+    "Rider": 0.0018,
+    "Swordsman": 0.0002,
+    "MindBender": 0.0001
+   }
+  },
+  "cost_usd": 5.335935918624296,
+  "errors": []
+ },
+ "omni-d3det-vs-c3": {
+  "summary": {
+   "games": 200,
+   "wins": 168,
+   "losses": 23,
+   "truncations": 9,
+   "win_rate": 0.84,
+   "win_ci95": [
+    0.795,
+    0.885
+   ],
+   "score": 0.8625,
+   "score_ci95": [
+    0.82,
+    0.9025
+   ],
+   "elo": 318.98256223161206,
+   "elo_ci95": [
+    263.4165389121643,
+    386.5770379516634
+   ],
+   "seconds_per_search_turn": 11.181592143162675,
+   "sub_actions_per_turn": 12.348274085522926,
+   "lane_steps_per_turn": 2688.405976300876,
+   "override_rate": 0.89179548156956,
+   "replans_per_turn": 2.166409067490984,
+   "incomplete_lanes": 0,
+   "mean_turns": 37.955,
+   "mean_turns_decided": 34.98429319371728,
+   "game_seconds_mean": 438.259991830475,
+   "compile_seconds": 357.28511919164,
+   "unit_mix": {
+    "Catapult": 0.2729,
+    "Warrior": 0.2616,
+    "Cloak": 0.228,
+    "Defender": 0.143,
+    "Scoutship": 0.0385,
+    "Bomber": 0.0328,
+    "Archer": 0.0123,
+    "Rammership": 0.005,
+    "Rider": 0.0036,
+    "Swordsman": 0.0013,
+    "MindBender": 0.0008
+   }
+  },
+  "cost_usd": 6.064865169437614,
+  "errors": []
+ }
+}

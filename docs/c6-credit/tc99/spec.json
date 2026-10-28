@@ -1,0 +1,24 @@
+{
+  "arm": "c6-credit-tc99",
+  "campaign": "c6-credit (A ctl per-decision 0.995/0.99, B turn clock 0.99/0.95, C turn clock 1.0/0.95)",
+  "question": "Does the turn clock (discount only at the seat's end-turn decisions) at gamma 0.99 / lambda 0.95 beat per-decision gamma 0.995 / lambda 0.99 when continuing c5-omni-s1-final for 1 h on 14x14?",
+  "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "config": {
+    "size": 14, "maps": "proposed-v1",
+    "frozen": [["parent", "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz", 0.05]],
+    "historical_probability": 0.15, "historical_every": 50, "historical_keep": 8,
+    "batch": 262144, "minibatch": 16384, "epochs": 3,
+    "learning_rate": 0.0002, "entropy_coef": 0.005,
+    "turn_gamma": 0.99, "turn_lambda": 0.95,
+    "omniscient_critic": true, "critic_warmup": 60,
+    "segment": 32, "max_lag": 10, "publish_every": 2, "checkpoint_every": 10, "snapshot_every": 50,
+    "seed": 302
+  },
+  "learner_env": {"POLYTOPIA_MATMUL_PRECISION": "DEFAULT", "POLYTOPIA_HEAD_PRECISION": "HIGHEST"},
+  "fleet": {"gpu": "H100:1", "learner_cpu": 16, "actors": 12, "actor_cpu": 16, "processes": 16, "games": 24, "memory_gib": 24},
+  "seconds": 3600,
+  "settings_from": "c5-omni-s1 (docs/c5-omni-long-2026-10-21.md Setup) with the turn clock of c5-l18-omni at gamma 0.99 / lambda 0.95 replacing per-decision gamma/gae_lambda; frozen opponent = the parent itself",
+  "final_ladder": {"opponent": "c5-omni-s1-final", "maps": 128, "seeds": "389200-389327", "seats": 2, "deterministic": true},
+  "pre_registered": "holds if >= 50% of all games vs the parent; wins if the 95% CI lower bound > 50%; loses if the upper bound < 50%; record whether the fresh critic's value std reaches ~0.28-0.30 by the end of the hour",
+  "budget_usd": 35
+}

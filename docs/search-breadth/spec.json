@@ -1,0 +1,34 @@
+[
+ {
+  "name": "omni-d1det-r64-vs-c3",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "c3",
+  "lanes": 16,
+  "depth": 1,
+  "replies": 64,
+  "root": "sequence",
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ },
+ {
+  "name": "omni-d1det-r256-vs-c3",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "c3",
+  "lanes": 16,
+  "depth": 1,
+  "replies": 256,
+  "root": "sequence",
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ }
+]

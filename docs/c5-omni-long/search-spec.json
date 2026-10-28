@@ -1,0 +1,58 @@
+[
+ {
+  "name": "win-k1-vs-c3",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "c3",
+  "lanes": 1,
+  "depth": 0,
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ },
+ {
+  "name": "win-d1det-ownval-vs-c3",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "c3",
+  "lanes": 16,
+  "depth": 1,
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ },
+ {
+  "name": "win-d1det-c3val-vs-c3",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "c3",
+  "value": "c3",
+  "lanes": 16,
+  "depth": 1,
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ },
+ {
+  "name": "win-d1det-ownval-vs-win",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "lanes": 16,
+  "depth": 1,
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ }
+]

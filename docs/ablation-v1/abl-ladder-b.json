@@ -1,0 +1,3504 @@
+{
+ "omni": {
+  "games": 256,
+  "wins": 138,
+  "losses": 75,
+  "draws_or_truncations": 43,
+  "truncations": 43,
+  "win_rate": 0.5390625,
+  "ci95": [
+   0.49990234375,
+   0.58203125
+  ],
+  "candidate_unit_mix": {
+   "Warrior": 0.3413,
+   "Catapult": 0.2564,
+   "Cloak": 0.1967,
+   "Defender": 0.1357,
+   "Scoutship": 0.0351,
+   "Bomber": 0.0124,
+   "Archer": 0.0097,
+   "Rammership": 0.0091,
+   "Rider": 0.0036
+  },
+  "opponent_unit_mix": {
+   "Warrior": 0.43,
+   "Catapult": 0.2744,
+   "Cloak": 0.1639,
+   "Defender": 0.0775,
+   "Scoutship": 0.0258,
+   "Rammership": 0.0124,
+   "Bomber": 0.0072,
+   "Archer": 0.0046,
+   "Rider": 0.0042
+  },
+  "candidate_non_warrior_games": 254,
+  "candidate_unit_types_per_game": 3.7578125,
+  "candidate_first_non_warrior_turn_median": 8.0,
+  "candidate_early_research_mean": 2.03515625,
+  "mean_steps": 1335.63671875,
+  "seconds": 634.1184847569999,
+  "mean_turns": 49.5390625,
+  "candidate_tech": {
+   "samples": 256,
+   "final_mean": 10.0625,
+   "final_median": 9.0,
+   "tier3_mean": 2.2734375,
+   "share_with_tier3": 0.98828125,
+   "first_tier3_turn_median": 7.0,
+   "by_turn": {
+    "10": {
+     "games": 256,
+     "mean_techs": 4.75390625
+    },
+    "20": {
+     "games": 240,
+     "mean_techs": 7.3875
+    },
+    "30": {
+     "games": 184,
+     "mean_techs": 9.244565217391305
+    },
+    "40": {
+     "games": 119,
+     "mean_techs": 10.546218487394958
+    },
+    "50": {
+     "games": 90,
+     "mean_techs": 11.666666666666666
+    },
+    "60": {
+     "games": 76,
+     "mean_techs": 12.236842105263158
+    },
+    "80": {
+     "games": 55,
+     "mean_techs": 13.49090909090909
+    },
+    "100": {
+     "games": 43,
+     "mean_techs": 14.720930232558139
+    }
+   },
+   "tech_share": {
+    "Forestry": 0.992,
+    "Mathematics": 0.988,
+    "Climbing": 0.977,
+    "Organization": 0.965,
+    "Strategy": 0.926,
+    "Diplomacy": 0.641,
+    "Fishing": 0.613,
+    "Archery": 0.379,
+    "Spiritualism": 0.328,
+    "Sailing": 0.285,
+    "Riding": 0.266,
+    "Mining": 0.16,
+    "Navigation": 0.137,
+    "Ramming": 0.125,
+    "Aquatism": 0.102,
+    "Farming": 0.062,
+    "Construction": 0.035,
+    "Smithery": 0.031,
+    "Meditation": 0.023,
+    "FreeSpirit": 0.008,
+    "Roads": 0.008,
+    "Trade": 0.008,
+    "Philosophy": 0.004
+   }
+  },
+  "opponent_tech": {
+   "samples": 256,
+   "final_mean": 10.37890625,
+   "final_median": 9.5,
+   "tier3_mean": 2.28125,
+   "share_with_tier3": 0.9921875,
+   "first_tier3_turn_median": 7.0,
+   "by_turn": {
+    "10": {
+     "games": 256,
+     "mean_techs": 4.46875
+    },
+    "20": {
+     "games": 240,
+     "mean_techs": 6.954166666666667
+    },
+    "30": {
+     "games": 184,
+     "mean_techs": 8.86413043478261
+    },
+    "40": {
+     "games": 119,
+     "mean_techs": 10.571428571428571
+    },
+    "50": {
+     "games": 90,
+     "mean_techs": 12.255555555555556
+    },
+    "60": {
+     "games": 76,
+     "mean_techs": 13.5
+    },
+    "80": {
+     "games": 55,
+     "mean_techs": 15.618181818181819
+    },
+    "100": {
+     "games": 43,
+     "mean_techs": 16.6046511627907
+    }
+   },
+   "tech_share": {
+    "Forestry": 0.996,
+    "Mathematics": 0.988,
+    "Organization": 0.941,
+    "Climbing": 0.934,
+    "Strategy": 0.844,
+    "Fishing": 0.695,
+    "Archery": 0.484,
+    "Spiritualism": 0.418,
+    "Diplomacy": 0.41,
+    "Riding": 0.301,
+    "Mining": 0.254,
+    "Ramming": 0.207,
+    "Sailing": 0.195,
+    "Aquatism": 0.191,
+    "Farming": 0.121,
+    "Navigation": 0.117,
+    "FreeSpirit": 0.066,
+    "Construction": 0.066,
+    "Smithery": 0.043,
+    "Meditation": 0.031,
+    "Roads": 0.027,
+    "Trade": 0.027,
+    "Philosophy": 0.012,
+    "Chivalry": 0.008
+   }
+  },
+  "by_map": {
+   "archipelago": {
+    "games": 22,
+    "wins": 14,
+    "losses": 6,
+    "truncations": 2,
+    "mean_turns": 51.09090909090909,
+    "mean_captures": 20.0,
+    "games_with_ports": 22,
+    "seat1_win_rate": 0.5454545454545454,
+    "candidate_unit_mix": {
+     "Warrior": 0.3698,
+     "Catapult": 0.2049,
+     "Defender": 0.1632,
+     "Cloak": 0.1256,
+     "Scoutship": 0.0898,
+     "Bomber": 0.0229,
+     "Rammership": 0.0124,
+     "Rider": 0.006,
+     "Archer": 0.0055
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 10.5,
+     "final_median": 10.0,
+     "tier3_mean": 2.0,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 12.0,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 4.363636363636363
+      },
+      "20": {
+       "games": 22,
+       "mean_techs": 6.954545454545454
+      },
+      "30": {
+       "games": 20,
+       "mean_techs": 9.0
+      },
+      "40": {
+       "games": 15,
+       "mean_techs": 10.266666666666667
+      },
+      "50": {
+       "games": 8,
+       "mean_techs": 11.375
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 12.166666666666666
+      },
+      "80": {
+       "games": 3,
+       "mean_techs": 13.666666666666666
+      },
+      "100": {
+       "games": 2,
+       "mean_techs": 12.5
+      }
+     },
+     "tech_share": {
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Climbing": 1.0,
+      "Organization": 0.955,
+      "Strategy": 0.955,
+      "Mathematics": 0.955,
+      "Diplomacy": 0.636,
+      "Sailing": 0.636,
+      "Archery": 0.318,
+      "Riding": 0.273,
+      "Spiritualism": 0.227,
+      "Farming": 0.136,
+      "Mining": 0.136,
+      "Ramming": 0.091,
+      "Aquatism": 0.091,
+      "Navigation": 0.045,
+      "Construction": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.3721,
+     "Catapult": 0.2341,
+     "Cloak": 0.1908,
+     "Defender": 0.1141,
+     "Scoutship": 0.0561,
+     "Bomber": 0.0181,
+     "Rammership": 0.008,
+     "Rider": 0.004,
+     "Archer": 0.0027
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 10.045454545454545,
+     "final_median": 10.0,
+     "tier3_mean": 1.9318181818181819,
+     "share_with_tier3": 0.9772727272727273,
+     "first_tier3_turn_median": 12.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.409090909090909
+      },
+      "20": {
+       "games": 44,
+       "mean_techs": 6.863636363636363
+      },
+      "30": {
+       "games": 40,
+       "mean_techs": 8.85
+      },
+      "40": {
+       "games": 30,
+       "mean_techs": 9.6
+      },
+      "50": {
+       "games": 16,
+       "mean_techs": 10.4375
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 11.0
+      },
+      "80": {
+       "games": 6,
+       "mean_techs": 12.666666666666666
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 13.0
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Fishing": 0.977,
+      "Mathematics": 0.977,
+      "Climbing": 0.977,
+      "Organization": 0.955,
+      "Strategy": 0.864,
+      "Diplomacy": 0.523,
+      "Sailing": 0.455,
+      "Archery": 0.364,
+      "Riding": 0.273,
+      "Spiritualism": 0.273,
+      "Mining": 0.091,
+      "Navigation": 0.091,
+      "Farming": 0.068,
+      "Ramming": 0.068,
+      "Aquatism": 0.045,
+      "FreeSpirit": 0.023,
+      "Construction": 0.023
+     }
+    }
+   },
+   "classic": {
+    "games": 54,
+    "wins": 25,
+    "losses": 20,
+    "truncations": 9,
+    "mean_turns": 44.53703703703704,
+    "mean_captures": 12.814814814814815,
+    "games_with_ports": 22,
+    "seat1_win_rate": 0.5555555555555556,
+    "candidate_unit_mix": {
+     "Warrior": 0.4048,
+     "Catapult": 0.2914,
+     "Defender": 0.1467,
+     "Cloak": 0.1134,
+     "Rammership": 0.0239,
+     "Archer": 0.0168,
+     "Bomber": 0.0012,
+     "Rider": 0.0012,
+     "Scoutship": 0.0006
+    },
+    "candidate_tech": {
+     "samples": 54,
+     "final_mean": 9.925925925925926,
+     "final_median": 8.5,
+     "tier3_mean": 2.2777777777777777,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 54,
+       "mean_techs": 4.351851851851852
+      },
+      "20": {
+       "games": 51,
+       "mean_techs": 7.392156862745098
+      },
+      "30": {
+       "games": 34,
+       "mean_techs": 9.411764705882353
+      },
+      "40": {
+       "games": 18,
+       "mean_techs": 11.38888888888889
+      },
+      "50": {
+       "games": 14,
+       "mean_techs": 12.714285714285714
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 12.833333333333334
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 13.7
+      },
+      "100": {
+       "games": 9,
+       "mean_techs": 15.222222222222221
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.981,
+      "Strategy": 0.981,
+      "Climbing": 0.981,
+      "Diplomacy": 0.593,
+      "Fishing": 0.537,
+      "Archery": 0.407,
+      "Spiritualism": 0.333,
+      "Riding": 0.259,
+      "Mining": 0.167,
+      "Ramming": 0.148,
+      "Aquatism": 0.13,
+      "Sailing": 0.074,
+      "Navigation": 0.074,
+      "Farming": 0.056,
+      "Construction": 0.056,
+      "Smithery": 0.056,
+      "Meditation": 0.037,
+      "Roads": 0.019,
+      "Trade": 0.019,
+      "Philosophy": 0.019
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4451,
+     "Catapult": 0.2878,
+     "Cloak": 0.1312,
+     "Defender": 0.1081,
+     "Rammership": 0.013,
+     "Archer": 0.0099,
+     "Rider": 0.0037,
+     "Bomber": 0.0006,
+     "Scoutship": 0.0004
+    },
+    "both_tech": {
+     "samples": 108,
+     "final_mean": 9.87037037037037,
+     "final_median": 8.0,
+     "tier3_mean": 2.2962962962962963,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 108,
+       "mean_techs": 4.203703703703703
+      },
+      "20": {
+       "games": 102,
+       "mean_techs": 7.186274509803922
+      },
+      "30": {
+       "games": 68,
+       "mean_techs": 9.044117647058824
+      },
+      "40": {
+       "games": 36,
+       "mean_techs": 10.88888888888889
+      },
+      "50": {
+       "games": 28,
+       "mean_techs": 12.75
+      },
+      "60": {
+       "games": 24,
+       "mean_techs": 13.625
+      },
+      "80": {
+       "games": 20,
+       "mean_techs": 15.35
+      },
+      "100": {
+       "games": 18,
+       "mean_techs": 16.27777777777778
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.954,
+      "Climbing": 0.954,
+      "Strategy": 0.944,
+      "Diplomacy": 0.565,
+      "Fishing": 0.509,
+      "Archery": 0.389,
+      "Spiritualism": 0.333,
+      "Riding": 0.231,
+      "Mining": 0.194,
+      "Ramming": 0.167,
+      "Aquatism": 0.157,
+      "Farming": 0.074,
+      "Sailing": 0.065,
+      "Navigation": 0.065,
+      "Smithery": 0.065,
+      "Construction": 0.056,
+      "Meditation": 0.046,
+      "Roads": 0.028,
+      "Trade": 0.028,
+      "Philosophy": 0.019,
+      "FreeSpirit": 0.019,
+      "Chivalry": 0.009
+     }
+    }
+   },
+   "continents": {
+    "games": 32,
+    "wins": 16,
+    "losses": 5,
+    "truncations": 11,
+    "mean_turns": 71.15625,
+    "mean_captures": 13.0,
+    "games_with_ports": 32,
+    "seat1_win_rate": 0.625,
+    "candidate_unit_mix": {
+     "Cloak": 0.39,
+     "Catapult": 0.2043,
+     "Warrior": 0.1485,
+     "Defender": 0.1233,
+     "Scoutship": 0.0653,
+     "Bomber": 0.0416,
+     "Archer": 0.018,
+     "Rammership": 0.005,
+     "Rider": 0.0041
+    },
+    "candidate_tech": {
+     "samples": 32,
+     "final_mean": 12.625,
+     "final_median": 13.0,
+     "tier3_mean": 3.1875,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 32,
+       "mean_techs": 5.8125
+      },
+      "20": {
+       "games": 32,
+       "mean_techs": 8.1875
+      },
+      "30": {
+       "games": 30,
+       "mean_techs": 10.633333333333333
+      },
+      "40": {
+       "games": 26,
+       "mean_techs": 11.5
+      },
+      "50": {
+       "games": 23,
+       "mean_techs": 12.304347826086957
+      },
+      "60": {
+       "games": 20,
+       "mean_techs": 12.9
+      },
+      "80": {
+       "games": 15,
+       "mean_techs": 14.066666666666666
+      },
+      "100": {
+       "games": 11,
+       "mean_techs": 14.090909090909092
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Sailing": 0.875,
+      "Diplomacy": 0.812,
+      "Navigation": 0.656,
+      "Archery": 0.594,
+      "Spiritualism": 0.594,
+      "Riding": 0.406,
+      "Mining": 0.281,
+      "Ramming": 0.188,
+      "Farming": 0.094,
+      "Aquatism": 0.094,
+      "Smithery": 0.031
+     }
+    },
+    "both_unit_mix": {
+     "Cloak": 0.2759,
+     "Catapult": 0.2504,
+     "Warrior": 0.2208,
+     "Defender": 0.1094,
+     "Scoutship": 0.0678,
+     "Bomber": 0.0395,
+     "Rammership": 0.0176,
+     "Archer": 0.0147,
+     "Rider": 0.004
+    },
+    "both_tech": {
+     "samples": 64,
+     "final_mean": 13.5,
+     "final_median": 13.5,
+     "tier3_mean": 3.390625,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 64,
+       "mean_techs": 5.6875
+      },
+      "20": {
+       "games": 64,
+       "mean_techs": 8.03125
+      },
+      "30": {
+       "games": 60,
+       "mean_techs": 10.416666666666666
+      },
+      "40": {
+       "games": 52,
+       "mean_techs": 11.692307692307692
+      },
+      "50": {
+       "games": 46,
+       "mean_techs": 12.804347826086957
+      },
+      "60": {
+       "games": 40,
+       "mean_techs": 13.875
+      },
+      "80": {
+       "games": 30,
+       "mean_techs": 15.3
+      },
+      "100": {
+       "games": 22,
+       "mean_techs": 15.909090909090908
+      }
+     },
+     "tech_share": {
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Organization": 0.984,
+      "Strategy": 0.984,
+      "Sailing": 0.75,
+      "Archery": 0.75,
+      "Spiritualism": 0.719,
+      "Diplomacy": 0.609,
+      "Navigation": 0.562,
+      "Riding": 0.5,
+      "Mining": 0.453,
+      "Ramming": 0.359,
+      "Aquatism": 0.312,
+      "Farming": 0.203,
+      "Construction": 0.094,
+      "FreeSpirit": 0.078,
+      "Smithery": 0.047,
+      "Roads": 0.031,
+      "Trade": 0.031,
+      "Meditation": 0.016,
+      "Philosophy": 0.016
+     }
+    }
+   },
+   "drylands": {
+    "games": 12,
+    "wins": 6,
+    "losses": 5,
+    "truncations": 1,
+    "mean_turns": 43.083333333333336,
+    "mean_captures": 16.583333333333332,
+    "games_with_ports": 4,
+    "seat1_win_rate": 0.8333333333333334,
+    "candidate_unit_mix": {
+     "Warrior": 0.4334,
+     "Catapult": 0.2059,
+     "Defender": 0.1898,
+     "Cloak": 0.1669,
+     "Archer": 0.004
+    },
+    "candidate_tech": {
+     "samples": 12,
+     "final_mean": 9.5,
+     "final_median": 8.5,
+     "tier3_mean": 1.9166666666666667,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 12,
+       "mean_techs": 4.5
+      },
+      "20": {
+       "games": 12,
+       "mean_techs": 7.416666666666667
+      },
+      "30": {
+       "games": 8,
+       "mean_techs": 8.5
+      },
+      "40": {
+       "games": 4,
+       "mean_techs": 9.75
+      },
+      "50": {
+       "games": 3,
+       "mean_techs": 10.333333333333334
+      },
+      "60": {
+       "games": 3,
+       "mean_techs": 10.666666666666666
+      },
+      "80": {
+       "games": 1,
+       "mean_techs": 13.0
+      },
+      "100": {
+       "games": 1,
+       "mean_techs": 13.0
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Fishing": 0.667,
+      "Diplomacy": 0.583,
+      "Archery": 0.333,
+      "Spiritualism": 0.333,
+      "Riding": 0.25,
+      "Mining": 0.167,
+      "Sailing": 0.083,
+      "Meditation": 0.083
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4487,
+     "Catapult": 0.2377,
+     "Cloak": 0.1838,
+     "Defender": 0.1265,
+     "Archer": 0.002,
+     "Rammership": 0.0013
+    },
+    "both_tech": {
+     "samples": 24,
+     "final_mean": 9.083333333333334,
+     "final_median": 8.0,
+     "tier3_mean": 1.8333333333333333,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 24,
+       "mean_techs": 4.291666666666667
+      },
+      "20": {
+       "games": 24,
+       "mean_techs": 7.125
+      },
+      "30": {
+       "games": 16,
+       "mean_techs": 8.0625
+      },
+      "40": {
+       "games": 8,
+       "mean_techs": 9.625
+      },
+      "50": {
+       "games": 6,
+       "mean_techs": 10.666666666666666
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 11.0
+      },
+      "80": {
+       "games": 2,
+       "mean_techs": 11.5
+      },
+      "100": {
+       "games": 2,
+       "mean_techs": 11.5
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Strategy": 0.958,
+      "Climbing": 0.958,
+      "Diplomacy": 0.542,
+      "Fishing": 0.542,
+      "Archery": 0.292,
+      "Spiritualism": 0.25,
+      "Riding": 0.167,
+      "Sailing": 0.125,
+      "Mining": 0.125,
+      "Ramming": 0.042,
+      "Aquatism": 0.042,
+      "Meditation": 0.042
+     }
+    }
+   },
+   "highlands": {
+    "games": 38,
+    "wins": 20,
+    "losses": 11,
+    "truncations": 7,
+    "mean_turns": 46.1578947368421,
+    "mean_captures": 13.5,
+    "games_with_ports": 15,
+    "seat1_win_rate": 0.8947368421052632,
+    "candidate_unit_mix": {
+     "Warrior": 0.3858,
+     "Catapult": 0.2709,
+     "Cloak": 0.1734,
+     "Defender": 0.1419,
+     "Bomber": 0.0155,
+     "Archer": 0.006,
+     "Rammership": 0.0055,
+     "Scoutship": 0.001
+    },
+    "candidate_tech": {
+     "samples": 38,
+     "final_mean": 9.5,
+     "final_median": 8.0,
+     "tier3_mean": 2.3421052631578947,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.5,
+     "by_turn": {
+      "10": {
+       "games": 38,
+       "mean_techs": 4.7894736842105265
+      },
+      "20": {
+       "games": 33,
+       "mean_techs": 7.0606060606060606
+      },
+      "30": {
+       "games": 25,
+       "mean_techs": 8.76
+      },
+      "40": {
+       "games": 16,
+       "mean_techs": 10.3125
+      },
+      "50": {
+       "games": 10,
+       "mean_techs": 12.5
+      },
+      "60": {
+       "games": 10,
+       "mean_techs": 13.1
+      },
+      "80": {
+       "games": 8,
+       "mean_techs": 14.25
+      },
+      "100": {
+       "games": 7,
+       "mean_techs": 17.0
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.921,
+      "Organization": 0.895,
+      "Strategy": 0.816,
+      "Diplomacy": 0.605,
+      "Fishing": 0.316,
+      "Archery": 0.316,
+      "Spiritualism": 0.263,
+      "Riding": 0.211,
+      "Mining": 0.211,
+      "Ramming": 0.184,
+      "Aquatism": 0.184,
+      "Sailing": 0.132,
+      "Farming": 0.105,
+      "Construction": 0.105,
+      "Navigation": 0.105,
+      "Smithery": 0.053,
+      "FreeSpirit": 0.026,
+      "Roads": 0.026,
+      "Trade": 0.026
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4262,
+     "Catapult": 0.2679,
+     "Cloak": 0.1788,
+     "Defender": 0.1066,
+     "Bomber": 0.0077,
+     "Rammership": 0.0065,
+     "Archer": 0.0054,
+     "Scoutship": 0.0009
+    },
+    "both_tech": {
+     "samples": 76,
+     "final_mean": 9.394736842105264,
+     "final_median": 8.0,
+     "tier3_mean": 2.1447368421052633,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 76,
+       "mean_techs": 4.657894736842105
+      },
+      "20": {
+       "games": 66,
+       "mean_techs": 6.848484848484849
+      },
+      "30": {
+       "games": 50,
+       "mean_techs": 8.52
+      },
+      "40": {
+       "games": 32,
+       "mean_techs": 10.0625
+      },
+      "50": {
+       "games": 20,
+       "mean_techs": 12.05
+      },
+      "60": {
+       "games": 20,
+       "mean_techs": 12.8
+      },
+      "80": {
+       "games": 16,
+       "mean_techs": 14.0625
+      },
+      "100": {
+       "games": 14,
+       "mean_techs": 15.571428571428571
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.921,
+      "Organization": 0.908,
+      "Strategy": 0.776,
+      "Diplomacy": 0.487,
+      "Fishing": 0.461,
+      "Archery": 0.408,
+      "Spiritualism": 0.329,
+      "Riding": 0.211,
+      "Mining": 0.184,
+      "Ramming": 0.145,
+      "Aquatism": 0.132,
+      "Farming": 0.092,
+      "Sailing": 0.092,
+      "Construction": 0.079,
+      "Navigation": 0.079,
+      "FreeSpirit": 0.039,
+      "Smithery": 0.026,
+      "Roads": 0.013,
+      "Trade": 0.013
+     }
+    }
+   },
+   "jungle": {
+    "games": 14,
+    "wins": 9,
+    "losses": 4,
+    "truncations": 1,
+    "mean_turns": 41.42857142857143,
+    "mean_captures": 15.428571428571429,
+    "games_with_ports": 8,
+    "seat1_win_rate": 0.8571428571428571,
+    "candidate_unit_mix": {
+     "Warrior": 0.3576,
+     "Catapult": 0.3124,
+     "Cloak": 0.2359,
+     "Defender": 0.0916,
+     "Archer": 0.0025
+    },
+    "candidate_tech": {
+     "samples": 14,
+     "final_mean": 8.642857142857142,
+     "final_median": 8.0,
+     "tier3_mean": 1.8571428571428572,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 14,
+       "mean_techs": 4.5
+      },
+      "20": {
+       "games": 13,
+       "mean_techs": 7.615384615384615
+      },
+      "30": {
+       "games": 11,
+       "mean_techs": 8.727272727272727
+      },
+      "40": {
+       "games": 4,
+       "mean_techs": 9.25
+      },
+      "50": {
+       "games": 2,
+       "mean_techs": 11.0
+      },
+      "60": {
+       "games": 2,
+       "mean_techs": 11.0
+      },
+      "80": {
+       "games": 2,
+       "mean_techs": 11.0
+      },
+      "100": {
+       "games": 1,
+       "mean_techs": 14.0
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.929,
+      "Strategy": 0.929,
+      "Climbing": 0.929,
+      "Diplomacy": 0.571,
+      "Fishing": 0.571,
+      "Archery": 0.214,
+      "Spiritualism": 0.214,
+      "Riding": 0.071,
+      "Ramming": 0.071,
+      "Aquatism": 0.071,
+      "Mining": 0.071
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4164,
+     "Catapult": 0.2974,
+     "Cloak": 0.1771,
+     "Defender": 0.1009,
+     "Archer": 0.0076,
+     "Rammership": 0.0006
+    },
+    "both_tech": {
+     "samples": 28,
+     "final_mean": 9.0,
+     "final_median": 8.0,
+     "tier3_mean": 1.8928571428571428,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.5,
+     "by_turn": {
+      "10": {
+       "games": 28,
+       "mean_techs": 4.285714285714286
+      },
+      "20": {
+       "games": 26,
+       "mean_techs": 7.269230769230769
+      },
+      "30": {
+       "games": 22,
+       "mean_techs": 8.636363636363637
+      },
+      "40": {
+       "games": 8,
+       "mean_techs": 9.75
+      },
+      "50": {
+       "games": 4,
+       "mean_techs": 11.0
+      },
+      "60": {
+       "games": 4,
+       "mean_techs": 11.75
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 11.75
+      },
+      "100": {
+       "games": 2,
+       "mean_techs": 13.0
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.964,
+      "Climbing": 0.929,
+      "Strategy": 0.857,
+      "Fishing": 0.607,
+      "Diplomacy": 0.464,
+      "Archery": 0.357,
+      "Spiritualism": 0.321,
+      "Riding": 0.143,
+      "Mining": 0.107,
+      "Farming": 0.071,
+      "Ramming": 0.071,
+      "Aquatism": 0.071,
+      "Construction": 0.036
+     }
+    }
+   },
+   "lakes": {
+    "games": 22,
+    "wins": 11,
+    "losses": 7,
+    "truncations": 4,
+    "mean_turns": 45.86363636363637,
+    "mean_captures": 14.181818181818182,
+    "games_with_ports": 12,
+    "seat1_win_rate": 0.7272727272727273,
+    "candidate_unit_mix": {
+     "Warrior": 0.386,
+     "Catapult": 0.2982,
+     "Defender": 0.1916,
+     "Cloak": 0.1081,
+     "Archer": 0.0063,
+     "Scoutship": 0.0042,
+     "Rammership": 0.0035,
+     "Rider": 0.0021
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 9.363636363636363,
+     "final_median": 9.0,
+     "tier3_mean": 1.9545454545454546,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 4.909090909090909
+      },
+      "20": {
+       "games": 18,
+       "mean_techs": 7.444444444444445
+      },
+      "30": {
+       "games": 14,
+       "mean_techs": 9.142857142857142
+      },
+      "40": {
+       "games": 7,
+       "mean_techs": 10.571428571428571
+      },
+      "50": {
+       "games": 6,
+       "mean_techs": 11.5
+      },
+      "60": {
+       "games": 5,
+       "mean_techs": 13.6
+      },
+      "80": {
+       "games": 5,
+       "mean_techs": 13.6
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 13.75
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Climbing": 1.0,
+      "Forestry": 0.955,
+      "Mathematics": 0.955,
+      "Strategy": 0.864,
+      "Diplomacy": 0.545,
+      "Fishing": 0.409,
+      "Archery": 0.409,
+      "Spiritualism": 0.318,
+      "Riding": 0.273,
+      "Mining": 0.136,
+      "Sailing": 0.091,
+      "Meditation": 0.091,
+      "Farming": 0.091,
+      "Navigation": 0.045,
+      "FreeSpirit": 0.045,
+      "Construction": 0.045,
+      "Ramming": 0.045,
+      "Aquatism": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4049,
+     "Catapult": 0.2871,
+     "Cloak": 0.1558,
+     "Defender": 0.1316,
+     "Rammership": 0.0081,
+     "Archer": 0.005,
+     "Scoutship": 0.0037,
+     "Rider": 0.0024,
+     "Bomber": 0.0013
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 9.613636363636363,
+     "final_median": 8.5,
+     "tier3_mean": 2.0454545454545454,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.636363636363637
+      },
+      "20": {
+       "games": 36,
+       "mean_techs": 7.305555555555555
+      },
+      "30": {
+       "games": 28,
+       "mean_techs": 9.0
+      },
+      "40": {
+       "games": 14,
+       "mean_techs": 11.285714285714286
+      },
+      "50": {
+       "games": 12,
+       "mean_techs": 12.666666666666666
+      },
+      "60": {
+       "games": 10,
+       "mean_techs": 13.9
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 15.0
+      },
+      "100": {
+       "games": 8,
+       "mean_techs": 15.625
+      }
+     },
+     "tech_share": {
+      "Forestry": 0.977,
+      "Organization": 0.955,
+      "Mathematics": 0.955,
+      "Climbing": 0.932,
+      "Strategy": 0.818,
+      "Fishing": 0.5,
+      "Diplomacy": 0.477,
+      "Archery": 0.386,
+      "Riding": 0.341,
+      "Spiritualism": 0.341,
+      "Mining": 0.205,
+      "Ramming": 0.136,
+      "Aquatism": 0.114,
+      "Farming": 0.091,
+      "Sailing": 0.091,
+      "FreeSpirit": 0.068,
+      "Navigation": 0.068,
+      "Construction": 0.045,
+      "Meditation": 0.045,
+      "Roads": 0.023,
+      "Trade": 0.023,
+      "Smithery": 0.023
+     }
+    }
+   },
+   "pangea": {
+    "games": 22,
+    "wins": 11,
+    "losses": 7,
+    "truncations": 4,
+    "mean_turns": 48.31818181818182,
+    "mean_captures": 12.636363636363637,
+    "games_with_ports": 11,
+    "seat1_win_rate": 0.5454545454545454,
+    "candidate_unit_mix": {
+     "Warrior": 0.4052,
+     "Catapult": 0.3193,
+     "Cloak": 0.1415,
+     "Defender": 0.0986,
+     "Rammership": 0.0194,
+     "Archer": 0.0076,
+     "Rider": 0.0076,
+     "Scoutship": 0.0008
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 9.636363636363637,
+     "final_median": 8.0,
+     "tier3_mean": 2.227272727272727,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 4.7272727272727275
+      },
+      "20": {
+       "games": 19,
+       "mean_techs": 7.2105263157894735
+      },
+      "30": {
+       "games": 13,
+       "mean_techs": 9.615384615384615
+      },
+      "40": {
+       "games": 9,
+       "mean_techs": 11.11111111111111
+      },
+      "50": {
+       "games": 8,
+       "mean_techs": 11.125
+      },
+      "60": {
+       "games": 7,
+       "mean_techs": 10.857142857142858
+      },
+      "80": {
+       "games": 5,
+       "mean_techs": 12.6
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 14.5
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.955,
+      "Climbing": 0.955,
+      "Strategy": 0.864,
+      "Diplomacy": 0.636,
+      "Fishing": 0.409,
+      "Archery": 0.409,
+      "Riding": 0.364,
+      "Spiritualism": 0.318,
+      "Ramming": 0.182,
+      "Aquatism": 0.182,
+      "Mining": 0.136,
+      "Sailing": 0.091,
+      "Navigation": 0.045,
+      "Smithery": 0.045,
+      "Meditation": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4397,
+     "Catapult": 0.2945,
+     "Cloak": 0.1331,
+     "Defender": 0.0854,
+     "Rammership": 0.0253,
+     "Rider": 0.012,
+     "Archer": 0.0079,
+     "Scoutship": 0.0012,
+     "Bomber": 0.0008
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 9.931818181818182,
+     "final_median": 8.5,
+     "tier3_mean": 2.25,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.431818181818182
+      },
+      "20": {
+       "games": 38,
+       "mean_techs": 6.842105263157895
+      },
+      "30": {
+       "games": 26,
+       "mean_techs": 9.23076923076923
+      },
+      "40": {
+       "games": 18,
+       "mean_techs": 11.0
+      },
+      "50": {
+       "games": 16,
+       "mean_techs": 11.625
+      },
+      "60": {
+       "games": 14,
+       "mean_techs": 12.5
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 14.0
+      },
+      "100": {
+       "games": 8,
+       "mean_techs": 16.25
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.932,
+      "Climbing": 0.932,
+      "Strategy": 0.818,
+      "Fishing": 0.523,
+      "Diplomacy": 0.5,
+      "Archery": 0.455,
+      "Spiritualism": 0.364,
+      "Riding": 0.295,
+      "Mining": 0.205,
+      "Ramming": 0.205,
+      "Aquatism": 0.205,
+      "Sailing": 0.114,
+      "Farming": 0.091,
+      "Navigation": 0.068,
+      "Smithery": 0.068,
+      "FreeSpirit": 0.045,
+      "Meditation": 0.045,
+      "Roads": 0.023,
+      "Trade": 0.023,
+      "Construction": 0.023
+     }
+    }
+   },
+   "ridge": {
+    "games": 16,
+    "wins": 12,
+    "losses": 1,
+    "truncations": 3,
+    "mean_turns": 50.6875,
+    "mean_captures": 18.0,
+    "games_with_ports": 7,
+    "seat1_win_rate": 0.625,
+    "candidate_unit_mix": {
+     "Warrior": 0.3789,
+     "Catapult": 0.2642,
+     "Cloak": 0.2106,
+     "Defender": 0.1351,
+     "Archer": 0.0083,
+     "Bomber": 0.0023,
+     "Scoutship": 0.0008
+    },
+    "candidate_tech": {
+     "samples": 16,
+     "final_mean": 9.125,
+     "final_median": 8.0,
+     "tier3_mean": 2.1875,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 16,
+       "mean_techs": 4.6875
+      },
+      "20": {
+       "games": 16,
+       "mean_techs": 7.125
+      },
+      "30": {
+       "games": 11,
+       "mean_techs": 8.272727272727273
+      },
+      "40": {
+       "games": 6,
+       "mean_techs": 9.166666666666666
+      },
+      "50": {
+       "games": 5,
+       "mean_techs": 9.8
+      },
+      "60": {
+       "games": 5,
+       "mean_techs": 10.2
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 11.25
+      },
+      "100": {
+       "games": 3,
+       "mean_techs": 13.0
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Diplomacy": 0.938,
+      "Fishing": 0.25,
+      "Archery": 0.25,
+      "Riding": 0.188,
+      "Spiritualism": 0.188,
+      "Mining": 0.062,
+      "Farming": 0.062,
+      "Ramming": 0.062,
+      "Sailing": 0.062,
+      "Navigation": 0.062
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4617,
+     "Catapult": 0.2504,
+     "Cloak": 0.1763,
+     "Defender": 0.1018,
+     "Archer": 0.0072,
+     "Bomber": 0.0017,
+     "Rammership": 0.0004,
+     "Scoutship": 0.0004
+    },
+    "both_tech": {
+     "samples": 32,
+     "final_mean": 9.65625,
+     "final_median": 8.0,
+     "tier3_mean": 2.0,
+     "share_with_tier3": 0.96875,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 32,
+       "mean_techs": 4.5625
+      },
+      "20": {
+       "games": 32,
+       "mean_techs": 6.46875
+      },
+      "30": {
+       "games": 22,
+       "mean_techs": 8.0
+      },
+      "40": {
+       "games": 12,
+       "mean_techs": 9.833333333333334
+      },
+      "50": {
+       "games": 10,
+       "mean_techs": 11.3
+      },
+      "60": {
+       "games": 10,
+       "mean_techs": 11.9
+      },
+      "80": {
+       "games": 8,
+       "mean_techs": 13.125
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 14.333333333333334
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 0.969,
+      "Climbing": 0.969,
+      "Strategy": 0.906,
+      "Diplomacy": 0.531,
+      "Fishing": 0.469,
+      "Archery": 0.406,
+      "Riding": 0.312,
+      "Spiritualism": 0.281,
+      "Mining": 0.188,
+      "Ramming": 0.156,
+      "Farming": 0.125,
+      "Aquatism": 0.094,
+      "Construction": 0.062,
+      "FreeSpirit": 0.062,
+      "Sailing": 0.062,
+      "Navigation": 0.062
+     }
+    }
+   },
+   "waterworld": {
+    "games": 24,
+    "wins": 14,
+    "losses": 9,
+    "truncations": 1,
+    "mean_turns": 47.583333333333336,
+    "mean_captures": 14.541666666666666,
+    "games_with_ports": 24,
+    "seat1_win_rate": 0.6666666666666666,
+    "candidate_unit_mix": {
+     "Warrior": 0.3275,
+     "Catapult": 0.2453,
+     "Cloak": 0.2151,
+     "Scoutship": 0.1139,
+     "Defender": 0.0797,
+     "Rider": 0.0118,
+     "Bomber": 0.0026,
+     "Archer": 0.0026,
+     "Rammership": 0.0015
+    },
+    "candidate_tech": {
+     "samples": 24,
+     "final_mean": 10.208333333333334,
+     "final_median": 10.0,
+     "tier3_mean": 2.0,
+     "share_with_tier3": 0.9583333333333334,
+     "first_tier3_turn_median": 13.0,
+     "by_turn": {
+      "10": {
+       "games": 24,
+       "mean_techs": 4.75
+      },
+      "20": {
+       "games": 24,
+       "mean_techs": 7.291666666666667
+      },
+      "30": {
+       "games": 18,
+       "mean_techs": 8.61111111111111
+      },
+      "40": {
+       "games": 14,
+       "mean_techs": 9.071428571428571
+      },
+      "50": {
+       "games": 11,
+       "mean_techs": 10.272727272727273
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 10.833333333333334
+      },
+      "80": {
+       "games": 2,
+       "mean_techs": 14.0
+      },
+      "100": {
+       "games": 1,
+       "mean_techs": 18.0
+      }
+     },
+     "tech_share": {
+      "Fishing": 1.0,
+      "Climbing": 1.0,
+      "Organization": 0.958,
+      "Forestry": 0.958,
+      "Mathematics": 0.958,
+      "Strategy": 0.875,
+      "Sailing": 0.667,
+      "Diplomacy": 0.542,
+      "Archery": 0.333,
+      "Spiritualism": 0.333,
+      "Riding": 0.25,
+      "Ramming": 0.083,
+      "Navigation": 0.083,
+      "Mining": 0.083,
+      "Aquatism": 0.042,
+      "Smithery": 0.042
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.3445,
+     "Catapult": 0.2495,
+     "Cloak": 0.1723,
+     "Scoutship": 0.1207,
+     "Defender": 0.0874,
+     "Rammership": 0.012,
+     "Rider": 0.0104,
+     "Archer": 0.0019,
+     "Bomber": 0.0014
+    },
+    "both_tech": {
+     "samples": 48,
+     "final_mean": 10.583333333333334,
+     "final_median": 10.0,
+     "tier3_mean": 2.1458333333333335,
+     "share_with_tier3": 0.9791666666666666,
+     "first_tier3_turn_median": 12.0,
+     "by_turn": {
+      "10": {
+       "games": 48,
+       "mean_techs": 4.729166666666667
+      },
+      "20": {
+       "games": 48,
+       "mean_techs": 7.3125
+      },
+      "30": {
+       "games": 36,
+       "mean_techs": 9.027777777777779
+      },
+      "40": {
+       "games": 28,
+       "mean_techs": 9.785714285714286
+      },
+      "50": {
+       "games": 22,
+       "mean_techs": 10.909090909090908
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 11.666666666666666
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 17.25
+      },
+      "100": {
+       "games": 2,
+       "mean_techs": 22.0
+      }
+     },
+     "tech_share": {
+      "Fishing": 1.0,
+      "Climbing": 0.979,
+      "Forestry": 0.958,
+      "Mathematics": 0.958,
+      "Organization": 0.938,
+      "Strategy": 0.896,
+      "Sailing": 0.562,
+      "Diplomacy": 0.479,
+      "Archery": 0.354,
+      "Spiritualism": 0.354,
+      "Riding": 0.292,
+      "Mining": 0.167,
+      "Ramming": 0.146,
+      "Aquatism": 0.125,
+      "Navigation": 0.083,
+      "Smithery": 0.062,
+      "Meditation": 0.062,
+      "Farming": 0.042,
+      "FreeSpirit": 0.021,
+      "Chivalry": 0.021,
+      "Roads": 0.021,
+      "Trade": 0.021,
+      "Construction": 0.021,
+      "Philosophy": 0.021
+     }
+    }
+   }
+  },
+  "name": "abl-ladder-b-omni",
+  "size": 14,
+  "candidate": "/results/distributed/abl-omni-2/final.npz",
+  "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+  "seed_base": 371300,
+  "maps": 128,
+  "deterministic": true,
+  "opponent_deterministic": true,
+  "engine": "frozen (cpu_engine fast=False)",
+  "map_mix": "proposed-v1"
+ },
+ "pbrs": {
+  "games": 256,
+  "wins": 95,
+  "losses": 116,
+  "draws_or_truncations": 45,
+  "truncations": 45,
+  "win_rate": 0.37109375,
+  "ci95": [
+   0.32421875,
+   0.4140625
+  ],
+  "candidate_unit_mix": {
+   "Warrior": 0.4062,
+   "Catapult": 0.2312,
+   "Cloak": 0.1757,
+   "Defender": 0.1265,
+   "Scoutship": 0.0257,
+   "Rammership": 0.0187,
+   "Archer": 0.006,
+   "Bomber": 0.0058,
+   "Rider": 0.0043
+  },
+  "opponent_unit_mix": {
+   "Warrior": 0.4135,
+   "Catapult": 0.2682,
+   "Cloak": 0.16,
+   "Defender": 0.0828,
+   "Scoutship": 0.0318,
+   "Rammership": 0.0214,
+   "Bomber": 0.0107,
+   "Archer": 0.0078,
+   "Rider": 0.0037
+  },
+  "candidate_non_warrior_games": 255,
+  "candidate_unit_types_per_game": 3.6953125,
+  "candidate_first_non_warrior_turn_median": 8.0,
+  "candidate_early_research_mean": 2.171875,
+  "mean_steps": 1357.23828125,
+  "seconds": 889.8623208829999,
+  "mean_turns": 52.04296875,
+  "candidate_tech": {
+   "samples": 256,
+   "final_mean": 10.27734375,
+   "final_median": 10.0,
+   "tier3_mean": 2.25,
+   "share_with_tier3": 0.9921875,
+   "first_tier3_turn_median": 6.0,
+   "by_turn": {
+    "10": {
+     "games": 256,
+     "mean_techs": 4.9609375
+    },
+    "20": {
+     "games": 241,
+     "mean_techs": 7.161825726141079
+    },
+    "30": {
+     "games": 196,
+     "mean_techs": 8.974489795918368
+    },
+    "40": {
+     "games": 149,
+     "mean_techs": 10.234899328859061
+    },
+    "50": {
+     "games": 107,
+     "mean_techs": 11.336448598130842
+    },
+    "60": {
+     "games": 77,
+     "mean_techs": 12.246753246753247
+    },
+    "80": {
+     "games": 52,
+     "mean_techs": 13.788461538461538
+    },
+    "100": {
+     "games": 46,
+     "mean_techs": 15.08695652173913
+    }
+   },
+   "tech_share": {
+    "Forestry": 0.996,
+    "Mathematics": 0.992,
+    "Climbing": 0.98,
+    "Organization": 0.965,
+    "Strategy": 0.875,
+    "Fishing": 0.695,
+    "Archery": 0.5,
+    "Diplomacy": 0.496,
+    "Spiritualism": 0.395,
+    "Riding": 0.258,
+    "Mining": 0.219,
+    "Sailing": 0.188,
+    "Ramming": 0.184,
+    "Aquatism": 0.129,
+    "Navigation": 0.113,
+    "Farming": 0.055,
+    "Roads": 0.055,
+    "Smithery": 0.051,
+    "FreeSpirit": 0.047,
+    "Trade": 0.043,
+    "Construction": 0.031,
+    "Meditation": 0.012
+   }
+  },
+  "opponent_tech": {
+   "samples": 256,
+   "final_mean": 10.91015625,
+   "final_median": 10.0,
+   "tier3_mean": 2.5546875,
+   "share_with_tier3": 0.99609375,
+   "first_tier3_turn_median": 7.0,
+   "by_turn": {
+    "10": {
+     "games": 256,
+     "mean_techs": 4.45703125
+    },
+    "20": {
+     "games": 241,
+     "mean_techs": 6.908713692946058
+    },
+    "30": {
+     "games": 196,
+     "mean_techs": 9.16326530612245
+    },
+    "40": {
+     "games": 149,
+     "mean_techs": 10.751677852348994
+    },
+    "50": {
+     "games": 107,
+     "mean_techs": 12.25233644859813
+    },
+    "60": {
+     "games": 77,
+     "mean_techs": 13.64935064935065
+    },
+    "80": {
+     "games": 52,
+     "mean_techs": 15.615384615384615
+    },
+    "100": {
+     "games": 46,
+     "mean_techs": 16.97826086956522
+    }
+   },
+   "tech_share": {
+    "Forestry": 0.992,
+    "Mathematics": 0.992,
+    "Organization": 0.965,
+    "Climbing": 0.949,
+    "Strategy": 0.922,
+    "Fishing": 0.656,
+    "Diplomacy": 0.559,
+    "Archery": 0.484,
+    "Spiritualism": 0.434,
+    "Mining": 0.32,
+    "Riding": 0.293,
+    "Sailing": 0.23,
+    "Ramming": 0.219,
+    "Aquatism": 0.191,
+    "Navigation": 0.145,
+    "Farming": 0.137,
+    "FreeSpirit": 0.094,
+    "Construction": 0.082,
+    "Roads": 0.059,
+    "Smithery": 0.059,
+    "Trade": 0.051,
+    "Meditation": 0.035,
+    "Philosophy": 0.023,
+    "Chivalry": 0.02
+   }
+  },
+  "by_map": {
+   "archipelago": {
+    "games": 22,
+    "wins": 8,
+    "losses": 11,
+    "truncations": 3,
+    "mean_turns": 58.77272727272727,
+    "mean_captures": 20.727272727272727,
+    "games_with_ports": 22,
+    "seat1_win_rate": 0.2727272727272727,
+    "candidate_unit_mix": {
+     "Warrior": 0.3978,
+     "Catapult": 0.2378,
+     "Cloak": 0.1824,
+     "Defender": 0.116,
+     "Scoutship": 0.0449,
+     "Rammership": 0.011,
+     "Bomber": 0.0047,
+     "Archer": 0.0047,
+     "Rider": 0.0008
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 10.954545454545455,
+     "final_median": 10.5,
+     "tier3_mean": 2.272727272727273,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 11.5,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 5.045454545454546
+      },
+      "20": {
+       "games": 22,
+       "mean_techs": 7.2727272727272725
+      },
+      "30": {
+       "games": 21,
+       "mean_techs": 9.285714285714286
+      },
+      "40": {
+       "games": 18,
+       "mean_techs": 10.11111111111111
+      },
+      "50": {
+       "games": 12,
+       "mean_techs": 10.916666666666666
+      },
+      "60": {
+       "games": 8,
+       "mean_techs": 11.375
+      },
+      "80": {
+       "games": 5,
+       "mean_techs": 12.0
+      },
+      "100": {
+       "games": 3,
+       "mean_techs": 14.333333333333334
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Strategy": 0.955,
+      "Archery": 0.682,
+      "Spiritualism": 0.545,
+      "Diplomacy": 0.5,
+      "Sailing": 0.318,
+      "Riding": 0.273,
+      "Ramming": 0.182,
+      "Mining": 0.182,
+      "Navigation": 0.136,
+      "Roads": 0.045,
+      "Farming": 0.045,
+      "Construction": 0.045,
+      "Aquatism": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.3573,
+     "Catapult": 0.2641,
+     "Cloak": 0.1887,
+     "Defender": 0.0984,
+     "Scoutship": 0.058,
+     "Rammership": 0.0153,
+     "Bomber": 0.0136,
+     "Archer": 0.0036,
+     "Rider": 0.001
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 11.045454545454545,
+     "final_median": 10.0,
+     "tier3_mean": 2.3863636363636362,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 11.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.613636363636363
+      },
+      "20": {
+       "games": 44,
+       "mean_techs": 7.0227272727272725
+      },
+      "30": {
+       "games": 42,
+       "mean_techs": 9.071428571428571
+      },
+      "40": {
+       "games": 36,
+       "mean_techs": 10.055555555555555
+      },
+      "50": {
+       "games": 24,
+       "mean_techs": 10.958333333333334
+      },
+      "60": {
+       "games": 16,
+       "mean_techs": 11.6875
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 13.2
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 14.0
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Strategy": 0.977,
+      "Fishing": 0.977,
+      "Archery": 0.591,
+      "Diplomacy": 0.591,
+      "Spiritualism": 0.477,
+      "Sailing": 0.341,
+      "Riding": 0.273,
+      "Mining": 0.25,
+      "Navigation": 0.182,
+      "Ramming": 0.159,
+      "Aquatism": 0.091,
+      "Farming": 0.068,
+      "Construction": 0.045,
+      "Roads": 0.023
+     }
+    }
+   },
+   "classic": {
+    "games": 54,
+    "wins": 19,
+    "losses": 29,
+    "truncations": 6,
+    "mean_turns": 42.370370370370374,
+    "mean_captures": 12.925925925925926,
+    "games_with_ports": 22,
+    "seat1_win_rate": 0.5185185185185185,
+    "candidate_unit_mix": {
+     "Warrior": 0.475,
+     "Catapult": 0.2499,
+     "Defender": 0.1496,
+     "Cloak": 0.1189,
+     "Archer": 0.0028,
+     "Rammership": 0.0022,
+     "Rider": 0.0016
+    },
+    "candidate_tech": {
+     "samples": 54,
+     "final_mean": 9.166666666666666,
+     "final_median": 9.0,
+     "tier3_mean": 1.8888888888888888,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 54,
+       "mean_techs": 4.425925925925926
+      },
+      "20": {
+       "games": 49,
+       "mean_techs": 7.061224489795919
+      },
+      "30": {
+       "games": 32,
+       "mean_techs": 8.625
+      },
+      "40": {
+       "games": 17,
+       "mean_techs": 9.647058823529411
+      },
+      "50": {
+       "games": 13,
+       "mean_techs": 11.153846153846153
+      },
+      "60": {
+       "games": 11,
+       "mean_techs": 11.909090909090908
+      },
+      "80": {
+       "games": 6,
+       "mean_techs": 15.166666666666666
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 15.666666666666666
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.981,
+      "Organization": 0.963,
+      "Strategy": 0.833,
+      "Fishing": 0.556,
+      "Archery": 0.426,
+      "Diplomacy": 0.426,
+      "Spiritualism": 0.278,
+      "Riding": 0.148,
+      "Mining": 0.13,
+      "Aquatism": 0.093,
+      "Ramming": 0.093,
+      "Farming": 0.074,
+      "FreeSpirit": 0.037,
+      "Roads": 0.037,
+      "Trade": 0.037,
+      "Smithery": 0.037,
+      "Construction": 0.019
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4723,
+     "Catapult": 0.2627,
+     "Cloak": 0.1329,
+     "Defender": 0.1161,
+     "Archer": 0.0073,
+     "Rammership": 0.0038,
+     "Scoutship": 0.0021,
+     "Rider": 0.0015,
+     "Bomber": 0.0013
+    },
+    "both_tech": {
+     "samples": 108,
+     "final_mean": 9.444444444444445,
+     "final_median": 8.0,
+     "tier3_mean": 2.0925925925925926,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 108,
+       "mean_techs": 4.25
+      },
+      "20": {
+       "games": 98,
+       "mean_techs": 7.081632653061225
+      },
+      "30": {
+       "games": 64,
+       "mean_techs": 8.828125
+      },
+      "40": {
+       "games": 34,
+       "mean_techs": 10.117647058823529
+      },
+      "50": {
+       "games": 26,
+       "mean_techs": 11.692307692307692
+      },
+      "60": {
+       "games": 22,
+       "mean_techs": 12.590909090909092
+      },
+      "80": {
+       "games": 12,
+       "mean_techs": 15.166666666666666
+      },
+      "100": {
+       "games": 12,
+       "mean_techs": 16.833333333333332
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.954,
+      "Organization": 0.935,
+      "Strategy": 0.861,
+      "Diplomacy": 0.509,
+      "Fishing": 0.5,
+      "Archery": 0.389,
+      "Spiritualism": 0.287,
+      "Riding": 0.176,
+      "Mining": 0.157,
+      "Ramming": 0.148,
+      "Aquatism": 0.13,
+      "Farming": 0.074,
+      "Roads": 0.046,
+      "Smithery": 0.046,
+      "Sailing": 0.046,
+      "FreeSpirit": 0.037,
+      "Trade": 0.037,
+      "Construction": 0.037,
+      "Navigation": 0.037,
+      "Meditation": 0.028,
+      "Philosophy": 0.009
+     }
+    }
+   },
+   "continents": {
+    "games": 32,
+    "wins": 8,
+    "losses": 11,
+    "truncations": 13,
+    "mean_turns": 71.3125,
+    "mean_captures": 12.40625,
+    "games_with_ports": 32,
+    "seat1_win_rate": 0.1875,
+    "candidate_unit_mix": {
+     "Warrior": 0.2517,
+     "Catapult": 0.2361,
+     "Cloak": 0.2323,
+     "Defender": 0.1311,
+     "Scoutship": 0.0804,
+     "Rammership": 0.0277,
+     "Bomber": 0.0274,
+     "Archer": 0.0132
+    },
+    "candidate_tech": {
+     "samples": 32,
+     "final_mean": 13.4375,
+     "final_median": 13.0,
+     "tier3_mean": 3.40625,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 32,
+       "mean_techs": 6.375
+      },
+      "20": {
+       "games": 32,
+       "mean_techs": 8.71875
+      },
+      "30": {
+       "games": 32,
+       "mean_techs": 10.71875
+      },
+      "40": {
+       "games": 28,
+       "mean_techs": 11.857142857142858
+      },
+      "50": {
+       "games": 22,
+       "mean_techs": 12.863636363636363
+      },
+      "60": {
+       "games": 18,
+       "mean_techs": 13.277777777777779
+      },
+      "80": {
+       "games": 15,
+       "mean_techs": 14.133333333333333
+      },
+      "100": {
+       "games": 13,
+       "mean_techs": 15.384615384615385
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Sailing": 0.812,
+      "Archery": 0.781,
+      "Spiritualism": 0.719,
+      "Diplomacy": 0.625,
+      "Navigation": 0.594,
+      "Mining": 0.469,
+      "Riding": 0.406,
+      "Ramming": 0.344,
+      "Aquatism": 0.281,
+      "Farming": 0.062,
+      "Construction": 0.062,
+      "FreeSpirit": 0.062,
+      "Roads": 0.062,
+      "Trade": 0.062,
+      "Smithery": 0.062,
+      "Meditation": 0.031
+     }
+    },
+    "both_unit_mix": {
+     "Cloak": 0.2596,
+     "Catapult": 0.2481,
+     "Warrior": 0.231,
+     "Defender": 0.1101,
+     "Scoutship": 0.0787,
+     "Bomber": 0.035,
+     "Rammership": 0.0233,
+     "Archer": 0.013,
+     "Rider": 0.0012
+    },
+    "both_tech": {
+     "samples": 64,
+     "final_mean": 13.75,
+     "final_median": 13.0,
+     "tier3_mean": 3.5625,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 64,
+       "mean_techs": 5.953125
+      },
+      "20": {
+       "games": 64,
+       "mean_techs": 8.46875
+      },
+      "30": {
+       "games": 64,
+       "mean_techs": 10.640625
+      },
+      "40": {
+       "games": 56,
+       "mean_techs": 11.910714285714286
+      },
+      "50": {
+       "games": 44,
+       "mean_techs": 13.227272727272727
+      },
+      "60": {
+       "games": 36,
+       "mean_techs": 14.027777777777779
+      },
+      "80": {
+       "games": 30,
+       "mean_techs": 15.266666666666667
+      },
+      "100": {
+       "games": 26,
+       "mean_techs": 16.423076923076923
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Sailing": 0.75,
+      "Archery": 0.75,
+      "Spiritualism": 0.719,
+      "Diplomacy": 0.641,
+      "Navigation": 0.531,
+      "Mining": 0.516,
+      "Riding": 0.438,
+      "Ramming": 0.344,
+      "Aquatism": 0.297,
+      "Farming": 0.141,
+      "Construction": 0.125,
+      "FreeSpirit": 0.109,
+      "Roads": 0.094,
+      "Trade": 0.094,
+      "Smithery": 0.094,
+      "Meditation": 0.047,
+      "Chivalry": 0.031,
+      "Philosophy": 0.031
+     }
+    }
+   },
+   "drylands": {
+    "games": 12,
+    "wins": 5,
+    "losses": 4,
+    "truncations": 3,
+    "mean_turns": 50.583333333333336,
+    "mean_captures": 16.083333333333332,
+    "games_with_ports": 5,
+    "seat1_win_rate": 0.8333333333333334,
+    "candidate_unit_mix": {
+     "Warrior": 0.4214,
+     "Cloak": 0.2656,
+     "Catapult": 0.2244,
+     "Defender": 0.0748,
+     "Archer": 0.0137
+    },
+    "candidate_tech": {
+     "samples": 12,
+     "final_mean": 9.416666666666666,
+     "final_median": 8.5,
+     "tier3_mean": 1.8333333333333333,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 12,
+       "mean_techs": 4.5
+      },
+      "20": {
+       "games": 12,
+       "mean_techs": 6.583333333333333
+      },
+      "30": {
+       "games": 8,
+       "mean_techs": 7.5
+      },
+      "40": {
+       "games": 5,
+       "mean_techs": 8.8
+      },
+      "50": {
+       "games": 4,
+       "mean_techs": 9.5
+      },
+      "60": {
+       "games": 3,
+       "mean_techs": 10.333333333333334
+      },
+      "80": {
+       "games": 3,
+       "mean_techs": 12.0
+      },
+      "100": {
+       "games": 3,
+       "mean_techs": 13.666666666666666
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.917,
+      "Strategy": 0.833,
+      "Diplomacy": 0.5,
+      "Fishing": 0.5,
+      "Archery": 0.417,
+      "Spiritualism": 0.333,
+      "Riding": 0.167,
+      "Ramming": 0.167,
+      "Mining": 0.167,
+      "Farming": 0.167,
+      "Roads": 0.083,
+      "FreeSpirit": 0.083,
+      "Meditation": 0.083
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4716,
+     "Catapult": 0.2688,
+     "Cloak": 0.1807,
+     "Defender": 0.0587,
+     "Rammership": 0.0111,
+     "Archer": 0.0091
+    },
+    "both_tech": {
+     "samples": 24,
+     "final_mean": 9.5,
+     "final_median": 8.0,
+     "tier3_mean": 1.9583333333333333,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 24,
+       "mean_techs": 4.291666666666667
+      },
+      "20": {
+       "games": 24,
+       "mean_techs": 6.291666666666667
+      },
+      "30": {
+       "games": 16,
+       "mean_techs": 7.5
+      },
+      "40": {
+       "games": 10,
+       "mean_techs": 9.0
+      },
+      "50": {
+       "games": 8,
+       "mean_techs": 9.75
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 11.333333333333334
+      },
+      "80": {
+       "games": 6,
+       "mean_techs": 13.0
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 14.166666666666666
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.875,
+      "Strategy": 0.75,
+      "Diplomacy": 0.5,
+      "Fishing": 0.5,
+      "Archery": 0.417,
+      "Spiritualism": 0.375,
+      "Riding": 0.25,
+      "Mining": 0.208,
+      "Ramming": 0.167,
+      "Farming": 0.125,
+      "Sailing": 0.083,
+      "FreeSpirit": 0.083,
+      "Roads": 0.042,
+      "Construction": 0.042,
+      "Aquatism": 0.042,
+      "Meditation": 0.042
+     }
+    }
+   },
+   "highlands": {
+    "games": 38,
+    "wins": 18,
+    "losses": 17,
+    "truncations": 3,
+    "mean_turns": 42.71052631578947,
+    "mean_captures": 13.131578947368421,
+    "games_with_ports": 13,
+    "seat1_win_rate": 0.8421052631578947,
+    "candidate_unit_mix": {
+     "Warrior": 0.4293,
+     "Catapult": 0.2213,
+     "Cloak": 0.2095,
+     "Defender": 0.1302,
+     "Rider": 0.0043,
+     "Archer": 0.0032,
+     "Bomber": 0.0021
+    },
+    "candidate_tech": {
+     "samples": 38,
+     "final_mean": 8.894736842105264,
+     "final_median": 8.0,
+     "tier3_mean": 1.9473684210526316,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 38,
+       "mean_techs": 5.0
+      },
+      "20": {
+       "games": 34,
+       "mean_techs": 6.794117647058823
+      },
+      "30": {
+       "games": 22,
+       "mean_techs": 8.318181818181818
+      },
+      "40": {
+       "games": 18,
+       "mean_techs": 9.555555555555555
+      },
+      "50": {
+       "games": 11,
+       "mean_techs": 10.454545454545455
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 12.333333333333334
+      },
+      "80": {
+       "games": 5,
+       "mean_techs": 13.6
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 15.75
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Organization": 0.921,
+      "Strategy": 0.763,
+      "Diplomacy": 0.5,
+      "Fishing": 0.474,
+      "Archery": 0.342,
+      "Spiritualism": 0.289,
+      "Riding": 0.132,
+      "Mining": 0.132,
+      "Ramming": 0.079,
+      "Aquatism": 0.053,
+      "Sailing": 0.026,
+      "Navigation": 0.026,
+      "FreeSpirit": 0.026,
+      "Roads": 0.026,
+      "Trade": 0.026,
+      "Farming": 0.026,
+      "Construction": 0.026,
+      "Smithery": 0.026
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4659,
+     "Catapult": 0.2535,
+     "Cloak": 0.152,
+     "Defender": 0.1002,
+     "Rammership": 0.0151,
+     "Rider": 0.0064,
+     "Archer": 0.0059,
+     "Bomber": 0.001
+    },
+    "both_tech": {
+     "samples": 76,
+     "final_mean": 9.210526315789474,
+     "final_median": 8.0,
+     "tier3_mean": 2.013157894736842,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 76,
+       "mean_techs": 4.7105263157894735
+      },
+      "20": {
+       "games": 68,
+       "mean_techs": 6.647058823529412
+      },
+      "30": {
+       "games": 44,
+       "mean_techs": 8.477272727272727
+      },
+      "40": {
+       "games": 36,
+       "mean_techs": 10.0
+      },
+      "50": {
+       "games": 22,
+       "mean_techs": 11.090909090909092
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 12.666666666666666
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 14.1
+      },
+      "100": {
+       "games": 8,
+       "mean_techs": 15.75
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.961,
+      "Organization": 0.947,
+      "Strategy": 0.816,
+      "Diplomacy": 0.474,
+      "Fishing": 0.461,
+      "Archery": 0.355,
+      "Spiritualism": 0.289,
+      "Mining": 0.211,
+      "Riding": 0.171,
+      "Ramming": 0.118,
+      "Aquatism": 0.105,
+      "FreeSpirit": 0.053,
+      "Farming": 0.039,
+      "Smithery": 0.039,
+      "Sailing": 0.026,
+      "Navigation": 0.026,
+      "Roads": 0.026,
+      "Trade": 0.026,
+      "Construction": 0.026,
+      "Chivalry": 0.013,
+      "Meditation": 0.013,
+      "Philosophy": 0.013
+     }
+    }
+   },
+   "jungle": {
+    "games": 14,
+    "wins": 4,
+    "losses": 6,
+    "truncations": 4,
+    "mean_turns": 57.5,
+    "mean_captures": 15.357142857142858,
+    "games_with_ports": 10,
+    "seat1_win_rate": 0.42857142857142855,
+    "candidate_unit_mix": {
+     "Warrior": 0.3573,
+     "Catapult": 0.2637,
+     "Cloak": 0.2429,
+     "Defender": 0.1267,
+     "Archer": 0.0066,
+     "Rammership": 0.0028
+    },
+    "candidate_tech": {
+     "samples": 14,
+     "final_mean": 9.857142857142858,
+     "final_median": 9.0,
+     "tier3_mean": 2.0714285714285716,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 14,
+       "mean_techs": 4.357142857142857
+      },
+      "20": {
+       "games": 13,
+       "mean_techs": 7.153846153846154
+      },
+      "30": {
+       "games": 11,
+       "mean_techs": 8.545454545454545
+      },
+      "40": {
+       "games": 9,
+       "mean_techs": 10.11111111111111
+      },
+      "50": {
+       "games": 8,
+       "mean_techs": 10.5
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 11.5
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 11.75
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 11.75
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Fishing": 0.571,
+      "Archery": 0.5,
+      "Diplomacy": 0.5,
+      "Spiritualism": 0.429,
+      "Riding": 0.286,
+      "Ramming": 0.214,
+      "Mining": 0.214,
+      "Aquatism": 0.143
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.409,
+     "Catapult": 0.2782,
+     "Cloak": 0.1696,
+     "Defender": 0.1272,
+     "Archer": 0.0093,
+     "Rammership": 0.0032,
+     "Bomber": 0.002,
+     "Scoutship": 0.0016
+    },
+    "both_tech": {
+     "samples": 28,
+     "final_mean": 10.178571428571429,
+     "final_median": 8.5,
+     "tier3_mean": 2.2142857142857144,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 28,
+       "mean_techs": 4.25
+      },
+      "20": {
+       "games": 26,
+       "mean_techs": 6.961538461538462
+      },
+      "30": {
+       "games": 22,
+       "mean_techs": 8.727272727272727
+      },
+      "40": {
+       "games": 18,
+       "mean_techs": 10.277777777777779
+      },
+      "50": {
+       "games": 16,
+       "mean_techs": 10.9375
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 11.5
+      },
+      "80": {
+       "games": 8,
+       "mean_techs": 12.0
+      },
+      "100": {
+       "games": 8,
+       "mean_techs": 12.125
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Strategy": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 0.964,
+      "Fishing": 0.571,
+      "Diplomacy": 0.5,
+      "Archery": 0.464,
+      "Spiritualism": 0.429,
+      "Mining": 0.286,
+      "Riding": 0.25,
+      "Ramming": 0.25,
+      "Aquatism": 0.214,
+      "FreeSpirit": 0.071,
+      "Farming": 0.071,
+      "Sailing": 0.036,
+      "Navigation": 0.036,
+      "Construction": 0.036
+     }
+    }
+   },
+   "lakes": {
+    "games": 22,
+    "wins": 10,
+    "losses": 10,
+    "truncations": 2,
+    "mean_turns": 44.31818181818182,
+    "mean_captures": 14.727272727272727,
+    "games_with_ports": 17,
+    "seat1_win_rate": 0.6363636363636364,
+    "candidate_unit_mix": {
+     "Warrior": 0.4971,
+     "Catapult": 0.2245,
+     "Cloak": 0.1399,
+     "Defender": 0.127,
+     "Archer": 0.0079,
+     "Rammership": 0.0036
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 9.181818181818182,
+     "final_median": 8.0,
+     "tier3_mean": 1.8636363636363635,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 4.818181818181818
+      },
+      "20": {
+       "games": 19,
+       "mean_techs": 6.526315789473684
+      },
+      "30": {
+       "games": 17,
+       "mean_techs": 8.117647058823529
+      },
+      "40": {
+       "games": 11,
+       "mean_techs": 9.181818181818182
+      },
+      "50": {
+       "games": 6,
+       "mean_techs": 10.5
+      },
+      "60": {
+       "games": 3,
+       "mean_techs": 11.666666666666666
+      },
+      "80": {
+       "games": 2,
+       "mean_techs": 15.0
+      },
+      "100": {
+       "games": 2,
+       "mean_techs": 18.5
+      }
+     },
+     "tech_share": {
+      "Organization": 0.955,
+      "Forestry": 0.955,
+      "Mathematics": 0.955,
+      "Climbing": 0.955,
+      "Strategy": 0.818,
+      "Fishing": 0.545,
+      "Diplomacy": 0.409,
+      "Archery": 0.364,
+      "Spiritualism": 0.273,
+      "Riding": 0.182,
+      "Mining": 0.182,
+      "Ramming": 0.136,
+      "FreeSpirit": 0.091,
+      "Aquatism": 0.091,
+      "Roads": 0.045,
+      "Trade": 0.045,
+      "Smithery": 0.045,
+      "Farming": 0.045,
+      "Construction": 0.045,
+      "Meditation": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4633,
+     "Catapult": 0.2496,
+     "Cloak": 0.1722,
+     "Defender": 0.0924,
+     "Rammership": 0.0111,
+     "Archer": 0.0068,
+     "Scoutship": 0.0025,
+     "Bomber": 0.0014,
+     "Rider": 0.0007
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 9.409090909090908,
+     "final_median": 9.0,
+     "tier3_mean": 2.022727272727273,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 7.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.613636363636363
+      },
+      "20": {
+       "games": 38,
+       "mean_techs": 6.631578947368421
+      },
+      "30": {
+       "games": 34,
+       "mean_techs": 8.382352941176471
+      },
+      "40": {
+       "games": 22,
+       "mean_techs": 9.454545454545455
+      },
+      "50": {
+       "games": 12,
+       "mean_techs": 11.0
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 12.666666666666666
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 15.5
+      },
+      "100": {
+       "games": 4,
+       "mean_techs": 18.25
+      }
+     },
+     "tech_share": {
+      "Organization": 0.955,
+      "Forestry": 0.955,
+      "Mathematics": 0.955,
+      "Climbing": 0.932,
+      "Strategy": 0.864,
+      "Fishing": 0.591,
+      "Diplomacy": 0.455,
+      "Archery": 0.409,
+      "Spiritualism": 0.318,
+      "Riding": 0.159,
+      "Mining": 0.136,
+      "Ramming": 0.114,
+      "Aquatism": 0.091,
+      "Sailing": 0.068,
+      "Navigation": 0.068,
+      "Farming": 0.068,
+      "FreeSpirit": 0.068,
+      "Roads": 0.045,
+      "Trade": 0.045,
+      "Smithery": 0.045,
+      "Construction": 0.045,
+      "Meditation": 0.023
+     }
+    }
+   },
+   "pangea": {
+    "games": 22,
+    "wins": 8,
+    "losses": 11,
+    "truncations": 3,
+    "mean_turns": 52.59090909090909,
+    "mean_captures": 12.636363636363637,
+    "games_with_ports": 15,
+    "seat1_win_rate": 0.45454545454545453,
+    "candidate_unit_mix": {
+     "Warrior": 0.4625,
+     "Catapult": 0.2331,
+     "Cloak": 0.139,
+     "Defender": 0.0897,
+     "Rammership": 0.0397,
+     "Rider": 0.0324,
+     "Archer": 0.0037
+    },
+    "candidate_tech": {
+     "samples": 22,
+     "final_mean": 10.409090909090908,
+     "final_median": 9.5,
+     "tier3_mean": 2.1818181818181817,
+     "share_with_tier3": 0.9545454545454546,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 22,
+       "mean_techs": 4.5
+      },
+      "20": {
+       "games": 20,
+       "mean_techs": 6.5
+      },
+      "30": {
+       "games": 15,
+       "mean_techs": 8.8
+      },
+      "40": {
+       "games": 14,
+       "mean_techs": 10.642857142857142
+      },
+      "50": {
+       "games": 11,
+       "mean_techs": 12.181818181818182
+      },
+      "60": {
+       "games": 9,
+       "mean_techs": 12.11111111111111
+      },
+      "80": {
+       "games": 4,
+       "mean_techs": 13.5
+      },
+      "100": {
+       "games": 3,
+       "mean_techs": 13.333333333333334
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 0.955,
+      "Climbing": 0.955,
+      "Organization": 0.909,
+      "Strategy": 0.818,
+      "Fishing": 0.727,
+      "Archery": 0.5,
+      "Diplomacy": 0.409,
+      "Riding": 0.409,
+      "Ramming": 0.364,
+      "Aquatism": 0.318,
+      "Spiritualism": 0.318,
+      "Mining": 0.318,
+      "Smithery": 0.091,
+      "Farming": 0.091,
+      "FreeSpirit": 0.045,
+      "Roads": 0.045,
+      "Trade": 0.045,
+      "Construction": 0.045,
+      "Sailing": 0.045
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.4922,
+     "Catapult": 0.2481,
+     "Cloak": 0.1202,
+     "Defender": 0.0934,
+     "Rammership": 0.024,
+     "Rider": 0.0166,
+     "Archer": 0.0042,
+     "Scoutship": 0.0014
+    },
+    "both_tech": {
+     "samples": 44,
+     "final_mean": 10.75,
+     "final_median": 10.0,
+     "tier3_mean": 2.3181818181818183,
+     "share_with_tier3": 0.9772727272727273,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 44,
+       "mean_techs": 4.4772727272727275
+      },
+      "20": {
+       "games": 40,
+       "mean_techs": 6.275
+      },
+      "30": {
+       "games": 30,
+       "mean_techs": 8.866666666666667
+      },
+      "40": {
+       "games": 28,
+       "mean_techs": 10.75
+      },
+      "50": {
+       "games": 22,
+       "mean_techs": 12.0
+      },
+      "60": {
+       "games": 18,
+       "mean_techs": 12.722222222222221
+      },
+      "80": {
+       "games": 8,
+       "mean_techs": 14.125
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 15.666666666666666
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 0.977,
+      "Climbing": 0.977,
+      "Organization": 0.909,
+      "Strategy": 0.864,
+      "Fishing": 0.636,
+      "Archery": 0.523,
+      "Diplomacy": 0.432,
+      "Riding": 0.432,
+      "Spiritualism": 0.409,
+      "Mining": 0.386,
+      "Ramming": 0.318,
+      "Aquatism": 0.273,
+      "Farming": 0.159,
+      "FreeSpirit": 0.114,
+      "Construction": 0.091,
+      "Smithery": 0.068,
+      "Sailing": 0.068,
+      "Roads": 0.045,
+      "Trade": 0.045,
+      "Navigation": 0.023
+     }
+    }
+   },
+   "ridge": {
+    "games": 16,
+    "wins": 5,
+    "losses": 6,
+    "truncations": 5,
+    "mean_turns": 62.6875,
+    "mean_captures": 16.0625,
+    "games_with_ports": 8,
+    "seat1_win_rate": 0.375,
+    "candidate_unit_mix": {
+     "Warrior": 0.4731,
+     "Defender": 0.1784,
+     "Catapult": 0.1701,
+     "Cloak": 0.1694,
+     "Rider": 0.0048,
+     "Archer": 0.0034,
+     "Rammership": 0.0007
+    },
+    "candidate_tech": {
+     "samples": 16,
+     "final_mean": 10.0,
+     "final_median": 9.0,
+     "tier3_mean": 2.3125,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.5,
+     "by_turn": {
+      "10": {
+       "games": 16,
+       "mean_techs": 4.8125
+      },
+      "20": {
+       "games": 16,
+       "mean_techs": 6.125
+      },
+      "30": {
+       "games": 14,
+       "mean_techs": 7.642857142857143
+      },
+      "40": {
+       "games": 13,
+       "mean_techs": 8.923076923076923
+      },
+      "50": {
+       "games": 10,
+       "mean_techs": 9.4
+      },
+      "60": {
+       "games": 6,
+       "mean_techs": 11.166666666666666
+      },
+      "80": {
+       "games": 5,
+       "mean_techs": 13.0
+      },
+      "100": {
+       "games": 5,
+       "mean_techs": 14.4
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.938,
+      "Climbing": 0.938,
+      "Strategy": 0.875,
+      "Fishing": 0.625,
+      "Diplomacy": 0.625,
+      "Archery": 0.375,
+      "Spiritualism": 0.312,
+      "Riding": 0.312,
+      "Ramming": 0.188,
+      "Mining": 0.188,
+      "Roads": 0.125,
+      "Smithery": 0.125,
+      "Aquatism": 0.125,
+      "Sailing": 0.062,
+      "Navigation": 0.062,
+      "FreeSpirit": 0.062,
+      "Trade": 0.062
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.5335,
+     "Catapult": 0.1925,
+     "Cloak": 0.1275,
+     "Defender": 0.1199,
+     "Rammership": 0.0183,
+     "Archer": 0.0042,
+     "Rider": 0.0042
+    },
+    "both_tech": {
+     "samples": 32,
+     "final_mean": 11.09375,
+     "final_median": 10.0,
+     "tier3_mean": 2.59375,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 6.0,
+     "by_turn": {
+      "10": {
+       "games": 32,
+       "mean_techs": 4.5625
+      },
+      "20": {
+       "games": 32,
+       "mean_techs": 6.03125
+      },
+      "30": {
+       "games": 28,
+       "mean_techs": 8.107142857142858
+      },
+      "40": {
+       "games": 26,
+       "mean_techs": 9.76923076923077
+      },
+      "50": {
+       "games": 20,
+       "mean_techs": 10.7
+      },
+      "60": {
+       "games": 12,
+       "mean_techs": 12.916666666666666
+      },
+      "80": {
+       "games": 10,
+       "mean_techs": 14.7
+      },
+      "100": {
+       "games": 10,
+       "mean_techs": 15.9
+      }
+     },
+     "tech_share": {
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Organization": 0.969,
+      "Strategy": 0.938,
+      "Climbing": 0.938,
+      "Fishing": 0.625,
+      "Diplomacy": 0.594,
+      "Archery": 0.531,
+      "Spiritualism": 0.5,
+      "Riding": 0.375,
+      "Mining": 0.312,
+      "Ramming": 0.281,
+      "Farming": 0.188,
+      "Aquatism": 0.188,
+      "FreeSpirit": 0.125,
+      "Roads": 0.125,
+      "Sailing": 0.094,
+      "Smithery": 0.094,
+      "Trade": 0.094,
+      "Navigation": 0.062,
+      "Construction": 0.062
+     }
+    }
+   },
+   "waterworld": {
+    "games": 24,
+    "wins": 10,
+    "losses": 11,
+    "truncations": 3,
+    "mean_turns": 53.75,
+    "mean_captures": 13.666666666666666,
+    "games_with_ports": 24,
+    "seat1_win_rate": 0.4166666666666667,
+    "candidate_unit_mix": {
+     "Warrior": 0.3695,
+     "Catapult": 0.228,
+     "Cloak": 0.12,
+     "Rammership": 0.0966,
+     "Defender": 0.0942,
+     "Scoutship": 0.0756,
+     "Rider": 0.0066,
+     "Bomber": 0.006,
+     "Archer": 0.0036
+    },
+    "candidate_tech": {
+     "samples": 24,
+     "final_mean": 11.875,
+     "final_median": 11.0,
+     "tier3_mean": 2.6666666666666665,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 12.0,
+     "by_turn": {
+      "10": {
+       "games": 24,
+       "mean_techs": 5.375
+      },
+      "20": {
+       "games": 24,
+       "mean_techs": 7.75
+      },
+      "30": {
+       "games": 24,
+       "mean_techs": 9.625
+      },
+      "40": {
+       "games": 16,
+       "mean_techs": 10.875
+      },
+      "50": {
+       "games": 10,
+       "mean_techs": 12.6
+      },
+      "60": {
+       "games": 7,
+       "mean_techs": 13.857142857142858
+      },
+      "80": {
+       "games": 3,
+       "mean_techs": 18.0
+      },
+      "100": {
+       "games": 3,
+       "mean_techs": 19.0
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Fishing": 1.0,
+      "Forestry": 1.0,
+      "Mathematics": 1.0,
+      "Climbing": 1.0,
+      "Strategy": 0.958,
+      "Archery": 0.625,
+      "Diplomacy": 0.542,
+      "Spiritualism": 0.5,
+      "Sailing": 0.5,
+      "Riding": 0.417,
+      "Mining": 0.25,
+      "Ramming": 0.208,
+      "Navigation": 0.208,
+      "Roads": 0.125,
+      "Trade": 0.125,
+      "Aquatism": 0.125,
+      "Smithery": 0.125,
+      "FreeSpirit": 0.083,
+      "Farming": 0.042,
+      "Construction": 0.042
+     }
+    },
+    "both_unit_mix": {
+     "Warrior": 0.3556,
+     "Catapult": 0.2217,
+     "Cloak": 0.1342,
+     "Defender": 0.0946,
+     "Scoutship": 0.0911,
+     "Rammership": 0.0808,
+     "Rider": 0.0117,
+     "Bomber": 0.0062,
+     "Archer": 0.0041
+    },
+    "both_tech": {
+     "samples": 48,
+     "final_mean": 12.145833333333334,
+     "final_median": 11.0,
+     "tier3_mean": 2.8125,
+     "share_with_tier3": 1.0,
+     "first_tier3_turn_median": 12.0,
+     "by_turn": {
+      "10": {
+       "games": 48,
+       "mean_techs": 5.041666666666667
+      },
+      "20": {
+       "games": 48,
+       "mean_techs": 7.625
+      },
+      "30": {
+       "games": 48,
+       "mean_techs": 9.6875
+      },
+      "40": {
+       "games": 32,
+       "mean_techs": 11.125
+      },
+      "50": {
+       "games": 20,
+       "mean_techs": 13.4
+      },
+      "60": {
+       "games": 14,
+       "mean_techs": 14.785714285714286
+      },
+      "80": {
+       "games": 6,
+       "mean_techs": 20.0
+      },
+      "100": {
+       "games": 6,
+       "mean_techs": 21.333333333333332
+      }
+     },
+     "tech_share": {
+      "Organization": 1.0,
+      "Fishing": 1.0,
+      "Climbing": 1.0,
+      "Forestry": 0.979,
+      "Mathematics": 0.979,
+      "Strategy": 0.958,
+      "Archery": 0.583,
+      "Diplomacy": 0.583,
+      "Sailing": 0.521,
+      "Spiritualism": 0.479,
+      "Riding": 0.375,
+      "Mining": 0.312,
+      "Navigation": 0.229,
+      "Ramming": 0.208,
+      "Aquatism": 0.167,
+      "Roads": 0.125,
+      "Smithery": 0.125,
+      "Farming": 0.104,
+      "Trade": 0.104,
+      "FreeSpirit": 0.104,
+      "Construction": 0.062,
+      "Meditation": 0.062,
+      "Chivalry": 0.042,
+      "Philosophy": 0.042
+     }
+    }
+   }
+  },
+  "name": "abl-ladder-b-pbrs",
+  "size": 14,
+  "candidate": "/results/distributed/abl-pbrs-2/final.npz",
+  "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+  "seed_base": 371300,
+  "maps": 128,
+  "deterministic": true,
+  "opponent_deterministic": true,
+  "engine": "frozen (cpu_engine fast=False)",
+  "map_mix": "proposed-v1"
+ }
+}

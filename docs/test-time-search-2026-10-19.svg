@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="460" font-family="sans-serif" font-size="12">
+<rect width="1040" height="460" fill="white"/>
+<line x1="70" x2="660" y1="410.0" y2="410.0" stroke="#ddd"/><text x="64" y="414.0" text-anchor="end" fill="#333">-100</text>
+<line x1="70" x2="660" y1="329.9" y2="329.9" stroke="#444"/><text x="64" y="333.9" text-anchor="end" fill="#333">+0</text>
+<line x1="70" x2="660" y1="249.8" y2="249.8" stroke="#ddd"/><text x="64" y="253.8" text-anchor="end" fill="#333">+100</text>
+<line x1="70" x2="660" y1="169.7" y2="169.7" stroke="#ddd"/><text x="64" y="173.7" text-anchor="end" fill="#333">+200</text>
+<line x1="70" x2="660" y1="89.7" y2="89.7" stroke="#ddd"/><text x="64" y="93.7" text-anchor="end" fill="#333">+300</text>
+<line x1="120.3" x2="120.3" y1="30" y2="410" stroke="#eee"/><text x="120.3" y="426" text-anchor="middle" fill="#333">0.1</text>
+<line x1="260.9" x2="260.9" y1="30" y2="410" stroke="#eee"/><text x="260.9" y="426" text-anchor="middle" fill="#333">0.3</text>
+<line x1="415.1" x2="415.1" y1="30" y2="410" stroke="#eee"/><text x="415.1" y="426" text-anchor="middle" fill="#333">1</text>
+<line x1="555.8" x2="555.8" y1="30" y2="410" stroke="#eee"/><text x="555.8" y="426" text-anchor="middle" fill="#333">3</text>
+<text x="365.0" y="450" text-anchor="middle" fill="#333">seconds of one CPU core per searched turn (log)</text>
+<text transform="translate(16,220.0) rotate(-90)" text-anchor="middle" fill="#333">Elo gain over K=1 (same opponent, same maps)</text>
+<polyline fill="none" stroke="#2a6fdb" stroke-width="2" points="121.9,329.9 434.5,260.7"/>
+<line x1="121.9" x2="121.9" y1="329.9" y2="329.9" stroke="#2a6fdb" opacity=".5"/><circle cx="121.9" cy="329.9" r="4" fill="#2a6fdb"/><text x="127.9" y="323.9" fill="#2a6fdb" font-size="11">K=1</text>
+<line x1="434.5" x2="434.5" y1="297.0" y2="222.5" stroke="#2a6fdb" opacity=".5"/><circle cx="434.5" cy="260.7" r="4" fill="#2a6fdb"/><text x="440.5" y="254.7" fill="#2a6fdb" font-size="11">K=16</text>
+<rect x="674" y="30" width="12" height="12" fill="#2a6fdb"/><text x="692" y="40" fill="#333">vs e3, d=0, T=0.5</text>
+<polyline fill="none" stroke="#d9480f" stroke-width="2" points="121.9,329.9 505.8,217.3"/>
+<line x1="121.9" x2="121.9" y1="329.9" y2="329.9" stroke="#d9480f" opacity=".5"/><circle cx="121.9" cy="329.9" r="4" fill="#d9480f"/><text x="127.9" y="323.9" fill="#d9480f" font-size="11">K=1</text>
+<line x1="505.8" x2="505.8" y1="259.9" y2="172.9" stroke="#d9480f" opacity=".5"/><circle cx="505.8" cy="217.3" r="4" fill="#d9480f"/><text x="511.8" y="211.3" fill="#d9480f" font-size="11">K=16</text>
+<rect x="674" y="50" width="12" height="12" fill="#d9480f"/><text x="692" y="60" fill="#333">vs e3, d=1, greedy replies</text>
+<polyline fill="none" stroke="#2b8a3e" stroke-width="2" points="121.9,329.9 500.6,249.1"/>
+<line x1="121.9" x2="121.9" y1="329.9" y2="329.9" stroke="#2b8a3e" opacity=".5"/><circle cx="121.9" cy="329.9" r="4" fill="#2b8a3e"/><text x="127.9" y="323.9" fill="#2b8a3e" font-size="11">K=1</text>
+<line x1="500.6" x2="500.6" y1="289.0" y2="208.8" stroke="#2b8a3e" opacity=".5"/><circle cx="500.6" cy="249.1" r="4" fill="#2b8a3e"/><text x="506.6" y="243.1" fill="#2b8a3e" font-size="11">K=16</text>
+<rect x="674" y="70" width="12" height="12" fill="#2b8a3e"/><text x="692" y="80" fill="#333">vs e3, d=1, random replies (T=1.0)</text>
+<polyline fill="none" stroke="#7048e8" stroke-width="2" points="121.9,329.9 529.4,222.8 608.1,191.8"/>
+<line x1="121.9" x2="121.9" y1="329.9" y2="329.9" stroke="#7048e8" opacity=".5"/><circle cx="121.9" cy="329.9" r="4" fill="#7048e8"/><text x="127.9" y="323.9" fill="#7048e8" font-size="11">K=1</text>
+<line x1="529.4" x2="529.4" y1="262.5" y2="180.4" stroke="#7048e8" opacity=".5"/><circle cx="529.4" cy="222.8" r="4" fill="#7048e8"/><text x="535.4" y="216.8" fill="#7048e8" font-size="11">K=8</text>
+<line x1="608.1" x2="608.1" y1="235.4" y2="143.5" stroke="#7048e8" opacity=".5"/><circle cx="608.1" cy="191.8" r="4" fill="#7048e8"/><text x="614.1" y="185.8" fill="#7048e8" font-size="11">K=16</text>
+<rect x="674" y="90" width="12" height="12" fill="#7048e8"/><text x="692" y="100" fill="#333">vs e3, d=1, random replies (T=1.0), averaged + halving</text>
+<polyline fill="none" stroke="#c2255c" stroke-width="2" points="143.1,329.9 275.6,311.8 415.2,307.6 585.6,318.8"/>
+<line x1="143.1" x2="143.1" y1="329.9" y2="329.9" stroke="#c2255c" opacity=".5"/><circle cx="143.1" cy="329.9" r="4" fill="#c2255c"/><text x="149.1" y="323.9" fill="#c2255c" font-size="11">K=1</text>
+<line x1="275.6" x2="275.6" y1="339.7" y2="285.0" stroke="#c2255c" opacity=".5"/><circle cx="275.6" cy="311.8" r="4" fill="#c2255c"/><text x="281.6" y="305.8" fill="#c2255c" font-size="11">K=4</text>
+<line x1="415.2" x2="415.2" y1="336.9" y2="277.8" stroke="#c2255c" opacity=".5"/><circle cx="415.2" cy="307.6" r="4" fill="#c2255c"/><text x="421.2" y="301.6" fill="#c2255c" font-size="11">K=16</text>
+<line x1="585.6" x2="585.6" y1="345.2" y2="292.1" stroke="#c2255c" opacity=".5"/><circle cx="585.6" cy="318.8" r="4" fill="#c2255c"/><text x="591.6" y="312.8" fill="#c2255c" font-size="11">K=64</text>
+<rect x="674" y="110" width="12" height="12" fill="#c2255c"/><text x="692" y="120" fill="#333">vs u3142, d=0</text>
+<polyline fill="none" stroke="#0b7285" stroke-width="2" points="143.1,329.9 452.0,280.7 593.1,252.9"/>
+<line x1="143.1" x2="143.1" y1="329.9" y2="329.9" stroke="#0b7285" opacity=".5"/><circle cx="143.1" cy="329.9" r="4" fill="#0b7285"/><text x="149.1" y="323.9" fill="#0b7285" font-size="11">K=1</text>
+<line x1="452.0" x2="452.0" y1="304.8" y2="254.4" stroke="#0b7285" opacity=".5"/><circle cx="452.0" cy="280.7" r="4" fill="#0b7285"/><text x="458.0" y="274.7" fill="#0b7285" font-size="11">K=16</text>
+<line x1="593.1" x2="593.1" y1="279.3" y2="225.0" stroke="#0b7285" opacity=".5"/><circle cx="593.1" cy="252.9" r="4" fill="#0b7285"/><text x="599.1" y="246.9" fill="#0b7285" font-size="11">K=64</text>
+<rect x="674" y="130" width="12" height="12" fill="#0b7285"/><text x="692" y="140" fill="#333">vs u3142, d=0, T=0.5</text>
+<polyline fill="none" stroke="#868e96" stroke-width="2" points="143.1,329.9 448.5,317.4"/>
+<line x1="143.1" x2="143.1" y1="329.9" y2="329.9" stroke="#868e96" opacity=".5"/><circle cx="143.1" cy="329.9" r="4" fill="#868e96"/><text x="149.1" y="323.9" fill="#868e96" font-size="11">K=1</text>
+<line x1="448.5" x2="448.5" y1="346.6" y2="287.9" stroke="#868e96" opacity=".5"/><circle cx="448.5" cy="317.4" r="4" fill="#868e96"/><text x="454.5" y="311.4" fill="#868e96" font-size="11">K=16</text>
+<rect x="674" y="150" width="12" height="12" fill="#868e96"/><text x="692" y="160" fill="#333">vs u3142, d=0, scored after END</text>
+<polyline fill="none" stroke="#e67700" stroke-width="2" points="143.1,329.9 358.3,223.4 490.1,94.0"/>
+<line x1="143.1" x2="143.1" y1="329.9" y2="329.9" stroke="#e67700" opacity=".5"/><circle cx="143.1" cy="329.9" r="4" fill="#e67700"/><text x="149.1" y="323.9" fill="#e67700" font-size="11">K=1</text>
+<line x1="358.3" x2="358.3" y1="249.9" y2="193.3" stroke="#e67700" opacity=".5"/><circle cx="358.3" cy="223.4" r="4" fill="#e67700"/><text x="364.3" y="217.4" fill="#e67700" font-size="11">K=4</text>
+<line x1="490.1" x2="490.1" y1="134.9" y2="46.0" stroke="#e67700" opacity=".5"/><circle cx="490.1" cy="94.0" r="4" fill="#e67700"/><text x="496.1" y="88.0" fill="#e67700" font-size="11">K=16</text>
+<rect x="674" y="170" width="12" height="12" fill="#e67700"/><text x="692" y="180" fill="#333">vs u3142, d=1, greedy replies = the opponent</text>
+<polyline fill="none" stroke="#5c940d" stroke-width="2" points="143.1,329.9 485.6,229.8"/>
+<line x1="143.1" x2="143.1" y1="329.9" y2="329.9" stroke="#5c940d" opacity=".5"/><circle cx="143.1" cy="329.9" r="4" fill="#5c940d"/><text x="149.1" y="323.9" fill="#5c940d" font-size="11">K=1</text>
+<line x1="485.6" x2="485.6" y1="260.3" y2="195.1" stroke="#5c940d" opacity=".5"/><circle cx="485.6" cy="229.8" r="4" fill="#5c940d"/><text x="491.6" y="223.8" fill="#5c940d" font-size="11">K=16</text>
+<rect x="674" y="190" width="12" height="12" fill="#5c940d"/><text x="692" y="200" fill="#333">vs u3142, d=1, random replies (T=1.0)</text>
+</svg>

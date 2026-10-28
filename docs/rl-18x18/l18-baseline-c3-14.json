@@ -1,0 +1,2652 @@
+{
+ "tag": "l18-baseline-c3-14",
+ "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+ "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+ "seed_base": 374000,
+ "maps_per_type": 24,
+ "size": 14,
+ "sampled": true,
+ "types": {
+  "classic": {
+   "games": 48,
+   "wins": 18,
+   "losses": 19,
+   "draws_or_truncations": 11,
+   "truncations": 11,
+   "win_rate": 0.375,
+   "ci95": [
+    0.2916666666666667,
+    0.4583333333333333
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3424,
+    "Catapult": 0.2599,
+    "Cloak": 0.229,
+    "Defender": 0.083,
+    "Archer": 0.0328,
+    "Rider": 0.0175,
+    "Scoutship": 0.0108,
+    "Rammership": 0.0103,
+    "Swordsman": 0.0067,
+    "Bomber": 0.0041,
+    "MindBender": 0.0029,
+    "Knight": 0.0007
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.4603,
+    "Catapult": 0.2778,
+    "Cloak": 0.1117,
+    "Defender": 0.0722,
+    "Rammership": 0.0342,
+    "Archer": 0.015,
+    "Rider": 0.0139,
+    "Swordsman": 0.0044,
+    "Bomber": 0.0042,
+    "Scoutship": 0.0039,
+    "MindBender": 0.0017,
+    "Knight": 0.0008
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.625,
+   "candidate_first_non_warrior_turn_median": 9.0,
+   "candidate_early_research_mean": 1.4166666666666667,
+   "mean_steps": 1685.5208333333333,
+   "seconds": 232.683884013,
+   "mean_turns": 49.541666666666664,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 11.8125,
+    "final_median": 10.0,
+    "tier3_mean": 2.9583333333333335,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 8.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.291666666666667
+     },
+     "20": {
+      "games": 44,
+      "mean_techs": 7.318181818181818
+     },
+     "30": {
+      "games": 30,
+      "mean_techs": 9.666666666666666
+     },
+     "40": {
+      "games": 19,
+      "mean_techs": 11.894736842105264
+     },
+     "50": {
+      "games": 17,
+      "mean_techs": 13.764705882352942
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 15.25
+     },
+     "80": {
+      "games": 11,
+      "mean_techs": 19.363636363636363
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 20.90909090909091
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 12.020833333333334,
+    "final_median": 9.5,
+    "tier3_mean": 3.2083333333333335,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 8.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.291666666666667
+     },
+     "20": {
+      "games": 44,
+      "mean_techs": 7.409090909090909
+     },
+     "30": {
+      "games": 30,
+      "mean_techs": 9.7
+     },
+     "40": {
+      "games": 19,
+      "mean_techs": 12.631578947368421
+     },
+     "50": {
+      "games": 17,
+      "mean_techs": 14.352941176470589
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 15.4375
+     },
+     "80": {
+      "games": 11,
+      "mean_techs": 18.636363636363637
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 21.272727272727273
+     }
+    }
+   },
+   "by_map": {
+    "classic": {
+     "games": 48,
+     "wins": 18,
+     "losses": 19,
+     "truncations": 11,
+     "mean_turns": 49.541666666666664,
+     "mean_captures": 13.270833333333334,
+     "games_with_ports": 27,
+     "seat1_win_rate": 0.5416666666666666,
+     "candidate_unit_mix": {
+      "Warrior": 0.3424,
+      "Catapult": 0.2599,
+      "Cloak": 0.229,
+      "Defender": 0.083,
+      "Archer": 0.0328,
+      "Rider": 0.0175,
+      "Scoutship": 0.0108,
+      "Rammership": 0.0103,
+      "Swordsman": 0.0067,
+      "Bomber": 0.0041,
+      "MindBender": 0.0029,
+      "Knight": 0.0007
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 11.8125,
+      "final_median": 10.0,
+      "tier3_mean": 2.9583333333333335,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 8.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.291666666666667
+       },
+       "20": {
+        "games": 44,
+        "mean_techs": 7.318181818181818
+       },
+       "30": {
+        "games": 30,
+        "mean_techs": 9.666666666666666
+       },
+       "40": {
+        "games": 19,
+        "mean_techs": 11.894736842105264
+       },
+       "50": {
+        "games": 17,
+        "mean_techs": 13.764705882352942
+       },
+       "60": {
+        "games": 16,
+        "mean_techs": 15.25
+       },
+       "80": {
+        "games": 11,
+        "mean_techs": 19.363636363636363
+       },
+       "100": {
+        "games": 11,
+        "mean_techs": 20.90909090909091
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.397,
+      "Catapult": 0.2682,
+      "Cloak": 0.1746,
+      "Defender": 0.078,
+      "Archer": 0.0246,
+      "Rammership": 0.0214,
+      "Rider": 0.0158,
+      "Scoutship": 0.0076,
+      "Swordsman": 0.0057,
+      "Bomber": 0.0041,
+      "MindBender": 0.0023,
+      "Knight": 0.0008
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 11.916666666666666,
+      "final_median": 10.0,
+      "tier3_mean": 3.0833333333333335,
+      "share_with_tier3": 0.9895833333333334,
+      "first_tier3_turn_median": 8.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.291666666666667
+       },
+       "20": {
+        "games": 88,
+        "mean_techs": 7.363636363636363
+       },
+       "30": {
+        "games": 60,
+        "mean_techs": 9.683333333333334
+       },
+       "40": {
+        "games": 38,
+        "mean_techs": 12.263157894736842
+       },
+       "50": {
+        "games": 34,
+        "mean_techs": 14.058823529411764
+       },
+       "60": {
+        "games": 32,
+        "mean_techs": 15.34375
+       },
+       "80": {
+        "games": 22,
+        "mean_techs": 19.0
+       },
+       "100": {
+        "games": 22,
+        "mean_techs": 21.09090909090909
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-classic",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374000,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "classic"
+  },
+  "drylands": {
+   "games": 48,
+   "wins": 27,
+   "losses": 17,
+   "draws_or_truncations": 4,
+   "truncations": 4,
+   "win_rate": 0.5625,
+   "ci95": [
+    0.5,
+    0.625
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.4623,
+    "Catapult": 0.2772,
+    "Cloak": 0.1371,
+    "Defender": 0.0742,
+    "Rammership": 0.0152,
+    "Rider": 0.0137,
+    "Archer": 0.011,
+    "Swordsman": 0.0054,
+    "Scoutship": 0.0024,
+    "Bomber": 0.0015
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.5127,
+    "Catapult": 0.2356,
+    "Cloak": 0.1336,
+    "Defender": 0.0752,
+    "Rammership": 0.0104,
+    "Archer": 0.0101,
+    "Scoutship": 0.0069,
+    "Bomber": 0.006,
+    "Rider": 0.0058,
+    "MindBender": 0.0023,
+    "Swordsman": 0.0014
+   },
+   "candidate_non_warrior_games": 47,
+   "candidate_unit_types_per_game": 3.6458333333333335,
+   "candidate_first_non_warrior_turn_median": 9.0,
+   "candidate_early_research_mean": 1.7291666666666667,
+   "mean_steps": 1149.9583333333333,
+   "seconds": 190.28092566799998,
+   "mean_turns": 42.354166666666664,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 9.375,
+    "final_median": 8.0,
+    "tier3_mean": 2.0833333333333335,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.416666666666667
+     },
+     "20": {
+      "games": 44,
+      "mean_techs": 6.7727272727272725
+     },
+     "30": {
+      "games": 33,
+      "mean_techs": 8.515151515151516
+     },
+     "40": {
+      "games": 15,
+      "mean_techs": 10.266666666666667
+     },
+     "50": {
+      "games": 13,
+      "mean_techs": 11.23076923076923
+     },
+     "60": {
+      "games": 8,
+      "mean_techs": 14.125
+     },
+     "80": {
+      "games": 5,
+      "mean_techs": 17.2
+     },
+     "100": {
+      "games": 4,
+      "mean_techs": 20.25
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 9.6875,
+    "final_median": 8.0,
+    "tier3_mean": 2.1041666666666665,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.25
+     },
+     "20": {
+      "games": 44,
+      "mean_techs": 6.340909090909091
+     },
+     "30": {
+      "games": 33,
+      "mean_techs": 8.393939393939394
+     },
+     "40": {
+      "games": 15,
+      "mean_techs": 10.4
+     },
+     "50": {
+      "games": 13,
+      "mean_techs": 11.153846153846153
+     },
+     "60": {
+      "games": 8,
+      "mean_techs": 11.75
+     },
+     "80": {
+      "games": 5,
+      "mean_techs": 14.8
+     },
+     "100": {
+      "games": 4,
+      "mean_techs": 20.5
+     }
+    }
+   },
+   "by_map": {
+    "drylands": {
+     "games": 48,
+     "wins": 27,
+     "losses": 17,
+     "truncations": 4,
+     "mean_turns": 42.354166666666664,
+     "mean_captures": 15.5,
+     "games_with_ports": 21,
+     "seat1_win_rate": 0.8333333333333334,
+     "candidate_unit_mix": {
+      "Warrior": 0.4623,
+      "Catapult": 0.2772,
+      "Cloak": 0.1371,
+      "Defender": 0.0742,
+      "Rammership": 0.0152,
+      "Rider": 0.0137,
+      "Archer": 0.011,
+      "Swordsman": 0.0054,
+      "Scoutship": 0.0024,
+      "Bomber": 0.0015
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 9.375,
+      "final_median": 8.0,
+      "tier3_mean": 2.0833333333333335,
+      "share_with_tier3": 0.9791666666666666,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.416666666666667
+       },
+       "20": {
+        "games": 44,
+        "mean_techs": 6.7727272727272725
+       },
+       "30": {
+        "games": 33,
+        "mean_techs": 8.515151515151516
+       },
+       "40": {
+        "games": 15,
+        "mean_techs": 10.266666666666667
+       },
+       "50": {
+        "games": 13,
+        "mean_techs": 11.23076923076923
+       },
+       "60": {
+        "games": 8,
+        "mean_techs": 14.125
+       },
+       "80": {
+        "games": 5,
+        "mean_techs": 17.2
+       },
+       "100": {
+        "games": 4,
+        "mean_techs": 20.25
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.4879,
+      "Catapult": 0.256,
+      "Cloak": 0.1353,
+      "Defender": 0.0747,
+      "Rammership": 0.0127,
+      "Archer": 0.0105,
+      "Rider": 0.0097,
+      "Scoutship": 0.0047,
+      "Bomber": 0.0038,
+      "Swordsman": 0.0034,
+      "MindBender": 0.0012
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 9.53125,
+      "final_median": 8.0,
+      "tier3_mean": 2.09375,
+      "share_with_tier3": 0.9791666666666666,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.333333333333333
+       },
+       "20": {
+        "games": 88,
+        "mean_techs": 6.556818181818182
+       },
+       "30": {
+        "games": 66,
+        "mean_techs": 8.454545454545455
+       },
+       "40": {
+        "games": 30,
+        "mean_techs": 10.333333333333334
+       },
+       "50": {
+        "games": 26,
+        "mean_techs": 11.192307692307692
+       },
+       "60": {
+        "games": 16,
+        "mean_techs": 12.9375
+       },
+       "80": {
+        "games": 10,
+        "mean_techs": 16.0
+       },
+       "100": {
+        "games": 8,
+        "mean_techs": 20.375
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-drylands",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374100,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "drylands"
+  },
+  "lakes": {
+   "games": 48,
+   "wins": 16,
+   "losses": 13,
+   "draws_or_truncations": 19,
+   "truncations": 19,
+   "win_rate": 0.3333333333333333,
+   "ci95": [
+    0.20833333333333334,
+    0.4791666666666667
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3498,
+    "Catapult": 0.2426,
+    "Cloak": 0.1706,
+    "Defender": 0.0733,
+    "Rammership": 0.0385,
+    "Scoutship": 0.0381,
+    "Archer": 0.0284,
+    "Bomber": 0.0199,
+    "Rider": 0.0193,
+    "Swordsman": 0.0145,
+    "MindBender": 0.0039,
+    "Knight": 0.0012
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3358,
+    "Catapult": 0.2252,
+    "Cloak": 0.145,
+    "Defender": 0.0995,
+    "Rammership": 0.0685,
+    "Scoutship": 0.0336,
+    "Archer": 0.0323,
+    "Rider": 0.0233,
+    "Bomber": 0.02,
+    "Swordsman": 0.0137,
+    "MindBender": 0.0016,
+    "Knight": 0.0014
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 5.979166666666667,
+   "candidate_first_non_warrior_turn_median": 8.5,
+   "candidate_early_research_mean": 1.8333333333333333,
+   "mean_steps": 2257.25,
+   "seconds": 236.54797182299998,
+   "mean_turns": 66.0625,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 14.625,
+    "final_median": 11.5,
+    "tier3_mean": 4.354166666666667,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.479166666666667
+     },
+     "20": {
+      "games": 45,
+      "mean_techs": 6.888888888888889
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.657894736842104
+     },
+     "40": {
+      "games": 31,
+      "mean_techs": 11.870967741935484
+     },
+     "50": {
+      "games": 26,
+      "mean_techs": 13.923076923076923
+     },
+     "60": {
+      "games": 26,
+      "mean_techs": 15.461538461538462
+     },
+     "80": {
+      "games": 23,
+      "mean_techs": 19.26086956521739
+     },
+     "100": {
+      "games": 20,
+      "mean_techs": 22.55
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 14.666666666666666,
+    "final_median": 13.0,
+    "tier3_mean": 4.25,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.5
+     },
+     "20": {
+      "games": 45,
+      "mean_techs": 6.844444444444444
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.526315789473685
+     },
+     "40": {
+      "games": 31,
+      "mean_techs": 11.64516129032258
+     },
+     "50": {
+      "games": 26,
+      "mean_techs": 14.461538461538462
+     },
+     "60": {
+      "games": 26,
+      "mean_techs": 16.423076923076923
+     },
+     "80": {
+      "games": 23,
+      "mean_techs": 19.217391304347824
+     },
+     "100": {
+      "games": 20,
+      "mean_techs": 22.1
+     }
+    }
+   },
+   "by_map": {
+    "lakes": {
+     "games": 48,
+     "wins": 16,
+     "losses": 13,
+     "truncations": 19,
+     "mean_turns": 66.0625,
+     "mean_captures": 14.791666666666666,
+     "games_with_ports": 38,
+     "seat1_win_rate": 0.375,
+     "candidate_unit_mix": {
+      "Warrior": 0.3498,
+      "Catapult": 0.2426,
+      "Cloak": 0.1706,
+      "Defender": 0.0733,
+      "Rammership": 0.0385,
+      "Scoutship": 0.0381,
+      "Archer": 0.0284,
+      "Bomber": 0.0199,
+      "Rider": 0.0193,
+      "Swordsman": 0.0145,
+      "MindBender": 0.0039,
+      "Knight": 0.0012
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 14.625,
+      "final_median": 11.5,
+      "tier3_mean": 4.354166666666667,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.479166666666667
+       },
+       "20": {
+        "games": 45,
+        "mean_techs": 6.888888888888889
+       },
+       "30": {
+        "games": 38,
+        "mean_techs": 9.657894736842104
+       },
+       "40": {
+        "games": 31,
+        "mean_techs": 11.870967741935484
+       },
+       "50": {
+        "games": 26,
+        "mean_techs": 13.923076923076923
+       },
+       "60": {
+        "games": 26,
+        "mean_techs": 15.461538461538462
+       },
+       "80": {
+        "games": 23,
+        "mean_techs": 19.26086956521739
+       },
+       "100": {
+        "games": 20,
+        "mean_techs": 22.55
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3427,
+      "Catapult": 0.2338,
+      "Cloak": 0.1576,
+      "Defender": 0.0865,
+      "Rammership": 0.0537,
+      "Scoutship": 0.0358,
+      "Archer": 0.0304,
+      "Rider": 0.0213,
+      "Bomber": 0.0199,
+      "Swordsman": 0.0141,
+      "MindBender": 0.0028,
+      "Knight": 0.0013
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 14.645833333333334,
+      "final_median": 13.0,
+      "tier3_mean": 4.302083333333333,
+      "share_with_tier3": 0.9895833333333334,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.489583333333333
+       },
+       "20": {
+        "games": 90,
+        "mean_techs": 6.866666666666666
+       },
+       "30": {
+        "games": 76,
+        "mean_techs": 9.592105263157896
+       },
+       "40": {
+        "games": 62,
+        "mean_techs": 11.758064516129032
+       },
+       "50": {
+        "games": 52,
+        "mean_techs": 14.192307692307692
+       },
+       "60": {
+        "games": 52,
+        "mean_techs": 15.942307692307692
+       },
+       "80": {
+        "games": 46,
+        "mean_techs": 19.23913043478261
+       },
+       "100": {
+        "games": 40,
+        "mean_techs": 22.325
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-lakes",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374200,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "lakes"
+  },
+  "pangea": {
+   "games": 48,
+   "wins": 18,
+   "losses": 19,
+   "draws_or_truncations": 11,
+   "truncations": 11,
+   "win_rate": 0.375,
+   "ci95": [
+    0.25,
+    0.5
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.434,
+    "Catapult": 0.2031,
+    "Defender": 0.0919,
+    "Cloak": 0.0883,
+    "Rammership": 0.0606,
+    "Rider": 0.0329,
+    "Scoutship": 0.0307,
+    "Archer": 0.0268,
+    "Swordsman": 0.0136,
+    "Bomber": 0.0112,
+    "MindBender": 0.0063,
+    "Knight": 0.0006
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.4037,
+    "Catapult": 0.2068,
+    "Cloak": 0.1549,
+    "Defender": 0.0882,
+    "Rammership": 0.0387,
+    "Archer": 0.0304,
+    "Scoutship": 0.0274,
+    "Rider": 0.0221,
+    "Bomber": 0.0124,
+    "Swordsman": 0.0094,
+    "MindBender": 0.0038,
+    "Knight": 0.0021
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.833333333333333,
+   "candidate_first_non_warrior_turn_median": 9.0,
+   "candidate_early_research_mean": 1.8541666666666667,
+   "mean_steps": 1490.7916666666667,
+   "seconds": 201.876177245,
+   "mean_turns": 50.25,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 12.5,
+    "final_median": 10.0,
+    "tier3_mean": 3.3958333333333335,
+    "share_with_tier3": 0.9583333333333334,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.458333333333333
+     },
+     "20": {
+      "games": 40,
+      "mean_techs": 7.2
+     },
+     "30": {
+      "games": 30,
+      "mean_techs": 9.433333333333334
+     },
+     "40": {
+      "games": 20,
+      "mean_techs": 12.0
+     },
+     "50": {
+      "games": 17,
+      "mean_techs": 14.941176470588236
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 16.375
+     },
+     "80": {
+      "games": 16,
+      "mean_techs": 19.25
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 24.363636363636363
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 11.833333333333334,
+    "final_median": 9.0,
+    "tier3_mean": 3.3333333333333335,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.458333333333333
+     },
+     "20": {
+      "games": 40,
+      "mean_techs": 7.0
+     },
+     "30": {
+      "games": 30,
+      "mean_techs": 9.9
+     },
+     "40": {
+      "games": 20,
+      "mean_techs": 12.25
+     },
+     "50": {
+      "games": 17,
+      "mean_techs": 13.647058823529411
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 15.9375
+     },
+     "80": {
+      "games": 16,
+      "mean_techs": 18.8125
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 24.545454545454547
+     }
+    }
+   },
+   "by_map": {
+    "pangea": {
+     "games": 48,
+     "wins": 18,
+     "losses": 19,
+     "truncations": 11,
+     "mean_turns": 50.25,
+     "mean_captures": 13.479166666666666,
+     "games_with_ports": 23,
+     "seat1_win_rate": 0.4583333333333333,
+     "candidate_unit_mix": {
+      "Warrior": 0.434,
+      "Catapult": 0.2031,
+      "Defender": 0.0919,
+      "Cloak": 0.0883,
+      "Rammership": 0.0606,
+      "Rider": 0.0329,
+      "Scoutship": 0.0307,
+      "Archer": 0.0268,
+      "Swordsman": 0.0136,
+      "Bomber": 0.0112,
+      "MindBender": 0.0063,
+      "Knight": 0.0006
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 12.5,
+      "final_median": 10.0,
+      "tier3_mean": 3.3958333333333335,
+      "share_with_tier3": 0.9583333333333334,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.458333333333333
+       },
+       "20": {
+        "games": 40,
+        "mean_techs": 7.2
+       },
+       "30": {
+        "games": 30,
+        "mean_techs": 9.433333333333334
+       },
+       "40": {
+        "games": 20,
+        "mean_techs": 12.0
+       },
+       "50": {
+        "games": 17,
+        "mean_techs": 14.941176470588236
+       },
+       "60": {
+        "games": 16,
+        "mean_techs": 16.375
+       },
+       "80": {
+        "games": 16,
+        "mean_techs": 19.25
+       },
+       "100": {
+        "games": 11,
+        "mean_techs": 24.363636363636363
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.4187,
+      "Catapult": 0.205,
+      "Cloak": 0.122,
+      "Defender": 0.0901,
+      "Rammership": 0.0495,
+      "Scoutship": 0.0291,
+      "Archer": 0.0286,
+      "Rider": 0.0274,
+      "Bomber": 0.0118,
+      "Swordsman": 0.0115,
+      "MindBender": 0.0051,
+      "Knight": 0.0013
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 12.166666666666666,
+      "final_median": 9.0,
+      "tier3_mean": 3.3645833333333335,
+      "share_with_tier3": 0.9791666666666666,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.458333333333333
+       },
+       "20": {
+        "games": 80,
+        "mean_techs": 7.1
+       },
+       "30": {
+        "games": 60,
+        "mean_techs": 9.666666666666666
+       },
+       "40": {
+        "games": 40,
+        "mean_techs": 12.125
+       },
+       "50": {
+        "games": 34,
+        "mean_techs": 14.294117647058824
+       },
+       "60": {
+        "games": 32,
+        "mean_techs": 16.15625
+       },
+       "80": {
+        "games": 32,
+        "mean_techs": 19.03125
+       },
+       "100": {
+        "games": 22,
+        "mean_techs": 24.454545454545453
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-pangea",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374300,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "pangea"
+  },
+  "continents": {
+   "games": 48,
+   "wins": 16,
+   "losses": 17,
+   "draws_or_truncations": 15,
+   "truncations": 15,
+   "win_rate": 0.3333333333333333,
+   "ci95": [
+    0.22916666666666666,
+    0.4375
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.2658,
+    "Catapult": 0.2077,
+    "Cloak": 0.1731,
+    "Scoutship": 0.1399,
+    "Defender": 0.0802,
+    "Bomber": 0.0346,
+    "Rammership": 0.0298,
+    "Archer": 0.0296,
+    "Rider": 0.0259,
+    "Swordsman": 0.0092,
+    "MindBender": 0.004,
+    "Knight": 0.0003
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.2555,
+    "Catapult": 0.2198,
+    "Cloak": 0.1717,
+    "Scoutship": 0.1398,
+    "Defender": 0.0687,
+    "Bomber": 0.0467,
+    "Archer": 0.0287,
+    "Rammership": 0.0278,
+    "Rider": 0.0238,
+    "Swordsman": 0.0119,
+    "MindBender": 0.0046,
+    "Knight": 0.0009
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 6.3125,
+   "candidate_first_non_warrior_turn_median": 11.0,
+   "candidate_early_research_mean": 2.1041666666666665,
+   "mean_steps": 1898.8958333333333,
+   "seconds": 215.29487020300002,
+   "mean_turns": 66.27083333333333,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 15.958333333333334,
+    "final_median": 14.0,
+    "tier3_mean": 4.5625,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 8.5,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 5.5625
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 9.25
+     },
+     "30": {
+      "games": 43,
+      "mean_techs": 11.674418604651162
+     },
+     "40": {
+      "games": 38,
+      "mean_techs": 13.421052631578947
+     },
+     "50": {
+      "games": 30,
+      "mean_techs": 15.333333333333334
+     },
+     "60": {
+      "games": 26,
+      "mean_techs": 17.307692307692307
+     },
+     "80": {
+      "games": 18,
+      "mean_techs": 21.0
+     },
+     "100": {
+      "games": 15,
+      "mean_techs": 23.4
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 16.5,
+    "final_median": 14.0,
+    "tier3_mean": 4.6875,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 9.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 5.75
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 9.104166666666666
+     },
+     "30": {
+      "games": 43,
+      "mean_techs": 12.046511627906977
+     },
+     "40": {
+      "games": 38,
+      "mean_techs": 13.921052631578947
+     },
+     "50": {
+      "games": 30,
+      "mean_techs": 15.866666666666667
+     },
+     "60": {
+      "games": 26,
+      "mean_techs": 17.576923076923077
+     },
+     "80": {
+      "games": 18,
+      "mean_techs": 21.38888888888889
+     },
+     "100": {
+      "games": 15,
+      "mean_techs": 23.8
+     }
+    }
+   },
+   "by_map": {
+    "continents": {
+     "games": 48,
+     "wins": 16,
+     "losses": 17,
+     "truncations": 15,
+     "mean_turns": 66.27083333333333,
+     "mean_captures": 12.979166666666666,
+     "games_with_ports": 48,
+     "seat1_win_rate": 0.5,
+     "candidate_unit_mix": {
+      "Warrior": 0.2658,
+      "Catapult": 0.2077,
+      "Cloak": 0.1731,
+      "Scoutship": 0.1399,
+      "Defender": 0.0802,
+      "Bomber": 0.0346,
+      "Rammership": 0.0298,
+      "Archer": 0.0296,
+      "Rider": 0.0259,
+      "Swordsman": 0.0092,
+      "MindBender": 0.004,
+      "Knight": 0.0003
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 15.958333333333334,
+      "final_median": 14.0,
+      "tier3_mean": 4.5625,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 8.5,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 5.5625
+       },
+       "20": {
+        "games": 48,
+        "mean_techs": 9.25
+       },
+       "30": {
+        "games": 43,
+        "mean_techs": 11.674418604651162
+       },
+       "40": {
+        "games": 38,
+        "mean_techs": 13.421052631578947
+       },
+       "50": {
+        "games": 30,
+        "mean_techs": 15.333333333333334
+       },
+       "60": {
+        "games": 26,
+        "mean_techs": 17.307692307692307
+       },
+       "80": {
+        "games": 18,
+        "mean_techs": 21.0
+       },
+       "100": {
+        "games": 15,
+        "mean_techs": 23.4
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.2609,
+      "Catapult": 0.2135,
+      "Cloak": 0.1724,
+      "Scoutship": 0.1398,
+      "Defender": 0.0748,
+      "Bomber": 0.0403,
+      "Archer": 0.0292,
+      "Rammership": 0.0289,
+      "Rider": 0.0249,
+      "Swordsman": 0.0105,
+      "MindBender": 0.0043,
+      "Knight": 0.0006
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 16.229166666666668,
+      "final_median": 14.0,
+      "tier3_mean": 4.625,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 9.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 5.65625
+       },
+       "20": {
+        "games": 96,
+        "mean_techs": 9.177083333333334
+       },
+       "30": {
+        "games": 86,
+        "mean_techs": 11.86046511627907
+       },
+       "40": {
+        "games": 76,
+        "mean_techs": 13.671052631578947
+       },
+       "50": {
+        "games": 60,
+        "mean_techs": 15.6
+       },
+       "60": {
+        "games": 52,
+        "mean_techs": 17.442307692307693
+       },
+       "80": {
+        "games": 36,
+        "mean_techs": 21.194444444444443
+       },
+       "100": {
+        "games": 30,
+        "mean_techs": 23.6
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-continents",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374400,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "continents"
+  },
+  "archipelago": {
+   "games": 48,
+   "wins": 13,
+   "losses": 22,
+   "draws_or_truncations": 13,
+   "truncations": 13,
+   "win_rate": 0.2708333333333333,
+   "ci95": [
+    0.14583333333333334,
+    0.3958333333333333
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3451,
+    "Catapult": 0.2127,
+    "Cloak": 0.1514,
+    "Scoutship": 0.0954,
+    "Defender": 0.076,
+    "Rammership": 0.0393,
+    "Bomber": 0.0302,
+    "Archer": 0.0202,
+    "Rider": 0.0202,
+    "Swordsman": 0.0056,
+    "MindBender": 0.0025,
+    "Knight": 0.0013
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3113,
+    "Catapult": 0.2156,
+    "Cloak": 0.124,
+    "Scoutship": 0.1134,
+    "Rammership": 0.0762,
+    "Defender": 0.0753,
+    "Bomber": 0.0411,
+    "Archer": 0.0173,
+    "Rider": 0.0153,
+    "Swordsman": 0.0058,
+    "MindBender": 0.0027,
+    "Knight": 0.0019
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 5.75,
+   "candidate_first_non_warrior_turn_median": 13.5,
+   "candidate_early_research_mean": 1.5,
+   "mean_steps": 2340.3125,
+   "seconds": 243.221196322,
+   "mean_turns": 62.854166666666664,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 13.791666666666666,
+    "final_median": 11.0,
+    "tier3_mean": 3.4791666666666665,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 13.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.541666666666667
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 7.3125
+     },
+     "30": {
+      "games": 44,
+      "mean_techs": 9.5
+     },
+     "40": {
+      "games": 34,
+      "mean_techs": 11.205882352941176
+     },
+     "50": {
+      "games": 28,
+      "mean_techs": 13.035714285714286
+     },
+     "60": {
+      "games": 20,
+      "mean_techs": 14.85
+     },
+     "80": {
+      "games": 18,
+      "mean_techs": 18.055555555555557
+     },
+     "100": {
+      "games": 13,
+      "mean_techs": 22.076923076923077
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 14.145833333333334,
+    "final_median": 11.5,
+    "tier3_mean": 3.6458333333333335,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 12.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.354166666666667
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 7.208333333333333
+     },
+     "30": {
+      "games": 44,
+      "mean_techs": 9.931818181818182
+     },
+     "40": {
+      "games": 34,
+      "mean_techs": 11.617647058823529
+     },
+     "50": {
+      "games": 28,
+      "mean_techs": 13.464285714285714
+     },
+     "60": {
+      "games": 20,
+      "mean_techs": 15.7
+     },
+     "80": {
+      "games": 18,
+      "mean_techs": 18.666666666666668
+     },
+     "100": {
+      "games": 13,
+      "mean_techs": 22.384615384615383
+     }
+    }
+   },
+   "by_map": {
+    "archipelago": {
+     "games": 48,
+     "wins": 13,
+     "losses": 22,
+     "truncations": 13,
+     "mean_turns": 62.854166666666664,
+     "mean_captures": 22.166666666666668,
+     "games_with_ports": 47,
+     "seat1_win_rate": 0.3333333333333333,
+     "candidate_unit_mix": {
+      "Warrior": 0.3451,
+      "Catapult": 0.2127,
+      "Cloak": 0.1514,
+      "Scoutship": 0.0954,
+      "Defender": 0.076,
+      "Rammership": 0.0393,
+      "Bomber": 0.0302,
+      "Archer": 0.0202,
+      "Rider": 0.0202,
+      "Swordsman": 0.0056,
+      "MindBender": 0.0025,
+      "Knight": 0.0013
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 13.791666666666666,
+      "final_median": 11.0,
+      "tier3_mean": 3.4791666666666665,
+      "share_with_tier3": 0.9791666666666666,
+      "first_tier3_turn_median": 13.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.541666666666667
+       },
+       "20": {
+        "games": 48,
+        "mean_techs": 7.3125
+       },
+       "30": {
+        "games": 44,
+        "mean_techs": 9.5
+       },
+       "40": {
+        "games": 34,
+        "mean_techs": 11.205882352941176
+       },
+       "50": {
+        "games": 28,
+        "mean_techs": 13.035714285714286
+       },
+       "60": {
+        "games": 20,
+        "mean_techs": 14.85
+       },
+       "80": {
+        "games": 18,
+        "mean_techs": 18.055555555555557
+       },
+       "100": {
+        "games": 13,
+        "mean_techs": 22.076923076923077
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3284,
+      "Catapult": 0.2141,
+      "Cloak": 0.1379,
+      "Scoutship": 0.1043,
+      "Defender": 0.0757,
+      "Rammership": 0.0575,
+      "Bomber": 0.0356,
+      "Archer": 0.0188,
+      "Rider": 0.0178,
+      "Swordsman": 0.0057,
+      "MindBender": 0.0026,
+      "Knight": 0.0016
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 13.96875,
+      "final_median": 11.0,
+      "tier3_mean": 3.5625,
+      "share_with_tier3": 0.9791666666666666,
+      "first_tier3_turn_median": 12.5,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.447916666666667
+       },
+       "20": {
+        "games": 96,
+        "mean_techs": 7.260416666666667
+       },
+       "30": {
+        "games": 88,
+        "mean_techs": 9.715909090909092
+       },
+       "40": {
+        "games": 68,
+        "mean_techs": 11.411764705882353
+       },
+       "50": {
+        "games": 56,
+        "mean_techs": 13.25
+       },
+       "60": {
+        "games": 40,
+        "mean_techs": 15.275
+       },
+       "80": {
+        "games": 36,
+        "mean_techs": 18.36111111111111
+       },
+       "100": {
+        "games": 26,
+        "mean_techs": 22.23076923076923
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-archipelago",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374500,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "archipelago"
+  },
+  "waterworld": {
+   "games": 48,
+   "wins": 20,
+   "losses": 24,
+   "draws_or_truncations": 4,
+   "truncations": 4,
+   "win_rate": 0.4166666666666667,
+   "ci95": [
+    0.3125,
+    0.5
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3792,
+    "Catapult": 0.1947,
+    "Scoutship": 0.1636,
+    "Cloak": 0.1026,
+    "Defender": 0.0858,
+    "Rammership": 0.0332,
+    "Archer": 0.0169,
+    "Bomber": 0.0123,
+    "Rider": 0.0099,
+    "Swordsman": 0.0017,
+    "MindBender": 0.0002
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3217,
+    "Catapult": 0.2051,
+    "Cloak": 0.1608,
+    "Scoutship": 0.1503,
+    "Defender": 0.0708,
+    "Rammership": 0.046,
+    "Bomber": 0.02,
+    "Archer": 0.0157,
+    "Rider": 0.0057,
+    "Swordsman": 0.0017,
+    "MindBender": 0.0012,
+    "Knight": 0.001
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.604166666666667,
+   "candidate_first_non_warrior_turn_median": 13.0,
+   "candidate_early_research_mean": 1.4583333333333333,
+   "mean_steps": 1492.5416666666667,
+   "seconds": 285.219395955,
+   "mean_turns": 51.458333333333336,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 12.125,
+    "final_median": 10.0,
+    "tier3_mean": 2.6458333333333335,
+    "share_with_tier3": 0.9583333333333334,
+    "first_tier3_turn_median": 13.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.583333333333333
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 7.791666666666667
+     },
+     "30": {
+      "games": 41,
+      "mean_techs": 10.0
+     },
+     "40": {
+      "games": 29,
+      "mean_techs": 11.413793103448276
+     },
+     "50": {
+      "games": 22,
+      "mean_techs": 13.227272727272727
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 14.9375
+     },
+     "80": {
+      "games": 6,
+      "mean_techs": 21.5
+     },
+     "100": {
+      "games": 4,
+      "mean_techs": 25.5
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 11.708333333333334,
+    "final_median": 10.0,
+    "tier3_mean": 2.5625,
+    "share_with_tier3": 0.9791666666666666,
+    "first_tier3_turn_median": 13.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.5625
+     },
+     "20": {
+      "games": 48,
+      "mean_techs": 7.729166666666667
+     },
+     "30": {
+      "games": 41,
+      "mean_techs": 10.170731707317072
+     },
+     "40": {
+      "games": 29,
+      "mean_techs": 11.482758620689655
+     },
+     "50": {
+      "games": 22,
+      "mean_techs": 12.681818181818182
+     },
+     "60": {
+      "games": 16,
+      "mean_techs": 13.9375
+     },
+     "80": {
+      "games": 6,
+      "mean_techs": 20.0
+     },
+     "100": {
+      "games": 4,
+      "mean_techs": 23.75
+     }
+    }
+   },
+   "by_map": {
+    "waterworld": {
+     "games": 48,
+     "wins": 20,
+     "losses": 24,
+     "truncations": 4,
+     "mean_turns": 51.458333333333336,
+     "mean_captures": 16.458333333333332,
+     "games_with_ports": 48,
+     "seat1_win_rate": 0.3333333333333333,
+     "candidate_unit_mix": {
+      "Warrior": 0.3792,
+      "Catapult": 0.1947,
+      "Scoutship": 0.1636,
+      "Cloak": 0.1026,
+      "Defender": 0.0858,
+      "Rammership": 0.0332,
+      "Archer": 0.0169,
+      "Bomber": 0.0123,
+      "Rider": 0.0099,
+      "Swordsman": 0.0017,
+      "MindBender": 0.0002
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 12.125,
+      "final_median": 10.0,
+      "tier3_mean": 2.6458333333333335,
+      "share_with_tier3": 0.9583333333333334,
+      "first_tier3_turn_median": 13.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.583333333333333
+       },
+       "20": {
+        "games": 48,
+        "mean_techs": 7.791666666666667
+       },
+       "30": {
+        "games": 41,
+        "mean_techs": 10.0
+       },
+       "40": {
+        "games": 29,
+        "mean_techs": 11.413793103448276
+       },
+       "50": {
+        "games": 22,
+        "mean_techs": 13.227272727272727
+       },
+       "60": {
+        "games": 16,
+        "mean_techs": 14.9375
+       },
+       "80": {
+        "games": 6,
+        "mean_techs": 21.5
+       },
+       "100": {
+        "games": 4,
+        "mean_techs": 25.5
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3503,
+      "Catapult": 0.1999,
+      "Scoutship": 0.1569,
+      "Cloak": 0.1319,
+      "Defender": 0.0782,
+      "Rammership": 0.0397,
+      "Archer": 0.0163,
+      "Bomber": 0.0162,
+      "Rider": 0.0078,
+      "Swordsman": 0.0017,
+      "MindBender": 0.0007,
+      "Knight": 0.0005
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 11.916666666666666,
+      "final_median": 10.0,
+      "tier3_mean": 2.6041666666666665,
+      "share_with_tier3": 0.96875,
+      "first_tier3_turn_median": 13.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.572916666666667
+       },
+       "20": {
+        "games": 96,
+        "mean_techs": 7.760416666666667
+       },
+       "30": {
+        "games": 82,
+        "mean_techs": 10.085365853658537
+       },
+       "40": {
+        "games": 58,
+        "mean_techs": 11.448275862068966
+       },
+       "50": {
+        "games": 44,
+        "mean_techs": 12.954545454545455
+       },
+       "60": {
+        "games": 32,
+        "mean_techs": 14.4375
+       },
+       "80": {
+        "games": 12,
+        "mean_techs": 20.75
+       },
+       "100": {
+        "games": 8,
+        "mean_techs": 24.625
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-waterworld",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374600,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "waterworld"
+  },
+  "highlands": {
+   "games": 48,
+   "wins": 17,
+   "losses": 18,
+   "draws_or_truncations": 13,
+   "truncations": 13,
+   "win_rate": 0.3541666666666667,
+   "ci95": [
+    0.25,
+    0.4583333333333333
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3855,
+    "Catapult": 0.2476,
+    "Cloak": 0.1572,
+    "Defender": 0.0936,
+    "Archer": 0.0416,
+    "Rider": 0.0241,
+    "Rammership": 0.0204,
+    "Swordsman": 0.0118,
+    "Scoutship": 0.0099,
+    "MindBender": 0.0046,
+    "Bomber": 0.003,
+    "Knight": 0.0008
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3827,
+    "Catapult": 0.25,
+    "Cloak": 0.1505,
+    "Defender": 0.1158,
+    "Archer": 0.0296,
+    "Rider": 0.021,
+    "Scoutship": 0.0142,
+    "Rammership": 0.0118,
+    "Swordsman": 0.0104,
+    "Bomber": 0.0071,
+    "MindBender": 0.0059,
+    "Knight": 0.0009
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.875,
+   "candidate_first_non_warrior_turn_median": 10.0,
+   "candidate_early_research_mean": 1.9583333333333333,
+   "mean_steps": 1636.75,
+   "seconds": 255.88454094099998,
+   "mean_turns": 57.145833333333336,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 12.6875,
+    "final_median": 10.0,
+    "tier3_mean": 3.4583333333333335,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.8125
+     },
+     "20": {
+      "games": 47,
+      "mean_techs": 6.723404255319149
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.657894736842104
+     },
+     "40": {
+      "games": 28,
+      "mean_techs": 11.607142857142858
+     },
+     "50": {
+      "games": 23,
+      "mean_techs": 13.130434782608695
+     },
+     "60": {
+      "games": 19,
+      "mean_techs": 15.421052631578947
+     },
+     "80": {
+      "games": 15,
+      "mean_techs": 19.133333333333333
+     },
+     "100": {
+      "games": 13,
+      "mean_techs": 22.384615384615383
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 13.208333333333334,
+    "final_median": 10.0,
+    "tier3_mean": 3.5625,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 8.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.979166666666667
+     },
+     "20": {
+      "games": 47,
+      "mean_techs": 6.914893617021277
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.736842105263158
+     },
+     "40": {
+      "games": 28,
+      "mean_techs": 12.071428571428571
+     },
+     "50": {
+      "games": 23,
+      "mean_techs": 14.26086956521739
+     },
+     "60": {
+      "games": 19,
+      "mean_techs": 16.157894736842106
+     },
+     "80": {
+      "games": 15,
+      "mean_techs": 19.466666666666665
+     },
+     "100": {
+      "games": 13,
+      "mean_techs": 22.692307692307693
+     }
+    }
+   },
+   "by_map": {
+    "highlands": {
+     "games": 48,
+     "wins": 17,
+     "losses": 18,
+     "truncations": 13,
+     "mean_turns": 57.145833333333336,
+     "mean_captures": 14.104166666666666,
+     "games_with_ports": 29,
+     "seat1_win_rate": 0.5,
+     "candidate_unit_mix": {
+      "Warrior": 0.3855,
+      "Catapult": 0.2476,
+      "Cloak": 0.1572,
+      "Defender": 0.0936,
+      "Archer": 0.0416,
+      "Rider": 0.0241,
+      "Rammership": 0.0204,
+      "Swordsman": 0.0118,
+      "Scoutship": 0.0099,
+      "MindBender": 0.0046,
+      "Bomber": 0.003,
+      "Knight": 0.0008
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 12.6875,
+      "final_median": 10.0,
+      "tier3_mean": 3.4583333333333335,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.8125
+       },
+       "20": {
+        "games": 47,
+        "mean_techs": 6.723404255319149
+       },
+       "30": {
+        "games": 38,
+        "mean_techs": 9.657894736842104
+       },
+       "40": {
+        "games": 28,
+        "mean_techs": 11.607142857142858
+       },
+       "50": {
+        "games": 23,
+        "mean_techs": 13.130434782608695
+       },
+       "60": {
+        "games": 19,
+        "mean_techs": 15.421052631578947
+       },
+       "80": {
+        "games": 15,
+        "mean_techs": 19.133333333333333
+       },
+       "100": {
+        "games": 13,
+        "mean_techs": 22.384615384615383
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3841,
+      "Catapult": 0.2487,
+      "Cloak": 0.154,
+      "Defender": 0.1042,
+      "Archer": 0.0359,
+      "Rider": 0.0227,
+      "Rammership": 0.0163,
+      "Scoutship": 0.012,
+      "Swordsman": 0.0111,
+      "MindBender": 0.0052,
+      "Bomber": 0.0049,
+      "Knight": 0.0008
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 12.947916666666666,
+      "final_median": 10.0,
+      "tier3_mean": 3.5104166666666665,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.5,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.895833333333333
+       },
+       "20": {
+        "games": 94,
+        "mean_techs": 6.819148936170213
+       },
+       "30": {
+        "games": 76,
+        "mean_techs": 9.697368421052632
+       },
+       "40": {
+        "games": 56,
+        "mean_techs": 11.839285714285714
+       },
+       "50": {
+        "games": 46,
+        "mean_techs": 13.695652173913043
+       },
+       "60": {
+        "games": 38,
+        "mean_techs": 15.789473684210526
+       },
+       "80": {
+        "games": 30,
+        "mean_techs": 19.3
+       },
+       "100": {
+        "games": 26,
+        "mean_techs": 22.53846153846154
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-highlands",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374700,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "highlands"
+  },
+  "ridge": {
+   "games": 48,
+   "wins": 17,
+   "losses": 17,
+   "draws_or_truncations": 14,
+   "truncations": 14,
+   "win_rate": 0.3541666666666667,
+   "ci95": [
+    0.2708333333333333,
+    0.4375
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.4003,
+    "Catapult": 0.2853,
+    "Cloak": 0.1232,
+    "Defender": 0.1125,
+    "Rammership": 0.0285,
+    "Archer": 0.0194,
+    "Rider": 0.0129,
+    "Swordsman": 0.0074,
+    "Scoutship": 0.0045,
+    "Bomber": 0.0031,
+    "MindBender": 0.0022,
+    "Knight": 0.0007
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3658,
+    "Catapult": 0.2613,
+    "Cloak": 0.201,
+    "Defender": 0.1026,
+    "Archer": 0.0232,
+    "Scoutship": 0.0128,
+    "Rider": 0.0124,
+    "Rammership": 0.0105,
+    "Bomber": 0.005,
+    "Swordsman": 0.0038,
+    "MindBender": 0.0017
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.729166666666667,
+   "candidate_first_non_warrior_turn_median": 8.5,
+   "candidate_early_research_mean": 2.0833333333333335,
+   "mean_steps": 1881.0833333333333,
+   "seconds": 226.04000247000002,
+   "mean_turns": 61.041666666666664,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 13.0625,
+    "final_median": 10.0,
+    "tier3_mean": 3.5416666666666665,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.770833333333333
+     },
+     "20": {
+      "games": 46,
+      "mean_techs": 6.695652173913044
+     },
+     "30": {
+      "games": 42,
+      "mean_techs": 8.952380952380953
+     },
+     "40": {
+      "games": 31,
+      "mean_techs": 10.870967741935484
+     },
+     "50": {
+      "games": 25,
+      "mean_techs": 12.6
+     },
+     "60": {
+      "games": 22,
+      "mean_techs": 14.045454545454545
+     },
+     "80": {
+      "games": 17,
+      "mean_techs": 17.941176470588236
+     },
+     "100": {
+      "games": 14,
+      "mean_techs": 21.214285714285715
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 12.291666666666666,
+    "final_median": 10.0,
+    "tier3_mean": 3.1458333333333335,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.875
+     },
+     "20": {
+      "games": 46,
+      "mean_techs": 6.565217391304348
+     },
+     "30": {
+      "games": 42,
+      "mean_techs": 8.714285714285714
+     },
+     "40": {
+      "games": 31,
+      "mean_techs": 10.258064516129032
+     },
+     "50": {
+      "games": 25,
+      "mean_techs": 12.0
+     },
+     "60": {
+      "games": 22,
+      "mean_techs": 13.227272727272727
+     },
+     "80": {
+      "games": 17,
+      "mean_techs": 15.705882352941176
+     },
+     "100": {
+      "games": 14,
+      "mean_techs": 18.642857142857142
+     }
+    }
+   },
+   "by_map": {
+    "ridge": {
+     "games": 48,
+     "wins": 17,
+     "losses": 17,
+     "truncations": 14,
+     "mean_turns": 61.041666666666664,
+     "mean_captures": 16.5,
+     "games_with_ports": 31,
+     "seat1_win_rate": 0.4583333333333333,
+     "candidate_unit_mix": {
+      "Warrior": 0.4003,
+      "Catapult": 0.2853,
+      "Cloak": 0.1232,
+      "Defender": 0.1125,
+      "Rammership": 0.0285,
+      "Archer": 0.0194,
+      "Rider": 0.0129,
+      "Swordsman": 0.0074,
+      "Scoutship": 0.0045,
+      "Bomber": 0.0031,
+      "MindBender": 0.0022,
+      "Knight": 0.0007
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 13.0625,
+      "final_median": 10.0,
+      "tier3_mean": 3.5416666666666665,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.770833333333333
+       },
+       "20": {
+        "games": 46,
+        "mean_techs": 6.695652173913044
+       },
+       "30": {
+        "games": 42,
+        "mean_techs": 8.952380952380953
+       },
+       "40": {
+        "games": 31,
+        "mean_techs": 10.870967741935484
+       },
+       "50": {
+        "games": 25,
+        "mean_techs": 12.6
+       },
+       "60": {
+        "games": 22,
+        "mean_techs": 14.045454545454545
+       },
+       "80": {
+        "games": 17,
+        "mean_techs": 17.941176470588236
+       },
+       "100": {
+        "games": 14,
+        "mean_techs": 21.214285714285715
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3825,
+      "Catapult": 0.2729,
+      "Cloak": 0.1633,
+      "Defender": 0.1074,
+      "Archer": 0.0214,
+      "Rammership": 0.0192,
+      "Rider": 0.0126,
+      "Scoutship": 0.0087,
+      "Swordsman": 0.0055,
+      "Bomber": 0.0041,
+      "MindBender": 0.0019,
+      "Knight": 0.0003
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 12.677083333333334,
+      "final_median": 10.0,
+      "tier3_mean": 3.34375,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.822916666666667
+       },
+       "20": {
+        "games": 92,
+        "mean_techs": 6.630434782608695
+       },
+       "30": {
+        "games": 84,
+        "mean_techs": 8.833333333333334
+       },
+       "40": {
+        "games": 62,
+        "mean_techs": 10.564516129032258
+       },
+       "50": {
+        "games": 50,
+        "mean_techs": 12.3
+       },
+       "60": {
+        "games": 44,
+        "mean_techs": 13.636363636363637
+       },
+       "80": {
+        "games": 34,
+        "mean_techs": 16.823529411764707
+       },
+       "100": {
+        "games": 28,
+        "mean_techs": 19.928571428571427
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-ridge",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374800,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "ridge"
+  },
+  "jungle": {
+   "games": 48,
+   "wins": 17,
+   "losses": 20,
+   "draws_or_truncations": 11,
+   "truncations": 11,
+   "win_rate": 0.3541666666666667,
+   "ci95": [
+    0.2708333333333333,
+    0.4375
+   ],
+   "candidate_unit_mix": {
+    "Warrior": 0.3284,
+    "Catapult": 0.2599,
+    "Cloak": 0.2129,
+    "Defender": 0.0888,
+    "Rammership": 0.0386,
+    "Scoutship": 0.0213,
+    "Archer": 0.0199,
+    "Bomber": 0.0119,
+    "Rider": 0.0092,
+    "Swordsman": 0.007,
+    "MindBender": 0.0014,
+    "Knight": 0.0006
+   },
+   "opponent_unit_mix": {
+    "Warrior": 0.3066,
+    "Catapult": 0.2727,
+    "Cloak": 0.2045,
+    "Defender": 0.1138,
+    "Rammership": 0.0311,
+    "Archer": 0.025,
+    "Scoutship": 0.0145,
+    "Bomber": 0.0107,
+    "Rider": 0.0089,
+    "Swordsman": 0.0085,
+    "MindBender": 0.0034,
+    "Knight": 0.0002
+   },
+   "candidate_non_warrior_games": 48,
+   "candidate_unit_types_per_game": 4.8125,
+   "candidate_first_non_warrior_turn_median": 8.0,
+   "candidate_early_research_mean": 1.8541666666666667,
+   "mean_steps": 1991.2083333333333,
+   "seconds": 231.643586943,
+   "mean_turns": 56.291666666666664,
+   "candidate_tech": {
+    "samples": 48,
+    "final_mean": 12.291666666666666,
+    "final_median": 10.0,
+    "tier3_mean": 3.1666666666666665,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.520833333333333
+     },
+     "20": {
+      "games": 45,
+      "mean_techs": 7.288888888888889
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.31578947368421
+     },
+     "40": {
+      "games": 29,
+      "mean_techs": 11.275862068965518
+     },
+     "50": {
+      "games": 23,
+      "mean_techs": 13.130434782608695
+     },
+     "60": {
+      "games": 21,
+      "mean_techs": 13.952380952380953
+     },
+     "80": {
+      "games": 14,
+      "mean_techs": 16.785714285714285
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 19.818181818181817
+     }
+    }
+   },
+   "opponent_tech": {
+    "samples": 48,
+    "final_mean": 12.208333333333334,
+    "final_median": 10.5,
+    "tier3_mean": 3.1458333333333335,
+    "share_with_tier3": 1.0,
+    "first_tier3_turn_median": 7.0,
+    "by_turn": {
+     "10": {
+      "games": 48,
+      "mean_techs": 4.583333333333333
+     },
+     "20": {
+      "games": 45,
+      "mean_techs": 7.555555555555555
+     },
+     "30": {
+      "games": 38,
+      "mean_techs": 9.421052631578947
+     },
+     "40": {
+      "games": 29,
+      "mean_techs": 11.206896551724139
+     },
+     "50": {
+      "games": 23,
+      "mean_techs": 12.782608695652174
+     },
+     "60": {
+      "games": 21,
+      "mean_techs": 14.142857142857142
+     },
+     "80": {
+      "games": 14,
+      "mean_techs": 18.0
+     },
+     "100": {
+      "games": 11,
+      "mean_techs": 20.727272727272727
+     }
+    }
+   },
+   "by_map": {
+    "jungle": {
+     "games": 48,
+     "wins": 17,
+     "losses": 20,
+     "truncations": 11,
+     "mean_turns": 56.291666666666664,
+     "mean_captures": 16.6875,
+     "games_with_ports": 31,
+     "seat1_win_rate": 0.5,
+     "candidate_unit_mix": {
+      "Warrior": 0.3284,
+      "Catapult": 0.2599,
+      "Cloak": 0.2129,
+      "Defender": 0.0888,
+      "Rammership": 0.0386,
+      "Scoutship": 0.0213,
+      "Archer": 0.0199,
+      "Bomber": 0.0119,
+      "Rider": 0.0092,
+      "Swordsman": 0.007,
+      "MindBender": 0.0014,
+      "Knight": 0.0006
+     },
+     "candidate_tech": {
+      "samples": 48,
+      "final_mean": 12.291666666666666,
+      "final_median": 10.0,
+      "tier3_mean": 3.1666666666666665,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 48,
+        "mean_techs": 4.520833333333333
+       },
+       "20": {
+        "games": 45,
+        "mean_techs": 7.288888888888889
+       },
+       "30": {
+        "games": 38,
+        "mean_techs": 9.31578947368421
+       },
+       "40": {
+        "games": 29,
+        "mean_techs": 11.275862068965518
+       },
+       "50": {
+        "games": 23,
+        "mean_techs": 13.130434782608695
+       },
+       "60": {
+        "games": 21,
+        "mean_techs": 13.952380952380953
+       },
+       "80": {
+        "games": 14,
+        "mean_techs": 16.785714285714285
+       },
+       "100": {
+        "games": 11,
+        "mean_techs": 19.818181818181817
+       }
+      }
+     },
+     "both_unit_mix": {
+      "Warrior": 0.3176,
+      "Catapult": 0.2663,
+      "Cloak": 0.2087,
+      "Defender": 0.1013,
+      "Rammership": 0.0348,
+      "Archer": 0.0225,
+      "Scoutship": 0.0179,
+      "Bomber": 0.0113,
+      "Rider": 0.0091,
+      "Swordsman": 0.0078,
+      "MindBender": 0.0024,
+      "Knight": 0.0004
+     },
+     "both_tech": {
+      "samples": 96,
+      "final_mean": 12.25,
+      "final_median": 10.0,
+      "tier3_mean": 3.15625,
+      "share_with_tier3": 1.0,
+      "first_tier3_turn_median": 7.0,
+      "by_turn": {
+       "10": {
+        "games": 96,
+        "mean_techs": 4.552083333333333
+       },
+       "20": {
+        "games": 90,
+        "mean_techs": 7.4222222222222225
+       },
+       "30": {
+        "games": 76,
+        "mean_techs": 9.368421052631579
+       },
+       "40": {
+        "games": 58,
+        "mean_techs": 11.241379310344827
+       },
+       "50": {
+        "games": 46,
+        "mean_techs": 12.956521739130435
+       },
+       "60": {
+        "games": 42,
+        "mean_techs": 14.047619047619047
+       },
+       "80": {
+        "games": 28,
+        "mean_techs": 17.392857142857142
+       },
+       "100": {
+        "games": 22,
+        "mean_techs": 20.272727272727273
+       }
+      }
+     }
+    }
+   },
+   "name": "l18-baseline-c3-14-jungle",
+   "size": 14,
+   "candidate": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "opponent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   "seed_base": 374900,
+   "maps": 24,
+   "deterministic": false,
+   "opponent_deterministic": false,
+   "engine": "frozen (cpu_engine fast=False)",
+   "map_mix": "jungle"
+  }
+ }
+}

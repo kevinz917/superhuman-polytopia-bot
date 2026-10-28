@@ -1,0 +1,101 @@
+{
+ "generator": "bardur-drylands-dotnet-v2",
+ "size": 18,
+ "games": 8,
+ "seed_start": 1001,
+ "round_limit": 150,
+ "backend": "cpu",
+ "device_kinds": [
+  "cpu"
+ ],
+ "reset_seconds_including_compile": 6.121999646000001,
+ "rollout_seconds_including_compile": 180.106587377,
+ "active_transitions": 8542,
+ "action_counts": {
+  "1": 1312,
+  "3": 2414,
+  "4": 771,
+  "5": 119,
+  "6": 1029,
+  "7": 375,
+  "8": 24,
+  "9": 82,
+  "10": 2416
+ },
+ "terminated": [
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "truncated": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "actions": [
+  1103,
+  1434,
+  958,
+  1181,
+  710,
+  1244,
+  1094,
+  818
+ ],
+ "turns": [
+  151,
+  151,
+  151,
+  151,
+  151,
+  151,
+  151,
+  151
+ ],
+ "rewards": [
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0
+  ]
+ ],
+ "all_traces_finished": true,
+ "scope": "Device-generated native-candidate random traces with legality and invariants; not native commercial replay parity or expert play."
+}

@@ -1,0 +1,14 @@
+[
+ {
+  "tag": "c5-search-depth-v1",
+  "launched": "2026-10-21 14:03:14 PDT",
+  "arms": [
+   "omni-d2det-vs-c3",
+   "omni-d3det-vs-c3"
+  ],
+  "containers": 14,
+  "per_container": 32,
+  "cores": 32,
+  "memory_mb": 40960
+ }
+]

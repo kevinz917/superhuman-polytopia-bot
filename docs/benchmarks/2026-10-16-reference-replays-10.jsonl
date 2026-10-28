@@ -1,0 +1,11 @@
+{"seed": 1, "steps": 543, "terminated": false, "truncated": true}
+{"seed": 2, "steps": 573, "terminated": false, "truncated": true}
+{"seed": 3, "steps": 506, "terminated": false, "truncated": true}
+{"seed": 4, "steps": 509, "terminated": false, "truncated": true}
+{"seed": 5, "steps": 470, "terminated": false, "truncated": true}
+{"seed": 6, "steps": 545, "terminated": true, "truncated": false}
+{"seed": 7, "steps": 599, "terminated": false, "truncated": true}
+{"seed": 8, "steps": 554, "terminated": false, "truncated": true}
+{"seed": 9, "steps": 542, "terminated": false, "truncated": true}
+{"seed": 10, "steps": 600, "terminated": false, "truncated": false}
+{"games": 10, "finished": 9, "transitions": 5441, "action_counts": {"10": 914, "1": 2157, "7": 425, "5": 191, "9": 141, "4": 320, "2": 335, "8": 48, "3": 308, "6": 602}}

@@ -1,0 +1,322 @@
+/* Additions for the React + Pixi build. */
+#root {
+  position: fixed;
+  inset: 0;
+}
+.star-bump-alt > div img {
+  animation: star-bump 0.45s ease-out;
+}
+.round-icon .art,
+.selection-portrait .art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.round-action .round-icon .art svg {
+  width: 62%;
+  height: 62%;
+}
+.reward-icon .art svg {
+  width: 62%;
+  height: 62%;
+  stroke: none;
+}
+
+/* Replay viewing modes: a row of pills above the transport. */
+.replay-dock {
+  flex-wrap: wrap;
+  row-gap: 9px;
+}
+.view-modes {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.view-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border: 1px solid #fff3;
+  border-radius: 999px;
+  background: #ffffff0d;
+  color: #ffffffb3;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.view-mode:hover {
+  color: #fff;
+  border-color: #fff8;
+}
+.view-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.view-1 .view-dot {
+  background: #45c4f0;
+}
+.view-2 .view-dot {
+  background: #ff464c;
+}
+.view-3 .view-dot {
+  background: #4fd06e;
+}
+.view-4 .view-dot {
+  background: #f5c143;
+}
+.view-all .view-dot {
+  background: #fff;
+  box-shadow: 0 0 0 2px #fff5;
+}
+.view-mode.active {
+  color: #fff;
+  border-color: #fffa;
+}
+.view-1.active {
+  background: #1d7fb1;
+}
+.view-2.active {
+  background: #b9353b;
+}
+.view-3.active {
+  background: #25703a;
+}
+.view-4.active {
+  background: #9a7019;
+}
+.view-all.active {
+  background: #eef3f6;
+  color: #0b1218;
+}
+.view-all.active .view-dot {
+  background: #f5b82e;
+  box-shadow: 0 0 0 2px #f5b82e55;
+}
+@media (max-width: 420px) {
+  .view-mode {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
+
+/* Opponent mode switch (policy / search), top-left over the board. */
+.opponent-mode {
+  position: absolute;
+  top: 26px;
+  left: 22px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #000a;
+  border: 1px solid #fff3;
+  font-size: 13px;
+}
+.opponent-mode-label {
+  padding: 0 8px 0 10px;
+  color: #fff9;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.opponent-mode button {
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #fffc;
+  font: inherit;
+  cursor: pointer;
+}
+.opponent-mode button:hover {
+  background: #fff2;
+}
+.opponent-mode button.active {
+  background: #1dd147;
+  color: #000;
+  font-weight: 600;
+}
+@media (max-width: 760px) {
+  .opponent-mode {
+    top: auto;
+    bottom: 128px;
+    left: 12px;
+  }
+}
+
+/* Replay insights: economy small multiples and the military power map, on the left of the board. */
+.insights {
+  position: absolute;
+  top: 112px;
+  left: 16px;
+  z-index: 6;
+  bottom: 236px; /* stays above the replay dock */
+  width: 300px;
+  overflow-y: auto;
+  padding: 12px 14px 14px;
+  border: 1px solid #ffffff50;
+  border-radius: 4px;
+  background: #000b;
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 12px;
+}
+.insights header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.insights .eyebrow {
+  color: #ccc;
+}
+.insights-close {
+  border: 0;
+  background: none;
+  color: #ccc;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.insights-tab {
+  position: absolute;
+  top: 112px;
+  left: 0;
+  z-index: 6;
+  padding: 10px 8px;
+  border: 1px solid #ffffff50;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  background: #000b;
+  color: #fff;
+  writing-mode: vertical-rl;
+  cursor: pointer;
+}
+.insight-legend,
+.insight-values {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.insight-legend {
+  margin-top: 4px;
+}
+/* Four seats share the row: keep each entry on one line and tighten the spacing. */
+.insight-legend span,
+.insight-values span,
+.insight-chart figcaption > span:first-child {
+  white-space: nowrap;
+}
+.insight-values {
+  gap: 9px;
+}
+.insight-legend i,
+.insight-values i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+  vertical-align: 0;
+}
+.insight-sub {
+  margin: 6px 0 2px;
+  color: #bbb;
+  font-size: 11px;
+}
+.insight-chart,
+.insight-map {
+  margin: 10px 0 0;
+}
+.insight-chart figcaption,
+.insight-map figcaption {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+.insight-chart figcaption small {
+  color: #bbb;
+}
+.insight-values span {
+  min-width: 42px;
+  font-variant-numeric: tabular-nums;
+}
+.insight-chart svg,
+.insight-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+}
+.insight-map svg {
+  cursor: default;
+}
+.insight-grid {
+  stroke: #ffffff22;
+  stroke-width: 1;
+}
+.insight-tick {
+  fill: #aaa;
+  font-size: 9px;
+  text-anchor: end;
+}
+.insight-now {
+  stroke: #ffffff70;
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+.insight-hover {
+  stroke: #ffffffaa;
+  stroke-width: 1;
+}
+.insight-dot {
+  stroke: #000;
+  stroke-width: 2;
+}
+.insight-city {
+  fill: none;
+  stroke-width: 1.5;
+}
+.insight-unit {
+  stroke: #000;
+  stroke-width: 0.8;
+}
+.insight-scale {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: #ccc;
+  font-size: 10px;
+}
+.insight-scale i {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2f95e0, #3a3f44, #e2483d);
+}
+.insight-note {
+  display: block;
+  margin-top: 5px;
+  color: #aaa;
+  font-size: 10px;
+  line-height: 1.35;
+}
+@media (max-width: 760px) {
+  .insights {
+    width: calc(100% - 32px);
+    max-height: 45%;
+  }
+}
+

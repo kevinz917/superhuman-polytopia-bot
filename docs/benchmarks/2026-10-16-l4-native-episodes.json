@@ -1,0 +1,134 @@
+{
+  "generator": "bardur-drylands-dotnet-v1",
+  "size": 14,
+  "games": 8,
+  "seed_start": 1001,
+  "round_limit": 100,
+  "backend": "gpu",
+  "device_kinds": [
+    "NVIDIA L4"
+  ],
+  "reset_seconds_including_compile": 5.7199571119999995,
+  "rollout_seconds_including_compile": 116.348585658,
+  "active_transitions": 5665,
+  "action_counts": {
+    "1": 733,
+    "2": 2,
+    "3": 1675,
+    "4": 429,
+    "5": 91,
+    "6": 657,
+    "7": 379,
+    "8": 13,
+    "9": 70,
+    "10": 1616
+  },
+  "terminated": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "truncated": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "actions": [
+    756,
+    692,
+    517,
+    752,
+    775,
+    764,
+    618,
+    791
+  ],
+  "turns": [
+    101,
+    101,
+    101,
+    101,
+    101,
+    101,
+    101,
+    101
+  ],
+  "rewards": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ]
+  ],
+  "all_traces_finished": true,
+  "scope": "Device-generated native-candidate random traces with legality and invariants; not native commercial replay parity or expert play.",
+  "tested_files_sha256": {
+    "src/polytopia_bot/__init__.py": "e049237495ab1b81e7b002ecf313205eef3150e524172f6db5125220cd231222",
+    "src/polytopia_bot/environment.py": "4e61b40fc9511c564a11fcdb5615b0d48832eb00c634e605517a5ca536b204af",
+    "src/polytopia_bot/gpu/__init__.py": "6f6671fe210bd7c139eeeb128ee72f538c310fa646903fbe4b5a783de036ab4c",
+    "src/polytopia_bot/gpu/actions.py": "82103cfdcf4e2eb4e064d32c542781fd7dc137a9dd5c0f1501ce58aaf22b2953",
+    "src/polytopia_bot/gpu/benchmark.py": "04db877e7dd54448467ebefa16b69bcadd34f8559b266f7768132f0ac0d951ee",
+    "src/polytopia_bot/gpu/capture.py": "69e348c18270be326dc868e5923b981ab7466b43739e8a0a2ea55bdba8f13e83",
+    "src/polytopia_bot/gpu/core.py": "9343203a4d32eae25ce780dc6bc9f11348f5a8693e196f887be6ca9811cdcf37",
+    "src/polytopia_bot/gpu/diplomacy.py": "4155b9956c9c4d53995b848737993e26b1d5f185e8cd0b688b0e0c91504cf17c",
+    "src/polytopia_bot/gpu/discovery.py": "83c9b69ffb1987d5faf1a4c9a5620a636ea9ca5d01e5dabdef91a910dec7c6fa",
+    "src/polytopia_bot/gpu/economy.py": "c9f5deda83ce3b2c68e9aac4af10b45b5e995c432153a2d318e875dc9a5e13f4",
+    "src/polytopia_bot/gpu/importer.py": "0b77c7a88a2766d6ed5171ccc5830cab71ed8a8b2bec64aa9021345fcc37533b",
+    "src/polytopia_bot/gpu/infiltration.py": "e42f2e51fab65444501d78c472739a6f19fd841b250ed096283c88c969672c22",
+    "src/polytopia_bot/gpu/kernels.py": "65b082cb089c8040ba4b680aa2c41317de3d7ef9337b5b655554c5229dfbf1b9",
+    "src/polytopia_bot/gpu/mapgen.py": "3e1d549f34533e5e43580a7068a4949dc0a7abfa4934014f3d39dd1773e5626f",
+    "src/polytopia_bot/gpu/military.py": "0029dec922bdd5565c1583238addece556ec56dd3f5ee7ee8e0273753b9b77c9",
+    "src/polytopia_bot/gpu/pathfinding.py": "9d742bb1f148b9dfe200769736577ea6d66245cca011fc9e7041ea8b68c0f266",
+    "src/polytopia_bot/gpu/random.py": "7f6ab5e48b32da3d263d3c43b993836b74a3c2108b34d7f77beff02aea2f2a99",
+    "src/polytopia_bot/gpu/rollout.py": "b7e37b2ddc479d3d2a3b83a920ec05038daa7d175ad4e490d8528325a67bb940",
+    "src/polytopia_bot/gpu/rules.json": "a4878778dfb364722b5af25f42c30c6649441c00c423a57b5cdc265e9f4d81ec",
+    "src/polytopia_bot/gpu/rules.py": "123898254e3166672758ef42ff4a2a3a1ea846936956d81b666a18f50ba36756",
+    "src/polytopia_bot/gpu/snapshot.py": "ac6e258a6369dfa1157c855263a0ef1d2e71dcf14b1a370b3a9ad28aeac517d8",
+    "src/polytopia_bot/gpu/state.py": "48b4b21b4de95b300664f271c563db41d869622a059a61484b26f242284c094d",
+    "src/polytopia_bot/gpu/structures.py": "b748ae471fe00cd6be7cbb529b161f6fc685f4379d8082f0934afaffbf4b415a",
+    "src/polytopia_bot/gpu/validation.py": "a197407a7cf6abcfeb77f13cb8bf8e51daad0c44a06079442965a9d6d1531c45",
+    "src/polytopia_bot/oracle.py": "2e2035d1bcc09aa85c791b34010ef440f0b20ba186fbf81bd8402bf5ff85dddc",
+    "src/polytopia_bot.egg-info/PKG-INFO": "09fb02f58948948476ab88dedc3ead93a3996642d5a5df2dfbd26c643304235f",
+    "src/polytopia_bot.egg-info/SOURCES.txt": "0164924ca4b977fd1d5f79276d73d2cad1f78838790fa00d52d43e46f78b2b4d",
+    "src/polytopia_bot.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/polytopia_bot.egg-info/requires.txt": "2832f0291c8341dde7245acee71f79e88654bc380e49a74ab723eca34eac35c0",
+    "src/polytopia_bot.egg-info/top_level.txt": "b4acc327fd9ea95b1bd2a25250ca529b850ada66d08ccb595ac025a1b1f6e41a"
+  }
+}

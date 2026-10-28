@@ -1,0 +1,166 @@
+{
+  "budget_usd": 120,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing (rates in experiments/modal_distributed_rl.py)",
+  "runs": [
+    {
+      "run_id": "c5-l18-omni",
+      "parent": "/retained/checkpoints/distributed-final-v1/c3-u4854-grown18x2/final.npz",
+      "config": {
+        "size": 18,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "grown-c3",
+            "/retained/checkpoints/distributed-final-v1/c3-u4854-grown18x2/final.npz",
+            0.15
+          ]
+        ],
+        "historical_probability": 0.1,
+        "historical_every": 100,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 3,
+        "learning_rate": 0.0001,
+        "entropy_coef": 0.002,
+        "advantage_floor": 0.01,
+        "turn_gamma": 0.97,
+        "turn_lambda": 0.92,
+        "omniscient_critic": true,
+        "critic_warmup": 80,
+        "anchor_coef": 0.0,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 20,
+        "snapshot_every": 50,
+        "seed": 31,
+        "training_seconds": 10800
+      },
+      "actors": 24,
+      "actor_cpu": 8,
+      "processes": 8,
+      "games": 24,
+      "gpu": "H100:4",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 10800,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 30.74,
+      "reserved_usd": 99.9,
+      "status": "reserved",
+      "modal_app_id": "ap-T0Y4tQVIWlzLHJpbwO6EaU",
+      "start_unix": 1792560348.003613,
+      "billing_check": "22:00-23:00 UTC-7 hour row $18.88 for 34 min of app wall = ~$33.3/h vs $30.74 launcher estimate (+8%, startup + RSS); under the $35/h bar, fleet kept at 24 actors",
+      "health_check": "23:30 PDT: 24/24 containers, 8 procs at 100% of a core each, RSS 2.7 GiB/proc; 1 h: update 150, 25.7 s/update, 10.3k samples/s",
+      "spend_usd": 99.9,
+      "billed_usd": 95.92,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c5-tests-1",
+      "kind": "tests",
+      "paths": "tests/test_rl_18x18.py,tests/test_distributed_rl.py",
+      "cores": 16,
+      "hourly_usd": 0.88,
+      "reserved_usd": 1.0,
+      "status": "reserved",
+      "start_unix": 1792560358.7057338,
+      "spend_usd": 0.05,
+      "billed_usd": 0.05,
+      "note": "22 passed on Modal (test_rl_18x18 14, test_distributed_rl 8)"
+    },
+    {
+      "run_id": "c5-ladder-1p5h",
+      "kind": "selection",
+      "candidates": {
+        "u200": "/results/distributed/c5-l18-omni/snapshots/update-200.npz"
+      },
+      "seed_base": 375000,
+      "maps": 64,
+      "hourly_usd": 1.77,
+      "reserved_usd": 1.47,
+      "status": "reserved",
+      "modal_app_id": "ap-NSThsvN8VBVxosrthA165H",
+      "start_unix": 1792565323.8301399,
+      "spend_usd": 1.59,
+      "billed_usd": 1.59,
+      "billing_settled": true
+    },
+    {
+      "run_id": "c5-l18-omni-actors-100",
+      "parent": "c5-l18-omni",
+      "actors": 24,
+      "actor_cpu": 8,
+      "processes": 8,
+      "games": 24,
+      "hourly_usd": 13.67,
+      "reserved_usd": 11.39,
+      "status": "reserved",
+      "modal_app_id": "ap-SP95SfvWJ0DQmBsjaq3qPU",
+      "start_unix": 1792568458.367775,
+      "spend_usd": 11.39,
+      "billed_usd": 10.79,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c5-final-vs-grown",
+      "kind": "selection",
+      "candidates": {
+        "final": "/results/distributed/c5-l18-omni/final.npz"
+      },
+      "seed_base": 375100,
+      "maps": 128,
+      "hourly_usd": 1.77,
+      "reserved_usd": 2.21,
+      "status": "lost",
+      "modal_app_id": "ap-oCshu7pkrkHP6NB1Zl9Hqe",
+      "start_unix": 1792571262.079595,
+      "note": "local modal client lost DNS at 02:25 PDT (ConnectionError); the non-detached ephemeral app stopped with it after ~58 min, no arena file written",
+      "spend_usd": 2.56,
+      "billed_usd": 2.56,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c5-final-vs-u300",
+      "kind": "selection",
+      "candidates": {
+        "final": "/results/distributed/c5-l18-omni/final.npz"
+      },
+      "seed_base": 375100,
+      "maps": 128,
+      "hourly_usd": 1.77,
+      "reserved_usd": 2.21,
+      "status": "lost",
+      "modal_app_id": "ap-Bwqx4SNPpxCqnFJDXKFkLo",
+      "start_unix": 1792571311.222406,
+      "note": "local modal client lost DNS at 02:25 PDT (ConnectionError); the non-detached ephemeral app stopped with it after ~58 min, no arena file written",
+      "spend_usd": 2.56,
+      "billed_usd": 2.56,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c5-final-vs-grown-2",
+      "kind": "selection",
+      "candidates": {
+        "final": "/results/distributed/c5-l18-omni/final.npz"
+      },
+      "seed_base": 375100,
+      "maps": 128,
+      "hourly_usd": 1.77,
+      "reserved_usd": 2.21,
+      "status": "reserved",
+      "modal_app_id": "ap-zNXcVSbWt4UJehfS9uzKM8",
+      "start_unix": 1792575058.606366,
+      "spend_usd": 2.21,
+      "billed_usd": 1.35,
+      "billing_settled": false
+    }
+  ],
+  "approved": "2026-10-20 by the user: arm D of the $500 overnight campaign, 18x18 omniscient critic + turn clock from grown c3, 3 h + ladders, hard cap $120",
+  "spec": "runs/c5-18x18/spec.json"
+}

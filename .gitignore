@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.venv
+.DS_Store
+data/
+checkpoints/
+runs/
+third_party/*
+vendor/
+target/
+*.egg-info/
+.pytest_cache/
+**/obj/
+**/bin/
+
+# Local interactive studio artifacts and copied immutable weights
+artifacts/
+node_modules/
+
+# Claude Code agent worktrees
+.claude/worktrees/
+.claude/launch.json

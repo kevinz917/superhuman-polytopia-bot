@@ -1,0 +1,194 @@
+{
+ "win-k1-vs-c3": {
+  "summary": {
+   "games": 200,
+   "wins": 151,
+   "losses": 26,
+   "truncations": 23,
+   "win_rate": 0.755,
+   "win_ci95": [
+    0.705,
+    0.8
+   ],
+   "score": 0.8125,
+   "score_ci95": [
+    0.77,
+    0.8525
+   ],
+   "elo": 254.72883903486968,
+   "elo_ci95": [
+    209.9051556619556,
+    304.76094694014154
+   ],
+   "seconds_per_search_turn": 0.08091291305694355,
+   "sub_actions_per_turn": 12.885082493125573,
+   "lane_steps_per_turn": 12.885082493125573,
+   "override_rate": 0.0,
+   "replans_per_turn": 1.0002291475710356,
+   "incomplete_lanes": 2,
+   "mean_turns": 42.85,
+   "mean_turns_decided": 35.293785310734464,
+   "game_seconds_mean": 7.510006507365001,
+   "compile_seconds": 288.21855140285,
+   "unit_mix": {
+    "Catapult": 0.2799,
+    "Cloak": 0.2502,
+    "Warrior": 0.233,
+    "Defender": 0.1564,
+    "Scoutship": 0.0377,
+    "Bomber": 0.0335,
+    "Archer": 0.0058,
+    "Rider": 0.0031,
+    "Rammership": 0.0005
+   }
+  },
+  "cost_usd": 0.7003097638649494,
+  "errors": []
+ },
+ "win-d1det-ownval-vs-c3": {
+  "summary": {
+   "games": 200,
+   "wins": 167,
+   "losses": 17,
+   "truncations": 16,
+   "win_rate": 0.835,
+   "win_ci95": [
+    0.79,
+    0.88
+   ],
+   "score": 0.875,
+   "score_ci95": [
+    0.8375,
+    0.9125
+   ],
+   "elo": 338.0392160057028,
+   "elo_ci95": [
+    284.852580157596,
+    407.28992804247974
+   ],
+   "seconds_per_search_turn": 4.7234912693770355,
+   "sub_actions_per_turn": 13.016770718570205,
+   "lane_steps_per_turn": 1036.055086301873,
+   "override_rate": 0.8673673387787743,
+   "replans_per_turn": 2.143101970865467,
+   "incomplete_lanes": 1,
+   "mean_turns": 39.985,
+   "mean_turns_decided": 34.67934782608695,
+   "game_seconds_mean": 197.47813870435502,
+   "compile_seconds": 436.09187895161,
+   "unit_mix": {
+    "Catapult": 0.2629,
+    "Warrior": 0.2585,
+    "Cloak": 0.2192,
+    "Defender": 0.1409,
+    "Scoutship": 0.0435,
+    "Bomber": 0.0338,
+    "Archer": 0.0154,
+    "Rider": 0.0105,
+    "Rammership": 0.0088,
+    "Swordsman": 0.0041,
+    "MindBender": 0.002,
+    "Knight": 0.0003
+   }
+  },
+  "cost_usd": 2.1370378290167578,
+  "errors": []
+ },
+ "win-d1det-c3val-vs-c3": {
+  "summary": {
+   "games": 200,
+   "wins": 171,
+   "losses": 17,
+   "truncations": 12,
+   "win_rate": 0.855,
+   "win_ci95": [
+    0.81,
+    0.895
+   ],
+   "score": 0.885,
+   "score_ci95": [
+    0.8475,
+    0.92
+   ],
+   "elo": 354.49817213768546,
+   "elo_ci95": [
+    297.9479452769261,
+    424.27913614144484
+   ],
+   "seconds_per_search_turn": 4.83216427082474,
+   "sub_actions_per_turn": 12.406527813055627,
+   "lane_steps_per_turn": 1059.791973583947,
+   "override_rate": 0.8676540566262194,
+   "replans_per_turn": 2.1351282702565406,
+   "incomplete_lanes": 300,
+   "mean_turns": 38.495,
+   "mean_turns_decided": 34.505319148936174,
+   "game_seconds_mean": 194.57924796774998,
+   "compile_seconds": 435.383224053165,
+   "unit_mix": {
+    "Catapult": 0.2785,
+    "Warrior": 0.2646,
+    "Cloak": 0.2337,
+    "Defender": 0.115,
+    "Scoutship": 0.0415,
+    "Bomber": 0.0414,
+    "Archer": 0.0134,
+    "Rammership": 0.0058,
+    "Rider": 0.005,
+    "Swordsman": 0.0008,
+    "Knight": 0.0002,
+    "MindBender": 0.0001
+   }
+  },
+  "cost_usd": 2.504334941668306,
+  "errors": []
+ },
+ "win-d1det-ownval-vs-win": {
+  "summary": {
+   "games": 200,
+   "wins": 103,
+   "losses": 57,
+   "truncations": 40,
+   "win_rate": 0.515,
+   "win_ci95": [
+    0.46,
+    0.57
+   ],
+   "score": 0.615,
+   "score_ci95": [
+    0.57,
+    0.6600625000000002
+   ],
+   "elo": 81.36575450676644,
+   "elo_ci95": [
+    48.962560037161914,
+    115.27439352274669
+   ],
+   "seconds_per_search_turn": 4.354258916002683,
+   "sub_actions_per_turn": 15.849544801149976,
+   "lane_steps_per_turn": 1079.129755630091,
+   "override_rate": 0.8759534706331045,
+   "replans_per_turn": 2.010158121705798,
+   "incomplete_lanes": 115,
+   "mean_turns": 51.58,
+   "mean_turns_decided": 39.225,
+   "game_seconds_mean": 232.88341599196002,
+   "compile_seconds": 422.642901974865,
+   "unit_mix": {
+    "Catapult": 0.2572,
+    "Warrior": 0.2166,
+    "Cloak": 0.2121,
+    "Defender": 0.1962,
+    "Scoutship": 0.0415,
+    "Bomber": 0.0341,
+    "Archer": 0.0198,
+    "Rammership": 0.0149,
+    "Rider": 0.0058,
+    "Swordsman": 0.0011,
+    "MindBender": 0.0006
+   }
+  },
+  "cost_usd": 2.525468168889952,
+  "errors": []
+ }
+}

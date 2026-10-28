@@ -1,0 +1,26 @@
+{
+  "arm": "c6-credit-tc100",
+  "campaign": "c6-credit (A ctl gamma .995/lambda .99 per decision; B turn clock .99/.95; C this: turn clock 1.0/.95)",
+  "question": "Undiscounted credit on the terminal win (gamma = 1 on the turn clock, as AlphaZero/AlphaStar/DeepNash): does the c5-omni recipe hold or improve vs its parent after 1 h when the opening sees 100% of the win instead of ~2%?",
+  "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "ruleset": "bardur-1v1 (size 14, round cap 100, 10,000-action limit)",
+  "maps": "proposed-v1 at 14x14",
+  "config": {
+    "size": 14, "maps": "proposed-v1",
+    "frozen": [["parent", "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz", 0.05]],
+    "historical_probability": 0.15, "historical_every": 50, "historical_keep": 8,
+    "batch": 262144, "minibatch": 16384, "epochs": 3,
+    "learning_rate": 0.0002, "entropy_coef": 0.005,
+    "turn_gamma": 1.0, "turn_lambda": 0.95,
+    "omniscient_critic": true, "critic_warmup": 60,
+    "segment": 32, "max_lag": 10, "publish_every": 2, "checkpoint_every": 10, "snapshot_every": 50,
+    "seed": 303
+  },
+  "learner_env": {"POLYTOPIA_MATMUL_PRECISION": "DEFAULT", "POLYTOPIA_HEAD_PRECISION": "HIGHEST"},
+  "fleet": {"gpu": "H100:1", "learner_cpu": 16, "actors": 12, "actor_cpu": 16, "processes": 16, "games": 24, "memory_gib": 24},
+  "seconds": 3600,
+  "settings_from": "c5-omni-s1 (docs/c5-omni-long-2026-10-21.md Setup) with the ONE change turn_gamma 1.0 / turn_lambda 0.95 replacing gamma .995 / gae_lambda .99; frozen opponent = the parent itself; seed 303",
+  "final_ladder": {"opponent": "c5-omni-s1-final", "maps": 128, "seeds": "389400-389527", "seats": 2, "deterministic": true, "map_mix": "proposed-v1"},
+  "reading": "holds if >= 50% of all games vs the parent; wins if the 95% CI lower bound > 50%; loses if the upper bound < 50%. Also: fresh critic value std by the end of the hour vs c5's ~0.28-0.30; raw advantage std vs the learner's advantage_floor (.05).",
+  "budget_usd": 35
+}

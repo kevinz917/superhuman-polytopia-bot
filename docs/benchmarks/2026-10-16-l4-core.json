@@ -1,0 +1,163 @@
+{
+  "engine_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "jax_version": "0.11.2",
+  "backend": "gpu",
+  "devices": [
+    "cuda:0"
+  ],
+  "device_kinds": [
+    "NVIDIA L4"
+  ],
+  "full_game_ready": false,
+  "scope": "Partial rule slice. End-turn transitions and one-unit movement/research/observation queries; excludes full action enumeration, mapgen, LM, IPC, compilation and host transfer from steady-state timing.",
+  "results": [
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1,
+      "steps_per_lane": 128,
+      "compile_seconds": 2.2284926220000045,
+      "samples_seconds": [
+        0.004924510000002158,
+        0.004762587000001872,
+        0.0046387830000043095
+      ],
+      "median_seconds": 0.004762587000001872,
+      "operations_per_second": 26876.14945405715,
+      "state_bytes": 22718
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.6859207380000001,
+      "samples_seconds": [
+        0.0010083340000051066,
+        0.0007588639999980273,
+        0.0009515500000034649
+      ],
+      "median_seconds": 0.0009515500000034649,
+      "operations_per_second": 1050.9169250132506,
+      "state_bytes": 22718
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 32,
+      "steps_per_lane": 128,
+      "compile_seconds": 1.870234386,
+      "samples_seconds": [
+        0.006862453000003654,
+        0.00687418199999712,
+        0.006869203999997353
+      ],
+      "median_seconds": 0.006869203999997353,
+      "operations_per_second": 596284.5185558004,
+      "state_bytes": 726976
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 32,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.6449008800000016,
+      "samples_seconds": [
+        0.0009241939999995452,
+        0.0007515479999966601,
+        0.0006619279999995342
+      ],
+      "median_seconds": 0.0007515479999966601,
+      "operations_per_second": 42578.784056563534,
+      "state_bytes": 726976
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 256,
+      "steps_per_lane": 128,
+      "compile_seconds": 1.8568889330000005,
+      "samples_seconds": [
+        0.01094908600000366,
+        0.011111823000000243,
+        0.011393722999997635
+      ],
+      "median_seconds": 0.011111823000000243,
+      "operations_per_second": 2948931.061986794,
+      "state_bytes": 5815808
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 256,
+      "steps_per_lane": 1,
+      "compile_seconds": 3.050109524,
+      "samples_seconds": [
+        0.0008583259999994652,
+        0.0007462850000052867,
+        0.000650681999999847
+      ],
+      "median_seconds": 0.0007462850000052867,
+      "operations_per_second": 343032.48758609174,
+      "state_bytes": 5815808
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1024,
+      "steps_per_lane": 128,
+      "compile_seconds": 2.043512249999999,
+      "samples_seconds": [
+        0.029018966999998952,
+        0.031730336000002524,
+        0.03233187099999668
+      ],
+      "median_seconds": 0.031730336000002524,
+      "operations_per_second": 4130810.3387241024,
+      "state_bytes": 23263232
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1024,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.7827550639999998,
+      "samples_seconds": [
+        0.0008565890000014065,
+        0.0007567659999949683,
+        0.0007037490000030289
+      ],
+      "median_seconds": 0.0007567659999949683,
+      "operations_per_second": 1353126.3296802558,
+      "state_bytes": 23263232
+    }
+  ],
+  "tests": {
+    "returncode": 0,
+    "stdout": "........................................................................ [ 53%]\n...............................................................          [100%]\n135 passed in 39.26s\n",
+    "stderr": ""
+  },
+  "environment": "staging",
+  "app_name": "polytopia-gpu-simulator",
+  "elapsed_seconds": 56.40663504600525,
+  "modal_app_id": "ap-6MlPUiP05T9tkHWEf0TL7F",
+  "modal_run_url": "https://modal.com/apps/duper/staging/ap-6MlPUiP05T9tkHWEf0TL7F",
+  "local_tests": {
+    "passed": 135,
+    "elapsed_seconds": 4.63,
+    "backend": "cpu",
+    "platform": "macOS arm64"
+  },
+  "reference_validation": {
+    "board_fixtures": 28,
+    "supported_transition_cases": 94,
+    "combat_cases": 4096,
+    "repeated_seeded_reset_cases": 8,
+    "parity_scope": "represented fields only; not complete-state or full-game parity"
+  },
+  "tested_files_sha256": {
+    "experiments/modal_gpu.py": "6c4b7d3c14bc8a7d734b4fadf7c8fd6ce3495a4f4d2b543c945aa068a9e587e6",
+    "src/polytopia_bot/gpu/__init__.py": "6f6671fe210bd7c139eeeb128ee72f538c310fa646903fbe4b5a783de036ab4c",
+    "src/polytopia_bot/gpu/benchmark.py": "7d0f00ceac2e54c9ef9658e197a728c7819337bde5d25afb9ccfe9c0ef57f2c8",
+    "src/polytopia_bot/gpu/core.py": "591164201f96941569750436a0ed353d7a6d4ee120ce8238a22624cc468dcb5d",
+    "src/polytopia_bot/gpu/importer.py": "9d6c4452b631d99fa1fb47adc151d11779c91e185c2e0e94069f59633f3d7c3d",
+    "src/polytopia_bot/gpu/kernels.py": "b0c542a113016aa45c1d97c4cc2cb95007f9e22b2ecd658a3c070dfc8e43c0d4",
+    "src/polytopia_bot/gpu/rules.json": "99a0cb421ab6830186b82b55a2764a2402e3b3c16e050ba9de0ab6544b3de152",
+    "src/polytopia_bot/gpu/rules.py": "4a556b0484e9501ab9b5cb1202aca229c43177b3053e05db94b21d4ec4e643db",
+    "src/polytopia_bot/gpu/state.py": "539a14d1eb2d44fa70a2febe6e6e04b08975b57f6967472a365332407be9dae0",
+    "tests/fixtures/polyfish-core.json.gz": "edf0a7347bf9487d08fe09a60e0e27ff0814ae93928368fae5005688b01093de",
+    "tests/test_gpu.py": "0d84eed72db4f53990c77e8851ff62c63dc5f0dee1e872d056da91f54e36646b"
+  }
+}

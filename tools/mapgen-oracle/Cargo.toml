@@ -1,0 +1,8 @@
+[package]
+name = "mapgen-oracle"
+version = "0.1.0"
+edition = "2024"
+publish = false
+[dependencies]
+polyfish = { path = "../../vendor/Polyfish/polyfish-rs" }
+serde_json = "1"

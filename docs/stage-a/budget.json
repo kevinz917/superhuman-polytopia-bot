@@ -1,0 +1,102 @@
+{
+  "budget_usd": 40,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing",
+  "runs": [
+    {
+      "run_id": "stage-a-tests-1",
+      "kind": "tests",
+      "cores": 8,
+      "hourly_usd": 0.44,
+      "reserved_usd": 0.8,
+      "status": "done",
+      "start_unix": 1792619859.584086,
+      "note": "tests/test_cpu_engine.py + tests/test_distributed_rl.py on Modal (8 vCPU)",
+      "modal_app_id": "ap-405VzdxjpOXT7WXf0NmNtv",
+      "spend_usd": 0.1,
+      "note_result": "19 passed: 15 distributed (20 s) + 4 engine (393 s on 8 vCPU)"
+    },
+    {
+      "run_id": "stage-a-tick-phases-1",
+      "kind": "bench",
+      "cores": 16,
+      "hourly_usd": 0.88,
+      "reserved_usd": 0.5,
+      "status": "done",
+      "start_unix": 1792619859.584297,
+      "note": "bench_tick_phases 1 and 16 procs, Stage A phases",
+      "spend_usd": 0.15,
+      "note_result": "engine tick 47.4 -> 24.5 ms per 24 games at 16 procs; step 18.2 -> 7.1; masks 21.4 -> 7.9; build 15.0 -> 1.7"
+    },
+    {
+      "run_id": "stage-a-actor-profile-1",
+      "kind": "bench",
+      "cores": 16,
+      "hourly_usd": 0.88,
+      "reserved_usd": 0.6,
+      "status": "done",
+      "start_unix": 1792619954.99421,
+      "note": "bench_actor_profile 16x24 proposed-v1 omni, before vs Stage A, one container",
+      "spend_usd": 0.2,
+      "note_result": "16x24 omni 0.2 rival: 133.1 -> 60.8 ms/tick (180 -> 399 steps/s/proc); self-play procs 56.8 ms, rival procs 76.5 ms"
+    },
+    {
+      "run_id": "stage-a-1h",
+      "parent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "c3",
+            "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 3,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_warmup": 60,
+        "seed": 203,
+        "learner_values": true,
+        "trusted_step": true,
+        "trusted_check_every": 64,
+        "build_rows": true,
+        "pool_per_process": true,
+        "training_seconds": 3600
+      },
+      "actors": 12,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 3600,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 16.58,
+      "reserved_usd": 20.73,
+      "status": "done",
+      "modal_app_id": "ap-9JVjwAoq9KbwUaFZUdM5LR",
+      "start_unix": 1792620671.524918,
+      "spend_usd": 22.0,
+      "billing_settled": false,
+      "note_result": "455 updates, 119M samples, 37.3k samples/s learner-bound (3 epochs 6.7 s/update, inbox full); vs c3 per 100 updates 48/59/61/66/69% dec = c5 at matched updates. Orchestrator replay at 16:01 PDT: duplicate learner+fleet ~14 min (+~$4), resumed from latest.npz; original finished at update 455"
+    }
+  ],
+  "approved": "2026-10-21 Stage A (levers A1-A4) verification: tests + tick benchmarks (~$2) and one 1-h c5-recipe run ($25 cap) on the 12x16-vCPU fleet"
+}

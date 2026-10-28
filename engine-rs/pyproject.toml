@@ -1,0 +1,13 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "polytopia_engine_rs"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.1"]
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+module-name = "polytopia_engine_rs"

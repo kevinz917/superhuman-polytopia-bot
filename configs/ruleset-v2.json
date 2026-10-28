@@ -1,0 +1,80 @@
+{
+  "ruleset_id": "bardur-1v1-v2",
+  "frozen_date": "2026-10-19",
+  "scope": "Frozen two-player Bardur research rules; not exact commercial parity",
+  "oracle_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "generator_revision": "bardur-drylands-dotnet-v2",
+  "board_sizes": [
+    11,
+    14,
+    18
+  ],
+  "primary_board_size": 14,
+  "fog": true,
+  "round_limit": {
+    "11": 100,
+    "14": 100,
+    "18": 150
+  },
+  "action_limit": 10000,
+  "native_win": "opponent last city captured or opponent resigns",
+  "truncation_is_draw": false,
+  "rules_contract": "docs/ruleset-v2.md",
+  "source_sha256": {
+    "src/polytopia_bot/gpu/__init__.py": "ed1ce75f4da2580ceef542fba73dafd7344302c66f4e54b9d7b47a6e0ad33035",
+    "src/polytopia_bot/gpu/actions.py": "82103cfdcf4e2eb4e064d32c542781fd7dc137a9dd5c0f1501ce58aaf22b2953",
+    "src/polytopia_bot/gpu/benchmark.py": "04db877e7dd54448467ebefa16b69bcadd34f8559b266f7768132f0ac0d951ee",
+    "src/polytopia_bot/gpu/capture.py": "69e348c18270be326dc868e5923b981ab7466b43739e8a0a2ea55bdba8f13e83",
+    "src/polytopia_bot/gpu/core.py": "32a3c1ef2e7ceeb984c60f89de418bed30e892b878dcc06901fdb576112f363c",
+    "src/polytopia_bot/gpu/diplomacy.py": "4155b9956c9c4d53995b848737993e26b1d5f185e8cd0b688b0e0c91504cf17c",
+    "src/polytopia_bot/gpu/discovery.py": "83c9b69ffb1987d5faf1a4c9a5620a636ea9ca5d01e5dabdef91a910dec7c6fa",
+    "src/polytopia_bot/gpu/economy.py": "c9f5deda83ce3b2c68e9aac4af10b45b5e995c432153a2d318e875dc9a5e13f4",
+    "src/polytopia_bot/gpu/importer.py": "0b77c7a88a2766d6ed5171ccc5830cab71ed8a8b2bec64aa9021345fcc37533b",
+    "src/polytopia_bot/gpu/infiltration.py": "e42f2e51fab65444501d78c472739a6f19fd841b250ed096283c88c969672c22",
+    "src/polytopia_bot/gpu/kernels.py": "65b082cb089c8040ba4b680aa2c41317de3d7ef9337b5b655554c5229dfbf1b9",
+    "src/polytopia_bot/gpu/mapgen.py": "fe621f6416a665fffd17f79c08df3f86c0c9593c727cbf1fa3bfc1202825a67d",
+    "src/polytopia_bot/gpu/military.py": "f856d3d908a0925ee3c67c377a898fda5b5beabe7241a5822ad1d33a8432680b",
+    "src/polytopia_bot/gpu/pathfinding.py": "02d0afef492109c584ae0d2072b6d11cbaf40ebd539de00c082e44841e1924a9",
+    "src/polytopia_bot/gpu/random.py": "7f6ab5e48b32da3d263d3c43b993836b74a3c2108b34d7f77beff02aea2f2a99",
+    "src/polytopia_bot/gpu/rollout.py": "b7e37b2ddc479d3d2a3b83a920ec05038daa7d175ad4e490d8528325a67bb940",
+    "src/polytopia_bot/gpu/rules.json": "a4878778dfb364722b5af25f42c30c6649441c00c423a57b5cdc265e9f4d81ec",
+    "src/polytopia_bot/gpu/rules.py": "123898254e3166672758ef42ff4a2a3a1ea846936956d81b666a18f50ba36756",
+    "src/polytopia_bot/gpu/snapshot.py": "57d1c0bb0c3baee858d2ec325e146e84bd239806b63c1f196b89414a7680e03d",
+    "src/polytopia_bot/gpu/state.py": "48b4b21b4de95b300664f271c563db41d869622a059a61484b26f242284c094d",
+    "src/polytopia_bot/gpu/structures.py": "5e3dad5bedecc07c1e95a6981c469d6188c63e8e6c10f7b424b4b22dd5dd6afd",
+    "src/polytopia_bot/gpu/validation.py": "a197407a7cf6abcfeb77f13cb8bf8e51daad0c44a06079442965a9d6d1531c45"
+  },
+  "validation_status": "passed",
+  "receipts": {
+    "reference_100": "docs/benchmarks/2026-10-16-reference-replays-100.jsonl",
+    "expanded_cuda": "docs/benchmarks/2026-10-16-l4-expanded-1893.json",
+    "procedural_mixed": "docs/benchmarks/2026-10-16-l4-procedural-mixed.json",
+    "cpu_final": "docs/benchmarks/2026-10-16-cpu-frozen-suite.json",
+    "cpu_episodes": "docs/benchmarks/2026-10-16-cpu-frozen-native-episodes.json",
+    "cuda_episodes": "docs/benchmarks/2026-10-16-l4-frozen-native-episodes.json",
+    "cuda_final": "docs/benchmarks/2026-10-16-l4-frozen-suite.json",
+    "mapgen_oracle_18": "tests/fixtures/corrected-drylands.json.gz (20 Large cases)",
+    "cpu_episodes_18": "docs/benchmarks/2026-10-19-cpu-native-episodes-18.json",
+    "tests_18": "docs/benchmarks/2026-10-19-tests-18.txt"
+  },
+  "acceptance": {
+    "cpu_tests_passed": 1977,
+    "cuda_tests_passed": 1977,
+    "cuda_device": "NVIDIA L4",
+    "all_frozen_source_hashes_match_cuda_receipts": true,
+    "native_long_episode_transitions": 5710,
+    "native_long_episodes": 8,
+    "native_long_eliminations": 0,
+    "native_long_truncations": 8,
+    "cpu_gpu_episode_summaries_match": true,
+    "capture_terminal_regression_passed": true,
+    "commercial_game_equivalence_claimed": false,
+    "main_cuda_app": "ap-MDne1uY35gTpTrwvZWdRTp",
+    "episodes_cuda_app": "ap-qQ35nkAouG7UX47F0CySEO"
+  },
+  "extends": "bardur-1v1-v1",
+  "variant_generator_revision": "bardur-variants-v2",
+  "compatible_engine_digests": {
+    "7b76e65b74afcd8d4732712b12a2f9e001fafc1a5b2899982b971a9fd78cb134": "bardur-1v1-v1"
+  }
+}

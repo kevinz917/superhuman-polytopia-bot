@@ -1,0 +1,167 @@
+{
+ "omni-d1det-r64-vs-c3": {
+  "ok": true,
+  "seconds": 408.45838095,
+  "cost_usd": 0.20767839458079998,
+  "summary": {
+   "games": 2,
+   "wins": 1,
+   "losses": 1,
+   "truncations": 0,
+   "win_rate": 0.5,
+   "win_ci95": [
+    0.5,
+    0.5
+   ],
+   "score": 0.5,
+   "score_ci95": [
+    0.5,
+    0.5
+   ],
+   "elo": -0.0,
+   "elo_ci95": [
+    -0.0,
+    -0.0
+   ],
+   "seconds_per_search_turn": 7.846758196375003,
+   "sub_actions_per_turn": 7.6875,
+   "lane_steps_per_turn": 2416.625,
+   "override_rate": 0.7738095238095238,
+   "replans_per_turn": 2.625,
+   "incomplete_lanes": 0,
+   "mean_turns": 15.5,
+   "mean_turns_decided": 15.5,
+   "game_seconds_mean": 126.79454395850001,
+   "compile_seconds": 253.44008594349998
+  },
+  "rows": [
+   {
+    "seed": 386000,
+    "seat": 1,
+    "search_turns": 16,
+    "search_seconds": 110.72934025700005,
+    "sub_actions": 122,
+    "plans": 48,
+    "overrides": 35,
+    "units": {
+     "2": 8,
+     "8": 7
+    },
+    "lane_steps": 34168,
+    "incomplete_lanes": 0,
+    "reward": 1.0,
+    "truncated": false,
+    "map_type": "pangea",
+    "turns": 15,
+    "seconds": 111.71141439500002,
+    "fallbacks": 0,
+    "compile_seconds": 252.90079500199997
+   },
+   {
+    "seed": 386000,
+    "seat": 2,
+    "search_turns": 16,
+    "search_seconds": 140.36692202700004,
+    "sub_actions": 124,
+    "plans": 36,
+    "overrides": 30,
+    "units": {
+     "2": 18
+    },
+    "lane_steps": 43164,
+    "incomplete_lanes": 0,
+    "reward": -1.0,
+    "truncated": false,
+    "map_type": "pangea",
+    "turns": 16,
+    "seconds": 141.877673522,
+    "fallbacks": 0,
+    "compile_seconds": 253.979376885
+   }
+  ]
+ },
+ "omni-d1det-r256-vs-c3": {
+  "ok": true,
+  "seconds": 561.701491539,
+  "cost_usd": 0.2855940028091627,
+  "summary": {
+   "games": 2,
+   "wins": 1,
+   "losses": 1,
+   "truncations": 0,
+   "win_rate": 0.5,
+   "win_ci95": [
+    0.5,
+    0.5
+   ],
+   "score": 0.5,
+   "score_ci95": [
+    0.5,
+    0.5
+   ],
+   "elo": -0.0,
+   "elo_ci95": [
+    -0.0,
+    -0.0
+   ],
+   "seconds_per_search_turn": 16.413882137536582,
+   "sub_actions_per_turn": 7.512195121951219,
+   "lane_steps_per_turn": 7392.90243902439,
+   "override_rate": 0.8762886597938144,
+   "replans_per_turn": 2.3658536585365852,
+   "incomplete_lanes": 0,
+   "mean_turns": 20.0,
+   "mean_turns_decided": 20.0,
+   "game_seconds_mean": 337.658111821,
+   "compile_seconds": 211.2051838895
+  },
+  "rows": [
+   {
+    "seed": 386000,
+    "seat": 1,
+    "search_turns": 20,
+    "search_seconds": 331.543898094,
+    "sub_actions": 150,
+    "plans": 58,
+    "overrides": 53,
+    "units": {
+     "2": 7,
+     "8": 6,
+     "38": 3
+    },
+    "lane_steps": 151616,
+    "incomplete_lanes": 0,
+    "reward": 1.0,
+    "truncated": false,
+    "map_type": "pangea",
+    "turns": 19,
+    "seconds": 332.47343788,
+    "fallbacks": 0,
+    "compile_seconds": 211.05070652499998
+   },
+   {
+    "seed": 386000,
+    "seat": 2,
+    "search_turns": 21,
+    "search_seconds": 341.4252695449998,
+    "sub_actions": 158,
+    "plans": 39,
+    "overrides": 32,
+    "units": {
+     "2": 19,
+     "8": 3,
+     "5": 1
+    },
+    "lane_steps": 151493,
+    "incomplete_lanes": 0,
+    "reward": -1.0,
+    "truncated": false,
+    "map_type": "pangea",
+    "turns": 21,
+    "seconds": 342.84278576199995,
+    "fallbacks": 0,
+    "compile_seconds": 211.359661254
+   }
+  ]
+ }
+}

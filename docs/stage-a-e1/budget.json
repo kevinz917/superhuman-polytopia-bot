@@ -1,0 +1,65 @@
+{
+  "budget_usd": 20,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing",
+  "runs": [
+    {
+      "run_id": "stage-a-e1",
+      "parent": "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "c3",
+            "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 1,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_warmup": 60,
+        "seed": 204,
+        "learner_values": true,
+        "trusted_step": true,
+        "trusted_check_every": 64,
+        "build_rows": true,
+        "pool_per_process": true,
+        "training_seconds": 2400
+      },
+      "actors": 12,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 2400,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 16.58,
+      "reserved_usd": 15.2,
+      "status": "done",
+      "modal_app_id": "ap-4KZdWBOYa6yQ4GB1KwsemP",
+      "start_unix": 1792625091.1262422,
+      "spend_usd": 12.0,
+      "billing_settled": false,
+      "note_result": "367 updates, 96M samples, 40.0k samples/s (42-43k after warm-up); train 1.7 s but assembler 3.7 s per batch is the wall, inbox full; vs c3 47/58/62/63% per 100 updates; no replay"
+    }
+  ],
+  "approved": "2026-10-21 (relayed by the Throughput Optimizations session): 40-min epochs=1 arm of the stage-a-1h recipe, seed 204, same fleet, cap $20"
+}

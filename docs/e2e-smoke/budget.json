@@ -1,0 +1,155 @@
+{
+  "budget_usd": 15,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing (rates in experiments/modal_distributed_rl.py)",
+  "runs": [
+    {
+      "run_id": "e2e-bench-learner",
+      "kind": "bench",
+      "gpus": "L4,H100",
+      "hourly_usd": 5.6,
+      "reserved_usd": 1.0,
+      "status": "done",
+      "start_unix": 1792641458.091197,
+      "spend_usd": 0.4,
+      "billed_usd": 0.37,
+      "billing_settled": false,
+      "modal_app_ids": [
+        "ap-CgGXVE4SfOBUVqaBc5MBsA",
+        "ap-74Xtr80gVwu2qLeh7LSrdN",
+        "ap-CFsIIZSF7ToFaIyBXlMMvo",
+        "ap-SWvDeayJDalkbiIMcd7w1F",
+        "ap-TQuyYbO69uL2rXz1lTdSzT",
+        "ap-iYBQzfBcx9IJwP3uoPnODb",
+        "ap-lzOCQttnqfU8V6tmlqKRkj"
+      ],
+      "note_result": "c5 omni recipe epochs=1: H100 1.62 s/epoch (161k samples/s) + 1.0 s put; L4 OOM at batch 262144 for minibatch 16384/8192/4096; L40S OOM at 262144/16384; L4 batch 131072 mb 4096: 10.56 s/epoch (12.4k samples/s); no smoke launched (L4 learner-bound below c5)"
+    },
+    {
+      "run_id": "e2e-bench-learner-l4multi",
+      "kind": "bench",
+      "gpus": "L4:4,L4:8",
+      "hourly_usd": 10.0,
+      "reserved_usd": 0.8,
+      "status": "done",
+      "start_unix": 1792642181.217442,
+      "spend_usd": 0.4,
+      "note_result": "L4:4 c5 recipe 5.42 s/epoch 48k samples/s, put 0.5 s; L4:8 2.63 s/epoch 99.7k samples/s"
+    },
+    {
+      "run_id": "e2e-l4x4-smoke",
+      "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "parent",
+            "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 1,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_path": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final-critic.npz",
+        "critic_warmup": 0,
+        "gamma": 0.995,
+        "gae_lambda": 0.99,
+        "seed": 401,
+        "engine": "rust",
+        "training_seconds": 1200
+      },
+      "actors": 12,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "L4:4",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 1200,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 15.83,
+      "reserved_usd": 9.24,
+      "status": "failed",
+      "modal_app_id": "ap-99YxjYWCQABQzXCLJ0oDPd",
+      "start_unix": 1792642811.2106,
+      "spend_usd": 1.0,
+      "billed_usd": 0.69,
+      "billing_settled": false,
+      "note_result": "learner OOM in jit_epoch (9.34 GiB) at update 1: next-batch value pass + views share the card; 12 actor containers x 16 Rust processes connected, 1.26M samples sent in ~100 s, 0 errors, clean exit"
+    },
+    {
+      "run_id": "e2e-h100-smoke",
+      "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "parent",
+            "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 1,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_path": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final-critic.npz",
+        "critic_warmup": 0,
+        "gamma": 0.995,
+        "gae_lambda": 0.99,
+        "seed": 401,
+        "engine": "rust",
+        "training_seconds": 1200
+      },
+      "actors": 6,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 1200,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 10.9,
+      "reserved_usd": 6.36,
+      "status": "done",
+      "modal_app_id": "ap-R5ZmmKQcgbMrVl2zn8ASkS",
+      "start_unix": 1792643685.7470489,
+      "spend_usd": 4.54,
+      "billed_usd": 4.54,
+      "billing_settled": false,
+      "note_result": "180 updates, 47.2M samples in 1205 s: 39.2k samples/s overall, 41.1k steady (updates 21-180), 42-43k best windows; ready_wait 4.3 s vs train 1.5 s per update (host assembly wall, GPU 26% busy); 6 actor containers sent 47.5M (5.2-7.1k/s each), 0 errors/restarts/reconnects; no replay; ~$12.4/h billed -> ~$0.084-0.096/M samples vs c5 $0.225"
+    }
+  ],
+  "approved": "2026-10-21 by the parent session (local_a684c4eb): e2e throughput smoke of main 7f66add, L4 learner, ~$15 cap; stop and ask before going over"
+}

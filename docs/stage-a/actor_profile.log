@@ -1,0 +1,24 @@
+✓ Initialized. View run at 
+https://modal.com/apps/duper/staging/ap-xqy46WSoQuYepFCNTxkhb1
+✓ Created objects.
+├── 🔨 Created mount 
+│   <repo>
+│   -2754d3/experiments/modal_actor_profile.py
+├── 🔨 Created mount 
+│   <repo>
+│   -2754d3/src
+├── 🔨 Created mount 
+│   <repo>
+│   -2754d3/scripts
+├── 🔨 Created function profile.
+└── 🔨 Created function profile_many.
+container 0: model name	: unknown / 16 / Thread(s) per core:  1 / Core(s) per socket:  32 / Socket(s):           1 / Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm
+container 0: {"processes": 16, "games": 24, "maps": "proposed-v1", "omni": true, "opp_share": 0.2, "stage_a": false, "affinity": 32, "total_steps_per_s": 2886.9751680321306, "compile": 82.552778676, "rss_mib": 2508.968994140625, "steps_per_s": 180.43594800200816, "ms_per_tick": 133.07046649537327, "bytes_per_step": 80.19893499085104, "policy_ms": 29.741045865629154, "opponent_ms": 12.356974986539615, "critic_ms": 35.57512628897944, "engine_ms": 49.80833640129722, "rows_ms": 1.119809530786839, "maps_ms": 0.48081538923621164, "pack_ms": 2.4972524759630716}
+container 0: {"processes": 16, "games": 24, "maps": "proposed-v1", "omni": true, "opp_share": 0.2, "stage_a": true, "affinity": 32, "total_steps_per_s": 6390.857087418577, "compile": 104.57460091875001, "rss_mib": 2952.787841796875, "steps_per_s": 399.42856796366107, "ms_per_tick": 60.750144473186715, "bytes_per_step": 103.44776401104555, "policy_ms": 29.551024360200184, "opponent_ms": 4.686729688053122, "critic_ms": 0.011845819840729918, "engine_ms": 20.45067056997227, "rows_ms": 0.5837369658445031, "maps_ms": 0.6534949366313081, "pack_ms": 3.0084923707268167}
+container 0: {"processes": 16, "games": 24, "maps": "proposed-v1", "omni": true, "opp_share": 0.0, "stage_a": true, "affinity": 32, "total_steps_per_s": 6762.173348514514, "compile": 99.767527473375, "rss_mib": 2991.223388671875, "steps_per_s": 422.63583428215713, "ms_per_tick": 56.793220899195134, "bytes_per_step": 113.365255893746, "policy_ms": 31.54080771606077, "opponent_ms": 0.012380732707849992, "critic_ms": 0.011221561981371277, "engine_ms": 19.754784622696395, "rows_ms": 0.571826994532513, "maps_ms": 0.6114867973512408, "pack_ms": 2.8000950786387113}
+container 0: {"processes": 16, "games": 24, "maps": "proposed-v1", "omni": true, "opp_share": 1.0, "stage_a": true, "affinity": 32, "total_steps_per_s": 5020.770921407342, "compile": 96.0453569709375, "rss_mib": 2979.999267578125, "steps_per_s": 313.7981825879589, "ms_per_tick": 76.50337775619539, "bytes_per_step": 54.26096343386356, "policy_ms": 23.43585154400055, "opponent_ms": 27.212616885760944, "critic_ms": 0.01058212430349353, "engine_ms": 20.48421832246731, "rows_ms": 0.5295331477039517, "maps_ms": 0.7091137152542097, "pack_ms": 2.3034753369558274}
+Stopping app - local entrypoint completed.
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/duper/staging/ap-xqy46WSoQuYepFCNTxkhb1
+exit 0

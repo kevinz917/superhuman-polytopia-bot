@@ -1,0 +1,32 @@
+{
+ "size": 14,
+ "maps": "proposed-v1",
+ "frozen": [
+  [
+   "c3",
+   "/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz",
+   0.05
+  ]
+ ],
+ "historical_probability": 0.15,
+ "historical_every": 50,
+ "historical_keep": 8,
+ "batch": 262144,
+ "minibatch": 16384,
+ "epochs": 3,
+ "learning_rate": 0.0002,
+ "entropy_coef": 0.005,
+ "segment": 32,
+ "max_lag": 10,
+ "publish_every": 2,
+ "checkpoint_every": 10,
+ "snapshot_every": 50,
+ "omniscient_critic": true,
+ "critic_warmup": 60,
+ "seed": 203,
+ "learner_values": true,
+ "trusted_step": true,
+ "trusted_check_every": 64,
+ "build_rows": true,
+ "pool_per_process": true
+}

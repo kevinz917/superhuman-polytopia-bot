@@ -1,0 +1,33 @@
+{
+  "schema": "structured-ppo-v1",
+  "config": {
+    "reward_mode": "native",
+    "architecture": "normalized-v2",
+    "no_resign": true,
+    "size": 14,
+    "seed": 301,
+    "width": 64,
+    "blocks": 2,
+    "extra_blocks": 0,
+    "environments": 512,
+    "horizon": 64,
+    "updates": 1000000,
+    "epochs": 3,
+    "minibatch": 16384,
+    "learning_rate": 0.0002,
+    "entropy_coef": 0.005,
+    "gamma": 0.995,
+    "gae_lambda": 0.99,
+    "target_kl": 0.03,
+    "bc_epochs": 0,
+    "pool_size": 2048,
+    "eval_maps": 16,
+    "eval_actions": 10000,
+    "training_seconds": 25200
+  },
+  "stage": "update-308",
+  "parameter_elements": 649571,
+  "sha256": "6ef33b73d21b3698e2a31f5af93a5a66a19a3de794652ba290f57dfe7bb87444",
+  "ruleset": "bardur-1v1-v2",
+  "simulator_sha256": "e4b656d34cb8721e059837980365a5cbc606e52b9d10876e0eb9596ef012d6b9"
+}

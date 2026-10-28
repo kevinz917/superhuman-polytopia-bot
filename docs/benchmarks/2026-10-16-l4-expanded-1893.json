@@ -1,0 +1,175 @@
+{
+  "engine_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "jax_version": "0.11.2",
+  "backend": "gpu",
+  "devices": [
+    "cuda:0"
+  ],
+  "device_kinds": [
+    "NVIDIA L4"
+  ],
+  "full_game_ready": false,
+  "scope": "Partial rule slice. End-turn transitions and one-unit movement/research/observation queries; excludes full action enumeration, mapgen, LM, IPC, compilation and host transfer from steady-state timing.",
+  "results": [
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1,
+      "steps_per_lane": 128,
+      "compile_seconds": 28.63570301300001,
+      "samples_seconds": [
+        0.014873938000050657,
+        0.013363844000082281,
+        0.013000062000060097
+      ],
+      "median_seconds": 0.013363844000082281,
+      "operations_per_second": 9578.082473816059,
+      "state_bytes": 71122
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1,
+      "steps_per_lane": 1,
+      "compile_seconds": 1.217738790999988,
+      "samples_seconds": [
+        0.0011662119999300558,
+        0.0010125830000333735,
+        0.0009753220000447982
+      ],
+      "median_seconds": 0.0010125830000333735,
+      "operations_per_second": 987.5733643237554,
+      "state_bytes": 71122
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 32,
+      "steps_per_lane": 128,
+      "compile_seconds": 27.700225200999967,
+      "samples_seconds": [
+        0.021362925999937943,
+        0.019664503000058176,
+        0.019570763999922747
+      ],
+      "median_seconds": 0.019664503000058176,
+      "operations_per_second": 208294.10232172572,
+      "state_bytes": 2275904
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 32,
+      "steps_per_lane": 1,
+      "compile_seconds": 1.6825267699999813,
+      "samples_seconds": [
+        0.0013152880000006917,
+        0.0011131019999766067,
+        0.0009957749999784937
+      ],
+      "median_seconds": 0.0011131019999766067,
+      "operations_per_second": 28748.48845898446,
+      "state_bytes": 2275904
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 256,
+      "steps_per_lane": 128,
+      "compile_seconds": 28.379650160999972,
+      "samples_seconds": [
+        0.0325004070000432,
+        0.03236058499999217,
+        0.0320910409999442
+      ],
+      "median_seconds": 0.03236058499999217,
+      "operations_per_second": 1012589.8527485806,
+      "state_bytes": 18207232
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 256,
+      "steps_per_lane": 1,
+      "compile_seconds": 6.3000156530000595,
+      "samples_seconds": [
+        0.001375244999962888,
+        0.001188084000091294,
+        0.0010898440000346454
+      ],
+      "median_seconds": 0.001188084000091294,
+      "operations_per_second": 215472.98000842417,
+      "state_bytes": 18207232
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1024,
+      "steps_per_lane": 128,
+      "compile_seconds": 29.479635394999946,
+      "samples_seconds": [
+        0.12451866200001405,
+        0.12540637099994,
+        0.1283454790000178
+      ],
+      "median_seconds": 0.12540637099994,
+      "operations_per_second": 1045178.1592504794,
+      "state_bytes": 72828928
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1024,
+      "steps_per_lane": 1,
+      "compile_seconds": 17.428226011999982,
+      "samples_seconds": [
+        0.001663316999952258,
+        0.0013988430000608787,
+        0.0013221030000067913
+      ],
+      "median_seconds": 0.0013988430000608787,
+      "operations_per_second": 732033.5448334336,
+      "state_bytes": 72828928
+    }
+  ],
+  "tested_files_sha256": {
+    "src/polytopia_bot/__init__.py": "e049237495ab1b81e7b002ecf313205eef3150e524172f6db5125220cd231222",
+    "src/polytopia_bot/environment.py": "4e61b40fc9511c564a11fcdb5615b0d48832eb00c634e605517a5ca536b204af",
+    "src/polytopia_bot/gpu/__init__.py": "6f6671fe210bd7c139eeeb128ee72f538c310fa646903fbe4b5a783de036ab4c",
+    "src/polytopia_bot/gpu/actions.py": "82103cfdcf4e2eb4e064d32c542781fd7dc137a9dd5c0f1501ce58aaf22b2953",
+    "src/polytopia_bot/gpu/benchmark.py": "5990e1be0f3afbb044a99ba6ba552b1ea5501111fd9e765d9d92e3ff48771a52",
+    "src/polytopia_bot/gpu/capture.py": "5d9863e0336e80478812815713208a71e56290518811a4936260b8c8fce2caa8",
+    "src/polytopia_bot/gpu/core.py": "9343203a4d32eae25ce780dc6bc9f11348f5a8693e196f887be6ca9811cdcf37",
+    "src/polytopia_bot/gpu/diplomacy.py": "4155b9956c9c4d53995b848737993e26b1d5f185e8cd0b688b0e0c91504cf17c",
+    "src/polytopia_bot/gpu/discovery.py": "83c9b69ffb1987d5faf1a4c9a5620a636ea9ca5d01e5dabdef91a910dec7c6fa",
+    "src/polytopia_bot/gpu/economy.py": "3d4130a1ac4a60737b7aa472804e43b0771c9e9ef87f3d65908671509d617434",
+    "src/polytopia_bot/gpu/importer.py": "0b77c7a88a2766d6ed5171ccc5830cab71ed8a8b2bec64aa9021345fcc37533b",
+    "src/polytopia_bot/gpu/infiltration.py": "e42f2e51fab65444501d78c472739a6f19fd841b250ed096283c88c969672c22",
+    "src/polytopia_bot/gpu/kernels.py": "65b082cb089c8040ba4b680aa2c41317de3d7ef9337b5b655554c5229dfbf1b9",
+    "src/polytopia_bot/gpu/military.py": "5c5b3f6ae95e9e30bd2722949abc6cae1d00d5d0eff711ab5340effc1449ff18",
+    "src/polytopia_bot/gpu/pathfinding.py": "9d742bb1f148b9dfe200769736577ea6d66245cca011fc9e7041ea8b68c0f266",
+    "src/polytopia_bot/gpu/rollout.py": "b7e37b2ddc479d3d2a3b83a920ec05038daa7d175ad4e490d8528325a67bb940",
+    "src/polytopia_bot/gpu/rules.json": "a4878778dfb364722b5af25f42c30c6649441c00c423a57b5cdc265e9f4d81ec",
+    "src/polytopia_bot/gpu/rules.py": "123898254e3166672758ef42ff4a2a3a1ea846936956d81b666a18f50ba36756",
+    "src/polytopia_bot/gpu/snapshot.py": "ac6e258a6369dfa1157c855263a0ef1d2e71dcf14b1a370b3a9ad28aeac517d8",
+    "src/polytopia_bot/gpu/state.py": "48b4b21b4de95b300664f271c563db41d869622a059a61484b26f242284c094d",
+    "src/polytopia_bot/gpu/structures.py": "76fefdebe25540372b7f568901dbe1c39185f3363a56974400d34bc7dd70e89b",
+    "src/polytopia_bot/oracle.py": "2e2035d1bcc09aa85c791b34010ef440f0b20ba186fbf81bd8402bf5ff85dddc",
+    "src/polytopia_bot.egg-info/PKG-INFO": "09fb02f58948948476ab88dedc3ead93a3996642d5a5df2dfbd26c643304235f",
+    "src/polytopia_bot.egg-info/SOURCES.txt": "0164924ca4b977fd1d5f79276d73d2cad1f78838790fa00d52d43e46f78b2b4d",
+    "src/polytopia_bot.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/polytopia_bot.egg-info/requires.txt": "2832f0291c8341dde7245acee71f79e88654bc380e49a74ab723eca34eac35c0",
+    "src/polytopia_bot.egg-info/top_level.txt": "b4acc327fd9ea95b1bd2a25250ca529b850ada66d08ccb595ac025a1b1f6e41a",
+    "tests/fixtures/historical-infiltration-order.json": "3d3e01f78c41ebaafe5ed34105a5da82eecd9b59b2580e598c091ef9cb8a2ef5",
+    "tests/fixtures/polyfish-actions.json.gz": "0998f08d28034008134969263b087e0c5eecd324744f7696fbbb04d1fd45e0c1",
+    "tests/fixtures/polyfish-core.json.gz": "edf0a7347bf9487d08fe09a60e0e27ff0814ae93928368fae5005688b01093de",
+    "tests/test_action_space.py": "b1e1342d0a71fb9989eb24eab422ebf50b3ab4d274a6cbe97ff2f570995652ee",
+    "tests/test_actions.py": "b68e675f80f79f02b84b67678cf16a57044018bf13f7a0a6c29f081211970984",
+    "tests/test_gpu.py": "41b4ae5eb9ca9e44adcf6b56f4be5a53ee129279deb56b8df4dba0ad92239e11",
+    "tests/test_infiltration_order.py": "a420995267ff66796099529a787b364472c32b7585e2ec8a3079a08538e8d619",
+    "tests/test_native_boundary.py": "f3cb2e1f98d6d9c338d38708f215bed97c80320d5ba1a3c61e980ea6ca3167c2",
+    "tests/test_native_rules.py": "65eac8c9a0ddbdc4a871caf95b1bc8ca06abdbaf3d87e810c9109888b6098147",
+    "tests/test_rollout.py": "e25f812d0ddf6eebba92e9953ba885cd6acaa1a5b386bfc22a0730749fd2722c",
+    "tests/test_snapshot.py": "14edbcaf29a885ba92a68a8ac98339d3920a85c314b72317f94cbe059fff2255"
+  },
+  "tests": {
+    "returncode": 0,
+    "stdout": "........................................................................ [  3%]\n........................................................................ [  7%]\n........................................................................ [ 11%]\n........................................................................ [ 15%]\n........................................................................ [ 19%]\n........................................................................ [ 22%]\n........................................................................ [ 26%]\n........................................................................ [ 30%]\n........................................................................ [ 34%]\n........................................................................ [ 38%]\n........................................................................ [ 41%]\n........................................................................ [ 45%]\n........................................................................ [ 49%]\n........................................................................ [ 53%]\n........................................................................ [ 57%]\n........................................................................ [ 60%]\n........................................................................ [ 64%]\n........................................................................ [ 68%]\n........................................................................ [ 72%]\n........................................................................ [ 76%]\n........................................................................ [ 79%]\n........................................................................ [ 83%]\n........................................................................ [ 87%]\n........................................................................ [ 91%]\n........................................................................ [ 95%]\n........................................................................ [ 98%]\n.....................                                                    [100%]\n============================= slowest 12 durations =============================\n55.99s call     tests/test_rollout.py::test_device_random_trace_is_legal_and_reproducible\n55.98s call     tests/test_gpu.py::test_batch_independence_restore_and_selective_reset\n46.09s call     tests/test_native_boundary.py::test_wealth_task_requires_savings_and_stays_earned_after_spending\n42.05s call     tests/test_actions.py::test_action_parity[11-combat-0-0]\n38.36s call     tests/test_gpu.py::test_action_cap_is_truncation\n37.24s call     tests/test_actions.py::test_action_parity[14-combat-0-544]\n8.27s call     tests/test_native_boundary.py::test_unseen_enemy_cannot_cast_zone_of_control_into_visible_tiles\n7.39s call     tests/test_action_space.py::test_complete_supported_action_set_matches_oracle[11-combat-0]\n6.46s call     tests/test_native_boundary.py::test_each_legal_slot_decodes_to_an_executable_command\n5.26s call     tests/test_native_boundary.py::test_hidden_cloak_does_not_change_neutral_road_legality\n3.76s call     tests/test_native_rules.py::test_adding_and_removing_farm_updates_existing_windmill_population\n3.63s call     tests/test_action_space.py::test_complete_supported_action_set_matches_oracle[14-combat-0]\n1893 passed in 742.61s (0:12:22)\n",
+    "stderr": ""
+  },
+  "environment": "staging",
+  "app_name": "polytopia-gpu-simulator",
+  "elapsed_seconds": 896.4060895442963
+}

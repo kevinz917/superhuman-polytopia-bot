@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-10-16",
+  "polyfish": {
+    "url": "https://github.com/HenBOMB/Polyfish",
+    "commit": "a9f90ab54607f5633556d02422d7457f548cc58f",
+    "status": "built as validation oracle; initial JAX rule slice has projected parity tests; full-game fidelity unverified"
+  }
+}

@@ -1,0 +1,37 @@
+== bench.log
+{"stage": "learner_benchmark", "epoch": 0, "put_seconds": 3.398521797000001, "epoch_seconds": 48.560429635, "samples_per_second": 5398.303663764859, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 1, "put_seconds": 1.016891741000002, "epoch_seconds": 1.6241246730000043, "samples_per_second": 161406.02220311057, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 2, "put_seconds": 1.0054490079999994, "epoch_seconds": 1.6233448210000034, "samples_per_second": 161483.6532405522, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 3, "put_seconds": 1.0010795350000024, "epoch_seconds": 1.6232784019999968, "samples_per_second": 161490.21811093308, "loss": 0.31938469409942627}
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 16.43GiB with allocator GPU_0_bfc on device 0. [executable_name='jit_epoch'] [tf-allocator-allocation-error='']
+{"stage": "learner_benchmark", "epoch": 4, "put_seconds": 1.0045665979999967, "epoch_seconds": 1.6242318470000043, "samples_per_second": 161395.16058682092, "loss": 0.31938469409942627}
+== bench_l40s.log
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 22.14GiB with allocator GPU_0_bfc on device 0. [tf-allocator-allocation-error=''] [executable_name='jit_epoch']
+== bench_l4_h_mb4096.log
+{"stage": "learner_benchmark", "epoch": 0, "put_seconds": 1.630888766, "epoch_seconds": 37.199597746, "samples_per_second": 3523.4777263056735, "loss": 0.3198072016239166}
+{"stage": "learner_benchmark", "epoch": 1, "put_seconds": 0.6821316429999982, "epoch_seconds": 10.560640118000002, "samples_per_second": 12411.356506840571, "loss": 0.3198072016239166}
+{"stage": "learner_benchmark", "epoch": 2, "put_seconds": 0.675233759000001, "epoch_seconds": 10.632275215, "samples_per_second": 12327.660902765198, "loss": 0.3198072016239166}
+{"stage": "learner_benchmark", "epoch": 3, "put_seconds": 0.7596820659999963, "epoch_seconds": 10.572500153000007, "samples_per_second": 12397.428632029747, "loss": 0.3198072016239166}
+{"stage": "learner_benchmark", "epoch": 4, "put_seconds": 0.8890000909999998, "epoch_seconds": 10.506791473999996, "samples_per_second": 12474.966626749378, "loss": 0.3198072016239166}
+== bench_l4_h_mb8192.log
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 11.02GiB with allocator GPU_0_bfc on device 0. [executable_name='jit_epoch'] [tf-allocator-allocation-error='']
+== bench_l4_mb4096.log
+{"stage": "learner_benchmark", "epoch": 0, "put_seconds": 3.2310960169999987, "epoch_seconds": 47.635403968999995, "samples_per_second": 5503.131978573354, "loss": 0.31938469409942627}
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 5.39GiB with allocator GPU_0_bfc on device 0. [tf-allocator-allocation-error=''] [executable_name='jit_epoch']
+== bench_l4_mb8192.log
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 8.29GiB with allocator GPU_0_bfc on device 0. [tf-allocator-allocation-error=''] [executable_name='jit_epoch']
+== bench_l4half.log
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 15.74GiB with allocator GPU_0_bfc on device 0. [executable_name='jit_epoch'] [tf-allocator-allocation-error='']
+== bench_l4multi.log (L4:4 then L4:8, full c5 batch/minibatch)
+{"stage": "learner_benchmark", "epoch": 0, "put_seconds": 3.7623623409999993, "epoch_seconds": 33.069063963999994, "samples_per_second": 7927.164076547774, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 1, "put_seconds": 0.5107193549999991, "epoch_seconds": 5.416396873000004, "samples_per_second": 48398.137875737266, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 2, "put_seconds": 0.5205680709999996, "epoch_seconds": 5.436638377000001, "samples_per_second": 48217.943955972005, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 3, "put_seconds": 0.5792977559999954, "epoch_seconds": 5.457929577999998, "samples_per_second": 48029.85007398489, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 4, "put_seconds": 0.5406766760000039, "epoch_seconds": 5.4552346609999915, "samples_per_second": 48053.56726536662, "loss": 0.31938469409942627}
+{"stage": "learner_benchmark", "epoch": 0, "put_seconds": 3.2399920630000008, "epoch_seconds": 30.851205179000004, "samples_per_second": 8497.039847648917, "loss": 0.3193846642971039}
+{"stage": "learner_benchmark", "epoch": 1, "put_seconds": 0.33532794500000307, "epoch_seconds": 2.6297325769999986, "samples_per_second": 99684.35647298978, "loss": 0.3193846642971039}
+{"stage": "learner_benchmark", "epoch": 2, "put_seconds": 0.3379175159999974, "epoch_seconds": 2.635752228000001, "samples_per_second": 99456.77884588923, "loss": 0.3193846642971039}
+{"stage": "learner_benchmark", "epoch": 3, "put_seconds": 0.36035269300000294, "epoch_seconds": 2.6511983549999982, "samples_per_second": 98877.32410863857, "loss": 0.3193846642971039}
+{"stage": "learner_benchmark", "epoch": 4, "put_seconds": 0.3749761270000036, "epoch_seconds": 2.661167436999996, "samples_per_second": 98506.86975126885, "loss": 0.3193846642971039}
+== e2e-l4x4-smoke learner error
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 9.34GiB with allocator GPU_0_bfc on device 0. [tf-allocator-allocation-error=''] [executable_name='jit_epoch']

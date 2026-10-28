@@ -1,0 +1,3500 @@
+{
+ "games": 192,
+ "capped": 27,
+ "cap_rate": 0.140625,
+ "mean_turns": 69.234375,
+ "entrants": {
+  "a": {
+   "games": 768,
+   "mean_reward": -1.7074247201283772e-08,
+   "first_rate": 0.21484375,
+   "mean_place": 2.5,
+   "reward_by_seat": [
+    0.4947916525416076,
+    0.27777776230747503,
+    -0.3802083539776504,
+    -0.39236112916842103
+   ]
+  }
+ },
+ "pairwise": {},
+ "ratings": {
+  "a": 0.0
+ },
+ "tag": "parentA-selfplay-monfix",
+ "paths": {
+  "a": "/results/four-player/parents/champ-ffa4-2x64/final.npz"
+ },
+ "tables": [
+  [
+   "a",
+   "a",
+   "a",
+   "a"
+  ]
+ ],
+ "seed_base": 381000,
+ "maps": 48,
+ "size": 18,
+ "map_mix": "four-v1",
+ "sampled": true,
+ "seconds": 157.0,
+ "records": [
+  {
+   "map_seed": 381024,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 31
+  },
+  {
+   "map_seed": 381036,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 41
+  },
+  {
+   "map_seed": 381024,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 39
+  },
+  {
+   "map_seed": 381024,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 49
+  },
+  {
+   "map_seed": 381036,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381036,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 79
+  },
+  {
+   "map_seed": 381024,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 68
+  },
+  {
+   "map_seed": 381000,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 65
+  },
+  {
+   "map_seed": 381036,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 78
+  },
+  {
+   "map_seed": 381012,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 83
+  },
+  {
+   "map_seed": 381000,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 116
+  },
+  {
+   "map_seed": 381000,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 128
+  },
+  {
+   "map_seed": 381000,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 130
+  },
+  {
+   "map_seed": 381012,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 133
+  },
+  {
+   "map_seed": 381012,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 127
+  },
+  {
+   "map_seed": 381012,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 126
+  },
+  {
+   "map_seed": 381001,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 53
+  },
+  {
+   "map_seed": 381001,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 48
+  },
+  {
+   "map_seed": 381013,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381037,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 57
+  },
+  {
+   "map_seed": 381025,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 52
+  },
+  {
+   "map_seed": 381025,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381013,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 69
+  },
+  {
+   "map_seed": 381025,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 73
+  },
+  {
+   "map_seed": 381013,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 82
+  },
+  {
+   "map_seed": 381037,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 92
+  },
+  {
+   "map_seed": 381037,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 111
+  },
+  {
+   "map_seed": 381025,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 113
+  },
+  {
+   "map_seed": 381013,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 125
+  },
+  {
+   "map_seed": 381037,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 117
+  },
+  {
+   "map_seed": 381001,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 129
+  },
+  {
+   "map_seed": 381001,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 134
+  },
+  {
+   "map_seed": 381002,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 30
+  },
+  {
+   "map_seed": 381002,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 36
+  },
+  {
+   "map_seed": 381002,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 38
+  },
+  {
+   "map_seed": 381014,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 39
+  },
+  {
+   "map_seed": 381014,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 38
+  },
+  {
+   "map_seed": 381026,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 35
+  },
+  {
+   "map_seed": 381002,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 43
+  },
+  {
+   "map_seed": 381014,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 48
+  },
+  {
+   "map_seed": 381038,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381026,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381014,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381026,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 58
+  },
+  {
+   "map_seed": 381026,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 56
+  },
+  {
+   "map_seed": 381038,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 83
+  },
+  {
+   "map_seed": 381038,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 123
+  },
+  {
+   "map_seed": 381038,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 113
+  },
+  {
+   "map_seed": 381003,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 34
+  },
+  {
+   "map_seed": 381003,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 36
+  },
+  {
+   "map_seed": 381003,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 41
+  },
+  {
+   "map_seed": 381027,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381027,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 53
+  },
+  {
+   "map_seed": 381015,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 49
+  },
+  {
+   "map_seed": 381003,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 62
+  },
+  {
+   "map_seed": 381039,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 55
+  },
+  {
+   "map_seed": 381015,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 53
+  },
+  {
+   "map_seed": 381039,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 55
+  },
+  {
+   "map_seed": 381027,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381039,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 55
+  },
+  {
+   "map_seed": 381015,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381015,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 69
+  },
+  {
+   "map_seed": 381039,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 62
+  },
+  {
+   "map_seed": 381027,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 78
+  },
+  {
+   "map_seed": 381004,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 52
+  },
+  {
+   "map_seed": 381040,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 37
+  },
+  {
+   "map_seed": 381028,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 43
+  },
+  {
+   "map_seed": 381028,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381016,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 41
+  },
+  {
+   "map_seed": 381016,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 45
+  },
+  {
+   "map_seed": 381028,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381016,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 45
+  },
+  {
+   "map_seed": 381040,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 46
+  },
+  {
+   "map_seed": 381028,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381016,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 49
+  },
+  {
+   "map_seed": 381004,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 80
+  },
+  {
+   "map_seed": 381040,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 87
+  },
+  {
+   "map_seed": 381040,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 90
+  },
+  {
+   "map_seed": 381004,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.333333283662796,
+    0.333333283662796,
+    0.333333283662796,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381004,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381041,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 35
+  },
+  {
+   "map_seed": 381017,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381041,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381041,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 45
+  },
+  {
+   "map_seed": 381017,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381029,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381029,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 48
+  },
+  {
+   "map_seed": 381041,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381017,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381029,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -0.3333333730697632,
+    1.0,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 66
+  },
+  {
+   "map_seed": 381005,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -0.3333333730697632,
+    1.0,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 67
+  },
+  {
+   "map_seed": 381005,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -0.3333333730697632,
+    1.0,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 69
+  },
+  {
+   "map_seed": 381005,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 78
+  },
+  {
+   "map_seed": 381005,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -0.3333333730697632,
+    1.0,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 105
+  },
+  {
+   "map_seed": 381017,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 134
+  },
+  {
+   "map_seed": 381029,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 125
+  },
+  {
+   "map_seed": 381006,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 34
+  },
+  {
+   "map_seed": 381006,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 36
+  },
+  {
+   "map_seed": 381006,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 34
+  },
+  {
+   "map_seed": 381018,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381006,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 40
+  },
+  {
+   "map_seed": 381018,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381042,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 72
+  },
+  {
+   "map_seed": 381018,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 73
+  },
+  {
+   "map_seed": 381042,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 84
+  },
+  {
+   "map_seed": 381018,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 101
+  },
+  {
+   "map_seed": 381030,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632,
+    0.6666666269302368
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381030,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632,
+    0.6666666269302368
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381030,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -2.9802322387695312e-08,
+    -2.9802322387695312e-08,
+    -2.9802322387695312e-08,
+    -2.9802322387695312e-08
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381042,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381030,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381042,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 144
+  },
+  {
+   "map_seed": 381019,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 38
+  },
+  {
+   "map_seed": 381019,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 37
+  },
+  {
+   "map_seed": 381043,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 35
+  },
+  {
+   "map_seed": 381019,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 41
+  },
+  {
+   "map_seed": 381043,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381031,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 41
+  },
+  {
+   "map_seed": 381019,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 49
+  },
+  {
+   "map_seed": 381031,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 40
+  },
+  {
+   "map_seed": 381043,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 45
+  },
+  {
+   "map_seed": 381031,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 50
+  },
+  {
+   "map_seed": 381043,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 40
+  },
+  {
+   "map_seed": 381031,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381007,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.333333283662796,
+    0.333333283662796,
+    0.333333283662796,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381007,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381007,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381007,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381020,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 32
+  },
+  {
+   "map_seed": 381020,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 32
+  },
+  {
+   "map_seed": 381020,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 39
+  },
+  {
+   "map_seed": 381020,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 45
+  },
+  {
+   "map_seed": 381044,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 37
+  },
+  {
+   "map_seed": 381032,
+   "kind": "highlands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 47
+  },
+  {
+   "map_seed": 381008,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 43
+  },
+  {
+   "map_seed": 381032,
+   "kind": "highlands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 52
+  },
+  {
+   "map_seed": 381008,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381032,
+   "kind": "highlands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 62
+  },
+  {
+   "map_seed": 381044,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 51
+  },
+  {
+   "map_seed": 381032,
+   "kind": "highlands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 65
+  },
+  {
+   "map_seed": 381044,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 57
+  },
+  {
+   "map_seed": 381008,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 58
+  },
+  {
+   "map_seed": 381044,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 69
+  },
+  {
+   "map_seed": 381008,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 89
+  },
+  {
+   "map_seed": 381021,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 32
+  },
+  {
+   "map_seed": 381021,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381045,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381021,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 70
+  },
+  {
+   "map_seed": 381021,
+   "kind": "pangea",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 77
+  },
+  {
+   "map_seed": 381009,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 65
+  },
+  {
+   "map_seed": 381045,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 60
+  },
+  {
+   "map_seed": 381009,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    0.3333333134651184,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 72
+  },
+  {
+   "map_seed": 381045,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632,
+    1.0
+   ],
+   "terminated": true,
+   "turns": 60
+  },
+  {
+   "map_seed": 381045,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 71
+  },
+  {
+   "map_seed": 381033,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 98
+  },
+  {
+   "map_seed": 381009,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 145
+  },
+  {
+   "map_seed": 381009,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": false,
+   "turns": 145
+  },
+  {
+   "map_seed": 381033,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 140
+  },
+  {
+   "map_seed": 381033,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 130
+  },
+  {
+   "map_seed": 381033,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    0.6666666269302368,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": false,
+   "turns": 134
+  },
+  {
+   "map_seed": 381010,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 38
+  },
+  {
+   "map_seed": 381010,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 40
+  },
+  {
+   "map_seed": 381022,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381022,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 40
+  },
+  {
+   "map_seed": 381022,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 56
+  },
+  {
+   "map_seed": 381034,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 56
+  },
+  {
+   "map_seed": 381034,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 69
+  },
+  {
+   "map_seed": 381034,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 57
+  },
+  {
+   "map_seed": 381022,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 76
+  },
+  {
+   "map_seed": 381046,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 76
+  },
+  {
+   "map_seed": 381046,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    -1.0,
+    0.3333333134651184,
+    1.0
+   ],
+   "terminated": true,
+   "turns": 71
+  },
+  {
+   "map_seed": 381034,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0,
+    1.0
+   ],
+   "terminated": true,
+   "turns": 82
+  },
+  {
+   "map_seed": 381010,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0,
+    1.0
+   ],
+   "terminated": true,
+   "turns": 108
+  },
+  {
+   "map_seed": 381046,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    -1.0,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 92
+  },
+  {
+   "map_seed": 381046,
+   "kind": "jungle",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632,
+    1.0
+   ],
+   "terminated": true,
+   "turns": 115
+  },
+  {
+   "map_seed": 381010,
+   "kind": "continents",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.6666666269302368,
+    -0.3333333730697632,
+    -1.0,
+    0.6666666269302368
+   ],
+   "terminated": false,
+   "turns": 150
+  },
+  {
+   "map_seed": 381023,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 35
+  },
+  {
+   "map_seed": 381023,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 39
+  },
+  {
+   "map_seed": 381023,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 42
+  },
+  {
+   "map_seed": 381023,
+   "kind": "lakes",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381035,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 43
+  },
+  {
+   "map_seed": 381047,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 46
+  },
+  {
+   "map_seed": 381035,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 39
+  },
+  {
+   "map_seed": 381047,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -0.3333333730697632,
+    1.0,
+    0.3333333134651184,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 43
+  },
+  {
+   "map_seed": 381035,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381035,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 44
+  },
+  {
+   "map_seed": 381047,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    -1.0,
+    1.0,
+    -0.3333333730697632,
+    0.3333333134651184
+   ],
+   "terminated": true,
+   "turns": 56
+  },
+  {
+   "map_seed": 381011,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 47
+  },
+  {
+   "map_seed": 381011,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 55
+  },
+  {
+   "map_seed": 381047,
+   "kind": "drylands",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    0.3333333134651184,
+    1.0,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 58
+  },
+  {
+   "map_seed": 381011,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -1.0,
+    -0.3333333730697632
+   ],
+   "terminated": true,
+   "turns": 59
+  },
+  {
+   "map_seed": 381011,
+   "kind": "classic",
+   "seat_names": [
+    "a",
+    "a",
+    "a",
+    "a"
+   ],
+   "rewards": [
+    1.0,
+    0.3333333134651184,
+    -0.3333333730697632,
+    -1.0
+   ],
+   "terminated": true,
+   "turns": 69
+  }
+ ]
+}

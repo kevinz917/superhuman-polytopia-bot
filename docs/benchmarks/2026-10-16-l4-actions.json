@@ -1,0 +1,136 @@
+{
+  "engine_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "jax_version": "0.11.2",
+  "backend": "gpu",
+  "devices": [
+    "cuda:0"
+  ],
+  "device_kinds": [
+    "NVIDIA L4"
+  ],
+  "full_game_ready": false,
+  "scope": "337-test action slice: combat, train, harvest, forest abilities, selected rewards, baseline adjacent movement. Does not cover subsequent building/capture/explorer changes.",
+  "results": [
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1,
+      "steps_per_lane": 128,
+      "compile_seconds": 6.242426050000006,
+      "samples_seconds": [
+        0.0059801130000067815,
+        0.005280343999999104,
+        0.004989055999999437
+      ],
+      "median_seconds": 0.005280343999999104,
+      "operations_per_second": 24240.84491465361,
+      "state_bytes": 68582
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.701708059000012,
+      "samples_seconds": [
+        0.0007976750000011634,
+        0.0006485870000005889,
+        0.0006413050000162457
+      ],
+      "median_seconds": 0.0006485870000005889,
+      "operations_per_second": 1541.813203161784,
+      "state_bytes": 68582
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 32,
+      "steps_per_lane": 128,
+      "compile_seconds": 5.425097057999977,
+      "samples_seconds": [
+        0.00836826899998755,
+        0.008384083999999348,
+        0.008188219999993862
+      ],
+      "median_seconds": 0.00836826899998755,
+      "operations_per_second": 489468.01303902804,
+      "state_bytes": 2194624
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 32,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.65797969099998,
+      "samples_seconds": [
+        0.0008203870000045299,
+        0.0007078959999944345,
+        0.0006599600000072314
+      ],
+      "median_seconds": 0.0007078959999944345,
+      "operations_per_second": 45204.380304806895,
+      "state_bytes": 2194624
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 256,
+      "steps_per_lane": 128,
+      "compile_seconds": 5.359456068999975,
+      "samples_seconds": [
+        0.013145557999990842,
+        0.012856623000004674,
+        0.01258346599999527
+      ],
+      "median_seconds": 0.012856623000004674,
+      "operations_per_second": 2548725.275679942,
+      "state_bytes": 17556992
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 256,
+      "steps_per_lane": 1,
+      "compile_seconds": 2.982936938000023,
+      "samples_seconds": [
+        0.0008875139999986459,
+        0.0007376259999887225,
+        0.000664744999994582
+      ],
+      "median_seconds": 0.0007376259999887225,
+      "operations_per_second": 347059.34986553347,
+      "state_bytes": 17556992
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1024,
+      "steps_per_lane": 128,
+      "compile_seconds": 6.0365227350000055,
+      "samples_seconds": [
+        0.030077135999988514,
+        0.030237486999993735,
+        0.036454158999987385
+      ],
+      "median_seconds": 0.030237486999993735,
+      "operations_per_second": 4334751.760291031,
+      "state_bytes": 70227968
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1024,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.822951087000007,
+      "samples_seconds": [
+        0.0007506080000041493,
+        0.0006652289999919958,
+        0.0006253560000004654
+      ],
+      "median_seconds": 0.0006652289999919958,
+      "operations_per_second": 1539319.5426121245,
+      "state_bytes": 70227968
+    }
+  ],
+  "tests": {
+    "returncode": 0,
+    "stdout": "........................................................................ [ 21%]\n........................................................................ [ 42%]\n........................................................................ [ 64%]\n........................................................................ [ 85%]\n.................................................                        [100%]\n337 passed in 113.51s (0:01:53)\n",
+    "stderr": ""
+  },
+  "environment": "staging",
+  "app_name": "polytopia-gpu-simulator",
+  "elapsed_seconds": 146.7926845550537,
+  "app_url": "https://modal.com/apps/duper/staging/ap-4mOVDfxCmVEqkCRuUBeMKk"
+}

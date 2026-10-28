@@ -1,0 +1,126 @@
+{
+  "budget_usd": 13,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing (rates in experiments/modal_distributed_rl.py)",
+  "runs": [
+    {
+      "run_id": "a6-capture",
+      "kind": "capture",
+      "cpu": 16,
+      "hourly_usd": 0.88,
+      "reserved_usd": 0.3,
+      "status": "done",
+      "start_unix": 1792646214.752337,
+      "note_result": "64 real messages (Rust actors, 16 proc x 24 games, first ~20 s of play), 512-640 rows, view width 7649 int16, 5.1 MB compressed / ~1.05 GB views",
+      "spend_usd": 0.1,
+      "modal_app_ids": [
+        "see capture.log"
+      ]
+    },
+    {
+      "run_id": "a6-bench-1",
+      "kind": "bench",
+      "gpu": "H100",
+      "cpu": 16,
+      "hourly_usd": 5.22,
+      "reserved_usd": 2.6,
+      "status": "done",
+      "start_unix": 1792646291.018873,
+      "note": "gate base/stale/turn_clock/upgo_phi on real messages + throughput concat vs stream, 240 s each",
+      "modal_app_ids": [
+        "ap-fASxsLWLvsbUL5hYBNI35A"
+      ],
+      "note_result": "gate equal (base/stale/turn_clock/upgo_phi, 262144 rows); throughput concat 49.1k/s (5.34 s/update, concat 2.39 s, value 1.10 s) vs per-piece stream 54.0k/s (4.86 s, stream 4.35 s: ~2.4k put+write dispatches per batch under GIL contention)",
+      "spend_usd": 1.5
+    },
+    {
+      "run_id": "a6-bench-2",
+      "kind": "bench",
+      "gpu": "H100",
+      "cpu": 16,
+      "hourly_usd": 5.22,
+      "reserved_usd": 2.0,
+      "status": "done",
+      "start_unix": 1792647059.8279839,
+      "note": "host-page DeviceRows: gate x4 + concat vs stream 240 s each",
+      "note_result": "gate equal x4; host-page stream 68.2k/s (3.84 s/update, page copy 3.2 s on one thread) vs concat 44.8k/s (5.86 s) same container; receivers unpickle 1.6 s GIL per update",
+      "spend_usd": 1.3,
+      "modal_app_ids": [
+        "ap-o8F4wh22dBjTCZ3yyRPaGv"
+      ]
+    },
+    {
+      "run_id": "a6-bench-3",
+      "kind": "bench",
+      "gpu": "H100",
+      "cpu": 16,
+      "hourly_usd": 5.22,
+      "reserved_usd": 2.0,
+      "status": "done",
+      "start_unix": 1792647832.1101649,
+      "note": "zero-copy wire kind 2 + 4 copy threads: gate x4 + concat vs stream 240 s each",
+      "spend_usd": 1.3,
+      "modal_app_ids": [
+        "ap-aCk4TiNBx0ig2lctfS75mo"
+      ],
+      "note_result": "gate equal x4; A6 (host pages + 4 copy threads + wire kind 2) 116.9k/s (2.24 s/update: wait 0.56, train 1.68, page copy 0.90, views 0.37, value 0.60) vs host path 59.2k/s (4.43 s) same container; unpickle 0.06 s/update"
+    },
+    {
+      "run_id": "a6-h100-smoke",
+      "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "parent",
+            "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 1,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_path": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final-critic.npz",
+        "critic_warmup": 0,
+        "gamma": 0.995,
+        "gae_lambda": 0.99,
+        "seed": 402,
+        "engine": "rust",
+        "training_seconds": 1200
+      },
+      "actors": 6,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 1200,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 10.9,
+      "reserved_usd": 6.36,
+      "status": "done",
+      "modal_app_id": "ap-Wkrxkx5yq64IZSrNjemVVD",
+      "start_unix": 1792648765.1265962,
+      "spend_usd": 4.8,
+      "billing_settled": false,
+      "note_result": "197 updates, 51.6M samples in 1205 s: 42.9k/s overall, 43.8k steady (updates 21-197) vs main 39.2k/41.1k; actor-bound: inbox ~0, learner waits 4.76 s/update for data vs 1.22 s own assembly work and 1.65 s train; 0 stale, lag 1.1; spend is a launcher-rate x1.14 estimate, Modal billing not yet read"
+    }
+  ],
+  "approved": "2026-10-21 by the user via the parent session (local_a684c4eb): build A6, verify on Modal, then one ~$7 H100 smoke with 6 actors (cap $10); benches/tests extra, small"
+}

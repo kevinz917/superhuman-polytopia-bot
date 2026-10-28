@@ -1,0 +1,81 @@
+{
+  "budget_usd": 13,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing (rates in experiments/modal_distributed_rl.py)",
+  "approved": "2026-10-21 by the user: critic_path verification, 25-min continuation of c5-omni-s1-final with the parent's critic loaded (no warm-up) + paired ladder of its update-100 and c6-credit-ctl update-100 vs the parent; cap $12; cap raised 12 -> 13 on 2026-10-21 14:05 PDT because the ledger counts the training's $11.06 reservation until Modal settles the hour (billed $8.47 at 14:04) and the 2-candidate ladder reserves $1.18",
+  "runs": [
+    {
+      "run_id": "c6-critic-path",
+      "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "parent",
+            "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 3,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "omniscient_critic": true,
+        "critic_path": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final-critic.npz",
+        "critic_warmup": 0,
+        "gamma": 0.995,
+        "gae_lambda": 0.99,
+        "seed": 304,
+        "training_seconds": 1500
+      },
+      "actors": 12,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 1500,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 16.58,
+      "reserved_usd": 11.06,
+      "status": "reserved",
+      "modal_app_id": "ap-87lLMLHainXhgAQN5NNsPN",
+      "start_unix": 1792614904.390042,
+      "spend_usd": 11.06,
+      "billed_usd": 8.47,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c6-critic-path-ladder",
+      "kind": "selection",
+      "candidates": {
+        "critic-path-u100": "/results/distributed/c6-critic-path/snapshots/update-100.npz",
+        "ctl-u100": "/results/distributed/c6-credit-ctl/snapshots/update-100.npz"
+      },
+      "seed_base": 389600,
+      "maps": 128,
+      "hourly_usd": 3.53,
+      "reserved_usd": 1.18,
+      "status": "reserved",
+      "modal_app_id": "ap-90oNYZsWLigpja7eA2HSlJ",
+      "start_unix": 1792616579.000467,
+      "spend_usd": 1.18,
+      "billed_usd": 0.0,
+      "billing_settled": false
+    }
+  ]
+}

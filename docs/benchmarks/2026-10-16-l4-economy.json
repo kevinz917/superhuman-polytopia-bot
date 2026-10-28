@@ -1,0 +1,163 @@
+{
+  "engine_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "jax_version": "0.11.2",
+  "backend": "gpu",
+  "devices": [
+    "cuda:0"
+  ],
+  "device_kinds": [
+    "NVIDIA L4"
+  ],
+  "full_game_ready": false,
+  "scope": "Partial rule slice. End-turn transitions and one-unit movement/research/observation queries; excludes full action enumeration, mapgen, LM, IPC, compilation and host transfer from steady-state timing.",
+  "results": [
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1,
+      "steps_per_lane": 128,
+      "compile_seconds": 11.733654720999994,
+      "samples_seconds": [
+        0.006551477000016348,
+        0.00606430300001648,
+        0.005879148000019541
+      ],
+      "median_seconds": 0.00606430300001648,
+      "operations_per_second": 21107.124759375012,
+      "state_bytes": 68870
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.7007839529999842,
+      "samples_seconds": [
+        0.0007799040000122659,
+        0.0006497410000179116,
+        0.0006404060000022582
+      ],
+      "median_seconds": 0.0006497410000179116,
+      "operations_per_second": 1539.0748005319547,
+      "state_bytes": 68870
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 32,
+      "steps_per_lane": 128,
+      "compile_seconds": 10.767903157000035,
+      "samples_seconds": [
+        0.010528015000033975,
+        0.010190163999993729,
+        0.00996243700001287
+      ],
+      "median_seconds": 0.010190163999993729,
+      "operations_per_second": 401956.23936989834,
+      "state_bytes": 2203840
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 32,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.6961957689999849,
+      "samples_seconds": [
+        0.0009860499999945205,
+        0.0007781289999684304,
+        0.0007228900000200156
+      ],
+      "median_seconds": 0.0007781289999684304,
+      "operations_per_second": 41124.28659168117,
+      "state_bytes": 2203840
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 256,
+      "steps_per_lane": 128,
+      "compile_seconds": 11.018500294000035,
+      "samples_seconds": [
+        0.017651682999996865,
+        0.01797534799999312,
+        0.017721732999973483
+      ],
+      "median_seconds": 0.017721732999973483,
+      "operations_per_second": 1849029.098906356,
+      "state_bytes": 17630720
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 256,
+      "steps_per_lane": 1,
+      "compile_seconds": 2.984089553999979,
+      "samples_seconds": [
+        0.0009565369999791073,
+        0.0007549719999815352,
+        0.0007263190000230679
+      ],
+      "median_seconds": 0.0007549719999815352,
+      "operations_per_second": 339085.4230438495,
+      "state_bytes": 17630720
+    },
+    {
+      "operation": "guarded_end_turn_scan",
+      "batch": 1024,
+      "steps_per_lane": 128,
+      "compile_seconds": 11.330108969000037,
+      "samples_seconds": [
+        0.07394311000001608,
+        0.0741113569999925,
+        0.07751502899998286
+      ],
+      "median_seconds": 0.0741113569999925,
+      "operations_per_second": 1768581.8382736302,
+      "state_bytes": 70522880
+    },
+    {
+      "operation": "one_unit_movement_research_observation",
+      "batch": 1024,
+      "steps_per_lane": 1,
+      "compile_seconds": 0.8576993469999934,
+      "samples_seconds": [
+        0.0009433600000079423,
+        0.0007250250000083724,
+        0.0007559439999909046
+      ],
+      "median_seconds": 0.0007559439999909046,
+      "operations_per_second": 1354597.695083658,
+      "state_bytes": 70522880
+    }
+  ],
+  "tested_files_sha256": {
+    "src/polytopia_bot/__init__.py": "e049237495ab1b81e7b002ecf313205eef3150e524172f6db5125220cd231222",
+    "src/polytopia_bot/environment.py": "4e61b40fc9511c564a11fcdb5615b0d48832eb00c634e605517a5ca536b204af",
+    "src/polytopia_bot/gpu/__init__.py": "6f6671fe210bd7c139eeeb128ee72f538c310fa646903fbe4b5a783de036ab4c",
+    "src/polytopia_bot/gpu/benchmark.py": "7d0f00ceac2e54c9ef9658e197a728c7819337bde5d25afb9ccfe9c0ef57f2c8",
+    "src/polytopia_bot/gpu/capture.py": "fbf80aa7417b396fe36baa42bae39d312b3f64074866fc73a87d6102993cdd55",
+    "src/polytopia_bot/gpu/core.py": "0fe4533f40fb6e1d0693107a2fb5f04a0abf117fd23806c57d4086ea7b2ea421",
+    "src/polytopia_bot/gpu/discovery.py": "4c82484bca42ea3e915da0f56c89af95c38c9a74fd17b3c59eaccf55da97e74f",
+    "src/polytopia_bot/gpu/economy.py": "5ed32fc018a2398410ab0026d0b8bedffb7fb6ff7b9539cbf6af7e8870e3537e",
+    "src/polytopia_bot/gpu/importer.py": "b155a0b18ba91252d66ed5bff28b33f1b9d8266edf32530946104997cddbd3a6",
+    "src/polytopia_bot/gpu/kernels.py": "b0c542a113016aa45c1d97c4cc2cb95007f9e22b2ecd658a3c070dfc8e43c0d4",
+    "src/polytopia_bot/gpu/military.py": "ad777b8dafc59fda1395276fbef14a628f19440f04c4702ad0c805e804c79487",
+    "src/polytopia_bot/gpu/pathfinding.py": "662fae5d3de45188d36ddb471db9c9c10268f6b34c8f25f31184906741ff8254",
+    "src/polytopia_bot/gpu/rules.json": "a4878778dfb364722b5af25f42c30c6649441c00c423a57b5cdc265e9f4d81ec",
+    "src/polytopia_bot/gpu/rules.py": "157fdb7928e608f9cc3841eb818ae640b6abc3c4d0206b1e26ea846c51dea5f4",
+    "src/polytopia_bot/gpu/state.py": "07d8f0fd805b5af6ccb87a3097b3b025cfde5b698bbf03e36922413f0d81ad81",
+    "src/polytopia_bot/gpu/structures.py": "ccfdef6bfe4ae554811efe6c6c76036096afe17185e665d259505d544fe83537",
+    "src/polytopia_bot/oracle.py": "2e2035d1bcc09aa85c791b34010ef440f0b20ba186fbf81bd8402bf5ff85dddc",
+    "src/polytopia_bot.egg-info/PKG-INFO": "09fb02f58948948476ab88dedc3ead93a3996642d5a5df2dfbd26c643304235f",
+    "src/polytopia_bot.egg-info/SOURCES.txt": "0164924ca4b977fd1d5f79276d73d2cad1f78838790fa00d52d43e46f78b2b4d",
+    "src/polytopia_bot.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/polytopia_bot.egg-info/requires.txt": "2832f0291c8341dde7245acee71f79e88654bc380e49a74ab723eca34eac35c0",
+    "src/polytopia_bot.egg-info/top_level.txt": "b4acc327fd9ea95b1bd2a25250ca529b850ada66d08ccb595ac025a1b1f6e41a",
+    "tests/fixtures/polyfish-actions.json.gz": "fb5629b1bccd9a5e63c71e5a1e2c0f1ba054a38ab9b804f90f6b31cf0b731fec",
+    "tests/fixtures/polyfish-core.json.gz": "edf0a7347bf9487d08fe09a60e0e27ff0814ae93928368fae5005688b01093de",
+    "tests/test_actions.py": "b68e675f80f79f02b84b67678cf16a57044018bf13f7a0a6c29f081211970984",
+    "tests/test_gpu.py": "35cdff9e415fced13c215a0c3f635c30064946d91d06a2088da5972c240f0820"
+  },
+  "tests": {
+    "returncode": 0,
+    "stdout": "........................................................................ [  8%]\n........................................................................ [ 16%]\n........................................................................ [ 25%]\n........................................................................ [ 33%]\n........................................................................ [ 41%]\n........................................................................ [ 50%]\n........................................................................ [ 58%]\n........................................................................ [ 67%]\n........................................................................ [ 75%]\n........................................................................ [ 83%]\n........................................................................ [ 92%]\n...................................................................      [100%]\n859 passed in 275.52s (0:04:35)\n",
+    "stderr": ""
+  },
+  "environment": "staging",
+  "app_name": "polytopia-gpu-simulator",
+  "elapsed_seconds": 332.54647946357727
+}

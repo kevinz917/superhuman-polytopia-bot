@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polytopia-bot"
+version = "0.1.0"
+description = "A Polytopia bot trained from scratch by self-play reinforcement learning"
+requires-python = ">=3.11"
+dependencies = ["jax==0.11.2", "numpy>=2.1", "zstandard>=0.23"]
+license = "Apache-2.0"
+
+[project.optional-dependencies]
+test = ["pytest>=9,<10"]
+train = ["modal>=1.1", "maturin>=1.7,<2"]
+cuda = ["jax[cuda12]==0.11.2; sys_platform == 'linux'"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"polytopia_bot.gpu" = ["rules.json"]
+"polytopia_bot.studio" = ["static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

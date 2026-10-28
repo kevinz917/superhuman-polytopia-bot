@@ -1,0 +1,109 @@
+{
+  "budget_usd": 35,
+  "reservation_per_run_usd": 5,
+  "price_source": "https://modal.com/pricing (rates in experiments/modal_distributed_rl.py)",
+  "runs": [
+    {
+      "run_id": "c6-tc100-tests",
+      "kind": "tests",
+      "paths": "tests/test_distributed_rl.py",
+      "cores": 8,
+      "hourly_usd": 0.44,
+      "reserved_usd": 0.5,
+      "status": "reserved",
+      "start_unix": 1792605060.752737,
+      "note": "12 passed on Modal in 12.7 s (test_distributed_rl incl. test_turn_clock_undiscounted_gamma_one)",
+      "modal_app_id": "ap-rOH2yhMXaxwOsSy6CmlgFA",
+      "spend_usd": 0.5,
+      "billed_usd": 0.0,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c6-credit-tc100",
+      "parent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+      "config": {
+        "size": 14,
+        "maps": "proposed-v1",
+        "frozen": [
+          [
+            "parent",
+            "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+            0.05
+          ]
+        ],
+        "historical_probability": 0.15,
+        "historical_every": 50,
+        "historical_keep": 8,
+        "batch": 262144,
+        "minibatch": 16384,
+        "epochs": 3,
+        "learning_rate": 0.0002,
+        "entropy_coef": 0.005,
+        "turn_gamma": 1.0,
+        "turn_lambda": 0.95,
+        "omniscient_critic": true,
+        "critic_warmup": 60,
+        "segment": 32,
+        "max_lag": 10,
+        "publish_every": 2,
+        "checkpoint_every": 10,
+        "snapshot_every": 50,
+        "seed": 303,
+        "training_seconds": 3600
+      },
+      "actors": 12,
+      "actor_cpu": 16,
+      "processes": 16,
+      "games": 24,
+      "gpu": "H100:1",
+      "learner_cpu": 16,
+      "memory_gib": 24,
+      "seconds": 3600,
+      "learner_env": {
+        "POLYTOPIA_MATMUL_PRECISION": "DEFAULT",
+        "POLYTOPIA_HEAD_PRECISION": "HIGHEST"
+      },
+      "hourly_usd": 16.58,
+      "reserved_usd": 20.73,
+      "status": "reserved",
+      "modal_app_id": "ap-rLACWCGgGo8jjM67AfGAhA",
+      "start_unix": 1792605105.1734972,
+      "spend_usd": 20.73,
+      "billed_usd": 20.26,
+      "billing_settled": false,
+      "note": "billed 17:00 UTC row 1.57 (9 min) + 18:00 row 18.70 (53 min) = 20.26 at 12:07 PDT, ~21/h implied for the full hour vs the launcher 16.58/h; last row may still grow"
+    },
+    {
+      "run_id": "archive-c6-credit-tc100-final",
+      "kind": "archive",
+      "hourly_usd": 0.06,
+      "reserved_usd": 0.05,
+      "status": "reserved",
+      "start_unix": 1792608798.441153,
+      "modal_app_id": "ap-d9Kl6mkog2D7cebJXgrGRQ",
+      "spend_usd": 0.05,
+      "billed_usd": 0.0,
+      "billing_settled": false
+    },
+    {
+      "run_id": "c6-tc100-ladder",
+      "kind": "selection",
+      "candidates": {
+        "tc100": "/results/distributed/c6-credit-tc100/final.npz"
+      },
+      "seed_base": 389400,
+      "maps": 128,
+      "hourly_usd": 1.77,
+      "reserved_usd": 1.32,
+      "status": "reserved",
+      "modal_app_id": "ap-5XDCuq1Tbz2mqhQ09rKHTj",
+      "start_unix": 1792608802.003629,
+      "spend_usd": 1.32,
+      "billed_usd": 0.29,
+      "billing_settled": false,
+      "note": "256 games in 12 min on one 32-core container; 0.29 billed so far at 12:07 PDT"
+    }
+  ],
+  "approved": "2026-10-21 by the user: campaign c6-credit arm C (undiscounted turn clock), 1 h from c5-omni-s1-final + ladder, hard cap $35 incl. the ladder; stop if the first billing row implies > $30/h",
+  "spec": "runs/c6-credit/tc100/spec.json"
+}

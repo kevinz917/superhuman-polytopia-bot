@@ -1,0 +1,66 @@
+{
+ "name": "win-d1det-ownval-vs-win",
+ "config": {
+  "name": "win-d1det-ownval-vs-win",
+  "candidate": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "opponent": "/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz",
+  "lanes": 16,
+  "depth": 1,
+  "temperature": 1.0,
+  "rollout_temperature": 1.0,
+  "determinize": true,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "maps": 100,
+  "seed_base": 388000
+ },
+ "chunks": "4/4",
+ "summary": {
+  "games": 200,
+  "wins": 103,
+  "losses": 57,
+  "truncations": 40,
+  "win_rate": 0.515,
+  "win_ci95": [
+   0.46,
+   0.57
+  ],
+  "score": 0.615,
+  "score_ci95": [
+   0.57,
+   0.6600625000000002
+  ],
+  "elo": 81.36575450676644,
+  "elo_ci95": [
+   48.962560037161914,
+   115.27439352274669
+  ],
+  "seconds_per_search_turn": 4.354258916002683,
+  "sub_actions_per_turn": 15.849544801149976,
+  "lane_steps_per_turn": 1079.129755630091,
+  "override_rate": 0.8759534706331045,
+  "replans_per_turn": 2.010158121705798,
+  "incomplete_lanes": 115,
+  "mean_turns": 51.58,
+  "mean_turns_decided": 39.225,
+  "game_seconds_mean": 232.88341599196002,
+  "compile_seconds": 422.642901974865,
+  "unit_mix": {
+   "Catapult": 0.2572,
+   "Warrior": 0.2166,
+   "Cloak": 0.2121,
+   "Defender": 0.1962,
+   "Scoutship": 0.0415,
+   "Bomber": 0.0341,
+   "Archer": 0.0198,
+   "Rammership": 0.0149,
+   "Rider": 0.0058,
+   "Swordsman": 0.0011,
+   "MindBender": 0.0006
+  }
+ },
+ "container_seconds": 4967.048409093,
+ "cost_usd": 2.525468168889952,
+ "errors": [],
+ "note": "rows (per-game records with traces) omitted here; full file on the polytopia-structured-rl volume under test-time-search/c5-search-v1/"
+}

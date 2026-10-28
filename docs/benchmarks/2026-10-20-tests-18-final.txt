@@ -1,0 +1,19 @@
+===== tests/test_distributed_rl.py: exit 0
+......                                                                   [100%]
+============================= slowest 5 durations ==============================
+0.78s call     tests/test_distributed_rl.py::test_gae_matches_ppo_advantages
+0.02s call     tests/test_distributed_rl.py::test_arena_summary_counts_and_diversity
+
+(3 durations < 0.005s hidden.  Use -vv to show these durations.)
+6 passed in 2.10s
+
+===== tests/test_rl_18x18.py: exit 0
+..........                                                               [100%]
+============================= slowest 5 durations ==============================
+60.74s call     tests/test_rl_18x18.py::test_cpu_games_use_the_size_round_limit
+35.29s call     tests/test_rl_18x18.py::test_new_target_keys_keep_every_legal_logprob_at_native_size
+32.39s call     tests/test_rl_18x18.py::test_grown_network_is_exactly_the_parent[18-classic]
+12.72s call     tests/test_rl_18x18.py::test_round_limits_and_large_reset
+7.50s call     tests/test_rl_18x18.py::test_critic_warmup_changes_only_critic_parameters
+10 passed in 159.26s (0:02:39)
+

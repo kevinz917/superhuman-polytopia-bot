@@ -1,0 +1,89 @@
+===== tests/test_rl_18x18.py (separate run)
+===== tests/test_rl_18x18.py: exit 0
+.........                                                                [100%]
+============================= slowest 5 durations ==============================
+44.89s call     tests/test_rl_18x18.py::test_cpu_games_use_the_size_round_limit
+25.93s call     tests/test_rl_18x18.py::test_new_target_keys_keep_every_legal_logprob_at_native_size
+23.04s call     tests/test_rl_18x18.py::test_grown_network_is_exactly_the_parent[18-classic]
+10.38s call     tests/test_rl_18x18.py::test_round_limits_and_large_reset
+4.29s call     tests/test_rl_18x18.py::test_grown_network_is_exactly_the_parent[14-classic]
+9 passed in 111.81s (0:01:51)
+
+Stopping app - local entrypoint completed.
+===== tests/test_distributed_rl.py: exit 0
+......                                                                   [100%]
+============================= slowest 5 durations ==============================
+0.78s call     tests/test_distributed_rl.py::test_gae_matches_ppo_advantages
+0.02s call     tests/test_distributed_rl.py::test_arena_summary_counts_and_diversity
+
+(3 durations < 0.005s hidden.  Use -vv to show these durations.)
+6 passed in 2.10s
+
+===== tests/test_random.py: exit 0
+.........                                                                [100%]
+============================= slowest 5 durations ==============================
+0.28s call     tests/test_random.py::test_device_rng_matches_microsoft_runtime[0]
+0.14s call     tests/test_random.py::test_bounded_rng_visits_both_halves_of_the_map
+
+(3 durations < 0.005s hidden.  Use -vv to show these durations.)
+9 passed in 1.35s
+
+===== tests/test_mapgen.py: exit 0
+...............................................................          [100%]
+============================= slowest 5 durations ==============================
+2.52s call     tests/test_mapgen.py::test_procedural_reset_has_complete_bardur_start_and_legal_actions[11]
+2.28s call     tests/test_mapgen.py::test_procedural_reset_has_complete_bardur_start_and_legal_actions[18]
+2.21s call     tests/test_mapgen.py::test_procedural_reset_has_complete_bardur_start_and_legal_actions[14]
+1.32s call     tests/test_mapgen.py::test_gpu_layout_matches_corrected_sampling_reference[11-1]
+1.02s call     tests/test_mapgen.py::test_gpu_layout_matches_corrected_sampling_reference[18-1]
+63 passed in 11.42s
+
+===== tests/test_snapshot.py: exit 0
+...                                                                      [100%]
+============================= slowest 5 durations ==============================
+22.05s call     tests/test_snapshot.py::test_private_snapshot_restores_every_field_and_replays_exactly
+0.07s call     tests/test_snapshot.py::test_snapshot_rejects_shape_and_implementation_changes
+0.05s call     tests/test_snapshot.py::test_snapshot_rejects_wrong_profile_and_missing_fields
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+3 passed in 23.62s
+
+===== tests/test_gpu.py: exit 0
+........................................................................ [ 53%]
+...............................................................          [100%]
+============================= slowest 5 durations ==============================
+27.06s call     tests/test_gpu.py::test_batch_independence_restore_and_selective_reset
+14.13s call     tests/test_gpu.py::test_transition_projection_against_rust[14-generated-0-move10]
+13.45s call     tests/test_gpu.py::test_action_cap_is_truncation
+12.69s call     tests/test_gpu.py::test_transition_projection_against_rust[11-generated-0-move10]
+0.96s call     tests/test_gpu.py::test_legal_masks_and_exploration_against_rust[11-generated-0]
+135 passed in 73.07s (0:01:13)
+
+===== tests/test_maps.py: exit 0
+.......                                                                  [100%]
+============================= slowest 5 durations ==============================
+55.30s call     tests/test_maps.py::test_cpu_engine_plays_variant_maps_like_the_frozen_engine[18]
+51.44s call     tests/test_maps.py::test_cpu_engine_plays_variant_maps_like_the_frozen_engine[14]
+15.35s call     tests/test_maps.py::test_classic_layout_start_is_bitwise_mapgen_reset
+8.15s call     tests/test_maps.py::test_variant_layout_invariants_and_determinism[18]
+4.07s call     tests/test_maps.py::test_variant_layout_invariants_and_determinism[14]
+7 passed in 136.16s (0:02:16)
+
+===== tests/test_cpu_engine.py: exit 0
+.                                                                        [100%]
+============================= slowest 5 durations ==============================
+147.48s call     tests/test_cpu_engine.py::test_cpu_engine_matches_frozen_batched_engine
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+1 passed in 148.72s (0:02:28)
+
+===== tests/test_search.py: exit 0
+...                                                                      [100%]
+============================= slowest 5 durations ==============================
+308.25s call     tests/test_search.py::test_one_lane_is_the_greedy_policy_and_k_lanes_replay_legally
+72.78s call     tests/test_search.py::test_first_action_root_search_replays_legally
+54.33s call     tests/test_search.py::test_robust_reply_search_spends_its_budget_and_replays_legally
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+3 passed in 436.26s (0:07:16)
+
