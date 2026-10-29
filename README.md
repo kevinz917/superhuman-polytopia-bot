@@ -10,6 +10,7 @@
 [![Modal](https://img.shields.io/badge/trained%20on-Modal-1a1a1a?style=flat-square)](https://modal.com)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-2a78d6?style=flat-square)](LICENSE)
 [![Play it](https://img.shields.io/badge/play%20it-in%20your%20browser-e23a3a?style=flat-square)](https://polytopia-bot-kappa.vercel.app)
+[![Blog post](https://img.shields.io/badge/read-the%20blog%20post-f0a020?style=flat-square)](https://thekevinz.com/blog/polytopia-bot)
 
 <p align="center">
   <img src="assets/champion-games.webp" width="880" alt="Three games by the champion: a classic map and a continents map against the previous best bot, then a 77-turn archipelago game" />
@@ -22,7 +23,8 @@
 This repository holds a bot for [The Battle of Polytopia](https://polytopia.io), the turn-based 4X strategy game,
 that taught itself to play 1v1 from nothing: no human games, no scripted teacher, no opening book. A
 0.5M-parameter network starts from random weights and plays billions of moves against itself. Twenty hours later it
-beats every bot we built before it, including the ones bootstrapped from expert play.
+beats every bot we built before it, including the ones bootstrapped from expert play. The full story is in the
+blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://thekevinz.com/blog/polytopia-bot).
 
 - 🏆 **From scratch.** Pure self-play PPO from random initialization. It never sees a human game or a scripted move.
 - 🎲 **The game's own rules.** A Rust engine implements Polytopia 2.17.3 for Bardur, 1v1 and four-player
