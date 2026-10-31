@@ -146,6 +146,15 @@ export class GameController {
     return [...tiles];
   }
 
+  // The player's own units with nothing left to do this turn.
+  spentUnits() {
+    if (!this.canAct() || !this.data) return [];
+    const ready = new Set(this.readyUnits());
+    return this.data.observation.visible_state.units
+      .filter((u) => u.owner === this.data!.seat && !ready.has(u.tile))
+      .map((u) => u.tile);
+  }
+
   pendingReward() {
     return this.canAct() ? this.legal.find((a) => a.command.kind === 9) : undefined;
   }
@@ -179,6 +188,7 @@ export class GameController {
           ? data.observation.hud?.territory?.[String(this.selected)] || cityTerritory(v, this.selected!)
           : [],
         ready: this.readyUnits(),
+        spent: this.spentUnits(),
       });
       if (board.animating) {
         // Follow the action like the mobile camera when it happens off-screen.

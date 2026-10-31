@@ -2,13 +2,39 @@
 // The camera is a single transform, so panning and zooming never rebuild
 // geometry; a new frame rebuilds only the tiles and labels whose content
 // changed, so scrubbing a replay touches a handful of nodes per step.
-import { Application, BitmapText, Container, Graphics } from "pixi.js";
+import { Application, BitmapText, BlurFilter, ColorMatrixFilter, Container, Graphics } from "pixi.js";
 import type { GameEvent, Layer, LegalAction, Observation, Tile, Unit, VisibleState } from "../api/types.ts";
 import { clamp, ease, planTransition, pop, sampleActor, type Plan } from "../game/animation.ts";
 import { cityName } from "../game/vocab.ts";
 import { createArt, type BoardArt, type GroundInfo } from "./art/index.ts";
 import { setIconSource } from "./assets.ts";
 import { DIAMOND, EDGES, flat, HH, HW, shape, STEPS, TEAMS, TH, TW, type Point, type Team } from "./geometry.ts";
+
+// Shared by every unit, built on first use. A unit that can still act gets a
+// soft pale-gold halo (white vanishes on snow): its figure filled flat, then
+// blurred. A unit with nothing left to do this turn turns pastel: washed toward white, a little less saturated.
+let readyGlow: [ColorMatrixFilter, BlurFilter] | null = null;
+const READY_GLOW = () => {
+  if (!readyGlow) {
+    const fill = new ColorMatrixFilter();
+    // rgb := pale gold, alpha := 2 x alpha, so the blurred edge stays visible.
+    fill.matrix = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0.88, 0, 0, 0, 0, 0.42, 0, 0, 0, 2, 0];
+    readyGlow = [fill, new BlurFilter({ strength: 3, quality: 3 })];
+  }
+  return readyGlow;
+};
+let spentDim: [ColorMatrixFilter] | null = null;
+const SPENT_DIM = () => {
+  if (!spentDim) {
+    // Each channel keeps 80% of its own value and takes 20% from the pixel's mean
+    // (a light desaturate), then mixes 35% toward white.
+    const keep = 0.65, own = 0.8 * keep, mean = ((1 - 0.8) / 3) * keep, white = 1 - keep;
+    const dim = new ColorMatrixFilter();
+    dim.matrix = [own + mean, mean, mean, 0, white, mean, own + mean, mean, 0, white, mean, mean, own + mean, 0, white, 0, 0, 0, 1, 0];
+    spentDim = [dim];
+  }
+  return spentDim;
+};
 
 const DIM_TINT = 0x6f7b85;
 
@@ -35,6 +61,7 @@ export interface UpdateOptions {
   territory?: number[];
   home?: number; // the seat drawn in blue ("you"); the other seat is red
   ready?: number[]; // tiles of the player's units that can still move or attack
+  spent?: number[]; // tiles of the player's units with nothing left to do this turn
 }
 
 interface TileView {
@@ -60,8 +87,9 @@ interface LabelView {
 }
 interface UnitView extends Container {
   hp?: BitmapText;
+  body?: Container;
   flash?: Container;
-  ready?: Container;
+  glow?: Container;
   shownHealth?: number;
 }
 // One unit's health before and after a previewed attack (0: it dies).
@@ -125,6 +153,7 @@ export class BoardScene {
   private layer: Layer | null = null;
   private territory = new Set<number>();
   private movable = new Set<number>();
+  private spent = new Set<number>();
   private home = 1;
   // Seats in the game: two-seat games colour by viewer (you blue, the other red); more seats get fixed colours.
   private seats = 2;
@@ -453,6 +482,7 @@ export class BoardScene {
     this.layer = layer;
     this.territory = new Set(options.territory || []);
     this.movable = new Set(options.ready || []);
+    this.spent = new Set(options.spent || []);
     this.targets = targets;
     this.applySelection();
     this.invalidate();
@@ -621,7 +651,15 @@ export class BoardScene {
   private unitView(u: Unit): UnitView {
     const c: UnitView = new Container();
     const art = this.art.unit(u, this.team(u.owner));
-    c.addChild(art.body);
+    if (art.glow) {
+      // Behind the body, so only the halo around the figure shows.
+      const glow = new Container();
+      glow.addChild(art.glow);
+      glow.filters = READY_GLOW();
+      glow.visible = false;
+      c.glow = c.addChild(glow);
+    }
+    c.body = c.addChild(art.body);
     if (art.flash) {
       art.flash.blendMode = "add";
       art.flash.alpha = 0;
@@ -633,8 +671,6 @@ export class BoardScene {
     c.addChild(c.hp);
     if (u.kills && !u.veteran) c.addChild(this.art.xp(Math.min(3, u.kills)));
     if (u.veteran) c.addChild(art.veteran);
-    art.ready.visible = false;
-    c.ready = c.addChild(art.ready);
     return c;
   }
   // An effect star `size` across, wrapped so the effect can scale and move it freely.
@@ -694,7 +730,8 @@ export class BoardScene {
       view.sel.visible = tile === this.selected && !territory;
       view.dim.visible = territory && !this.territory.has(tile);
       if (view.unit) view.unit.position.y = 0;
-      if (view.unit?.ready) view.unit.ready.visible = !this.running && this.movable.has(tile);
+      if (view.unit?.glow) view.unit.glow.visible = !this.running && this.movable.has(tile);
+      if (view.unit?.body) view.unit.body.filters = !this.running && this.spent.has(tile) ? SPENT_DIM() : null;
     }
     this.outline.clear();
     this.outlineTop.clear();
