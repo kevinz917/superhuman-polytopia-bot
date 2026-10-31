@@ -62,6 +62,13 @@ interface UnitView extends Container {
   flash?: Container;
   shownHealth?: number;
 }
+// One unit's health before and after a previewed attack (0: it dies).
+export interface HealthPreview {
+  tile: number;
+  health: number;
+  after: number;
+  max: number;
+}
 interface Running {
   plan: Plan;
   duration: number;
@@ -89,6 +96,8 @@ export class BoardScene {
   private labelLayer = new Container();
   private markers = new Container();
   private fxLayer = new Container();
+  private previewLayer = new Container(); // attack preview: health bars and skulls above everything
+  private previewed: UnitView[] = [];
   private tiles: TileView[] = [];
   private labels = new Map<number, LabelView>();
   private builtSize = 0;
@@ -129,6 +138,9 @@ export class BoardScene {
   private drag: { x: number; y: number; px: number; py: number } | null = null;
   private pinch: { distance: number; zoom: number } | null = null;
   moved = false;
+  // The tile under the mouse (not touch), for the attack preview; null when it leaves the board.
+  onHover: ((tile: number | null) => void) | null = null;
+  private hovered: number | null = null;
   private reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   private canvas: HTMLCanvasElement;
@@ -161,6 +173,7 @@ export class BoardScene {
     this.world.addChild(this.ground, this.surface, this.outline, this.objects, this.outlineTop, this.labelLayer, this.markers, this.fxLayer);
     this.app.stage.addChild(this.stars, this.world);
     this.resize();
+    this.world.addChild(this.previewLayer); // above every other layer
     new ResizeObserver(() => this.resize()).observe(wrap);
     this.bindInput(wrap);
     this.reducedMotion.addEventListener("change", () => this.reducedMotion.matches && this.finishAnimation());
@@ -334,6 +347,17 @@ export class BoardScene {
         this.moved = false;
       }
     });
+    const hover = (tile: number | null) => {
+      if (tile === this.hovered) return;
+      this.hovered = tile;
+      this.onHover?.(tile);
+    };
+    wrap.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse" || this.drag) return;
+      const r = this.canvas.getBoundingClientRect();
+      hover(this.hit(e.clientX - r.left, e.clientY - r.top));
+    });
+    wrap.addEventListener("pointerleave", () => hover(null));
     window.addEventListener("pointermove", (e) => {
       if (!this.pointers.has(e.pointerId)) return;
       this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -409,6 +433,7 @@ export class BoardScene {
           ? planTransition(this.observation, obs, event)
           : null;
       this.finishAnimation();
+      this.showPreview(null);
       if (options.scene !== this.scene) this.anchor = null;
       this.observation = obs;
       this.scene = options.scene;
@@ -725,6 +750,48 @@ export class BoardScene {
       const unit = this.tiles[this.selected]?.unit;
       if (unit && this.layer === "unit" && unit.visible) unit.position.y = -Math.sin(clamp(age / 0.32) * Math.PI) * 9;
     }
+  }
+
+  // ---------- attack preview ----------
+  // A health bar over every unit the attack changes: what it keeps, and in red
+  // what it loses. A unit that would die shows a skull instead (and, with `fade`, fades).
+  showPreview(units: HealthPreview[] | null, fade = false) {
+    for (const view of this.previewed) view.alpha = 1;
+    this.previewed = [];
+    for (const child of this.previewLayer.removeChildren()) dispose(child);
+    if (!this.ready) return;
+    for (const u of units ?? []) {
+      // Drawn over the unit's own health badge (-15, -34), the bar reaching out
+      // to its left, so it never covers the unit standing behind.
+      const p = this.local(u.tile),
+        c = new Container(),
+        dead = u.after <= 0,
+        w = 22,
+        x0 = -44,
+        keep = clamp(u.after / u.max),
+        had = clamp(u.health / u.max);
+      c.position.set(p.x, p.y);
+      const g = new Graphics();
+      g.roundRect(x0 - 4, -41.5, w + 30, 15, 7.5).fill({ color: 0x0b1620, alpha: 0.9 }).stroke({ width: 1.2, color: 0xffffff, alpha: 0.9 });
+      g.roundRect(x0, -36.5, w, 5, 2.5).fill(0x35444f);
+      g.roundRect(x0, -36.5, Math.max(2.5, w * had), 5, 2.5).fill(0xff4b3a);
+      if (keep > 0) g.roundRect(x0, -36.5, Math.max(2.5, w * keep), 5, 2.5).fill(0x6fdc5a);
+      g.circle(-15, -34, 8.5).fill(dead ? 0x0b1620 : 0xd8392b).stroke({ width: 1.5, color: 0xffffff });
+      c.addChild(g);
+      if (dead) c.addChild(this.art.skull(-15, -34, 13));
+      else {
+        const t = this.text(Math.ceil(u.after), 11, "#ffffff");
+        t.position.set(-15, -33.5);
+        c.addChild(t);
+      }
+      this.previewLayer.addChild(c);
+      const view = this.tiles[u.tile]?.unit;
+      if (dead && view && fade) {
+        view.alpha = 0.45;
+        this.previewed.push(view);
+      }
+    }
+    this.invalidate();
   }
 
   // ---------- animation ----------

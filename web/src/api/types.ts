@@ -34,6 +34,7 @@ export interface Unit {
   attacked?: boolean;
   kills?: number;
   home?: number;
+  passenger?: number;
 }
 
 export interface City {

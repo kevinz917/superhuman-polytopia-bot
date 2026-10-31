@@ -38,6 +38,8 @@ export interface BoardArt {
   // A star centred at (x, y), `size` across: city level, veteran badge, effects.
   star(x: number, y: number, size: number): Container;
   capitalIcon(x: number, y: number, size: number): Container | null;
+  // Attack preview mark for a unit that would die, centred at (x, y), `size` across.
+  skull(x: number, y: number, size: number): Container;
   labelBand(team: Team): { color: number; alpha: number };
   // City growth bar: `segments` cells, `amount` of it filled, centred, `width` wide, top at y = 33.
   paintBar(g: Graphics, width: number, segments: number, amount: number): void;

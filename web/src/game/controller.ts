@@ -3,7 +3,7 @@
 // imperatively so frame-rate work never passes through React.
 import { api, job, waitJob } from "../api/client.ts";
 import type { Current, FrameData, Layer, LegalAction, Library, Meta, Series } from "../api/types.ts";
-import type { BoardScene } from "../board/BoardScene.ts";
+import type { BoardScene, HealthPreview } from "../board/BoardScene.ts";
 import { cityTerritory } from "./vocab.ts";
 
 export type DialogState =
@@ -67,6 +67,10 @@ export class GameController {
   private timer = 0;
   private ticking = false;
   private seeking = false;
+  // Attack previews by game, state version and action; the newest request wins the board.
+  private previews = new Map<string, Promise<HealthPreview[]>>();
+  private previewRequest = 0;
+  private hovered: number | null = null;
   // Replay frames never change, so revisiting one while scrubbing is free.
   private frames = new Map<string, FrameData>();
 
@@ -82,6 +86,10 @@ export class GameController {
 
   attachBoard(board: BoardScene, canvas: HTMLCanvasElement) {
     this.board = board;
+    board.onHover = (tile) => {
+      this.hovered = tile;
+      this.showPreviews();
+    };
     canvas.addEventListener("bardur:animation-start", () => {
       this.animating = true;
       this.emit();
@@ -166,6 +174,7 @@ export class GameController {
         const spot = [cue.target, cue.source].find((t) => t !== undefined && t >= 0);
         if (spot !== undefined) board.focus(spot);
       }
+      this.showPreviews();
     }
     this.emit();
   }
@@ -238,6 +247,50 @@ export class GameController {
     this.insightsOpen = open;
     storage.set("bardur-insights", open ? null : "off");
     this.emit();
+  }
+
+  // While one of your units is selected, every enemy it can attack shows the
+  // health it would be left with (a skull if it dies). With one target, or the
+  // mouse over one, the preview is that attack's in full: your unit and any splash too.
+  private showPreviews() {
+    const request = ++this.previewRequest;
+    const attacks =
+      this.canAct() && this.selected !== null && this.layer === "unit"
+        ? this.legal.filter((a) => a.command.kind === 2 && a.command.source === this.selected)
+        : [];
+    if (!attacks.length) return this.board?.showPreview(null);
+    const focus = attacks.find((a) => a.command.target === this.hovered),
+      shown = focus ? [focus] : attacks;
+    // A preview that fails (e.g. a server without the endpoint) is simply left out.
+    void Promise.allSettled(shown.map((a) => this.preview(a))).then((results) => {
+      if (request !== this.previewRequest) return;
+      const units = results.map((r) => (r.status === "fulfilled" ? r.value : []));
+      if (shown.length === 1) this.board?.showPreview(units[0], true);
+      else this.board?.showPreview(units.flatMap((r, i) => r.filter((u) => u.tile === shown[i].command.target)));
+    });
+  }
+
+  private preview(action: LegalAction) {
+    const { id } = this.current!,
+      key = `${id}/${this.data!.observation.state_version}/${action.action_id}`;
+    let pending = this.previews.get(key);
+    if (!pending) {
+      const units = this.data!.observation.visible_state.units,
+        rules = this.meta?.rules.units ?? [];
+      pending = api<{ units: { tile: number; health: number; after: number }[] }>(
+        `/api/games/${id}/preview?action=${action.action_id}`,
+      ).then((r) =>
+        r.units.map((p) => {
+          const u = units.find((x) => x.tile === p.tile),
+            kind = u?.passenger || u?.kind;
+          return { ...p, max: (rules.find((x) => x.id === kind)?.health ?? 10) + (u?.veteran ? 5 : 0) };
+        }),
+      );
+      this.previews.set(key, pending);
+      pending.catch(() => this.previews.delete(key));
+      if (this.previews.size > 64) this.previews.delete(this.previews.keys().next().value!);
+    }
+    return pending;
   }
 
   selectTile = (tile: number) => {
