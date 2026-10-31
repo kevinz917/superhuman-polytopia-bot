@@ -178,6 +178,15 @@ export class MockArt implements BoardArt {
     return shape(`star:${x}:${y}:${size}`, (g) => drawStar(g, x, y, size / 2));
   }
 
+  // Three pips under the health badge fill with kills; all three turn gold once the unit can be promoted.
+  xp(kills: number) {
+    return shape(`xp:${kills}`, (g) => {
+      g.roundRect(-23, -26.5, 16, 6, 3).fill({ color: 0x10202c, alpha: 0.8 });
+      for (let i = 0; i < 3; i++)
+        g.circle(-20 + i * 5, -23.5, 1.8).fill(i < kills ? (kills >= 3 ? 0xffd34d : 0x8ee6ff) : 0x51616c);
+    });
+  }
+
   capitalIcon() {
     return null;
   }
