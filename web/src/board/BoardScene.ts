@@ -515,7 +515,7 @@ export class BoardScene {
             t.structure,
             t.structure_level ?? 0,
             city ? `${this.team(city.owner).name}:${city.level || 1}:${t.capital ? 1 : 0}` : "",
-            u ? `${u.kind}:${this.team(u.owner).name}:${Math.ceil(u.health)}:${u.veteran ? 1 : 0}` : "",
+            u ? `${u.kind}:${this.team(u.owner).name}:${Math.ceil(u.health)}:${u.veteran ? 1 : 0}:${u.kills ?? 0}` : "",
           ].join("|")
         : "fog";
       if (objectKey === view.objectKey) continue;
@@ -602,6 +602,7 @@ export class BoardScene {
     c.hp.position.set(art.hp.x, art.hp.y);
     c.shownHealth = Math.ceil(u.health);
     c.addChild(c.hp);
+    if (u.kills && !u.veteran) c.addChild(this.art.xp(Math.min(3, u.kills)));
     if (u.veteran) c.addChild(art.veteran);
     return c;
   }

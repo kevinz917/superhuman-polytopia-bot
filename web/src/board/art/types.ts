@@ -37,6 +37,8 @@ export interface BoardArt {
   marker(attack: boolean): Container;
   // A star centred at (x, y), `size` across: city level, veteran badge, effects.
   star(x: number, y: number, size: number): Container;
+  // Experience toward promotion (1-3 kills) for a unit that is not a veteran yet.
+  xp(kills: number): Container;
   capitalIcon(x: number, y: number, size: number): Container | null;
   labelBand(team: Team): { color: number; alpha: number };
   // City growth bar: `segments` cells, `amount` of it filled, centred, `width` wide, top at y = 33.

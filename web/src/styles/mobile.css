@@ -771,6 +771,46 @@ body.selecting .replay-dock {
   font-size: 18px;
   font-weight: 400;
 }
+/* Veterancy meter in the selection bar: three kills to promote. */
+.xp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #cfd8dc;
+}
+.xp-label {
+  color: #9fb0b8;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.xp-pips {
+  display: flex;
+  gap: 4px;
+}
+.xp-pips i {
+  width: 22px;
+  height: 8px;
+  border-radius: 4px;
+  background: #ffffff2e;
+  box-shadow: inset 0 0 0 1px #ffffff40;
+}
+.xp-pips i.on {
+  background: #8ee6ff;
+  box-shadow: 0 0 6px #8ee6ff88;
+}
+.xp.ready .xp-pips i {
+  background: #ffd34d;
+  box-shadow: 0 0 8px #ffd34daa;
+}
+.xp.ready .xp-note,
+.xp.veteran .xp-label {
+  color: #ffd34d;
+  font-weight: 600;
+}
 .orders {
   justify-content: center;
   flex-wrap: nowrap;
