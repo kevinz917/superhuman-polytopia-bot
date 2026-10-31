@@ -88,8 +88,9 @@ pub fn adjust_building_population(before_contribution: &[i32], s: &mut State, r:
     }
     s.tiles.structure_level = levels;
     if amount.iter().any(|&a| a != 0) {   // all-zero amounts change nothing
-        add_population_vector(s, &amount, 1, true);
-        add_population_vector(s, &amount, 2, true);
+        for owner in 1..=s.np as i32 {
+            add_population_vector(s, &amount, owner, true);
+        }
     }
 }
 
@@ -109,7 +110,19 @@ pub fn capital_index(s: &State, owner: i32) -> (usize, bool) {
     (idx, exists)
 }
 
-pub fn connections(s: &mut State, owner: i32, g: &Geom, native: bool) {
+/// The current capital: the player's start tile while they own it, else their first city
+/// in tile order; None without cities.
+pub fn current_capital(s: &State, owner: i32) -> Option<usize> {
+    let (cap, exists) = capital_index(s, owner);
+    if exists {
+        return Some(cap);
+    }
+    (0..s.n).find(|&i| s.cities.owner[i] == owner)
+}
+
+/// Tiles of `owner`'s road/port network reached from their start tile (the connected-city search), and
+/// the start tile with whether they hold it.
+pub fn reachable(s: &State, owner: i32, g: &Geom, native: bool) -> (Vec<bool>, usize, bool) {
     let n = s.n;
     let (cap, exists) = capital_index(s, owner);
     let t = &s.tiles;
@@ -120,30 +133,41 @@ pub fn connections(s: &mut State, owner: i32, g: &Geom, native: bool) {
     let nodes: Vec<bool> = (0..n)
         .map(|i| (t.road[i] || t.structure[i] == 48 || t.structure[i] == 8 || (s.cities.owner[i] > 0 && friendly[i])) && friendly[i])
         .collect();
-    let ports: Vec<usize> = (0..n).filter(|&i| t.structure[i] == 8).collect();
-    let water: Vec<bool> = (0..n).map(|i| t.terrain[i] == 1 || t.terrain[i] == 2).collect();
-    // port_edges[p] = ports reachable from port p through friendly water within the reference's distance rule.
+    let ports: Vec<usize> = (0..n).filter(|&i| t.structure[i] == 8 && friendly[i]).collect();
+    // trade routes: two ports at Chebyshev distance <= the port's range (5) are linked when
+    // the game's route search (route settings, at most 5 steps) finds water both route and the owner's
+    // movement allow (Fishing: water, Sailing: ocean), explored by the owner and not another player's (peace aside)
+    let tech = &s.players.tech[po];
+    let routable: Vec<bool> = (0..n)
+        .map(|i| t.explored[po][i] && friendly[i] && ((t.terrain[i] == 1 && tech[10]) || (t.terrain[i] == 2 && (tech[13] || tech[25]))))
+        .collect();
+    const RANGE: i32 = 5;
     let mut port_edges: Vec<Vec<usize>> = vec![Vec::new(); n];
-    let mut seen = vec![false; n];
+    let mut depth = vec![-1i32; n];
+    let mut queue: Vec<usize> = Vec::new();
     let mut stack: Vec<usize> = Vec::new();
     for &p in &ports {
-        seen.fill(false);
-        seen[p] = true;
-        stack.clear();
-        stack.push(p);
-        while let Some(x) = stack.pop() {
-            if g.d(p, x) < 4 {
-                for &y in &g.adj[x] {
-                    let y = y as usize;
-                    if !seen[y] && water[y] && friendly[y] {
-                        seen[y] = true;
-                        stack.push(y);
-                    }
+        depth.fill(-1);
+        depth[p] = 0;
+        queue.clear();
+        queue.push(p);
+        let mut head = 0;
+        while head < queue.len() {
+            let x = queue[head];
+            head += 1;
+            if depth[x] >= RANGE {
+                continue;
+            }
+            for &y in &g.adj[x] {
+                let y = y as usize;
+                if depth[y] < 0 && routable[y] {
+                    depth[y] = depth[x] + 1;
+                    queue.push(y);
                 }
             }
         }
         for &q in &ports {
-            if seen[q] && g.d(p, q) <= 4 {
+            if q != p && depth[q] > 0 && g.d(p, q) <= RANGE {
                 port_edges[p].push(q);
             }
         }
@@ -169,8 +193,35 @@ pub fn connections(s: &mut State, owner: i32, g: &Geom, native: bool) {
             }
         }
     }
+    (reached, cap, exists)
+}
+
+pub fn connections(s: &mut State, owner: i32, g: &Geom, native: bool) {
+    let n = s.n;
+    let (reached, cap, exists) = reachable(s, owner, g, native);
     let mut amount = vec![0i32; n];
     let mut total = 0i32;
+    if !exists {
+        // the player no longer holds their start tile: every connected city of theirs disconnects
+        // -1 to each and -1 to the start tile, whoever holds it now
+        for c in 0..n {
+            if s.cities.owner[c] == owner && s.cities.connected[c] {
+                amount[c] = -1;
+                total -= 1;
+                s.cities.connected[c] = false;
+            }
+        }
+        if total == 0 {
+            return;
+        }
+        add_population_vector(s, &amount, owner, native);
+        if let Some(start) = (0..n).find(|&i| s.tiles.capital[i] == owner && s.cities.owner[i] > 0) {
+            let mut v = vec![0i32; n];
+            v[start] = total;
+            add_population_vector(s, &v, s.cities.owner[start], native);
+        }
+        return;
+    }
     for c in 0..n {
         let own = s.cities.owner[c] == owner && c != cap && exists;
         if own {
@@ -280,12 +331,15 @@ impl BuildCtx {
             }
             connected += c.connected[city] as usize;
             level5 |= c.level[city] >= 5;
+            // the city's structures: those on the tiles it rules (a Limited kind is one per ruling city)
             let mut pr = 0u128;
             let row = &c.territory[city * n..city * n + n];
             for tile in 0..n {
                 if row[tile] {
-                    pr |= 1u128 << t.structure[tile];
                     econ[tile] = true;
+                }
+                if t.city[tile] == city as i32 {
+                    pr |= 1u128 << t.structure[tile];
                 }
             }
             tribe_has |= pr;
@@ -336,17 +390,14 @@ pub fn build_row(s: &State, r: &Rules, g: &Geom, ctx: &BuildCtx, tile: usize) ->
             adjacency |= rs.adjacent_rev[t.structure[j] as usize];
         }
     }
-    // a per-city kind has room iff some own city holding this tile lacks it
-    let mut holders = 0usize;
-    let mut present_all = !0u128;
-    for (k, &city) in ctx.own_cities.iter().enumerate() {
-        if c.territory[city * s.n + tile] {
-            holders += 1;
-            present_all &= ctx.present[k];
-        }
-    }
-    let room = if holders > 0 { !rs.per_city_bits | !present_all } else { 0 };
-    // every City tile counts as having a road, villages included, so no road goes there
+    // a per-city (Limited) kind has room iff the city ruling this tile lacks it;
+    // territory rows can overlap, the ruler is one city
+    let ruler = t.city[tile];
+    let room = match ctx.own_cities.iter().position(|&city| city as i32 == ruler) {
+        Some(k) => !rs.per_city_bits | !ctx.present[k],
+        None => 0,
+    };
+    // every city tile counts as having a road, villages included, so no road goes there
     let road_ok = !t.road[tile] && c.owner[tile] == 0 && t.structure[tile] != 1;
     let empty = (if free { !ROAD } else { 0 }) | (if road_ok { ROAD } else { 0 });
     let a = ctx.unlocked & terrain & empty & adjacency & room;
@@ -511,27 +562,41 @@ pub fn income(s: &State, owner: i32, r: &Rules, g: &Geom) -> i32 {
         // market pays on its own, whatever happens to its city (a siege or negative progress stops only the city)
         total += (0..n).filter(|&i| t.owner[i] == owner).map(|i| market_value[i]).sum::<i32>();
     }
+    let p = (owner - 1) as usize;
+    // embassy income: an embassy pays 2 (4 at peace) unless the two are at war
+    let embassy_pay = |builder: usize, host: usize| -> i32 {
+        if s.players.embassy[builder][host] && !crate::diplomacy::at_war(s, builder, host) {
+            2 * if s.players.peace[builder][host] { 2 } else { 1 }
+        } else {
+            0
+        }
+    };
     for city in 0..n {
         if c.owner[city] != owner {
+            // the builder's share: paid from the host's capital while no other player's unit stands on it
+            let host = t.capital[city];
+            if host > 0 && c.owner[city] == host && !(u.owner[city] != 0 && u.owner[city] != host) {
+                total += embassy_pay(p, (host - 1) as usize);
+            }
             continue;
         }
-        // any unit of another player on the city stops its work, a hidden one included
+        // any unit of another player on the city stops its work, a hidden one included; so does a riot
         let siege = (u.owner[city] != 0 && u.owner[city] != c.owner[city]) || c.riot[city];
         if siege {
             continue;
         }
-        let mut production = c.production[city] + (t.capital[city] == c.owner[city] && t.capital[city] > 0) as i32;
+        let start = t.capital[city] == c.owner[city] && t.capital[city] > 0;
+        let mut production = c.production[city] + start as i32;
+        if start {
+            // the host's share is part of its capital's work
+            production += (0..s.np).filter(|&q| q != p).map(|q| embassy_pay(q, p)).sum::<i32>();
+        }
         if c.progress[city] < 0 {
             production = (production + c.progress[city]).max(0);
         }
         total += production;
     }
-    let p = (owner - 1) as usize;
-    let np = s.np;
-    let embassy_count = (0..np).map(|k| s.players.embassy[p][k] as i32).sum::<i32>()
-        + (0..np).map(|k| s.players.embassy[k][p] as i32).sum::<i32>();
-    // embassies exist only in two-seat games
-    total + embassy_count * if np == 2 && s.players.peace[p][1 - p] { 4 } else { 2 }
+    total
 }
 
 pub fn _unused(s: &State) {

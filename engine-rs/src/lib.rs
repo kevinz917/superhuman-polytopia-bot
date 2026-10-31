@@ -125,10 +125,20 @@ impl GameBatch {
         Ok(())
     }
 
-    /// Only the mapgen layout of one seed (terrain, structure, resource, capitals), for map checks.
-    fn layout<'py>(&self, py: Python<'py>, seed: i32) -> PyResult<Bound<'py, PyDict>> {
-        let l = mapgen::layout_players(seed, &self.geom, self.players);
+    /// Only the mapgen layout of one seed (terrain, structure, resource, capitals, plus the kept attempt's seed and
+    /// inequality), for map checks. exact=True: one generator attempt on `seed` alone, the game's board for it.
+    #[pyo3(signature = (seed, exact=false))]
+    fn layout<'py>(&self, py: Python<'py>, seed: i32, exact: bool) -> PyResult<Bound<'py, PyDict>> {
+        let (l, attempt, inequality) = if exact {
+            let l = mapgen::generate_internal(seed, self.size, self.players);
+            let q = mapgen::inequality(&l, self.size);
+            (l, seed, q)
+        } else {
+            mapgen::generate(seed, self.size, self.players)
+        };
         let d = PyDict::new(py);
+        d.set_item("attempt_seed", attempt)?;
+        d.set_item("inequality", inequality)?;
         d.set_item("terrain", l.terrain.into_pyarray(py))?;
         d.set_item("structure", l.structure.into_pyarray(py))?;
         d.set_item("resource", l.resource.into_pyarray(py))?;
@@ -450,6 +460,7 @@ impl GameBatch {
         field!("units.last_attack", i32, [n], |s, b| b.extend_from_slice(&s.units.last_attack));
         field!("units.passenger", i32, [n], |s, b| b.extend_from_slice(&s.units.passenger));
         field!("units.invisible", bool, [n], |s, b| b.extend_from_slice(&s.units.invisible));
+        field!("units.direction", i32, [n], |s, b| b.extend_from_slice(&s.units.direction));
         field!("cities.owner", i32, [n], |s, b| b.extend_from_slice(&s.cities.owner));
         field!("cities.level", i32, [n], |s, b| b.extend_from_slice(&s.cities.level));
         field!("cities.population", i32, [n], |s, b| b.extend_from_slice(&s.cities.population));
@@ -549,6 +560,16 @@ impl GameBatch {
         load!("units.last_attack", i32, n, |s, v| s.units.last_attack.copy_from_slice(v));
         load!("units.passenger", i32, n, |s, v| s.units.passenger.copy_from_slice(v));
         load!("units.invisible", bool, n, |s, v| s.units.invisible.copy_from_slice(v));
+        // optional (states saved before units had a facing): toward the map centre, as at creation
+        if fields.contains("units.direction")? {
+            load!("units.direction", i32, n, |s, v| s.units.direction.copy_from_slice(v));
+        } else {
+            for s in self.states.iter_mut() {
+                for t in 0..n {
+                    s.units.direction[t] = if s.units.owner[t] != 0 { crate::military::spawn_direction(s.size, t) } else { 0 };
+                }
+            }
+        }
         load!("cities.owner", i32, n, |s, v| s.cities.owner.copy_from_slice(v));
         load!("cities.level", i32, n, |s, v| s.cities.level.copy_from_slice(v));
         load!("cities.population", i32, n, |s, v| s.cities.population.copy_from_slice(v));

@@ -132,11 +132,21 @@ pub fn masks_into<S: Sink>(s: &State, r: &Rules, g: &Geom, no_resign: bool, ms: 
     if !active {
         return;
     }
+    let o = family_offsets(s.n);
+    if diplomacy::peace_pending(s) {
+        // a pending peace request is answered before anything else (accept or decline; resigning stays)
+        for k in [1, 2] {
+            out.set(o[14] + k);
+        }
+        if !no_resign && s.np == 2 {
+            out.set(o[16]);
+        }
+        return;
+    }
     // reward is gated by `active` only; any reward entry is also State::pending_reward, which gates the rest
     if reward_rows(s, out) {
         return;
     }
-    let o = family_offsets(s.n);
     move_rows(s, r, g, &mut ms.mv, out);
     attack_rows(s, r, g, out);
     summon_rows(s, r, &mut ms.summon, out);

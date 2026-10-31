@@ -6,16 +6,27 @@ use crate::state::State;
 
 pub const INF: i32 = 1_000_000;
 
-/// Reference f32 damage formula with Rust's half-away-from-zero rounding; (attack, defense, attack*0.5).
+/// Battle results in the game's integer units (health in tenths, attack and defence in hundredths,
+/// defence bonus in tenths): forces are truncated, then the damage is rounded half-up to whole HP. Inputs are our
+/// f32 HP/stat values and the defender's bonus (poison already halves it, as the game's `>> 1` does); returns
+/// (attack damage, retaliation, floored half attack damage) in HP; retaliation is 0 when the attack kills.
 #[inline]
 pub fn combat(aa: f32, ah: f32, am: f32, dd: f32, dh: f32, dm: f32, db: f32) -> (f32, f32, f32) {
-    let af = aa * (ah / am.max(1.0));
-    let df = dd * (dh / dm.max(1.0)) * db;
-    let total = af + df;
-    let divisor = if total > 0.0 { total } else { 1.0 };
-    let attack = ((if total > 0.0 { (af / divisor) * aa * 4.5 } else { 0.0 }) + 0.000001f32 + 0.5).floor();
-    let defense = ((if dh > attack && total > 0.0 { (df / divisor) * dd * 4.5 } else { 0.0 }) + 0.000001f32 + 0.5).floor();
-    (attack, defense, attack * 0.5)
+    let tenths = |x: f32| (x * 10.0).round() as i64;
+    let round10 = |v: i64| if v % 10 < 10 - v % 10 { v / 10 * 10 } else { v / 10 * 10 + 10 };
+    let attack = (aa * 100.0).round() as i64;
+    let bonus = ((db * 10.0) + 0.001).floor() as i64;
+    let defence = tenths(dd) * bonus;
+    let (ah, am, dh, dm) = (tenths(ah), tenths(am).max(1), tenths(dh), tenths(dm).max(1));
+    let a_force = ah * attack * 100 / am;
+    let d_force = defence * dh * 100 / dm;
+    let total = a_force + d_force;
+    if total <= 0 {
+        return (0.0, 0.0, 0.0);
+    }
+    let damage = round10(attack * a_force * 450 / (total * 1000));
+    let retaliation = if damage < dh && bonus > 0 { round10(d_force * defence * 4500 / (total * 1000 * bonus)) } else { 0 };
+    (damage as f32 / 10.0, retaliation as f32 / 10.0, (damage / 20 * 10) as f32 / 10.0)
 }
 
 #[inline]
@@ -110,9 +121,9 @@ pub fn movement_data_into(s: &State, source: usize, r: &Rules, g: &Geom, md: &mu
         let bridge = t.structure[i] == 48;
         let water = t.terrain[i] == 1 || t.terrain[i] == 2;
         let terrain_ok = ((t.terrain[i] != 1 || tech[10]) && (t.terrain[i] != 2 || tech[13] || tech[25]) && (t.terrain[i] != 4 || tech[20])) || bridge;
-        let own_port = t.structure[i] == 8 && t.owner[i] == owner;
+        let own_port = t.structure[i] == 8 && (t.owner[i] == owner || (t.owner[i] > 0 && s.players.peace[p][s.pclip(t.owner[i])]));
         let land_access = !water || bridge || own_port;
-        let hidden_enemy = u.invisible[i] && u.owner[i] != owner;
+        let hidden_enemy = s.hidden_from(i, owner);
         passable[i] = t.explored[p][i] && terrain_ok && (aquatic || land_access) && (u.owner[i] == 0 || u.owner[i] == owner || hidden_enemy);
         let peaceful = s.players.peace[p][s.pclip(u.owner[i])];
         enemy[i] = u.owner[i] != 0 && u.owner[i] != owner && !u.invisible[i] && !peaceful;
@@ -123,7 +134,7 @@ pub fn movement_data_into(s: &State, source: usize, r: &Rules, g: &Geom, md: &mu
     for i in 0..n {
         let zoc = !no_zoc && g.adj[i].iter().any(|&j| enemy[j as usize]);
         let water = t.terrain[i] == 1 || t.terrain[i] == 2;
-        let own_port = t.structure[i] == 8 && t.owner[i] == owner;
+        let own_port = t.structure[i] == 8 && (t.owner[i] == owner || (t.owner[i] > 0 && s.players.peace[p][s.pclip(t.owner[i])]));
         terminal[i] = zoc || t.terrain[i] == 4 || (t.terrain[i] == 5 && !road[i] && !creep) || (own_port && !aquatic) || (r.skills[kind][CARRY] && !water);
     }
     md.budget = (r.unit_movement[kind] + u.boosted[source] as i32) * 2;
@@ -154,9 +165,10 @@ pub fn movement_flags(s: &State, owner: i32, g: &Geom, flags: &mut [u8]) {
         let bridge = structure == 48;
         let water = terrain == 1 || terrain == 2;
         let terrain_ok = ((terrain != 1 || tech[10]) && (terrain != 2 || tech[13] || tech[25]) && (terrain != 4 || tech[20])) || bridge;
-        let own_port = structure == 8 && t.owner[i] == owner;
+        // passability / embarking: a peace partner's port serves like an own one
+        let own_port = structure == 8 && (t.owner[i] == owner || (t.owner[i] > 0 && peace[s.pclip(t.owner[i])]));
         let uo = u.owner[i];
-        let hidden_enemy = u.invisible[i] && uo != owner;
+        let hidden_enemy = s.hidden_from(i, owner);
         let pass = explored[i] && terrain_ok && (uo == 0 || uo == owner || hidden_enemy);
         let friendly_road = t.owner[i] == 0 || t.owner[i] == owner || peace[s.pclip(t.owner[i])];
         let road = (t.road[i] || structure == 1 || s.cities.owner[i] != 0 || bridge) && friendly_road;
@@ -276,7 +288,8 @@ pub fn reach(s: &State, source: usize, r: &Rules, g: &Geom, ms: &mut MoveScratch
             if dj >= budget || (j != source && terminal(fj)) {
                 continue;
             }
-            let road_j = fj & MV_ROAD != 0 && !creep;
+            // movement cost: no road speed for Swim units (boats) or Creep units
+            let road_j = fj & MV_ROAD != 0 && !creep && !aquatic;
             for &i in &g.adj[j] {
                 let i = i as usize;
                 let fi = flags[i];
@@ -315,7 +328,7 @@ pub fn reach(s: &State, source: usize, r: &Rules, g: &Geom, ms: &mut MoveScratch
     for &i in touched.iter() {
         let i = i as usize;
         dist[i] = INF;
-        let empty = u.owner[i] == 0 || (u.invisible[i] && u.owner[i] != owner);
+        let empty = u.owner[i] == 0 || s.hidden_from(i, owner);
         if empty && i != source && finish_ok(i) {
             emit(i);
         }
@@ -463,7 +476,7 @@ fn observe_impl(s: &State, player: i32, g: &Geom, out: &mut [i16]) {
         let v = t.explored[p][i] || !s.fog;
         vis[i] = v;
         unit[i] = u.owner[i] == player;
-        uvis[i] = v && (unit[i] || !u.invisible[i]);
+        uvis[i] = v && (unit[i] || !s.hidden_from(i, player));
         cities[nc] = i as u16;
         nc += (c.owner[i] == player) as usize;
         units[nu] = i as u16;
@@ -502,7 +515,7 @@ fn observe_impl(s: &State, player: i32, g: &Geom, out: &mut [i16]) {
         if unit[i] {
             detect[i] = g.adj[i].iter().any(|&j| {
                 let j = j as usize;
-                u.owner[j] != 0 && u.owner[j] != player && u.invisible[j]
+                s.hidden_from(j, player)
             }) as i16;
         }
     }
@@ -551,8 +564,10 @@ fn observe_impl(s: &State, player: i32, g: &Geom, out: &mut [i16]) {
     small!(player);
     let hide2 = !(tech[6] || tech[8] || tech[9]);
     let hide5 = !(tech[20] || tech[23] || tech[24]);
+    // resource visibility: starfish only once Star Fishing (Navigation) is unlockable
+    let hide8 = !(tech[13] || tech[14]);
     for ((d, &m), &r) in field!(n).iter_mut().zip(vis).zip(&t.resource) {
-        let hidden = (r == 2 && hide2) || (r == 5 && hide5);
+        let hidden = (r == 2 && hide2) || (r == 5 && hide5) || (r == 8 && hide8);
         *d = if m { if hidden { 0 } else { r as i16 } } else { -1 };
     }
     for ((d, &m), &r) in field!(n).iter_mut().zip(vis).zip(&t.road) {

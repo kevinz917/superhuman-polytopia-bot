@@ -14,6 +14,20 @@ class Imported:
     unsupported: tuple[str, ...]
 
 
+# grid directions: SW, W, NW, N, NE, E, SE, S as (dx, dy)
+_GRID = ((-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1))
+
+
+def spawn_direction(size, x, y):
+    """A new unit's facing toward the map centre (the direction of its distance vector)."""
+    vx, vy, best, score = size // 2 - x, size // 2 - y, 0, 0
+    for d, (dx, dy) in enumerate(_GRID):
+        v = (dy * vy + dx * vx) * (1393 if dx * dx + dy * dy == 1 else 985)
+        if score < v:
+            best, score = d, v
+    return best
+
+
 def from_polyfish(raw: dict) -> Imported:
     settings = raw["settings"]
     size = int(settings["size"])
@@ -120,6 +134,7 @@ def from_polyfish(raw: dict) -> Imported:
             u.prev_x[i] = unit.get("prevCoords", {}).get("x", -1)
             u.prev_y[i] = unit.get("prevCoords", {}).get("y", -1)
             u.last_attack[i] = (unit.get("lastAttackCoords") or {}).get("idx", -1) + 1
+            u.direction[i] = unit.get("direction", spawn_direction(size, i % size, i // size))
             for field, key in ((u.health, "health"), (u.veteran, "veteran"), (u.moved, "moved"),
                                (u.attacked, "attacked"), (u.kills, "kills")):
                 field[i] = unit.get(key, 0)

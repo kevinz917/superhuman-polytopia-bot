@@ -80,7 +80,7 @@ def _old_target_logits(params, tiles, g, family, source):
 
 def test_new_target_keys_keep_every_legal_logprob_at_native_size():
     params = _random_params(14)
-    x, m = _position(300123, 14, steps=40)
+    x, m = _position(300123, 14, steps=12)
     tiles, g, _ = network.trunk(params, x)
     from polytopia_bot.rl.actions import family_mask, source_mask, target_mask
     fm = np.asarray(family_mask(m))

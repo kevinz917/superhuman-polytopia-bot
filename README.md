@@ -83,7 +83,9 @@ on 14×14 boards across ten map types (classic, drylands, pangea, continents, ar
 highlands, jungle, ridge), plus four-seat free-for-all on 18×18. The champion was trained on the earlier research
 ruleset (`bardur-1v1-v2`, derived from the open-source [Polyfish](https://github.com/HenBOMB/Polyfish) engine) and
 plays the game's rules unchanged. Every rule that changed, and the few known differences that remain, are in
-[docs/rules-alignment-2026-10-27.md](docs/rules-alignment-2026-10-27.md).
+[docs/rules-alignment-2026-10-27.md](docs/rules-alignment-2026-10-27.md) and
+[docs/rules-parity-2026-10-31.md](docs/rules-parity-2026-10-31.md) (the game's own map generator, random procedures and
+the second pass of rules).
 
 ## 🎮 Play it
 
@@ -198,11 +200,13 @@ modal run --env staging experiments/modal_distributed_rl.py::tests --paths tests
 The rules live in [`engine-rs/`](engine-rs/), a Rust engine with a batched Python interface
 ([`src/polytopia_bot/rl/rust_engine.py`](src/polytopia_bot/rl/rust_engine.py)) for 2 or 4 seats. It started as a
 hand-written port of a batched JAX engine ([`src/polytopia_bot/gpu/`](src/polytopia_bot/gpu/)), matched it bit for bit
-over 12.5 million random steps at 12-17× the speed, and was then aligned with the game's own rules: it reproduces
-685 of 686 recorded positions' legal-move sets and every rule-relevant field of 19,619 of 27,785 recorded
-transitions, the rest being conventions, dice and a short list of named differences. `tests/test_real_rules.py`
+over 12.5 million random steps at 12-17× the speed, and was then aligned with the game's own rules, map generator
+and random procedures: it reproduces all 686 recorded positions' legal-move sets, rejects none of 27,785 recorded
+commands and matches every rule-relevant field of 19,742 of those transitions, the rest being conventions with no
+gameplay effect and a short list of named differences. `tests/test_real_rules.py`
 checks each changed rule on a hand-edited position. The JAX engine is retired from play; `gpu/` keeps the state
-layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](docs/rules-alignment-2026-10-27.md),
+layout and rule table. See [docs/rules-parity-2026-10-31.md](docs/rules-parity-2026-10-31.md),
+[docs/rules-alignment-2026-10-27.md](docs/rules-alignment-2026-10-27.md),
 [docs/rust-engine-2026-10-21.md](docs/rust-engine-2026-10-21.md) and [docs/gpu-simulation.md](docs/gpu-simulation.md).
 
 ## 🗂️ Repository

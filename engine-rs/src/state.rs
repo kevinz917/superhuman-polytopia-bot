@@ -38,6 +38,9 @@ pub struct Units {
     pub last_attack: Vec<i32>,
     pub passenger: Vec<i32>,
     pub invisible: Vec<bool>,
+    /// Facing (grid direction 0..7 = SW, W, NW, N, NE, E, SE, S; 8 none): toward the map centre at
+    /// creation, then the last step of every move and the line of every attack. A push starts from it.
+    pub direction: Vec<i32>,
 }
 
 impl Units {
@@ -62,6 +65,7 @@ impl Units {
         self.last_attack[i] = 0;
         self.passenger[i] = 0;
         self.invisible[i] = false;
+        self.direction[i] = 0;
     }
     /// jax.tree.map(lambda x: x.at[t].set(x[s]).at[s].set(0), units)
     pub fn move_unit(&mut self, s: usize, t: usize) {
@@ -69,7 +73,7 @@ impl Units {
             ($($f:ident),*) => { $( { let v = self.$f[s]; self.$f[t] = v; } )* };
         }
         mv!(owner, kind, health, veteran, moved, attacked, kills, poison, frozen, boosted, home, created, converted,
-            attacks_performed, prev_x, prev_y, last_attack, passenger, invisible);
+            attacks_performed, prev_x, prev_y, last_attack, passenger, invisible, direction);
         self.clear(s);
     }
 }
@@ -166,7 +170,7 @@ impl State {
             units: Units {
                 owner: z(), kind: z(), health: vec![0.0; n], veteran: b(), moved: b(), attacked: b(), kills: z(),
                 poison: b(), frozen: b(), boosted: b(), home: z(), created: z(), converted: b(), attacks_performed: z(),
-                prev_x: z(), prev_y: z(), last_attack: z(), passenger: z(), invisible: b(),
+                prev_x: z(), prev_y: z(), last_attack: z(), passenger: z(), invisible: b(), direction: z(),
             },
             cities: Cities {
                 owner: z(), level: z(), population: z(), progress: z(), production: z(), border: z(),
@@ -226,6 +230,13 @@ impl State {
     #[inline]
     pub fn foreign(owner: i32, me: i32) -> bool {
         owner > 0 && owner != me
+    }
+    /// The unit on `i` is hidden from `viewer`: invisible, another player's, and not a peace
+    /// partner's (peace partners see each other's hidden units).
+    #[inline]
+    pub fn hidden_from(&self, i: usize, viewer: i32) -> bool {
+        let o = self.units.owner[i];
+        self.units.invisible[i] && Self::foreign(o, viewer) && !self.players.peace[self.pclip(viewer)][self.pclip(o)]
     }
     #[inline]
     pub fn territory(&self, city: usize, tile: usize) -> bool {

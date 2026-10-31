@@ -1,10 +1,10 @@
 //! gpu/capture.py: village/city capture, starfish and ruins (native profile).
 
 use crate::diplomacy::protected;
-use crate::discovery::explorer;
+use crate::discovery::{explorer, movable};
 use crate::economy::{add_population, claim, discover};
 use crate::geom::Geom;
-use crate::hash::hash_word;
+use crate::hash::hash_range;
 use crate::military::{exhaust, promote, push, summon};
 use crate::rules::{Rules, INDEPENDENT};
 use crate::state::State;
@@ -36,11 +36,20 @@ pub fn city(s: &mut State, source: usize, r: &Rules, g: &Geom) {
     let old = s.tiles.owner[source];
     let enemy = old > 0;
     let old_order = s.cities.order[source];
-    let old_territory: Vec<bool> = s.cities.territory[source * n..source * n + n].to_vec();
     let order = (0..n).filter(|&i| s.cities.owner[i] == owner).map(|i| s.cities.order[i]).max().unwrap_or(0).max(0) + 1;
     let area: Vec<bool> = (0..n).map(|t| g.d(source, t) <= 1).collect();
-    let membership: Vec<bool> = if enemy { old_territory.clone() } else { area.clone() };
-    let transfer = 100 + (s.cities.level[source] - 1) * 50 + s.cities.population[source] * 5 + s.reward(source, 2) * 250;
+    // capturing a city: the captured city explores the square of its border radius and rules
+    // the tiles there that no other city rules
+    let radius = s.cities.border[source].max(1);
+    let city_area: Vec<bool> = (0..n).map(|t| g.d(source, t) <= radius).collect();
+    let membership: Vec<bool> = if enemy {
+        (0..n).map(|t| city_area[t] && (s.tiles.city[t] < 0 || s.tiles.city[t] == source as i32)).collect()
+    } else {
+        area.clone()
+    };
+    let was_connected = enemy && s.cities.connected[source];
+    // capturing a city: the city's improvement score changes hands
+    let transfer = crate::economy::city_score(s, source);
     let score = if enemy { transfer } else { 100 };
     let old_owners: Vec<i32> = s.cities.owner.clone();
     {
@@ -98,8 +107,41 @@ pub fn city(s: &mut State, source: usize, r: &Rules, g: &Geom) {
         .collect();
     claim(s, source, &claimed, r);
     adjust_building_population(&before, s, r, g);
-    discover(s, if enemy { &old_territory } else { &area }, owner);
+    discover(s, if enemy { &city_area } else { &area }, owner);
+    if enemy {
+        // capturing a player's city counts as an attack on them
+        crate::diplomacy::hostile(s);
+    }
+    let mut hub_loss = false;
+    if was_connected {
+        // city connections, for a city connected to its old owner's capital: the old owner's start
+        // tile loses its +1; if the new owner's network reaches the city, their start tile gains it and the city keeps
+        // its own (it moves to the new network), else the city loses its +1 (it disconnects)
+        let n = s.n;
+        let (old_cap, old_holds) = capital_index(s, old);
+        if old_holds {
+            let mut v = vec![0i32; n];
+            v[old_cap] = -1;
+            crate::economy::add_population_vector(s, &v, old, true);
+        }
+        let (reached, cap, holds) = crate::structures::reachable(s, owner, g, true);
+        if holds && reached[source] && source != cap {
+            let mut v = vec![0i32; n];
+            v[cap] = 1;
+            crate::economy::add_population_vector(s, &v, owner, true);
+        } else {
+            // a recaptured start tile is the network's hub, not a connected city: it disconnects after the new
+            // owner's cities reconnect to it (recorded games: the hub levels up on the way)
+            s.cities.connected[source] = false;
+            hub_loss = true;
+        }
+    }
     connections(s, owner, g, true);
+    if hub_loss {
+        let mut v = vec![0i32; s.n];
+        v[source] = -1;
+        crate::economy::add_population_vector(s, &v, owner, true);
+    }
     if enemy {
         connections(s, old, g, true);
     }
@@ -122,71 +164,108 @@ pub fn starfish(s: &mut State, source: usize) {
     s.players.stars[p] += 8;
 }
 
-pub fn ruin(s: &mut State, source: usize, r: &Rules, g: &Geom) {
-    let n = s.n;
-    let p = s.p();
-    let cp = s.current_player;
-    let tech = s.players.tech[p];
-    let mut eligible = [false; 128];
-    for k in 0..128 {
-        let req = r.free_requires[k];
-        let prerequisite = if req >= 0 { tech[req.clamp(0, 127) as usize] } else { r.tech_tier[k] == 1 };
-        eligible[k] = r.free_tech[k] && !tech[k] && prerequisite;
-    }
-    let (cap, has_cap) = capital_index(s, cp);
-    let can_explore = s.tiles.terrain[source] != 4
-        && (0..n).any(|t| g.d(source, t) <= 2 && t != source && !s.tiles.explored[p][t]);
-    let options = [true, eligible.iter().any(|&e| e), has_cap, can_explore, true];
-    let seed = hash_word(s.initial_seed, s.seed);
-    let total = options.iter().filter(|&&o| o).count() as u32;
-    let draw = (seed % total) as i32;
-    let mut choice = 0usize;
-    let mut seen = 0;
-    for (i, &o) in options.iter().enumerate() {
-        if o {
-            if seen == draw {
-                choice = i;
-                break;
+/// The techs a player can unlock: walking the tribe's tech list, the unknown `next` techs of every known
+/// tech, then any unknown tech with a known `next` tech, each once, in that order.
+pub fn unlockable_tech(r: &Rules, tech: &[bool; 128]) -> Vec<usize> {
+    let mut out = Vec::new();
+    for (k, next) in &r.tech_tree {
+        if tech[*k] {
+            for &c in next {
+                if r.tech_exists[c] && !tech[c] && !out.contains(&c) {
+                    out.push(c);
+                }
             }
-            seen += 1;
+        } else if next.iter().any(|&c| tech[c]) && !out.contains(k) {
+            out.push(*k);
         }
     }
+    out
+}
+
+// ruins rewards
+const RESOURCES: u32 = 1;
+const POPULATION: u32 = 2;
+const EXPLORER: u32 = 3;
+const FREE_TECH: u32 = 4;
+const BATTLESHIP: u32 = 6;
+const SWORDSMAN: u32 = 8;
+
+/// The ruins reward: [resources, population, Swordsman, Battleship, Explorer, free tech] shuffled by the
+/// seeded hash of (x, y, i) modulo (count - i), plus i (Fisher-Yates); the first valid entry wins, so the reward is a
+/// fixed function of the tile, the game seed and the examining player's position.
+pub fn ruin_reward(s: &State, source: usize, r: &Rules, g: &Geom) -> u32 {
+    let p = s.p();
+    let tech = &s.players.tech[p];
+    let (x, y) = ((source % s.size) as u32, (source / s.size) as u32);
+    let mut list = [RESOURCES, POPULATION, SWORDSMAN, BATTLESHIP, EXPLORER, FREE_TECH];
+    for i in 0..list.len() - 1 {
+        let j = hash_range(s.initial_seed, i as u32, list.len() as u32, &[x, y, i as u32]) as usize;
+        list.swap(i, j);
+    }
+    let water = s.tiles.terrain[source] == 1 || s.tiles.terrain[source] == 2;
+    for reward in list {
+        let valid = match reward {
+            // a neighbour the player can enter and an unexplored tile within 2
+            EXPLORER => {
+                let mut enter = false;
+                g.for_ball(source, 1, |t| {
+                    enter |= t != source && (movable(tech, s.tiles.terrain[t]) || s.tiles.structure[t] == 48)
+                });
+                let mut fog = false;
+                g.for_ball(source, 2, |t| fog |= t != source && !s.tiles.explored[p][t]);
+                enter && fog
+            }
+            FREE_TECH => !unlockable_tech(r, tech).is_empty(),
+            // ocean movement: Sailing
+            BATTLESHIP => water && tech[13],
+            // another living player: the game's nature player (id 255) always counts as one
+            SWORDSMAN => !water,
+            _ => true,
+        };
+        if valid {
+            return reward;
+        }
+    }
+    RESOURCES
+}
+
+/// Examining ruins.
+pub fn ruin(s: &mut State, source: usize, r: &Rules, g: &Geom) {
+    let p = s.p();
+    let cp = s.current_player;
+    let reward = ruin_reward(s, source, r, g);
     exhaust(s, source);
     s.units.invisible[source] = false;
-    s.seed = seed;
     s.tiles.structure[source] = 0;
     s.tiles.structure_level[source] = 0;
     s.tiles.structure_turn[source] = 0;
-    crate::cov::hit(18 + choice);
-    match choice {
-        0 => s.players.stars[p] += 10,
-        1 => {
-            let seed = hash_word(s.initial_seed, s.seed);
-            let count = eligible.iter().filter(|&&e| e).count() as u32;
-            let draw = (seed % count.max(1)) as i32;
-            let mut kind = 0usize;
-            let mut seen = 0;
-            for k in 0..128 {
-                if eligible[k] {
-                    if seen == draw {
-                        kind = k;
-                        break;
-                    }
-                    seen += 1;
-                }
-            }
-            s.seed = seed;
+    crate::cov::hit(match reward { RESOURCES => 18, FREE_TECH => 19, POPULATION => 20, EXPLORER => 21, _ => 22 });
+    let (x, y) = ((source % s.size) as u32, (source / s.size) as u32);
+    match reward {
+        RESOURCES => s.players.stars[p] += 10,
+        FREE_TECH => {
+            // the tech list[hash(x, y) modulo count], researched at no cost
+            let list = unlockable_tech(r, &s.players.tech[p]);
+            let kind = list[hash_range(s.initial_seed, 0, list.len() as u32, &[x, y]) as usize];
             s.players.tech[p][kind] = true;
             s.players.tech_turn[p][kind] = s.turn;
             s.players.score[p] = s.players.score[p].wrapping_add(100 * r.tech_tier[kind]);
         }
-        2 => add_population(s, cap, 3),
-        3 => {
+        POPULATION => {
+            // three population points to the current capital (the start tile, else the first own
+            // city in tile order); nothing without a city
+            if let Some(cap) = crate::structures::current_capital(s, cp) {
+                add_population(s, cap, 3);
+            }
+        }
+        EXPLORER => {
             let reveal = explorer(s, source, g);
             discover(s, &reveal, cp);
         }
         _ => {
-            let water = s.tiles.terrain[source] <= 2;
+            // trained on an occupied tile (the examining unit is pushed off first), then promoted: a veteran unit 44
+            // (our Rammership carrying a Warrior) on water, a veteran Swordsman on land; no home (not a city tile)
+            let water = reward == BATTLESHIP;
             push(s, source, r, g);
             summon(s, source, if water { 44 } else { 11 }, r, g, false);
             promote(s, source, r);
