@@ -15,6 +15,7 @@ part of this repository. Start with the champion's three reports, then read back
 ## After the champion: the game's rules, hero runs and four players
 
 - [rules-alignment-2026-10-27.md](rules-alignment-2026-10-27.md): one ruleset, the game's own (2.17.3); every rule that changed and the parity before and after.
+- [rules-parity-2026-10-31.md](rules-parity-2026-10-31.md): second pass to 1:1: the game's map generator, Explorer/ruins/push procedures, the remaining rules; zero rejected recorded commands.
 - [hero-runs-plan-2026-10-26.md](hero-runs-plan-2026-10-26.md), [hero-throughput-2026-10-28.md](hero-throughput-2026-10-28.md): the from-scratch 4×128 runs on the game's rules (hero-1v1 is in `weights/hero-1v1/`) and the throughput fixes behind them.
 - [four-player-2026-10-24.md](four-player-2026-10-24.md): four-seat 18×18 free-for-all: the N-seat engine, rank rewards, the trainer and the big runs.
 

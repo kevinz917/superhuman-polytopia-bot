@@ -1,7 +1,7 @@
 """Map sources for actors and arenas: a weighted mix of map types, deterministic per seed.
 
-A mix is a dict {type: weight}; types are the variant presets plus 'classic'
-(the frozen engine generator, gpu.mapgen.layout, i.e. today's training maps).
+A mix is a dict {type: weight}; types are the variant presets plus 'classic' (the engine-rs generator, a port
+of the game's Drylands map generator, i.e. exactly the boards GameBatch.reset(seed) plays).
 """
 import numpy as np
 
@@ -38,8 +38,7 @@ def parse_mix(mix):
 
 class MapSource:
     def __init__(self, mix='classic', size=14, players=2):
-        """players=4: four-capital maps; 'classic' then comes from engine-rs (mapgen::layout_players), which
-        has no JAX counterpart."""
+        """players=4: four-capital maps. 'classic' always comes from engine-rs (mapgen::layout_players)."""
         self.mix, self.size, self.players = parse_mix(mix), size, players
         self.types = list(self.mix)
         self.weights = np.array([self.mix[t] for t in self.types])
@@ -62,10 +61,6 @@ class MapSource:
         return kind, layout
 
     def _classic_generator(self):
-        if self.players == 2:
-            import jax
-            from polytopia_bot.gpu import mapgen
-            return jax.jit(lambda s: mapgen.layout(s, size=self.size))
         from importlib.resources import files
         from polytopia_engine_rs import GameBatch
         from polytopia_bot.gpu import ENGINE_REVISION

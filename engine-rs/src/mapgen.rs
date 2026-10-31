@@ -1,24 +1,28 @@
-//! Procedural Bardur Drylands layout and reset (gpu/mapgen.py, maps/state.py::initial_state). Two seats are the
-//! reference generator bit for bit; four seats run the same steps with one capital per quadrant.
+//! The game's map generator (game version 123) on the Drylands preset for Bardur seats,
+//! and the reset built on it. `generate_internal` is one attempt for one attempt seed, tile for tile; `layout` is
+//! the full generation: up to 50 attempt seeds, kept by the map's inequality. The game draws attempt seeds
+//! from a crypto RNG; here they come from System.Random(seed), so a reset seed fixes the board.
 
 use crate::geom::Geom;
-use crate::hash::DotNetRandom;
+use crate::hash::{hash_range3, hash_value3, DotNetRandom};
 use crate::kernels::update_exploration;
 use crate::state::State;
 
+/// Ruins per board: the ruin pass with amount tiles / 40 places amount + 1.
 pub fn ruins(size: usize) -> Option<i32> {
     match size {
-        11 => Some(4),
-        14 => Some(5),
-        18 => Some(9),
+        11 | 14 | 18 => Some((size * size / 40) as i32 + 1),
         _ => None,
     }
 }
 
+/// Training-harness round cap (the game's Domination mode has none).
 pub fn round_limit(size: usize) -> i32 {
     if size == 18 { 150 } else { 100 }
 }
 
+/// A generated board in the game's ids: terrain, structure (improvement ids: 1 city, also on
+/// capitals, 2 ruin, 47 lighthouse; a ruin can sit on a resource), resource, capitals per seat.
 pub struct Layout {
     pub terrain: Vec<i32>,
     pub structure: Vec<i32>,
@@ -27,241 +31,550 @@ pub struct Layout {
     pub capitals: Vec<usize>,
 }
 
-/// mapgen._choose: bounded draw over the count of set entries, then the draw-th set index (0 when none).
-fn choose(rng: &mut DotNetRandom, mask: &[bool]) -> usize {
-    let count = mask.iter().filter(|&&m| m).count() as i32;
-    let draw = rng.bounded(count.max(1));
-    let mut seen = 0;
-    for (i, &m) in mask.iter().enumerate() {
-        if m {
-            if seen == draw {
-                return i;
+const FIELD: i32 = 3;
+const MOUNTAIN: i32 = 4;
+const FOREST: i32 = 5;
+const ICE: i32 = 6;
+const CITY: i32 = 1;
+const RUIN: i32 = 2;
+const LIGHTHOUSE: i32 = 47;
+const WHALE: usize = 4;
+/// Generator settings for the Drylands preset: equality iterations, equality limit.
+const EQUALITY_ITERATIONS: usize = 50;
+const EQUALITY_LIMIT: f32 = 1.01;
+/// A continent modifier: a positive default is scaled, otherwise the modifier replaces it.
+fn modify(default: f32, modifier: f32) -> f32 {
+    if default > 0.0 { default * modifier } else { modifier }
+}
+/// A Bardur continent's resource modifiers by resource id (continent defaults, the tribe's, Bardur crop 0
+/// and the wetness-0 climates' fish/whale 0): game, metal, fruit and aquacrop survive.
+fn resource_modifiers() -> [f32; 10] {
+    [0.0, 0.5, modify(0.5, 0.0), 0.0, 0.0, 0.8, 0.5, 0.0, 0.0, 0.3]
+}
+/// Terrain requirements per resource, in the game's resource order.
+const RESOURCE_TERRAIN: [&[i32]; 10] = [&[], &[5], &[3], &[1, 2], &[2], &[4], &[3], &[3, 5], &[1, 2], &[1, 2]];
+
+fn is_water(t: i32) -> bool {
+    t == 1 || t == 2
+}
+
+/// The in-board square of `radius`, diagonals included, x-major (dx outer, dy inner).
+fn area(w: usize, c: usize, radius: i32, include_center: bool, out: &mut Vec<usize>) {
+    out.clear();
+    let (cx, cy, s) = ((c % w) as i32, (c / w) as i32, w as i32);
+    for dx in -radius..=radius {
+        for dy in -radius..=radius {
+            if !include_center && dx == 0 && dy == 0 {
+                continue;
             }
-            seen += 1;
+            let (x, y) = (cx + dx, cy + dy);
+            if x >= 0 && x < s && y >= 0 && y < s {
+                out.push((y * s + x) as usize);
+            }
         }
     }
-    0
+}
+
+struct Board {
+    w: usize,
+    n: usize,
+    terrain: Vec<i32>,
+    improvement: Vec<i32>,
+    resource: Vec<i32>,
+    /// climate assigned (at a capital or by the climate pass), and the continent (seat) a tile joined in that pass
+    climate: Vec<bool>,
+    continent: Vec<i32>,
+    caps: Vec<usize>,
+    rng: DotNetRandom,
+    scratch: Vec<usize>,
+}
+
+impl Board {
+    fn any_in(&mut self, c: usize, radius: i32, f: impl Fn(&Board, usize) -> bool) -> bool {
+        let mut a = std::mem::take(&mut self.scratch);
+        area(self.w, c, radius, true, &mut a);
+        let hit = a.iter().any(|&t| f(self, t));
+        self.scratch = a;
+        hit
+    }
+
+    /// Capital positions: one ceil(sqrt(players))^2 domain grid; each seat draws a free
+    /// domain, then a tile inside it (2 from the board edge) weighted by max(1, domain/2 - distance to centre)^3.
+    fn capital_positions(&mut self, np: usize) {
+        let (w, n) = (self.w as i32, self.n);
+        let k = (np as f64).sqrt().ceil() as i32;
+        let (domain, rem) = (w / k, w % k);
+        assert!(domain >= 3, "domain too small for an isolated capital per seat");
+        let off = |i: i32| rem.min(1i32.max(rem.min(i) - 1));
+        let mut domains: Vec<i32> = (0..k * k).collect();
+        let mut prob = vec![0i32; n];
+        for row in 0..k {
+            for col in 0..k {
+                let (cx, cy) = (off(col) + col * domain + domain / 2, off(row) + row * domain + domain / 2);
+                for (i, p) in prob.iter_mut().enumerate() {
+                    let (x, y) = (i as i32 % w, i as i32 / w);
+                    let d = (x - cx).abs().max((y - cy).abs());
+                    let v = 1i32.max(domain / 2 - d).pow(3);
+                    *p = if *p != 0 { (*p).max(v) } else { v };
+                }
+            }
+        }
+        let (lo, hi) = if domain < 5 { (1, -1) } else { (2, -2) };
+        for _ in 0..np {
+            let r = self.rng.next_range(0, domains.len() as i32);
+            let d = domains.remove(r as usize);
+            let (ix, iy) = (domain * (d % k) + off(d % k), domain * (d / k) + off(d / k));
+            let (sx, ex) = (2.max(ix + lo), (w - 2).min(ix + hi + domain));
+            let (sy, ey) = (2.max(iy + lo), (w - 2).min(iy + hi + domain));
+            let cells = || (sy..ey).flat_map(move |y| (sx..ex).map(move |x| (y * w + x) as usize));
+            let total: i32 = cells().map(|i| 1i32.max(prob[i])).sum();
+            let v = self.rng.next_range(0, total);
+            let mut cum = 0;
+            let at = cells().find(|&i| {
+                cum += 1i32.max(prob[i]);
+                v < cum
+            });
+            self.caps.push(at.expect("IndexForProbabilityValueInRange"));
+        }
+    }
+
+    /// Noise terrain at wetness 0: one draw per tile, every tile clears the lowest-noise land
+    /// threshold, so the board is all field; then the capitals get their cities and climates.
+    fn terrain_from_noise(&mut self) {
+        for _ in 0..self.n {
+            self.rng.value();
+        }
+        self.terrain.iter_mut().for_each(|t| *t = FIELD);
+        for k in 0..self.caps.len() {
+            let c = self.caps[k];
+            self.improvement[c] = CITY;
+            self.climate[c] = true;
+        }
+    }
+
+    /// Post-terrain cities: villages on random valid spots (a valid city spot: land, not on the edge, no
+    /// improvement within 2), each removing the tiles of its 5x5 square from the spot list.
+    fn post_terrain_cities(&mut self, count: i32) {
+        let w = self.w;
+        let mut spots: Vec<i64> = (0..self.n)
+            .filter(|&t| {
+                let (x, y) = (t % w, t / w);
+                let edge = x.min(w - 1 - x).min(y).min(w - 1 - y);
+                !is_water(self.terrain[t]) && edge >= 1
+            })
+            .map(|t| t as i64)
+            .collect::<Vec<_>>();
+        spots.retain(|&t| !self.any_in(t as usize, 2, |b, a| b.improvement[a] != 0));
+        for _ in 0..count {
+            if spots.is_empty() {
+                return;
+            }
+            let t = spots[self.rng.next_range(0, spots.len() as i32) as usize] as usize;
+            self.terrain[t] = FIELD;
+            self.resource[t] = 0;
+            self.improvement[t] = CITY;
+            let (x, y, wi) = ((t % w) as i64, (t / w) as i64, w as i64);
+            for yy in y - 2..=y + 2 {
+                for xx in x - 2..=x + 2 {
+                    if let Some(p) = spots.iter().position(|&s| s == yy * wi + xx) {
+                        spots.remove(p);
+                    }
+                }
+            }
+        }
+    }
+
+    /// Climates: one continent per seat grown round-robin from its capital: a random tile of the continent, then
+    /// a random climate-less neighbour (land first); a continent whose tile has none drops it (panic budget 10/tile).
+    fn climates(&mut self) {
+        let (n, np) = (self.n, self.caps.len());
+        let mut tiles: Vec<Vec<usize>> = self.caps.iter().map(|&c| vec![c]).collect();
+        let (mut assigned, mut panic, mut k) = (np, 10 * n as i32, 0isize);
+        if !(panic > 0 && np < n) {
+            return;
+        }
+        let (mut a, mut cand) = (Vec::with_capacity(8), Vec::with_capacity(8));
+        loop {
+            let cont = &mut tiles[k as usize];
+            let mut p = panic;
+            if cont.is_empty() {
+                p -= 1;
+            } else {
+                let c = cont[self.rng.next_range(0, cont.len() as i32) as usize];
+                area(self.w, c, 1, false, &mut a);
+                cand.clear();
+                cand.extend(a.iter().copied().filter(|&t| !self.climate[t] && !is_water(self.terrain[t])));
+                if cand.is_empty() {
+                    cand.extend(a.iter().copied().filter(|&t| !self.climate[t]));
+                }
+                if cand.is_empty() {
+                    let at = cont.iter().position(|&t| t == c).unwrap();
+                    cont.remove(at);
+                    k -= 1;
+                    p -= 1;
+                } else {
+                    let t = cand[self.rng.next_range(0, cand.len() as i32) as usize];
+                    self.climate[t] = true;
+                    self.continent[t] = k as i32;
+                    if !is_water(self.terrain[t]) {
+                        self.terrain[t] = FIELD;
+                        self.resource[t] = 0;
+                    }
+                    cont.push(t);
+                    assigned += 1;
+                }
+            }
+            panic = p;
+            k += 1;
+            if assigned < n && (k as usize) < np && panic > 0 {
+                continue;
+            }
+            if assigned < n {
+                k = 0;
+                if panic > 0 {
+                    continue;
+                }
+            }
+            break;
+        }
+    }
+
+    /// Terrain (continents patched): per continent a bag of ceil(L * share) field, mountain and forest drawn
+    /// without replacement over its free land tiles in tile order (field 0.5, mountain 0.15, forest 0.4 x Bardur 0.8).
+    fn terrain(&mut self) {
+        let (field, mountain, forest) = (0.5f32, 0.15f32, modify(0.4, 0.8));
+        let sum = forest + field + mountain;
+        let mut bag = Vec::with_capacity(self.n);
+        for k in 0..self.caps.len() as i32 {
+            let tiles: Vec<usize> = (0..self.n).filter(|&t| self.continent[t] == k).collect();
+            let land = tiles.iter().filter(|&&t| !is_water(self.terrain[t]) && self.improvement[t] == 0).count() as f32;
+            bag.clear();
+            for (kind, count) in [(FIELD, land * (field / sum)), (MOUNTAIN, (mountain / sum) * land), (FOREST, (forest / sum) * land)] {
+                if count > 0.0 {
+                    let mut i = 1;
+                    loop {
+                        bag.push(kind);
+                        if i as f32 >= count {
+                            break;
+                        }
+                        i += 1;
+                    }
+                }
+            }
+            for t in tiles {
+                if !is_water(self.terrain[t]) && self.improvement[t] == 0 {
+                    self.resource[t] = 0;
+                    if bag.is_empty() {
+                        break;
+                    }
+                    let r = self.rng.next_range(0, bag.len() as i32) as usize;
+                    self.terrain[t] = bag.remove(r);
+                }
+            }
+        }
+    }
+
+    /// Lighthouses: a lighthouse on each corner of the board, the tile set to field.
+    fn lighthouses(&mut self) {
+        for c in corners(self.w) {
+            self.improvement[c] = LIGHTHOUSE;
+            if !is_water(self.terrain[c]) {
+                self.terrain[c] = FIELD;
+            }
+        }
+    }
+
+    /// One resource: an xxHash seeded from one draw; every resource type passes on hash(x, y, i) <= its continent
+    /// modifier (whales not next to whales or cities) and a terrain match; the hash picks among the candidates.
+    fn add_resource(&mut self, t: usize, mods: &[f32; 10]) {
+        let seed = (self.rng.value() * 1000.0f32) as i32 as u32;
+        if self.improvement[t] != 0 {
+            return;
+        }
+        if self.continent[t] < 0 {
+            self.terrain[t] = ICE;
+            return;
+        }
+        let (x, y) = ((t % self.w) as i32, (t / self.w) as i32);
+        let mut cand = [0usize; 10];
+        let mut found = 0;
+        for (i, (&m, reqs)) in mods.iter().zip(RESOURCE_TERRAIN.iter()).enumerate() {
+            let h = hash_value3(seed, x, y, i as i32);
+            if m == 0.0 || h > m {
+                continue;
+            }
+            if i == WHALE {
+                let mut a = std::mem::take(&mut self.scratch);
+                area(self.w, t, 1, false, &mut a);
+                let blocked = a.iter().any(|&u| self.resource[u] == WHALE as i32 || self.improvement[u] == CITY);
+                self.scratch = a;
+                if blocked {
+                    continue;
+                }
+            }
+            if reqs.is_empty() || reqs.contains(&self.terrain[t]) {
+                cand[found] = i;
+                found += 1;
+            }
+        }
+        if found > 0 {
+            self.resource[t] = cand[hash_range3(seed, 0, found as i32, x, y, mods.len() as i32) as usize] as i32;
+        }
+    }
+
+    /// Resources (richness 1): per city in tile order, each ring-1 tile on Value() < 1, then per city each free
+    /// tile of radius 2 on Value() < 1/3; a tile is offered once.
+    fn resources(&mut self) {
+        let mods = resource_modifiers();
+        let mut visited = vec![false; self.n];
+        let mut cities = Vec::new();
+        let mut a = Vec::with_capacity(25);
+        for c in 0..self.n {
+            if self.improvement[c] != CITY {
+                continue;
+            }
+            area(self.w, c, 1, false, &mut a);
+            for &t in &a {
+                if self.rng.value() < 1.0 && !visited[t] && self.resource[t] == 0 && self.improvement[t] == 0 {
+                    self.add_resource(t, &mods);
+                }
+                visited[t] = true;
+            }
+            cities.push(c);
+        }
+        let third = 1.0f32 / 3.0;
+        for c in cities {
+            area(self.w, c, 2, false, &mut a);
+            for &t in &a {
+                if self.improvement[t] == 0 && self.rng.value() < third && !visited[t] && self.resource[t] == 0 {
+                    self.add_resource(t, &mods);
+                }
+                visited[t] = true;
+            }
+        }
+    }
+
+    /// The generator's shuffle: for i < len - 1 swap i with Next(i, len).
+    fn shuffle(&mut self, list: &mut [usize]) {
+        for i in 0..list.len().saturating_sub(1) {
+            let j = self.rng.next_range(i as i32, list.len() as i32) as usize;
+            list.swap(i, j);
+        }
+    }
+
+    /// Starting resources at the capital (Bardur: game, game; the minimum count is unused): the shuffled capital ring
+    /// counts matching resources first, then puts each missing one on a tile of its terrain, then converts any land.
+    fn starting_resources(&mut self, cap: usize) {
+        let mut want = vec![1i32, 1];
+        let mut ring = Vec::with_capacity(8);
+        area(self.w, cap, 1, false, &mut ring);
+        self.shuffle(&mut ring);
+        let mut i = 0isize;
+        while (i as usize) < ring.len() {
+            let r = self.resource[ring[i as usize]];
+            if r != 0 {
+                if let Some(j) = want.iter().position(|&x| x == r) {
+                    want.remove(j);
+                    ring.remove(i as usize);
+                    i -= 1;
+                }
+            }
+            i += 1;
+        }
+        for pass in 0..3 {
+            if want.is_empty() {
+                return;
+            }
+            let mut i = 0isize;
+            while (i as usize) < want.len() {
+                let reqs = RESOURCE_TERRAIN[want[i as usize] as usize];
+                let terrain = reqs[self.rng.next_range(0, reqs.len() as i32) as usize];
+                let pick = match pass {
+                    0 => ring.iter().position(|&t| self.terrain[t] == terrain),
+                    1 => ring.iter().position(|&t| !is_water(self.terrain[t])),
+                    _ => if ring.is_empty() { None } else { Some(0) },
+                };
+                if let Some(j) = pick {
+                    let t = ring[j];
+                    if pass > 0 {
+                        self.terrain[t] = terrain;
+                    }
+                    self.resource[t] = want[i as usize];
+                    want.remove(i as usize);
+                    ring.remove(j);
+                    i -= 1;
+                }
+                i += 1;
+            }
+        }
+    }
+
+    /// Ruins: amount + 1 ruins along a shuffled tile list, not on corners, not within 1 of a city, 2 of a ruin or
+    /// 2 of a capital.
+    fn ruins(&mut self, amount: i32) {
+        let mut list: Vec<usize> = (0..self.n).collect();
+        self.shuffle(&mut list);
+        let corners = corners(self.w);
+        let mut placed = 0;
+        for t in list {
+            if corners.contains(&t)
+                || self.any_in(t, 1, |b, a| b.improvement[a] == CITY)
+                || self.any_in(t, 2, |b, a| b.improvement[a] == RUIN)
+                || self.any_in(t, 2, |b, a| b.improvement[a] == CITY && b.caps.contains(&a)) {
+                continue;
+            }
+            self.improvement[t] = RUIN;
+            placed += 1;
+            if placed > amount {
+                break;
+            }
+        }
+    }
+}
+
+fn corners(w: usize) -> [usize; 4] {
+    [w * w - 1, 0, w * (w - 1), w - 1]
+}
+
+/// One generator attempt on the Drylands preset (wetness 0, no smoothing or suburbs, post-terrain city
+/// density 1, richness 1) for `np` Bardur seats: the board the game makes from `seed`, before the starting units.
+pub fn generate_internal(seed: i32, size: usize, np: usize) -> Layout {
+    let n = size * size;
+    let mut b = Board {
+        w: size, n, terrain: vec![1; n], improvement: vec![0; n], resource: vec![0; n], climate: vec![false; n],
+        continent: vec![-1; n], caps: Vec::with_capacity(np), rng: DotNetRandom::new(seed), scratch: Vec::with_capacity(25),
+    };
+    b.capital_positions(np);
+    b.terrain_from_noise();
+    let villages = ((size as f32 * 0.33f32) as i32).pow(2) - np as i32;
+    b.post_terrain_cities(villages);
+    b.climates();
+    b.terrain();
+    b.lighthouses();
+    b.resources();
+    for k in 0..np {
+        b.starting_resources(b.caps[k]);
+    }
+    b.ruins((n / 40) as i32);
+    Layout { terrain: b.terrain, structure: b.improvement, resource: b.resource, capitals: b.caps }
+}
+
+/// Map inequality: each seat's turf grows from its capital by lowest path cost (mountain 4,
+/// other land 1; first-listed minimum pops, ties go to the earlier seat); turf tiles score by city / ruin / land and
+/// distance; the result is the highest turf score over the lowest.
+pub fn inequality(l: &Layout, size: usize) -> f32 {
+    let (n, np) = (size * size, l.capitals.len());
+    let mut visited = vec![false; n];
+    let mut next: Vec<(usize, i32, usize)> = Vec::new();
+    let mut turfs: Vec<Vec<(usize, i32)>> = vec![Vec::new(); np];
+    let mut a = Vec::with_capacity(8);
+    let mut grow = |cur: usize, cost: i32, seat: usize, visited: &Vec<bool>, next: &mut Vec<(usize, i32, usize)>| {
+        area(size, cur, 1, false, &mut a);
+        for &t in a.iter() {
+            if visited[t] {
+                continue;
+            }
+            let step = if l.terrain[t] == MOUNTAIN {
+                4
+            } else if !is_water(l.terrain[t]) {
+                1
+            } else if is_water(l.terrain[cur]) {
+                4
+            } else if l.structure[cur] != CITY {
+                1000
+            } else if l.capitals.contains(&cur) {
+                8
+            } else {
+                16
+            };
+            let c = step + cost;
+            match next.iter_mut().find(|e| e.0 == t) {
+                Some(e) => {
+                    if c < e.1 || (c == e.1 && e.2 > seat) {
+                        e.1 = c;
+                        e.2 = seat;
+                    }
+                }
+                None => next.push((t, c, seat)),
+            }
+        }
+    };
+    for (seat, &c) in l.capitals.iter().enumerate() {
+        visited[c] = true;
+        turfs[seat].push((c, 0));
+        grow(c, 0, seat, &visited, &mut next);
+    }
+    let mut budget = n;
+    while !next.is_empty() && budget > 0 {
+        budget -= 1;
+        let mut best = 0;
+        for (i, e) in next.iter().enumerate() {
+            if e.1 < next[best].1 {
+                best = i;
+            }
+        }
+        let (t, cost, seat) = next.remove(best);
+        visited[t] = true;
+        turfs[seat].push((t, cost));
+        grow(t, cost, seat, &visited, &mut next);
+    }
+    let reach = size as f32 * 0.8f32 + -3.0f32;
+    let (mut lo, mut hi) = (f32::MAX, f32::MIN);
+    for turf in &turfs {
+        let mut score = 0.0f32;
+        for &(t, cost) in turf {
+            let f = 1.0f32.min(0.0f32.max((cost as f32 + -3.0f32) / reach));
+            let mut s = if l.structure[t] == CITY {
+                let s = f * -90.0f32 + 100.0f32 + 0.1f32;
+                if cost == 4 { s + 20.0 } else if cost == 3 { s + 40.0 } else { s }
+            } else if l.structure[t] == RUIN {
+                let s = f * -3.0f32 + 5.0f32 + 0.1f32;
+                if cost < 5 { s + 5.0 } else { s }
+            } else {
+                0.1f32
+            };
+            if (3..=6).contains(&l.terrain[t]) {
+                s += 1.5f32 - f;
+            }
+            score += s;
+        }
+        lo = if lo <= score { lo } else { score };
+        if hi < score {
+            hi = score;
+        }
+    }
+    hi / if lo > 0.0 { lo } else { 0.001 }
+}
+
+/// Full generation: one attempt on each of up to 50 attempt seeds (System.Random(seed).Next() each, standing in
+/// for the game's crypto RNG draw below int.MaxValue), keeping the first below the 1.01 equality limit,
+/// else the lowest inequality.
+pub fn generate(seed: i32, size: usize, np: usize) -> (Layout, i32, f32) {
+    let mut seeds = DotNetRandom::new(seed);
+    let mut best: Option<(Layout, i32, f32)> = None;
+    for _ in 0..EQUALITY_ITERATIONS {
+        let s = seeds.next_int();
+        let l = generate_internal(s, size, np);
+        let q = inequality(&l, size);
+        let better = best.as_ref().map_or(true, |b| q < b.2);
+        if better {
+            best = Some((l, s, q));
+        }
+        if q < EQUALITY_LIMIT {
+            break;
+        }
+    }
+    best.unwrap()
 }
 
 pub fn layout(seed: i32, g: &Geom) -> Layout {
     layout_players(seed, g, 2)
 }
 
-/// layout for `np` seats (2..=4): capitals in distinct quadrants, each later one drawn among the free quadrants at
-/// least half as far from the first capital as the farthest free one.
+/// The game's Drylands board for `np` Bardur seats (2..=4), one capital domain each.
 pub fn layout_players(seed: i32, g: &Geom, np: usize) -> Layout {
     assert!((2..=4).contains(&np));
-    let (size, n) = (g.size, g.n);
-    let s = size as i32;
-    let d = |i: usize, j: usize| g.d(i, j);
-    let mut rng = DotNetRandom::new(seed);
-    let mut available = [true; 4];
-    let mut caps = vec![0usize; np];
-    let quadsize = s / 2;
-    let centers_x: Vec<i32> = (0..4).map(|c| (c % 2) * quadsize + quadsize / 2).collect();
-    let centers_y: Vec<i32> = (0..4).map(|c| (c / 2) * quadsize + quadsize / 2).collect();
-    for i in 0..np {
-        let (c0x, c0y) = ((caps[0] % size) as i32, (caps[0] / size) as i32);
-        let sq: Vec<i32> = (0..4).map(|q| (centers_x[q] - c0x).pow(2) + (centers_y[q] - c0y).pow(2)).collect();
-        let maximum = (0..4).filter(|&q| available[q]).map(|q| sq[q]).max().unwrap_or(-1);
-        let allowed: Vec<bool> = (0..4).map(|q| available[q] && (i == 0 || sq[q] >= maximum.div_euclid(2))).collect();
-        let q = choose(&mut rng, &allowed) as i32;
-        let sx = ((q % 2) * quadsize + 2).min(s - 3);
-        let ex = (((q % 2) + 1) * quadsize - 2).max(sx + 1).min(s - 2);
-        let sy = ((q / 2) * quadsize + 2).min(s - 3);
-        let ey = (((q / 2) + 1) * quadsize - 2).max(sy + 1).min(s - 2);
-        let cx = rng.bounded(ex - sx);
-        let cy = rng.bounded(ey - sy);
-        available[q as usize] = false;
-        caps[i] = ((cy + sy) * s + cx + sx) as usize;
-    }
-    let mut land = vec![false; n];
-    for &c in &caps {
-        land[c] = true;
-    }
-    let target_land = ((n as f64) * 0.95) as usize;
-    let mut attempt = 0i32;
-    while land.iter().filter(|&&l| l).count() < target_land && attempt < (n as i32) * 10 {
-        let at = rng.bounded(n as i32) as usize;
-        land[at] = true;
-        attempt += 1;
-    }
-    let mut villages = vec![false; n];
-    for &c in &caps {
-        villages[c] = true;
-    }
-    // Biome traversal: one active array per seat with swap removal, kept only for the RNG stream.
-    let mut active = vec![vec![0usize; n]; np];
-    for i in 0..np {
-        active[i][0] = caps[i];
-    }
-    let mut counts = vec![1usize; np];
-    let mut done = villages.clone();
-    let mut changed = true;
-    let mut candidates = vec![false; n];
-    while changed {
-        changed = false;
-        for i in 0..np {
-            if counts[i] > 0 {
-                let index = rng.bounded(counts[i] as i32) as usize;
-                let at = active[i][index];
-                for t in 0..n {
-                    candidates[t] = d(at, t) <= 1 && !done[t];
-                }
-                let any_preferred = (0..n).any(|t| candidates[t] && land[t]);
-                if any_preferred {
-                    for t in 0..n {
-                        candidates[t] = candidates[t] && land[t];
-                    }
-                }
-                if candidates.iter().any(|&c| c) {
-                    let chosen = choose(&mut rng, &candidates);
-                    active[i][counts[i]] = chosen;
-                    counts[i] += 1;
-                    done[chosen] = true;
-                    changed = true;
-                } else {
-                    active[i][index] = active[i][counts[i] - 1];
-                    counts[i] -= 1;
-                }
-            }
-        }
-    }
-    let mut terrain = vec![0i32; n];
-    for i in 0..n {
-        let coast = !land[i]
-            && [1usize, 3, 4, 6].iter().any(|&k| g.nb_valid[i * 8 + k] && land[g.nb[i * 8 + k] as usize]);
-        terrain[i] = if land[i] { 3 } else if coast { 1 } else { 2 };
-    }
-    let forest_cut = 0.14f32 + 0.38f32 * 1.5f32;
-    for i in 0..n {
-        if land[i] && !villages[i] {
-            let value = rng.unit_float();
-            terrain[i] = if value < 0.14f32 { 4 } else if value < forest_cut { 5 } else { 3 };
-        }
-    }
-    let edge: Vec<i32> = (0..n)
-        .map(|i| {
-            let (x, y) = ((i % size) as i32, (i / size) as i32);
-            x.min(s - 1 - x).min(y.min(s - 1 - y))
-        })
-        .collect();
-    let village_candidates = |villages: &[bool], terrain: &[i32], out: &mut [bool]| {
-        for i in 0..n {
-            out[i] = land[i] && !villages[i] && terrain[i] != 4 && edge[i] >= 2 && edge[i] != 3
-                && !(0..n).any(|j| d(i, j) < 3 && villages[j]);
-        }
-    };
-    loop {
-        village_candidates(&villages, &terrain, &mut candidates);
-        if !candidates.iter().any(|&c| c) {
-            break;
-        }
-        let at = choose(&mut rng, &candidates);
-        villages[at] = true;
-        terrain[at] = 3;
-    }
-    let mut above: Vec<i32> = villages.iter().map(|&v| if v { 1 } else { 0 }).collect();
-    for i in 0..np {
-        for _ in 0..2 {
-            for t in 0..n {
-                candidates[t] = d(caps[i], t) <= 1 && t != caps[i] && above[t] == 0 && terrain[t] != 2;
-            }
-            if candidates.iter().any(|&c| c) {
-                let at = choose(&mut rng, &candidates);
-                terrain[at] = 5;
-                above[at] = 101;
-            }
-        }
-    }
-    for city in 0..n {
-        if !villages[city] {
-            continue;
-        }
-        let mut count = (0..n).filter(|&t| d(city, t) <= 1 && above[t] == 101).count() as i32;
-        for rad in 1..3i32 {
-            for at in 0..n {
-                let kind = terrain[at];
-                if d(city, at) <= rad && above[at] == 0 && kind != 2 {
-                    let value = rng.unit_float();
-                    let probability: f32 = if kind == 3 {
-                        if rad == 1 { 0.18 } else { 0.06 }
-                    } else if kind == 5 {
-                        if rad == 1 && count >= 3 { 0.0 } else if rad == 1 { 0.38 } else { 0.12 }
-                    } else if kind == 4 {
-                        if rad == 1 { 0.11 } else { 0.03 }
-                    } else {
-                        0.5
-                    };
-                    let resource = if kind == 3 { 106 } else if kind == 5 { 101 } else if kind == 4 { 105 } else { 103 };
-                    let added = value < probability;
-                    above[at] = if added { resource } else { 0 };
-                    if added && kind == 5 && rad == 1 {
-                        count += 1;
-                    }
-                }
-            }
-        }
-    }
-    let resource_value: Vec<i32> = (0..n)
-        .map(|t| {
-            let a = above[t];
-            (if a == 101 || a == 103 || a == 106 { 2 } else if a == 105 { 3 } else { 0 }) + (terrain[t] == 5) as i32
-        })
-        .collect();
-    let scores: Vec<i32> = (0..np).map(|i| (0..n).filter(|&t| d(caps[i], t) <= 2).map(|t| resource_value[t]).sum()).collect();
-    let best = *scores.iter().max().unwrap();
-    for i in 0..np {
-        if scores[i] + 4 < best {
-            let mut order: Vec<usize> = (0..n).filter(|&t| d(caps[i], t) <= 2).collect();
-            let count = order.len();
-            for _ in 0..count {
-                let a = rng.bounded(count as i32) as usize;
-                let b = rng.bounded(count as i32) as usize;
-                order.swap(a, b);
-            }
-            let (mut at, mut score) = (0usize, scores[i]);
-            while at < count && score + 4 < best {
-                let idx = order[at];
-                if above[idx] == 0 && terrain[idx] == 5 {
-                    above[idx] = 101;
-                    score += 2;
-                }
-                at += 1;
-            }
-        }
-    }
-    let ruin_count = ruins(size).expect("supported board size");
-    let (mut placed, mut attempt) = (0i32, 0i32);
-    while placed < ruin_count && attempt < 2000 {
-        let at = rng.bounded(n as i32) as usize;
-        let valid = above[at] == 0 && terrain[at] > 2 && !(0..n).any(|t| d(at, t) <= 1 && (above[t] == 2 || villages[t]));
-        if valid {
-            above[at] = 2;
-            placed += 1;
-        }
-        attempt += 1;
-    }
-    let (mut placed, mut attempt) = (0i32, 0i32);
-    while placed < (n / 25) as i32 && attempt < 1000 {
-        let at = rng.bounded(n as i32) as usize;
-        let valid = terrain[at] <= 2 && above[at] == 0
-            && !(0..n).any(|t| d(at, t) <= 1 && (above[t] == 108 || above[t] == 47 || above[t] == 1));
-        if valid {
-            above[at] = 108;
-            placed += 1;
-        }
-        attempt += 1;
-    }
-    for &c in &g.corners {
-        above[c] = 47;
-    }
-    Layout {
-        terrain,
-        structure: above.iter().map(|&a| if a < 100 { a } else { 0 }).collect(),
-        resource: above.iter().map(|&a| if a >= 100 { a - 100 } else { 0 }).collect(),
-        capitals: caps,
-    }
+    generate(seed, g.size, np).0
 }
 
 /// maps/state.py::initial_state, bitwise mapgen.reset after the layout step.
@@ -305,6 +618,7 @@ pub fn initial_state(seed: u32, terrain: &[i32], structure: &[i32], resource: &[
         s.units.home[c] = c as i32 + 1;
         s.units.prev_x[c] = (c % size) as i32;
         s.units.prev_y[c] = (c / size) as i32;
+        s.units.direction[c] = crate::military::spawn_direction(size, c);
     }
     for k in 0..np {
         s.players.stars[k] = 5;

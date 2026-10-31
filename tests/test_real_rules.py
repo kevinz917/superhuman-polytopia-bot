@@ -160,7 +160,8 @@ def test_away_stars_for_seat_two_meeting_player_one():
 def _research_only(d, tech):
     """The same research without anyone to meet (to read its price)."""
     e = {k: v.copy() for k, v in d.items()}
-    e['units.owner'][0][e['units.owner'][0] != e['current_player'][0]] = 0
+    me = int(e['current_player'][0])
+    e['players.known'][0, me - 1, 2 - me] = True          # already met: no gift
     g = _load(e)
     assert _step(g, RESEARCH, 0, tech) == 0
     return g
@@ -493,3 +494,320 @@ def test_unseen_enemies_exert_zone_of_control(explored):
     d['tiles.terrain'][0, m + SIZE] = WATER
     d['current_player'][0] = 1
     assert not _legal(d, MOVE, a, b) and _legal(d, MOVE, a, m)
+
+
+# --- Explorer walk, ruins reward and the push of an occupant (docs/engine-parity-audit-2026-10-31.md items 2, 5, 8,
+# 21). Small reference ports of the game's procedures; transition_parity.py checks the engine against the recorded
+# games.
+GIANT, SWORDSMAN = 12, 11
+GRID = ((-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1))     # grid direction SW .. S as (dx, dy)
+STEPS = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))    # explorer candidates, in order
+M32 = 0xFFFFFFFF
+
+
+def _xxh(seed, *words):
+    """The game's seeded hash (XXH32 of up to 3 ints)."""
+    h = (seed + 374761393 + 4 * len(words)) & M32
+    for w in words:
+        h = (h + (w & M32) * 3266489917) & M32
+        h = ((h << 17 | h >> 15) & M32) * 668265263 & M32
+    h ^= h >> 15
+    h = h * 2246822519 & M32
+    h ^= h >> 13
+    h = h * 3266489917 & M32
+    return h ^ h >> 16
+
+
+def _movable(tech, terrain):
+    return terrain in (3, 5, 6, 7) or (terrain, True) in ((1, tech[10]), (2, tech[13]), (4, tech[20]))
+
+
+def _fog_score(look, k, r):
+    cx, cy = k % 11, k // 11
+    cells = [look[y * 11 + x] for y in range(max(cy - r, 0), min(cy + r, 10) + 1)
+             for x in range(max(cx - r, 0), min(cx + r, 10) + 1)]
+    count, light = sum(f >> 3 & 1 for f in cells), any(f & 40 == 40 for f in cells)
+    if r == 2 and not count and not light:
+        return 9999
+    return (40 if light else 73) - 10 * min(count, 4)
+
+
+def _walk(e, p, source):
+    """12 explorer steps over the 11x11 fog-distance map (no bridges): the tiles they newly explore."""
+    seed0, terrain, structure, tech = int(e['initial_seed']), e['tiles.terrain'], e['tiles.structure'], e['players.tech'][p]
+    explored = set(np.flatnonzero(e['tiles.explored'][p]).tolist())
+    start = set(explored)
+    fx, fy = source % SIZE, source // SIZE
+    seed, path = _xxh(seed0, fx, fy), [source]
+    for _ in range(12):
+        look = [0] * 121
+        for k in range(121):
+            x, y = fx - 5 + k % 11, fy - 5 + k // 11
+            if 0 <= x < SIZE and 0 <= y < SIZE:
+                t, st = y * SIZE + x, structure[y * SIZE + x]
+                seen = t in explored
+                enter = st == 1 if st in (1, 48) else _movable(tech, terrain[t])
+                look[k] = (1 | (16 if st == 48 else 0) | (6 if enter else 0) | (0 if seen else 8) | (32 if st == 47 else 0)
+                           | (64 if terrain[t] == 4 and seen else 0))
+        dist = [1000 if f & 2 else 9999 for f in look]
+        queue = [k for k in range(121) if look[k] & 8]
+        for k in queue:
+            dist[k] = 0
+        for k in range(121):
+            if look[k] & 0x4a == 0x42 and _fog_score(look, k, 2) != 9999:
+                dist[k] = _fog_score(look, k, 2) + 100
+                queue.append(k)
+                look[k] |= 128
+        at = 0
+        while at < len(queue):
+            u = queue[at]
+            right, left = (1 if u % 11 < 10 else 9999), (-1 if u % 11 else -9999)
+            step = dist[u] + 100
+            for i in (u + 11, u - 11, u + right, u + left, u + left + 11, u + right + 11, u + left - 11, u + right - 11):
+                if 0 <= i < 121 and dist[i] > step and not look[i] & 128 and look[i] & 3 == 3:
+                    dist[i] = _fog_score(look, i, 1) + 100 if step == 100 and not look[i] & 8 else step
+                    queue.append(i)
+            if at == 0x1f2:
+                break
+            at += 1
+        long, penalty, count = len(path) > 8, 1, 0
+        for t in path:
+            lx, ly = t % SIZE - fx + 5, t // SIZE - fy + 5
+            if 0 <= lx < 11 and 0 <= ly < 11:
+                dist[ly * 11 + lx] += penalty
+            penalty += (count & 1) if long else 1
+            count += long
+        values = [dist[(dy + 5) * 11 + dx + 5] for dx, dy in STEPS]
+        if min(values) > 9998:
+            break
+        ties = [j for j, v in enumerate(values) if v == min(values)]
+        dx, dy = STEPS[ties[_xxh(seed0, seed) % len(ties)]]
+        fx, fy = fx + dx, fy + dy
+        path.append(fy * SIZE + fx)
+        r = 2 if terrain[fy * SIZE + fx] == 4 else 1
+        explored |= {y * SIZE + x for y in range(fy - r, fy + r + 1) for x in range(fx - r, fx + r + 1)
+                     if 0 <= x < SIZE and 0 <= y < SIZE}
+        seed = _xxh(seed0, seed)
+    return explored - start
+
+
+def _ruin_order(seed, tile):
+    """The ruins reward's shuffled [resources, population, Swordsman, Battleship, Explorer, free tech]."""
+    order, x, y = [1, 2, 8, 6, 3, 4], tile % SIZE, tile // SIZE
+    for i in range(5):
+        j = _xxh(seed, x, y, i) % (6 - i) + i
+        order[i], order[j] = order[j], order[i]
+    return order
+
+
+def _unlockable(tech):
+    """The unlockable techs over rules.json `next` (the game's tech-unlock order), breadth-first from Basic."""
+    import json
+    from polytopia_bot.ruleset import rules_json
+    nxt = {t['id']: t['next'] for t in json.loads(rules_json())['technologies'] if t['id'] >= 0}
+    tree, queue = [], [0]
+    while queue:
+        k = queue.pop(0)
+        if k not in tree:
+            tree.append(k)
+            queue += nxt[k]
+    out = []
+    for k in tree:
+        if tech[k]:
+            out += [c for c in nxt[k] if not tech[c] and c not in out]
+        elif any(tech[c] for c in nxt[k]) and k not in out:
+            out.append(k)
+    return out
+
+
+def _explorer_city(seed=11, initial_seed=None):
+    """A state whose capital (level 2, no reward taken yet) can take the Explorer reward."""
+    d = _state(seed)
+    cap = _capital(d, 1)
+    d['cities.level'][0, cap] = 2
+    d['cities.rewards'][0, cap] = 0
+    if initial_seed is not None:
+        d['initial_seed'][0] = initial_seed
+    return d, cap
+
+
+@pytest.mark.parametrize('initial_seed', [7, 123456, 4000000000])
+def test_explorer_walk_is_the_games(initial_seed):
+    """The city's Explorer reward: 12 explorer steps seeded by the hash of (x, y), each to the neighbour with the
+    lowest fog distance (11x11 window, mountains scored, backtracking penalty), ties by the step hash."""
+    d, cap = _explorer_city(initial_seed=initial_seed)
+    d['players.tech'][0, 0, 20] = True                 # Climbing: mountains are walkable
+    before = {k: np.array(v)[0] for k, v in d.items()}
+    g = _load(d)
+    assert _step(g, REWARD, cap, 4) == 0
+    e = _export(g)
+    new = set(np.flatnonzero(e['tiles.explored'][0] & ~before['tiles.explored'][0]).tolist())
+    assert new and new == _walk(before, 0, cap)
+
+
+def test_explorer_walk_reaches_fog_five_tiles_away():
+    """The walk sees fog anywhere in its 11x11 window: with everything explored but a column 5 tiles east, it walks
+    there (the old engine's 3-round spread random-walked)."""
+    d, cap = _explorer_city()
+    cx, cy = cap % SIZE, cap // SIZE
+    fog_x = cx + 5 if cx + 5 < SIZE else cx - 5
+    d['tiles.explored'][0, 0] = True
+    for t in range(SIZE * SIZE):
+        if t % SIZE == fog_x:
+            d['tiles.explored'][0, 0, t] = False
+        if abs(t % SIZE - cx) <= 5 and abs(t // SIZE - cy) <= 2:
+            d['tiles.terrain'][0, t], d['tiles.structure'][0, t] = FIELD, 0
+    d['tiles.structure'][0, cap] = 1
+    g = _load(d)
+    assert _step(g, REWARD, cap, 4) == 0
+    e = _export(g)
+    assert (e['tiles.explored'][0].reshape(SIZE, SIZE)[:, fog_x]).any()
+
+
+def _ruin_state(order_first, seed=11, tech_override=None):
+    """A field ruin next to the capital with an idle warrior on it, everything explored (no Explorer reward), and an
+    initial_seed whose shuffle makes `order_first` the first valid reward."""
+    d = _state(seed)
+    _clear_units(d)
+    cap = _capital(d, 1)
+    ruin = next(t for t in _ring(cap, 2) if d['tiles.structure'][0, t] == 0 and 0 < t % SIZE < SIZE - 1
+                and 0 < t // SIZE < SIZE - 1)
+    for t in _ring(ruin) + [ruin]:
+        d['tiles.terrain'][0, t] = FIELD
+        if t != ruin and d['tiles.structure'][0, t] != 1:
+            d['tiles.structure'][0, t] = 0
+    d['tiles.structure'][0, ruin] = 2
+    d['tiles.explored'][0, 0] = True
+    d['players.known'][0, 0, 1] = True        # already met: seeing their city pays no gift
+    if tech_override is not None:
+        d['players.tech'][0, 0] = tech_override
+    tech = d['players.tech'][0, 0]
+    valid = {1, 2, 8} | ({4} if _unlockable(tech) else set())
+    s = next(s for s in range(1, 100000) if next(r for r in _ruin_order(s, ruin) if r in valid) == order_first)
+    d['initial_seed'][0] = s
+    _unit(d, ruin, 1, WARRIOR, direction=3)
+    d['units.home'][0, ruin] = cap + 1
+    return d, ruin, cap
+
+
+@pytest.mark.parametrize('reward', [1, 2, 4, 8])
+def test_ruins_reward_is_the_tile_hash(reward):
+    """The ruins reward: a hash-shuffled list of rewards, the first valid one wins; the old per-step seed chain
+    (State.seed) plays no part."""
+    d, ruin, cap = _ruin_state(reward)
+    for chain in (0, 99):
+        d['seed'][0] = chain
+        before = {k: np.array(v)[0] for k, v in d.items()}
+        g = _load(d)
+        assert _step(g, CAPTURE, ruin, 0) == 0
+        e = _export(g)
+        assert e['tiles.structure'][ruin] == 0
+        if reward == 1:
+            assert e['players.stars'][0] == before['players.stars'][0] + 10
+        if reward == 2:
+            assert (e['cities.population'][cap], e['cities.level'][cap]) != (before['cities.population'][cap],
+                                                                              before['cities.level'][cap])
+            assert e['players.stars'][0] == before['players.stars'][0]
+        if reward == 4:
+            gained = np.flatnonzero(e['players.tech'][0] & ~before['players.tech'][0])
+            lst = _unlockable(before['players.tech'][0])
+            assert gained.tolist() == [lst[_xxh(int(d['initial_seed'][0]), ruin % SIZE, ruin // SIZE) % len(lst)]]
+        if reward == 8:
+            assert e['units.kind'][ruin] == SWORDSMAN and e['units.veteran'][ruin] and e['units.health'][ruin] == 20.
+            assert e['units.home'][ruin] == 0
+            # the examining warrior was pushed along its facing (N = +y)
+            assert e['units.kind'][ruin + SIZE] == WARRIOR and e['units.owner'][ruin + SIZE] == 1
+
+
+@pytest.mark.parametrize('owned_ramming_only', [True, False])
+def test_navigation_follows_sailing(owned_ramming_only):
+    """Navigation's parent is Sailing (the game's tech unlocks), not Ramming: with every Bardur tech but Sailing and
+    Navigation, the free tech is Sailing; with every one but Navigation, it is Navigation."""
+    tech = np.zeros(128, bool)
+    for k in (*range(25), 38, 44):
+        tech[k] = k != 11
+    tech[14] = False
+    tech[13] = not owned_ramming_only
+    assert _unlockable(tech) == ([13] if owned_ramming_only else [14])
+    d, ruin, _ = _ruin_state(4, tech_override=tech)
+    g = _load(d)
+    assert _step(g, CAPTURE, ruin, 0) == 0
+    e = _export(g)
+    assert bool(e['players.tech'][0, 13]) and bool(e['players.tech'][0, 14]) == (not owned_ramming_only)
+
+
+def _giant_city(occupant_owner, facing, blocked=()):
+    """The capital at level 5 taking the Giant, with a unit on it facing `facing`; all neighbours open fields."""
+    d = _state()
+    _clear_units(d)
+    cap = _capital(d, 1)
+    d['cities.level'][0, cap] = 5
+    d['cities.rewards'][0, cap] = 0
+    d['cities.rewards'][0, cap, 3] = 1
+    d['cities.rewards'][0, cap, 7] = 1
+    d['cities.rewards'][0, cap, 5] = 1
+    for t in _ring(cap):
+        d['tiles.terrain'][0, t], d['tiles.structure'][0, t] = FIELD, 0
+        d['tiles.explored'][0, :, t] = True
+    _unit(d, cap, occupant_owner, WARRIOR, direction=facing)
+    for k in blocked:
+        dx, dy = GRID[k]
+        _unit(d, cap + dx + dy * SIZE, 2, WARRIOR)
+    return d, cap
+
+
+@pytest.mark.parametrize('owner,facing,blocked,expect', [
+    (1, 5, (), 5),            # own unit: its facing (E)
+    (1, 5, (5,), 4),          # E taken: -1 (NE)
+    (1, 5, (5, 4), 6),        # then +1 (SE)
+    (1, 5, (5, 4, 6), 3),     # then -2 (N)
+    (2, 5, (), 1),            # another player's unit: the opposite (W)
+    (1, 0, (0,), 7),          # wraps: SW taken, -1 is S
+])
+def test_push_follows_the_occupant_facing(owner, facing, blocked, expect):
+    """Pushing a unit: deterministic, from the occupant's stored facing (reversed for another player's
+    unit), trying offsets 0, -1, +1, -2, +2, -3, +3, -4; a push keeps moved/attacked."""
+    d, cap = _giant_city(owner, facing, blocked)
+    cx, cy = cap % SIZE, cap // SIZE
+    if not all(0 <= cx + dx < SIZE and 0 <= cy + dy < SIZE for dx, dy in GRID):
+        pytest.skip('capital on the edge')
+    g = _load(d)
+    assert _step(g, REWARD, cap, 6) == 0
+    e = _export(g)
+    dx, dy = GRID[expect]
+    to = cap + dx + dy * SIZE
+    assert e['units.kind'][cap] == GIANT and e['units.kind'][to] == WARRIOR and e['units.owner'][to] == owner
+    assert not e['units.moved'][to] and e['units.direction'][to] == expect
+
+
+def test_push_needs_an_explored_tile():
+    """The push's route only uses tiles the occupant's owner has explored."""
+    d, cap = _giant_city(1, 5)
+    dx, dy = GRID[5]
+    d['tiles.explored'][0, 0, cap + dx + dy * SIZE] = False
+    g = _load(d)
+    assert _step(g, REWARD, cap, 6) == 0
+    e = _export(g)
+    dx, dy = GRID[4]
+    assert e['units.kind'][cap + dx + dy * SIZE] == WARRIOR
+
+
+def test_units_face_the_centre_then_their_fights():
+    """A new unit faces the map centre; an attack turns attacker and defender toward each other."""
+    from polytopia_bot.gpu.importer import spawn_direction
+    d = _state()
+    row = _strip(d)
+    a, b = row + 2, row + 3
+    _unit(d, a, 1, ARCHER, direction=0)
+    _unit(d, b, 2, DEFENDER, direction=0)
+    g = _load(d)
+    assert _step(g, ATTACK, a, b) == 0
+    e = _export(g)
+    assert e['units.direction'][a] == 5 and e['units.direction'][b] == 1          # E and W
+    d = _state()
+    cap = _capital(d, 1)
+    d['units.owner'][0, cap] = 0
+    d['players.stars'][0, 0] = 50
+    g = _load(d)
+    assert _step(g, SUMMON, cap, WARRIOR) == 0
+    assert _export(g)['units.direction'][cap] == spawn_direction(SIZE, cap % SIZE, cap // SIZE)

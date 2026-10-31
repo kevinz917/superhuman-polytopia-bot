@@ -1,6 +1,9 @@
 //! xxHash32 short-input path (gpu/discovery.py) and the .NET System.Random stream (gpu/random.py).
 
+/// xxHash32 of an int array of fewer than 4 words (XXH32 short input). With `seed` = the game seed (our
+/// `initial_seed`) this is the game's seeded hash of x[, y[, z]], and of a single int.
 pub fn hash_words(seed: u32, words: &[u32]) -> u32 {
+    debug_assert!(words.len() < 4);
     let mut h = seed.wrapping_add(374761393).wrapping_add(4 * words.len() as u32);
     for &w in words {
         h = h.wrapping_add(w.wrapping_mul(3266489917));
@@ -14,6 +17,24 @@ pub fn hash_words(seed: u32, words: &[u32]) -> u32 {
 #[inline]
 pub fn hash_word(seed: u32, word: u32) -> u32 {
     hash_words(seed, &[word])
+}
+
+/// Hash value of (x, y, z): the hash of the int triple times 2^-32, in float.
+#[inline]
+pub fn hash_value3(seed: u32, x: i32, y: i32, z: i32) -> f32 {
+    hash_words(seed, &[x as u32, y as u32, z as u32]) as f32 * 2.3283064e-10f32
+}
+
+/// Hash range [min, max) of (x, y, z): the triple's hash modulo (max - min), unsigned, plus min.
+#[inline]
+pub fn hash_range3(seed: u32, min: i32, max: i32, x: i32, y: i32, z: i32) -> i32 {
+    (hash_words(seed, &[x as u32, y as u32, z as u32]) % (max - min) as u32) as i32 + min
+}
+
+/// Hash range [min, max): hash % (max - min) + min, for max > min.
+#[inline]
+pub fn hash_range(seed: u32, min: u32, max: u32, words: &[u32]) -> u32 {
+    hash_words(seed, words) % (max - min) + min
 }
 
 const MAX: i32 = 2147483647;
@@ -75,6 +96,21 @@ impl DotNetRandom {
         let remainder = (low & 2147483647).wrapping_add(quotient);
         quotient = quotient.wrapping_add((remainder >= 2147483647) as u32);
         quotient as i32
+    }
+
+    /// System.Random.Sample / NextDouble: InternalSample * (1 / int.MaxValue), in double.
+    pub fn next_double(&mut self) -> f64 {
+        self.next_int() as f64 * (1.0 / 2147483647.0)
+    }
+
+    /// System.Random.Next(min, max) (and Next(max) with min 0) for max - min <= int.MaxValue.
+    pub fn next_range(&mut self, min: i32, max: i32) -> i32 {
+        (self.next_double() * (max as i64 - min as i64) as f64) as i32 + min
+    }
+
+    /// A random float: NextDouble cast to float (can round up to 1.0).
+    pub fn value(&mut self) -> f32 {
+        self.next_double() as f32
     }
 
     /// Float32 cast of NextDouble, including the upward-shifted halfway cases.

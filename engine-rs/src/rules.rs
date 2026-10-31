@@ -143,6 +143,9 @@ pub struct Rules {
     pub units_by_tech: [u128; 128],
     pub unit_static: u128,
     pub unit_cost_le: CostIndex,
+    /// The tribe's tech list: the techs reachable from Basic in breadth-first order over `next` (the
+    /// game's tech unlocks, in its order), each with its `next` list. The unlockable-tech walk uses it.
+    pub tech_tree: Vec<(usize, Vec<usize>)>,
 }
 
 /// Bit k set for every true entry of a 128-wide flag row.
@@ -210,6 +213,7 @@ impl Rules {
             units_by_tech: [0; 128],
             unit_static: 0,
             unit_cost_le: CostIndex { min: 0, table: vec![0] },
+            tech_tree: Vec::new(),
         };
         let core_names = [
             "Raft", "Rammership", "Scoutship", "Bomber", "Juggernaut", "MindBender", "Warrior", "Rider", "Knight",
@@ -263,6 +267,22 @@ impl Rules {
         }
         r.tech_exists[38] = true;
         r.tech_exists[44] = true;
+        let mut next: Vec<Vec<usize>> = vec![Vec::new(); 128];
+        for t in &data.technologies {
+            if (0..128).contains(&t.id) {
+                next[t.id as usize] = t.next.iter().filter(|&&k| (0..128).contains(&k)).map(|&k| k as usize).collect();
+            }
+        }
+        // at most 200 dequeues, as the game
+        let (mut queue, mut at) = (vec![0usize], 0usize);
+        while at < queue.len() && at < 200 {
+            let k = queue[at];
+            at += 1;
+            if r.tech_exists[k] && !r.tech_tree.iter().any(|(t, _)| *t == k) {
+                r.tech_tree.push((k, next[k].clone()));
+                queue.extend(next[k].iter().copied());
+            }
+        }
         for (unit, tech) in [(2, 0), (3, 1), (4, 3), (5, 7), (8, 17), (9, 18), (10, 22), (11, 24), (38, 38), (41, 14), (42, 13), (44, 44)] {
             r.unit_tech[unit] = tech;
         }

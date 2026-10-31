@@ -14,41 +14,60 @@ pub fn add_population(s: &mut State, index: usize, amount: i32) {
     add_population_vector(s, &v, cp, false);
 }
 
-/// economy.add_population_vector: level-ups (and, when !native, level-downs) per city, score to `owner`.
-pub fn add_population_vector(s: &mut State, amount: &[i32], owner: i32, native: bool) {
+/// Improvement score of city `i`: 50 per level + 50, 5 per point of progress (xp), the Park's
+/// 250; with negative progress 100 more per point, floored at 0.
+pub fn city_score(s: &State, i: usize) -> i32 {
+    let c = &s.cities;
+    let v = 5 * c.progress[i] + 50 * (c.level[i] + 1) + 250 * s.reward(i, 2);
+    if c.progress[i] < 0 { (v + 100 * c.progress[i]).max(0) } else { v }
+}
+
+/// City level-ups, repeated while there is enough: progress pays for the next level.
+pub fn level_up(s: &mut State, i: usize) {
+    let c = &mut s.cities;
+    while c.progress[i] >= c.level[i] + 1 {
+        c.progress[i] -= c.level[i] + 1;
+        c.level[i] += 1;
+        c.production[i] += 1;
+        if s.tiles.structure[i] > 0 {
+            s.tiles.structure_level[i] += 1;
+        }
+    }
+}
+
+/// A population point per city of `owner`: progress and score (the change of city_score). A city levels up
+/// only on its owner's turn; otherwise at the owner's next turn start (start_level_ups). Cities
+/// never lose levels (negative progress stays).
+pub fn add_population_vector(s: &mut State, amount: &[i32], owner: i32, _native: bool) {
     let n = s.n;
     let mut score: i32 = 0;
     for i in 0..n {
-        let active = s.cities.owner[i] == owner && amount[i] != 0;
-        let a = if active { amount[i] } else { 0 };
-        let old_level = s.cities.level[i];
-        let c = &mut s.cities;
-        c.progress[i] += a;
-        if active {
-            while c.progress[i] >= c.level[i] + 1 {
-                c.progress[i] -= c.level[i] + 1;
-                c.level[i] += 1;
-                c.production[i] += 1;
-                if s.tiles.structure[i] > 0 {
-                    s.tiles.structure_level[i] += 1;
-                }
-            }
-            if !native {
-                while c.progress[i] < 0 && c.level[i] > 1 {
-                    c.progress[i] += c.level[i];
-                    c.level[i] -= 1;
-                    c.production[i] = (c.production[i] - 1).max(1);
-                    if s.tiles.structure[i] > 0 {
-                        s.tiles.structure_level[i] = (s.tiles.structure_level[i] - 1).max(1);
-                    }
-                }
-            }
+        if s.cities.owner[i] != owner || amount[i] == 0 {
+            continue;
         }
-        c.population[i] += a;
-        score += a * 5 + (c.level[i] - old_level) * 50;
+        let before = city_score(s, i);
+        s.cities.progress[i] += amount[i];
+        s.cities.population[i] += amount[i];
+        if owner == s.current_player {
+            level_up(s, i);
+        }
+        score += city_score(s, i) - before;
     }
     let o = (owner - 1) as usize;
     s.players.score[o] = s.players.score[o].wrapping_add(score);
+}
+
+/// Turn start: the mover's cities that gained enough progress off-turn level up now (after
+/// the turn's income, which reads the old level).
+pub fn start_level_ups(s: &mut State, owner: i32) {
+    let o = (owner - 1) as usize;
+    for i in 0..s.n {
+        if s.cities.owner[i] == owner && s.cities.progress[i] >= s.cities.level[i] + 1 {
+            let before = city_score(s, i);
+            level_up(s, i);
+            s.players.score[o] = s.players.score[o].wrapping_add(city_score(s, i) - before);
+        }
+    }
 }
 
 pub fn in_territory(s: &State, out: &mut [bool]) {
@@ -159,19 +178,10 @@ pub fn discover(s: &mut State, reveal: &[bool], player: i32) {
     if count == 0 {
         return; // add_population(.., 0) below changes nothing
     }
-    let c = &s.cities;
-    let any_capital = (0..n).any(|i| c.owner[i] == player && s.tiles.capital[i] == player);
-    let any_own = (0..n).any(|i| c.owner[i] == player);
-    let mut index = 0usize;
-    let mut best = i32::MAX;
-    for i in 0..n {
-        let preferred = if any_capital { c.owner[i] == player && s.tiles.capital[i] == player } else { c.owner[i] == player };
-        if preferred && c.order[i] < best {
-            best = c.order[i];
-            index = i;
-        }
+    // revealing a lighthouse: +1 to the current capital, nothing without a city
+    if let Some(index) = crate::structures::current_capital(s, player) {
+        add_population(s, index, count);
     }
-    add_population(s, index, if any_own { count } else { 0 });
 }
 
 /// out[t*9 + k]
@@ -180,6 +190,8 @@ pub fn reward_mask(s: &State, out: &mut [bool]) {
     for t in 0..n {
         let count = s.reward_count(t);
         let pending = s.cities.owner[t] == s.current_player && count < s.cities.level[t] - 1;
+        // the game stops at each level-up's reward trigger before the next population point (recorded games:
+        // a city that gains two levels is offered the next level's pair, then the one after)
         let slot = count + 1;
         for k in 0..9i32 {
             let allowed = match slot {

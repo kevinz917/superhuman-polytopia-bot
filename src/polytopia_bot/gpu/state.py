@@ -46,6 +46,7 @@ class Units(NamedTuple):
     last_attack: Array  # index + 1; zero means absent
     passenger: Array
     invisible: Array
+    direction: Array  # facing, grid direction 0..7 (SW, W, NW, N, NE, E, SE, S); a push starts from it
 
 
 class Cities(NamedTuple):
@@ -116,7 +117,7 @@ def empty_state(size: int) -> State:
     return State(
         Tiles(z(), z(), z(), jnp.full(n, -1, jnp.int32), b(), z(), z(), b(2, n), z(), z()),
         Units(z(), z(), jnp.zeros(n, jnp.float32), b(), b(), b(), z(), b(), b(), b(),
-              z(), z(), b(), z(), z(), z(), z(), z(), b()),
+              z(), z(), b(), z(), z(), z(), z(), z(), b(), z()),
         Cities(z(), z(), z(), z(), z(), z(), z(n, 9), b(n, n), b(), z(), z(), b()),
         Players(z(2), z(2), b(2, 128), z(2, 128), b(2, 2), z(2), z(2), z(2), b(2), b(2, 128), z(2), z(2), z(2),
                 b(2, 2), b(2, 2), b(2, 2), z(2, 2), z(2), b(2, 128)),

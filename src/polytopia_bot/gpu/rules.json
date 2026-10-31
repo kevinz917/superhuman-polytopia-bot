@@ -606,11 +606,11 @@
       "id": 0,
       "name": "Basic",
       "next": [
-        1,
         6,
         20,
         10,
-        15
+        15,
+        1
       ],
       "requires": null,
       "structures": [],
@@ -623,8 +623,8 @@
       "id": 1,
       "name": "Riding",
       "next": [
-        2,
-        4
+        4,
+        2
       ],
       "requires": null,
       "structures": [],
@@ -688,8 +688,8 @@
       "id": 6,
       "name": "Organization",
       "next": [
-        7,
-        8
+        8,
+        7
       ],
       "requires": null,
       "structures": [],
@@ -778,7 +778,7 @@
       "id": 14,
       "name": "Navigation",
       "next": [],
-      "requires": 44,
+      "requires": 13,
       "structures": [],
       "tier": 3,
       "units": [
@@ -1600,7 +1600,7 @@
     },
     {
       "attack": 0.0,
-      "cost": 2,
+      "cost": 8,
       "defense": 0.5,
       "health": 5.0,
       "id": 39,
@@ -1631,7 +1631,6 @@
         "Carry",
         "Dash",
         "Float",
-        "Independent",
         "Static",
         "Surprise"
       ]

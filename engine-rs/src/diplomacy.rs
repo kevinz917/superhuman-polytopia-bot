@@ -42,22 +42,47 @@ pub fn legal_with(s: &State, source: i32, target: i32, ability: i32, (capital, h
     let q = (2 - s.current_player) as usize;
     let pl = &s.players;
     let other = q as i32 + 1;
-    let eligible = source == other && pl.known[p][q] && pl.killed_turn[q] == 0 && pl.resigned_turn[q] == 0;
+    let alive = source == other && pl.killed_turn[q] == 0 && pl.resigned_turn[q] == 0;
+    let eligible = alive && pl.known[p][q];
+    // a pending peace request is a command trigger: it must be answered before anything else
+    // (the turn start's diplomacy check makes it pending on the receiver's turn)
+    if peace_pending(s) {
+        return alive && ability == 19 && (target == 0 || target == 1);
+    }
     eligible
         && ((ability == 18 && pl.peace[p][q])
-            || (ability == 19 && pl.peace_offer[p][q] && (target == 0 || target == 1))
+            // establishing an embassy: no war check; the cost is embassy_cost
             || (ability == 20 && pl.tech[p][38] && !pl.embassy[p][q] && has_capital && target == capital as i32
-                && pl.stars[p] >= 5 && s.turn * 2 + p as i32 >= pl.hostile_until[p])
-            || (ability == 21 && pl.tech[p][7] && !pl.peace[p][q] && !pl.peace_offer[q][p] && pl.truce_breaker[p][q] == 0)
+                && pl.stars[p] >= embassy_cost(s, p))
+            // a peace treaty: no cool-down check
+            || (ability == 21 && pl.tech[p][7] && !pl.peace[p][q] && !pl.peace_offer[q][p] && !pl.peace_offer[p][q])
             || (ability == 22 && pl.embassy[p][q]))
 }
 
+/// The mover has a peace request to answer (two seats; `peace_offer[p][q]`: p was offered peace by q).
+#[inline]
+pub fn peace_pending(s: &State) -> bool {
+    s.np == 2 && s.players.peace_offer[s.p()][(2 - s.current_player) as usize]
+}
+
+/// Embassy cost: 4 + 2 per embassy the player already has.
+pub fn embassy_cost(s: &State, p: usize) -> i32 {
+    4 + 2 * (0..s.np).filter(|&q| q != p && s.players.embassy[p][q]).count() as i32
+}
+
+/// Seat `p` is at war with seat `q`: not at peace, and either attacked the
+/// other within the last round (from that attack up to, not including, the attacker's next turn).
+pub fn at_war(s: &State, p: usize, q: usize) -> bool {
+    let now = s.turn * s.np as i32 + s.p() as i32;
+    !s.players.peace[p][q] && (now < s.players.hostile_until[p] || now < s.players.hostile_until[q])
+}
+
+/// An attack by the mover changes the two sides' relations: stamps the attack (war until the
+/// mover's next turn) and destroys the embassies between the two sides. Pending peace requests stay.
 pub fn hostile(s: &mut State) {
     let p = s.p();
     s.players.embassy = Default::default();
-    s.players.attacked[p] = true;
-    s.players.peace_offer = Default::default();
-    s.players.hostile_until[p] = s.turn * s.np as i32 + p as i32 + 2;
+    s.players.hostile_until[p] = s.turn * s.np as i32 + p as i32 + s.np as i32;
 }
 
 pub fn capital_vision(s: &mut State) {
@@ -115,9 +140,10 @@ pub fn execute(s: &mut State, target: i32, ability: i32, r: &Rules, g: &Geom) {
             s.players.peace_offer[q][p] = false;
         }
         20 => {
+            s.players.stars[p] -= embassy_cost(s, p);
             s.players.embassy[p][q] = true;
-            s.players.stars[p] -= 5;
-            s.players.known[q][p] = true;
+            // establishing an embassy: the host meets the builder (star gift included)
+            crate::core::meet_pair(s, q, p);
             let t = target.clamp(0, n as i32 - 1) as usize;
             let reveal: Vec<bool> = (0..n).map(|i| g.d(t, i) <= 1).collect();
             discover(s, &reveal, cp);

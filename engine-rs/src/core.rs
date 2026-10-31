@@ -87,6 +87,28 @@ pub fn decode(s: &State, family: i32, source: i32, target: i32) -> Action {
     }
 }
 
+/// Meeting reward: the star gift for meeting `other` (and the version 123 "away stars" with two seats).
+fn meet_gift(s: &State, other: usize) -> i32 {
+    let score = s.players.score[other];
+    let mut gift = 1 + 2 * if score > 0 { ((score - 1).div_euclid(1000) + 1).min(5) } else { 0 };
+    // game version >= 123 (away stars): in a two-player game, meeting player 1 pays 2 more
+    if s.np == 2 && other == 0 {
+        gift += 2;
+    }
+    gift
+}
+
+/// Seat `p` meets seat `other`: the star gift and `known`, once.
+pub fn meet_pair(s: &mut State, p: usize, other: usize) {
+    if p == other || s.players.known[p][other] {
+        return;
+    }
+    s.players.stars[p] += meet_gift(s, other);
+    s.players.known[p][other] = true;
+}
+
+/// The mover meets every seat it can see: a visible unit or an owned city on an explored tile
+/// (as exploring does, through its contact check).
 fn meet(s: &mut State) {
     if !s.fog {
         return; // `new` below is false: nothing changes
@@ -98,17 +120,11 @@ fn meet(s: &mut State) {
         if s.players.known[p][other] {
             continue;
         }
-        let sees = (0..n).any(|t| s.tiles.explored[p][t] && s.units.owner[t] == other as i32 + 1 && !s.units.invisible[t]);
-        let score = s.players.score[other];
-        let mut gift = 1 + 2 * if score > 0 { ((score - 1).div_euclid(1000) + 1).min(5) } else { 0 };
-        // game version >= 123: in a two-player game,
-        // meeting player 1 pays 2 more ("away stars" for the seat that moves second)
-        if s.np == 2 && other == 0 {
-            gift += 2;
-        }
+        let o = other as i32 + 1;
+        let sees = (0..n).any(|t| s.tiles.explored[p][t]
+            && ((s.units.owner[t] == o && !s.units.invisible[t]) || (s.tiles.structure[t] == 1 && s.cities.owner[t] == o)));
         if sees {
-            s.players.stars[p] += gift;
-            s.players.known[p][other] = true;
+            meet_pair(s, p, other);
         }
     }
 }
@@ -141,31 +157,27 @@ fn recover(s: &mut State, src: usize, r: &Rules) {
 
 fn move_adjacent(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom, ps: &mut PathScratch) {
     let cp = s.current_player;
-    let found = search(s, source, target, r, g, ps);
-    // The reference's path mask is {source, target} + ps.path with rank = index in ps.path (source: len, target: 0).
-    // A hidden enemy on the path stops the move on the stoppable path tile just before the first one met from the
-    // source side (`contact`, the hidden tile of highest rank); ranks along a path are distinct, so the reference's
-    // argmax/argmin pick the same tiles.
-    let hidden = |i: usize| s.units.invisible[i] && s.units.owner[i] != cp;
-    let contact = if found { ps.path.iter().rposition(|&i| hidden(i)) } else { None };
-    let (stop, traveled_from) = match contact {
-        Some(c) => {
-            // tiles of rank > c: path[c+1..] and the source; the first stoppable one by increasing rank
-            let stop = ps.path[c + 1..].iter().copied().find(|&i| s.units.owner[i] == 0).unwrap_or(source);
-            (stop, c + 1)
-        }
-        None => (target, 0),
-    };
-    // traveled: the source plus path tiles of rank >= traveled_from; without a path the mask is {source, target}
-    let extra = if !found && target != source { Some(target) } else { None };
-    reveal_tiles(s, source, traveled_from, extra, r, ps);
-    if let Some(c) = contact {
+    if s.units.owner[target] != 0 && s.units.owner[target] != cp {
+        // moving onto a hidden unit: the unit on the target is revealed (and its owner met); the
+        // mover stays where it is and keeps its move
         cov::hit(33);
-        let tile = ps.path[c];
-        s.units.invisible[tile] = false;
+        s.units.invisible[target] = false;
+        meet(s);
+        return;
     }
-    if stop != source {
-        military::relocate(s, source, stop, r, g, false, Some(&ps.reveal));
+    // moving: the unit goes along the game's route, which treats hidden units as free tiles (they
+    // stay hidden), and explores from every tile of it
+    let found = search(s, source, target, r, g, ps);
+    let extra = if !found { Some(target) } else { None };
+    reveal_tiles(s, source, 0, extra, r, ps);
+    military::relocate(s, source, target, r, g, false, Some(&ps.reveal));
+    // a move faces the unit along the path's last step
+    if ps.path.len() > 1 {
+        s.units.direction[target] = military::direction(s.size, ps.path[1], target);
+    }
+    // moving: ending on another player's city counts as an attack on them
+    if s.tiles.structure[target] == 1 && State::foreign(s.cities.owner[target], cp) {
+        diplomacy::hostile(s);
     }
     meet(s);
 }
@@ -186,6 +198,12 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
                 s.units.health[i] = (s.units.health[i] + amount).min(mh);
             }
             s.units.poison[i] = false;
+        }
+    }
+    // ending a turn: the riot of an infiltrated city ends at the end of its owner's turn
+    for i in 0..n {
+        if s.cities.riot[i] && s.cities.owner[i] == owner {
+            s.cities.riot[i] = false;
         }
     }
     let p = &s.players;
@@ -213,7 +231,12 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     }
     let frozen: Vec<bool> = s.units.frozen.clone();
     diplomacy::start_turn(s, new_owner);
-    // starting a turn explores nothing: tiles are explored when units move, train, upgrade or convert and when
+    if diplomacy::peace_pending(s) {
+        // the turn start's diplomacy check: receiving a peace request meets its sender
+        let (p, q) = (s.p(), (2 - new_owner) as usize);
+        meet_pair(s, p, q);
+    }
+    // the turn start explores nothing: tiles are explored when units move, train, upgrade or convert and when
     // borders grow
     meet(s);
     structures::start_turn(s, new_owner);
@@ -221,13 +244,9 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     if !(turn > 0 && income > 0) {
         income = 0;
     }
-    for i in 0..n {
-        if s.cities.riot[i] && s.cities.owner[i] == new_owner {
-            s.cities.riot[i] = false;
-        }
-    }
     let no = (new_owner - 1) as usize;
     s.players.stars[no] += income;
+    economy::start_level_ups(s, new_owner);
     for i in 0..n {
         if s.units.owner[i] == new_owner {
             s.units.moved[i] = frozen[i];
@@ -369,7 +388,10 @@ pub fn step_with(s: &mut State, a: Action, expected_version: i32, r: &Rules, g: 
     let pending = s.pending_reward();
     let reward = kind == Kind::Reward;
     let reward_implemented = matches!(a.parameter, 1..=8);
-    let mut supported = s.core_supported && kind != Kind::Unsupported && (!pending || reward || kind == Kind::Resign)
+    // pending command triggers: a peace request (answered first) or a city reward block every other command
+    let peace = diplomacy::peace_pending(s);
+    let mut supported = s.core_supported && kind != Kind::Unsupported
+        && (if peace { kind == Kind::Diplomatic || kind == Kind::Resign } else { !pending || reward || kind == Kind::Resign })
         && (!reward || reward_implemented);
     if kind == Kind::Summon {
         supported &= r.unit_supported[param];
