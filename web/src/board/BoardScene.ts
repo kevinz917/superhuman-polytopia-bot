@@ -128,7 +128,7 @@ export class BoardScene {
   // their own tile's unit, below the units in front, whose health badges they used to cover.
   private markers: Container[] = [];
   private fxLayer = new Container();
-  private previewLayer = new Container(); // attack preview: health bars and skulls above everything
+  private previewLayer = new Container(); // attack preview: new health numbers and skulls above everything
   private previewed: UnitView[] = [];
   private tiles: TileView[] = [];
   private labels = new Map<number, LabelView>();
@@ -807,35 +807,30 @@ export class BoardScene {
   }
 
   // ---------- attack preview ----------
-  // A health bar over every unit the attack changes: what it keeps, and in red
-  // what it loses. A unit that would die shows a skull instead (and, with `fade`, fades).
+  // The health after the attack, floating over each unit it changes. A unit
+  // that would die shows a skull instead (and, with `fade`, fades).
   showPreview(units: HealthPreview[] | null, fade = false) {
     for (const view of this.previewed) view.alpha = 1;
     this.previewed = [];
     for (const child of this.previewLayer.removeChildren()) dispose(child);
     if (!this.ready) return;
     for (const u of units ?? []) {
-      // Drawn over the unit's own health badge (-15, -34), the bar reaching out
-      // to its left, so it never covers the unit standing behind.
+      // The new health floats just above the unit's own health badge (-15, -34),
+      // with a small tail pointing down at it: red with the number, or a skull if it dies.
       const p = this.local(u.tile),
         c = new Container(),
         dead = u.after <= 0,
-        w = 22,
-        x0 = -44,
-        keep = clamp(u.after / u.max),
-        had = clamp(u.health / u.max);
+        x = -15,
+        y = -51;
       c.position.set(p.x, p.y);
       const g = new Graphics();
-      g.roundRect(x0 - 4, -41.5, w + 30, 15, 7.5).fill({ color: 0x0b1620, alpha: 0.9 }).stroke({ width: 1.2, color: 0xffffff, alpha: 0.9 });
-      g.roundRect(x0, -36.5, w, 5, 2.5).fill(0x35444f);
-      g.roundRect(x0, -36.5, Math.max(2.5, w * had), 5, 2.5).fill(0xff4b3a);
-      if (keep > 0) g.roundRect(x0, -36.5, Math.max(2.5, w * keep), 5, 2.5).fill(0x6fdc5a);
-      g.circle(-15, -34, 8.5).fill(dead ? 0x0b1620 : 0xd8392b).stroke({ width: 1.5, color: 0xffffff });
+      g.poly([x - 3.5, y + 7, x + 3.5, y + 7, x, y + 11.5]).fill(0xffffff);
+      g.circle(x, y, 9).fill(dead ? 0x0b1620 : 0xd8392b).stroke({ width: 1.6, color: 0xffffff });
       c.addChild(g);
-      if (dead) c.addChild(this.art.skull(-15, -34, 13));
+      if (dead) c.addChild(this.art.skull(x, y, 13));
       else {
-        const t = this.text(Math.ceil(u.after), 11, "#ffffff");
-        t.position.set(-15, -33.5);
+        const t = this.text(Math.ceil(u.after), 11.5, "#ffffff");
+        t.position.set(x, y + 0.5);
         c.addChild(t);
       }
       this.previewLayer.addChild(c);
