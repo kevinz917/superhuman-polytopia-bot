@@ -121,7 +121,12 @@ export class MockArt implements BoardArt {
     body.addChild(shape(`unit:${u.kind}:${team.name}`, (g) => drawUnit(g, u.kind, team)));
     body.addChild(shape("hp:" + team.name, (g) => g.circle(-15, -34, 8).fill(team.main).stroke({ width: 1.5, color: 0xffffff })));
     const flash = shape(`unit:${u.kind}:${team.name}`, (g) => drawUnit(g, u.kind, team));
-    return { body, flash, hp: { x: -15, y: -33.5, size: 11, shadow: false }, veteran: this.star(14, -34, 10) };
+    // The ready dot sits beside the head, under the veteran star: higher up it
+    // lands on the unit behind, lower on the health badge of the unit to the front right.
+    const ready = shape("ready", (g) =>
+      g.circle(17, -26, 4.6).fill(0x1d9bf0).stroke({ width: 1.6, color: 0xffffff }).circle(15.8, -27.2, 1.3).fill({ color: 0xffffff, alpha: 0.75 }),
+    );
+    return { body, flash, hp: { x: -15, y: -33.5, size: 11, shadow: false }, veteran: this.star(14, -34, 10), ready };
   }
 
   explorer(team: Team) {
