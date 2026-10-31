@@ -1013,7 +1013,8 @@ body.selecting .replay-dock {
   cursor: pointer;
 }
 .selection.over-dock {
-  bottom: 190px;
+  /* Clear of the replay dock (bottom 143px, 58px tall) instead of overlapping its label. */
+  bottom: 209px;
   padding-top: 18px;
   background: linear-gradient(#0000, #000c 18%, #000c 82%, #0000);
 }
