@@ -709,9 +709,16 @@ body.selecting .replay-dock {
   animation: sheet-in 0.2s ease-out;
 }
 .selection .close {
-  top: 28px;
-  right: 14px;
+  /* A 48px tap target, the glyph centred where the small button used to sit. */
+  top: 17px;
+  right: 3px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   font-size: 26px;
+  line-height: 1;
 }
 .selection-head {
   display: flex;
@@ -1104,7 +1111,7 @@ body.selecting .replay-dock {
   background: linear-gradient(#0000, #000c 18%, #000c 82%, #0000);
 }
 .selection.over-dock .close {
-  top: 6px;
+  top: -5px;
 }
 @media (max-width: 760px) {
   .selection.over-dock {
