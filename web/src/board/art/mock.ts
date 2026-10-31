@@ -196,6 +196,26 @@ export class MockArt implements BoardArt {
     return null;
   }
 
+  skull(x: number, y: number, size: number) {
+    const k = size / 12;
+    return shape(`skull:${x}:${y}:${size}`, (g) =>
+      g
+        .circle(x, y - 1 * k, 5.2 * k)
+        .fill(0xf4f1e8)
+        .roundRect(x - 3 * k, y + 2 * k, 6 * k, 3.6 * k, 1 * k)
+        .fill(0xf4f1e8)
+        .circle(x - 2 * k, y - 1 * k, 1.5 * k)
+        .fill(0x1a1a1a)
+        .circle(x + 2 * k, y - 1 * k, 1.5 * k)
+        .fill(0x1a1a1a)
+        .poly([x, y + 0.6 * k, x - 0.8 * k, y + 1.9 * k, x + 0.8 * k, y + 1.9 * k])
+        .fill(0x1a1a1a)
+        .rect(x - 1.5 * k, y + 3.6 * k, 0.6 * k, 2 * k)
+        .rect(x + 0.9 * k, y + 3.6 * k, 0.6 * k, 2 * k)
+        .fill(0x1a1a1a),
+    );
+  }
+
   labelBand(team: Team) {
     return { color: team.dark, alpha: 0.88 };
   }
