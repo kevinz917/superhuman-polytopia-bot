@@ -572,6 +572,42 @@ dialog .eyebrow {
   filter: grayscale(1);
   opacity: 0.5;
 }
+/* Research price on every technology not yet learned: a badge on the node's rim. */
+.tech-tree .tech-cost {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 7px 1px 4px;
+  border: 1.5px solid #ffffffb0;
+  border-radius: 10px;
+  background: #0b1620;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.tech-tree .tech .tech-cost img {
+  width: 12px;
+  height: 12px;
+  filter: none;
+  opacity: 1;
+}
+.tech-tree .tech.locked .tech-cost {
+  color: #b9c4c9;
+  border-color: #ffffff55;
+}
+.tech-tree .tech.short .tech-cost {
+  color: #ff8f80;
+}
+.tech-tree .tech.ready .tech-cost {
+  border-color: #ffd34d;
+}
 @media (max-width: 760px) {
   .technology-dialog {
     padding: 16px 0;
@@ -597,6 +633,15 @@ dialog .eyebrow {
   .technology-dialog .tech-icon img {
     height: 28px;
     width: 30px;
+  }
+  .technology-dialog .tech-cost {
+    bottom: -9px;
+    padding: 0 5px 0 3px;
+    font-size: 10px;
+  }
+  .technology-dialog .tech-cost img {
+    width: 10px;
+    height: 10px;
   }
   .technology-dialog h2 {
     font-size: 27px;
