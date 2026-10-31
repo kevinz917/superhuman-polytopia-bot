@@ -87,7 +87,9 @@ export class BoardScene {
   private outlineTop = new Graphics(); // crisp border above trees and houses
   private objects = new Container();
   private labelLayer = new Container();
-  private markers = new Container();
+  // Move and attack targets, depth-sorted among the units in `objects`: above
+  // their own tile's unit, below the units in front, whose health badges they used to cover.
+  private markers: Container[] = [];
   private fxLayer = new Container();
   private tiles: TileView[] = [];
   private labels = new Map<number, LabelView>();
@@ -158,7 +160,7 @@ export class BoardScene {
     if (this.destroyed) return;
     this.app.ticker.stop();
     this.objects.sortableChildren = true;
-    this.world.addChild(this.ground, this.surface, this.outline, this.objects, this.outlineTop, this.labelLayer, this.markers, this.fxLayer);
+    this.world.addChild(this.ground, this.surface, this.outline, this.objects, this.outlineTop, this.labelLayer, this.fxLayer);
     this.app.stage.addChild(this.stars, this.world);
     this.resize();
     new ResizeObserver(() => this.resize()).observe(wrap);
@@ -451,6 +453,7 @@ export class BoardScene {
 
   // One persistent node set per tile, in depth order.
   private reset(v: VisibleState) {
+    this.clearMarkers();
     for (const layer of [this.ground, this.surface, this.objects, this.labelLayer])
       for (const child of layer.removeChildren()) dispose(child);
     this.tiles = [];
@@ -690,19 +693,25 @@ export class BoardScene {
         g.stroke({ width, color, alpha, cap: "round" });
       }
     }
-    for (const child of this.markers.removeChildren()) dispose(child);
+    this.clearMarkers();
     if (!this.running)
       for (const target of this.targets) {
         const p = this.local(target.command.target);
         const m = new Container();
         m.position.set(p.x, p.y);
+        m.zIndex = (p.y / HH) * 100 + 60;
         m.addChild(this.art.marker(target.command.kind === 2));
-        this.markers.addChild(m);
+        this.objects.addChild(m);
+        this.markers.push(m);
       }
     // The pop settles within 420 ms of the selection changing; later updates
     // (e.g. scrubbing with a selection held) need just one render.
     this.liveUntil = this.selectedAt + 420;
     this.stepSelection();
+  }
+  private clearMarkers() {
+    for (const m of this.markers) dispose(m);
+    this.markers = [];
   }
   // Selection pop: tile/marker grow, unit hop, territory dim fade-in.
   private stepSelection() {
@@ -718,7 +727,7 @@ export class BoardScene {
     }
     this.outline.alpha = this.outlineTop.alpha = fade;
     const grow = pop(age / 0.28);
-    for (const m of this.markers.children) m.scale.set(grow);
+    for (const m of this.markers) m.scale.set(grow);
     if (this.selected !== null) {
       const sel = this.tiles[this.selected]?.sel;
       if (sel) sel.scale.set(0.82 + 0.18 * pop(age / 0.3));
@@ -796,7 +805,7 @@ export class BoardScene {
           : "damage";
     this.canvas.dataset.animation = kind;
     this.overlay.classList.add("animating");
-    for (const child of this.markers.removeChildren()) dispose(child);
+    this.clearMarkers();
     clearTimeout(this.finishTimer);
     this.finishTimer = window.setTimeout(() => this.finishAnimation(), duration + 80);
     this.stepAnimation(0);
