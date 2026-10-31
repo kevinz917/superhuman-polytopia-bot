@@ -2,13 +2,39 @@
 // The camera is a single transform, so panning and zooming never rebuild
 // geometry; a new frame rebuilds only the tiles and labels whose content
 // changed, so scrubbing a replay touches a handful of nodes per step.
-import { Application, BitmapText, Container, Graphics } from "pixi.js";
+import { Application, BitmapText, BlurFilter, ColorMatrixFilter, Container, Graphics } from "pixi.js";
 import type { GameEvent, Layer, LegalAction, Observation, Tile, Unit, VisibleState } from "../api/types.ts";
 import { clamp, ease, planTransition, pop, sampleActor, type Plan } from "../game/animation.ts";
 import { cityName } from "../game/vocab.ts";
 import { createArt, type BoardArt, type GroundInfo } from "./art/index.ts";
 import { setIconSource } from "./assets.ts";
 import { DIAMOND, EDGES, flat, HH, HW, shape, STEPS, TEAMS, TH, TW, type Point, type Team } from "./geometry.ts";
+
+// Shared by every unit, built on first use. A unit that can still act gets a
+// soft pale-gold halo (white vanishes on snow): its figure filled flat, then
+// blurred. A unit with nothing left to do this turn turns pastel: washed toward white, a little less saturated.
+let readyGlow: [ColorMatrixFilter, BlurFilter] | null = null;
+const READY_GLOW = () => {
+  if (!readyGlow) {
+    const fill = new ColorMatrixFilter();
+    // rgb := pale gold, alpha := 2 x alpha, so the blurred edge stays visible.
+    fill.matrix = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0.88, 0, 0, 0, 0, 0.42, 0, 0, 0, 2, 0];
+    readyGlow = [fill, new BlurFilter({ strength: 3, quality: 3 })];
+  }
+  return readyGlow;
+};
+let spentDim: [ColorMatrixFilter] | null = null;
+const SPENT_DIM = () => {
+  if (!spentDim) {
+    // Each channel keeps 80% of its own value and takes 20% from the pixel's mean
+    // (a light desaturate), then mixes 35% toward white.
+    const keep = 0.65, own = 0.8 * keep, mean = ((1 - 0.8) / 3) * keep, white = 1 - keep;
+    const dim = new ColorMatrixFilter();
+    dim.matrix = [own + mean, mean, mean, 0, white, mean, own + mean, mean, 0, white, mean, mean, own + mean, 0, white, 0, 0, 0, 1, 0];
+    spentDim = [dim];
+  }
+  return spentDim;
+};
 
 const DIM_TINT = 0x6f7b85;
 
@@ -34,6 +60,8 @@ export interface UpdateOptions {
   layer?: Layer | null;
   territory?: number[];
   home?: number; // the seat drawn in blue ("you"); the other seat is red
+  ready?: number[]; // tiles of the player's units that can still move or attack
+  spent?: number[]; // tiles of the player's units with nothing left to do this turn
 }
 
 interface TileView {
@@ -48,7 +76,7 @@ interface TileView {
   terrain?: Container;
   city?: Container;
   structure?: Container;
-  unit?: Container;
+  unit?: UnitView;
 }
 interface LabelView {
   node: Container;
@@ -59,8 +87,17 @@ interface LabelView {
 }
 interface UnitView extends Container {
   hp?: BitmapText;
+  body?: Container;
   flash?: Container;
+  glow?: Container;
   shownHealth?: number;
+}
+// One unit's health before and after a previewed attack (0: it dies).
+export interface HealthPreview {
+  tile: number;
+  health: number;
+  after: number;
+  max: number;
 }
 interface Running {
   plan: Plan;
@@ -87,8 +124,12 @@ export class BoardScene {
   private outlineTop = new Graphics(); // crisp border above trees and houses
   private objects = new Container();
   private labelLayer = new Container();
-  private markers = new Container();
+  // Move and attack targets, depth-sorted among the units in `objects`: above
+  // their own tile's unit, below the units in front, whose health badges they used to cover.
+  private markers: Container[] = [];
   private fxLayer = new Container();
+  private previewLayer = new Container(); // attack preview: new health numbers and skulls above everything
+  private previewed: UnitView[] = [];
   private tiles: TileView[] = [];
   private labels = new Map<number, LabelView>();
   private builtSize = 0;
@@ -111,6 +152,8 @@ export class BoardScene {
   private selected: number | null = null;
   private layer: Layer | null = null;
   private territory = new Set<number>();
+  private movable = new Set<number>();
+  private spent = new Set<number>();
   private home = 1;
   // Seats in the game: two-seat games colour by viewer (you blue, the other red); more seats get fixed colours.
   private seats = 2;
@@ -129,6 +172,9 @@ export class BoardScene {
   private drag: { x: number; y: number; px: number; py: number } | null = null;
   private pinch: { distance: number; zoom: number } | null = null;
   moved = false;
+  // The tile under the mouse (not touch), for the attack preview; null when it leaves the board.
+  onHover: ((tile: number | null) => void) | null = null;
+  private hovered: number | null = null;
   private reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   private canvas: HTMLCanvasElement;
@@ -158,9 +204,10 @@ export class BoardScene {
     if (this.destroyed) return;
     this.app.ticker.stop();
     this.objects.sortableChildren = true;
-    this.world.addChild(this.ground, this.surface, this.outline, this.objects, this.outlineTop, this.labelLayer, this.markers, this.fxLayer);
+    this.world.addChild(this.ground, this.surface, this.outline, this.objects, this.outlineTop, this.labelLayer, this.fxLayer);
     this.app.stage.addChild(this.stars, this.world);
     this.resize();
+    this.world.addChild(this.previewLayer); // above every other layer
     new ResizeObserver(() => this.resize()).observe(wrap);
     this.bindInput(wrap);
     this.reducedMotion.addEventListener("change", () => this.reducedMotion.matches && this.finishAnimation());
@@ -334,6 +381,17 @@ export class BoardScene {
         this.moved = false;
       }
     });
+    const hover = (tile: number | null) => {
+      if (tile === this.hovered) return;
+      this.hovered = tile;
+      this.onHover?.(tile);
+    };
+    wrap.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse" || this.drag) return;
+      const r = this.canvas.getBoundingClientRect();
+      hover(this.hit(e.clientX - r.left, e.clientY - r.top));
+    });
+    wrap.addEventListener("pointerleave", () => hover(null));
     window.addEventListener("pointermove", (e) => {
       if (!this.pointers.has(e.pointerId)) return;
       this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -409,6 +467,7 @@ export class BoardScene {
           ? planTransition(this.observation, obs, event)
           : null;
       this.finishAnimation();
+      this.showPreview(null);
       if (options.scene !== this.scene) this.anchor = null;
       this.observation = obs;
       this.scene = options.scene;
@@ -422,6 +481,8 @@ export class BoardScene {
     this.selected = selected;
     this.layer = layer;
     this.territory = new Set(options.territory || []);
+    this.movable = new Set(options.ready || []);
+    this.spent = new Set(options.spent || []);
     this.targets = targets;
     this.applySelection();
     this.invalidate();
@@ -451,6 +512,7 @@ export class BoardScene {
 
   // One persistent node set per tile, in depth order.
   private reset(v: VisibleState) {
+    this.clearMarkers();
     for (const layer of [this.ground, this.surface, this.objects, this.labelLayer])
       for (const child of layer.removeChildren()) dispose(child);
     this.tiles = [];
@@ -512,7 +574,7 @@ export class BoardScene {
             t.structure,
             t.structure_level ?? 0,
             city ? `${this.team(city.owner).name}:${city.level || 1}:${t.capital ? 1 : 0}` : "",
-            u ? `${u.kind}:${this.team(u.owner).name}:${Math.ceil(u.health)}:${u.veteran ? 1 : 0}` : "",
+            u ? `${u.kind}:${this.team(u.owner).name}:${Math.ceil(u.health)}:${u.veteran ? 1 : 0}:${u.kills ?? 0}` : "",
           ].join("|")
         : "fog";
       if (objectKey === view.objectKey) continue;
@@ -589,7 +651,15 @@ export class BoardScene {
   private unitView(u: Unit): UnitView {
     const c: UnitView = new Container();
     const art = this.art.unit(u, this.team(u.owner));
-    c.addChild(art.body);
+    if (art.glow) {
+      // Behind the body, so only the halo around the figure shows.
+      const glow = new Container();
+      glow.addChild(art.glow);
+      glow.filters = READY_GLOW();
+      glow.visible = false;
+      c.glow = c.addChild(glow);
+    }
+    c.body = c.addChild(art.body);
     if (art.flash) {
       art.flash.blendMode = "add";
       art.flash.alpha = 0;
@@ -599,6 +669,7 @@ export class BoardScene {
     c.hp.position.set(art.hp.x, art.hp.y);
     c.shownHealth = Math.ceil(u.health);
     c.addChild(c.hp);
+    if (u.kills && !u.veteran) c.addChild(this.art.xp(Math.min(3, u.kills)));
     if (u.veteran) c.addChild(art.veteran);
     return c;
   }
@@ -659,6 +730,8 @@ export class BoardScene {
       view.sel.visible = tile === this.selected && !territory;
       view.dim.visible = territory && !this.territory.has(tile);
       if (view.unit) view.unit.position.y = 0;
+      if (view.unit?.glow) view.unit.glow.visible = !this.running && this.movable.has(tile);
+      if (view.unit?.body) view.unit.body.filters = !this.running && this.spent.has(tile) ? SPENT_DIM() : null;
     }
     this.outline.clear();
     this.outlineTop.clear();
@@ -690,19 +763,25 @@ export class BoardScene {
         g.stroke({ width, color, alpha, cap: "round" });
       }
     }
-    for (const child of this.markers.removeChildren()) dispose(child);
+    this.clearMarkers();
     if (!this.running)
       for (const target of this.targets) {
         const p = this.local(target.command.target);
         const m = new Container();
         m.position.set(p.x, p.y);
+        m.zIndex = (p.y / HH) * 100 + 60;
         m.addChild(this.art.marker(target.command.kind === 2));
-        this.markers.addChild(m);
+        this.objects.addChild(m);
+        this.markers.push(m);
       }
     // The pop settles within 420 ms of the selection changing; later updates
     // (e.g. scrubbing with a selection held) need just one render.
     this.liveUntil = this.selectedAt + 420;
     this.stepSelection();
+  }
+  private clearMarkers() {
+    for (const m of this.markers) dispose(m);
+    this.markers = [];
   }
   // Selection pop: tile/marker grow, unit hop, territory dim fade-in.
   private stepSelection() {
@@ -718,13 +797,50 @@ export class BoardScene {
     }
     this.outline.alpha = this.outlineTop.alpha = fade;
     const grow = pop(age / 0.28);
-    for (const m of this.markers.children) m.scale.set(grow);
+    for (const m of this.markers) m.scale.set(grow);
     if (this.selected !== null) {
       const sel = this.tiles[this.selected]?.sel;
       if (sel) sel.scale.set(0.82 + 0.18 * pop(age / 0.3));
       const unit = this.tiles[this.selected]?.unit;
       if (unit && this.layer === "unit" && unit.visible) unit.position.y = -Math.sin(clamp(age / 0.32) * Math.PI) * 9;
     }
+  }
+
+  // ---------- attack preview ----------
+  // The health after the attack, floating over each unit it changes. A unit
+  // that would die shows a skull instead (and, with `fade`, fades).
+  showPreview(units: HealthPreview[] | null, fade = false) {
+    for (const view of this.previewed) view.alpha = 1;
+    this.previewed = [];
+    for (const child of this.previewLayer.removeChildren()) dispose(child);
+    if (!this.ready) return;
+    for (const u of units ?? []) {
+      // The new health floats just above the unit's own health badge (-15, -34),
+      // with a small tail pointing down at it: red with the number, or a skull if it dies.
+      const p = this.local(u.tile),
+        c = new Container(),
+        dead = u.after <= 0,
+        x = -15,
+        y = -51;
+      c.position.set(p.x, p.y);
+      const g = new Graphics();
+      g.poly([x - 3.5, y + 7, x + 3.5, y + 7, x, y + 11.5]).fill(0xffffff);
+      g.circle(x, y, 9).fill(dead ? 0x0b1620 : 0xd8392b).stroke({ width: 1.6, color: 0xffffff });
+      c.addChild(g);
+      if (dead) c.addChild(this.art.skull(x, y, 13));
+      else {
+        const t = this.text(Math.ceil(u.after), 11.5, "#ffffff");
+        t.position.set(x, y + 0.5);
+        c.addChild(t);
+      }
+      this.previewLayer.addChild(c);
+      const view = this.tiles[u.tile]?.unit;
+      if (dead && view && fade) {
+        view.alpha = 0.45;
+        this.previewed.push(view);
+      }
+    }
+    this.invalidate();
   }
 
   // ---------- animation ----------
@@ -796,7 +912,7 @@ export class BoardScene {
           : "damage";
     this.canvas.dataset.animation = kind;
     this.overlay.classList.add("animating");
-    for (const child of this.markers.removeChildren()) dispose(child);
+    this.clearMarkers();
     clearTimeout(this.finishTimer);
     this.finishTimer = window.setTimeout(() => this.finishAnimation(), duration + 80);
     this.stepAnimation(0);

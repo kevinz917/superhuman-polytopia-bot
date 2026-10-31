@@ -20,6 +20,7 @@ export interface UnitArt {
   flash: Container | null; // a copy blended additively for hit flashes
   hp: { x: number; y: number; size: number; shadow: boolean };
   veteran: Container; // badge for veteran units
+  glow: Container | null; // the figure alone, which the board fills and blurs into the halo of a unit that can still act
 }
 
 export interface BoardArt {
@@ -37,7 +38,11 @@ export interface BoardArt {
   marker(attack: boolean): Container;
   // A star centred at (x, y), `size` across: city level, veteran badge, effects.
   star(x: number, y: number, size: number): Container;
+  // Experience toward promotion (1-3 kills) for a unit that is not a veteran yet.
+  xp(kills: number): Container;
   capitalIcon(x: number, y: number, size: number): Container | null;
+  // Attack preview mark for a unit that would die, centred at (x, y), `size` across.
+  skull(x: number, y: number, size: number): Container;
   labelBand(team: Team): { color: number; alpha: number };
   // City growth bar: `segments` cells, `amount` of it filled, centred, `width` wide, top at y = 33.
   paintBar(g: Graphics, width: number, segments: number, amount: number): void;

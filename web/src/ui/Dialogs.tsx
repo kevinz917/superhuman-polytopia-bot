@@ -555,7 +555,14 @@ function TechTree() {
                 <img src={spriteURL(TECH_ICONS[id] || "star")} alt="" />
               </span>
               <span>{titleCase(t.name)}</span>
-              <small>{learned ? "Learned" : `${price} ★`}</small>
+              {learned ? (
+                <small>Learned</small>
+              ) : (
+                <span className="tech-cost" aria-label={`${price} stars`}>
+                  <img src={"/icons/star.svg"} alt="" />
+                  {price}
+                </span>
+              )}
             </button>
           );
         })}
