@@ -127,6 +127,17 @@ export class GameController {
     return out;
   }
 
+  // Units with something left to do this turn: a move, an attack, a capture,
+  // or recover / heal others / promote. Disband is always legal, so it does not count.
+  readyUnits() {
+    if (!this.canAct()) return [];
+    const tiles = new Set<number>();
+    for (const { command: c } of this.legal)
+      if ([1, 2, 8].includes(c.kind) || (c.kind === 3 && c.source >= 0 && [7, 9, 16].includes(c.parameter)))
+        tiles.add(c.source);
+    return [...tiles];
+  }
+
   pendingReward() {
     return this.canAct() ? this.legal.find((a) => a.command.kind === 9) : undefined;
   }
@@ -159,6 +170,7 @@ export class GameController {
         territory: ownerCity
           ? data.observation.hud?.territory?.[String(this.selected)] || cityTerritory(v, this.selected!)
           : [],
+        ready: this.readyUnits(),
       });
       if (board.animating) {
         // Follow the action like the mobile camera when it happens off-screen.

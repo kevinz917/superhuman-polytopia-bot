@@ -34,6 +34,7 @@ export interface UpdateOptions {
   layer?: Layer | null;
   territory?: number[];
   home?: number; // the seat drawn in blue ("you"); the other seat is red
+  ready?: number[]; // tiles of the player's units that can still move or attack
 }
 
 interface TileView {
@@ -48,7 +49,7 @@ interface TileView {
   terrain?: Container;
   city?: Container;
   structure?: Container;
-  unit?: Container;
+  unit?: UnitView;
 }
 interface LabelView {
   node: Container;
@@ -60,6 +61,7 @@ interface LabelView {
 interface UnitView extends Container {
   hp?: BitmapText;
   flash?: Container;
+  ready?: Container;
   shownHealth?: number;
 }
 interface Running {
@@ -113,6 +115,7 @@ export class BoardScene {
   private selected: number | null = null;
   private layer: Layer | null = null;
   private territory = new Set<number>();
+  private movable = new Set<number>();
   private home = 1;
   // Seats in the game: two-seat games colour by viewer (you blue, the other red); more seats get fixed colours.
   private seats = 2;
@@ -424,6 +427,7 @@ export class BoardScene {
     this.selected = selected;
     this.layer = layer;
     this.territory = new Set(options.territory || []);
+    this.movable = new Set(options.ready || []);
     this.targets = targets;
     this.applySelection();
     this.invalidate();
@@ -604,6 +608,8 @@ export class BoardScene {
     c.addChild(c.hp);
     if (u.kills && !u.veteran) c.addChild(this.art.xp(Math.min(3, u.kills)));
     if (u.veteran) c.addChild(art.veteran);
+    art.ready.visible = false;
+    c.ready = c.addChild(art.ready);
     return c;
   }
   // An effect star `size` across, wrapped so the effect can scale and move it freely.
@@ -663,6 +669,7 @@ export class BoardScene {
       view.sel.visible = tile === this.selected && !territory;
       view.dim.visible = territory && !this.territory.has(tile);
       if (view.unit) view.unit.position.y = 0;
+      if (view.unit?.ready) view.unit.ready.visible = !this.running && this.movable.has(tile);
     }
     this.outline.clear();
     this.outlineTop.clear();

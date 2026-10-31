@@ -20,6 +20,7 @@ export interface UnitArt {
   flash: Container | null; // a copy blended additively for hit flashes
   hp: { x: number; y: number; size: number; shadow: boolean };
   veteran: Container; // badge for veteran units
+  ready: Container; // dot over a unit that still has a move or attack this turn
 }
 
 export interface BoardArt {
