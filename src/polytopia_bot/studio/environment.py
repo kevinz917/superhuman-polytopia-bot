@@ -135,6 +135,38 @@ class RustEnvironment:
         return Transition(actor, None if terminal or truncated else int(self.state.current_player), rewards, terminal,
                           truncated, reason)
 
+    def preview(self, action_id):
+        """Health after `action_id` of every unit the mover can see that it would change, by playing it on a
+        scratch copy of the game (combat is deterministic). Keyed by the tile the unit stands on now: a melee
+        attacker that wins and advances is reported on its own tile; 0 means the unit dies."""
+        from polytopia_bot.rl.search import first, one
+        player = int(self.state.current_player)
+        obs = self.observe(player)
+        action = next((a for a in obs.legal_actions if a.action_id == action_id), None)
+        if action is None:
+            raise ValueError('invalid_action')
+        scratch = self._scratch()
+        scratch.load(one(self.state))
+        status = int(np.asarray(scratch.batch.step(*(np.array([v], np.int32)
+                                                     for v in choice_of(int(action_id), self.size))))[0])
+        if status != 0:
+            raise RuntimeError(f'catalog/transition discrepancy: status={status}')
+        after = first(scratch.states())
+        owner, health = np.asarray(after.units.owner), np.asarray(after.units.health)
+        source, target = action.command['source'], action.command['target']
+        out = []
+        for u in obs.visible_state['units']:
+            tile, mine = u['tile'], u['owner']
+            if owner[tile] == mine:
+                hp = float(health[tile])
+            elif tile == source and target >= 0 and owner[target] == mine:
+                hp = float(health[target])
+            else:
+                hp = 0.0
+            if hp != u['health']:
+                out.append(dict(tile=tile, health=u['health'], after=max(0.0, hp)))
+        return out
+
     def load(self, state):
         """Continue from a single-game State (e.g. after a search played the turn on its own copy)."""
         from polytopia_bot.rl.search import one

@@ -572,6 +572,42 @@ dialog .eyebrow {
   filter: grayscale(1);
   opacity: 0.5;
 }
+/* Research price on every technology not yet learned: a badge on the node's rim. */
+.tech-tree .tech-cost {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 7px 1px 4px;
+  border: 1.5px solid #ffffffb0;
+  border-radius: 10px;
+  background: #0b1620;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.tech-tree .tech .tech-cost img {
+  width: 12px;
+  height: 12px;
+  filter: none;
+  opacity: 1;
+}
+.tech-tree .tech.locked .tech-cost {
+  color: #b9c4c9;
+  border-color: #ffffff55;
+}
+.tech-tree .tech.short .tech-cost {
+  color: #ff8f80;
+}
+.tech-tree .tech.ready .tech-cost {
+  border-color: #ffd34d;
+}
 @media (max-width: 760px) {
   .technology-dialog {
     padding: 16px 0;
@@ -597,6 +633,15 @@ dialog .eyebrow {
   .technology-dialog .tech-icon img {
     height: 28px;
     width: 30px;
+  }
+  .technology-dialog .tech-cost {
+    bottom: -9px;
+    padding: 0 5px 0 3px;
+    font-size: 10px;
+  }
+  .technology-dialog .tech-cost img {
+    width: 10px;
+    height: 10px;
   }
   .technology-dialog h2 {
     font-size: 27px;
@@ -664,9 +709,16 @@ body.selecting .replay-dock {
   animation: sheet-in 0.2s ease-out;
 }
 .selection .close {
-  top: 28px;
-  right: 14px;
+  /* A 48px tap target, the glyph centred where the small button used to sit. */
+  top: 17px;
+  right: 3px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   font-size: 26px;
+  line-height: 1;
 }
 .selection-head {
   display: flex;
@@ -725,6 +777,46 @@ body.selecting .replay-dock {
 .stat-line b {
   font-size: 18px;
   font-weight: 400;
+}
+/* Veterancy meter in the selection bar: three kills to promote. */
+.xp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #cfd8dc;
+}
+.xp-label {
+  color: #9fb0b8;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.xp-pips {
+  display: flex;
+  gap: 4px;
+}
+.xp-pips i {
+  width: 22px;
+  height: 8px;
+  border-radius: 4px;
+  background: #ffffff2e;
+  box-shadow: inset 0 0 0 1px #ffffff40;
+}
+.xp-pips i.on {
+  background: #8ee6ff;
+  box-shadow: 0 0 6px #8ee6ff88;
+}
+.xp.ready .xp-pips i {
+  background: #ffd34d;
+  box-shadow: 0 0 8px #ffd34daa;
+}
+.xp.ready .xp-note,
+.xp.veteran .xp-label {
+  color: #ffd34d;
+  font-weight: 600;
 }
 .orders {
   justify-content: center;
@@ -1013,12 +1105,13 @@ body.selecting .replay-dock {
   cursor: pointer;
 }
 .selection.over-dock {
-  bottom: 190px;
+  /* Clear of the replay dock (bottom 143px, 58px tall) instead of overlapping its label. */
+  bottom: 209px;
   padding-top: 18px;
   background: linear-gradient(#0000, #000c 18%, #000c 82%, #0000);
 }
 .selection.over-dock .close {
-  top: 6px;
+  top: -5px;
 }
 @media (max-width: 760px) {
   .selection.over-dock {

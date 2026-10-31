@@ -121,7 +121,8 @@ export class MockArt implements BoardArt {
     body.addChild(shape(`unit:${u.kind}:${team.name}`, (g) => drawUnit(g, u.kind, team)));
     body.addChild(shape("hp:" + team.name, (g) => g.circle(-15, -34, 8).fill(team.main).stroke({ width: 1.5, color: 0xffffff })));
     const flash = shape(`unit:${u.kind}:${team.name}`, (g) => drawUnit(g, u.kind, team));
-    return { body, flash, hp: { x: -15, y: -33.5, size: 11, shadow: false }, veteran: this.star(14, -34, 10) };
+    const glow = shape(`unit:${u.kind}:${team.name}`, (g) => drawUnit(g, u.kind, team));
+    return { body, flash, hp: { x: -15, y: -33.5, size: 11, shadow: false }, veteran: this.star(14, -34, 10), glow };
   }
 
   explorer(team: Team) {
@@ -178,8 +179,37 @@ export class MockArt implements BoardArt {
     return shape(`star:${x}:${y}:${size}`, (g) => drawStar(g, x, y, size / 2));
   }
 
+  // Three pips under the health badge fill with kills; all three turn gold once the unit can be promoted.
+  xp(kills: number) {
+    return shape(`xp:${kills}`, (g) => {
+      g.roundRect(-23, -26.5, 16, 6, 3).fill({ color: 0x10202c, alpha: 0.8 });
+      for (let i = 0; i < 3; i++)
+        g.circle(-20 + i * 5, -23.5, 1.8).fill(i < kills ? (kills >= 3 ? 0xffd34d : 0x8ee6ff) : 0x51616c);
+    });
+  }
+
   capitalIcon() {
     return null;
+  }
+
+  skull(x: number, y: number, size: number) {
+    const k = size / 12;
+    return shape(`skull:${x}:${y}:${size}`, (g) =>
+      g
+        .circle(x, y - 1 * k, 5.2 * k)
+        .fill(0xf4f1e8)
+        .roundRect(x - 3 * k, y + 2 * k, 6 * k, 3.6 * k, 1 * k)
+        .fill(0xf4f1e8)
+        .circle(x - 2 * k, y - 1 * k, 1.5 * k)
+        .fill(0x1a1a1a)
+        .circle(x + 2 * k, y - 1 * k, 1.5 * k)
+        .fill(0x1a1a1a)
+        .poly([x, y + 0.6 * k, x - 0.8 * k, y + 1.9 * k, x + 0.8 * k, y + 1.9 * k])
+        .fill(0x1a1a1a)
+        .rect(x - 1.5 * k, y + 3.6 * k, 0.6 * k, 2 * k)
+        .rect(x + 0.9 * k, y + 3.6 * k, 0.6 * k, 2 * k)
+        .fill(0x1a1a1a),
+    );
   }
 
   labelBand(team: Team) {
