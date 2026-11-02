@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-31T14:20:37.761065+00:00",
+  "remaining_monitor_pids": [],
+  "campaign_cloud_sandboxes": 0,
+  "cloud_inventory": "cloud-cleanup-inventory.json",
+  "local_grading_containers": 0,
+  "local_vm_profile": "polytopia-skirmish",
+  "local_vm_state": "stopped",
+  "local_vm_stop_exit_code": 0,
+  "raw_native_data_retained_locally": true
+}

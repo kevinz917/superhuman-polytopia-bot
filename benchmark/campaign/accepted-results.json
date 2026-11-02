@@ -1,0 +1,507 @@
+{
+  "updated_at": "2026-10-31T14:18:08.686210+00:00",
+  "selection_rule": "First complete validated native grading export for each frozen authored submission; no reward-based selection.",
+  "validated_evaluations": 60,
+  "required_evaluations": 60,
+  "final_outcomes": 21600,
+  "models": {
+    "anthropic/claude-fable-5-1": 5,
+    "anthropic/claude-opus-5.5": 5,
+    "minimax/minimax-m3.1-flash": 5,
+    "deepseek/deepseek-v4-pro-0813": 5,
+    "google/gemini-4-argon": 5,
+    "moonshotai/kimi-k3.1-pro": 5,
+    "qwen/qwen3.8-max-0902": 5,
+    "z-ai/glm-5.3": 5,
+    "deepseek/deepseek-v4.1-flash-1017": 5,
+    "openai/gpt-6-astra": 5,
+    "openai/gpt-6.1-sol": 5,
+    "openai/gpt-6-luna": 5
+  },
+  "validation_kinds": {
+    "full_export": 27,
+    "lossless_replay": 33
+  },
+  "accepted": {
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__2mG8Ziz": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/5fee3bc8852f41c8.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-fable-5-1",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__2mG8Ziz",
+      "accepted_at": "2026-10-31T10:06:15.839771+00:00",
+      "original_source_sha256": "e762a2ccca965ddb380dad125e99f7f200b24ad9d457eb346d2cc45439287f56"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__tiBAYRf": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/fd79d5c9f1d54e03.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-opus-5.5",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__tiBAYRf",
+      "accepted_at": "2026-10-31T10:06:15.840304+00:00",
+      "original_source_sha256": "fa7a5b0d45a60b825723c0f405b5959c815de1438735e6d238f668b5d30f6f7c"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Lfjs9Ap": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/4e81e484c90c40dc.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-opus-5.5",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Lfjs9Ap",
+      "accepted_at": "2026-10-31T10:06:15.840570+00:00",
+      "original_source_sha256": "6f55e3e170fd94940226049d8e0baa20125d75fd0782495cead5ab3a26578c6f"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__TfEVB2n": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7a4669d5d42d9485.json",
+      "validation_kind": "full_export",
+      "model": "minimax/minimax-m3.1-flash",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__TfEVB2n",
+      "accepted_at": "2026-10-31T10:06:15.840841+00:00",
+      "original_source_sha256": "ccd8d73cc16e40a3946bf29ff03cf2660403d9318ed914314774d494301b5776"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__zAg2NsC": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e6602bf543bc1d0a.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-fable-5-1",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__zAg2NsC",
+      "accepted_at": "2026-10-31T10:06:15.841080+00:00",
+      "original_source_sha256": "e2856bb9a833c7a764aa7e3fb082bb4de5a835a0ea6485c421098c9456c7d161"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a44e413d676eecd7.json",
+      "validation_kind": "full_export",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__iQenkzx/task__Qgz7bQQ",
+      "accepted_at": "2026-10-31T10:06:15.841334+00:00",
+      "original_source_sha256": "006a3587ab78d73e3800da712dc87b1cf6f76609832249ff59cabfd9d09b6d63"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b687c4937ce74275.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz",
+      "accepted_at": "2026-10-31T10:06:15.841483+00:00",
+      "original_source_sha256": "0dad4a791f025a68b67105e690d4308020f1fbb65d04aa72f6155d9b1ad860de"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/3cb4bdd3fc26c076.json",
+      "validation_kind": "lossless_replay",
+      "model": "minimax/minimax-m3.1-flash",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF",
+      "accepted_at": "2026-10-31T10:06:15.841779+00:00",
+      "original_source_sha256": "6679e3e95777617e04aaa1c74522b8805c6313817ceef35b8b61bc06cb0daf27"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/46304e7ae53ff0af.json",
+      "validation_kind": "lossless_replay",
+      "model": "google/gemini-4-argon",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5",
+      "accepted_at": "2026-10-31T10:06:15.842028+00:00",
+      "original_source_sha256": "a52cca93e4cf814f3c6723b834460f2f2b8aec30f7fd9728d1f33829fbaf2e45"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/9f1aef0ada2760bc.json",
+      "validation_kind": "lossless_replay",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h",
+      "accepted_at": "2026-10-31T10:06:15.842241+00:00",
+      "original_source_sha256": "9ecbe383829eace0a67d800c941526dc51d3b45abc9e353995b08ebdc2459553"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/259346ae5213abd8.json",
+      "validation_kind": "lossless_replay",
+      "model": "google/gemini-4-argon",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ",
+      "accepted_at": "2026-10-31T10:06:15.842478+00:00",
+      "original_source_sha256": "941d1a9d4e88cd92e3738ff8cfb8e9c50972fb6813f180967af17172f0459b43"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/453c32ede6761e7c.json",
+      "validation_kind": "lossless_replay",
+      "model": "qwen/qwen3.8-max-0902",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ",
+      "accepted_at": "2026-10-31T10:08:15.901003+00:00",
+      "original_source_sha256": "7cb836e7314cd9041fbd3135abb2eda2e1334411fe13d394b46ee14aeec0b303"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ef1f3c89c4d41990.json",
+      "validation_kind": "lossless_replay",
+      "model": "qwen/qwen3.8-max-0902",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE",
+      "accepted_at": "2026-10-31T10:08:35.915358+00:00",
+      "original_source_sha256": "daa5682220f912c279350844cda535ff2c781d53b8b3645538f35a4efced813b"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1da4412c0676304e.json",
+      "validation_kind": "lossless_replay",
+      "model": "google/gemini-4-argon",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd",
+      "accepted_at": "2026-10-31T10:09:15.944650+00:00",
+      "original_source_sha256": "8ba4f185b0516d980b4f99b7927e3d7ff0c71c768198fda2bdcea0a38257bc00"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/def418bab41deb2f.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA",
+      "accepted_at": "2026-10-31T10:14:36.127560+00:00",
+      "original_source_sha256": "582c62dec74b206c5f33193fd64f3943b1f47458effccb02251f47326096cbad"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RdiPeRi": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7e13e06c3b74aa35.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-opus-5.5",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RdiPeRi",
+      "accepted_at": "2026-10-31T10:14:36.127756+00:00",
+      "original_source_sha256": "2ac71df73174b7fc2fca96403622651fde81c5d47d50f7ad3e3b1b6566cf391c"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/03460d31aa97198f.json",
+      "validation_kind": "lossless_replay",
+      "model": "z-ai/glm-5.3",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8",
+      "accepted_at": "2026-10-31T10:14:56.136795+00:00",
+      "original_source_sha256": "3b269b6cd6cc452e2228d83ca753cf662e4d4cd5af04c4cfc645e39e949bdd21"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0c3f735b50dc1508.json",
+      "validation_kind": "lossless_replay",
+      "model": "z-ai/glm-5.3",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd",
+      "accepted_at": "2026-10-31T10:14:56.136976+00:00",
+      "original_source_sha256": "1ff4db85be1f4bcfe1ef1dd7f76e66cd06aa7479ca7fee0a8c3ada0f6f8cab24"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/92e2deca8dfabdd9.json",
+      "validation_kind": "lossless_replay",
+      "model": "google/gemini-4-argon",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup",
+      "accepted_at": "2026-10-31T10:14:56.137134+00:00",
+      "original_source_sha256": "db02bf7b79a8a3e58d2ff1ef79e37e5dfc8d0f7d7c73eb855e56a7d58fadd576"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__9QyhEvx": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ca963b806ed068e7.json",
+      "validation_kind": "lossless_replay",
+      "model": "minimax/minimax-m3.1-flash",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__9QyhEvx",
+      "accepted_at": "2026-10-31T10:15:16.150467+00:00",
+      "original_source_sha256": "d4b44051eec329a33501f1f27502d27fe8a85c2ddcd61dd2a4d6bf557f1c90b9"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/19922d42af246223.json",
+      "validation_kind": "lossless_replay",
+      "model": "qwen/qwen3.8-max-0902",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C",
+      "accepted_at": "2026-10-31T10:15:16.150638+00:00",
+      "original_source_sha256": "a25e3f98aee55deb506fafe456223e5118559d882c3ca22d45d87a2e8536e8a5"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/de9fd15aa91452b6.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU",
+      "accepted_at": "2026-10-31T10:20:16.325619+00:00",
+      "original_source_sha256": "a91d258fef7603c71c9ff7ba201e1b878d19fbab6844ddac1007a6e9b36192ea"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/384a7a4e77a81ec9.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s",
+      "accepted_at": "2026-10-31T10:20:36.271590+00:00",
+      "original_source_sha256": "f458e574ce102b7137b5b9ce34d4ce924208e6c4265ae6b1613363d38fab2254"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b168c9300fddae84.json",
+      "validation_kind": "lossless_replay",
+      "model": "minimax/minimax-m3.1-flash",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R",
+      "accepted_at": "2026-10-31T10:23:36.381874+00:00",
+      "original_source_sha256": "b80e5b8c54e084697e30176f71ad8cd1eaec242605b1cd704a886bf73ef6df67"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ee8c7732815164a8.json",
+      "validation_kind": "lossless_replay",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj",
+      "accepted_at": "2026-10-31T10:23:56.397655+00:00",
+      "original_source_sha256": "956878fda060860b2628c97f1f1bdb06743a169f5c4d9c05248cfb709f9331a7"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/bbba5759ff8504e5.json",
+      "validation_kind": "lossless_replay",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+      "accepted_at": "2026-10-31T10:26:56.534508+00:00",
+      "original_source_sha256": "b83421d1fd0f332ce80d5a3dedba96a490454a327ea738a939b47c7bc2d71cea"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8858fbc96794c25a.json",
+      "validation_kind": "lossless_replay",
+      "model": "z-ai/glm-5.3",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j",
+      "accepted_at": "2026-10-31T10:27:16.550255+00:00",
+      "original_source_sha256": "6631848aa3e69ae567393f5d7c9fc11423fbbe466eec5a8e1fb7bdfc2892d586"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/9de559431583287e.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe",
+      "accepted_at": "2026-10-31T10:27:16.550434+00:00",
+      "original_source_sha256": "6a3cfeaedcb4592225f104d6809077ccffc0ee38d0fccc387582b6629594e249"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0da8d171a5d0cf80.json",
+      "validation_kind": "lossless_replay",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK",
+      "accepted_at": "2026-10-31T10:27:36.566322+00:00",
+      "original_source_sha256": "65b8e21b58481eca22043b170192dbef5f29e8c88f56a6bf36000919a5ea1a90"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/270d597f9891d13a.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ",
+      "accepted_at": "2026-10-31T10:27:36.566476+00:00",
+      "original_source_sha256": "7dda6385a08fcd03c9d9f5ad172541582c28c1af3d9e6c3dbaa9539ffa1e8efc"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__CksKemm": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a57ba9f481af5b67.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-fable-5-1",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__CksKemm",
+      "accepted_at": "2026-10-31T10:32:36.769531+00:00",
+      "original_source_sha256": "14ad565d2ea4df463a62ae56f2ad40e70597723a6ea2219b5212cd87f4b1472e"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__B7Csrvr": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/283adfddc662521e.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-astra",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__B7Csrvr",
+      "accepted_at": "2026-10-31T10:35:16.856983+00:00",
+      "original_source_sha256": "f72d10249ef0ad1efc2c82df438af18ca83310505c289efea49afa90638d383c"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0b21b670a8c99986.json",
+      "validation_kind": "lossless_replay",
+      "model": "minimax/minimax-m3.1-flash",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__QTseAoa/task__a7gtJCM",
+      "accepted_at": "2026-10-31T10:41:57.086723+00:00",
+      "original_source_sha256": "bbf9cc1d0e966344582bad4ce5679ddb7b016d06fef34e5d6574bc091573a134"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__EEjDQ8A": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/d33164f8064ffc72.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-fable-5-1",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__EEjDQ8A",
+      "accepted_at": "2026-10-31T10:45:57.263162+00:00",
+      "original_source_sha256": "f73607fd05dad3d6ed15664164100eb196848daf81a5e317ce7d5e85d607416d"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__8HoxFbx": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a94d1e64150995fe.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6.1-sol",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__8HoxFbx",
+      "accepted_at": "2026-10-31T11:11:18.382462+00:00",
+      "original_source_sha256": "524e579c2cfec743d8bb91ff4ff9477e65ef5d8b3eef42cc079a5676bdb8f4f2"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/4270c7c08adcb0c7.json",
+      "validation_kind": "lossless_replay",
+      "model": "qwen/qwen3.8-max-0902",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__3ebfqZr/task__LjJFSf6",
+      "accepted_at": "2026-10-31T11:16:38.622144+00:00",
+      "original_source_sha256": "7cb994a71a68645625b9a2da46f20c906eb21436e52e80fe88d1a62d62e4e303"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QyGaGwC": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e574ceee47174485.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-astra",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QyGaGwC",
+      "accepted_at": "2026-10-31T11:17:18.648573+00:00",
+      "original_source_sha256": "9749f816ea082851c49e13d5f02a4ee312598f793b150aa77e710e9e4f54dfa1"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-gemini-retry1/task__d3UZRNk": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/2a0f33b131e44109.json",
+      "validation_kind": "lossless_replay",
+      "model": "google/gemini-4-argon",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-gemini-retry1/task__d3UZRNk",
+      "accepted_at": "2026-10-31T11:21:38.819517+00:00",
+      "original_source_sha256": "a1863a4b3370034007f5bdde3d02c798b28c0ea92477efb2179977f7abecf4c9"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__dqKSYom": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e201fd1d285fa696.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-astra",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__dqKSYom",
+      "accepted_at": "2026-10-31T11:22:38.868774+00:00",
+      "original_source_sha256": "a99308e3fc7807507e00a2fe8201ef24b46f9c9d58393e10b9989a5d0bc54b06"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/31d938bdbabb9ba3.json",
+      "validation_kind": "lossless_replay",
+      "model": "z-ai/glm-5.3",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__czjn9HX/task__msZtjAX",
+      "accepted_at": "2026-10-31T11:29:39.052557+00:00",
+      "original_source_sha256": "8c54fd539fd48689a9c5bc32b6790078c7f2fc43375abfc8b1ea2545bdc70066"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7b8245096f16819f.json",
+      "validation_kind": "lossless_replay",
+      "model": "z-ai/glm-5.3",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Ayj422k/task__3qFkAmZ",
+      "accepted_at": "2026-10-31T11:29:39.052723+00:00",
+      "original_source_sha256": "b97fdb33ad47a75c8b19c71fa0e48613450585615928d140d78f12546a636afc"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vVp2KJg": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/798478c6fa0579bd.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6.1-sol",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vVp2KJg",
+      "accepted_at": "2026-10-31T11:32:19.195361+00:00",
+      "original_source_sha256": "584e3daf34af8eaa03dc7474e3918be6521e8ba0c1f6367095f301b7083de52d"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__NCmBRkE": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/108bbbdb8b40712e.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-luna",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__NCmBRkE",
+      "accepted_at": "2026-10-31T11:39:39.551180+00:00",
+      "original_source_sha256": "f0fdfcaf83f3404b344759cd4dbcfe4980218bc6612fcc1971df00db951e1ad3"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/16065d6de762fcc1.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK-r2/task__XT6vRxB",
+      "accepted_at": "2026-10-31T11:39:59.571517+00:00",
+      "original_source_sha256": "483773e34e88ac9884bb4e06f671108d0103c3832afed0611da94d26fc85aa5a"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/6a2c03bdef171fd4.json",
+      "validation_kind": "lossless_replay",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__ivs2RE6/task__5aYMHPF",
+      "accepted_at": "2026-10-31T11:42:39.696969+00:00",
+      "original_source_sha256": "8c2741f7787d63758db0a234d0f6fc351cbeeeadf98a821f675db15adf393930"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ae4ed0289f93cb1c.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Xe2Trpd/task__rgZ6N6o",
+      "accepted_at": "2026-10-31T11:42:39.697132+00:00",
+      "original_source_sha256": "c175a610a32dd4d794c23cbc342d429861e18a005ea973ed840fc7b1a2c6c2e9"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0a9d6501058f462a.json",
+      "validation_kind": "lossless_replay",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__NtAZSDv/task__p9ojj6R",
+      "accepted_at": "2026-10-31T12:03:20.836967+00:00",
+      "original_source_sha256": "7203a13945ed3646c3e9ebfbe5a99988c17493434ea09cb210d4685e2618a3de"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__jcKkvbm": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8ec25ab21ac0534a.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-opus-5.5",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__jcKkvbm",
+      "accepted_at": "2026-10-31T12:05:00.941820+00:00",
+      "original_source_sha256": "7eac37dd0da74c26fc65d0277d0167bdee56110af8318733776d7d0e5b71e643"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__AoA9Jyq": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0ed9125c3dc3c732.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-luna",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__AoA9Jyq",
+      "accepted_at": "2026-10-31T12:14:41.569395+00:00",
+      "original_source_sha256": "eab414847f46b0540d15ff83cf0ffd73dbe63f0fcfcf2df07a8d37a224a021ef"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Cq2rPVk": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/664a1be5cc170e04.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6.1-sol",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Cq2rPVk",
+      "accepted_at": "2026-10-31T12:19:01.810251+00:00",
+      "original_source_sha256": "da26de0bf77b65a444bb444e5644cd2ab9b19977c23a47a9a800ded6d7241619"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Uaszw9S": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1d05302530b5542a.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-luna",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Uaszw9S",
+      "accepted_at": "2026-10-31T12:41:43.152031+00:00",
+      "original_source_sha256": "45fd765ca9452078a4db9be6aa9c4ed7df1adb88ee9fd05b02d9af13e5f515ef"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__M7wZeE5": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b596fcf7cb1b1a8f.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-opus-5.5",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__M7wZeE5",
+      "accepted_at": "2026-10-31T12:53:23.796519+00:00",
+      "original_source_sha256": "438e8d5e8a8fc94f0c9074c25642913567f6eb69d21d3b916fcdc29e4b262643"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__A5giJDu": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8aa8d5f7e742036f.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6.1-sol",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__A5giJDu",
+      "accepted_at": "2026-10-31T13:03:04.159881+00:00",
+      "original_source_sha256": "ce6767f4ef27252786e17fbaaa280176baaff9484549934ea379285655211a9c"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__3AwaaaD": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/6a19eda79eab3643.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-luna",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__3AwaaaD",
+      "accepted_at": "2026-10-31T13:13:24.765141+00:00",
+      "original_source_sha256": "07e59adbf98f31e6b7e7fa9eeb3167e166ceb41429bab393e0efba8259d6d405"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RLYgGM4": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/f1d82c220d04aaa6.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-astra",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RLYgGM4",
+      "accepted_at": "2026-10-31T13:21:25.187229+00:00",
+      "original_source_sha256": "c0962b2e7c44759132bbdca04ec85595498a4dab448632c31055944610783134"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/09db2457af70fda1.json",
+      "validation_kind": "lossless_replay",
+      "model": "qwen/qwen3.8-max-0902",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__YuUEN3z/task__MKkxufk",
+      "accepted_at": "2026-10-31T13:28:05.579842+00:00",
+      "original_source_sha256": "d88f1094734820826e6c7a7aaaa48ec56ebefc3762edeced2580f23f904e2521"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__sMe8UBW": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/29acf51a64c963e1.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-astra",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__sMe8UBW",
+      "accepted_at": "2026-10-31T13:39:26.431762+00:00",
+      "original_source_sha256": "bd880018140e3a79be5a57465a21d799e38ae2a1ace015bb96cacd64a9a08d4e"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QdyEq8X": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/bebce5e00b6bf57f.json",
+      "validation_kind": "full_export",
+      "model": "anthropic/claude-fable-5-1",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QdyEq8X",
+      "accepted_at": "2026-10-31T13:50:47.139502+00:00",
+      "original_source_sha256": "13e3d0977d1aa3f50a5c877599ba02ec20c86ed702bbd2ec99c5e95b91bb81e4"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vtvnYcG": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0ca64646cba8dfe1.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6.1-sol",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vtvnYcG",
+      "accepted_at": "2026-10-31T14:01:07.781081+00:00",
+      "original_source_sha256": "a7ecb24902f68c101ed3a6317ae904673260a71ea125428973c6d2658ef6ac58"
+    },
+    "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__LToTkCd": {
+      "receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1012cbe56378e714.json",
+      "validation_kind": "full_export",
+      "model": "openai/gpt-6-luna",
+      "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__LToTkCd",
+      "accepted_at": "2026-10-31T14:18:08.686179+00:00",
+      "original_source_sha256": "0c261bf46e0947d758d3f85ad4670ec3b2df3eeb1360a770106259a0806c2b1c"
+    }
+  }
+}

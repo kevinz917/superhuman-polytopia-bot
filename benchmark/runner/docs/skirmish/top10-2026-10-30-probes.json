@@ -1,0 +1,168 @@
+{
+  "prefix": "mini-top10-20261030a",
+  "passed": true,
+  "models": [
+    {
+      "label": "opus55",
+      "model": "anthropic/claude-opus-5.5",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.007147799999999999,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.01278684,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.01993464
+    },
+    {
+      "label": "sol61",
+      "model": "openai/gpt-6.1-sol",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.00108306,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.00187902,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.0029620799999999997
+    },
+    {
+      "label": "argon4",
+      "model": "google/gemini-4-argon",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.002607066,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.003630726,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.006237792
+    },
+    {
+      "label": "kimi31",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.002478168,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.002676564,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.005154732
+    },
+    {
+      "label": "qwen38",
+      "model": "qwen/qwen3.8-max-0902",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.00259182,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.00420156,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.00679338
+    },
+    {
+      "label": "glm53",
+      "model": "z-ai/glm-5.3",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.0008525087999999999,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.0006589836,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.0015114923999999998
+    },
+    {
+      "label": "deepseek-pro",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.00068676696,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.00052742448,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.0012141914399999999
+    },
+    {
+      "label": "deepseek-flash",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.00014599332,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.00012781098,
+          "api_calls": 1
+        }
+      ],
+      "api_cost_usd": 0.0002738043
+    },
+    {
+      "label": "minimax31",
+      "model": "minimax/minimax-m3.1-flash",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 0.00017531909999999999,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.0002275614,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.0004028805
+    },
+    {
+      "label": "luna-high",
+      "model": "openai/gpt-6-luna",
+      "passed": true,
+      "stages": [
+        {
+          "instance_cost": 5.4153e-05,
+          "api_calls": 2
+        },
+        {
+          "instance_cost": 0.00012483900000000002,
+          "api_calls": 2
+        }
+      ],
+      "api_cost_usd": 0.00017899200000000002
+    }
+  ],
+  "api_cost_usd": 0.04466398464,
+  "scope": "Two short actual mini-SWE-agent stages per model; bash tool execution, early submission and history resume. Not benchmark attempts."
+}

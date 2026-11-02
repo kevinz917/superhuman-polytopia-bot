@@ -1,0 +1,190 @@
+{
+  "job_name": "continuous-split-v6-20261031-daytona",
+  "jobs_dir": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs",
+  "n_attempts": 5,
+  "n_concurrent_trials": 35,
+  "skip_credential_checks": true,
+  "environment": {
+    "import_path": "polytopia_bot.skirmish.harbor_environments:SkirmishDaytonaEnvironment",
+    "delete": true,
+    "kwargs": {
+      "snapshot_ids": {
+        "polytopia-skirmish-coder-3348be57f043": "94865034-8558-4958-a050-3ffdc2c99326",
+        "polytopia-skirmish-verifier-48f87e58929c": "5e227a99-c985-4a73-a34b-a636cfd4cde8"
+      }
+    }
+  },
+  "tasks": [
+    {
+      "path": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/task"
+    }
+  ],
+  "agents": [
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "google/gemini-4-argon",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "google-vertex/us"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "moonshotai/kimi-k3.1-pro",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "moonshotai/mxfp4"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "qwen/qwen3.8-max-0902",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "alibaba"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "z-ai/glm-5.3",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "z-ai/fp8"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "deepseek/deepseek-v4-pro-0813",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "deepseek/deepseek-v4.1-flash-1017",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "minimax/minimax-m3.1-flash",
+      "kwargs": {
+        "provider": "openrouter",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "minimax"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        },
+        "execution_backend": "daytona",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-daytona-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    }
+  ],
+  "verifier": {
+    "env": {
+      "SKIRMISH_EVALUATION_PROFILE": "standard"
+    }
+  }
+}

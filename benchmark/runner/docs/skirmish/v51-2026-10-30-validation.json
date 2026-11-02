@@ -1,0 +1,41 @@
+{
+  "protocol": "polytopia-mini-v5.1",
+  "unit_tests": {
+    "passed": 53,
+    "skipped": 1,
+    "location": "Modal staging",
+    "app_url": "https://modal.com/apps/duper/staging/ap-b26e0WyQFIAWg0dApjCsNE"
+  },
+  "preflight": {
+    "app_url": "https://modal.com/apps/duper/staging/ap-ybcsJbOpBQSMDOl8LuSaBH",
+    "offline": true,
+    "no_opponent_package": true,
+    "trusted_compilation": true,
+    "source_cutoff": true,
+    "idempotent": true,
+    "large_command_bytes": 300000,
+    "large_source_bytes": 250000,
+    "unicode_and_quotes": true
+  },
+  "stdio_probe": {
+    "stderr_write_errno": 0
+  },
+  "smoke": {
+    "prefix": "mini-v51-smoke-20261030a",
+    "status": "completed",
+    "audit": {
+      "passed": true,
+      "actual_games": 192,
+      "virtual_compile_failure_losses": 0,
+      "actions": 114337
+    },
+    "games": 192,
+    "official": false
+  },
+  "invalidated_predecessor": {
+    "prefix": "mini-v5-20261030a",
+    "reason": "64 KiB argument limit in command transport",
+    "scored": false,
+    "recorded_completed_api_cost_usd": 51.23420687682
+  }
+}

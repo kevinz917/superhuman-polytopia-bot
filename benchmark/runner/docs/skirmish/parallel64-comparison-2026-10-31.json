@@ -1,0 +1,22 @@
+{
+  "status": "mismatch",
+  "baseline": "mini-v51-final-smoke-20261030a",
+  "candidate": "mini-v51-parallel64-smoke-20261031a",
+  "games": 192,
+  "exactly_matching_outcomes_and_trace_hashes": 191,
+  "mismatches": [
+    {
+      "job_index": 140,
+      "fields": [
+        "action_chain_sha256",
+        "private_trace_sha256"
+      ]
+    }
+  ],
+  "new_model_calls": 0,
+  "scope": "same frozen bots, positions, guest limits and referee protocol; evaluator max containers 32 versus 64",
+  "matching_outcomes": 192,
+  "matching_public_trace_hashes": 192,
+  "matching_action_counts": 192,
+  "interpretation": "One expert private action sequence varied between runs; all public traces, outcomes, action counts and turn counts matched. All traces independently replay-audited. Cause of the expert inference variation is not established; this test does not prove bitwise deterministic repeated inference."
+}

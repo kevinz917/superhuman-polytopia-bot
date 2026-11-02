@@ -1,0 +1,78 @@
+{
+  "study_id": "pressure-smoke-20261030b",
+  "status": "completed",
+  "allocated": 2,
+  "valid_submissions": 0,
+  "failed_submissions": [
+    {
+      "run_id": "pressure-smoke-20261030b-ds-combined-neutral-r0",
+      "result": {
+        "schema": "polytopia-skirmish-v2",
+        "run_id": "pressure-smoke-20261030b-ds-combined-neutral-r0",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "status": "failed_submission",
+        "sandbox_id": "sb-QhpWlezABetxCbOOT20Lqf",
+        "budget_seconds": 150,
+        "started_unix": 1793335237.126851,
+        "requests": 11,
+        "practice_games": 2,
+        "revisions": 2,
+        "elapsed_seconds": 150.006347161,
+        "reason": "current_source_not_compiled"
+      }
+    },
+    {
+      "run_id": "pressure-smoke-20261030b-ds-combined-evaluative-r0",
+      "result": {
+        "schema": "polytopia-skirmish-v2",
+        "run_id": "pressure-smoke-20261030b-ds-combined-evaluative-r0",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "status": "failed_submission",
+        "sandbox_id": "sb-yGsZOFFrW5C17AWAGP3Jji",
+        "budget_seconds": 150,
+        "started_unix": 1793335237.8960736,
+        "requests": 20,
+        "practice_games": 2,
+        "revisions": 2,
+        "elapsed_seconds": 151.308582089,
+        "reason": "current_source_not_compiled"
+      }
+    }
+  ],
+  "analysis": {
+    "cells": [
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "evaluative",
+        "allocated": 1,
+        "valid_submissions": 0,
+        "completed_evaluations": 0,
+        "api_reported_cost_usd": null
+      },
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "neutral",
+        "allocated": 1,
+        "valid_submissions": 0,
+        "completed_evaluations": 0,
+        "api_reported_cost_usd": null
+      }
+    ],
+    "contrasts": [
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "evaluative",
+        "control": "neutral",
+        "paired_authoring_runs": 0,
+        "mean_elo_delta": null,
+        "paired_run_bootstrap_ci95": null,
+        "conditional_on_valid_submissions": true
+      }
+    ],
+    "replication_unit": "independent bot-authoring run",
+    "caveat": "Elo contrasts condition on valid bots; report submission attrition alongside strength. Tiny or constant samples receive no confidence interval. Map-level uncertainty is separate."
+  }
+}

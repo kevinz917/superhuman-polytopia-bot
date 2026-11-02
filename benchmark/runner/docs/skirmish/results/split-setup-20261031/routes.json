@@ -1,0 +1,232 @@
+{
+  "models": [
+    {
+      "label": "astra6",
+      "model": "openai/gpt-6-astra",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768
+      },
+      "provider": "cliproxyapi",
+      "execution_backend": "docker"
+    },
+    {
+      "label": "opus55",
+      "model": "anthropic/claude-opus-5.5",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768
+      },
+      "provider": "cliproxyapi",
+      "execution_backend": "docker"
+    },
+    {
+      "label": "sol61",
+      "model": "openai/gpt-6.1-sol",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768
+      },
+      "provider": "cliproxyapi",
+      "execution_backend": "docker"
+    },
+    {
+      "label": "argon4",
+      "model": "google/gemini-4-argon",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "google-vertex/us"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "kimi31",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "moonshotai/mxfp4"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "qwen38",
+      "model": "qwen/qwen3.8-max-0902",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "alibaba"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "glm53",
+      "model": "z-ai/glm-5.3",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "z-ai/fp8"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "deepseek-pro",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "deepseek-flash",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "minimax31",
+      "model": "minimax/minimax-m3.1-flash",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "minimax"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "provider": "openrouter",
+      "execution_backend": "daytona"
+    },
+    {
+      "label": "luna-high",
+      "model": "openai/gpt-6-luna",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768
+      },
+      "provider": "cliproxyapi",
+      "execution_backend": "docker"
+    },
+    {
+      "label": "fable51",
+      "model": "anthropic/claude-fable-5-1",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768
+      },
+      "provider": "cliproxyapi",
+      "execution_backend": "docker"
+    }
+  ],
+  "proxy_catalog": [
+    "claude-3-5-haiku-20241022",
+    "claude-3-7-sonnet-20250219",
+    "claude-fable-5",
+    "claude-fable-5-1",
+    "claude-haiku-4-5-20251001",
+    "claude-haiku-5-5",
+    "claude-opus-4-1-20250805",
+    "claude-opus-4-20250514",
+    "claude-opus-4-5-20251101",
+    "claude-opus-4-6",
+    "claude-opus-4-7",
+    "claude-opus-4-8",
+    "claude-opus-5",
+    "claude-opus-5-5",
+    "claude-sonnet-4-20250514",
+    "claude-sonnet-4-5-20250929",
+    "claude-sonnet-4-6",
+    "claude-sonnet-5",
+    "claude-sonnet-5-5",
+    "codex-auto-review",
+    "gpt-5.6-luna",
+    "gpt-5.6-sol",
+    "gpt-5.6-terra",
+    "gpt-6-astra",
+    "gpt-6-luna",
+    "gpt-6-sol",
+    "gpt-6.1-sol",
+    "gpt-6.1-terra",
+    "gpt-image-1.5",
+    "gpt-image-2",
+    "gpt-image-2.5",
+    "gpt-image-2.5-flare",
+    "gpt-image-2.5-sunburst"
+  ]
+}

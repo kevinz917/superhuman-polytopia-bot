@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e5edf1" />
+    <title>Bardur — Replay & Play</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="topbar">
+        <button class="brand" id="home" aria-label="Open game menu">
+          <span class="brand-mark">B</span
+          ><span>BARDUR<small>REPLAY & PLAY</small></span>
+        </button>
+        <div class="scoreboard">
+          <div class="hud-stat">
+            <span>Score</span><strong id="score">—</strong>
+          </div>
+          <div class="hud-stat hud-stars">
+            <span id="income">Stars</span>
+            <div>
+              <img alt="" src="/assets/star.png" /><strong id="stars">—</strong>
+            </div>
+          </div>
+          <div class="hud-stat">
+            <span>Turn</span><strong id="turn">—</strong>
+          </div>
+        </div>
+        <div hidden>
+          <span id="tribe-name"></span><span class="tribe-dot"></span>
+        </div>
+        <button class="mode-badge" id="library">
+          <span id="mode-dot"></span><span id="mode-label">REPLAY LIBRARY</span
+          ><span>⌄</span>
+        </button>
+      </header>
+      <div id="board-wrap">
+        <canvas id="board" aria-label="Isometric Bardur battlefield"></canvas>
+        <div
+          id="tile-controls"
+          role="group"
+          aria-label="Game board tiles"
+        ></div>
+      </div>
+      <div class="board-tools">
+        <button id="zoom-in" aria-label="Zoom in">＋</button
+        ><button id="zoom-out" aria-label="Zoom out">−</button
+        ><button id="recenter" aria-label="Center board">⌖</button>
+      </div>
+      <aside class="game-info">
+        <div class="eyebrow" id="game-kind">RECORDED MATCH</div>
+        <h1 id="game-title">The square awaits.</h1>
+        <div id="game-subtitle">Loading your replay library…</div>
+        <button id="info-toggle" class="text-button">Match details ↗</button>
+      </aside>
+      <div id="status" role="status" aria-live="polite">
+        <span class="status-dot"></span
+        ><span id="status-text">Connecting to the game engine</span>
+      </div>
+      <div id="selection" class="selection hidden">
+        <button id="clear-selection" class="close" aria-label="Deselect tile">
+          ×
+        </button>
+        <div class="selection-head">
+          <span id="selection-portrait" class="selection-portrait"></span>
+          <div>
+            <div class="eyebrow" id="tile-coord"></div>
+            <h2 id="tile-title"></h2>
+            <div id="tile-detail"></div>
+          </div>
+        </div>
+        <div id="actions" class="actions orders"></div>
+      </div>
+      <div id="reward" class="reward hidden" role="dialog" aria-modal="true" aria-label="City reward">
+        <div id="reward-card" class="reward-card"></div>
+      </div>
+      <div id="replay-dock" class="replay-dock">
+        <div class="transport">
+          <button id="first" aria-label="First action">|◀</button
+          ><button id="prev" aria-label="Previous action">‹</button
+          ><button id="play" class="play-button" aria-label="Play replay">
+            ▶</button
+          ><button id="next" aria-label="Next action">›</button
+          ><button id="last" aria-label="Latest action">▶|</button>
+        </div>
+        <div class="timeline">
+          <div class="timeline-label">
+            <span id="event-label">Opening position</span
+            ><span id="frame-count">0 / 0</span>
+          </div>
+          <input
+            id="scrubber"
+            aria-label="Replay position"
+            type="range"
+            min="0"
+            max="0"
+            value="0"
+          />
+        </div>
+        <select id="speed" aria-label="Playback speed">
+          <option value="1">1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+          <option value="8">8×</option></select
+        ><select id="perspective" aria-label="Viewing perspective">
+          <option value="actor">Acting player</option>
+        </select>
+      </div>
+      <nav class="game-nav">
+        <button id="menu-button">
+          <span aria-hidden="true" class="round-icon menu-icon"
+            ><svg viewBox="0 0 40 40">
+              <path d="M10 10h20M10 20h20M10 30h20" /></svg></span
+          ><span>Menu</span></button
+        ><button id="history-button">
+          <span aria-hidden="true" class="round-icon stats-icon"
+            ><img src="/assets/head.png" alt="" /></span
+          ><span>Game Stats</span></button
+        ><button id="tech-button">
+          <span aria-hidden="true" class="round-icon tech-nav-icon"
+            ><svg viewBox="0 0 48 58">
+              <path
+                fill="#00cfee"
+                stroke="none"
+                d="m9 39 15-9 15 9v10L24 58 9 49z"
+              />
+              <path fill="#007abc" stroke="none" d="m9 39 15 9v10L9 49z" />
+              <path
+                fill="#d5faff"
+                stroke="none"
+                d="m20 3 7-3 6 4v28l-8 8-8-7z"
+              />
+              <path fill="#80d2eb" stroke="none" d="m27 0 6 4v28l-8 8V5z" />
+              <path
+                fill="none"
+                stroke="#4b97c9"
+                stroke-width="2"
+                d="m12 34 12 7m-14-2 12 7m-9-16 12 7"
+              /></svg></span
+          ><span>Tech Tree</span></button
+        ><button id="end-turn">
+          <span aria-hidden="true" class="round-icon end-icon"
+            ><svg viewBox="0 0 50 50">
+              <path d="m11 27 11 11 20-27" /></svg></span
+          ><span id="end-label">Next Turn</span>
+        </button>
+      </nav>
+      <footer>Unofficial Polytopia research interface · Bardur 1v1</footer>
+      <div id="toast" role="alert" class="hidden"></div>
+      <dialog id="dialog">
+        <button id="dialog-close" class="close" aria-label="Close dialog">
+          ×
+        </button>
+        <div id="dialog-content"></div>
+      </dialog>
+      <input id="import-file" type="file" accept=".json,.jsonl,.gz" hidden />
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

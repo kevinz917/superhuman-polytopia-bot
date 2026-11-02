@@ -1,0 +1,2193 @@
+{
+  "status": "completed",
+  "prefix": "mini-pipeline-smoke-20261031a",
+  "smoke": true,
+  "total": 4,
+  "authoring_finished": 4,
+  "runs": {
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m": {
+      "status": "completed",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "independent-40m",
+      "effective_run_id": null,
+      "submission_quality": "custom_submission"
+    },
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m": {
+      "status": "completed",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "feedback-3r-40m",
+      "effective_run_id": null,
+      "submission_quality": "custom_submission"
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m": {
+      "status": "completed",
+      "model": "openai/gpt-6-luna",
+      "track": "independent-40m",
+      "effective_run_id": null,
+      "submission_quality": "unchanged_starter"
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m": {
+      "status": "completed",
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m",
+      "effective_run_id": null,
+      "submission_quality": "custom_submission"
+    }
+  },
+  "errors": [],
+  "coordinator_call_id": "fc-01M66VCDVE9ZTCCQ2JV9HV0ME7",
+  "evaluation_games": 192,
+  "games_finished": 192,
+  "audit": {
+    "passed": true,
+    "actual_games": 192,
+    "virtual_compile_failure_losses": 0,
+    "actions": 119175
+  },
+  "manifest": {
+    "schema": "polytopia-mini-cohort-v2",
+    "date": "2026-10-30",
+    "tracks": [
+      "independent-40m",
+      "feedback-3r-40m"
+    ],
+    "models": [
+      {
+        "label": "deepseek-flash",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "luna-high",
+        "model": "openai/gpt-6-luna",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "openai"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    ],
+    "replicates": 1,
+    "maps_per_family": 5,
+    "references": [
+      {
+        "label": "reference-weak",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-qwen38-oneshot-20m"
+      },
+      {
+        "label": "reference-intermediate",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m"
+      },
+      {
+        "label": "hero-1v1",
+        "kind": "expert"
+      }
+    ]
+  },
+  "image_id": "im-RZakv30D1tXpWIUrzQuGI2",
+  "current_stages": {
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m": {
+      "status": "completed",
+      "stage": 0,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793378947.2599065,
+        "deadline_unix": 1793378977.2599065,
+        "stage": 0,
+        "startup_seconds": 2.028088331222534
+      }
+    },
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m": {
+      "status": "completed",
+      "stage": 3,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793379137.2050943,
+        "deadline_unix": 1793379167.2050943,
+        "stage": 3,
+        "startup_seconds": 0.8669888973236084
+      }
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m": {
+      "status": "completed",
+      "stage": 0,
+      "model": "openai/gpt-6-luna",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793378954.5731254,
+        "deadline_unix": 1793378984.5731254,
+        "stage": 0,
+        "startup_seconds": 2.3915112018585205
+      }
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m": {
+      "status": "completed",
+      "stage": 3,
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793379259.5536852,
+        "deadline_unix": 1793379289.5536852,
+        "stage": 3,
+        "startup_seconds": 1.019921064376831
+      }
+    }
+  },
+  "report": {
+    "schema": "polytopia-mini-v5.1",
+    "status": "completed",
+    "smoke": true,
+    "maps_sha256": "f317d8f92e7720158c28044193d8359bd190fa3246f7d278cfc7f27f831f55af",
+    "games": 192,
+    "primary_games": 180,
+    "peer_games": 12,
+    "stages": [
+      {
+        "model_label": "deepseek-flash",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 0,
+        "games": 18,
+        "wins": 0,
+        "losses": 15,
+        "draws": 3,
+        "unresolved": 0,
+        "score": 8.333333333333334,
+        "score_bounds": [
+          8.333333333333334,
+          8.333333333333334
+        ],
+        "submission_quality": "unchanged_starter",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "deepseek-flash",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 1,
+        "games": 18,
+        "wins": 1,
+        "losses": 15,
+        "draws": 2,
+        "unresolved": 0,
+        "score": 11.11111111111111,
+        "score_bounds": [
+          11.11111111111111,
+          11.11111111111111
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 1,
+            "losses": 4,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 25.0,
+            "score_bounds": [
+              25.0,
+              25.0
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "deepseek-flash",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 2,
+        "games": 18,
+        "wins": 0,
+        "losses": 16,
+        "draws": 2,
+        "unresolved": 0,
+        "score": 5.555555555555555,
+        "score_bounds": [
+          5.555555555555555,
+          5.555555555555555
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "deepseek-flash",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 3,
+        "games": 18,
+        "wins": 1,
+        "losses": 17,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 5.555555555555555,
+        "score_bounds": [
+          5.555555555555555,
+          5.555555555555555
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "deepseek-flash",
+        "track": "independent-40m",
+        "replicate": 1,
+        "stage": 0,
+        "games": 18,
+        "wins": 0,
+        "losses": 17,
+        "draws": 1,
+        "unresolved": 0,
+        "score": 2.7777777777777777,
+        "score_bounds": [
+          2.7777777777777777,
+          2.7777777777777777
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "luna-high",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 0,
+        "games": 18,
+        "wins": 0,
+        "losses": 17,
+        "draws": 1,
+        "unresolved": 0,
+        "score": 2.7777777777777777,
+        "score_bounds": [
+          2.7777777777777777,
+          2.7777777777777777
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "luna-high",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 1,
+        "games": 18,
+        "wins": 0,
+        "losses": 17,
+        "draws": 1,
+        "unresolved": 0,
+        "score": 2.7777777777777777,
+        "score_bounds": [
+          2.7777777777777777,
+          2.7777777777777777
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "luna-high",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 2,
+        "games": 18,
+        "wins": 2,
+        "losses": 15,
+        "draws": 1,
+        "unresolved": 0,
+        "score": 13.88888888888889,
+        "score_bounds": [
+          13.88888888888889,
+          13.88888888888889
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 1,
+            "losses": 4,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 25.0,
+            "score_bounds": [
+              25.0,
+              25.0
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 2,
+            "losses": 4,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 33.333333333333336,
+            "score_bounds": [
+              33.333333333333336,
+              33.333333333333336
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "luna-high",
+        "track": "feedback-3r-40m",
+        "replicate": 1,
+        "stage": 3,
+        "games": 18,
+        "wins": 2,
+        "losses": 15,
+        "draws": 1,
+        "unresolved": 0,
+        "score": 13.88888888888889,
+        "score_bounds": [
+          13.88888888888889,
+          13.88888888888889
+        ],
+        "submission_quality": "custom_submission",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 2,
+            "losses": 4,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 33.333333333333336,
+            "score_bounds": [
+              33.333333333333336,
+              33.333333333333336
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          }
+        }
+      },
+      {
+        "model_label": "luna-high",
+        "track": "independent-40m",
+        "replicate": 1,
+        "stage": 0,
+        "games": 18,
+        "wins": 0,
+        "losses": 15,
+        "draws": 3,
+        "unresolved": 0,
+        "score": 8.333333333333334,
+        "score_bounds": [
+          8.333333333333334,
+          8.333333333333334
+        ],
+        "submission_quality": "unchanged_starter",
+        "by_opponent": {
+          "hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        },
+        "by_map": {
+          "drylands": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "score": 8.333333333333334,
+            "score_bounds": [
+              8.333333333333334,
+              8.333333333333334
+            ]
+          },
+          "lakes": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "score": 0.0,
+            "score_bounds": [
+              0.0,
+              0.0
+            ]
+          },
+          "continents": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "score": 16.666666666666668,
+            "score_bounds": [
+              16.666666666666668,
+              16.666666666666668
+            ]
+          }
+        }
+      }
+    ],
+    "ranking": {
+      "feedback-3r-40m": [
+        {
+          "model_label": "luna-high",
+          "score": 13.88888888888889,
+          "attempt_scores": [
+            13.88888888888889
+          ],
+          "submission_quality": {
+            "custom_submission": 1
+          },
+          "score_bounds": [
+            13.88888888888889,
+            13.88888888888889
+          ],
+          "score_ci95": [
+            13.88888888888889,
+            13.88888888888889
+          ]
+        },
+        {
+          "model_label": "deepseek-flash",
+          "score": 5.555555555555555,
+          "attempt_scores": [
+            5.555555555555555
+          ],
+          "submission_quality": {
+            "custom_submission": 1
+          },
+          "score_bounds": [
+            5.555555555555555,
+            5.555555555555555
+          ],
+          "score_ci95": [
+            5.555555555555555,
+            5.555555555555555
+          ]
+        }
+      ],
+      "independent-40m": [
+        {
+          "model_label": "luna-high",
+          "score": 8.333333333333334,
+          "attempt_scores": [
+            8.333333333333334
+          ],
+          "submission_quality": {
+            "unchanged_starter": 1
+          },
+          "score_bounds": [
+            8.333333333333334,
+            8.333333333333334
+          ],
+          "score_ci95": [
+            8.333333333333334,
+            8.333333333333334
+          ]
+        },
+        {
+          "model_label": "deepseek-flash",
+          "score": 2.7777777777777777,
+          "attempt_scores": [
+            2.7777777777777777
+          ],
+          "submission_quality": {
+            "custom_submission": 1
+          },
+          "score_bounds": [
+            2.7777777777777777,
+            2.7777777777777777
+          ],
+          "score_ci95": [
+            2.7777777777777777,
+            2.7777777777777777
+          ]
+        }
+      ]
+    },
+    "revision_changes": [
+      {
+        "model_label": "deepseek-flash",
+        "replicate": 1,
+        "stage_scores": [
+          8.333333333333334,
+          11.11111111111111,
+          5.555555555555555,
+          5.555555555555555
+        ],
+        "final_minus_initial": -2.7777777777777786
+      },
+      {
+        "model_label": "luna-high",
+        "replicate": 1,
+        "stage_scores": [
+          2.7777777777777777,
+          2.7777777777777777,
+          13.88888888888889,
+          13.88888888888889
+        ],
+        "final_minus_initial": 11.11111111111111
+      }
+    ],
+    "uncertainty": "400 bootstrap resamples over independent builds and shared map blocks stratified by family; three builds remain preliminary",
+    "scoring": "mean points (win=1, draw=0.5, loss=0), all attempts, equal maps/seats/opponents; compile failure=0; unresolved blocks point estimate",
+    "prefix": "mini-pipeline-smoke-20261031a",
+    "evaluation_revision": "referee-900-stream-v1",
+    "referee_seconds": 900,
+    "manifest_sha256": "539a8db85a6f351cf8cc3107050469fa35612739192009b027906edac213bc07",
+    "allocation_sha256": "fdbe86501f5c4c80956afd74adefeb9cc2a8688338057451ac438b10078a9e23",
+    "execution_source_sha256": "c2d1a4d116932ba6bed470ea61c5ae87a621ef69e28f8030d3bae3ec06b86741",
+    "references": [
+      {
+        "label": "reference-weak",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-qwen38-oneshot-20m",
+        "source_sha256": "d9a68233addeef8ceb5666a3ed29228edac691dd50ff49464e879d0909a17fb0",
+        "wasm_sha256": "4439287019367bcf44445ce7d29e0e1bd05e82398ef06a2c8a910519ac017184",
+        "origin_model": "qwen/qwen3.8-max-0902",
+        "origin_track": "oneshot-20m"
+      },
+      {
+        "label": "reference-intermediate",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m",
+        "source_sha256": "8f8dfef9402f27dbb822a559789f03bbf1e46ffea9dae84d713cbf05f6b3cd86",
+        "wasm_sha256": "ce3cf260ef9f95bbfe2920adb29940890535776333da69e00d9fc85940cf226e",
+        "origin_model": "deepseek/deepseek-v4.1-flash-1017",
+        "origin_track": "oneshot-20m"
+      },
+      {
+        "label": "hero-1v1",
+        "kind": "expert",
+        "checkpoint_sha256": "e6f4e1977e7f9cdcfbbe17358d87e49d638d82150496a6d4099e0cd389b0934f"
+      }
+    ],
+    "audit": {
+      "passed": true,
+      "actual_games": 192,
+      "virtual_compile_failure_losses": 0,
+      "actions": 119175
+    },
+    "operator_recovery": {
+      "finalizer_source_sha256": "d282ebda848dfdf967cf4f5f55602c6e339bd2c23c9dcc2da2486fe14219356d",
+      "authoring_selection_receipt": "operator-recoveries/finalizer-authoring-selection.json"
+    },
+    "excluded_attempts": [],
+    "all_attempt_api_cost_report": {
+      "by_model": {
+        "deepseek-flash": {
+          "scored_completed_calls": 0.006694671060000001,
+          "excluded_completed_calls": 0.0,
+          "all_authoring_completed_calls": 0.006694671060000001,
+          "mean_scored_two_track_pair": 0.006694671060000001
+        },
+        "luna-high": {
+          "scored_completed_calls": 0.012126470400000002,
+          "excluded_completed_calls": 0.0,
+          "all_authoring_completed_calls": 0.012126470400000002,
+          "mean_scored_two_track_pair": 0.012126470400000002
+        }
+      },
+      "recorded_authoring_total": 0.018821141460000003,
+      "coverage": "saved completed-call receipts for all authoring attempts; probes, in-flight requests and Modal compute additional; no dollar gate"
+    },
+    "peer_ladders": {
+      "independent-40m": {
+        "games": 42,
+        "resolved": 42,
+        "draws": 8,
+        "unresolved": 0,
+        "ladder": [
+          {
+            "entrant": "hero-1v1",
+            "elo": 0.0,
+            "games": 12,
+            "wins": 12,
+            "losses": 0,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "entrant": "reference-intermediate",
+            "elo": -205.47755997692985,
+            "games": 12,
+            "wins": 10,
+            "losses": 0,
+            "draws": 2,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -205.47755997692985,
+              -205.47755997692985
+            ]
+          },
+          {
+            "entrant": "reference-weak",
+            "elo": -205.47755997692985,
+            "games": 12,
+            "wins": 10,
+            "losses": 0,
+            "draws": 2,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -205.47755997692985,
+              -205.47755997692985
+            ]
+          },
+          {
+            "entrant": "deepseek-flash",
+            "elo": -541.9543414745007,
+            "games": 24,
+            "wins": 2,
+            "losses": 17,
+            "draws": 5,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -541.9543414745007,
+              -541.9543414745007
+            ]
+          },
+          {
+            "entrant": "luna-high",
+            "elo": -578.1340781614288,
+            "games": 24,
+            "wins": 0,
+            "losses": 17,
+            "draws": 7,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -578.1340781614288,
+              -578.1340781614288
+            ]
+          }
+        ],
+        "pairs": {
+          "deepseek-flash__reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 2,
+                "draws": 1,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__reference-weak": {
+            "games": 6,
+            "wins": 0,
+            "losses": 4,
+            "draws": 2,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 2,
+                "draws": 1,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 2,
+                "draws": 1,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 2,
+                "draws": 1,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__luna-high": {
+            "games": 6,
+            "wins": 2,
+            "losses": 0,
+            "draws": 4,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 0,
+                "draws": 3,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 2,
+                "losses": 0,
+                "draws": 1,
+                "unresolved": 0
+              }
+            }
+          }
+        },
+        "map_coverage": {
+          "lakes": 1,
+          "continents": 1,
+          "drylands": 1
+        },
+        "evidence_warning": "single layout in a family; intervals are not reliable",
+        "method": "Bradley-Terry MM; anchor=0; 0.5 virtual draw per played pair; unresolved excluded; 95% intervals from paired-map bootstrap resamples stratified by family"
+      },
+      "feedback-3r-40m": {
+        "games": 42,
+        "resolved": 42,
+        "draws": 4,
+        "unresolved": 0,
+        "ladder": [
+          {
+            "entrant": "hero-1v1",
+            "elo": 0.0,
+            "games": 12,
+            "wins": 12,
+            "losses": 0,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "entrant": "reference-intermediate",
+            "elo": -127.88613068512606,
+            "games": 12,
+            "wins": 11,
+            "losses": 0,
+            "draws": 1,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -127.88613068512606,
+              -127.88613068512606
+            ]
+          },
+          {
+            "entrant": "reference-weak",
+            "elo": -388.0383630704054,
+            "games": 12,
+            "wins": 9,
+            "losses": 3,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -388.0383630704054,
+              -388.0383630704054
+            ]
+          },
+          {
+            "entrant": "luna-high",
+            "elo": -521.679774972656,
+            "games": 24,
+            "wins": 4,
+            "losses": 16,
+            "draws": 4,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -521.679774972656,
+              -521.679774972656
+            ]
+          },
+          {
+            "entrant": "deepseek-flash",
+            "elo": -606.0586567025118,
+            "games": 24,
+            "wins": 2,
+            "losses": 19,
+            "draws": 3,
+            "unresolved": 0,
+            "forfeits": 0,
+            "elo_ci95": [
+              -606.0586567025118,
+              -606.0586567025118
+            ]
+          }
+        ],
+        "pairs": {
+          "deepseek-flash__reference-weak": {
+            "games": 6,
+            "wins": 1,
+            "losses": 5,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 1,
+                "losses": 2,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__reference-weak": {
+            "games": 6,
+            "wins": 2,
+            "losses": 4,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 2,
+                "losses": 1,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__reference-intermediate": {
+            "games": 6,
+            "wins": 0,
+            "losses": 5,
+            "draws": 1,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 2,
+                "draws": 1,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "luna-high__hero-1v1": {
+            "games": 6,
+            "wins": 0,
+            "losses": 6,
+            "draws": 0,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 3,
+                "draws": 0,
+                "unresolved": 0
+              }
+            }
+          },
+          "deepseek-flash__luna-high": {
+            "games": 6,
+            "wins": 1,
+            "losses": 2,
+            "draws": 3,
+            "unresolved": 0,
+            "forfeits": 0,
+            "by_seat": {
+              "1": {
+                "games": 3,
+                "wins": 1,
+                "losses": 2,
+                "draws": 0,
+                "unresolved": 0
+              },
+              "2": {
+                "games": 3,
+                "wins": 0,
+                "losses": 0,
+                "draws": 3,
+                "unresolved": 0
+              }
+            }
+          }
+        },
+        "map_coverage": {
+          "lakes": 1,
+          "continents": 1,
+          "drylands": 1
+        },
+        "evidence_warning": "single layout in a family; intervals are not reliable",
+        "method": "Bradley-Terry MM; anchor=0; 0.5 virtual draw per played pair; unresolved excluded; 95% intervals from paired-map bootstrap resamples stratified by family"
+      }
+    }
+  },
+  "runs_detail": {
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m": {
+      "schema": "polytopia-mini-v5.1",
+      "run_id": "mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "feedback-3r-40m",
+      "smoke": true,
+      "status": "completed",
+      "sandbox_id": "sb-FCiYcLR4Qfk9AhpN0X8DnV",
+      "stage": 3,
+      "final": null,
+      "submission_quality": "custom_submission",
+      "api_cost_usd": 0.004542959520000001,
+      "model_calls": 14,
+      "api_cost_accounting": "saved completed calls only; in-flight request billing may be additional",
+      "artifact_root": "/results/mini-runs/mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m",
+      "final_source_sha256": "e773520d869d98eea158c6d17f74966caba1f25ffb268bd9f7d446630e71cd51",
+      "final_wasm_sha256": "61135b9f27f0160a4c6155c3c4bb571047d7d0bc04d349f2917a4c71ab5a5520",
+      "protocol_sha256": "77e8df5b4fac2bd60f31d4c1d742de17466231ab28a92c6ac0e757f77aca3b5a"
+    },
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m": {
+      "schema": "polytopia-mini-v5.1",
+      "run_id": "mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "independent-40m",
+      "smoke": true,
+      "status": "completed",
+      "sandbox_id": "sb-nfxxM53eT640FAESOMNgiN",
+      "stage": 0,
+      "final": null,
+      "submission_quality": "custom_submission",
+      "api_cost_usd": 0.0021517115399999997,
+      "model_calls": 5,
+      "api_cost_accounting": "saved completed calls only; in-flight request billing may be additional",
+      "artifact_root": "/results/mini-runs/mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m",
+      "final_source_sha256": "034f43b26e58bcf6fcba59c7c34f7ed79fbe027155b87aeb95809c5a546d4f7b",
+      "final_wasm_sha256": "d39c301c85e6aa5fb9c256456989ff27c502f58b8c805240d15d4a28cf805db2",
+      "protocol_sha256": "b2c9116669a1d30003f5784e961d98b2c3548f51cecd9e0dd8411e1a50f5fae4"
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m": {
+      "schema": "polytopia-mini-v5.1",
+      "run_id": "mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m",
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m",
+      "smoke": true,
+      "status": "completed",
+      "sandbox_id": "sb-jNUcTBX2CHwjTEaaDlDNvG",
+      "stage": 3,
+      "final": null,
+      "submission_quality": "custom_submission",
+      "api_cost_usd": 0.0120156894,
+      "model_calls": 13,
+      "api_cost_accounting": "saved completed calls only; in-flight request billing may be additional",
+      "artifact_root": "/results/mini-runs/mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m",
+      "final_source_sha256": "4a05f05b9a3a14089598d74375baad8063099606e1f8508e6d816d8961b5d15c",
+      "final_wasm_sha256": "a53cf9a73ebe8a6958382dce2228567c2bf1b76d2194e3ed1d6fb2997075a8dc",
+      "protocol_sha256": "2f37242f208da642fbb5d13d3422265bd9f3f3c6ce2de2376322c84bf1f359fa"
+    },
+    "mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m": {
+      "schema": "polytopia-mini-v5.1",
+      "run_id": "mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m",
+      "model": "openai/gpt-6-luna",
+      "track": "independent-40m",
+      "smoke": true,
+      "status": "completed",
+      "sandbox_id": "sb-zGs9VjdI1UZrGHwC39rdvA",
+      "stage": 0,
+      "final": null,
+      "submission_quality": "unchanged_starter",
+      "api_cost_usd": 0.000110781,
+      "model_calls": 1,
+      "api_cost_accounting": "saved completed calls only; in-flight request billing may be additional",
+      "artifact_root": "/results/mini-runs/mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m",
+      "final_source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+      "final_wasm_sha256": "c3d43a451ff098991ba8101fea714456cac8f53fe0aeb1601541c90198d67e21",
+      "protocol_sha256": "c3b0f860f3d394f0f349fd4aee4660b264bfe53be484b508484faa5640beb2c7"
+    }
+  },
+  "stage_receipts": {
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-feedback-3r-40m": [
+      {
+        "stage": 0,
+        "authoring_seconds": 11.937081575393677,
+        "controller_wall_seconds": 11.937081575393677,
+        "end_reason": "agent_exit",
+        "timing": {
+          "api_seconds": 6.9264256954193115,
+          "tool_seconds": 4.735871315002441,
+          "api_calls_started": 4,
+          "api_calls_finished": 4,
+          "interrupted_api_calls": 0,
+          "tool_calls_started": 5,
+          "tool_calls_finished": 5,
+          "startup_seconds": 1.3173515796661377,
+          "coding_seconds": 11.937081575393677,
+          "overhead_seconds": 0.27478456497192383
+        },
+        "source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+        "source_bytes": 872,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793378956.790626,
+          "source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+          "source_bytes": 872
+        },
+        "returncode": 0,
+        "wasm_sha256": "c3d43a451ff098991ba8101fea714456cac8f53fe0aeb1601541c90198d67e21",
+        "submission_quality": "unchanged_starter",
+        "agent_exit_status": "Submitted",
+        "instance_cost": 0.0008888437800000001,
+        "api_calls": 4
+      },
+      {
+        "stage": 1,
+        "authoring_seconds": 12.61522889137268,
+        "controller_wall_seconds": 12.61522889137268,
+        "end_reason": "agent_exit",
+        "timing": {
+          "api_seconds": 10.979001522064209,
+          "tool_seconds": 1.3728630542755127,
+          "api_calls_started": 4,
+          "api_calls_finished": 4,
+          "interrupted_api_calls": 0,
+          "tool_calls_started": 4,
+          "tool_calls_finished": 4,
+          "startup_seconds": 0.8637537956237793,
+          "coding_seconds": 12.61522889137268,
+          "overhead_seconds": 0.263364315032959
+        },
+        "source_sha256": "3e8ea1c69cbc1a5d7d5569ca6e0bc426c09c10305f85cfd513e9fd7f2713c3b4",
+        "source_bytes": 1040,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379011.8888478,
+          "source_sha256": "3e8ea1c69cbc1a5d7d5569ca6e0bc426c09c10305f85cfd513e9fd7f2713c3b4",
+          "source_bytes": 1040
+        },
+        "returncode": 0,
+        "wasm_sha256": "810996927b35db9825636f3afe7fee2eca4a58ef7dda707f40605c4fd4d05f04",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "Submitted",
+        "instance_cost": 0.0011534707800000001,
+        "api_calls": 4
+      },
+      {
+        "stage": 2,
+        "authoring_seconds": 14.786917924880981,
+        "controller_wall_seconds": 14.786917924880981,
+        "end_reason": "agent_exit",
+        "timing": {
+          "api_seconds": 13.266211032867432,
+          "tool_seconds": 1.2260663509368896,
+          "api_calls_started": 3,
+          "api_calls_finished": 3,
+          "interrupted_api_calls": 0,
+          "tool_calls_started": 3,
+          "tool_calls_finished": 3,
+          "startup_seconds": 0.8666694164276123,
+          "coding_seconds": 14.786917924880981,
+          "overhead_seconds": 0.29464054107666016
+        },
+        "source_sha256": "ac1800cab3f179bfb28ec4fd329f0d62d51779c78485b2aab47ce746caa383a8",
+        "source_bytes": 3401,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379074.5253277,
+          "source_sha256": "ac1800cab3f179bfb28ec4fd329f0d62d51779c78485b2aab47ce746caa383a8",
+          "source_bytes": 3401
+        },
+        "returncode": 0,
+        "wasm_sha256": "67397823c12f95edc517352e4d408dcaa8a4756011a314f09da93854b33f72b5",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "Submitted",
+        "instance_cost": 0.0013850001,
+        "api_calls": 3
+      },
+      {
+        "stage": 3,
+        "authoring_seconds": 11.781615972518921,
+        "controller_wall_seconds": 11.781615972518921,
+        "end_reason": "agent_exit",
+        "timing": {
+          "api_seconds": 10.25826096534729,
+          "tool_seconds": 1.284780502319336,
+          "api_calls_started": 3,
+          "api_calls_finished": 3,
+          "interrupted_api_calls": 0,
+          "tool_calls_started": 3,
+          "tool_calls_finished": 3,
+          "startup_seconds": 0.8669888973236084,
+          "coding_seconds": 11.781615972518921,
+          "overhead_seconds": 0.23857450485229492
+        },
+        "source_sha256": "e773520d869d98eea158c6d17f74966caba1f25ffb268bd9f7d446630e71cd51",
+        "source_bytes": 4259,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379149.1005776,
+          "source_sha256": "e773520d869d98eea158c6d17f74966caba1f25ffb268bd9f7d446630e71cd51",
+          "source_bytes": 4259
+        },
+        "returncode": 0,
+        "wasm_sha256": "61135b9f27f0160a4c6155c3c4bb571047d7d0bc04d349f2917a4c71ab5a5520",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "Submitted",
+        "instance_cost": 0.00111564486,
+        "api_calls": 3
+      }
+    ],
+    "mini-pipeline-smoke-20261031a-deepseek-flash-r1-independent-40m": [
+      {
+        "stage": 0,
+        "authoring_seconds": 29.893916368484497,
+        "controller_wall_seconds": 29.893916368484497,
+        "end_reason": "agent_exit",
+        "timing": {
+          "api_seconds": 19.449837923049927,
+          "tool_seconds": 9.875184774398804,
+          "api_calls_started": 5,
+          "api_calls_finished": 5,
+          "interrupted_api_calls": 0,
+          "tool_calls_started": 7,
+          "tool_calls_finished": 7,
+          "startup_seconds": 2.028088331222534,
+          "coding_seconds": 29.893916368484497,
+          "overhead_seconds": 0.5688936710357666
+        },
+        "source_sha256": "034f43b26e58bcf6fcba59c7c34f7ed79fbe027155b87aeb95809c5a546d4f7b",
+        "source_bytes": 1092,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793378977.2750769,
+          "source_sha256": "034f43b26e58bcf6fcba59c7c34f7ed79fbe027155b87aeb95809c5a546d4f7b",
+          "source_bytes": 1092
+        },
+        "returncode": 0,
+        "wasm_sha256": "d39c301c85e6aa5fb9c256456989ff27c502f58b8c805240d15d4a28cf805db2",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "TimeExceeded",
+        "instance_cost": 0.0021517115399999997,
+        "api_calls": 5
+      }
+    ],
+    "mini-pipeline-smoke-20261031a-luna-high-r1-feedback-3r-40m": [
+      {
+        "stage": 0,
+        "authoring_seconds": 30,
+        "controller_wall_seconds": 30,
+        "end_reason": "deadline",
+        "timing": {
+          "api_seconds": 25.743788242340088,
+          "tool_seconds": 4.150838375091553,
+          "api_calls_started": 5,
+          "api_calls_finished": 4,
+          "interrupted_api_calls": 1,
+          "tool_calls_started": 7,
+          "tool_calls_finished": 7,
+          "startup_seconds": 1.361684799194336,
+          "coding_seconds": 30,
+          "overhead_seconds": 0.10537338256835938
+        },
+        "source_sha256": "aeb58af0dc2ae4d933c44e7ff4fab7186a6a5750d1743b01f8d51887b0c8f77c",
+        "source_bytes": 2780,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793378984.8314023,
+          "source_sha256": "aeb58af0dc2ae4d933c44e7ff4fab7186a6a5750d1743b01f8d51887b0c8f77c",
+          "source_bytes": 2780
+        },
+        "returncode": 0,
+        "wasm_sha256": "5d28ae39e46936833048e30898a480dc30f55e40ea0b14d30cc2cf2af15f1545",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "",
+        "instance_cost": 0.0037939175999999997,
+        "api_calls": 4
+      },
+      {
+        "stage": 1,
+        "authoring_seconds": 30,
+        "controller_wall_seconds": 30,
+        "end_reason": "deadline",
+        "timing": {
+          "api_seconds": 27.649413347244263,
+          "tool_seconds": 2.2053563594818115,
+          "api_calls_started": 5,
+          "api_calls_finished": 4,
+          "interrupted_api_calls": 1,
+          "tool_calls_started": 6,
+          "tool_calls_finished": 6,
+          "startup_seconds": 0.9606974124908447,
+          "coding_seconds": 30,
+          "overhead_seconds": 0.14523029327392578
+        },
+        "source_sha256": "aeb58af0dc2ae4d933c44e7ff4fab7186a6a5750d1743b01f8d51887b0c8f77c",
+        "source_bytes": 2780,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379085.3733132,
+          "source_sha256": "aeb58af0dc2ae4d933c44e7ff4fab7186a6a5750d1743b01f8d51887b0c8f77c",
+          "source_bytes": 2780
+        },
+        "returncode": 0,
+        "wasm_sha256": "5d28ae39e46936833048e30898a480dc30f55e40ea0b14d30cc2cf2af15f1545",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "",
+        "instance_cost": 0.0022016857499999997,
+        "api_calls": 4
+      },
+      {
+        "stage": 2,
+        "authoring_seconds": 30,
+        "controller_wall_seconds": 30,
+        "end_reason": "deadline",
+        "timing": {
+          "api_seconds": 28.505125284194946,
+          "tool_seconds": 1.3840959072113037,
+          "api_calls_started": 3,
+          "api_calls_finished": 2,
+          "interrupted_api_calls": 1,
+          "tool_calls_started": 4,
+          "tool_calls_finished": 4,
+          "startup_seconds": 1.029550552368164,
+          "coding_seconds": 30,
+          "overhead_seconds": 0.11077880859375
+        },
+        "source_sha256": "0fc9de077815c3444dff4a11207684c0e73f83047a5315adcd8424ff1a9d9d92",
+        "source_bytes": 2106,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379174.5059528,
+          "source_sha256": "0fc9de077815c3444dff4a11207684c0e73f83047a5315adcd8424ff1a9d9d92",
+          "source_bytes": 2106
+        },
+        "returncode": 0,
+        "wasm_sha256": "16f198e21058d54e4ea33ee03a642ab199dcd53a09b12306bfe9d306e385bb33",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "",
+        "instance_cost": 0.00267883605,
+        "api_calls": 2
+      },
+      {
+        "stage": 3,
+        "authoring_seconds": 30,
+        "controller_wall_seconds": 30,
+        "end_reason": "deadline",
+        "timing": {
+          "api_seconds": 28.48578429222107,
+          "tool_seconds": 1.3861241340637207,
+          "api_calls_started": 4,
+          "api_calls_finished": 3,
+          "interrupted_api_calls": 1,
+          "tool_calls_started": 4,
+          "tool_calls_finished": 4,
+          "startup_seconds": 1.019921064376831,
+          "coding_seconds": 30,
+          "overhead_seconds": 0.12809157371520996
+        },
+        "source_sha256": "4a05f05b9a3a14089598d74375baad8063099606e1f8508e6d816d8961b5d15c",
+        "source_bytes": 2184,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793379289.5687506,
+          "source_sha256": "4a05f05b9a3a14089598d74375baad8063099606e1f8508e6d816d8961b5d15c",
+          "source_bytes": 2184
+        },
+        "returncode": 0,
+        "wasm_sha256": "a53cf9a73ebe8a6958382dce2228567c2bf1b76d2194e3ed1d6fb2997075a8dc",
+        "submission_quality": "custom_submission",
+        "agent_exit_status": "",
+        "instance_cost": 0.00334125,
+        "api_calls": 3
+      }
+    ],
+    "mini-pipeline-smoke-20261031a-luna-high-r1-independent-40m": [
+      {
+        "stage": 0,
+        "authoring_seconds": 30,
+        "controller_wall_seconds": 30,
+        "end_reason": "deadline",
+        "timing": {
+          "api_seconds": 20.161442041397095,
+          "tool_seconds": 8.816607475280762,
+          "api_calls_started": 2,
+          "api_calls_finished": 1,
+          "interrupted_api_calls": 1,
+          "tool_calls_started": 4,
+          "tool_calls_finished": 4,
+          "startup_seconds": 2.3915112018585205,
+          "coding_seconds": 30,
+          "overhead_seconds": 1.0219504833221436
+        },
+        "source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+        "source_bytes": 872,
+        "status": "compiled",
+        "cutoff": {
+          "captured_unix": 1793378984.6249697,
+          "source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+          "source_bytes": 872
+        },
+        "returncode": 0,
+        "wasm_sha256": "c3d43a451ff098991ba8101fea714456cac8f53fe0aeb1601541c90198d67e21",
+        "submission_quality": "unchanged_starter",
+        "agent_exit_status": "",
+        "instance_cost": 0.000110781,
+        "api_calls": 1
+      }
+    ]
+  },
+  "infrastructure_exclusions": {},
+  "api_cost_report": {
+    "scored_completed_calls": 0.01882114146,
+    "probe_completed_calls": 0.00056062908,
+    "excluded_completed_calls": 0.0,
+    "recorded_total": 0.01938177054,
+    "coverage": "partial completed-call receipts only; interrupted calls and Modal compute are additional"
+  }
+}

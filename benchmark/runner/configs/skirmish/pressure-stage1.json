@@ -1,0 +1,42 @@
+{
+  "study_id": "pressure-stage1-v1",
+  "assignment_seed": 301027,
+  "replicates": 5,
+  "framings": [
+    "neutral",
+    "evaluative"
+  ],
+  "models": [
+    {
+      "id": "ds",
+      "config": {
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "base_url": "https://openrouter.ai/api/v1",
+        "key_env": "OPENROUTER_API_KEY",
+        "parameters": {
+          "reasoning": {
+            "effort": "medium"
+          },
+          "max_tokens": 12000
+        }
+      }
+    }
+  ],
+  "budget_profiles": [
+    {
+      "id": "combined",
+      "budget": {
+        "seconds": 600,
+        "constraint": "combined",
+        "max_revisions": 8,
+        "max_requests": 80,
+        "max_output_tokens": 12000,
+        "max_practice_games": 32,
+        "max_campaign_maps": 2
+      }
+    }
+  ],
+  "final_maps": 4,
+  "tournament_maps": 16
+}

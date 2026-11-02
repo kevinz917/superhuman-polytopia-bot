@@ -1,0 +1,433 @@
+{
+  "prefix": "mini-v5-20261030a",
+  "status": "invalidated_harness",
+  "reason": "Modal rejects process arguments above 65536 bytes; a legitimate 76112-byte shell command crashed the worker. All trials invalidated before scoring; restart under file-backed command transport.",
+  "invalidated_unix": 1793367613.81288,
+  "cancelled_calls": [
+    {
+      "run": "mini-v5-20261030a-argon4-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r3-independent-40m",
+      "cancelled": true
+    }
+  ],
+  "source_archives": [
+    {
+      "run": "mini-v5-20261030a-argon4-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-feedback-3r-40m",
+      "source_sha256": "7037f52455b60396a877d9519ed4c0197204f1d0defae3b41628fa7d97455da8",
+      "source_bytes": 26042,
+      "captured_unix": 1793367610.9535599,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-independent-40m",
+      "source_sha256": "9007112aa4f860d0f0267217ae2ba5ac8ccaed4e54d551f71fa2a0c89af87416",
+      "source_bytes": 21972,
+      "captured_unix": 1793367612.7205844,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-feedback-3r-40m",
+      "source_sha256": "a6f540acb93bcae5838692a8da57d8c7a8c0d8f1c4016427141edc3ac0ef2562",
+      "source_bytes": 29885,
+      "captured_unix": 1793367613.167295,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    }
+  ],
+  "scored": false
+}

@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "active_worker_confirmed": true,
+  "first": {
+    "app_id": "ap-5v8DNC9Rlxp5N2eox39Hpq",
+    "status": "stopped"
+  },
+  "repeated": {
+    "app_id": "ap-5v8DNC9Rlxp5N2eox39Hpq",
+    "status": "stopped"
+  },
+  "terminal": {
+    "app_id": "ap-5v8DNC9Rlxp5N2eox39Hpq",
+    "status": "already_stopped"
+  },
+  "repeated_stop_safe": true,
+  "unrelated_errors_rejected": true,
+  "noninteractive_flag_verified": true,
+  "new_model_calls": 0
+}

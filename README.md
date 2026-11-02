@@ -40,6 +40,9 @@ blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://th
 - 📦 **Weights included.** The champion (2 MB, with the value head search needs) is in
   [`weights/champion/`](weights/champion/); the newer, stronger raw policy **hero-1v1** (7 MB) is in
   [`weights/hero-1v1/`](weights/hero-1v1/).
+- 🤖 **Polytopia Bench.** 12 frontier models each write a Rust bot in 40 minutes and play it against this RL bot
+  and five other opponents: 21,600 graded games. The harness, every conversation, every bot and every replay are
+  in [`benchmark/`](benchmark/); the write-up is [*Introducing Polytopia Bench*](https://thekevinz.com/blog/polytopia-bench).
 
 ## 📊 Results
 
@@ -219,6 +222,7 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 | `tools/` | Polyfish oracle builds, Studio asset setup, clip recorder for this README |
 | `weights/champion/`, `weights/hero-1v1/` | the two released checkpoints and their metadata |
 | `docs/` | rules, engine notes and the research notebook; start at [docs/README.md](docs/README.md) |
+| `benchmark/` | Polytopia Bench: LLM-authored bot benchmark, harness, conversations, bots, replays and results |
 
 The [research notebook](docs/README.md) records each training campaign behind the champion, including the ideas
 that didn't pay off: distilling search into the policy, 18×18 boards, UPGO, deeper search, and bigger networks at

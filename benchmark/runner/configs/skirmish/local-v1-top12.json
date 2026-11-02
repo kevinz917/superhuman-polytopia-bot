@@ -1,0 +1,249 @@
+{
+  "schema": "polytopia-mini-cohort-v2",
+  "date": "2026-10-31",
+  "tracks": [
+    "independent-40m",
+    "feedback-3r-40m"
+  ],
+  "models": [
+    {
+      "label": "astra6",
+      "model": "openai/gpt-6-astra",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "opus55",
+      "model": "anthropic/claude-opus-5.5",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "anthropic"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "sol61",
+      "model": "openai/gpt-6.1-sol",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "argon4",
+      "model": "google/gemini-4-argon",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "google-vertex/us"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "kimi31",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "moonshotai/mxfp4"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "qwen38",
+      "model": "qwen/qwen3.8-max-0902",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "alibaba"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "glm53",
+      "model": "z-ai/glm-5.3",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "z-ai/fp8"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "deepseek-pro",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "deepseek-flash",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "minimax31",
+      "model": "minimax/minimax-m3.1-flash",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "minimax"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "luna-high",
+      "model": "openai/gpt-6-luna",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "fable51",
+      "model": "anthropic/claude-fable-5-1",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "anthropic"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    }
+  ],
+  "replicates": 3,
+  "maps_per_family": 5,
+  "references": [
+    {
+      "label": "reference-weak",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-qwen38-oneshot-20m",
+      "source_sha256": "d9a68233addeef8ceb5666a3ed29228edac691dd50ff49464e879d0909a17fb0",
+      "wasm_sha256": "4439287019367bcf44445ce7d29e0e1bd05e82398ef06a2c8a910519ac017184",
+      "origin_model": "qwen/qwen3.8-max-0902",
+      "origin_track": "oneshot-20m",
+      "file": "reference-weak.wasm"
+    },
+    {
+      "label": "reference-intermediate",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m",
+      "source_sha256": "8f8dfef9402f27dbb822a559789f03bbf1e46ffea9dae84d713cbf05f6b3cd86",
+      "wasm_sha256": "ce3cf260ef9f95bbfe2920adb29940890535776333da69e00d9fc85940cf226e",
+      "origin_model": "deepseek/deepseek-v4.1-flash-1017",
+      "origin_track": "oneshot-20m",
+      "file": "reference-intermediate.wasm"
+    },
+    {
+      "label": "hero-1v1",
+      "kind": "expert",
+      "checkpoint_sha256": "e6f4e1977e7f9cdcfbbe17358d87e49d638d82150496a6d4099e0cd389b0934f",
+      "file": "hero-1v1.npz",
+      "config_sha256": "72a038bee14879649d9be0a3addc5e2b8c945a53e99ff7cd50606f8b9900ae82"
+    }
+  ],
+  "execution_backend": "local-docker",
+  "authoring_concurrency": 24,
+  "cpu_slots": 6,
+  "clock": "active wall time excluding local CPU scheduler waits"
+}

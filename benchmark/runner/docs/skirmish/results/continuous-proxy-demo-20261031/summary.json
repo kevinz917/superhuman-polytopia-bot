@@ -1,0 +1,108 @@
+{
+  "status": "completed",
+  "schema": "polytopia-skirmish-continuous-v1",
+  "execution": "native Harbor / local VM / CLI proxy",
+  "trials": [
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__jqbFodV",
+      "score": 83.33333333333334,
+      "games": 36,
+      "profile": "demo",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 6
+      },
+      "practice_matches": 55,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1862.509407043457,
+        "tool_seconds": 451.1887333393097,
+        "api_calls_started": 60,
+        "api_calls_finished": 60,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 60,
+        "tool_calls_finished": 60,
+        "scheduler_wait_seconds": 3.0845179557800293,
+        "controller_wall_seconds": 2322.6040649414062,
+        "coding_seconds": 2319.519546985626
+      },
+      "usage": {
+        "input_tokens": 9272552,
+        "output_tokens": 54034,
+        "completed_responses": 60
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage"
+      },
+      "replay_actions": 24426,
+      "rewards": {
+        "reward": 0.8333333333333334,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 36,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 1
+      }
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__meqLUsd",
+      "score": 45.83333333333333,
+      "games": 36,
+      "profile": "demo",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 6
+      },
+      "practice_matches": 50,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 976.8148009777069,
+        "tool_seconds": 576.3304011821747,
+        "api_calls_started": 60,
+        "api_calls_finished": 60,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 61,
+        "tool_calls_finished": 61,
+        "scheduler_wait_seconds": 3.2065885066986084,
+        "controller_wall_seconds": 1562.2406919002533,
+        "coding_seconds": 1559.0341033935547
+      },
+      "usage": {
+        "input_tokens": 11931041,
+        "output_tokens": 82586,
+        "completed_responses": 60
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage"
+      },
+      "replay_actions": 39826,
+      "rewards": {
+        "reward": 0.4583333333333333,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 36,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 1
+      }
+    }
+  ],
+  "total_final_outcomes": 72,
+  "replay_actions": 64252,
+  "caveat": "Integration demo when profile=demo. One authored bot per model does not establish a ranking. Subscription cost is unavailable, not zero."
+}

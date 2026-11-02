@@ -1,0 +1,12 @@
+{
+  "harness": "mini-swe-agent",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v4-flash-0731",
+  "parameters": {
+    "reasoning": {
+      "effort": "high"
+    },
+    "max_tokens": 32768
+  },
+  "track": "feedback-3r"
+}

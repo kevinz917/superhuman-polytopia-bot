@@ -1,0 +1,1149 @@
+{
+  "prefix": "mini-v5-20261030a",
+  "status": "invalidated_harness",
+  "reason": "Modal rejects process arguments above 65536 bytes; a legitimate 76112-byte shell command crashed the worker. All trials invalidated before scoring; restart under file-backed command transport.",
+  "invalidated_unix": 1793367613.81288,
+  "cancelled_calls": [
+    {
+      "run": "mini-v5-20261030a-argon4-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m-infra1",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r3-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-independent-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r3-feedback-3r-40m",
+      "cancelled": true
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r3-independent-40m",
+      "cancelled": true
+    }
+  ],
+  "source_archives": [
+    {
+      "run": "mini-v5-20261030a-argon4-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-argon4-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-astra6-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-flash-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-deepseek-pro-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-feedback-3r-40m",
+      "source_sha256": "7037f52455b60396a877d9519ed4c0197204f1d0defae3b41628fa7d97455da8",
+      "source_bytes": 26042,
+      "captured_unix": 1793367610.9535599,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-glm53-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-kimi31-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-luna-high-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-minimax31-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-opus55-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-qwen38-r1-independent-40m",
+      "source_sha256": "9007112aa4f860d0f0267217ae2ba5ac8ccaed4e54d551f71fa2a0c89af87416",
+      "source_bytes": 21972,
+      "captured_unix": 1793367612.7205844,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-feedback-3r-40m",
+      "source_sha256": "a6f540acb93bcae5838692a8da57d8c7a8c0d8f1c4016427141edc3ac0ef2562",
+      "source_bytes": 29885,
+      "captured_unix": 1793367613.167295,
+      "qualified": false
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r1-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-feedback-3r-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    },
+    {
+      "run": "mini-v5-20261030a-sol61-r2-independent-40m",
+      "source_unavailable": true,
+      "error": "NotFoundError"
+    }
+  ],
+  "scored": false,
+  "manifest": {
+    "schema": "polytopia-mini-cohort-v2",
+    "date": "2026-10-30",
+    "tracks": [
+      "independent-40m",
+      "feedback-3r-40m"
+    ],
+    "models": [
+      {
+        "label": "astra6",
+        "model": "openai/gpt-6-astra",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "openai"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "opus55",
+        "model": "anthropic/claude-opus-5.5",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "anthropic"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "sol61",
+        "model": "openai/gpt-6.1-sol",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "openai"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "argon4",
+        "model": "google/gemini-4-argon",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "google-vertex/us"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "kimi31",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "moonshotai/mxfp4"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "qwen38",
+        "model": "qwen/qwen3.8-max-0902",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "alibaba"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "glm53",
+        "model": "z-ai/glm-5.3",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "z-ai/fp8"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "deepseek-pro",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "deepseek-flash",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "minimax31",
+        "model": "minimax/minimax-m3.1-flash",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "minimax"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      },
+      {
+        "label": "luna-high",
+        "model": "openai/gpt-6-luna",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768,
+          "provider": {
+            "only": [
+              "openai"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    ],
+    "replicates": 3,
+    "maps_per_family": 5,
+    "references": [
+      {
+        "label": "reference-weak",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-qwen38-oneshot-20m"
+      },
+      {
+        "label": "reference-intermediate",
+        "kind": "frozen",
+        "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m"
+      },
+      {
+        "label": "hero-1v1",
+        "kind": "expert"
+      }
+    ]
+  },
+  "image_id": "im-y8fZgIfLMwYIbXChbLjvMc",
+  "current_stages": {
+    "mini-v5-20261030a-astra6-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6-astra",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366233.2212155,
+        "deadline_unix": 1793368633.2212155,
+        "stage": 0,
+        "startup_seconds": 2.2464330196380615
+      }
+    },
+    "mini-v5-20261030a-astra6-r1-feedback-3r-40m": {
+      "status": "failed_harness",
+      "stage": 1,
+      "model": "openai/gpt-6-astra",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793366900.2563345,
+        "deadline_unix": 1793367500.2563345,
+        "stage": 1,
+        "startup_seconds": 1.0047590732574463
+      }
+    },
+    "mini-v5-20261030a-opus55-r1-independent-40m": {
+      "status": "failed_harness",
+      "stage": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366233.1804562,
+        "deadline_unix": 1793368633.1804562,
+        "stage": 0,
+        "startup_seconds": 1.4801568984985352
+      }
+    },
+    "mini-v5-20261030a-opus55-r1-feedback-3r-40m": {
+      "status": "completed",
+      "stage": 3,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367216.4136093,
+        "deadline_unix": 1793367816.4136093,
+        "stage": 3,
+        "startup_seconds": 1.220529556274414
+      }
+    },
+    "mini-v5-20261030a-sol61-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6.1-sol",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366238.5515516,
+        "deadline_unix": 1793368638.5515516,
+        "stage": 0,
+        "startup_seconds": 1.1423671245574951
+      }
+    },
+    "mini-v5-20261030a-sol61-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 1,
+      "model": "openai/gpt-6.1-sol",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367019.6767244,
+        "deadline_unix": 1793367619.6767244,
+        "stage": 1,
+        "startup_seconds": 2.7589690685272217
+      }
+    },
+    "mini-v5-20261030a-argon4-r1-independent-40m": {
+      "status": "failed_harness",
+      "stage": 0,
+      "model": "google/gemini-4-argon",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366241.0275934,
+        "deadline_unix": 1793368641.0275934,
+        "stage": 0,
+        "startup_seconds": 1.9937293529510498
+      }
+    },
+    "mini-v5-20261030a-argon4-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "google/gemini-4-argon",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367533.2921283,
+        "deadline_unix": 1793368133.2921283,
+        "stage": 2,
+        "startup_seconds": 1.666311502456665
+      }
+    },
+    "mini-v5-20261030a-kimi31-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "moonshotai/kimi-k3.1-pro",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366236.1149461,
+        "deadline_unix": 1793368636.1149461,
+        "stage": 0,
+        "startup_seconds": 1.0217876434326172
+      }
+    },
+    "mini-v5-20261030a-kimi31-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "moonshotai/kimi-k3.1-pro",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367531.6748505,
+        "deadline_unix": 1793368131.6748505,
+        "stage": 2,
+        "startup_seconds": 1.6303071975708008
+      }
+    },
+    "mini-v5-20261030a-qwen38-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "qwen/qwen3.8-max-0902",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366238.2821608,
+        "deadline_unix": 1793368638.2821608,
+        "stage": 0,
+        "startup_seconds": 1.0156643390655518
+      }
+    },
+    "mini-v5-20261030a-qwen38-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "qwen/qwen3.8-max-0902",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367453.846046,
+        "deadline_unix": 1793368053.846046,
+        "stage": 2,
+        "startup_seconds": 0.8804357051849365
+      }
+    },
+    "mini-v5-20261030a-glm53-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "z-ai/glm-5.3",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366243.883683,
+        "deadline_unix": 1793368643.883683,
+        "stage": 0,
+        "startup_seconds": 1.2042927742004395
+      }
+    },
+    "mini-v5-20261030a-glm53-r1-feedback-3r-40m": {
+      "status": "feedback_evaluation",
+      "stage": 1,
+      "model": "z-ai/glm-5.3",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793366965.5314448,
+        "deadline_unix": 1793367565.5314448,
+        "stage": 1,
+        "startup_seconds": 3.09626841545105
+      }
+    },
+    "mini-v5-20261030a-deepseek-pro-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366245.072191,
+        "deadline_unix": 1793368645.072191,
+        "stage": 0,
+        "startup_seconds": 1.046170949935913
+      }
+    },
+    "mini-v5-20261030a-deepseek-pro-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367477.4501228,
+        "deadline_unix": 1793368077.4501228,
+        "stage": 2,
+        "startup_seconds": 1.3659896850585938
+      }
+    },
+    "mini-v5-20261030a-deepseek-flash-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366249.7696152,
+        "deadline_unix": 1793368649.7696152,
+        "stage": 0,
+        "startup_seconds": 1.4228942394256592
+      }
+    },
+    "mini-v5-20261030a-deepseek-flash-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367306.6262627,
+        "deadline_unix": 1793367906.6262627,
+        "stage": 2,
+        "startup_seconds": 1.3912978172302246
+      }
+    },
+    "mini-v5-20261030a-minimax31-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "minimax/minimax-m3.1-flash",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366251.4917166,
+        "deadline_unix": 1793368651.4917166,
+        "stage": 0,
+        "startup_seconds": 1.302093267440796
+      }
+    },
+    "mini-v5-20261030a-minimax31-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 2,
+      "model": "minimax/minimax-m3.1-flash",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367571.9576185,
+        "deadline_unix": 1793368171.9576185,
+        "stage": 2,
+        "startup_seconds": 0.8787140846252441
+      }
+    },
+    "mini-v5-20261030a-luna-high-r1-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6-luna",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793366540.3772948,
+        "deadline_unix": 1793368940.3772948,
+        "stage": 0,
+        "startup_seconds": 1.0286948680877686
+      }
+    },
+    "mini-v5-20261030a-luna-high-r1-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367148.7711155,
+        "deadline_unix": 1793367748.7711155,
+        "stage": 0,
+        "startup_seconds": 1.4525785446166992
+      }
+    },
+    "mini-v5-20261030a-astra6-r2-independent-40m": {
+      "status": "failed_harness",
+      "stage": 0,
+      "model": "openai/gpt-6-astra",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793367241.044945,
+        "deadline_unix": 1793369641.044945,
+        "stage": 0,
+        "startup_seconds": 1.9648768901824951
+      }
+    },
+    "mini-v5-20261030a-astra6-r2-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6-astra",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367422.1675093,
+        "deadline_unix": 1793368022.1675093,
+        "stage": 0,
+        "startup_seconds": 1.1100175380706787
+      }
+    },
+    "mini-v5-20261030a-opus55-r2-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793367473.7464762,
+        "deadline_unix": 1793369873.7464762,
+        "stage": 0,
+        "startup_seconds": 0.839165210723877
+      }
+    },
+    "mini-v5-20261030a-opus55-r2-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367502.4059997,
+        "deadline_unix": 1793368102.4059997,
+        "stage": 0,
+        "startup_seconds": 0.8994452953338623
+      }
+    },
+    "mini-v5-20261030a-sol61-r2-independent-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6.1-sol",
+      "track": "independent-40m",
+      "clock": {
+        "started_unix": 1793367509.8676548,
+        "deadline_unix": 1793369909.8676548,
+        "stage": 0,
+        "startup_seconds": 1.8910679817199707
+      }
+    },
+    "mini-v5-20261030a-sol61-r2-feedback-3r-40m": {
+      "status": "authoring",
+      "stage": 0,
+      "model": "openai/gpt-6.1-sol",
+      "track": "feedback-3r-40m",
+      "clock": {
+        "started_unix": 1793367513.2935114,
+        "deadline_unix": 1793368113.2935114,
+        "stage": 0,
+        "startup_seconds": 0.83062744140625
+      }
+    },
+    "mini-v5-20261030a-argon4-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "google/gemini-4-argon",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-kimi31-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "moonshotai/kimi-k3.1-pro",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-qwen38-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "qwen/qwen3.8-max-0902",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-qwen38-r2-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "qwen/qwen3.8-max-0902",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-glm53-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "z-ai/glm-5.3",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-deepseek-pro-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-deepseek-pro-r2-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-deepseek-flash-r2-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-minimax31-r2-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "minimax/minimax-m3.1-flash",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-minimax31-r2-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "minimax/minimax-m3.1-flash",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-luna-high-r2-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-astra6-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "openai/gpt-6-astra",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-opus55-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-opus55-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "anthropic/claude-opus-5.5",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-sol61-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "openai/gpt-6.1-sol",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-argon4-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "google/gemini-4-argon",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-argon4-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "google/gemini-4-argon",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-kimi31-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "moonshotai/kimi-k3.1-pro",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-kimi31-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "moonshotai/kimi-k3.1-pro",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-qwen38-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "qwen/qwen3.8-max-0902",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-glm53-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "z-ai/glm-5.3",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-deepseek-pro-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-deepseek-pro-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-deepseek-flash-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-minimax31-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "minimax/minimax-m3.1-flash",
+      "track": "feedback-3r-40m"
+    },
+    "mini-v5-20261030a-luna-high-r3-independent-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "openai/gpt-6-luna",
+      "track": "independent-40m"
+    },
+    "mini-v5-20261030a-luna-high-r3-feedback-3r-40m": {
+      "status": "setting_up",
+      "stage": null,
+      "model": "openai/gpt-6-luna",
+      "track": "feedback-3r-40m"
+    }
+  }
+}

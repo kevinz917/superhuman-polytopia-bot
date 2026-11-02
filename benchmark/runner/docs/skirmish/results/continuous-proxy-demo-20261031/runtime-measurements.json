@@ -1,0 +1,22 @@
+[
+  {
+    "model": "openai/gpt-6-astra",
+    "trial": "task__jqbFodV",
+    "demo_final_matches": 36,
+    "verifier_started_at": "2026-10-31T05:51:05.198625Z",
+    "verifier_finished_at": "2026-10-31T05:55:49.531794Z",
+    "verifier_seconds": 284.333169,
+    "linear_full_suite_verifier_minutes": 47.3888615,
+    "maximum_authoring_minutes": 40
+  },
+  {
+    "model": "anthropic/claude-opus-5.5",
+    "trial": "task__meqLUsd",
+    "demo_final_matches": 36,
+    "verifier_started_at": "2026-10-31T05:38:24.203575Z",
+    "verifier_finished_at": "2026-10-31T05:44:34.578315Z",
+    "verifier_seconds": 370.37474,
+    "linear_full_suite_verifier_minutes": 61.72912333333333,
+    "maximum_authoring_minutes": 40
+  }
+]

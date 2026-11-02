@@ -1,0 +1,25 @@
+{
+  "prefix": "mini-v51-20261030a",
+  "previous_coordinator": "fc-01M66HP16BSQVTE9MX1RWTCEEK",
+  "previous_coordinator_states": [
+    "TERMINATED"
+  ],
+  "resume_call_id": "fc-01M66NAZM17ZAV21652RV65708",
+  "image_id": "im-RZakv30D1tXpWIUrzQuGI2",
+  "reason": "Cancelled Modal calls do not produce outputs for get(); replace only their call handles with explicit infrastructure failures, retain all other calls and use original frozen coordinator source",
+  "call_redirections": [
+    {
+      "call_id": "fc-01M66NABG73W228Q6RE6B5EE8M",
+      "original_terminated_call_id": "fc-01M66HQAHD68MEDTB6PWHVBSA7",
+      "operator_recovery": "explicit returned infrastructure outcome for cancelled call; no model run or scoring result synthesized",
+      "updated_unix": 1793372542.5060503
+    },
+    {
+      "call_id": "fc-01M66NAEPGDGBP1G9D8X2CD0F5",
+      "original_terminated_call_id": "fc-01M66HQCAYPEQST5211K1N181D",
+      "operator_recovery": "explicit returned infrastructure outcome for cancelled call; no model run or scoring result synthesized",
+      "updated_unix": 1793372542.5260394
+    }
+  ],
+  "created_unix": 1793372553.11702
+}

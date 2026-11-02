@@ -1,0 +1,1252 @@
+{
+  "status": "completed",
+  "pilot": true,
+  "evaluation_revision": "reference-panel-v6.1",
+  "authoring_builds": 12,
+  "model_ids": {
+    "astra6": "openai/gpt-6-astra",
+    "opus55": "anthropic/claude-opus-5.5",
+    "sol61": "openai/gpt-6.1-sol",
+    "sonnet55": "anthropic/claude-sonnet-5.5"
+  },
+  "new_model_calls_during_grading": 0,
+  "original_authoring_caveats": [
+    "Original protocol-check helper used legacy one-trillion fuel; actual feedback and final evaluation used four trillion. A scoped future-authoring fix does not change these frozen bots.",
+    "Original feedback reports named host archive paths; public traces were available under /feedback/round-N/00.jsonl etc. Future reports explicitly name these sandbox paths."
+  ],
+  "scores": {
+    "astra6": {
+      "independent": {
+        "games": 36,
+        "wins": 29,
+        "losses": 7,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 80.55555555555556,
+        "score_bounds": [
+          80.55555555555556,
+          80.55555555555556
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "segmented-control": {
+        "games": 36,
+        "wins": 28,
+        "losses": 8,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 77.77777777777777,
+        "score_bounds": [
+          77.77777777777777,
+          77.77777777777777
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "feedback": {
+        "games": 36,
+        "wins": 26,
+        "losses": 10,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 72.22222222222223,
+        "score_bounds": [
+          72.22222222222223,
+          72.22222222222223
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      }
+    },
+    "opus55": {
+      "independent": {
+        "games": 36,
+        "wins": 11,
+        "losses": 25,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 30.555555555555557,
+        "score_bounds": [
+          30.555555555555557,
+          30.555555555555557
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "segmented-control": {
+        "games": 36,
+        "wins": 13,
+        "losses": 23,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 36.111111111111114,
+        "score_bounds": [
+          36.111111111111114,
+          36.111111111111114
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "feedback": {
+        "games": 36,
+        "wins": 12,
+        "losses": 24,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 33.333333333333336,
+        "score_bounds": [
+          33.333333333333336,
+          33.333333333333336
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      }
+    },
+    "sol61": {
+      "independent": {
+        "games": 36,
+        "wins": 24,
+        "losses": 12,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 66.66666666666667,
+        "score_bounds": [
+          66.66666666666667,
+          66.66666666666667
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "segmented-control": {
+        "games": 36,
+        "wins": 0,
+        "losses": 34,
+        "draws": 2,
+        "unresolved": 0,
+        "score": 2.7777777777777777,
+        "score_bounds": [
+          2.7777777777777777,
+          2.7777777777777777
+        ],
+        "quality": "unchanged_starter",
+        "runtime_faults": 0
+      },
+      "feedback": {
+        "games": 36,
+        "wins": 23,
+        "losses": 13,
+        "draws": 0,
+        "unresolved": 0,
+        "score": 63.888888888888886,
+        "score_bounds": [
+          63.888888888888886,
+          63.888888888888886
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      }
+    },
+    "sonnet55": {
+      "independent": {
+        "games": 36,
+        "wins": 12,
+        "losses": 22,
+        "draws": 2,
+        "unresolved": 0,
+        "score": 36.111111111111114,
+        "score_bounds": [
+          36.111111111111114,
+          36.111111111111114
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "segmented-control": {
+        "games": 36,
+        "wins": 7,
+        "losses": 25,
+        "draws": 4,
+        "unresolved": 0,
+        "score": 25.0,
+        "score_bounds": [
+          25.0,
+          25.0
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      },
+      "feedback": {
+        "games": 36,
+        "wins": 0,
+        "losses": 33,
+        "draws": 3,
+        "unresolved": 0,
+        "score": 4.166666666666667,
+        "score_bounds": [
+          4.166666666666667,
+          4.166666666666667
+        ],
+        "quality": "custom_submission",
+        "runtime_faults": 0
+      }
+    }
+  },
+  "counts": {
+    "core_scheduled": 1692,
+    "diagnostic_scheduled": 1260,
+    "actual_episodes": 2916,
+    "full_games": 2880,
+    "tactical_checks": 36,
+    "virtual_compile_losses": 36,
+    "replay_actions": 1958455,
+    "unresolved": 0,
+    "independent_rebuilds": 44
+  },
+  "strongest_reference_outcomes": {
+    "loss": 72
+  },
+  "transfer_scores": {
+    "opus55|feedback": {
+      "games": 18,
+      "wins": 8,
+      "losses": 9,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 47.22222222222222,
+      "score_bounds": [
+        47.22222222222222,
+        47.22222222222222
+      ]
+    },
+    "sonnet55|segmented-control": {
+      "games": 18,
+      "wins": 3,
+      "losses": 14,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 19.444444444444443,
+      "score_bounds": [
+        19.444444444444443,
+        19.444444444444443
+      ]
+    },
+    "opus55|segmented-control": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "astra6|feedback": {
+      "games": 18,
+      "wins": 14,
+      "losses": 4,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 77.77777777777777,
+      "score_bounds": [
+        77.77777777777777,
+        77.77777777777777
+      ]
+    },
+    "sonnet55|independent": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "sonnet55|feedback": {
+      "games": 18,
+      "wins": 1,
+      "losses": 17,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 5.555555555555555,
+      "score_bounds": [
+        5.555555555555555,
+        5.555555555555555
+      ]
+    },
+    "sol61|segmented-control": {
+      "games": 18,
+      "wins": 0,
+      "losses": 18,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 0.0,
+      "score_bounds": [
+        0.0,
+        0.0
+      ]
+    },
+    "sol61|independent": {
+      "games": 18,
+      "wins": 13,
+      "losses": 5,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 72.22222222222223,
+      "score_bounds": [
+        72.22222222222223,
+        72.22222222222223
+      ]
+    },
+    "opus55|independent": {
+      "games": 18,
+      "wins": 7,
+      "losses": 10,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 41.666666666666664,
+      "score_bounds": [
+        41.666666666666664,
+        41.666666666666664
+      ]
+    },
+    "astra6|segmented-control": {
+      "games": 18,
+      "wins": 12,
+      "losses": 6,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 66.66666666666667,
+      "score_bounds": [
+        66.66666666666667,
+        66.66666666666667
+      ]
+    },
+    "astra6|independent": {
+      "games": 18,
+      "wins": 16,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 88.88888888888889,
+      "score_bounds": [
+        88.88888888888889,
+        88.88888888888889
+      ]
+    },
+    "sol61|feedback": {
+      "games": 18,
+      "wins": 13,
+      "losses": 5,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 72.22222222222223,
+      "score_bounds": [
+        72.22222222222223,
+        72.22222222222223
+      ]
+    }
+  },
+  "tactical_scores": {
+    "opus55|feedback": {
+      "passed": 3,
+      "checks": 3
+    },
+    "sonnet55|segmented-control": {
+      "passed": 3,
+      "checks": 3
+    },
+    "opus55|segmented-control": {
+      "passed": 3,
+      "checks": 3
+    },
+    "astra6|feedback": {
+      "passed": 1,
+      "checks": 3
+    },
+    "sonnet55|independent": {
+      "passed": 3,
+      "checks": 3
+    },
+    "sonnet55|feedback": {
+      "passed": 3,
+      "checks": 3
+    },
+    "sol61|segmented-control": {
+      "passed": 0,
+      "checks": 3
+    },
+    "sol61|independent": {
+      "passed": 1,
+      "checks": 3
+    },
+    "opus55|independent": {
+      "passed": 3,
+      "checks": 3
+    },
+    "astra6|segmented-control": {
+      "passed": 1,
+      "checks": 3
+    },
+    "astra6|independent": {
+      "passed": 1,
+      "checks": 3
+    },
+    "sol61|feedback": {
+      "passed": 1,
+      "checks": 3
+    }
+  },
+  "horizon_changes": {
+    "100_vs_300": {
+      "blocks": 216,
+      "changed_outcomes": 1,
+      "identical_complete_action_chains": 211,
+      "native_chain_mismatches": 0,
+      "caps_at_first": 5,
+      "caps_at_second": 4
+    },
+    "150_vs_300": {
+      "blocks": 216,
+      "changed_outcomes": 0,
+      "identical_complete_action_chains": 212,
+      "native_chain_mismatches": 0,
+      "caps_at_first": 4,
+      "caps_at_second": 4
+    },
+    "200_vs_300": {
+      "blocks": 216,
+      "changed_outcomes": 0,
+      "identical_complete_action_chains": 212,
+      "native_chain_mismatches": 0,
+      "caps_at_first": 4,
+      "caps_at_second": 4
+    }
+  },
+  "final_core_caps_by_family": {
+    "drylands": {
+      "games": 144,
+      "cap_draws": 2,
+      "cap_rate": 0.013888888888888888
+    },
+    "lakes": {
+      "games": 144,
+      "cap_draws": 2,
+      "cap_rate": 0.013888888888888888
+    },
+    "continents": {
+      "games": 144,
+      "cap_draws": 7,
+      "cap_rate": 0.04861111111111111
+    }
+  },
+  "cap_scores": {
+    "feedback|100|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "feedback|150|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "feedback|200|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "feedback|300|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "segmented-control|100|sonnet55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "segmented-control|150|sonnet55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "segmented-control|200|sonnet55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "segmented-control|300|sonnet55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "segmented-control|100|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "segmented-control|150|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "segmented-control|200|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "segmented-control|300|opus55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "feedback|100|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 11,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 36.111111111111114,
+      "score_bounds": [
+        36.111111111111114,
+        36.111111111111114
+      ]
+    },
+    "feedback|150|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "feedback|200|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "feedback|300|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "independent|100|sonnet55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "independent|150|sonnet55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "independent|200|sonnet55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "independent|300|sonnet55": {
+      "games": 18,
+      "wins": 3,
+      "losses": 15,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 16.666666666666668,
+      "score_bounds": [
+        16.666666666666668,
+        16.666666666666668
+      ]
+    },
+    "feedback|100|sonnet55": {
+      "games": 18,
+      "wins": 1,
+      "losses": 16,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 8.333333333333334,
+      "score_bounds": [
+        8.333333333333334,
+        8.333333333333334
+      ]
+    },
+    "feedback|150|sonnet55": {
+      "games": 18,
+      "wins": 1,
+      "losses": 16,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 8.333333333333334,
+      "score_bounds": [
+        8.333333333333334,
+        8.333333333333334
+      ]
+    },
+    "feedback|200|sonnet55": {
+      "games": 18,
+      "wins": 1,
+      "losses": 16,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 8.333333333333334,
+      "score_bounds": [
+        8.333333333333334,
+        8.333333333333334
+      ]
+    },
+    "feedback|300|sonnet55": {
+      "games": 18,
+      "wins": 1,
+      "losses": 16,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 8.333333333333334,
+      "score_bounds": [
+        8.333333333333334,
+        8.333333333333334
+      ]
+    },
+    "segmented-control|100|sol61": {
+      "games": 18,
+      "wins": 0,
+      "losses": 17,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 2.7777777777777777,
+      "score_bounds": [
+        2.7777777777777777,
+        2.7777777777777777
+      ]
+    },
+    "segmented-control|150|sol61": {
+      "games": 18,
+      "wins": 0,
+      "losses": 17,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 2.7777777777777777,
+      "score_bounds": [
+        2.7777777777777777,
+        2.7777777777777777
+      ]
+    },
+    "segmented-control|200|sol61": {
+      "games": 18,
+      "wins": 0,
+      "losses": 17,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 2.7777777777777777,
+      "score_bounds": [
+        2.7777777777777777,
+        2.7777777777777777
+      ]
+    },
+    "segmented-control|300|sol61": {
+      "games": 18,
+      "wins": 0,
+      "losses": 17,
+      "draws": 1,
+      "unresolved": 0,
+      "score": 2.7777777777777777,
+      "score_bounds": [
+        2.7777777777777777,
+        2.7777777777777777
+      ]
+    },
+    "independent|100|sol61": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "independent|150|sol61": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "independent|200|sol61": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "independent|300|sol61": {
+      "games": 18,
+      "wins": 7,
+      "losses": 11,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 38.888888888888886,
+      "score_bounds": [
+        38.888888888888886,
+        38.888888888888886
+      ]
+    },
+    "independent|100|opus55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "independent|150|opus55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "independent|200|opus55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "independent|300|opus55": {
+      "games": 18,
+      "wins": 2,
+      "losses": 16,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 11.11111111111111,
+      "score_bounds": [
+        11.11111111111111,
+        11.11111111111111
+      ]
+    },
+    "segmented-control|100|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "segmented-control|150|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "segmented-control|200|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "segmented-control|300|astra6": {
+      "games": 18,
+      "wins": 6,
+      "losses": 12,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 33.333333333333336,
+      "score_bounds": [
+        33.333333333333336,
+        33.333333333333336
+      ]
+    },
+    "independent|100|astra6": {
+      "games": 18,
+      "wins": 11,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 61.111111111111114,
+      "score_bounds": [
+        61.111111111111114,
+        61.111111111111114
+      ]
+    },
+    "independent|150|astra6": {
+      "games": 18,
+      "wins": 11,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 61.111111111111114,
+      "score_bounds": [
+        61.111111111111114,
+        61.111111111111114
+      ]
+    },
+    "independent|200|astra6": {
+      "games": 18,
+      "wins": 11,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 61.111111111111114,
+      "score_bounds": [
+        61.111111111111114,
+        61.111111111111114
+      ]
+    },
+    "independent|300|astra6": {
+      "games": 18,
+      "wins": 11,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "score": 61.111111111111114,
+      "score_bounds": [
+        61.111111111111114,
+        61.111111111111114
+      ]
+    },
+    "feedback|100|sol61": {
+      "games": 18,
+      "wins": 8,
+      "losses": 8,
+      "draws": 2,
+      "unresolved": 0,
+      "score": 50.0,
+      "score_bounds": [
+        50.0,
+        50.0
+      ]
+    },
+    "feedback|150|sol61": {
+      "games": 18,
+      "wins": 8,
+      "losses": 8,
+      "draws": 2,
+      "unresolved": 0,
+      "score": 50.0,
+      "score_bounds": [
+        50.0,
+        50.0
+      ]
+    },
+    "feedback|200|sol61": {
+      "games": 18,
+      "wins": 8,
+      "losses": 8,
+      "draws": 2,
+      "unresolved": 0,
+      "score": 50.0,
+      "score_bounds": [
+        50.0,
+        50.0
+      ]
+    },
+    "feedback|300|sol61": {
+      "games": 18,
+      "wins": 8,
+      "losses": 8,
+      "draws": 2,
+      "unresolved": 0,
+      "score": 50.0,
+      "score_bounds": [
+        50.0,
+        50.0
+      ]
+    }
+  },
+  "cap_rankings_by_track": {
+    "independent": {
+      "100": [
+        [
+          "astra6",
+          61.111111111111114
+        ],
+        [
+          "sol61",
+          38.888888888888886
+        ],
+        [
+          "sonnet55",
+          16.666666666666668
+        ],
+        [
+          "opus55",
+          11.11111111111111
+        ]
+      ],
+      "150": [
+        [
+          "astra6",
+          61.111111111111114
+        ],
+        [
+          "sol61",
+          38.888888888888886
+        ],
+        [
+          "sonnet55",
+          16.666666666666668
+        ],
+        [
+          "opus55",
+          11.11111111111111
+        ]
+      ],
+      "200": [
+        [
+          "astra6",
+          61.111111111111114
+        ],
+        [
+          "sol61",
+          38.888888888888886
+        ],
+        [
+          "sonnet55",
+          16.666666666666668
+        ],
+        [
+          "opus55",
+          11.11111111111111
+        ]
+      ],
+      "300": [
+        [
+          "astra6",
+          61.111111111111114
+        ],
+        [
+          "sol61",
+          38.888888888888886
+        ],
+        [
+          "sonnet55",
+          16.666666666666668
+        ],
+        [
+          "opus55",
+          11.11111111111111
+        ]
+      ]
+    },
+    "segmented-control": {
+      "100": [
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          11.11111111111111
+        ],
+        [
+          "sol61",
+          2.7777777777777777
+        ]
+      ],
+      "150": [
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          11.11111111111111
+        ],
+        [
+          "sol61",
+          2.7777777777777777
+        ]
+      ],
+      "200": [
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          11.11111111111111
+        ],
+        [
+          "sol61",
+          2.7777777777777777
+        ]
+      ],
+      "300": [
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          11.11111111111111
+        ],
+        [
+          "sol61",
+          2.7777777777777777
+        ]
+      ]
+    },
+    "feedback": {
+      "100": [
+        [
+          "sol61",
+          50.0
+        ],
+        [
+          "astra6",
+          36.111111111111114
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          8.333333333333334
+        ]
+      ],
+      "150": [
+        [
+          "sol61",
+          50.0
+        ],
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          8.333333333333334
+        ]
+      ],
+      "200": [
+        [
+          "sol61",
+          50.0
+        ],
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          8.333333333333334
+        ]
+      ],
+      "300": [
+        [
+          "sol61",
+          50.0
+        ],
+        [
+          "astra6",
+          33.333333333333336
+        ],
+        [
+          "opus55",
+          16.666666666666668
+        ],
+        [
+          "sonnet55",
+          8.333333333333334
+        ]
+      ]
+    }
+  },
+  "intervals": "not estimable with one independently authored build and one hidden layout per family",
+  "provenance": "Original fixed feedback preserved; every frozen submission/stage scored under the corrected evaluation-only panel. No authoring repair or best-of selection."
+}

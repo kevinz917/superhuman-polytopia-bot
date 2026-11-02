@@ -1,0 +1,7 @@
+{
+  "source_sha256": "714ffdb10e62c859f0b8331b6283e5ec5a3b8a6ee3da931e3e5224f37d466b47",
+  "returncode": 0,
+  "compile_output": "   Compiling serde_core v1.0.229\n   Compiling serde_json v1.0.145\n   Compiling itoa v1.0.18\n   Compiling ryu v1.0.23\n   Compiling memchr v2.8.3\n   Compiling skirmish-bot v0.1.0 (/verify)\n    Finished `release` profile [optimized] target(s) in 2.19s\n",
+  "wasm_sha256": "6c60b0980891316ed237fba7ace6071171210cd76fc4acaa797d1c3a5b77a352",
+  "submission_quality": "custom_submission"
+}

@@ -1,0 +1,118 @@
+{
+  "status": "passed",
+  "prefix": "mini-v51-20261030a",
+  "evaluation_source_sha256": "cdf8ceeb667f9cbcdf20c36abfd892fc010e76d594490f9dc237205b8469fadc",
+  "rows": 16830,
+  "unique_job_indices": 16830,
+  "plan_bindings_passed": true,
+  "all_audits_passed": true,
+  "status_counts": {
+    "native": 14899,
+    "draw": 1184,
+    "invalid_submission": 450,
+    "forfeit": 297
+  },
+  "phase_counts": {
+    "heldout": 14850,
+    "peer": 1980
+  },
+  "guest_forfeit_reasons": {
+    "fuel_exhausted": 8,
+    "guest_exit": 289
+  },
+  "final_primary_statuses": {
+    "independent-40m|astra6": {
+      "native": 269,
+      "draw": 1
+    },
+    "feedback-3r-40m|astra6": {
+      "native": 265,
+      "draw": 5
+    },
+    "independent-40m|opus55": {
+      "native": 258,
+      "draw": 12
+    },
+    "feedback-3r-40m|opus55": {
+      "native": 256,
+      "draw": 14
+    },
+    "independent-40m|sol61": {
+      "native": 268,
+      "draw": 2
+    },
+    "feedback-3r-40m|sol61": {
+      "native": 263,
+      "draw": 7
+    },
+    "independent-40m|argon4": {
+      "native": 263,
+      "draw": 7
+    },
+    "feedback-3r-40m|argon4": {
+      "native": 252,
+      "draw": 18
+    },
+    "independent-40m|kimi31": {
+      "native": 257,
+      "draw": 13
+    },
+    "feedback-3r-40m|kimi31": {
+      "native": 253,
+      "draw": 17
+    },
+    "independent-40m|qwen38": {
+      "native": 224,
+      "draw": 46
+    },
+    "feedback-3r-40m|qwen38": {
+      "native": 223,
+      "draw": 47
+    },
+    "independent-40m|glm53": {
+      "native": 231,
+      "draw": 39
+    },
+    "feedback-3r-40m|glm53": {
+      "native": 250,
+      "draw": 20
+    },
+    "independent-40m|deepseek-pro": {
+      "native": 259,
+      "draw": 11
+    },
+    "feedback-3r-40m|deepseek-pro": {
+      "native": 247,
+      "draw": 23
+    },
+    "independent-40m|deepseek-flash": {
+      "native": 250,
+      "draw": 20
+    },
+    "feedback-3r-40m|deepseek-flash": {
+      "native": 239,
+      "draw": 31
+    },
+    "independent-40m|minimax31": {
+      "native": 246,
+      "draw": 24
+    },
+    "feedback-3r-40m|minimax31": {
+      "draw": 51,
+      "native": 200,
+      "forfeit": 19
+    },
+    "independent-40m|luna-high": {
+      "native": 259,
+      "draw": 11
+    },
+    "feedback-3r-40m|luna-high": {
+      "native": 258,
+      "draw": 12
+    }
+  },
+  "actual_games": 16380,
+  "virtual_compile_zeroes": 450,
+  "replay_verified_actions": 12254391,
+  "checked_unix": 1793393114.0204477
+}

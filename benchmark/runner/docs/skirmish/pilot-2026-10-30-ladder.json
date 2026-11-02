@@ -1,0 +1,123 @@
+{
+  "schema": "polytopia-skirmish-v1",
+  "tournament_id": "pilot-20261030-01",
+  "status": "completed",
+  "maps": 4,
+  "players": [
+    "hero-1v1",
+    "deepseek-pilot-20261030-03",
+    "gpt56-pilot-20261030-01"
+  ],
+  "seconds": 247.37379021700002,
+  "plan_sha256": "a676e292c227efb56fab75b9189e88e7575f86103994b8e245bf87a598c10ac3",
+  "games": 24,
+  "resolved": 24,
+  "unresolved": 0,
+  "ladder": [
+    {
+      "entrant": "hero-1v1",
+      "elo": 0.0,
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "unresolved": 0,
+      "forfeits": 0,
+      "elo_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "entrant": "gpt56-pilot-20261030-01",
+      "elo": -572.2425944910033,
+      "games": 16,
+      "wins": 5,
+      "losses": 11,
+      "unresolved": 0,
+      "forfeits": 0,
+      "elo_ci95": [
+        -607.4055741601617,
+        -516.2812062514962
+      ]
+    },
+    {
+      "entrant": "deepseek-pilot-20261030-03",
+      "elo": -650.887159852557,
+      "games": 16,
+      "wins": 3,
+      "losses": 13,
+      "unresolved": 0,
+      "forfeits": 5,
+      "elo_ci95": [
+        -796.2578421092212,
+        -607.4055741601617
+      ]
+    }
+  ],
+  "pairs": {
+    "hero-1v1__deepseek-pilot-20261030-03": {
+      "games": 8,
+      "wins": 8,
+      "losses": 0,
+      "unresolved": 0,
+      "forfeits": 0,
+      "by_seat": {
+        "1": {
+          "games": 4,
+          "wins": 4,
+          "losses": 0,
+          "unresolved": 0
+        },
+        "2": {
+          "games": 4,
+          "wins": 4,
+          "losses": 0,
+          "unresolved": 0
+        }
+      }
+    },
+    "hero-1v1__gpt56-pilot-20261030-01": {
+      "games": 8,
+      "wins": 8,
+      "losses": 0,
+      "unresolved": 0,
+      "forfeits": 0,
+      "by_seat": {
+        "1": {
+          "games": 4,
+          "wins": 4,
+          "losses": 0,
+          "unresolved": 0
+        },
+        "2": {
+          "games": 4,
+          "wins": 4,
+          "losses": 0,
+          "unresolved": 0
+        }
+      }
+    },
+    "deepseek-pilot-20261030-03__gpt56-pilot-20261030-01": {
+      "games": 8,
+      "wins": 3,
+      "losses": 5,
+      "unresolved": 0,
+      "forfeits": 5,
+      "by_seat": {
+        "1": {
+          "games": 4,
+          "wins": 2,
+          "losses": 2,
+          "unresolved": 0
+        },
+        "2": {
+          "games": 4,
+          "wins": 1,
+          "losses": 3,
+          "unresolved": 0
+        }
+      }
+    }
+  },
+  "method": "Bradley-Terry MM; anchor=0; 0.5 virtual draw per played pair; unresolved excluded; 95% intervals from 400 paired-map bootstrap resamples"
+}

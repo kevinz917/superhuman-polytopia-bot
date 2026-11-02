@@ -1,0 +1,11 @@
+{
+  "prefix": "mini-v5-20261030a",
+  "call_id": "fc-01M66F7SWJ3RJK7XM44YYN7X8A",
+  "image_id": "im-y8fZgIfLMwYIbXChbLjvMc",
+  "authoring_cells": 66,
+  "smoke": false,
+  "app_url": "https://modal.com/apps/duper/staging/ap-2S8cEBJu3VlmsE35huLYa9",
+  "client_date": "2026-10-30",
+  "protocol": "polytopia-mini-v5",
+  "source_commit": "8bd8437"
+}

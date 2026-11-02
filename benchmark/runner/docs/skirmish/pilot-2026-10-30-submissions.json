@@ -1,0 +1,28 @@
+{
+  "deepseek-pilot-20261030-03": {
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "wasm_sha256": "a66a83c99530c45e2bc5bf1d0f960df0b3fbdfe12c8281b3c3736778a4967e5d",
+    "source_sha256": "16064f6997bf9334e8386ce3d672a51a0bbf358a7b01d7dc837ac8f26297c087",
+    "protocol_sha256": "09919057df88bcccb9f5f63f537d3aca5508433ecdea611a903243fef576fa35",
+    "transcript_sha256": "bdfd2b1a338004dc9e8b00e227657781d91687e08bc1efadad8574e422e03acd",
+    "source_archive_sha256": "c330274e3eb7f7ab32c26cb6fbe746f99e9e019b116b4fb7f500f84246dd50fa",
+    "authoring_seconds": 300.806793551,
+    "requests": 21,
+    "practice_games": 10,
+    "api_cost_usd": 0.056553399243,
+    "end_reason": "deadline"
+  },
+  "gpt56-pilot-20261030-01": {
+    "model": "openai/gpt-5.6-terra",
+    "wasm_sha256": "74b443feb6ed00dd9ea199e9b720d6932c40943fd6626c1ded81121d3ed65852",
+    "source_sha256": "52be6842ee47dd66541f6be7e97993dd58f9a2ac7f8aedd82cfd856db1b50fef",
+    "protocol_sha256": "bbc533124b60ee60e54153befb188920ba86fa345b950896c0fecc5a3abe84d4",
+    "transcript_sha256": "e030f221029dd02af5f1d0ebc834f9c9857b1e8406131f6b52a0d82084b193e0",
+    "source_archive_sha256": "9cca5cd03edc4d027fb401a044c92af1be158bbfeb06df19a99ef31a0f714b93",
+    "authoring_seconds": 299.15427672600003,
+    "requests": 31,
+    "practice_games": 16,
+    "api_cost_usd": 0.889612812,
+    "end_reason": "deadline"
+  }
+}

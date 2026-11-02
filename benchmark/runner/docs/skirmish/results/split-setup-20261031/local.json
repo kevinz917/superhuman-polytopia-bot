@@ -1,0 +1,109 @@
+{
+  "job_name": "continuous-split-v6-20261031-local",
+  "jobs_dir": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs",
+  "n_attempts": 5,
+  "n_concurrent_trials": 25,
+  "skip_credential_checks": true,
+  "environment": {
+    "import_path": "polytopia_bot.skirmish.harbor_environments:SkirmishDockerEnvironment",
+    "delete": true,
+    "cpu_enforcement_policy": "limit",
+    "memory_enforcement_policy": "limit",
+    "kwargs": {
+      "cpu_slots": 6,
+      "grader_workers": 4
+    }
+  },
+  "tasks": [
+    {
+      "path": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/task"
+    }
+  ],
+  "agents": [
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "openai/gpt-6-astra",
+      "kwargs": {
+        "provider": "cliproxyapi",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768
+        },
+        "execution_backend": "docker",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "anthropic/claude-opus-5.5",
+      "kwargs": {
+        "provider": "cliproxyapi",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768
+        },
+        "execution_backend": "docker",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "openai/gpt-6.1-sol",
+      "kwargs": {
+        "provider": "cliproxyapi",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768
+        },
+        "execution_backend": "docker",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "openai/gpt-6-luna",
+      "kwargs": {
+        "provider": "cliproxyapi",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768
+        },
+        "execution_backend": "docker",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    },
+    {
+      "import_path": "polytopia_bot.skirmish.harbor_agent:SkirmishAgent",
+      "model_name": "anthropic/claude-fable-5-1",
+      "kwargs": {
+        "provider": "cliproxyapi",
+        "parameters": {
+          "reasoning": {
+            "effort": "high"
+          },
+          "max_tokens": 32768
+        },
+        "execution_backend": "docker",
+        "build_receipt": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-packages/split-local-release-v6-20261031/build.json",
+        "local_cpu_slots": 6
+      }
+    }
+  ],
+  "verifier": {
+    "env": {
+      "SKIRMISH_EVALUATION_PROFILE": "standard"
+    }
+  }
+}

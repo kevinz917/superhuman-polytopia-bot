@@ -1,0 +1,23 @@
+{
+  "prefix": "mini-v51-20261030a",
+  "call_id": "fc-01M66HP16BSQVTE9MX1RWTCEEK",
+  "image_id": "im-RZakv30D1tXpWIUrzQuGI2",
+  "authoring_cells": 66,
+  "smoke": false,
+  "protocol": "polytopia-mini-v5.1",
+  "source_commit": "44d3cb9",
+  "app_url": "https://modal.com/apps/duper/staging/ap-6fyfygym10mZR3YFOqBUP1",
+  "replaces_invalidated": "mini-v5-20261030a",
+  "coordinator_history": [
+    {
+      "call_id": "fc-01M66HP16BSQVTE9MX1RWTCEEK",
+      "app_url": "https://modal.com/apps/duper/staging/ap-6fyfygym10mZR3YFOqBUP1",
+      "status": "terminated_after_two_dead_sandbox_calls_left_get_pending"
+    },
+    {
+      "call_id": "fc-01M66NAZM17ZAV21652RV65708",
+      "app_url": "https://modal.com/apps/duper/staging/ap-9RxremyJ5bFiRoRzq0gfGz",
+      "status": "resumed_same_source_manifest_image_and_existing_calls"
+    }
+  ]
+}

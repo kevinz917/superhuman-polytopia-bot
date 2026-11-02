@@ -1,0 +1,23 @@
+{
+  "schema": "polytopia-skirmish-continuous-v1",
+  "profile": "demo",
+  "score": 45.83333333333333,
+  "rewards": {
+    "reward": 0.4583333333333333,
+    "champion_win_rate": 0.0,
+    "champion_points": 0.0,
+    "games": 36,
+    "runtime_fault_rate": 0.0,
+    "compilation_loss_rate": 0.0,
+    "evaluation_is_demo": 1
+  },
+  "submission": {
+    "source_sha256": "61e907d8b4f0ce7a7220b3de5cf587e71d971dbbf88958fb94da812d3c119e56",
+    "returncode": 0,
+    "compile_output": "   Compiling serde_core v1.0.229\n   Compiling serde_json v1.0.145\n   Compiling itoa v1.0.18\n   Compiling ryu v1.0.23\n   Compiling memchr v2.8.3\n   Compiling skirmish-bot v0.1.0 (/verify)\nwarning: variable does not need to be mutable\n   --> src/main.rs:156:9\n    |\n156 |     let mut add = |vals: Vec<(usize, f64)>, att: bool, classes: &mut Vec<(f64, Vec<i32>, bool)>| {\n    |         ----^^^\n    |         |\n    |         help: remove this `mut`\n    |\n    = note: `#[warn(unused_mut)]` on by default\n\nwarning: fields `moved` and `attacked` are never read\n --> src/main.rs:7:55\n  |\n7 | struct U { owner: i64, kind: i64, hp: f64, vet: bool, moved: bool, attacked: bool }\n  |        - fields in this struct                        ^^^^^        ^^^^^^^^\n  |\n  = note: `U` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis\n  = note: `#[warn(dead_code)]` on by default\n\nwarning: `skirmish-bot` (bin \"skirmish-bot\") generated 2 warnings (run `cargo fix --bin \"skirmish-bot\"` to apply 1 suggestion)\n    Finished `release` profile [optimized] target(s) in 1.46s\n",
+    "wasm_sha256": "2f24e34d48209c4c71d9b54490b90da466126fb594aef104ec5f02553f4461bd",
+    "submission_quality": "custom_submission"
+  },
+  "replay_actions": 39826,
+  "uncertainty": "One independently authored bot; no build-variance confidence interval."
+}

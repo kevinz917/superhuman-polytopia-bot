@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "prefix": "mini-pipeline-smoke-20261031a",
+  "guard": "Cohort is already evaluated; allocate a new prefix instead of resuming it",
+  "unchanged": [
+    "status.json",
+    "report.json",
+    "authoring-plan.json",
+    "evaluation-plan.json"
+  ],
+  "new_model_calls": 0
+}

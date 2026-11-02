@@ -1,0 +1,13 @@
+{
+  "reason": "OpenRouter response lacked choices; authoring worker raised KeyError",
+  "failed_trial": "continuous-split-full-20261031T075011Z-daytona/task__aUYod56",
+  "model": "google/gemini-4-argon",
+  "replacement_job": "continuous-split-full-20261031T075011Z-gemini-retry1",
+  "config": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/daytona-gemini-retry1.json",
+  "pid": 72511,
+  "caffeinate_pid": 72512,
+  "created_at": "2026-10-31T09:18:41.198569+00:00",
+  "unchanged_protocol_and_parameters": true,
+  "restarts_from_clean_starter": true,
+  "original_failure_retained_and_not_scored": true
+}

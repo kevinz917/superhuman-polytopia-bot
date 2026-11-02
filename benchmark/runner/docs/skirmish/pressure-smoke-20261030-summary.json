@@ -1,0 +1,61 @@
+{
+  "study_id": "pressure-smoke-20261030",
+  "status": "completed",
+  "allocated": 2,
+  "valid_submissions": 1,
+  "failed_submissions": [
+    {
+      "run_id": "pressure-smoke-20261030-ds-combined-neutral-r0",
+      "result": {
+        "schema": "polytopia-skirmish-v2",
+        "run_id": "pressure-smoke-20261030-ds-combined-neutral-r0",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "status": "failed_submission",
+        "sandbox_id": "sb-jOnpo34WgFFp5uYCl8jWZa",
+        "budget_seconds": 90,
+        "started_unix": 1793334963.2102919,
+        "requests": 8,
+        "practice_games": 2,
+        "revisions": 1,
+        "elapsed_seconds": 91.204666432,
+        "reason": "current_source_not_compiled"
+      }
+    }
+  ],
+  "analysis": {
+    "cells": [
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "evaluative",
+        "allocated": 1,
+        "valid_submissions": 1,
+        "completed_evaluations": 1,
+        "api_reported_cost_usd": 0.005283812358
+      },
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "neutral",
+        "allocated": 1,
+        "valid_submissions": 0,
+        "completed_evaluations": 0,
+        "api_reported_cost_usd": null
+      }
+    ],
+    "contrasts": [
+      {
+        "model": "ds",
+        "budget_profile": "combined",
+        "framing": "evaluative",
+        "control": "neutral",
+        "paired_authoring_runs": 0,
+        "mean_elo_delta": null,
+        "paired_run_bootstrap_ci95": null,
+        "conditional_on_valid_submissions": true
+      }
+    ],
+    "replication_unit": "independent bot-authoring run",
+    "caveat": "Elo contrasts condition on valid bots; report submission attrition alongside strength. Tiny or constant samples receive no confidence interval. Map-level uncertainty is separate."
+  }
+}
