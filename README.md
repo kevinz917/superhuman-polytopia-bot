@@ -39,7 +39,8 @@ blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://th
   [a hosted version](https://polytopia-bot-kappa.vercel.app) you can play right now.
 - 📦 **Weights included.** The champion (2 MB, with the value head search needs) is in
   [`weights/champion/`](weights/champion/); the newer, stronger raw policy **hero-1v1** (7 MB) is in
-  [`weights/hero-1v1/`](weights/hero-1v1/).
+  [`weights/hero-1v1/`](weights/hero-1v1/). Twelve more checkpoints from the training history, with their critics,
+  are indexed in [`weights/README.md`](weights/README.md).
 - 🤖 **Polytopia Bench.** 12 frontier models each write a Rust bot in 40 minutes and play it against this RL bot
   and five other opponents: 21,600 graded games. The harness, every conversation, every bot and every replay are
   in [`benchmark/`](benchmark/); the write-up is [*Introducing Polytopia Bench*](https://thekevinz.com/blog/polytopia-bench).
@@ -175,7 +176,12 @@ modal run --detach --env staging experiments/modal_distributed_rl.py::launch \
 
 A 7-hour run on 1×H100 plus 8 actor containers costs about $150 on Modal. To continue a run, pass its `final.npz` as
 `--parent`, and add `"critic_path": "/results/distributed/<run>/final-critic.npz"` to the config so the omniscient
-critic carries over. `scripts/distributed_status.py` reports on a live run.
+critic carries over. The released checkpoints ship their critics as `weights/<run>/final-critic.npz`; put one on the
+volume to continue that run. `scripts/distributed_status.py` reports on a live run.
+
+The same learner and actors also launch on Daytona, Verda and a self-hosted GPU cluster: see
+[`experiments/daytona/`](experiments/daytona/), [`experiments/verda/`](experiments/verda/),
+[`experiments/curio/`](experiments/curio/) and [docs/platforms.md](docs/platforms.md).
 
 ## 🕹️ Evaluate
 
@@ -228,8 +234,10 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 
 The [research notebook](docs/README.md) records each training campaign behind the champion, including the ideas
 that didn't pay off: distilling search into the policy, 18×18 boards, UPGO, deeper search, and bigger networks at
-equal compute. It also covers the four-player free-for-all runs, the alignment with the game's rules and the
-throughput work behind the hero runs.
+equal compute. It also covers the four-player free-for-all runs, the alignment with the game's rules, the
+throughput work behind the hero runs, and the later from-scratch experiments on the game's rules: observation
+history, global pooling, an attention trunk, score-at-cap rewards and frozen opponents. Games against people on the
+public site, and the earlier attempt to teach a 4B language model to play by imitating the RL bot, are there too.
 
 ## 🙏 Acknowledgements
 
