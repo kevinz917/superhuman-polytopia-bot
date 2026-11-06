@@ -9,7 +9,6 @@ import * as THREE from "three";
 import { MockArt } from "../board/art/mock.ts";
 import type { BoardArt } from "../board/art/types.ts";
 import type { GroundInfo } from "../board/art/types.ts";
-import { loadSprites } from "../board/assets.ts";
 import { DIAMOND, EDGES, HH, HW, STEPS, TEAMS, TH, type Team } from "../board/geometry.ts";
 import type { Tile } from "../api/types.ts";
 import { cityName } from "../game/vocab.ts";
@@ -1242,7 +1241,6 @@ async function main() {
   stage = new Stage(threeCanvas, { W, H, K, OX, OY, HW, HH }, N);
   HAND_SCALE = (5.2 * stage.T) / 0.18;
   await Promise.all([
-    loadSprites(),
     stage.loadHands("/trailer/right-hand.glb", [RIM[1], RIM[2]]),
     document.fonts.load('600 60px "Josefin Sans"').catch(() => null),
     document.fonts.load('400 48px "Josefin Sans"').catch(() => null),
