@@ -434,6 +434,15 @@ class Studio:
                 'your_turn':int(g['env'].state.current_player)==seat,
                 'terminated':bool(g['env'].state.terminated),'truncated':bool(g['env'].state.truncated)}
 
+    def preview(self,ident,action_id):
+        """What an attack would do, for the attack preview: the health of each unit it changes."""
+        g=self.restore(ident); env=g['env']
+        if g['mode']=='watch' or int(env.state.current_player)!=g['seat']:raise Conflict('Previews are for your own turn')
+        obs=env.observe(g['seat'])
+        action=next((a for a in obs.legal_actions if a.action_id==str(action_id)),None)
+        if action is None or action.command['kind']!=2:raise ValueError('Only a legal attack can be previewed')
+        return {'action_id':action.action_id,'state_version':int(obs.state_version),'units':env.preview(action.action_id)}
+
     def save(self,g):
         completed=bool(g['env'].state.terminated|g['env'].state.truncated)
         frames=list(g['frames'])

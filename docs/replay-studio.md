@@ -96,6 +96,7 @@ All mutations require `X-Studio-Client: 1` and JSON. Engine work returns `{job_i
 | `POST /api/games` `{mode,seat,seed?}` | Create `play`, `watch`, or `agent` game |
 | `GET /api/games/{id}/observation` | Seat-scoped observation and legal catalog |
 | `POST /api/games/{id}/action` `{action_id,expected_state_version}` | Apply one human/model action |
+| `GET /api/games/{id}/preview?action={action_id}` | Health of each visible unit a legal attack would change (`after: 0` dies), on your turn |
 | `POST /api/games/{id}/advance` `{count:1..8}` | Run built-in opponent/self-play |
 | `GET /api/games/{id}?frame=0&view=1` | Render a frame |
 | `POST /api/games/{id}/save` or `/close` | Save replay or save and close |

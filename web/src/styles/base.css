@@ -489,10 +489,14 @@ footer {
   color: #8b9ca4;
   pointer-events: none;
 }
+/* A manual popover, so it shows in the top layer above an open dialog; reset
+   the user-agent popover box (inset 0, auto margins, border, overflow). */
 #toast {
-  position: absolute;
-  bottom: 230px;
-  left: 50%;
+  position: fixed;
+  inset: auto auto 230px 50%;
+  margin: 0;
+  border: 0;
+  overflow: visible;
   transform: translateX(-50%);
   border-radius: 10px;
   background: #33444ef2;

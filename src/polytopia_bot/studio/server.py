@@ -65,7 +65,7 @@ def serve(studio,port,web=None):
                 return self.send(studio.submit(lambda:(studio.reconstruct_trace if data.get('reconstruct') else studio.import_trace)(base64.b64decode(data['data'],validate=True),str(data.get('name','Imported replay'))[:120])),202)
             match=re.fullmatch(r'/api/jobs/([a-f0-9]{32})',path)
             if match:return self.send(studio.jobs[match[1]])
-            match=re.fullmatch(r'/api/(games|replays)/([a-f0-9]{32})(?:/(action|advance|observation|save|export|close|settings|series))?',path)
+            match=re.fullmatch(r'/api/(games|replays)/([a-f0-9]{32})(?:/(action|advance|observation|preview|save|export|close|settings|series))?',path)
             if match:
                 kind,ident,operation=match.groups()
                 if kind=='replays':
@@ -95,6 +95,8 @@ def serve(studio,port,web=None):
                                 result=studio.save(g);g['env'].close();del studio.games[ident];(studio.storage/'sessions'/f'{ident}.json').unlink(missing_ok=True);return result
                         finally:g['busy']=False
                     return self.send(studio.submit(work),202)
+                if operation=='preview':
+                    with studio.lock:return self.send(studio.preview(ident,q.get('action','')))
                 if operation=='observation':
                     with studio.lock:return self.send(studio.observation(ident))
                 if operation=='export':

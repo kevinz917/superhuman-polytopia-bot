@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EventLabel } from "./Hud.tsx";
 import { useGame } from "./useGame.ts";
 
@@ -183,8 +183,17 @@ export function Toast() {
     return () => clearTimeout(t);
   }, [message]);
   const visible = !!message && message.id !== dismissed;
+  const ref = useRef<HTMLDivElement>(null);
+  // Showing a popover again moves it to the top of the top layer, above a
+  // modal dialog that opened after it (e.g. "Replay saved" from the menu).
+  useEffect(() => {
+    const el = ref.current;
+    if (!el?.showPopover) return;
+    if (el.matches(":popover-open")) el.hidePopover();
+    if (visible) el.showPopover();
+  }, [visible, message?.id]);
   return (
-    <div id="toast" role="alert" className={visible ? "" : "hidden"}>
+    <div id="toast" ref={ref} popover="manual" role="alert" className={visible ? "" : "hidden"}>
       {message?.text}
     </div>
   );

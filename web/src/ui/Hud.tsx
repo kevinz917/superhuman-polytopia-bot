@@ -143,7 +143,12 @@ export function Status() {
           : `Live self-play · both seats use ${game.botName()}${d.search ? " with turn search" : ""}`
         : "Self-play paused · press play to watch";
     else if (d.frame_index !== d.frames - 1) message = "Reviewing your game · jump to latest to play";
-    else if (d.current_player === d.seat) message = "Your turn · select a unit or city";
+    else if (d.current_player === d.seat) {
+      const ready = game.readyUnits().length;
+      message = ready
+        ? `Your turn · ${ready} unit${ready === 1 ? "" : "s"} can still act`
+        : "Your turn · select a unit or city";
+    }
     else {
       message = `${game.botName()} is ${d.search ? "searching" : "thinking"}…`;
       busy = true;

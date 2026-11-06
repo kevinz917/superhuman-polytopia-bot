@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import type { LegalAction } from "../api/types.ts";
+import type { LegalAction, Unit } from "../api/types.ts";
 import {
   actLabel,
   cityName,
@@ -24,6 +24,42 @@ function StatLine({ parts }: { parts: [string, string | number][] }) {
           <b>{value}</b>
         </span>
       ))}
+    </div>
+  );
+}
+
+// Progress toward promotion: three kills make a unit eligible to become a veteran (+5 max health, full heal).
+// Static units never gain experience; a boat is judged by the unit it carries.
+function Veterancy({ unit, skills }: { unit: Unit; skills: string[] }) {
+  const kills = unit.kills ?? 0;
+  if (unit.veteran)
+    return (
+      <div className="xp veteran">
+        <span className="xp-label">Veteran</span>
+        <span className="xp-note">Promoted · +5 max health</span>
+      </div>
+    );
+  if (skills.includes("Static"))
+    return (
+      <div className="xp">
+        <span className="xp-label">Veterancy</span>
+        <span className="xp-note">This unit cannot gain experience</span>
+      </div>
+    );
+  const ready = kills >= 3;
+  return (
+    <div className={"xp" + (ready ? " ready" : "")} aria-label={`Experience: ${Math.min(kills, 3)} of 3 kills`}>
+      <span className="xp-label">Veterancy</span>
+      <span className="xp-pips" aria-hidden="true">
+        {[0, 1, 2].map((i) => (
+          <i key={i} className={i < kills ? "on" : ""} />
+        ))}
+      </span>
+      <span className="xp-note">
+        {ready
+          ? "Ready to promote!"
+          : `${kills}/3 kills · ${3 - kills} more to promote`}
+      </span>
     </div>
   );
 }
@@ -71,9 +107,13 @@ export function SelectionBar() {
         ]}
       />,
     );
+    if (u.owner === p) {
+      const judged = u.passenger ? meta.rules.units.find((r) => r.id === u.passenger) : rules;
+      detail.push(<Veterancy key="xp" unit={u} skills={judged?.skills ?? []} />);
+    }
     const notes: string[] = [];
     if (u.owner !== p) notes.push(`Player ${u.owner}`);
-    if (u.veteran) notes.push("Veteran");
+    if (u.veteran && u.owner !== p) notes.push("Veteran");
     if (u.owner === p && u.moved && u.attacked) notes.push("No moves left");
     if (rules?.skills?.length) notes.push(rules.skills.map(titleCase).join(" · "));
     if (notes.length) detail.push(<p key="notes">{notes.join(" · ")}</p>);
