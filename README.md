@@ -222,7 +222,7 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 | `legacy/ruleset-v2/` | the earlier research ruleset's engine and its in-browser WASM bot |
 | `scripts/` | Elo fits, run status, fixture generators, ruleset verification |
 | `tools/` | Polyfish oracle builds, Studio asset setup, clip recorder for this README |
-| `weights/champion/`, `weights/hero-1v1/` | the two released checkpoints and their metadata |
+| `weights/` | released checkpoints: the champion, hero-1v1 and 12 milestones from the 1v1 and four-player runs; index in [weights/README.md](weights/README.md) |
 | `docs/` | rules, engine notes and the research notebook (run reports, sweeps, reviews, the run archive in `docs/run-archive/`); start at [docs/README.md](docs/README.md) |
 | `benchmark/` | Polytopia Bench: LLM-authored bot benchmark, harness, conversations, bots, replays and results |
 
