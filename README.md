@@ -217,11 +217,13 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 | `src/polytopia_bot/gpu/` | retired JAX engine: state layout, rule table, map generation, observations |
 | `src/polytopia_bot/maps/` | map-type generators and map streams |
 | `src/polytopia_bot/studio/`, `web/` | Studio server and its React + PixiJS interface |
-| `experiments/` | Modal entry points: training, arenas, Elo tournaments, search sweeps, replay recording |
+| `experiments/` | Modal entry points: training, arenas, Elo tournaments, search sweeps, replay recording; launchers for Daytona (`daytona/`, `hero/`), Verda (`verda/`) and a self-hosted GPU cluster (`curio/`) |
+| `src/polytopia_bot/learning/`, `training/` | the earlier language-model line: expert SFT, compact prompts, Qwen thinking runs |
+| `legacy/ruleset-v2/` | the earlier research ruleset's engine and its in-browser WASM bot |
 | `scripts/` | Elo fits, run status, fixture generators, ruleset verification |
 | `tools/` | Polyfish oracle builds, Studio asset setup, clip recorder for this README |
 | `weights/champion/`, `weights/hero-1v1/` | the two released checkpoints and their metadata |
-| `docs/` | rules, engine notes and the research notebook; start at [docs/README.md](docs/README.md) |
+| `docs/` | rules, engine notes and the research notebook (run reports, sweeps, reviews, the run archive in `docs/run-archive/`); start at [docs/README.md](docs/README.md) |
 | `benchmark/` | Polytopia Bench: LLM-authored bot benchmark, harness, conversations, bots, replays and results |
 
 The [research notebook](docs/README.md) records each training campaign behind the champion, including the ideas
