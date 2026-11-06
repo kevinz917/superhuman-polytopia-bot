@@ -6,7 +6,6 @@ use crate::geom::Geom;
 use crate::kernels::{combat, max_health};
 use crate::rules::{Rules, CARRY, FLOAT, HIDE, INDEPENDENT, SCOUT, SPLASH, STOMP, SURPRISE};
 use crate::state::State;
-use crate::structures::capital_index;
 
 pub fn exhaust(s: &mut State, source: usize) {
     s.units.moved[source] = true;
@@ -22,14 +21,14 @@ pub fn remove(s: &mut State, target: usize, r: &Rules, killer: Option<usize>, ca
     let kind = u.kind[target] as usize;
     let passenger = u.passenger[target];
     let value = r.unit_cost[kind] + if passenger > 0 { r.unit_cost[passenger as usize] } else { 0 };
-    let loss = -5 * value * (!u.converted[target]) as i32;
+    let loss = -5 * value;
     s.players.score[owner] = s.players.score[owner].wrapping_add(loss);
     s.players.casualties[owner] += casualty as i32;
     s.players.kills[kp] += killer.is_some() as i32;
     if s.units.poison[target] && s.tiles.structure[target] == 0 {
         s.tiles.resource[target] = 7;
     }
-    // game version >= 95: no xp for a killer that is a vehicle (Carry: every
+    // attack (game version >= 95): no xp for a killer that is a vehicle (Carry: every
     // boat) or Static; the passenger of a boat keeps the xp it had when it embarked
     let xp = killer.is_some() && !(r.skills[u.kind[k] as usize][CARRY] || r.stat[u.kind[k] as usize]);
     s.units.kills[k] += xp as i32;
@@ -37,6 +36,13 @@ pub fn remove(s: &mut State, target: usize, r: &Rules, killer: Option<usize>, ca
 }
 
 pub fn relocate(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom, involuntary: bool, reveal: Option<&[bool]>) {
+    relocate_as(s, source, target, r, g, involuntary, reveal, true);
+}
+
+/// relocate; `stomp` false for a move with move reason 2 (a push), which skips the arrival abilities.
+#[allow(clippy::too_many_arguments)]
+fn relocate_as(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom, involuntary: bool, reveal: Option<&[bool]>,
+               stomp: bool) {
     let (n, size) = (s.n, s.size);
     let owner = s.units.owner[source];
     let kind = s.units.kind[source] as usize;
@@ -44,13 +50,14 @@ pub fn relocate(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom
     let moved_src = s.units.moved[source];
     let attacked_src = s.units.attacked[source];
     let invisible_src = s.units.invisible[source];
-    let converted_src = s.units.converted[source];
     let terrain_src = s.tiles.terrain[source];
     s.units.move_unit(source, target);
     s.units.moved[target] = true;
     s.units.attacked[target] = true;
     s.units.prev_x[target] = (source % size) as i32;
     s.units.prev_y[target] = (source / size) as i32;
+    // move: set unit direction from the path's last step (core::move_adjacent refines multi-tile moves)
+    s.units.direction[target] = direction(size, source, target);
     let scout = r.skills[kind][SCOUT];
     let own_reveal: Vec<bool>;
     let reveal: &[bool] = match reveal {
@@ -63,7 +70,7 @@ pub fn relocate(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom
         }
     };
     discover(s, reveal, owner);
-    if r.skills[kind][STOMP] {
+    if stomp && r.skills[kind][STOMP] {
         crate::cov::hit(28);
         area_damage(s, target, target, r, g, true);
     }
@@ -85,15 +92,61 @@ pub fn relocate(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom
     let score_before = r.unit_cost[kind] + if passenger_src > 0 { r.unit_cost[passenger_src as usize] } else { 0 };
     let score_after = r.unit_cost[new_kind] + if passenger > 0 { r.unit_cost[passenger as usize] } else { 0 };
     if embark || disembark { crate::cov::hit(36); }
-    let dash = !involuntary && !moved_src && !attacked_src && r.dash[new_kind];
+    // embark / disembark set moved and attacked on the new unit: no Dash after either
+    let dash = !involuntary && !moved_src && !attacked_src && r.dash[new_kind] && !embark && !disembark;
     s.units.kind[target] = new_kind as i32;
     s.units.passenger[target] = passenger;
     s.units.attacked[target] = if dash { false } else { s.units.attacked[target] || disembark };
+    if embark && r.skills[new_kind][STOMP] && !r.skills[kind][STOMP] {
+        // embark: a new boat with Stomp (Giant -> Juggernaut) stomps where it embarked
+        area_damage(s, target, target, r, g, true);
+    }
     let hidden = r.skills[new_kind][HIDE] && !involuntary;
     s.units.invisible[target] |= hidden;
     s.units.attacked[target] |= hidden && !invisible_src;
     let o = s.pwrap(owner);
-    s.players.score[o] = s.players.score[o].wrapping_add(5 * (score_after - score_before) * (!converted_src) as i32);
+    s.players.score[o] = s.players.score[o].wrapping_add(5 * (score_after - score_before));
+}
+
+/// The land unit a boat lands as: its passenger, or the land form our engine keeps implicit for a Dinghy (Cloak),
+/// Pirate (Dagger) and Juggernaut (Giant), as relocate's landing does.
+#[inline]
+fn landed_kind(kind: usize, passenger: i32) -> usize {
+    match kind {
+        39 => 38,
+        40 => 37,
+        45 => 12,
+        _ => passenger as usize,
+    }
+}
+
+/// can disembark (disembark, v > 104): a boat with a passenger standing on a Bridge
+/// (bridge; the other case, a wetland tile, does not occur in these rules). No moved, attacked
+/// or owner check of its own: command lists unit commands for the mover's units only.
+#[inline]
+pub fn can_disembark(s: &State, r: &Rules, i: usize) -> bool {
+    let kind = s.units.kind[i].clamp(0, 127) as usize;
+    let carries = s.units.passenger[i] > 0 || matches!(kind, 39 | 40 | 45);
+    s.units.owner[i] != 0 && r.skills[kind][CARRY] && carries && s.tiles.structure[i] == 48
+}
+
+/// disembark (v >= 109) for a boat staying on its tile: the passenger takes the boat's place
+/// with the boat's health (no boat of these rules has Protect), its facing (direction and flip copied) and
+/// moved = attacked = true; decrease score takes the boat's part of the score (the amounts of a landing move).
+/// No exploration and no arrival ability (no stomp, no hiding). The Grow upgrade branch needs a Grow passenger,
+/// which these rules cannot carry.
+pub fn disembark(s: &mut State, i: usize, r: &Rules) {
+    let kind = s.units.kind[i] as usize;
+    let passenger = s.units.passenger[i];
+    let new_kind = landed_kind(kind, passenger);
+    let before = r.unit_cost[kind] + if passenger > 0 { r.unit_cost[passenger as usize] } else { 0 };
+    let after = r.unit_cost[new_kind];
+    s.units.kind[i] = new_kind as i32;
+    s.units.passenger[i] = 0;
+    s.units.moved[i] = true;
+    s.units.attacked[i] = true;
+    let o = s.pwrap(s.units.owner[i]);
+    s.players.score[o] = s.players.score[o].wrapping_add(5 * (after - before));
 }
 
 pub fn attack_mask(s: &State, source: usize, r: &Rules, g: &Geom, out: &mut [bool]) {
@@ -114,7 +167,6 @@ pub fn attack_targets(s: &State, source: usize, r: &Rules, g: &Geom, mut emit: i
     if !can || range < 1 {
         return;
     }
-    let stamp = s.turn * s.np as i32 + cp;
     let explored = &s.tiles.explored[s.p()];
     let size = s.size as i32;
     let (sx, sy) = ((source % s.size) as i32, (source / s.size) as i32);
@@ -126,7 +178,7 @@ pub fn attack_targets(s: &State, source: usize, r: &Rules, g: &Geom, mut emit: i
             }
             let targets = if infil {
                 State::foreign(s.cities.owner[t], cp) && !protected(s, cp, s.cities.owner[t])
-                    && !(u.owner[t] != 0 && u.owner[t] != s.cities.owner[t]) && s.cities.infiltrated[t] != stamp
+                    && !(u.owner[t] != 0 && u.owner[t] != s.cities.owner[t]) && !s.cities.riot[t]
             } else {
                 State::foreign(u.owner[t], cp) && !u.invisible[t] && !protected(s, cp, u.owner[t])
             };
@@ -174,14 +226,20 @@ pub fn attack(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom) 
     let bonus = terrain_bonus(s, r, target, &tech);
     let hp_s = max_health(s, r, source);
     let hp_t = max_health(s, r, target);
-    let dd = r.unit_defense[defender] * if s.units.poison[target] { 0.7 } else { 1.0 };
+    let dd = r.unit_defense[defender];
     let (damage, retaliation, _) = combat(r.unit_attack[kind], s.units.health[source], hp_s, dd, s.units.health[target], hp_t, bonus);
     let dead = s.units.health[target] - damage <= 0.0;
-    // retaliation: the attacker must also be one of the defender's attack
+    // can defender retaliate: the attacker must also be one of the defender's attack
     // options, i.e. stand on a tile the defender's owner has explored
     let seen = s.tiles.explored[s.pclip(s.units.owner[target])][source];
     let retaliate = !r.skills[kind][SURPRISE] && !r.stiff[defender] && g.d(source, target) <= r.unit_range[defender] && seen;
-    s.players.attacked[s.p()] = true;
+    // battle results.should reset pacifist task: damage dealt to a visible unit
+    if damage > 0.0 && !s.units.invisible[target] {
+        s.players.attacked[s.p()] = true;
+    }
+    // attack: both units face each other
+    s.units.direction[source] = direction(size, source, target);
+    s.units.direction[target] = direction(size, target, source);
     s.units.health[target] += -damage;
     s.units.boosted[target] = false;
     s.units.prev_x[source] = 2 * (source % size) as i32 - (target % size) as i32;
@@ -190,6 +248,12 @@ pub fn attack(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom) 
     if r.skills[kind][SPLASH] {
         crate::cov::hit(27);
         area_damage(s, source, target, r, g, false);
+        // attack pushes the retaliation attack (Target -> Origin, when its damage is >= 1;
+        // before the splash ones and the main attack; the action stack is LIFO,
+        // so it runs last and the attacker ends facing the defender again
+        if !dead && retaliate && retaliation > 0.0 {
+            s.units.direction[source] = direction(size, source, target);
+        }
     }
     if dead {
         remove(s, target, r, Some(source), true);
@@ -217,10 +281,17 @@ pub fn attack(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom) 
         s.units.attacked[at] = !(dead && persist);
         s.units.moved[at] = !escape;
         if dead && persist {
-            // Persist leaves the unit able to attack only when it has
+            // execute v104: Persist leaves the unit able to attack only when it has
             // another target from where it now stands
+            // (attack options at position with include hidden when range <= sight: hidden and unexplored enemies count)
             let mut more = false;
             attack_targets(s, at, r, g, |_| more = true);
+            let sight = 1 + r.skills[kind][SCOUT] as i32;
+            if !more && r.unit_range[kind] <= sight {
+                let owner = s.units.owner[at];
+                more = (0..s.n).any(|t| t != at && g.d(at, t) <= r.unit_range[kind] && State::foreign(s.units.owner[t], owner)
+                    && !protected(s, owner, s.units.owner[t]));
+            }
             s.units.attacked[at] = !more;
         }
     }
@@ -230,26 +301,26 @@ pub fn convert(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom)
     let n = s.n;
     let cp = s.current_player;
     let old = s.pwrap(s.units.owner[target]);
-    let (cap, exists) = capital_index(s, cp);
-    let mut fallback = 0usize;
-    let mut best = i32::MAX;
-    for i in 0..n {
-        if s.cities.owner[i] == cp && s.cities.order[i] < best {
-            best = s.cities.order[i];
-            fallback = i;
-        }
-    }
     let tk = s.units.kind[target] as usize;
-    let home = if r.skills[tk][INDEPENDENT] { 0 } else { (if exists { cap } else { fallback }) as i32 + 1 };
+    // convert: rehomed to the converter's current capital (none: no home)
+    let home = if r.skills[tk][INDEPENDENT] { 0 } else { crate::structures::current_capital(s, cp).map_or(0, |c| c as i32 + 1) };
     let passenger = s.units.passenger[target];
     let cost = r.unit_cost[tk] + if passenger > 0 { r.unit_cost[passenger as usize] } else { 0 };
-    s.players.score[old] = s.players.score[old].wrapping_sub(5 * cost * (!s.units.converted[target]) as i32);
-    s.players.attacked[s.p()] = true;
+    // the full unit score moves from the old owner to the converter, every time
+    s.players.score[old] = s.players.score[old].wrapping_sub(5 * cost);
+    let cpi = s.p();
+    s.players.score[cpi] = s.players.score[cpi].wrapping_add(5 * cost);
     s.units.owner[target] = cp;
     s.units.converted[target] = true;
     s.units.home[target] = home;
     s.units.moved[target] = true;
     s.units.attacked[target] = true;
+    // attack also pushes the main attack (Origin -> Target, damage = the converter's
+    // attack damage, 0; after the convert; it runs first and turns the two units
+    // toward each other). No retaliation: can defender retaliate is false
+    // against Convert.
+    s.units.direction[source] = direction(s.size, source, target);
+    s.units.direction[target] = direction(s.size, target, source);
     exhaust(s, source);
     let radius = if s.tiles.terrain[target] == 4 || r.skills[tk][SCOUT] { 2 } else { 1 };
     let reveal: Vec<bool> = (0..n).map(|t| g.d(target, t) <= radius).collect();
@@ -274,11 +345,11 @@ impl SummonCtx {
     pub fn prepare(&mut self, s: &State, r: &Rules) {
         let n = s.n;
         let u = &s.units;
-        let cp = s.current_player;
         let p = s.p();
         self.counts.fill(0);
         for i in 0..n {
-            if u.owner[i] == cp && u.home[i] >= 1 && (u.home[i] as usize) <= n {
+            // city unit count: every unit homed at the city counts, whoever owns it now
+            if u.home[i] >= 1 && (u.home[i] as usize) <= n {
                 self.counts[(u.home[i] - 1) as usize] += 1;
             }
         }
@@ -327,17 +398,18 @@ pub fn summon(s: &mut State, source: usize, kind: usize, r: &Rules, g: &Geom, co
     s.units.prev_x[source] = -1;
     s.units.prev_y[source] = -1;
     s.units.created[source] = s.turn;
+    s.units.direction[source] = spawn_direction(s.size, source);
     let p = s.p();
     s.players.stars[p] -= r.unit_cost[kind] * costs as i32;
     s.players.score[p] = s.players.score[p].wrapping_add(5 * r.unit_cost[kind]);
-    // training explores around the new unit with its sight range (Scout units see 2 tiles)
+    // train: explore from tile with sight range (Scout units see 2 tiles)
     let radius = if s.tiles.terrain[source] == 4 || r.skills[kind][SCOUT] { 2 } else { 1 };
     let reveal: Vec<bool> = (0..n).map(|t| g.d(source, t) <= radius).collect();
     discover(s, &reveal, cp);
 }
 
-/// The unit on `i` may be promoted: 3 kills, not yet a veteran, not Static;
-/// a boat is judged by its passenger, so a non-Static passenger is promoted at sea.
+/// The unit on `i` may be promoted: 3 kills, not yet a veteran, not Static
+/// (can be promoted): a boat is judged by its passenger, so a non-Static passenger is promoted at sea.
 #[inline]
 pub fn promotable(s: &State, r: &Rules, i: usize) -> bool {
     let u = &s.units;
@@ -356,24 +428,14 @@ pub fn disband(s: &mut State, source: usize, r: &Rules) {
     disband_of(s, source, r, p);
 }
 
-/// Disband the unit on `source`, refunding half its cost to seat index `p` (its owner).
+/// Disband the unit on `source`, refunding half its full cost (full cost: boat plus passenger) to seat
+/// index `p` (its owner).
 pub fn disband_of(s: &mut State, source: usize, r: &Rules, p: usize) {
-    let kind = s.units.kind[source];
+    let kind = s.units.kind[source] as usize;
     let passenger = s.units.passenger[source];
-    let underlying = if passenger > 0 {
-        passenger
-    } else if kind == 39 {
-        38
-    } else if kind == 40 {
-        37
-    } else if kind == 45 {
-        12
-    } else {
-        kind
-    };
-    let refund = r.unit_cost[underlying as usize].div_euclid(2);
+    let full = r.unit_cost[kind] + if passenger > 0 { r.unit_cost[passenger as usize] } else { 0 };
     remove(s, source, r, None, false);
-    s.players.stars[p] += refund;
+    s.players.stars[p] += full.div_euclid(2);
 }
 
 pub fn heal_others(s: &mut State, source: usize, r: &Rules, g: &Geom) {
@@ -390,77 +452,135 @@ pub fn heal_others(s: &mut State, source: usize, r: &Rules, g: &Geom) {
     exhaust(s, source);
 }
 
-fn sign(v: i32) -> i32 {
-    v.signum()
+/// to coordinates: SW, W, NW, N, NE, E, SE, S as (dx, dy) in game coordinates (y is the row).
+pub const GRID: [(i32, i32); 8] = [(-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1)];
+/// tile neighbors order (x outer).
+const STEPS: [(i32, i32); 8] = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
+
+/// direction from distance vector: the direction with the largest weighted dot product with the
+/// vector (axial 1393, diagonal 985); SW when none is positive.
+pub fn vector_direction(vx: i32, vy: i32) -> i32 {
+    let (mut best, mut score) = (0, 0);
+    for (d, &(x, y)) in GRID.iter().enumerate() {
+        let v = (y * vy + x * vx) * if x * x + y * y == 1 { 1393 } else { 985 };
+        if score < v {
+            best = d as i32;
+            score = v;
+        }
+    }
+    best
 }
 
-/// military.push: reference alternating push directions with its centre tie breaks.
-pub fn push(s: &mut State, source: usize, r: &Rules, g: &Geom) {
-    let (n, size) = (s.n, s.size);
-    let sz = size as i32;
-    let u = &s.units;
+/// direction(from, to): a neighbour's direction (8, none, for the same tile), farther tiles by
+/// vector_direction.
+pub fn direction(size: usize, from: usize, to: usize) -> i32 {
+    direction_xy(((from % size) as i32, (from / size) as i32), ((to % size) as i32, (to / size) as i32))
+}
+
+/// direction on coordinates that may be off the board: the game's
+/// null coordinates (-1, -1) are the origin of the attack in
+/// infiltration reward.
+pub fn direction_xy(from: (i32, i32), to: (i32, i32)) -> i32 {
+    let (dx, dy) = (to.0 - from.0, to.1 - from.1);
+    if dx.abs().max(dy.abs()) > 1 {
+        return vector_direction(dx, dy);
+    }
+    GRID.iter().position(|&d| d == (dx, dy)).map_or(8, |d| d as i32)
+}
+
+/// Create: a new unit faces the map centre (width / 2, height / 2).
+pub fn spawn_direction(size: usize, tile: usize) -> i32 {
+    let c = (size / 2) as i32;
+    vector_direction(c - (tile % size) as i32, c - (tile / size) as i32)
+}
+
+/// path(source, dest, 1, unit) for a neighbour `dest` of the unit on `source`: is allowed to finish on tile
+/// and is tile accessible under create for unit (enemy territory allowed, occupied tiles not).
+fn push_reachable(s: &State, source: usize, dest: usize, r: &Rules) -> bool {
+    let (t, u) = (&s.tiles, &s.units);
     let owner = u.owner[source];
+    let p = s.pclip(owner);
+    let kind = u.kind[source] as usize;
+    if u.owner[dest] != 0 || !t.explored[p][dest] {
+        return false;
+    }
+    let (terrain, structure) = (t.terrain[dest], t.structure[dest]);
+    if structure == 1 && State::foreign(t.owner[dest], owner) {
+        // not a peace (or cool-down) partner's city, and no Infiltrate unit into an opponent's city
+        let q = s.pclip(t.owner[dest]);
+        if s.players.peace[p][q] || s.players.truce_breaker[p][q] != 0 || r.skills[kind][crate::rules::INFILTRATE] {
+            return false;
+        }
+    }
+    if structure == 48 {
+        return !crate::kernels::bridge_blocks(s, owner, source, dest);
+    }
+    if structure == 1 {
+        return true;
+    }
+    let tech = &s.players.tech[p];
+    let terrain_ok = (terrain != 1 || tech[10]) && (terrain != 2 || tech[13] || tech[25]) && (terrain != 4 || tech[20]);
+    let land_access = (terrain != 1 && terrain != 2) || (structure == 8 && t.owner[dest] == owner);
+    terrain_ok && (land_access || r.skills[kind][FLOAT])
+}
+
+/// try push unit default, with train unit on occupied space's kill unit when it fails: moves the unit on
+/// `source` off it for a unit the current player trains there. The occupant's facing (reversed for another player's
+/// unit) is tried first, then the directions -1, +1, -2, +2, -3, +3, -4 from it; a boat on water keeps the first land
+/// tile as its last resort. The push is a move with move reason 2: no stomp, and moved/attacked stay as they were
+/// unless the unit embarks or disembarks (those actions exhaust it). Deterministic, no hash draw.
+pub fn push(s: &mut State, source: usize, r: &Rules, g: &Geom) {
+    let size = s.size as i32;
+    let owner = s.units.owner[source];
     if owner <= 0 {
         return;
     }
-    let (x, y) = ((source % size) as i32, (source / size) as i32);
-    let center = sz / 2;
-    let cx = sign(center - x);
-    let mut cy = sign(center - y);
-    if cx == 0 && cy == 0 {
-        cy = 1;
+    // train unit on occupied space, game version > 105): an occupant hidden from the
+    // trainer (is invisible: another player's, no peace with them) gets a reveal without an origin
+    // (no turn, no meeting). The action stack runs it before the push's move, so the unit stays revealed.
+    let cp = s.current_player;
+    if s.units.invisible[source] && owner != cp && !s.players.peace[s.p()][s.pclip(owner)] {
+        s.units.invisible[source] = false;
     }
-    let (px, py) = (u.prev_x[source], u.prev_y[source]);
-    let prev_valid = px >= 0 && py >= 0 && (px != x || py != y);
-    let flip = if owner != s.current_player { -1 } else { 1 };
-    let (mx, my) = (sign(x - px) * flip, sign(y - py) * flip);
-    let la = u.last_attack[source] - 1;
-    let kind = u.kind[source] as usize;
-    let ranged = r.unit_range[kind] > 1 && u.attacked[source] && !(r.escape[kind] && u.moved[source]);
-    let (ax, ay) = (sign(la.rem_euclid(sz) - x) * flip, sign(la.div_euclid(sz) - y) * flip);
-    let use_move = prev_valid && (la < 0 || u.moved[source]);
-    let dx = if la >= 0 && ranged { ax } else if use_move { mx } else { cx };
-    let dy = if la >= 0 && ranged { ay } else if use_move { my } else { cy };
-    let dirs: [[i32; 2]; 8] = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]];
-    let base = dirs.iter().position(|d| d[0] == dx && d[1] == dy).unwrap_or(0) as i32;
-    let offsets = [0i32, -1, 1, -2, 2, -3, 3, 4];
-    let mut choices: [[i32; 2]; 8] = [[0; 2]; 8];
-    for k in 0..8 {
-        let d = dirs[(base + offsets[k]).rem_euclid(8) as usize];
-        choices[k] = [d[0] + x, d[1] + y];
+    let mut facing = s.units.direction[source];
+    if owner != s.current_player {
+        facing = if facing < 4 { facing + 4 } else { facing - 4 };
     }
-    for (a, b) in [(1usize, 2usize), (3, 4), (5, 6)] {
-        let dista = (choices[a][0] - center).pow(2) + (choices[a][1] - center).pow(2);
-        let distb = (choices[b][0] - center).pow(2) + (choices[b][1] - center).pow(2);
-        let va = (choices[a][0] - choices[a][1]).abs();
-        let vb = (choices[b][0] - choices[b][1]).abs();
-        if distb < dista || (distb == dista && vb < va) {
-            choices.swap(a, b);
-        }
-    }
+    let kind = s.units.kind[source];
+    let vehicle = r.skills[kind as usize][CARRY];
+    let water = |t: usize| s.tiles.terrain[t] == 1 || s.tiles.terrain[t] == 2;
+    let (x, y) = (source as i32 % size, source as i32 / size);
     crate::cov::hit(29);
-    let po = s.pclip(owner);
-    let mut target = None;
-    let mut first_index = 0usize;
-    for (k, ch) in choices.iter().enumerate() {
-        let idx = (ch[1] * sz + ch[0]).clamp(0, n as i32 - 1) as usize;
-        if k == 0 {
-            first_index = idx;
+    let (mut target, mut fallback) = (None, None);
+    for k in 1..=8i32 {
+        let offset = if (k - 1) % 2 == 0 { k / 2 } else { -(k >> 1) };
+        let (dx, dy) = GRID[(offset + facing + 8).rem_euclid(8) as usize];
+        let (tx, ty) = (x + dx, y + dy);
+        if tx < 0 || ty < 0 || tx >= size || ty >= size {
+            continue;
         }
-        let in_board = ch[0] >= 0 && ch[0] < sz && ch[1] >= 0 && ch[1] < sz;
-        let terrain = s.tiles.terrain[idx];
-        let st = s.tiles.structure[idx];
-        let mut valid = in_board && u.owner[idx] == 0;
-        valid = valid && (terrain == 3 || terrain == 5 || (terrain == 4 && s.players.tech[po][20])
-            || (terrain <= 2 && (r.skills[kind][FLOAT] || st == 48 || (st == 8 && s.tiles.owner[idx] == owner))));
-        if valid {
-            target = Some(idx);
+        let t = (ty * size + tx) as usize;
+        if s.units.owner[t] != 0 {
+            continue;
+        }
+        if water(source) && !water(t) && vehicle && fallback.is_none() {
+            fallback = Some(t);
+            continue;
+        }
+        if push_reachable(s, source, t, r) {
+            target = Some(t);
             break;
         }
     }
-    let _ = first_index;
-    match target {
-        Some(t) => relocate(s, source, t, r, g, true, None),
+    match target.or(fallback.filter(|&t| push_reachable(s, source, t, r))) {
+        Some(t) => {
+            let (moved, attacked) = (s.units.moved[source], s.units.attacked[source]);
+            relocate_as(s, source, t, r, g, true, None, false);
+            if s.units.kind[t] == kind {
+                s.units.moved[t] = moved;
+                s.units.attacked[t] = attacked;
+            }
+        }
         None => remove(s, source, r, None, true),
     }
 }
@@ -479,19 +599,46 @@ pub fn area_damage(s: &mut State, source: usize, center: usize, r: &Rules, g: &G
     let aa = r.unit_attack[src_kind];
     let mut damage = vec![0f32; n];
     let mut dead = vec![false; n];
-    let mut any_hit = false;
+    // the seats hit (modify diplomacy relations from attack per damaged unit's owner)
+    let mut hit_seats = [false; crate::state::MAXP + 1];
+    let mut pacifist_reset = false;
     for i in 0..n {
         let u = &s.units;
         let targets = g.d(center, i) == 1 && u.owner[i] != 0 && u.owner[i] != src_owner && !protected(s, src_owner, u.owner[i]);
         if targets {
-            let dd = r.unit_defense[u.kind[i] as usize] * if u.poison[i] { 0.7 } else { 1.0 };
+            let dd = r.unit_defense[u.kind[i] as usize];
             let mut dmg = combat(aa, ah, hp_s, dd, u.health[i], max_health(s, r, i), defense_bonus(s, r, i)).2;
             let _ = stomp;
             dmg = dmg.floor();
             damage[i] = dmg;
             dead[i] = u.health[i] - dmg <= 0.0;
-            any_hit |= dmg > 0.0;
+            if dmg > 0.0 {
+                hit_seats[u.owner[i].clamp(0, crate::state::MAXP as i32) as usize] = true;
+            }
+            pacifist_reset |= dmg > 0.0 && !u.invisible[i];
         }
+    }
+    // One attack per target, pushed in tile neighbors (x-outer) order, from the stomper's tile for a stomp
+    // (area damage: origin = the centre) and from the attacker's tile for
+    // a splash. Each
+    // attack turns its target toward the origin and the origin's unit toward the target,
+    // 753); the stack is LIFO, so the origin ends facing the first target in neighbour order.
+    let size = s.size;
+    let origin = if stomp { center } else { source };
+    let mut first = None;
+    for (dx, dy) in STEPS {
+        let (x, y) = ((center % size) as i32 + dx, (center / size) as i32 + dy);
+        if x >= 0 && y >= 0 && (x as usize) < size && (y as usize) < size {
+            let i = y as usize * size + x as usize;
+            let u = &s.units;
+            if u.owner[i] != 0 && u.owner[i] != src_owner && !protected(s, src_owner, u.owner[i]) {
+                first = first.or(Some(i));
+                s.units.direction[i] = direction(size, i, origin);
+            }
+        }
+    }
+    if let Some(i) = first {
+        s.units.direction[origin] = direction(size, origin, i);
     }
     for i in 0..n {
         s.units.health[i] -= damage[i];
@@ -502,8 +649,13 @@ pub fn area_damage(s: &mut State, source: usize, center: usize, r: &Rules, g: &G
             remove(s, i, r, Some(source), true);
         }
     }
-    if any_hit {
-        hostile(s);
+    for (victim, &hit) in hit_seats.iter().enumerate() {
+        if hit {
+            hostile(s, victim as i32);
+        }
+    }
+    if pacifist_reset {
+        s.players.attacked[s.p()] = true;
     }
 }
 

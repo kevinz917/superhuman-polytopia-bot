@@ -3,24 +3,24 @@
 use std::cell::{Cell, RefCell};
 use std::time::Instant;
 
-pub const KINDS: [&str; 18] = [
+pub const KINDS: [&str; 19] = [
     "research", "recover", "move", "end_turn", "attack", "summon", "harvest", "forest", "promote", "disband", "reward",
-    "build", "destroy", "capture", "heal", "diplomacy", "resign", "unsupported",
+    "build", "destroy", "capture", "heal", "diplomacy", "resign", "disembark", "unsupported",
 ];
-/// Phase ids: 0..18 step validation per kind, 18..36 step execution per kind, then the fixed phases below.
+/// Phase ids: 0..19 step validation per kind, 19..38 step execution per kind, then the fixed phases below.
 pub const VALIDATE: usize = 0;
-pub const EXECUTE: usize = 18;
-pub const STEP_PRE: usize = 36;
-pub const STEP_POST: usize = 37;
-pub const TICK_STEP: usize = 38;
-pub const TICK_RESET: usize = 39;
-pub const TICK_MASKS: usize = 40;
-pub const TICK_OBSERVE: usize = 41;
-pub const TICK_OBSERVE_OPP: usize = 42;
-pub const TICK_FINAL: usize = 43;
-pub const TICK_ALLOC: usize = 44;
-pub const TICK_OUTPUT: usize = 45;
-pub const N: usize = 46;
+pub const EXECUTE: usize = KINDS.len();
+pub const STEP_PRE: usize = 2 * KINDS.len();
+pub const STEP_POST: usize = STEP_PRE + 1;
+pub const TICK_STEP: usize = STEP_PRE + 2;
+pub const TICK_RESET: usize = STEP_PRE + 3;
+pub const TICK_MASKS: usize = STEP_PRE + 4;
+pub const TICK_OBSERVE: usize = STEP_PRE + 5;
+pub const TICK_OBSERVE_OPP: usize = STEP_PRE + 6;
+pub const TICK_FINAL: usize = STEP_PRE + 7;
+pub const TICK_ALLOC: usize = STEP_PRE + 8;
+pub const TICK_OUTPUT: usize = STEP_PRE + 9;
+pub const N: usize = STEP_PRE + 10;
 
 thread_local! {
     static ON: Cell<bool> = const { Cell::new(false) };

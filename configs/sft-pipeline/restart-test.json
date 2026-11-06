@@ -1,0 +1,19 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "restart-test",
+  "description": "Restart/reattach test (CPU only): 6 expert games, three games per call, then prepare. Kill the coordinator while games run, relaunch with --action resume, and check calls.json: no chunk spawned twice, every game played once.",
+  "stages": ["generate", "prepare"],
+  "players": {
+    "league96": {"kind": "rl", "path": "/retained/checkpoints/low256-league-rivals-v1/update-96-f998d15e220c/latest.npz",
+                 "sha256": "f998d15e220c92fe5ad091b73c4fd8952612a69b37fdd607d8b007093b26225d", "deterministic": true}
+  },
+  "generation": {
+    "experts": ["league96"],
+    "map_pool": [{"split": "train", "offset": 1, "count": 3}],
+    "opponents": [{"name": "pressure"}],
+    "games_per_call": 3,
+    "max_failed_games": 0
+  },
+  "data": {"examples_per_game": 20, "min_examples": 1, "games_per_shard": 2},
+  "evaluation": {"arms": {}}
+}

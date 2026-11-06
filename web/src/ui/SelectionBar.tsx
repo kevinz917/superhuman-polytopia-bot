@@ -80,7 +80,8 @@ export function SelectionBar() {
     for (const a of legal.filter(
       (a) =>
         (a.command.kind === 8 && a.command.source === selected) ||
-        (a.command.kind === 3 && a.command.source === selected && a.command.parameter < 18),
+        // unit abilities on the unit's tile (diplomacy, 18-22, addresses seats instead); 23 = disembark in place
+        (a.command.kind === 3 && a.command.source === selected && (a.command.parameter < 18 || a.command.parameter === 23)),
     ))
       orders.push(<RoundAction key={a.action_id} action={a} />);
   } else if (game.layer === "city" && city) {

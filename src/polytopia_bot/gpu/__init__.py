@@ -1,9 +1,10 @@
 """The retired JAX engine of the research rules (bardur-1v1-v2), kept for what is not game rules.
 
 The game's rules are engine-rs's (polytopia_bot.ruleset, docs/rules-alignment-2026-10-27.md); nothing current steps
-this engine. Still used from here: the State layout (state.py), engine-rs's rule table (rules.json), the Polyfish
-importer (importer.py), the map generator (mapgen.py, for determinized search and map variants), the view
-schema (kernels.observe, read by rl.cpu_engine.view_layout) and state snapshots (snapshot.py).
+this engine. Still used from here: the State layout (state.py), engine-rs's rule table (rules.json), the Polyfish /
+real-game importer (importer.py), the map generator (mapgen.py, for determinized search and map variants), the view
+schema (kernels.observe, read by rl.cpu_engine.view_layout) and state snapshots (snapshot.py). The frozen
+expert-SFT line (polytopia_bot.learning) still plays these rules.
 """
 
 ENGINE_REVISION = "a9f90ab54607f5633556d02422d7457f548cc58f"

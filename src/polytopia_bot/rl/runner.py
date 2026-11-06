@@ -26,7 +26,12 @@ class Config:
     blocks: int = 2
     extra_blocks: int = 0           # identity-initialized pre-activation blocks (network.grow); 0 for older checkpoints
     global_pool: bool = False       # extra blocks carry a global pooling bias (network.init global_pool)
+    block_pool: int = 0             # global pooling in the trunk blocks (network.init block_pool): 0 none, 1 / true =
+                                    # farsight's layout, 2 = the gated normalized layout (network.BLOCK_POOL_LAYOUTS)
+    attention: int = 0              # transformer blocks over the tiles after the convolutions (network.init attention)
     players: int = 2                # seats the network's features are for (4: rl.observation multi-seat channels)
+    obs_version: int = 1            # observation features the network reads (rl.observation.OBS_VERSION; 1 = before
+                                    # unit facing, every checkpoint saved before 2026-10-31)
     environments: int = 8
     horizon: int = 32
     updates: int = 32
@@ -48,7 +53,11 @@ class Config:
             raise ValueError('unknown reward mode')
         if self.architecture not in ('legacy', 'normalized-v2'):
             raise ValueError('unknown architecture')
-        if self.size not in BOARD_SIZES or self.extra_blocks < 0 or min(self.width, self.environments, self.horizon, self.updates,
+        if self.obs_version not in (1, 2, 3):
+            raise ValueError('unknown observation version')
+        if int(self.block_pool) not in (0, 1, 2):
+            raise ValueError('unknown block_pool layout')
+        if self.size not in BOARD_SIZES or self.extra_blocks < 0 or self.attention < 0 or min(self.width, self.environments, self.horizon, self.updates,
                 self.epochs, self.minibatch, self.pool_size, self.eval_maps, self.eval_actions, self.training_seconds) < 1:
             raise ValueError('invalid allocation')
         if self.blocks < 0 or self.bc_epochs < 0 or self.environments * self.horizon % self.minibatch:

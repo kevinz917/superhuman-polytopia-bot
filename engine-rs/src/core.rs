@@ -28,14 +28,21 @@ pub struct Action {
     pub parameter: i32,
 }
 
-/// Catalog widths of the 17 mask families (gpu/actions.py::decode) for board tiles n.
+/// Entries per row of the recover family: 0 recover, 1 disembark (added 2026-10-31, appended so the
+/// recover entry keeps its target index; docs/rules-parity-2-summary.md).
+pub const UNIT_ROW: usize = 2;
+/// Width of the diplomatic family: one block of diplomacy::BLOCK entries per other seat (two-seat games use the
+/// first block only, which is the earlier six-entry layout).
+pub const DIPLOMATIC_WIDTH: usize = diplomacy::BLOCK * diplomacy::BLOCKS;
+
+/// Catalog widths of the 17 mask families (rl/actions.py::shapes) for board tiles n.
 pub fn family_widths(n: usize) -> [usize; 17] {
-    [n * n, n * n, n * 128, n * 128, 128, n, n * 3, n * 9, n, n, n, n, n, n, 6, 1, 1]
+    [n * n, n * n, n * 128, n * 128, 128, n, n * 3, n * 9, n, n * UNIT_ROW, n, n, n, n, DIPLOMATIC_WIDTH, 1, 1]
 }
 
 /// Row widths used by rl/actions.py::flatten_choice (second dim of `shapes`).
 pub fn family_row_widths() -> [usize; 17] {
-    [0, 0, 128, 128, 128, 1, 3, 9, 1, 1, 1, 1, 1, 1, 6, 1, 1]
+    [0, 0, 128, 128, 128, 1, 3, 9, 1, UNIT_ROW, 1, 1, 1, 1, DIPLOMATIC_WIDTH, 1, 1]
 }
 
 /// rl.actions.flatten_choice followed by gpu.actions.decode.
@@ -53,7 +60,6 @@ pub fn decode(s: &State, family: i32, source: i32, target: i32) -> Action {
     let flat = offsets[f] + source as i64 * rows[f] as i64 + target as i64;
     let group = (1..=17).filter(|&g| flat >= offsets[g]).count().min(16);
     let at = flat - offsets[group];
-    let other = 3 - s.current_player;
     let a = |kind: i32, source: i64, target: i64, parameter: i64| Action {
         kind,
         source: source as i32,
@@ -70,23 +76,48 @@ pub fn decode(s: &State, family: i32, source: i32, target: i32) -> Action {
         6 => a(3, -1, at / 3, at % 3 + 1),
         7 => a(9, -1, at / 9, at % 9),
         8 => a(8, at, -1, 0),
-        9 => a(3, at, -1, 7),
+        // recover row: 0 recover, 1 disembark in place (ability 23)
+        9 => a(3, at / UNIT_ROW as i64, -1, if at % UNIT_ROW as i64 == 0 { 7 } else { DISEMBARK as i64 }),
         10 => a(3, at, -1, 16),
         11 => a(3, at, -1, 8),
         12 => a(3, at, -1, 9),
         13 => a(3, -1, at, 4),
         14 => {
-            let k = (at.clamp(0, 5)) as usize;
-            let (capital, _) = diplomacy::opponent_capital(s);
+            // block b addresses the seat b + 1 places after the mover (0 when there is none: never legal)
+            let at = at.clamp(0, DIPLOMATIC_WIDTH as i64 - 1) as usize;
+            let (b, k) = (at / diplomacy::BLOCK, at % diplomacy::BLOCK);
+            let seat = diplomacy::block_seat(s, b);
+            let (capital, _) = diplomacy::capital_of(s, seat);
             let targets = [-1i64, 0, 1, capital as i64, -1, -1];
-            let abilities = [18i64, 19, 19, 20, 21, 22];
-            a(3, other as i64, targets[k], abilities[k])
+            a(3, seat as i64, targets[k], diplomacy::ABILITIES[k] as i64)
         }
         15 => a(10, -1, -1, 0),
         _ => a(11, -1, -1, 0),
     }
 }
 
+/// reward: the star gift for meeting `other` (and the v123 "away stars" with two seats).
+fn meet_gift(s: &State, other: usize) -> i32 {
+    let score = s.players.score[other];
+    let mut gift = 1 + 2 * if score > 0 { ((score - 1).div_euclid(1000) + 1).min(5) } else { 0 };
+    // game version >= 123 (should add away stars): in a two-player game, meeting player 1 pays 2 more
+    if s.np == 2 && other == 0 {
+        gift += 2;
+    }
+    gift
+}
+
+/// meet for seat `p` meeting seat `other`: the star gift and `known`, once.
+pub fn meet_pair(s: &mut State, p: usize, other: usize) {
+    if p == other || s.players.known[p][other] {
+        return;
+    }
+    s.players.stars[p] += meet_gift(s, other);
+    s.players.known[p][other] = true;
+}
+
+/// The mover meets every seat it can see: a visible unit or an owned city on an explored tile
+/// (explore, tribe connection default).
 fn meet(s: &mut State) {
     if !s.fog {
         return; // `new` below is false: nothing changes
@@ -98,17 +129,11 @@ fn meet(s: &mut State) {
         if s.players.known[p][other] {
             continue;
         }
-        let sees = (0..n).any(|t| s.tiles.explored[p][t] && s.units.owner[t] == other as i32 + 1 && !s.units.invisible[t]);
-        let score = s.players.score[other];
-        let mut gift = 1 + 2 * if score > 0 { ((score - 1).div_euclid(1000) + 1).min(5) } else { 0 };
-        // game version >= 123: in a two-player game,
-        // meeting player 1 pays 2 more ("away stars" for the seat that moves second)
-        if s.np == 2 && other == 0 {
-            gift += 2;
-        }
+        let o = other as i32 + 1;
+        let sees = (0..n).any(|t| s.tiles.explored[p][t]
+            && ((s.units.owner[t] == o && !s.units.invisible[t]) || (s.tiles.structure[t] == 1 && s.cities.owner[t] == o)));
         if sees {
-            s.players.stars[p] += gift;
-            s.players.known[p][other] = true;
+            meet_pair(s, p, other);
         }
     }
 }
@@ -141,31 +166,31 @@ fn recover(s: &mut State, src: usize, r: &Rules) {
 
 fn move_adjacent(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom, ps: &mut PathScratch) {
     let cp = s.current_player;
-    let found = search(s, source, target, r, g, ps);
-    // The reference's path mask is {source, target} + ps.path with rank = index in ps.path (source: len, target: 0).
-    // A hidden enemy on the path stops the move on the stoppable path tile just before the first one met from the
-    // source side (`contact`, the hidden tile of highest rank); ranks along a path are distinct, so the reference's
-    // argmax/argmin pick the same tiles.
-    let hidden = |i: usize| s.units.invisible[i] && s.units.owner[i] != cp;
-    let contact = if found { ps.path.iter().rposition(|&i| hidden(i)) } else { None };
-    let (stop, traveled_from) = match contact {
-        Some(c) => {
-            // tiles of rank > c: path[c+1..] and the source; the first stoppable one by increasing rank
-            let stop = ps.path[c + 1..].iter().copied().find(|&i| s.units.owner[i] == 0).unwrap_or(source);
-            (stop, c + 1)
-        }
-        None => (target, 0),
-    };
-    // traveled: the source plus path tiles of rank >= traveled_from; without a path the mask is {source, target}
-    let extra = if !found && target != source { Some(target) } else { None };
-    reveal_tiles(s, source, traveled_from, extra, r, ps);
-    if let Some(c) = contact {
+    if s.units.owner[target] != 0 && s.units.owner[target] != cp {
+        // move: a (hidden) unit on the target is revealed (reveal, with its meet); the
+        // mover stays where it is and keeps its move
         cov::hit(33);
-        let tile = ps.path[c];
-        s.units.invisible[tile] = false;
+        s.units.invisible[target] = false;
+        // the reveal has Origin = the mover's tile, so it turns
+        // the unit on Origin toward the revealed one
+        s.units.direction[source] = military::direction(s.size, source, target);
+        meet(s);
+        return;
     }
-    if stop != source {
-        military::relocate(s, source, stop, r, g, false, Some(&ps.reveal));
+    // move: the unit goes along the path search's path, which treats hidden units as free tiles (they
+    // stay hidden), and explores from every tile of it
+    let found = search(s, source, target, r, g, ps);
+    let extra = if !found { Some(target) } else { None };
+    reveal_tiles(s, source, 0, extra, r, ps);
+    military::relocate(s, source, target, r, g, false, Some(&ps.reveal));
+    // move faces the unit along the path's last step
+    if ps.path.len() > 1 {
+        s.units.direction[target] = military::direction(s.size, ps.path[1], target);
+    }
+    // move: ending on another player's city counts as an attack on them
+    if s.tiles.structure[target] == 1 && State::foreign(s.cities.owner[target], cp) {
+        let victim = s.cities.owner[target];
+        diplomacy::hostile(s, victim);
     }
     meet(s);
 }
@@ -174,6 +199,8 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     let n = s.n;
     let owner = s.current_player;
     let old = s.p();
+    // observation history: what the seat sees as it leaves its turn (history.rs; observation version 3)
+    crate::history::end_of_turn(s, owner, r);
     for i in 0..n {
         let u = &s.units;
         let idle = u.owner[i] == owner && !u.moved[i] && !u.attacked[i];
@@ -186,6 +213,12 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
                 s.units.health[i] = (s.units.health[i] + amount).min(mh);
             }
             s.units.poison[i] = false;
+        }
+    }
+    // end turn: the riot of an infiltrated city ends at the end of its owner's turn
+    for i in 0..n {
+        if s.cities.riot[i] && s.cities.owner[i] == owner {
+            s.cities.riot[i] = false;
         }
     }
     let p = &s.players;
@@ -204,7 +237,8 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     s.players.attacked[old] = false;
     s.current_player = new_owner;
     s.turn = turn;
-    let limit = turn > s.reference_max_turns;
+    // harness truncation after exactly `reference_max_turns` rounds (turns 0..max-1); NO_ROUND_LIMIT never fires
+    let limit = turn >= s.reference_max_turns;
     if limit || native {
         if limit && !native { cov::hit(31); }
         s.truncated = limit && !native;
@@ -213,7 +247,14 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     }
     let frozen: Vec<bool> = s.units.frozen.clone();
     diplomacy::start_turn(s, new_owner);
-    // starting a turn explores nothing: tiles are explored when units move, train, upgrade or convert and when
+    // diplomacy: receiving a peace request meets its sender (every request of a seat still in)
+    let p = s.p();
+    for q in 0..s.np {
+        if q != p && s.players.peace_offer[p][q] && s.alive(q) {
+            meet_pair(s, p, q);
+        }
+    }
+    // start turn explores nothing: tiles are explored when units move, train, upgrade or convert and when
     // borders grow
     meet(s);
     structures::start_turn(s, new_owner);
@@ -221,13 +262,12 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
     if !(turn > 0 && income > 0) {
         income = 0;
     }
-    for i in 0..n {
-        if s.cities.riot[i] && s.cities.owner[i] == new_owner {
-            s.cities.riot[i] = false;
-        }
-    }
     let no = (new_owner - 1) as usize;
     s.players.stars[no] += income;
+    if turn > 0 {
+        structures::refresh_levels(s, new_owner, r, g);
+    }
+    economy::start_level_ups(s, new_owner);
     for i in 0..n {
         if s.units.owner[i] == new_owner {
             s.units.moved[i] = frozen[i];
@@ -238,6 +278,8 @@ fn end_turn(s: &mut State, r: &Rules, g: &Geom) {
             s.units.frozen[i] = false;
         }
     }
+    // observation history: what changed for the new seat since the end of its last turn
+    crate::history::start_of_turn(s, new_owner, r);
 }
 
 fn resign(s: &mut State) {
@@ -298,8 +340,11 @@ pub fn terminal_rewards(s: &State) -> [f32; MAXP] {
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum Kind {
     Research, Recover, Move, End, Attack, Summon, Harvest, Forest, Promote, Disband, Reward, Build, Destroy, Cap,
-    Heal, Diplomatic, Resign, Unsupported,
+    Heal, Diplomatic, Resign, Disembark, Unsupported,
 }
+
+/// Action parameter of disembark (Action(3, tile, -1, 23)): a boat on a bridge lands where it stands.
+pub const DISEMBARK: i32 = 23;
 
 fn classify(a: Action) -> Kind {
     match (a.kind, a.parameter) {
@@ -319,9 +364,15 @@ fn classify(a: Action) -> Kind {
         (8, _) => Kind::Cap,
         (3, 9) => Kind::Heal,
         (3, 18..=22) => Kind::Diplomatic,
+        (3, DISEMBARK) => Kind::Disembark,
         (11, _) => Kind::Resign,
         _ => Kind::Unsupported,
     }
+}
+
+/// Tiles explored, summed over the seats (a new exploration raises it).
+fn explored_count(s: &State) -> usize {
+    s.tiles.explored[..s.np].iter().map(|e| e.iter().filter(|&&x| x).count()).sum()
 }
 
 /// Scratch buffers reused across steps.
@@ -369,7 +420,10 @@ pub fn step_with(s: &mut State, a: Action, expected_version: i32, r: &Rules, g: 
     let pending = s.pending_reward();
     let reward = kind == Kind::Reward;
     let reward_implemented = matches!(a.parameter, 1..=8);
-    let mut supported = s.core_supported && kind != Kind::Unsupported && (!pending || reward || kind == Kind::Resign)
+    // pending command triggers: a peace request (answered first) or a city reward block every other command
+    let peace = diplomacy::peace_pending(s);
+    let mut supported = s.core_supported && kind != Kind::Unsupported
+        && (if peace { kind == Kind::Diplomatic || kind == Kind::Resign } else { !pending || reward || kind == Kind::Resign })
         && (!reward || reward_implemented);
     if kind == Kind::Summon {
         supported &= r.unit_supported[param];
@@ -430,6 +484,7 @@ pub fn step_with(s: &mut State, a: Action, expected_version: i32, r: &Rules, g: 
             source_valid && sc.row[src]
         }
         Kind::Diplomatic => diplomacy::legal(s, a.source, a.target, a.parameter),
+        Kind::Disembark => own && military::can_disembark(s, r, src),
         Kind::Reward => {
             economy::reward_mask(s, &mut sc.row);
             target_valid && a.parameter >= 0 && a.parameter < 9 && sc.row[dst * 9 + a.parameter.clamp(0, 8) as usize]
@@ -449,6 +504,18 @@ pub fn step_with(s: &mut State, a: Action, expected_version: i32, r: &Rules, g: 
     if !s.monuments_settled {
         prof::time(prof::STEP_PRE, || structures::remember_monuments(s, r, g));
     }
+    // modify diplomacy relations from attack's victim (attack): the target unit's owner, or for an
+    // infiltration the target tile's owner; read before the action changes the tile
+    let victim = if kind == Kind::Attack {
+        if r.skills[s.units.kind[src] as usize][INFILTRATE] { s.tiles.owner[dst] } else { s.units.owner[dst] }
+    } else {
+        0
+    };
+    // explore (version >= 98) only flags that routes need updating; the command queues
+    // run deferred under every command's actions, so once they have all run it queues update routes and
+    // update city connections for the command's player; the action stack is last in,
+    // first out, so the routes are updated first)
+    let explored_before = explored_count(s);
     prof::time(prof::EXECUTE + kind as usize, || match kind {
         Kind::Research => { cov::hit(0); research(s, a, r) }
         Kind::Recover => { cov::hit(1); recover(s, src, r) }
@@ -497,16 +564,21 @@ pub fn step_with(s: &mut State, a: Action, expected_version: i32, r: &Rules, g: 
             }
         }
         Kind::Heal => { cov::hit(24); military::heal_others(s, src, r, g) }
-        Kind::Diplomatic => { cov::hit(25); diplomacy::execute(s, a.target, a.parameter, r, g) }
+        Kind::Diplomatic => { cov::hit(25); diplomacy::execute(s, a.source, a.target, a.parameter, r, g) }
+        Kind::Disembark => { cov::hit(40); military::disembark(s, src, r) }
         Kind::Resign => { cov::hit(26); resign(s) }
         Kind::Unsupported => unreachable!(),
     });
     prof::time(prof::STEP_POST, || {
         if a.kind == 2 {
-            diplomacy::hostile(s);
+            diplomacy::hostile(s, victim);
         }
         meet(s);
         diplomacy::capital_vision(s);
+        if explored_count(s) != explored_before {
+            structures::update_routes(s, r);
+            structures::connections(s, cp, g, true);
+        }
         structures::remember_monuments(s, r, g);
     });
     s.monuments_settled = true;

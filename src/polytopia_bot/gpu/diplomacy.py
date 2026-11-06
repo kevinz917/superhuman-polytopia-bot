@@ -22,7 +22,7 @@ def legal(s, a):
         ((ability == 18) & pl.peace[p, q])
         | ((ability == 19) & pl.peace_offer[p, q] & ((a.target == 0) | (a.target == 1)))
         | ((ability == 20) & pl.tech[p, 38] & ~pl.embassy[p, q] & has_capital & (a.target == capital)
-           & (pl.stars[p] >= 5) & (s.turn * 2 + p >= pl.hostile_until[p]))
+           & (pl.stars[p] >= 5) & (s.turn * 2 + p >= jnp.max(pl.hostile_until[p])))   # [2, 2] rows: one stamp per attacker here
         | ((ability == 21) & pl.tech[p, 7] & ~pl.peace[p, q] & ~pl.peace_offer[q, p] & (pl.truce_breaker[p, q] == 0))
         | ((ability == 22) & pl.embassy[p, q]))
 

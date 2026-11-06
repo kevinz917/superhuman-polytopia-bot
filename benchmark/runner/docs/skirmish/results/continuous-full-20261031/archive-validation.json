@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-31T14:20:37.835439+00:00",
+  "models": 12,
+  "independent_authors": 60,
+  "games": 21600,
+  "compilation_receipts": 60,
+  "source_hashes_verified": 60,
+  "shared_schedule_sha256": "4f1f3b7c3a2e2c610ba007f92a8bd56fe28f8162f036bcc55ae1cfecf442d17c",
+  "validation_kinds": {
+    "full_export": 27,
+    "lossless_replay": 33
+  },
+  "checks": [
+    "Cohort completeness and unique authored slots",
+    "Portable Rust source SHA256 and native compilation receipts",
+    "Original coding budget and shared evaluation schedule",
+    "Per-bot rewards and model mean/sample standard deviation",
+    "Same local/cloud core source, reference-manifest and map pins",
+    "Grading recovery and compact replay qualification receipts",
+    "Cloud sandbox cleanup receipt"
+  ]
+}

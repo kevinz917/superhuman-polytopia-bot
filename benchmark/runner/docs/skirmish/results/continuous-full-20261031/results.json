@@ -1,0 +1,4302 @@
+{
+  "status": "completed_validated",
+  "campaign": "continuous-split-full-20261031T075011Z",
+  "completed_at": "2026-10-31T14:18:27.204142+00:00",
+  "protocol": "polytopia-skirmish-continuous-v1",
+  "coding_seconds": 2400,
+  "attempts_per_model": 5,
+  "models": 12,
+  "authored_submissions": 60,
+  "total_final_outcomes": 21600,
+  "score_definition": "100 * (wins + 0.5 * draws) / 360 per authored bot; mean and sample SD across five bots per model",
+  "schedule_sha256": "4f1f3b7c3a2e2c610ba007f92a8bd56fe28f8162f036bcc55ae1cfecf442d17c",
+  "selection_rule": "First complete validated native grading export for each frozen authored submission; no reward-based selection.",
+  "validation_kinds": {
+    "full_export": 27,
+    "lossless_replay": 33
+  },
+  "leaderboard": [
+    {
+      "model": "openai/gpt-6-astra",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 74.94444444444444,
+      "score_sd": 6.0225591849148685,
+      "min_score": 64.58333333333334,
+      "max_score": 79.72222222222223,
+      "champion_wdl": {
+        "wins": 8,
+        "draws": 1,
+        "losses": 291
+      },
+      "champion_win_percent": 2.6666666666666665,
+      "champion_points_percent": 2.8333333333333335,
+      "mean_practice_matches": 45.8,
+      "mean_active_minutes": 38.77895643870036,
+      "input_tokens": 25805176,
+      "output_tokens": 154355,
+      "completed_call_cost_usd": null,
+      "compilation_failures": 0
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 74.38888888888889,
+      "score_sd": 2.9209624449722527,
+      "min_score": 69.58333333333333,
+      "max_score": 76.94444444444444,
+      "champion_wdl": {
+        "wins": 9,
+        "draws": 1,
+        "losses": 290
+      },
+      "champion_win_percent": 3.0,
+      "champion_points_percent": 3.1666666666666665,
+      "mean_practice_matches": 26.6,
+      "mean_active_minutes": 38.83147319714228,
+      "input_tokens": 25043610,
+      "output_tokens": 169688,
+      "completed_call_cost_usd": null,
+      "compilation_failures": 0
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 64.36111111111111,
+      "score_sd": 5.797342675637299,
+      "min_score": 59.44444444444444,
+      "max_score": 70.69444444444444,
+      "champion_wdl": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 292
+      },
+      "champion_win_percent": 2.6666666666666665,
+      "champion_points_percent": 2.6666666666666665,
+      "mean_practice_matches": 12.6,
+      "mean_active_minutes": 39.78615490357081,
+      "input_tokens": 18762237,
+      "output_tokens": 502689,
+      "completed_call_cost_usd": 12.0509675451,
+      "compilation_failures": 0
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 43.416666666666664,
+      "score_sd": 3.5918288611654687,
+      "min_score": 38.333333333333336,
+      "max_score": 46.94444444444444,
+      "champion_wdl": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 297
+      },
+      "champion_win_percent": 1.0,
+      "champion_points_percent": 1.0,
+      "mean_practice_matches": 69.6,
+      "mean_active_minutes": 29.702320829232534,
+      "input_tokens": 19553769,
+      "output_tokens": 213137,
+      "completed_call_cost_usd": null,
+      "compilation_failures": 0
+    },
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 31.88888888888889,
+      "score_sd": 5.2609380471359355,
+      "min_score": 25.13888888888889,
+      "max_score": 39.30555555555556,
+      "champion_wdl": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 299
+      },
+      "champion_win_percent": 0.3333333333333333,
+      "champion_points_percent": 0.3333333333333333,
+      "mean_practice_matches": 19.4,
+      "mean_active_minutes": 29.82120944182078,
+      "input_tokens": 33970580,
+      "output_tokens": 232838,
+      "completed_call_cost_usd": null,
+      "compilation_failures": 0
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 31.055555555555554,
+      "score_sd": 14.414565785694808,
+      "min_score": 13.055555555555557,
+      "max_score": 46.94444444444444,
+      "champion_wdl": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 296
+      },
+      "champion_win_percent": 1.3333333333333333,
+      "champion_points_percent": 1.3333333333333333,
+      "mean_practice_matches": 18.6,
+      "mean_active_minutes": 39.87584221760432,
+      "input_tokens": 21728116,
+      "output_tokens": 94132,
+      "completed_call_cost_usd": 7.366065696,
+      "compilation_failures": 0
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 30.52777777777778,
+      "score_sd": 19.064087416195555,
+      "min_score": 8.055555555555555,
+      "max_score": 52.083333333333336,
+      "champion_wdl": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 299
+      },
+      "champion_win_percent": 0.3333333333333333,
+      "champion_points_percent": 0.3333333333333333,
+      "mean_practice_matches": 14.8,
+      "mean_active_minutes": 39.860875890254974,
+      "input_tokens": 21344965,
+      "output_tokens": 320612,
+      "completed_call_cost_usd": 7.8452380116,
+      "compilation_failures": 0
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 26.555555555555557,
+      "score_sd": 16.925193982877264,
+      "min_score": 8.194444444444445,
+      "max_score": 44.861111111111114,
+      "champion_wdl": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 298
+      },
+      "champion_win_percent": 0.6666666666666666,
+      "champion_points_percent": 0.6666666666666666,
+      "mean_practice_matches": 3.6,
+      "mean_active_minutes": 39.74281092087428,
+      "input_tokens": 11239970,
+      "output_tokens": 275468,
+      "completed_call_cost_usd": 5.87652516,
+      "compilation_failures": 0
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 19.583333333333332,
+      "score_sd": 14.66149687926648,
+      "min_score": 1.8055555555555554,
+      "max_score": 41.388888888888886,
+      "champion_wdl": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 298
+      },
+      "champion_win_percent": 0.6666666666666666,
+      "champion_points_percent": 0.6666666666666666,
+      "mean_practice_matches": 32.2,
+      "mean_active_minutes": 38.435609362920125,
+      "input_tokens": 43268002,
+      "output_tokens": 126948,
+      "completed_call_cost_usd": null,
+      "compilation_failures": 0
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 18.36111111111111,
+      "score_sd": 14.817368124877916,
+      "min_score": 5.138888888888888,
+      "max_score": 43.888888888888886,
+      "champion_wdl": {
+        "wins": 1,
+        "draws": 1,
+        "losses": 298
+      },
+      "champion_win_percent": 0.3333333333333333,
+      "champion_points_percent": 0.5,
+      "mean_practice_matches": 21.4,
+      "mean_active_minutes": 39.929818363189696,
+      "input_tokens": 38264434,
+      "output_tokens": 398553,
+      "completed_call_cost_usd": 0.47302951212,
+      "compilation_failures": 0
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 15.194444444444445,
+      "score_sd": 12.880999141716021,
+      "min_score": 1.3888888888888888,
+      "max_score": 29.86111111111111,
+      "champion_wdl": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 299
+      },
+      "champion_win_percent": 0.3333333333333333,
+      "champion_points_percent": 0.3333333333333333,
+      "mean_practice_matches": 7.4,
+      "mean_active_minutes": 40.0,
+      "input_tokens": 33156288,
+      "output_tokens": 247897,
+      "completed_call_cost_usd": 1.7639376757199998,
+      "compilation_failures": 0
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "attempts": 5,
+      "games": 1800,
+      "mean_score": 13.083333333333334,
+      "score_sd": 11.278855312508172,
+      "min_score": 1.9444444444444444,
+      "max_score": 29.166666666666668,
+      "champion_wdl": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 299
+      },
+      "champion_win_percent": 0.3333333333333333,
+      "champion_points_percent": 0.3333333333333333,
+      "mean_practice_matches": 7.6,
+      "mean_active_minutes": 40.0,
+      "input_tokens": 26999160,
+      "output_tokens": 558495,
+      "completed_call_cost_usd": 0.88213459455,
+      "compilation_failures": 0
+    }
+  ],
+  "trials": [
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "trial": "task__2mG8Ziz",
+      "score": 25.13888888888889,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 24,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1139.8322539329529,
+        "tool_seconds": 351.2933740615845,
+        "api_calls_started": 31,
+        "api_calls_finished": 31,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 30,
+        "tool_calls_finished": 30,
+        "scheduler_wait_seconds": 502.0580279827118,
+        "controller_wall_seconds": 1997.0006439685822,
+        "coding_seconds": 1494.9426159858704
+      },
+      "usage": {
+        "input_tokens": 5904005,
+        "output_tokens": 48909,
+        "completed_responses": 31
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-1",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 354339,
+      "rewards": {
+        "reward": 0.2513888888888889,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__2mG8Ziz",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__2mG8Ziz",
+      "source_sha256": "e762a2ccca965ddb380dad125e99f7f200b24ad9d457eb346d2cc45439287f56",
+      "source_file": "sources/anthropic__claude-fable-5-1/task__2mG8Ziz.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/5fee3bc8852f41c8.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__2mG8Ziz.json",
+      "wasm_sha256": "414ee18dee287cc1aa62f370ab0a42e8f811ec5ad6ea77abcfa0adad46f67526",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__2mG8Ziz.json"
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__tiBAYRf",
+      "score": 46.94444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 45,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1215.3277549743652,
+        "tool_seconds": 441.44508719444275,
+        "api_calls_started": 63,
+        "api_calls_finished": 63,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 64,
+        "tool_calls_finished": 64,
+        "scheduler_wait_seconds": 648.1003158092499,
+        "controller_wall_seconds": 2312.8423779010773,
+        "coding_seconds": 1664.7420620918274
+      },
+      "usage": {
+        "input_tokens": 4527864,
+        "output_tokens": 49178,
+        "completed_responses": 63
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 313285,
+      "rewards": {
+        "reward": 0.46944444444444444,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__tiBAYRf",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__tiBAYRf",
+      "source_sha256": "fa7a5b0d45a60b825723c0f405b5959c815de1438735e6d238f668b5d30f6f7c",
+      "source_file": "sources/anthropic__claude-opus-5.5/task__tiBAYRf.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/fd79d5c9f1d54e03.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__tiBAYRf.json",
+      "wasm_sha256": "525927920cbd14f7cd08b4bcfae3c0743cc84915be83074bf0a47e638ae40f52",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__tiBAYRf.json"
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__Lfjs9Ap",
+      "score": 38.333333333333336,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 113,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 671.1995458602905,
+        "tool_seconds": 677.0357036590576,
+        "api_calls_started": 22,
+        "api_calls_finished": 22,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 22,
+        "tool_calls_finished": 22,
+        "scheduler_wait_seconds": 184.65692687034607,
+        "controller_wall_seconds": 1535.5257608890533,
+        "coding_seconds": 1350.8688340187073
+      },
+      "usage": {
+        "input_tokens": 4102114,
+        "output_tokens": 27543,
+        "completed_responses": 22
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 270274,
+      "rewards": {
+        "reward": 0.38333333333333336,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Lfjs9Ap",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Lfjs9Ap",
+      "source_sha256": "6f55e3e170fd94940226049d8e0baa20125d75fd0782495cead5ab3a26578c6f",
+      "source_file": "sources/anthropic__claude-opus-5.5/task__Lfjs9Ap.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/4e81e484c90c40dc.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__Lfjs9Ap.json",
+      "wasm_sha256": "6ecec5a0c3f81eec5be142724c8947ab4225ef29007d33d92bd313f0fc9a73d5",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__Lfjs9Ap.json"
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "trial": "task__TfEVB2n",
+      "score": 1.9444444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 8,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2155.534594297409,
+        "tool_seconds": 243.79114890098572,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.122824907303,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4863701,
+        "output_tokens": 106159,
+        "completed_responses": 32
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3.1-flash",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 206497,
+      "rewards": {
+        "reward": 0.019444444444444445,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.05555555555555555,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__TfEVB2n",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__TfEVB2n",
+      "source_sha256": "ccd8d73cc16e40a3946bf29ff03cf2660403d9318ed914314774d494301b5776",
+      "source_file": "sources/minimax__minimax-m3.1-flash/task__TfEVB2n.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": 0.16237472625,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7a4669d5d42d9485.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__TfEVB2n.json",
+      "wasm_sha256": "450e91666d7b0ad3a401ecce4dedd32c5e1cfd913981f740271ed628df1aa98f",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__TfEVB2n.json"
+    },
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "trial": "task__zAg2NsC",
+      "score": 29.166666666666668,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 26,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1359.139978647232,
+        "tool_seconds": 361.0655574798584,
+        "api_calls_started": 34,
+        "api_calls_finished": 34,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 472.9338264465332,
+        "controller_wall_seconds": 2197.677946805954,
+        "coding_seconds": 1724.7441203594208
+      },
+      "usage": {
+        "input_tokens": 6555136,
+        "output_tokens": 44690,
+        "completed_responses": 34
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-1",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 402959,
+      "rewards": {
+        "reward": 0.2916666666666667,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__zAg2NsC",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__zAg2NsC",
+      "source_sha256": "e2856bb9a833c7a764aa7e3fb082bb4de5a835a0ea6485c421098c9456c7d161",
+      "source_file": "sources/anthropic__claude-fable-5-1/task__zAg2NsC.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e6602bf543bc1d0a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__zAg2NsC.json",
+      "wasm_sha256": "8f957690a3072e0ff46c80c046a1be0dc5c760af9bc08469ada353f0b8633dc4",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__zAg2NsC.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "trial": "task__Qgz7bQQ",
+      "score": 1.3888888888888888,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 0,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1772.5336983203888,
+        "tool_seconds": 626.8315935134888,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 35,
+        "tool_calls_finished": 35,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0759308338165,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 5430280,
+        "output_tokens": 44812,
+        "completed_responses": 35
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 187540,
+      "rewards": {
+        "reward": 0.013888888888888888,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__iQenkzx/task__Qgz7bQQ",
+      "source_sha256": "006a3587ab78d73e3800da712dc87b1cf6f76609832249ff59cabfd9d09b6d63",
+      "source_file": "sources/deepseek__deepseek-v4-pro-0813/task__iQenkzx.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": 0.30410403408,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a44e413d676eecd7.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__iQenkzx.json",
+      "wasm_sha256": "fdb50dd23d94e8015965f3087588c734de8588b9578ef8b0257f13c3ff413df6",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__iQenkzx.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "trial": "task__C3KfNxz",
+      "score": 4.861111111111112,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 13,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1936.3009324073792,
+        "tool_seconds": 462.5694353580475,
+        "api_calls_started": 70,
+        "api_calls_finished": 70,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 69,
+        "tool_calls_finished": 69,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0936436653137,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 6347505,
+        "output_tokens": 61257,
+        "completed_responses": 69
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 286409,
+      "rewards": {
+        "reward": 0.04861111111111111,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz",
+      "source_sha256": "0dad4a791f025a68b67105e690d4308020f1fbb65d04aa72f6155d9b1ad860de",
+      "source_file": "sources/deepseek__deepseek-v4-pro-0813/task__C3KfNxz.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.32929913808,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b687c4937ce74275.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__C3KfNxz.json",
+      "wasm_sha256": "dad2e27c3f4cd0608edec5e000183eb09f8322cbc4d165bbec9bfd6eaaa47c87",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__C3KfNxz.json"
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "trial": "task__Jbx9hZF",
+      "score": 14.86111111111111,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 8,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1973.2820856571198,
+        "tool_seconds": 426.1157510280609,
+        "api_calls_started": 29,
+        "api_calls_finished": 29,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 28,
+        "tool_calls_finished": 28,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.090296983719,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 3806317,
+        "output_tokens": 116628,
+        "completed_responses": 28
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3.1-flash",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 274709,
+      "rewards": {
+        "reward": 0.1486111111111111,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF",
+      "source_sha256": "6679e3e95777617e04aaa1c74522b8805c6313817ceef35b8b61bc06cb0daf27",
+      "source_file": "sources/minimax__minimax-m3.1-flash/task__Jbx9hZF.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.1504289259,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/3cb4bdd3fc26c076.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Jbx9hZF.json",
+      "wasm_sha256": "9ebd6ca0ee1e8e1eabb2500b83d7168fd9eab1622a8ddb678470f792a1406028",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Jbx9hZF.json"
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "trial": "task__yF7sWP5",
+      "score": 59.44444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 10,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2106.8088653087616,
+        "tool_seconds": 292.7513108253479,
+        "api_calls_started": 27,
+        "api_calls_finished": 27,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 26,
+        "tool_calls_finished": 26,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.085995912552,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4351898,
+        "output_tokens": 110569,
+        "completed_responses": 27
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-4-argon",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 251746,
+      "rewards": {
+        "reward": 0.5944444444444444,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5",
+      "source_sha256": "a52cca93e4cf814f3c6723b834460f2f2b8aec30f7fd9728d1f33829fbaf2e45",
+      "source_file": "sources/google__gemini-4-argon/task__yF7sWP5.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 3.0679298199000002,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/46304e7ae53ff0af.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__yF7sWP5.json",
+      "wasm_sha256": "90440727275150cd90e91292c36839534ba09731153fb2910ffa97011592febc",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__yF7sWP5.json"
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "trial": "task__HiPDT3h",
+      "score": 42.916666666666664,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 16,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1821.2677807807922,
+        "tool_seconds": 564.6181163787842,
+        "api_calls_started": 26,
+        "api_calls_finished": 26,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 39,
+        "tool_calls_finished": 39,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2386.405882835388,
+        "coding_seconds": 2386.405882835388
+      },
+      "usage": {
+        "input_tokens": 3748010,
+        "output_tokens": 19622,
+        "completed_responses": 26
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 272194,
+      "rewards": {
+        "reward": 0.42916666666666664,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h",
+      "source_sha256": "9ecbe383829eace0a67d800c941526dc51d3b45abc9e353995b08ebdc2459553",
+      "source_file": "sources/moonshotai__kimi-k3.1-pro/task__HiPDT3h.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.552982112,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/9f1aef0ada2760bc.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__HiPDT3h.json",
+      "wasm_sha256": "ef65106852265defd2c743b90aff593a56444e19598c7b93e3a3fe631b3ca934",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__HiPDT3h.json"
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "trial": "task__iFMojkJ",
+      "score": 60.55555555555555,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 9,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2228.0670852661133,
+        "tool_seconds": 171.51984882354736,
+        "api_calls_started": 24,
+        "api_calls_finished": 24,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 22,
+        "tool_calls_finished": 22,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0824842453003,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 3856368,
+        "output_tokens": 110480,
+        "completed_responses": 23
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-4-argon",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 247297,
+      "rewards": {
+        "reward": 0.6055555555555555,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ",
+      "source_sha256": "941d1a9d4e88cd92e3738ff8cfb8e9c50972fb6813f180967af17172f0459b43",
+      "source_file": "sources/google__gemini-4-argon/task__iFMojkJ.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 2.765783394,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/259346ae5213abd8.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__iFMojkJ.json",
+      "wasm_sha256": "dbb246a4bde64a19cb176cf31b0423ed6a8d8845f4dada54327dafe6a26e5b2b",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__iFMojkJ.json"
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "trial": "task__UUdGAJZ",
+      "score": 8.194444444444445,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 3,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2153.066963195801,
+        "tool_seconds": 169.33394932746887,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 41,
+        "tool_calls_finished": 41,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2322.8432762622833,
+        "coding_seconds": 2322.8432762622833
+      },
+      "usage": {
+        "input_tokens": 1862260,
+        "output_tokens": 57693,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3.8-max-0902",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 301002,
+      "rewards": {
+        "reward": 0.08194444444444444,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ",
+      "source_sha256": "7cb836e7314cd9041fbd3135abb2eda2e1334411fe13d394b46ee14aeec0b303",
+      "source_file": "sources/qwen__qwen3.8-max-0902/task__UUdGAJZ.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.02844962,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/453c32ede6761e7c.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__UUdGAJZ.json",
+      "wasm_sha256": "c9eb7d6918dc9a77c4bd4d5f3ab5371f81d8e5b0b3e82c9dfc34ed49a890b537",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__UUdGAJZ.json"
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "trial": "task__rYrSQkE",
+      "score": 44.861111111111114,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 8,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2210.398332834244,
+        "tool_seconds": 189.22580337524414,
+        "api_calls_started": 23,
+        "api_calls_finished": 23,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 27,
+        "tool_calls_finished": 27,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.088776111603,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 3179783,
+        "output_tokens": 50944,
+        "completed_responses": 22
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3.8-max-0902",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 311172,
+      "rewards": {
+        "reward": 0.4486111111111111,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE",
+      "source_sha256": "daa5682220f912c279350844cda535ff2c781d53b8b3645538f35a4efced813b",
+      "source_file": "sources/qwen__qwen3.8-max-0902/task__rYrSQkE.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.41759882,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ef1f3c89c4d41990.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__rYrSQkE.json",
+      "wasm_sha256": "7244d07ebece91347c3369cd6facaa676c20c2d4d7369c9253b935dda7259c6e",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__rYrSQkE.json"
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "trial": "task__q9ttKRd",
+      "score": 70.69444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 57
+      },
+      "practice_matches": 20,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2015.396931886673,
+        "tool_seconds": 384.23217034339905,
+        "api_calls_started": 32,
+        "api_calls_finished": 32,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 30,
+        "tool_calls_finished": 30,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0885009765625,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 2420486,
+        "output_tokens": 107745,
+        "completed_responses": 31
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-4-argon",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 274402,
+      "rewards": {
+        "reward": 0.7069444444444445,
+        "champion_win_rate": 0.05,
+        "champion_points": 0.05,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd",
+      "source_sha256": "8ba4f185b0516d980b4f99b7927e3d7ff0c71c768198fda2bdcea0a38257bc00",
+      "source_file": "sources/google__gemini-4-argon/task__q9ttKRd.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 2.0583322947,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1da4412c0676304e.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__q9ttKRd.json",
+      "wasm_sha256": "b8f7e0dd7e16a6344a94fb823e03fb07d2559a83b62452860559980fb49556e0",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__q9ttKRd.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "trial": "task__rBsF3UA",
+      "score": 12.63888888888889,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 3,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1864.0664863586426,
+        "tool_seconds": 535.2000603675842,
+        "api_calls_started": 40,
+        "api_calls_finished": 40,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 39,
+        "tool_calls_finished": 39,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0928201675415,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 6712625,
+        "output_tokens": 58137,
+        "completed_responses": 39
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 297410,
+      "rewards": {
+        "reward": 0.12638888888888888,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA",
+      "source_sha256": "582c62dec74b206c5f33193fd64f3943b1f47458effccb02251f47326096cbad",
+      "source_file": "sources/deepseek__deepseek-v4-pro-0813/task__rBsF3UA.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.37467193104,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/def418bab41deb2f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__rBsF3UA.json",
+      "wasm_sha256": "8a76b15f6486780392443cd3508f0ede8dcb6d71c2900a48a51bfc45b8b7c1f6",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__rBsF3UA.json"
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__RdiPeRi",
+      "score": 46.80555555555556,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 76,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1079.0932085514069,
+        "tool_seconds": 799.2223780155182,
+        "api_calls_started": 59,
+        "api_calls_finished": 59,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 59,
+        "tool_calls_finished": 59,
+        "scheduler_wait_seconds": 1242.469792842865,
+        "controller_wall_seconds": 3127.8707280158997,
+        "coding_seconds": 1885.4009351730347
+      },
+      "usage": {
+        "input_tokens": 3577424,
+        "output_tokens": 46073,
+        "completed_responses": 59
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 339418,
+      "rewards": {
+        "reward": 0.46805555555555556,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RdiPeRi",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RdiPeRi",
+      "source_sha256": "2ac71df73174b7fc2fca96403622651fde81c5d47d50f7ad3e3b1b6566cf391c",
+      "source_file": "sources/anthropic__claude-opus-5.5/task__RdiPeRi.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7e13e06c3b74aa35.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__RdiPeRi.json",
+      "wasm_sha256": "efe7e982d63678395525e7f91c46a3e88490d7152790d206aa4b93091efa2a3c",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__RdiPeRi.json"
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "trial": "task__F6fwpX8",
+      "score": 8.055555555555555,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 8,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2232.5180904865265,
+        "tool_seconds": 166.9004979133606,
+        "api_calls_started": 28,
+        "api_calls_finished": 28,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 30,
+        "tool_calls_finished": 30,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.089634180069,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4084687,
+        "output_tokens": 89259,
+        "completed_responses": 27
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "z-ai/glm-5.3",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 301150,
+      "rewards": {
+        "reward": 0.08055555555555556,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8",
+      "source_sha256": "3b269b6cd6cc452e2228d83ca753cf662e4d4cd5af04c4cfc645e39e949bdd21",
+      "source_file": "sources/z-ai__glm-5.3/task__F6fwpX8.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.6554741588,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/03460d31aa97198f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__F6fwpX8.json",
+      "wasm_sha256": "16787bfd757307b28baee0560ef6313a0745412e26cbeb29edb9fef38dd0ad74",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__F6fwpX8.json"
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "trial": "task__3dFWRhd",
+      "score": 52.083333333333336,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 13,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1658.4535081386566,
+        "tool_seconds": 741.0524382591248,
+        "api_calls_started": 28,
+        "api_calls_finished": 28,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 30,
+        "tool_calls_finished": 30,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.084218263626,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 3808354,
+        "output_tokens": 56173,
+        "completed_responses": 27
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "z-ai/glm-5.3",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 311036,
+      "rewards": {
+        "reward": 0.5208333333333334,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd",
+      "source_sha256": "1ff4db85be1f4bcfe1ef1dd7f76e66cd06aa7479ca7fee0a8c3ada0f6f8cab24",
+      "source_file": "sources/z-ai__glm-5.3/task__3dFWRhd.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.4220428112,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0c3f735b50dc1508.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3dFWRhd.json",
+      "wasm_sha256": "c3f4a84922cf0b1ddac6ba300793c1d6f8c46903415ac1ddc28d53826b30a6de",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3dFWRhd.json"
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "trial": "task__3FWeuup",
+      "score": 60.416666666666664,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 19,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2061.2590935230255,
+        "tool_seconds": 338.301851272583,
+        "api_calls_started": 24,
+        "api_calls_finished": 24,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 22,
+        "tool_calls_finished": 22,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.079470872879,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4578303,
+        "output_tokens": 86020,
+        "completed_responses": 23
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-4-argon",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 273251,
+      "rewards": {
+        "reward": 0.6041666666666666,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup",
+      "source_sha256": "db02bf7b79a8a3e58d2ff1ef79e37e5dfc8d0f7d7c73eb855e56a7d58fadd576",
+      "source_file": "sources/google__gemini-4-argon/task__3FWeuup.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 2.4021633537,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/92e2deca8dfabdd9.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3FWeuup.json",
+      "wasm_sha256": "38b43d1f3b8a6b53218ed9e49c7a986c3c7ce90c209d99457fe629429846f0a5",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3FWeuup.json"
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "trial": "task__9QyhEvx",
+      "score": 16.805555555555557,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 10,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2157.2386758327484,
+        "tool_seconds": 242.01094794273376,
+        "api_calls_started": 34,
+        "api_calls_finished": 34,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.084237098694,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 6250185,
+        "output_tokens": 110163,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3.1-flash",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 323808,
+      "rewards": {
+        "reward": 0.16805555555555557,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__9QyhEvx",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__9QyhEvx",
+      "source_sha256": "d4b44051eec329a33501f1f27502d27fe8a85c2ddcd61dd2a4d6bf557f1c90b9",
+      "source_file": "sources/minimax__minimax-m3.1-flash/task__9QyhEvx.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.19768617,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ca963b806ed068e7.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__9QyhEvx.json",
+      "wasm_sha256": "a2f0912f136fa0f95a3df2ecc04a7cdf6b12875734888342d61b5d38ae3b7af0",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__9QyhEvx.json"
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "trial": "task__2hSjV6C",
+      "score": 42.916666666666664,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 1,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2321.5272929668427,
+        "tool_seconds": 78.25653195381165,
+        "api_calls_started": 14,
+        "api_calls_finished": 14,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 15,
+        "tool_calls_finished": 15,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0771741867065,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 1718167,
+        "output_tokens": 63570,
+        "completed_responses": 13
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3.8-max-0902",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 316966,
+      "rewards": {
+        "reward": 0.42916666666666664,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C",
+      "source_sha256": "a25e3f98aee55deb506fafe456223e5118559d882c3ca22d45d87a2e8536e8a5",
+      "source_file": "sources/qwen__qwen3.8-max-0902/task__2hSjV6C.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.0927323,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/19922d42af246223.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__2hSjV6C.json",
+      "wasm_sha256": "3805c8b9565b638f39e338fa1594a847252b71f3e2e635bea4d5f21cfb2f3de3",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__2hSjV6C.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "trial": "task__FnRMrTU",
+      "score": 13.61111111111111,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 1,
+        "losses": 59
+      },
+      "practice_matches": 31,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1305.901413679123,
+        "tool_seconds": 1093.3009600639343,
+        "api_calls_started": 40,
+        "api_calls_finished": 40,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 41,
+        "tool_calls_finished": 41,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0777270793915,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 6819786,
+        "output_tokens": 63477,
+        "completed_responses": 39
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 329146,
+      "rewards": {
+        "reward": 0.1361111111111111,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.008333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU",
+      "source_sha256": "a91d258fef7603c71c9ff7ba201e1b878d19fbab6844ddac1007a6e9b36192ea",
+      "source_file": "sources/deepseek__deepseek-v4.1-flash-1017/task__FnRMrTU.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.0812370438,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/de9fd15aa91452b6.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__FnRMrTU.json",
+      "wasm_sha256": "82d7faad5f591ceea2b77c5c26e35fdd4fab47a7960d285761369a33eb3217cb",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__FnRMrTU.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "trial": "task__xPJpL3s",
+      "score": 5.138888888888888,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 14,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1791.5546951293945,
+        "tool_seconds": 607.5499467849731,
+        "api_calls_started": 43,
+        "api_calls_finished": 43,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 46,
+        "tool_calls_finished": 46,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.132006883621,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 7200655,
+        "output_tokens": 79769,
+        "completed_responses": 42
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 316508,
+      "rewards": {
+        "reward": 0.05138888888888889,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s",
+      "source_sha256": "f458e574ce102b7137b5b9ce34d4ce924208e6c4265ae6b1613363d38fab2254",
+      "source_file": "sources/deepseek__deepseek-v4.1-flash-1017/task__xPJpL3s.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.09287533926,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/384a7a4e77a81ec9.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__xPJpL3s.json",
+      "wasm_sha256": "2606c5f40ebdcdb5a739a3ba16c1679148c1aa2a575a4563725bc08abdd38793",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__xPJpL3s.json"
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "trial": "task__eE7Tu2R",
+      "score": 29.166666666666668,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 7,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2143.8784210681915,
+        "tool_seconds": 255.4471685886383,
+        "api_calls_started": 30,
+        "api_calls_finished": 30,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.074150800705,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4630940,
+        "output_tokens": 125512,
+        "completed_responses": 29
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3.1-flash",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 355345,
+      "rewards": {
+        "reward": 0.2916666666666667,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R",
+      "source_sha256": "b80e5b8c54e084697e30176f71ad8cd1eaec242605b1cd704a886bf73ef6df67",
+      "source_file": "sources/minimax__minimax-m3.1-flash/task__eE7Tu2R.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.1712534967,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b168c9300fddae84.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__eE7Tu2R.json",
+      "wasm_sha256": "d01df30c31a21c4d2ededa945a89c80443feb7b55ba27c95e0a97ccbc7dd49b5",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__eE7Tu2R.json"
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "trial": "task__xVXcCQj",
+      "score": 13.055555555555557,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 21,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1946.099224805832,
+        "tool_seconds": 453.35582184791565,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 38,
+        "tool_calls_finished": 38,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.074336051941,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4564099,
+        "output_tokens": 19444,
+        "completed_responses": 32
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 355554,
+      "rewards": {
+        "reward": 0.13055555555555556,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj",
+      "source_sha256": "956878fda060860b2628c97f1f1bdb06743a169f5c4d9c05248cfb709f9331a7",
+      "source_file": "sources/moonshotai__kimi-k3.1-pro/task__xVXcCQj.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.689014052,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ee8c7732815164a8.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__xVXcCQj.json",
+      "wasm_sha256": "5321847d548e82d2081b0cc4ddc00190dbf20b6dc654caf6affcf8beee7c54b1",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__xVXcCQj.json"
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "trial": "task__aZVzMmy",
+      "score": 20.416666666666668,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 13,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1905.683423757553,
+        "tool_seconds": 490.41500878334045,
+        "api_calls_started": 37,
+        "api_calls_finished": 37,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2396.7983202934265,
+        "coding_seconds": 2396.7983202934265
+      },
+      "usage": {
+        "input_tokens": 4785733,
+        "output_tokens": 20401,
+        "completed_responses": 37
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 324664,
+      "rewards": {
+        "reward": 0.20416666666666666,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+      "source_sha256": "b83421d1fd0f332ce80d5a3dedba96a490454a327ea738a939b47c7bc2d71cea",
+      "source_file": "sources/moonshotai__kimi-k3.1-pro/task__aZVzMmy.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.422470808,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/bbba5759ff8504e5.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__aZVzMmy.json",
+      "wasm_sha256": "9ff1e0fec592aae47cfce0ee44d4f1d015d36a7bc11367489d0ab051aa9b9585",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__aZVzMmy.json"
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "trial": "task__7sN5j8j",
+      "score": 44.72222222222222,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 28,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1834.2744455337524,
+        "tool_seconds": 565.130224943161,
+        "api_calls_started": 30,
+        "api_calls_finished": 30,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 30,
+        "tool_calls_finished": 30,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0808868408203,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 4272444,
+        "output_tokens": 59480,
+        "completed_responses": 29
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "z-ai/glm-5.3",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 353715,
+      "rewards": {
+        "reward": 0.44722222222222224,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j",
+      "source_sha256": "6631848aa3e69ae567393f5d7c9fc11423fbbe466eec5a8e1fb7bdfc2892d586",
+      "source_file": "sources/z-ai__glm-5.3/task__7sN5j8j.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.5636628656,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8858fbc96794c25a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__7sN5j8j.json",
+      "wasm_sha256": "acf78ce920aeb66a5c67ed4d4c11ea046748ca0ade197caf3bd98f1abbf6a2c5",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__7sN5j8j.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "trial": "task__zzXCLwe",
+      "score": 43.888888888888886,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 20,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1779.8228089809418,
+        "tool_seconds": 619.1461300849915,
+        "api_calls_started": 48,
+        "api_calls_finished": 48,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 48,
+        "tool_calls_finished": 48,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0778090953827,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 8397446,
+        "output_tokens": 82366,
+        "completed_responses": 47
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 353245,
+      "rewards": {
+        "reward": 0.4388888888888889,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe",
+      "source_sha256": "6a3cfeaedcb4592225f104d6809077ccffc0ee38d0fccc387582b6629594e249",
+      "source_file": "sources/deepseek__deepseek-v4.1-flash-1017/task__zzXCLwe.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.09759855996,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/9de559431583287e.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__zzXCLwe.json",
+      "wasm_sha256": "f9193d599c7c239d14a9d62177c462cfe7877e37f3257d6a706f8255699a0d26",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__zzXCLwe.json"
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "trial": "task__wHYkmsK",
+      "score": 46.94444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 26,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1382.8889594078064,
+        "tool_seconds": 1008.5712039470673,
+        "api_calls_started": 27,
+        "api_calls_finished": 27,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 26,
+        "tool_calls_finished": 26,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2391.9527032375336,
+        "coding_seconds": 2391.9527032375336
+      },
+      "usage": {
+        "input_tokens": 3742109,
+        "output_tokens": 15358,
+        "completed_responses": 27
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 320027,
+      "rewards": {
+        "reward": 0.46944444444444444,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK",
+      "source_sha256": "65b8e21b58481eca22043b170192dbef5f29e8c88f56a6bf36000919a5ea1a90",
+      "source_file": "sources/moonshotai__kimi-k3.1-pro/task__wHYkmsK.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.19069874,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0da8d171a5d0cf80.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__wHYkmsK.json",
+      "wasm_sha256": "bb91758c4e38816860f555889f7d8181b89e35a248fcd436af3513fb53cd3ce6",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__wHYkmsK.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "trial": "task__2cYuFiQ",
+      "score": 14.027777777777779,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 14,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2013.1116437911987,
+        "tool_seconds": 388.8032546043396,
+        "api_calls_started": 47,
+        "api_calls_finished": 46,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 49,
+        "tool_calls_finished": 49,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2403.0171337127686,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 9028370,
+        "output_tokens": 87814,
+        "completed_responses": 46
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 362302,
+      "rewards": {
+        "reward": 0.14027777777777778,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ",
+      "source_sha256": "7dda6385a08fcd03c9d9f5ad172541582c28c1af3d9e6c3dbaa9539ffa1e8efc",
+      "source_file": "sources/deepseek__deepseek-v4.1-flash-1017/task__2cYuFiQ.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.1049456034,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/270d597f9891d13a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__2cYuFiQ.json",
+      "wasm_sha256": "f532822e379df43666c6be50252814da9341cd9107b659066f35676736c19973",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__2cYuFiQ.json"
+    },
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "trial": "task__CksKemm",
+      "score": 33.47222222222222,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 13,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1350.3227672576904,
+        "tool_seconds": 524.5975897312164,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 562.3119523525238,
+        "controller_wall_seconds": 2442.0981328487396,
+        "coding_seconds": 1879.7861804962158
+      },
+      "usage": {
+        "input_tokens": 6895755,
+        "output_tokens": 42754,
+        "completed_responses": 36
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-1",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 362723,
+      "rewards": {
+        "reward": 0.3347222222222222,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__CksKemm",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__CksKemm",
+      "source_sha256": "14ad565d2ea4df463a62ae56f2ad40e70597723a6ea2219b5212cd87f4b1472e",
+      "source_file": "sources/anthropic__claude-fable-5-1/task__CksKemm.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a57ba9f481af5b67.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__CksKemm.json",
+      "wasm_sha256": "ba6ea1c5eea1f39c6b2237c74630c50e1fcc9f762e59dd15ae6f02f5e1464046",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__CksKemm.json"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__B7Csrvr",
+      "score": 78.05555555555556,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 47,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1673.3630547523499,
+        "tool_seconds": 582.3313419818878,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 1034.3385736942291,
+        "controller_wall_seconds": 3294.260817050934,
+        "coding_seconds": 2259.9222433567047
+      },
+      "usage": {
+        "input_tokens": 4411805,
+        "output_tokens": 26942,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 230886,
+      "rewards": {
+        "reward": 0.7805555555555556,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__B7Csrvr",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__B7Csrvr",
+      "source_sha256": "f72d10249ef0ad1efc2c82df438af18ca83310505c289efea49afa90638d383c",
+      "source_file": "sources/openai__gpt-6-astra/task__B7Csrvr.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/283adfddc662521e.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__B7Csrvr.json",
+      "wasm_sha256": "c151694a41bffad77bbe0a2b86fdd272e998e1e4de600636f29f0f6e4c8e1212",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__B7Csrvr.json"
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "trial": "task__QTseAoa",
+      "score": 2.638888888888889,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 5,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2147.925388097763,
+        "tool_seconds": 251.0252411365509,
+        "api_calls_started": 50,
+        "api_calls_finished": 50,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 54,
+        "tool_calls_finished": 54,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.085901737213,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 7448017,
+        "output_tokens": 100033,
+        "completed_responses": 49
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3.1-flash",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 156990,
+      "rewards": {
+        "reward": 0.02638888888888889,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__QTseAoa/task__a7gtJCM",
+      "source_sha256": "bbf9cc1d0e966344582bad4ce5679ddb7b016d06fef34e5d6574bc091573a134",
+      "source_file": "sources/minimax__minimax-m3.1-flash/task__QTseAoa.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.2003912757,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0b21b670a8c99986.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__QTseAoa.json",
+      "wasm_sha256": "6927e61abbadb3611afe5a5e43a3c91aa9640b529fd79346492859a8d21da367",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__QTseAoa.json"
+    },
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "trial": "task__EEjDQ8A",
+      "score": 39.30555555555556,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 17,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1628.5125584602356,
+        "tool_seconds": 307.76600909233093,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 35,
+        "tool_calls_finished": 35,
+        "scheduler_wait_seconds": 674.4272403717041,
+        "controller_wall_seconds": 2615.308733224869,
+        "coding_seconds": 1940.8814928531647
+      },
+      "usage": {
+        "input_tokens": 7783725,
+        "output_tokens": 50487,
+        "completed_responses": 36
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-1",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 394888,
+      "rewards": {
+        "reward": 0.39305555555555555,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__EEjDQ8A",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__EEjDQ8A",
+      "source_sha256": "f73607fd05dad3d6ed15664164100eb196848daf81a5e317ce7d5e85d607416d",
+      "source_file": "sources/anthropic__claude-fable-5-1/task__EEjDQ8A.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/d33164f8064ffc72.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__EEjDQ8A.json",
+      "wasm_sha256": "94be6b579b3f407fc1c9f5ee2696cad9bf59120609a238e7d7be104c4918201b",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__EEjDQ8A.json"
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "trial": "task__8HoxFbx",
+      "score": 69.58333333333333,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 38,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1908.610753774643,
+        "tool_seconds": 433.3909492492676,
+        "api_calls_started": 34,
+        "api_calls_finished": 34,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 34,
+        "tool_calls_finished": 34,
+        "scheduler_wait_seconds": 1246.9006354808807,
+        "controller_wall_seconds": 3592.9864728450775,
+        "coding_seconds": 2346.085837364197
+      },
+      "usage": {
+        "input_tokens": 5198566,
+        "output_tokens": 37596,
+        "completed_responses": 34
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6.1-sol",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 280841,
+      "rewards": {
+        "reward": 0.6958333333333333,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__8HoxFbx",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__8HoxFbx",
+      "source_sha256": "524e579c2cfec743d8bb91ff4ff9477e65ef5d8b3eef42cc079a5676bdb8f4f2",
+      "source_file": "sources/openai__gpt-6.1-sol/task__8HoxFbx.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/a94d1e64150995fe.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__8HoxFbx.json",
+      "wasm_sha256": "c816c44bfc0433335c53d1dbcb050000a7da14d16d36d96a8617a2bd734100fd",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__8HoxFbx.json"
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "trial": "task__3ebfqZr",
+      "score": 24.444444444444443,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 1,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2331.3042793273926,
+        "tool_seconds": 68.51795506477356,
+        "api_calls_started": 14,
+        "api_calls_finished": 14,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 17,
+        "tool_calls_finished": 17,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0720121860504,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 1567125,
+        "output_tokens": 52410,
+        "completed_responses": 13
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3.8-max-0902",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 274989,
+      "rewards": {
+        "reward": 0.24444444444444444,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__3ebfqZr/task__LjJFSf6",
+      "source_sha256": "7cb994a71a68645625b9a2da46f20c906eb21436e52e80fe88d1a62d62e4e303",
+      "source_file": "sources/qwen__qwen3.8-max-0902/task__3ebfqZr.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.9659925,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/4270c7c08adcb0c7.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3ebfqZr.json",
+      "wasm_sha256": "9074b7f22af30df11dcfcd0ccfe1f19d2e6aa886716e3cb172e4fb5e4073c206",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__3ebfqZr.json"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__QyGaGwC",
+      "score": 75.13888888888889,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 49,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1804.7302916049957,
+        "tool_seconds": 545.910849571228,
+        "api_calls_started": 38,
+        "api_calls_finished": 38,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 38,
+        "tool_calls_finished": 38,
+        "scheduler_wait_seconds": 1235.6001160144806,
+        "controller_wall_seconds": 3590.9334971904755,
+        "coding_seconds": 2355.333381175995
+      },
+      "usage": {
+        "input_tokens": 5204857,
+        "output_tokens": 30750,
+        "completed_responses": 38
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 219500,
+      "rewards": {
+        "reward": 0.7513888888888889,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QyGaGwC",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QyGaGwC",
+      "source_sha256": "9749f816ea082851c49e13d5f02a4ee312598f793b150aa77e710e9e4f54dfa1",
+      "source_file": "sources/openai__gpt-6-astra/task__QyGaGwC.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e574ceee47174485.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__QyGaGwC.json",
+      "wasm_sha256": "faf2b4038bb55fb25d0026ee35d948b2d96cb03c015501f66d1d5d0f2fb6ac4a",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__QyGaGwC.json"
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "trial": "task__d3UZRNk",
+      "score": 70.69444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 5,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1672.505784034729,
+        "tool_seconds": 662.8835694789886,
+        "api_calls_started": 34,
+        "api_calls_finished": 34,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2335.8464710712433,
+        "coding_seconds": 2335.8464710712433
+      },
+      "usage": {
+        "input_tokens": 3555182,
+        "output_tokens": 87875,
+        "completed_responses": 34
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-4-argon",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 232116,
+      "rewards": {
+        "reward": 0.7069444444444445,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-gemini-retry1/task__d3UZRNk",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-gemini-retry1/task__d3UZRNk",
+      "source_sha256": "a1863a4b3370034007f5bdde3d02c798b28c0ea92477efb2179977f7abecf4c9",
+      "source_file": "sources/google__gemini-4-argon/task__d3UZRNk.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.7567586828,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/2a0f33b131e44109.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-gemini-retry1-task__d3UZRNk.json",
+      "wasm_sha256": "3e290295716f60b91248672191dd4890ecc8ff575ab81f480140722f78189a51",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-gemini-retry1-task__d3UZRNk.json"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__dqKSYom",
+      "score": 64.58333333333334,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 1,
+        "losses": 58
+      },
+      "practice_matches": 46,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1843.4827468395233,
+        "tool_seconds": 508.3499217033386,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 32,
+        "tool_calls_finished": 32,
+        "scheduler_wait_seconds": 1053.7624371051788,
+        "controller_wall_seconds": 3409.6334977149963,
+        "coding_seconds": 2355.8710606098175
+      },
+      "usage": {
+        "input_tokens": 5000780,
+        "output_tokens": 33082,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 264434,
+      "rewards": {
+        "reward": 0.6458333333333334,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.025,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__dqKSYom",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__dqKSYom",
+      "source_sha256": "a99308e3fc7807507e00a2fe8201ef24b46f9c9d58393e10b9989a5d0bc54b06",
+      "source_file": "sources/openai__gpt-6-astra/task__dqKSYom.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/e201fd1d285fa696.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__dqKSYom.json",
+      "wasm_sha256": "3411ac9b50097ff8fe947206cf599299c169f08112051869ccef34bc0a9f55fb",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__dqKSYom.json"
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "trial": "task__czjn9HX",
+      "score": 14.027777777777779,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 11,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2020.5485553741455,
+        "tool_seconds": 336.8956117630005,
+        "api_calls_started": 48,
+        "api_calls_finished": 48,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 55,
+        "tool_calls_finished": 55,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2358.2627670764923,
+        "coding_seconds": 2358.2627670764923
+      },
+      "usage": {
+        "input_tokens": 3215364,
+        "output_tokens": 66768,
+        "completed_responses": 48
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "z-ai/glm-5.3",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 363004,
+      "rewards": {
+        "reward": 0.14027777777777778,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__czjn9HX/task__msZtjAX",
+      "source_sha256": "8c54fd539fd48689a9c5bc32b6790078c7f2fc43375abfc8b1ea2545bdc70066",
+      "source_file": "sources/z-ai__glm-5.3/task__czjn9HX.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.2432225168,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/31d938bdbabb9ba3.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__czjn9HX.json",
+      "wasm_sha256": "d06ad3fce8e78ecdf230f0ce8c0193cdd2448966db43a788605d487ba3233b9d",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__czjn9HX.json"
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "trial": "task__Ayj422k",
+      "score": 33.75,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 14,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1802.1308991909027,
+        "tool_seconds": 597.0527770519257,
+        "api_calls_started": 42,
+        "api_calls_finished": 42,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 45,
+        "tool_calls_finished": 45,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0774800777435,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 5964116,
+        "output_tokens": 48932,
+        "completed_responses": 41
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "z-ai/glm-5.3",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 385763,
+      "rewards": {
+        "reward": 0.3375,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Ayj422k/task__3qFkAmZ",
+      "source_sha256": "b97fdb33ad47a75c8b19c71fa0e48613450585615928d140d78f12546a636afc",
+      "source_file": "sources/z-ai__glm-5.3/task__Ayj422k.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.9608356592,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/7b8245096f16819f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Ayj422k.json",
+      "wasm_sha256": "646a8955ff8ca868b06b1cfb16a28b3f56395a90daf08f9010ecbc38688e43b4",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Ayj422k.json"
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "trial": "task__vVp2KJg",
+      "score": 76.94444444444444,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 14,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1958.7873301506042,
+        "tool_seconds": 379.0251941680908,
+        "api_calls_started": 34,
+        "api_calls_finished": 34,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 888.797758102417,
+        "controller_wall_seconds": 3230.8512580394745,
+        "coding_seconds": 2342.0534999370575
+      },
+      "usage": {
+        "input_tokens": 4617284,
+        "output_tokens": 30416,
+        "completed_responses": 34
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6.1-sol",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 227327,
+      "rewards": {
+        "reward": 0.7694444444444445,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vVp2KJg",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vVp2KJg",
+      "source_sha256": "584e3daf34af8eaa03dc7474e3918be6521e8ba0c1f6367095f301b7083de52d",
+      "source_file": "sources/openai__gpt-6.1-sol/task__vVp2KJg.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/798478c6fa0579bd.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__vVp2KJg.json",
+      "wasm_sha256": "9baf09b8f4d95420f12cf583526c1cb72010bfa6462652f04267a7f6a896858d",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__vVp2KJg.json"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "trial": "task__NCmBRkE",
+      "score": 1.8055555555555554,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 27,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1422.9999823570251,
+        "tool_seconds": 743.7862594127655,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 464.35071206092834,
+        "controller_wall_seconds": 2635.6449811458588,
+        "coding_seconds": 2171.2942690849304
+      },
+      "usage": {
+        "input_tokens": 6072928,
+        "output_tokens": 21505,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-luna",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 156389,
+      "rewards": {
+        "reward": 0.018055555555555554,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__NCmBRkE",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__NCmBRkE",
+      "source_sha256": "f0fdfcaf83f3404b344759cd4dbcfe4980218bc6612fcc1971df00db951e1ad3",
+      "source_file": "sources/openai__gpt-6-luna/task__NCmBRkE.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/108bbbdb8b40712e.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__NCmBRkE.json",
+      "wasm_sha256": "1429bcacad881c1e77590978739474b44c73b86ab212a87aa6ace52717e3798b",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__NCmBRkE.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "trial": "task__GhoA4hK",
+      "score": 15.138888888888888,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 28,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1757.5447072982788,
+        "tool_seconds": 620.4577724933624,
+        "api_calls_started": 37,
+        "api_calls_finished": 37,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 41,
+        "tool_calls_finished": 41,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2378.945508956909,
+        "coding_seconds": 2378.945508956909
+      },
+      "usage": {
+        "input_tokens": 6818177,
+        "output_tokens": 85127,
+        "completed_responses": 37
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 387186,
+      "rewards": {
+        "reward": 0.15138888888888888,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK-r2/task__XT6vRxB",
+      "source_sha256": "483773e34e88ac9884bb4e06f671108d0103c3832afed0611da94d26fc85aa5a",
+      "source_file": "sources/deepseek__deepseek-v4.1-flash-1017/task__GhoA4hK.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.09637296570000001,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/16065d6de762fcc1.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__GhoA4hK.json",
+      "wasm_sha256": "6f683304a9bfc027f49300a128fbca1186bac40020d7a1c9211987882755e91b",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__GhoA4hK.json"
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "trial": "task__ivs2RE6",
+      "score": 31.944444444444443,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 17,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1774.887479543686,
+        "tool_seconds": 612.1205472946167,
+        "api_calls_started": 31,
+        "api_calls_finished": 31,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 31,
+        "tool_calls_finished": 31,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2387.5957589149475,
+        "coding_seconds": 2387.5957589149475
+      },
+      "usage": {
+        "input_tokens": 4888165,
+        "output_tokens": 19307,
+        "completed_responses": 31
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "moonshotai/kimi-k3.1-pro",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 411788,
+      "rewards": {
+        "reward": 0.3194444444444444,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__ivs2RE6/task__5aYMHPF",
+      "source_sha256": "8c2741f7787d63758db0a234d0f6fc351cbeeeadf98a821f675db15adf393930",
+      "source_file": "sources/moonshotai__kimi-k3.1-pro/task__ivs2RE6.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.510899984,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/6a2c03bdef171fd4.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__ivs2RE6.json",
+      "wasm_sha256": "8f628da3c6af6cb632ce9902c05b260f85fa1f6d27503d86da16f5d398792ea9",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__ivs2RE6.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "trial": "task__Xe2Trpd",
+      "score": 29.86111111111111,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 8,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2163.658572435379,
+        "tool_seconds": 235.60751128196716,
+        "api_calls_started": 35,
+        "api_calls_finished": 35,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 37,
+        "tool_calls_finished": 37,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0760083198547,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 7673862,
+        "output_tokens": 47487,
+        "completed_responses": 34
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 390042,
+      "rewards": {
+        "reward": 0.2986111111111111,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Xe2Trpd/task__rgZ6N6o",
+      "source_sha256": "c175a610a32dd4d794c23cbc342d429861e18a005ea973ed840fc7b1a2c6c2e9",
+      "source_file": "sources/deepseek__deepseek-v4-pro-0813/task__Xe2Trpd.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.41334942131999997,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/ae4ed0289f93cb1c.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Xe2Trpd.json",
+      "wasm_sha256": "38e8ac4613e17e7dbb14c04a8ff3df68eadda34cdd3e7d9c01bf74820c7d28e6",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__Xe2Trpd.json"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "trial": "task__NtAZSDv",
+      "score": 27.22222222222222,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 13,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1624.932590007782,
+        "tool_seconds": 774.332437992096,
+        "api_calls_started": 38,
+        "api_calls_finished": 38,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 41,
+        "tool_calls_finished": 41,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.0868690013885,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 6992016,
+        "output_tokens": 36204,
+        "completed_responses": 37
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 441306,
+      "rewards": {
+        "reward": 0.2722222222222222,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__NtAZSDv/task__p9ojj6R",
+      "source_sha256": "7203a13945ed3646c3e9ebfbe5a99988c17493434ea09cb210d4685e2618a3de",
+      "source_file": "sources/deepseek__deepseek-v4-pro-0813/task__NtAZSDv.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 0.3425131512,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0a9d6501058f462a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__NtAZSDv.json",
+      "wasm_sha256": "806309d5ae6fe8bc73e748d7535b742da73bd3a88b8645427ca20bbcdb72bba3",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__NtAZSDv.json"
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__jcKkvbm",
+      "score": 42.77777777777778,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 105,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1096.5130922794342,
+        "tool_seconds": 829.0879354476929,
+        "api_calls_started": 55,
+        "api_calls_finished": 55,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 55,
+        "tool_calls_finished": 55,
+        "scheduler_wait_seconds": 539.2699439525604,
+        "controller_wall_seconds": 2471.492201089859,
+        "coding_seconds": 1932.2222571372986
+      },
+      "usage": {
+        "input_tokens": 3529320,
+        "output_tokens": 47715,
+        "completed_responses": 55
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 294087,
+      "rewards": {
+        "reward": 0.42777777777777776,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__jcKkvbm",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__jcKkvbm",
+      "source_sha256": "7eac37dd0da74c26fc65d0277d0167bdee56110af8318733776d7d0e5b71e643",
+      "source_file": "sources/anthropic__claude-opus-5.5/task__jcKkvbm.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8ec25ab21ac0534a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__jcKkvbm.json",
+      "wasm_sha256": "fa4405885a2fa8932cd37cd3a94d4f815a8e0fb1e8462c04155e0cdcb90dc8b8",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__jcKkvbm.json"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "trial": "task__AoA9Jyq",
+      "score": 22.083333333333332,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 49,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1682.4299023151398,
+        "tool_seconds": 674.123877286911,
+        "api_calls_started": 63,
+        "api_calls_finished": 63,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 62,
+        "tool_calls_finished": 62,
+        "scheduler_wait_seconds": 1464.7541000843048,
+        "controller_wall_seconds": 3828.8214468955994,
+        "coding_seconds": 2364.0673468112946
+      },
+      "usage": {
+        "input_tokens": 10876478,
+        "output_tokens": 27505,
+        "completed_responses": 63
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-luna",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 315178,
+      "rewards": {
+        "reward": 0.22083333333333333,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__AoA9Jyq",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__AoA9Jyq",
+      "source_sha256": "eab414847f46b0540d15ff83cf0ffd73dbe63f0fcfcf2df07a8d37a224a021ef",
+      "source_file": "sources/openai__gpt-6-luna/task__AoA9Jyq.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0ed9125c3dc3c732.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__AoA9Jyq.json",
+      "wasm_sha256": "7c24df06cce13ccf76507bf8fbf1f3ad1ac255aa73e4855fe509b580558e2603",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__AoA9Jyq.json"
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "trial": "task__Cq2rPVk",
+      "score": 73.88888888888889,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 36,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1990.6830463409424,
+        "tool_seconds": 323.2619445323944,
+        "api_calls_started": 32,
+        "api_calls_finished": 32,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 32,
+        "tool_calls_finished": 32,
+        "scheduler_wait_seconds": 1091.716700553894,
+        "controller_wall_seconds": 3409.588886976242,
+        "coding_seconds": 2317.872186422348
+      },
+      "usage": {
+        "input_tokens": 4885490,
+        "output_tokens": 32459,
+        "completed_responses": 32
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6.1-sol",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 229578,
+      "rewards": {
+        "reward": 0.7388888888888889,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Cq2rPVk",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Cq2rPVk",
+      "source_sha256": "da26de0bf77b65a444bb444e5644cd2ab9b19977c23a47a9a800ded6d7241619",
+      "source_file": "sources/openai__gpt-6.1-sol/task__Cq2rPVk.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/664a1be5cc170e04.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__Cq2rPVk.json",
+      "wasm_sha256": "722f6538bc48e487c1dbd5e221796bf68f42291d6cd2f38bf294c7f98f05ae5a",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__Cq2rPVk.json"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "trial": "task__Uaszw9S",
+      "score": 41.388888888888886,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 30,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1710.2401838302612,
+        "tool_seconds": 575.5252420902252,
+        "api_calls_started": 55,
+        "api_calls_finished": 55,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 59,
+        "tool_calls_finished": 59,
+        "scheduler_wait_seconds": 1405.4759361743927,
+        "controller_wall_seconds": 3698.4368646144867,
+        "coding_seconds": 2292.960928440094
+      },
+      "usage": {
+        "input_tokens": 8714737,
+        "output_tokens": 26714,
+        "completed_responses": 55
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-luna",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 323986,
+      "rewards": {
+        "reward": 0.41388888888888886,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Uaszw9S",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Uaszw9S",
+      "source_sha256": "45fd765ca9452078a4db9be6aa9c4ed7df1adb88ee9fd05b02d9af13e5f515ef",
+      "source_file": "sources/openai__gpt-6-luna/task__Uaszw9S.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1d05302530b5542a.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__Uaszw9S.json",
+      "wasm_sha256": "3e28c2a08718b0ec41c7ce3b94fcfd1ff01a2021ee4794d79883992b8aac8aba",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__Uaszw9S.json"
+    },
+    {
+      "model": "anthropic/claude-opus-5.5",
+      "trial": "task__M7wZeE5",
+      "score": 42.22222222222222,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 9,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 997.2171845436096,
+        "tool_seconds": 1073.441316127777,
+        "api_calls_started": 56,
+        "api_calls_finished": 56,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 56,
+        "tool_calls_finished": 56,
+        "scheduler_wait_seconds": 1157.0996186733246,
+        "controller_wall_seconds": 3234.561779022217,
+        "coding_seconds": 2077.462160348892
+      },
+      "usage": {
+        "input_tokens": 3817047,
+        "output_tokens": 42628,
+        "completed_responses": 56
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-opus-5-5",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 292116,
+      "rewards": {
+        "reward": 0.4222222222222222,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__M7wZeE5",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__M7wZeE5",
+      "source_sha256": "438e8d5e8a8fc94f0c9074c25642913567f6eb69d21d3b916fcdc29e4b262643",
+      "source_file": "sources/anthropic__claude-opus-5.5/task__M7wZeE5.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/b596fcf7cb1b1a8f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__M7wZeE5.json",
+      "wasm_sha256": "b41269024dffbc6ef4d3059c405eff8dbe455ca146118c93e785bdc19329e87e",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__M7wZeE5.json"
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "trial": "task__A5giJDu",
+      "score": 75.27777777777777,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 57
+      },
+      "practice_matches": 29,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2099.7691872119904,
+        "tool_seconds": 244.97628045082092,
+        "api_calls_started": 38,
+        "api_calls_finished": 38,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 38,
+        "tool_calls_finished": 38,
+        "scheduler_wait_seconds": 1296.4456145763397,
+        "controller_wall_seconds": 3646.0534760951996,
+        "coding_seconds": 2349.60786151886
+      },
+      "usage": {
+        "input_tokens": 5202638,
+        "output_tokens": 35317,
+        "completed_responses": 38
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6.1-sol",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 245522,
+      "rewards": {
+        "reward": 0.7527777777777778,
+        "champion_win_rate": 0.05,
+        "champion_points": 0.05,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__A5giJDu",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__A5giJDu",
+      "source_sha256": "ce6767f4ef27252786e17fbaaa280176baaff9484549934ea379285655211a9c",
+      "source_file": "sources/openai__gpt-6.1-sol/task__A5giJDu.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/8aa8d5f7e742036f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__A5giJDu.json",
+      "wasm_sha256": "46ccdba755b341467f9d561a344d2ce31873f5305fb5bf57b913fae12b6aea11",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__A5giJDu.json"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "trial": "task__3AwaaaD",
+      "score": 20.833333333333336,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 26,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1666.0944185256958,
+        "tool_seconds": 658.7851457595825,
+        "api_calls_started": 37,
+        "api_calls_finished": 37,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 41,
+        "tool_calls_finished": 41,
+        "scheduler_wait_seconds": 771.1295325756073,
+        "controller_wall_seconds": 3100.9551990032196,
+        "coding_seconds": 2329.8256664276123
+      },
+      "usage": {
+        "input_tokens": 5673709,
+        "output_tokens": 26221,
+        "completed_responses": 37
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-luna",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 343853,
+      "rewards": {
+        "reward": 0.20833333333333334,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__3AwaaaD",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__3AwaaaD",
+      "source_sha256": "07e59adbf98f31e6b7e7fa9eeb3167e166ceb41429bab393e0efba8259d6d405",
+      "source_file": "sources/openai__gpt-6-luna/task__3AwaaaD.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/6a19eda79eab3643.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__3AwaaaD.json",
+      "wasm_sha256": "08c1fa9d4586e3a725cfe53c3ad08d52222348a7066a93e93320903b3003ff2d",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__3AwaaaD.json"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__RLYgGM4",
+      "score": 79.72222222222223,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 15,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1907.656381368637,
+        "tool_seconds": 421.5248463153839,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 1249.9735763072968,
+        "controller_wall_seconds": 3583.6986050605774,
+        "coding_seconds": 2333.7250287532806
+      },
+      "usage": {
+        "input_tokens": 5092783,
+        "output_tokens": 30446,
+        "completed_responses": 36
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 220902,
+      "rewards": {
+        "reward": 0.7972222222222223,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RLYgGM4",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__RLYgGM4",
+      "source_sha256": "c0962b2e7c44759132bbdca04ec85595498a4dab448632c31055944610783134",
+      "source_file": "sources/openai__gpt-6-astra/task__RLYgGM4.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/f1d82c220d04aaa6.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__RLYgGM4.json",
+      "wasm_sha256": "cd555335f3ab0e535b48aa885cbca679a3726440206c4fe6cd57e44b6cdd43f4",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__RLYgGM4.json"
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "trial": "task__YuUEN3z",
+      "score": 12.36111111111111,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 5,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 2234.1675832271576,
+        "tool_seconds": 165.49519395828247,
+        "api_calls_started": 20,
+        "api_calls_finished": 20,
+        "interrupted_api_calls": 1,
+        "tool_calls_started": 22,
+        "tool_calls_finished": 22,
+        "scheduler_wait_seconds": 0,
+        "controller_wall_seconds": 2400.076003074646,
+        "coding_seconds": 2400
+      },
+      "usage": {
+        "input_tokens": 2912635,
+        "output_tokens": 50851,
+        "completed_responses": 19
+      },
+      "inference": {
+        "backend": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3.8-max-0902",
+        "accounting": "provider_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 693752,
+      "rewards": {
+        "reward": 0.12361111111111112,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__YuUEN3z/task__MKkxufk",
+      "source_sha256": "d88f1094734820826e6c7a7aaaa48ec56ebefc3762edeced2580f23f904e2521",
+      "source_file": "sources/qwen__qwen3.8-max-0902/task__YuUEN3z.rs",
+      "validation_kind": "lossless_replay",
+      "completed_call_cost_usd": 1.3717519200000001,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/09db2457af70fda1.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-daytona-task__YuUEN3z.json",
+      "wasm_sha256": "a06e720bb5238c3b05a4eb3f1a380d9f27316982b74ecb500c4007d9f900d989",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-daytona-task__YuUEN3z.json"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "trial": "task__sMe8UBW",
+      "score": 77.22222222222223,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 58
+      },
+      "practice_matches": 72,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1749.9238584041595,
+        "tool_seconds": 574.0183203220367,
+        "api_calls_started": 41,
+        "api_calls_finished": 41,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 40,
+        "tool_calls_finished": 40,
+        "scheduler_wait_seconds": 1080.511813402176,
+        "controller_wall_seconds": 3409.3470311164856,
+        "coding_seconds": 2328.8352177143097
+      },
+      "usage": {
+        "input_tokens": 6094951,
+        "output_tokens": 33135,
+        "completed_responses": 41
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-astra",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 207029,
+      "rewards": {
+        "reward": 0.7722222222222223,
+        "champion_win_rate": 0.03333333333333333,
+        "champion_points": 0.03333333333333333,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__sMe8UBW",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__sMe8UBW",
+      "source_sha256": "bd880018140e3a79be5a57465a21d799e38ae2a1ace015bb96cacd64a9a08d4e",
+      "source_file": "sources/openai__gpt-6-astra/task__sMe8UBW.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/29acf51a64c963e1.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__sMe8UBW.json",
+      "wasm_sha256": "583fee23902e0717f1cc97f8c2cb7e9cd192eb55733fb4baa173d758647008b6",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__sMe8UBW.json"
+    },
+    {
+      "model": "anthropic/claude-fable-5-1",
+      "trial": "task__QdyEq8X",
+      "score": 32.361111111111114,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 17,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1553.4155492782593,
+        "tool_seconds": 348.03671169281006,
+        "api_calls_started": 35,
+        "api_calls_finished": 35,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 35,
+        "tool_calls_finished": 35,
+        "scheduler_wait_seconds": 1503.189536333084,
+        "controller_wall_seconds": 3409.1979591846466,
+        "coding_seconds": 1906.0084228515625
+      },
+      "usage": {
+        "input_tokens": 6831959,
+        "output_tokens": 45998,
+        "completed_responses": 35
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-1",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 347027,
+      "rewards": {
+        "reward": 0.3236111111111111,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QdyEq8X",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__QdyEq8X",
+      "source_sha256": "13e3d0977d1aa3f50a5c877599ba02ec20c86ed702bbd2ec99c5e95b91bb81e4",
+      "source_file": "sources/anthropic__claude-fable-5-1/task__QdyEq8X.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/bebce5e00b6bf57f.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__QdyEq8X.json",
+      "wasm_sha256": "9a4c85ec4ddcc099daead879682e99247af6e54dcf39909e8d561b026293186b",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__QdyEq8X.json"
+    },
+    {
+      "model": "openai/gpt-6.1-sol",
+      "trial": "task__vtvnYcG",
+      "score": 76.25,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 1,
+        "losses": 58
+      },
+      "practice_matches": 16,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1965.9405879974365,
+        "tool_seconds": 322.193639755249,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 48,
+        "tool_calls_finished": 48,
+        "scheduler_wait_seconds": 1419.8394219875336,
+        "controller_wall_seconds": 3713.6619958877563,
+        "coding_seconds": 2293.822573900223
+      },
+      "usage": {
+        "input_tokens": 5139632,
+        "output_tokens": 33900,
+        "completed_responses": 36
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6.1-sol",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 234509,
+      "rewards": {
+        "reward": 0.7625,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.025,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vtvnYcG",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__vtvnYcG",
+      "source_sha256": "a7ecb24902f68c101ed3a6317ae904673260a71ea125428973c6d2658ef6ac58",
+      "source_file": "sources/openai__gpt-6.1-sol/task__vtvnYcG.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/0ca64646cba8dfe1.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__vtvnYcG.json",
+      "wasm_sha256": "293f63eaa04af28fd3b3dcbda5abed8cd7159fc244a368c0462d36f3e75755cd",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__vtvnYcG.json"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "trial": "task__LToTkCd",
+      "score": 11.805555555555555,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 29,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1939.5557317733765,
+        "tool_seconds": 425.5777690410614,
+        "api_calls_started": 60,
+        "api_calls_finished": 60,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 60,
+        "tool_calls_finished": 60,
+        "scheduler_wait_seconds": 1431.9235179424286,
+        "controller_wall_seconds": 3804.458116054535,
+        "coding_seconds": 2372.5345981121063
+      },
+      "usage": {
+        "input_tokens": 11930150,
+        "output_tokens": 25003,
+        "completed_responses": 60
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "gpt-6-luna",
+        "accounting": "subscription_usage",
+        "api_protocol": "chat"
+      },
+      "replay_actions": 352564,
+      "rewards": {
+        "reward": 0.11805555555555555,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__LToTkCd",
+      "graded_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__LToTkCd",
+      "source_sha256": "0c261bf46e0947d758d3f85ad4670ec3b2df3eeb1360a770106259a0806c2b1c",
+      "source_file": "sources/openai__gpt-6-luna/task__LToTkCd.rs",
+      "validation_kind": "full_export",
+      "completed_call_cost_usd": null,
+      "validation_receipt": "artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/accepted-receipts/1012cbe56378e714.json",
+      "saved_validation_receipt": "validation_receipts/continuous-split-full-20261031T075011Z-local-task__LToTkCd.json",
+      "wasm_sha256": "f576c13f5f8e4a781b485e546bb35e91a12e2e1c803fe698f52659a4cc8eb3d7",
+      "compilation_receipt_file": "compilation_receipts/continuous-split-full-20261031T075011Z-local-task__LToTkCd.json"
+    }
+  ],
+  "infrastructure": {
+    "authoring_retry": {
+      "reason": "OpenRouter response lacked choices; authoring worker raised KeyError",
+      "failed_trial": "continuous-split-full-20261031T075011Z-daytona/task__aUYod56",
+      "model": "google/gemini-4-argon",
+      "replacement_job": "continuous-split-full-20261031T075011Z-gemini-retry1",
+      "config": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/daytona-gemini-retry1.json",
+      "pid": 72511,
+      "caffeinate_pid": 72512,
+      "created_at": "2026-10-31T09:18:41.198569+00:00",
+      "unchanged_protocol_and_parameters": true,
+      "restarts_from_clean_starter": true,
+      "original_failure_retained_and_not_scored": true
+    },
+    "grading_recoveries": {
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__iQenkzx",
+        "pid": 78620,
+        "caffeinate_pid": 78621,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/grading-checkpoints/daytona/task__iQenkzx",
+        "source_sha256": "006a3587ab78d73e3800da712dc87b1cf6f76609832249ff59cabfd9d09b6d63",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T09:52:09.391123+00:00",
+        "error": "^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 295, in verify\n    raise DownloadVerifierDirError(\nharbor.verifier.verifier.DownloadVerifierDirError: Failed to download verifier directory from environment\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__QTseAoa",
+        "pid": 78622,
+        "caffeinate_pid": 78623,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/grading-checkpoints/daytona/task__QTseAoa",
+        "source_sha256": "bbf9cc1d0e966344582bad4ce5679ddb7b016d06fef34e5d6574bc091573a134",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T09:52:09.399436+00:00",
+        "error": "^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 295, in verify\n    raise DownloadVerifierDirError(\nharbor.verifier.verifier.DownloadVerifierDirError: Failed to download verifier directory from environment\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__3ebfqZr",
+        "pid": 78624,
+        "caffeinate_pid": 78625,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/grading-checkpoints/daytona/task__3ebfqZr",
+        "source_sha256": "7cb994a71a68645625b9a2da46f20c906eb21436e52e80fe88d1a62d62e4e303",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T09:52:09.408127+00:00",
+        "error": "^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 295, in verify\n    raise DownloadVerifierDirError(\nharbor.verifier.verifier.DownloadVerifierDirError: Failed to download verifier directory from environment\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__czjn9HX",
+        "pid": 81736,
+        "caffeinate_pid": 81737,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__czjn9HX",
+        "source_sha256": "8c54fd539fd48689a9c5bc32b6790078c7f2fc43375abfc8b1ea2545bdc70066",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:32:08.759237+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__Xe2Trpd",
+        "pid": 81738,
+        "caffeinate_pid": 81739,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__Xe2Trpd",
+        "source_sha256": "c175a610a32dd4d794c23cbc342d429861e18a005ea973ed840fc7b1a2c6c2e9",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:32:08.766484+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__YuUEN3z",
+        "pid": 81853,
+        "caffeinate_pid": 81854,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__YuUEN3z",
+        "source_sha256": "d88f1094734820826e6c7a7aaaa48ec56ebefc3762edeced2580f23f904e2521",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:32:38.782417+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__ivs2RE6",
+        "pid": 81893,
+        "caffeinate_pid": 81894,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__ivs2RE6",
+        "source_sha256": "8c2741f7787d63758db0a234d0f6fc351cbeeeadf98a821f675db15adf393930",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:34:08.821190+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK-r2",
+        "pid": 82270,
+        "caffeinate_pid": 82271,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__GhoA4hK",
+        "source_sha256": "483773e34e88ac9884bb4e06f671108d0103c3832afed0611da94d26fc85aa5a",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:38:55.487741+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "previous_recovery_attempts": [
+          {
+            "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK",
+            "pid": 82143,
+            "reason": "Daytona session submission disconnected during setup"
+          }
+        ],
+        "grading_retry_number": 2,
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__Ayj422k",
+        "pid": 82145,
+        "caffeinate_pid": 82146,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__Ayj422k",
+        "source_sha256": "b97fdb33ad47a75c8b19c71fa0e48613450585615928d140d78f12546a636afc",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:36:08.886492+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      },
+      "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv": {
+        "original_trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv",
+        "job_name": "continuous-split-full-20261031T075011Z-recover-daytona-task__NtAZSDv",
+        "pid": 82147,
+        "caffeinate_pid": 82148,
+        "backend": "daytona",
+        "checkpoint": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-campaigns/continuous-split-full-20261031T075011Z/compact-checkpoints/daytona/task__NtAZSDv",
+        "source_sha256": "7203a13945ed3646c3e9ebfbe5a99988c17493434ea09cb210d4685e2618a3de",
+        "additional_authoring_seconds": 0,
+        "additional_model_calls": 0,
+        "verifier_guard_seconds": 43200,
+        "created_at": "2026-10-31T10:36:08.893412+00:00",
+        "error": "e-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runtime/lib/python3.12/site-packages/harbor/trial/trial.py\", line 978, in _verify_with_timeout\n    raise VerifierTimeoutError(\nharbor.trial.errors.VerifierTimeoutError: Verifier execution timed out after 7200.0 seconds\n",
+        "stopped_after_validated_export": true,
+        "cleanup_reason": "Complete validated result already preserved; stop redundant grading or large-file export."
+      }
+    },
+    "raw_native_failures": [
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__QTseAoa/task__a7gtJCM",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__QTseAoa/task__a7gtJCM/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__ivs2RE6/task__5aYMHPF",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__ivs2RE6/task__5aYMHPF/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__YuUEN3z/task__MKkxufk",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__YuUEN3z/task__MKkxufk/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__NtAZSDv/task__p9ojj6R",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__NtAZSDv/task__p9ojj6R/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK-r2/task__XT6vRxB",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK-r2/task__XT6vRxB/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Xe2Trpd/task__rgZ6N6o",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Xe2Trpd/task__rgZ6N6o/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__czjn9HX/task__msZtjAX",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__czjn9HX/task__msZtjAX/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__3ebfqZr/task__LjJFSf6",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__3ebfqZr/task__LjJFSf6/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__ivs2RE6/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__F6fwpX8/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rYrSQkE/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__q9ttKRd/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx",
+        "exception_type": "DownloadVerifierDirError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iQenkzx/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__FnRMrTU/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__UUdGAJZ/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xPJpL3s/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__C3KfNxz/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__wHYkmsK/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__YuUEN3z/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Jbx9hZF/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__rBsF3UA/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aUYod56",
+        "exception_type": "RuntimeError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aUYod56/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__yF7sWP5/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2hSjV6C/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa",
+        "exception_type": "DownloadVerifierDirError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__QTseAoa/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__xVXcCQj/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__GhoA4hK/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3dFWRhd/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Ayj422k/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__NtAZSDv/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__7sN5j8j/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__zzXCLwe/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__2cYuFiQ/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__eE7Tu2R/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3FWeuup/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__czjn9HX/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr",
+        "exception_type": "DownloadVerifierDirError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__3ebfqZr/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__HiPDT3h/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__iFMojkJ/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd",
+        "exception_type": "VerifierTimeoutError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__Xe2Trpd/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Ayj422k/task__3qFkAmZ",
+        "exception_type": "CancelledError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__Ayj422k/task__3qFkAmZ/exception.txt"
+      },
+      {
+        "trial": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK/task__x38wDAJ",
+        "exception_type": "DaytonaConnectionError",
+        "raw_log": "artifacts/harbor-runs/continuous-split-full-20261031T075011Z-recover-daytona-task__GhoA4hK/task__x38wDAJ/exception.txt"
+      }
+    ]
+  },
+  "costs": {
+    "completed_call_openrouter_usd": 36.25789819509,
+    "failed_authoring_completed_call_usd": 1.2120805224,
+    "proxy_subscription_cost_usd": null,
+    "daytona_settled_cost_usd": null,
+    "note": "Completed-response inference charges exclude potentially billed interrupted calls and setup probes. Proxy subscription cost and settled Daytona charges are not available from these receipts."
+  },
+  "limitations": [
+    "Local proxy trials used ARM Docker/Colima; OpenRouter trials used x86_64 Daytona, with the same declared runtime limits.",
+    "Scores include endpoint latency under concurrent load.",
+    "Standard deviation measures variation across five authored bots on this fixed panel.",
+    "Lossless replay exports preserve all original native audited action entries and hashes; their public observations are reconstructed with the pinned native engine. Raw public bytes were locally rehashed for full exports; decoder equivalence was qualified against 36 complete original games."
+  ],
+  "harness_commit": "e27e552fd4308e5e6970a9ffc32cb464531dac1c"
+}

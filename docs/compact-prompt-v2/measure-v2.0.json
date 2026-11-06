@@ -1,0 +1,69 @@
+{
+  "examples": 356727,
+  "failures": 0,
+  "failure_samples": [],
+  "old_tokens": {
+    "n": 356727,
+    "mean": 10123.865115340303,
+    "median": 9041,
+    "p90": 17273,
+    "max": 39323
+  },
+  "new_tokens": {
+    "n": 356727,
+    "mean": 3150.203797301578,
+    "median": 2951,
+    "p90": 4598,
+    "max": 10326
+  },
+  "token_ratio_new_over_old": 0.3111661170325349,
+  "old_system_tokens": 1008,
+  "new_system_tokens": 1056,
+  "old_user_chars_mean": 24586.602592458657,
+  "new_user_chars_mean": 3739.777841318431,
+  "prefix_all": {
+    "pairs": 355727,
+    "old_shared_fraction": 0.13960264432498512,
+    "new_shared_fraction": 0.6372837314546305,
+    "old_uncached_tokens": 9021.518501547534,
+    "new_uncached_tokens": 1243.0662783539062
+  },
+  "prefix_same_turn": {
+    "pairs": 335737,
+    "old_shared_fraction": 0.1406857426901367,
+    "new_shared_fraction": 0.6394770788760823,
+    "old_uncached_tokens": 8906.567405439377,
+    "new_uncached_tokens": 1226.1707884445266
+  },
+  "prefix_next_turn": {
+    "pairs": 19990,
+    "old_shared_fraction": 0.12141173908131855,
+    "new_shared_fraction": 0.6004459183862965,
+    "old_uncached_tokens": 10952.150625312657,
+    "new_uncached_tokens": 1526.8302151075538
+  },
+  "new_user_section_tokens_mean": {
+    "legal": 772.2781313997897,
+    "map": 466.8111473958045,
+    "features": 340.1670448884707,
+    "your_units": 226.6599324735706,
+    "cities": 116.44650467703548,
+    "recent": 80.13104001771185,
+    "enemy_units": 31.111031161786684,
+    "header": 18.0,
+    "status": 13.224940499252781,
+    "technology": 10.752781313997897
+  },
+  "new_user_section_share": {
+    "legal": 0.3720777715999259,
+    "map": 0.22490608553969316,
+    "features": 0.1638899133456268,
+    "your_units": 0.10920304376985857,
+    "cities": 0.05610304656989217,
+    "recent": 0.03860652994502601,
+    "enemy_units": 0.014989059868718424,
+    "header": 0.008672264067168806,
+    "status": 0.006371676460117521,
+    "technology": 0.0051806088339726745
+  }
+}

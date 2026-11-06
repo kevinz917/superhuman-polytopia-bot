@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "games": 36,
+  "identical_original_game_records": true,
+  "original_public_and_private_trace_hashes_matched": true,
+  "all_exported_public_trace_digests_verified": true,
+  "no_additional_model_calls": true,
+  "original_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/split-local-live-smoke-20261031/local-live-smoke-task__wCsHHDQ",
+  "reconstructed_trial": "artifacts/harbor-runs/split-compact-recovery-qualification-20261031/task__F8PaHJD"
+}

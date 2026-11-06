@@ -184,7 +184,10 @@ Gates run on the merged tree (Stage A branch + main + this branch), all on Modal
   variant mix (4 x 1,000 ticks, 96,000 steps, 40 round-cap truncations): states, masks, views, `final_views`,
   policy features and `final_features` all equal. (The first attempt caught one drop-in detail: CpuGames leaves
   the final features of lanes that did not truncate at zero, not the encode of a zero view; fixed.)
-- the whole pytest suite, one process per file: STAGEA_PYTEST
+- the whole pytest suite, one process per file: 2,308 passed on the pre-merge tree once two learner tests in
+  `tests/test_rl_18x18.py` were updated to Stage A1's protocol (inbox `(batch, segments)` tuples, no published
+  critic under `learner_values`, `_assemble` returning host/views/keep); on the merged `main` (7f66add):
+  75 files, 2,323 passed, 0 failed
 - a 10-minute end-to-end training smoke of the c5 recipe (`engine='rust'`, the default, 1xH100 learner, 2x16-vCPU actor
   containers of 16 processes x 24 games, proposed-v1 maps, omniscient critic, ledger `runs/rust-engine`):
   run `rust-engine-smoke-1` (Modal app `ap-enJgGbWh42qqMHr2bGV8DW`, $7.11/h): both actor containers report

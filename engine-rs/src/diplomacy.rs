@@ -1,12 +1,24 @@
-//! gpu/diplomacy.py: native two-player diplomacy. Games with more seats have no diplomacy (no ability is legal);
-//! their per-pair tables stay false, so the peace terms elsewhere are inert.
+//! Diplomacy between every pair of seats, two seats or four (the real game's player diplomacy,
+//! diplomacy commands for opponent and the diplomacy commands; docs/rules-parity-2-summary.md).
+//!
+//! The diplomatic action family has one block of BLOCK entries per other seat, addressed by turn-order offset from
+//! the mover: block b is the seat b + 1 places after the mover (block_seat). A two-seat game only ever uses block 0,
+//! the sole opponent, so its entries keep the earlier one-opponent layout. Within a block: 0 break peace,
+//! 1 decline / 2 accept a peace request, 3 embassy, 4 offer peace, 5 destroy embassy.
 
 use crate::economy::discover;
 use crate::geom::Geom;
 use crate::military::remove;
 use crate::rules::Rules;
-use crate::state::State;
-use crate::structures::connections;
+use crate::state::{State, MAXP};
+use crate::structures::{connections, update_routes};
+
+/// Entries per opponent block of the diplomatic family.
+pub const BLOCK: usize = 6;
+/// Blocks in the family (one per possible other seat).
+pub const BLOCKS: usize = MAXP - 1;
+/// Action parameter (ability) of each entry of a block.
+pub const ABILITIES: [i32; BLOCK] = [18, 19, 19, 20, 21, 22];
 
 #[inline]
 pub fn protected(s: &State, owner: i32, other: i32) -> bool {
@@ -14,50 +26,118 @@ pub fn protected(s: &State, owner: i32, other: i32) -> bool {
     other > 0 && (owner == other || s.players.peace[p][q] || s.players.truce_breaker[p][q] != 0)
 }
 
-/// Opponent capital tile (first match) and whether one exists; shared by legal_masks and decode.
-pub fn opponent_capital(s: &State) -> (usize, bool) {
-    if s.np != 2 {
+/// Seat id of block `b`: the seat b + 1 places after the mover in turn order; 0 when the game has no such seat.
+#[inline]
+pub fn block_seat(s: &State, b: usize) -> i32 {
+    if b + 1 >= s.np {
+        return 0;
+    }
+    (s.current_player - 1 + b as i32 + 1).rem_euclid(s.np as i32) + 1
+}
+
+/// Block of seat `q` (1-based id, not the mover) relative to the mover.
+#[inline]
+pub fn seat_block(s: &State, q: i32) -> usize {
+    ((q - s.current_player).rem_euclid(s.np as i32) - 1) as usize
+}
+
+/// Seat `q`'s capital tile (its original capital, still its own city; first match) and whether it has one
+/// (current capital coordinates / owns their capital).
+pub fn capital_of(s: &State, q: i32) -> (usize, bool) {
+    if q <= 0 {
         return (0, false);
     }
-    let other = 3 - s.current_player;
     for i in 0..s.n {
-        if s.tiles.capital[i] == other && s.cities.owner[i] == other {
+        if s.tiles.capital[i] == q && s.cities.owner[i] == q {
             return (i, true);
         }
     }
     (0, false)
 }
 
-/// diplomacy.legal for Action(3, source, target, ability).
-pub fn legal(s: &State, source: i32, target: i32, ability: i32) -> bool {
-    legal_with(s, source, target, ability, opponent_capital(s))
+/// The two-seat opponent's capital (block 0's embassy target).
+pub fn opponent_capital(s: &State) -> (usize, bool) {
+    capital_of(s, block_seat(s, 0))
 }
 
-/// diplomacy.legal given opponent_capital(s).
+/// diplomacy.legal for Action(3, source = the other seat's id, target, ability).
+pub fn legal(s: &State, source: i32, target: i32, ability: i32) -> bool {
+    legal_with(s, source, target, ability, capital_of(s, source))
+}
+
+/// diplomacy.legal given capital_of(s, source).
 pub fn legal_with(s: &State, source: i32, target: i32, ability: i32, (capital, has_capital): (usize, bool)) -> bool {
-    if s.np != 2 {
+    let np = s.np as i32;
+    if source < 1 || source > np || source == s.current_player {
         return false;
     }
+    // a pending peace request is a command trigger: it must be answered before anything else
+    // (peace request response; diplomacy makes it pending on the receiver's turn)
+    if let Some(sender) = pending_sender(s) {
+        return source == sender && ability == 19 && (target == 0 || target == 1);
+    }
     let p = s.p();
-    let q = (2 - s.current_player) as usize;
+    let q = (source - 1) as usize;
     let pl = &s.players;
-    let other = q as i32 + 1;
-    let eligible = source == other && pl.known[p][q] && pl.killed_turn[q] == 0 && pl.resigned_turn[q] == 0;
+    // diplomacy commands for opponent: only known players still in the game
+    let eligible = s.alive(q) && pl.known[p][q];
     eligible
+        // valid
         && ((ability == 18 && pl.peace[p][q])
-            || (ability == 19 && pl.peace_offer[p][q] && (target == 0 || target == 1))
+            // valid (v >= 80): no war check; embassy cost for player
             || (ability == 20 && pl.tech[p][38] && !pl.embassy[p][q] && has_capital && target == capital as i32
-                && pl.stars[p] >= 5 && s.turn * 2 + p as i32 >= pl.hostile_until[p])
-            || (ability == 21 && pl.tech[p][7] && !pl.peace[p][q] && !pl.peace_offer[q][p] && pl.truce_breaker[p][q] == 0)
+                && pl.stars[p] >= embassy_cost(s, p))
+            // valid: no cool-down check; no request of ours already waiting at theirs
+            || (ability == 21 && pl.tech[p][7] && !pl.peace[p][q] && !pl.peace_offer[q][p] && !pl.peace_offer[p][q])
+            // valid: has embassy with
             || (ability == 22 && pl.embassy[p][q]))
 }
 
-pub fn hostile(s: &mut State) {
+/// The seat whose peace request the mover must answer now, if any (`peace_offer[p][q]`: p was offered peace by q).
+/// diplomacy pushes one receive diplomacy message per message onto the LIFO action stack,
+/// from the last message to the first, and the stack stops while a trigger is pending: the requests are answered
+/// one at a time, oldest first. All of them were sent since the mover's previous turn, by seats moving in turn
+/// order after it, so the oldest is the nearest such seat in turn order. Requests of seats no longer in the game
+/// are dropped (v >= 82).
+pub fn pending_sender(s: &State) -> Option<i32> {
     let p = s.p();
-    s.players.embassy = Default::default();
-    s.players.attacked[p] = true;
-    s.players.peace_offer = Default::default();
-    s.players.hostile_until[p] = s.turn * s.np as i32 + p as i32 + 2;
+    (0..s.np - 1).map(|b| block_seat(s, b)).find(|&q| {
+        let qi = (q - 1) as usize;
+        s.players.peace_offer[p][qi] && s.alive(qi)
+    })
+}
+
+/// The mover has a peace request to answer.
+#[inline]
+pub fn peace_pending(s: &State) -> bool {
+    pending_sender(s).is_some()
+}
+
+/// embassy cost for player (v > 113): 4 + 2 per embassy the player already has.
+pub fn embassy_cost(s: &State, p: usize) -> i32 {
+    4 + 2 * (0..s.np).filter(|&q| q != p && s.players.embassy[p][q]).count() as i32
+}
+
+/// Seat `p` is at war with seat `q` (war with): not at peace, and either attacked the
+/// other within the last round (from that attack up to, not including, the attacker's next turn).
+pub fn at_war(s: &State, p: usize, q: usize) -> bool {
+    let now = s.turn * s.np as i32 + s.p() as i32;
+    let h = &s.players.hostile_until;
+    !s.players.peace[p][q] && (now < h[p][q] || now < h[q][p])
+}
+
+/// modify diplomacy relations from attack: stamps the mover's attack on
+/// `victim` (war until the mover's next turn) and destroys the embassies between the two (destroy embassy both
+/// ways). Other pairs and pending peace requests are untouched. No-op for neutral or the mover itself.
+pub fn hostile(s: &mut State, victim: i32) {
+    if victim <= 0 || victim > s.np as i32 || victim == s.current_player {
+        return;
+    }
+    let p = s.p();
+    let q = (victim - 1) as usize;
+    s.players.embassy[p][q] = false;
+    s.players.embassy[q][p] = false;
+    s.players.hostile_until[p][q] = s.turn * s.np as i32 + p as i32 + s.np as i32;
 }
 
 pub fn capital_vision(s: &mut State) {
@@ -75,28 +155,44 @@ pub fn capital_vision(s: &mut State) {
     discover(s, &reveal, s.current_player);
 }
 
+/// diplomacy for seat `owner` (after the turn counter moved on): requests from seats no longer
+/// in the game are dropped, and each of the seat's cool down relations ends on its own clock: towards a lower-id seat
+/// once the break is in an earlier turn, towards a higher-id seat once it is two turns back (State -> Neutral).
 pub fn start_turn(s: &mut State, owner: i32) {
-    for a in 0..s.np {
-        for b in 0..s.np {
-            if s.players.truce_breaker[a][b] == owner {
-                s.players.truce_breaker[a][b] = 0;
+    let p = (owner - 1) as usize;
+    for q in 0..s.np {
+        if q == p {
+            continue;
+        }
+        if s.players.peace_offer[p][q] && !s.alive(q) {
+            s.players.peace_offer[p][q] = false;
+        }
+        if s.players.truce_breaker[p][q] != 0 {
+            let broken = s.players.peace_broken[p][q];
+            if (q < p && broken < s.turn) || (q > p && broken + 1 < s.turn) {
+                s.players.truce_breaker[p][q] = 0;
             }
         }
     }
 }
 
-pub fn execute(s: &mut State, target: i32, ability: i32, r: &Rules, g: &Geom) {
+/// Execute a legal diplomatic action of the mover towards seat `source` (1-based id).
+pub fn execute(s: &mut State, source: i32, target: i32, ability: i32, r: &Rules, g: &Geom) {
     let n = s.n;
     let cp = s.current_player;
     let p = s.p();
-    let q = (2 - cp) as usize;
+    let q = (source - 1) as usize;
     match ability {
         18 => {
+            // break peace (v >= 80): both relations cool down, both last peace broken turn; the breaker's units in
+            // the victim's territory are disbanded, every other unit of the breaker is exhausted
             s.players.peace[p][q] = false;
             s.players.peace[q][p] = false;
             s.players.truce_breaker[p][q] = cp;
             s.players.truce_breaker[q][p] = cp;
-            let doomed: Vec<usize> = (0..n).filter(|&i| s.units.owner[i] == cp && s.tiles.owner[i] == q as i32 + 1).collect();
+            s.players.peace_broken[p][q] = s.turn;
+            s.players.peace_broken[q][p] = s.turn;
+            let doomed: Vec<usize> = (0..n).filter(|&i| s.units.owner[i] == cp && s.tiles.owner[i] == source).collect();
             for i in doomed {
                 remove(s, i, r, None, true);
             }
@@ -108,27 +204,41 @@ pub fn execute(s: &mut State, target: i32, ability: i32, r: &Rules, g: &Geom) {
             }
         }
         19 => {
-            let accepted = target == 1;
-            s.players.peace[p][q] = accepted;
-            s.players.peace[q][p] = accepted;
+            // peace request response pops the pending trigger; peace request response sets both relations to
+            // Peace when accepted (which ends a cool down)
+            if target == 1 {
+                s.players.peace[p][q] = true;
+                s.players.peace[q][p] = true;
+                s.players.truce_breaker[p][q] = 0;
+                s.players.truce_breaker[q][p] = 0;
+            }
             s.players.peace_offer[p][q] = false;
-            s.players.peace_offer[q][p] = false;
         }
         20 => {
+            s.players.stars[p] -= embassy_cost(s, p);
             s.players.embassy[p][q] = true;
-            s.players.stars[p] -= 5;
-            s.players.known[q][p] = true;
+            // establish embassy: the host meets the builder (meet, star gift included)
+            crate::core::meet_pair(s, q, p);
             let t = target.clamp(0, n as i32 - 1) as usize;
             let reveal: Vec<bool> = (0..n).map(|i| g.d(t, i) <= 1).collect();
             discover(s, &reveal, cp);
         }
         21 => {
+            // peace treaty: a peace request message to the other seat, received at its next turn start
             s.players.peace_offer[q][p] = true;
         }
         _ => {
             s.players.embassy[p][q] = false;
         }
     }
-    connections(s, cp, g, true);
-    connections(s, 3 - cp, g, true);
+    // break peace and peace request response (accepted only) queue update city connections for
+    // [the mover, the other player] under update routes for each
+    // (last in, first out: routes first). The other diplomatic commands update
+    // no connections (an embassy's exploration does, through the deferred update in core::step_with). `source` is the
+    // other seat of this pair (any seat count).
+    if ability == 18 || (ability == 19 && target == 1) {
+        update_routes(s, r);
+        connections(s, cp, g, true);
+        connections(s, source, g, true);
+    }
 }

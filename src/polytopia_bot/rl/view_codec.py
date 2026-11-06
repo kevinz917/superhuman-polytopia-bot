@@ -195,14 +195,40 @@ class CodedRows:
         learner = self.learner
         n_streams, width = self.shape
         two = n_streams == 2
-        devs = list(learner.mesh.devices.flat)
+        devs = list(learner.value_mesh.devices.flat)   # the value pass's devices (Learner.value_devices)
         d = len(devs)
         rows_local, segs_local = n_pad // d, seg_pad // d
         parts = self.parts
         nf = np.array([len(p['fresh']) for p in parts])
         ns = np.array([len(p['lengths']) for p in parts])
         dst0, seg0 = np.array([p['dst0'] for p in parts]), np.array([p['seg0'] for p in parts])
+        import time as _time
+        timing = self.timing = dict(prep=0., put=0., launch=0.)
+        # High-water padded sizes per device (never shrinking, +25% headroom when they grow): the decode kernel's
+        # shapes then settle after a few batches and it compiles once per device. Bucketing alone left new size
+        # combinations on most batches, and each one recompiled while training waited (3-4 s per update with 8
+        # devices, Curio 2026-10-31). Padding is zero rows pointing at the spare slot, so the views are unchanged.
+        caps = learner.__dict__.setdefault('_codec_caps', {})
+        # value_devices with as many devices as training: shard i covers the same rows on both meshes, so the
+        # training devices rebuild their views from the same host arrays instead of receiving dense views
+        mirror = bool(getattr(learner, 'split_values', False)) and len(list(learner.mesh.devices.flat)) == d
+        self._train_jobs = [None] * d if mirror else None
+        self.mirrored = mirror
+        self._n_pad = n_pad
+
+        use_caps = bool(getattr(learner.config, 'codec_shape_caps', False))
+
+        def cap(i, name, need, unit):
+            if not use_caps:   # per-batch buckets (the original behaviour, the Modal default)
+                return _round(need, unit)
+            have = caps.get((i, name), 0)
+            if need > have:
+                have = _round(int(need * 1.25) + 1, unit)
+                caps[(i, name)] = have
+            return have
+
         def shard(i):
+            t0 = _time.monotonic()
             dev = devs[i]
             lo, blo = i * rows_local, i * segs_local
             need = ((dst0 < lo + rows_local) & (dst0 + nf > lo)) | ((seg0 < blo + segs_local) & (seg0 + ns > blo))
@@ -212,30 +238,33 @@ class CodedRows:
             k = np.array([len(p['lengths']) for p in mine], np.int64)
             roff, sat = np.cumsum(m) - m, np.cumsum(k) - k
             R, S = int(m.sum()), int(k.sum())
-            spare = _round(S + 1, 64) - 1          # bucketed slots; the last one is the zero spare
-            slots = spare + 1
+            slots = cap(i, 'slots', S + 1, 64)    # bucketed slots; the last one is the zero spare
+            spare = slots - 1
             length = 8
             while mine and length < max(int(p['lengths'].max()) for p in mine):
                 length *= 2
-            R_pad = _round(R + 1, 1024)          # raw row R..: padding rows at (spare, 0)
+            if use_caps:
+                length = max(length, caps.get((i, 'length'), 0))
+                caps[(i, 'length')] = length
+            R_pad = cap(i, 'rows', R + 1, 1024)   # raw row R..: padding rows at (spare, 0)
             cat = lambda xs, total, fill, dt: np.concatenate(
                 [np.asarray(x).astype(dt, copy=False) for x in xs] + [np.full(total - sum(len(x) for x in xs), fill, dt)])
             row_slot = cat([p['seg'] + s_ for p, s_ in zip(mine, sat)], R_pad, spare, np.int32)
             row_pos = cat([p['pos'] for p in mine], R_pad, 0, np.int32)
             z = sum(len(p['coo'][0]) for p in mine)
-            Z = _round(z, 1 << 18)
+            Z = cap(i, 'coo', z, 1 << 18)
             col_dt = mine[0]['coo'][2].dtype if mine else np.int16
             coo = (cat([p['coo'][0] + np.int32(r) for p, r in zip(mine, roff)], Z, R, np.int32),
                    cat([p['coo'][1] for p in mine], Z, 0, np.int8), cat([p['coo'][2] for p in mine], Z, 0, col_dt),
                    cat([p['coo'][3] for p in mine], Z, 0, np.int16))
             bz = sum(len(p['bcoo'][0]) for p in mine)
-            BZ = _round(bz, 1 << 14)
+            BZ = cap(i, 'bcoo', bz, 1 << 14)
             bcol_dt = mine[0]['bcoo'][2].dtype if mine else np.int16
             bcoo = (cat([p['bcoo'][0] + np.int32(s_) for p, s_ in zip(mine, sat)], BZ, spare, np.int32),
                     cat([p['bcoo'][1] for p in mine], BZ, 0, np.int8), cat([p['bcoo'][2] for p in mine], BZ, 0, bcol_dt),
                     cat([p['bcoo'][3] for p in mine], BZ, 0, np.int16))
             F = sum(len(p['fresh']) for p in mine)
-            F_pad = _round(F + 1, 1024)
+            F_pad = cap(i, 'fresh', F + 1, 1024)
             src = cat([p['fresh'] + r for p, r in zip(mine, roff)], F_pad, R, np.int32)
             dst = np.concatenate([np.arange(len(p['fresh'])) + p['dst0'] for p in mine]) if mine else np.zeros(0, np.int64)
             dst = cat([np.where((dst >= lo) & (dst < lo + rows_local), dst - lo, rows_local)], F_pad, rows_local, np.int32)
@@ -246,8 +275,19 @@ class CodedRows:
             bglob = np.concatenate([np.arange(len(p['lengths'])) + p['seg0'] for p in mine]) if mine else np.zeros(0, np.int64)
             bdst = cat([np.where((bglob >= blo) & (bglob < blo + segs_local), bglob - blo, segs_local)], slots,
                        segs_local, np.int32)
-            args = jax.device_put((row_slot, row_pos, coo, bcoo, src, dst, base, bdst), dev)
-            return _shard_fn(slots, length, rows_local, segs_local, two)(*args, n_streams, width)
+            t1 = _time.monotonic()
+            host = (row_slot, row_pos, coo, bcoo, src, dst, base, bdst)
+            if mirror:   # the training devices decode the same shard themselves (CodedRows.train_views)
+                self._train_jobs[i] = (host, slots, length, rows_local, segs_local, two, n_streams, width)
+            args = jax.device_put(host, dev)
+            t2 = _time.monotonic()
+            out = _shard_fn(slots, length, rows_local, segs_local, two)(*args, n_streams, width)
+            t3 = _time.monotonic()
+            timing['prep'] += t1 - t0   # summed over the per-device threads
+            timing['put'] += t2 - t1
+            timing['launch'] += t3 - t2
+            timing[f'launch_d{i}'] = t3 - t2   # per device: is the wait on the GPUs shared with inference servers?
+            return out
 
         # one thread per device: the host prep is numpy concatenation (releases the GIL) and JAX dispatch is
         # thread-safe, so the shards are prepared and launched in parallel
@@ -262,9 +302,48 @@ class CodedRows:
         def merged(j, total):
             if d == 1:
                 return outs[0][j]
-            return jax.make_array_from_single_device_arrays((total,) + outs[0][j].shape[1:], learner.data_sharding,
+            return jax.make_array_from_single_device_arrays((total,) + outs[0][j].shape[1:], learner.value_sharding,
                                                             [o[j] for o in outs])
         views, boots = dict(view=merged(0, n_pad)), dict(view=merged(2, seg_pad))
         if outs[0][1] is not None:
             views['opp_view'], boots['opp_view'] = merged(1, n_pad), merged(3, seg_pad)
+        if mirror:
+            # Start the training devices' copy now, on its own thread: the upload overlaps the running epoch and
+            # the decode is queued right behind it, so it runs the moment the epoch ends instead of after the
+            # training thread's bookkeeping (~1 s of idle training GPUs per update, Curio t20 probe).
+            if learner.__dict__.get('_mirror_pool') is None:
+                from concurrent.futures import ThreadPoolExecutor
+                learner._mirror_pool = ThreadPoolExecutor(1, thread_name_prefix='mirror')
+            self._train_future = learner._mirror_pool.submit(self._decode_on_training_devices)
         return views, boots
+
+    def train_views(self):
+        """The batch's views on the training devices (value_devices mode with equal device counts), decoded
+        there from the host arrays finish() prepared for the value devices, started by finish()."""
+        future, self._train_future = self._train_future, None
+        return future.result()
+
+    def _decode_on_training_devices(self):
+        import time as _time
+        import jax
+        learner = self.learner
+        tdevs = list(learner.mesh.devices.flat)
+        outs = []
+        t0 = _time.monotonic()
+        # every device's upload first (async copies that overlap the running epoch), then the decodes, which queue
+        # behind the epoch on each device
+        staged = [jax.device_put(job[0], tdevs[i]) for i, job in enumerate(self._train_jobs)]
+        for args, (host, slots, length, rows_local, segs_local, two, n_streams, width) in zip(staged, self._train_jobs):
+            outs.append(_shard_fn(slots, length, rows_local, segs_local, two)(*args, n_streams, width))
+        t1 = _time.monotonic()
+        jax.block_until_ready(outs)
+        t2 = _time.monotonic()
+        # launched: waiting for the running epoch to free the devices; decoded: the decode itself after that
+        self.mirror_timing = dict(mirror_launch_seconds=t1 - t0, mirror_decode_seconds=t2 - t1)
+        self._train_jobs = None
+        merged = lambda j: (outs[0][j] if len(outs) == 1 else jax.make_array_from_single_device_arrays(
+            (self._n_pad,) + outs[0][j].shape[1:], learner.data_sharding, [o[j] for o in outs]))
+        views = dict(view=merged(0))
+        if outs[0][1] is not None:
+            views['opp_view'] = merged(1)
+        return views

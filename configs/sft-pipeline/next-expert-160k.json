@@ -1,0 +1,57 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "next-expert-160k",
+  "description": "Template for the large run on the next RL bot: 2,000 maps (all 500 train-split maps + 1,500 fresh seeds checked against every held-out map) x both seats, 5,000 games vs scripted balanced/pressure/economy and the learned u3142 bot, 32 non-forced decisions per game = ~160k examples. To use a new bot: add it under players (path under /retained/, sha256) and put its name in generation.experts and evaluation.rl_reference.",
+  "players": {
+    "u3142": {"kind": "rl", "path": "/retained/checkpoints/distributed-final-v1/dist-c460div-v1-update-3142/final.npz",
+              "sha256": "04cbb4745a4e957dff88de36218c40fd14f4d40cf3bdf0b80021ee2697f0bfc8", "deterministic": true},
+    "league96": {"kind": "rl", "path": "/retained/checkpoints/low256-league-rivals-v1/update-96-f998d15e220c/latest.npz",
+                 "sha256": "f998d15e220c92fe5ad091b73c4fd8952612a69b37fdd607d8b007093b26225d", "deterministic": true}
+  },
+  "prompt": {"renderer": "readable-v1"},
+  "generation": {
+    "experts": ["u3142"],
+    "map_pool": [{"split": "train"}, {"fresh_seeds": {"start": 2000000, "count": 1500}}],
+    "opponents": [
+      {"name": "balanced", "maps": 1000, "map_offset": 0},
+      {"name": "pressure", "maps": 500, "map_offset": 1000},
+      {"name": "economy", "maps": 500, "map_offset": 1500},
+      {"name": "league96", "maps": 500, "map_offset": 500}
+    ],
+    "games_per_call": 20,
+    "max_failed_games": 0.02
+  },
+  "data": {
+    "examples_per_game": 32,
+    "sample_seed": 17,
+    "skip_forced": true,
+    "max_move_fraction": null,
+    "upweight": {},
+    "outcomes": ["win", "loss", "draw", "truncated"],
+    "max_examples": null,
+    "min_examples": 100000,
+    "games_per_shard": 25
+  },
+  "training": {
+    "gpu_type": "B200",
+    "gpus": 4,
+    "seed": 17,
+    "checkpoint_every": 500,
+    "timeout_hours": 23.5,
+    "overrides": {"lora_rank": 32, "lora_alpha": 64, "learning_rate": 0.0001, "epochs": 1, "max_length": 24576}
+  },
+  "evaluation": {
+    "gpu": "H100",
+    "serving": {"max_num_batched_tokens": 32768, "enable_prefix_caching": true, "gpu_memory_utilization": 0.9},
+    "maps": {"split": "test", "offset": 35, "count": 20},
+    "seats": [1, 2],
+    "opponents": ["balanced", "league96"],
+    "shard_by_opponent": true,
+    "arms": {
+      "sft": {"adapter": "trained"},
+      "sft_v1": {"adapter": {"path": "expert-sft-v1/training/model/adapter-final", "training_receipt": "expert-sft-v1/training/model/run.json"}}
+    },
+    "rl_reference": ["u3142"],
+    "pairs": [["sft", "sft_v1"], ["rl:u3142", "sft"]]
+  }
+}

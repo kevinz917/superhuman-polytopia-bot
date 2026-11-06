@@ -12,7 +12,7 @@ from polytopia_bot.gpu.rules import load_rules
 from polytopia_bot.gpu.state import empty_state
 from polytopia_bot.learning.adapter import serialize
 from polytopia_bot.rl import actions, network, ppo
-from polytopia_bot.rl.observation import Features, encode_view, view_from_public
+from polytopia_bot.rl.observation import OBS_VERSION, Features, encode_view, view_from_public
 from polytopia_bot.rl.runner import Config, save_checkpoint, load_checkpoint
 
 
@@ -31,8 +31,9 @@ def test_complete_catalog_roundtrip(size):
             assert actions.unflatten(index, size) == choice
     s = empty_state(size)
     masks = engine_actions.legal_masks(s, load_rules(), size=size)
-    assert actions.offsets(size)[-1] == engine_actions.flatten(masks).size
-    assert tuple(m.size for m in masks) == tuple(a * b for a, b in actions.shapes(size))
+    # the retired JAX engine's catalog is action layout version 1
+    assert actions.offsets(size, 1)[-1] == engine_actions.flatten(masks).size
+    assert tuple(m.size for m in masks) == tuple(a * b for a, b in actions.shapes(size, 1))
 
 
 def test_public_encoder_matches_existing_demonstration_interface():
@@ -142,7 +143,7 @@ def test_public_bot_adapter_returns_a_legal_engine_action(tmp_path):
     x = encode_view(view, size)
     params = network.init(jax.random.key(3), x.board.shape[-1], x.global_state.size,
                           size=size, width=8, blocks=1)
-    config = Config(size=size, width=8, blocks=1)
+    config = Config(size=size, width=8, blocks=1, obs_version=OBS_VERSION)   # params are on the newest features
     path = tmp_path / 'bot.npz'
     save_checkpoint(path, params, config, stage='adapter-test')
     # A forced reward means END_TURN is unavailable: only that legal command

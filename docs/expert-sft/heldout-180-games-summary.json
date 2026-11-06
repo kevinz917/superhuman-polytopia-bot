@@ -1,0 +1,495 @@
+{
+  "schema": "expert-sft-heldout-summary-v1",
+  "models": {
+    "base": {
+      "all": {
+        "games": 180,
+        "wins": 0,
+        "losses": 180,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 180
+        },
+        "median_round": 20.5,
+        "mean_peak_cities": 1.1,
+        "actions": {
+          "move": 6210,
+          "end_turn": 3725,
+          "ability": 1905,
+          "build": 1563,
+          "recruit": 1366,
+          "research": 1276,
+          "harvest": 741,
+          "attack": 413,
+          "city_reward": 320,
+          "capture": 36
+        },
+        "combat": {
+          "opp_captures": 1648,
+          "opp_kills": 319,
+          "opp_takes_city": 198,
+          "model_kills": 89,
+          "model_captures": 36
+        },
+        "abilities": {
+          "disband": 1017,
+          "recover": 467,
+          "other": 421
+        }
+      },
+      "balanced": {
+        "games": 60,
+        "wins": 0,
+        "losses": 60,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 21.0,
+        "mean_peak_cities": 1.0833333333333333,
+        "actions": {
+          "move": 2088,
+          "end_turn": 1271,
+          "ability": 688,
+          "build": 546,
+          "recruit": 448,
+          "research": 435,
+          "harvest": 240,
+          "attack": 133,
+          "city_reward": 107,
+          "capture": 11
+        },
+        "combat": {
+          "opp_captures": 564,
+          "opp_kills": 86,
+          "opp_takes_city": 65,
+          "model_kills": 30,
+          "model_captures": 11
+        },
+        "abilities": {
+          "disband": 355,
+          "recover": 171,
+          "other": 162
+        }
+      },
+      "economy": {
+        "games": 60,
+        "wins": 0,
+        "losses": 60,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 20.0,
+        "mean_peak_cities": 1.05,
+        "actions": {
+          "move": 2034,
+          "end_turn": 1226,
+          "ability": 608,
+          "build": 544,
+          "recruit": 439,
+          "research": 411,
+          "harvest": 241,
+          "attack": 136,
+          "city_reward": 106,
+          "capture": 11
+        },
+        "combat": {
+          "opp_captures": 544,
+          "opp_kills": 102,
+          "model_kills": 29,
+          "opp_takes_city": 63,
+          "model_captures": 11
+        },
+        "abilities": {
+          "disband": 321,
+          "other": 144,
+          "recover": 143
+        }
+      },
+      "pressure": {
+        "games": 60,
+        "wins": 0,
+        "losses": 60,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 20.0,
+        "mean_peak_cities": 1.1666666666666667,
+        "actions": {
+          "move": 2088,
+          "end_turn": 1228,
+          "ability": 609,
+          "recruit": 479,
+          "build": 473,
+          "research": 430,
+          "harvest": 260,
+          "attack": 144,
+          "city_reward": 107,
+          "capture": 14
+        },
+        "combat": {
+          "opp_captures": 540,
+          "opp_kills": 131,
+          "model_kills": 30,
+          "opp_takes_city": 70,
+          "model_captures": 14
+        },
+        "abilities": {
+          "disband": 341,
+          "recover": 153,
+          "other": 115
+        }
+      }
+    },
+    "expert_sft": {
+      "all": {
+        "games": 180,
+        "wins": 77,
+        "losses": 93,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 10,
+        "statuses": {
+          "native/elimination": 169,
+          "missing/None": 10,
+          "native/resignation": 1
+        },
+        "median_round": 35.0,
+        "mean_peak_cities": 7.127777777777778,
+        "actions": {
+          "move": 54867,
+          "attack": 11311,
+          "build": 11277,
+          "recruit": 7422,
+          "end_turn": 6458,
+          "city_reward": 3518,
+          "research": 3446,
+          "harvest": 2787,
+          "capture": 2053,
+          "ability": 530,
+          "resign": 1
+        },
+        "combat": {
+          "model_captures": 2053,
+          "model_kills": 2504,
+          "opp_captures": 1848,
+          "opp_kills": 2645,
+          "model_takes_city": 808,
+          "opp_takes_city": 978
+        },
+        "abilities": {
+          "recover": 201,
+          "other": 314,
+          "disband": 15
+        }
+      },
+      "balanced": {
+        "games": 60,
+        "wins": 26,
+        "losses": 33,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 1,
+        "statuses": {
+          "native/elimination": 58,
+          "missing/None": 1,
+          "native/resignation": 1
+        },
+        "median_round": 36,
+        "mean_peak_cities": 7.066666666666666,
+        "actions": {
+          "move": 18203,
+          "attack": 3802,
+          "build": 3697,
+          "recruit": 2508,
+          "end_turn": 2122,
+          "city_reward": 1182,
+          "research": 1127,
+          "harvest": 950,
+          "capture": 665,
+          "ability": 172,
+          "resign": 1
+        },
+        "combat": {
+          "model_captures": 665,
+          "model_kills": 771,
+          "opp_captures": 608,
+          "opp_kills": 851,
+          "model_takes_city": 251,
+          "opp_takes_city": 319
+        },
+        "abilities": {
+          "recover": 83,
+          "other": 82,
+          "disband": 7
+        }
+      },
+      "economy": {
+        "games": 60,
+        "wins": 23,
+        "losses": 28,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 9,
+        "statuses": {
+          "native/elimination": 51,
+          "missing/None": 9
+        },
+        "median_round": 33,
+        "mean_peak_cities": 7.116666666666666,
+        "actions": {
+          "move": 18407,
+          "build": 3831,
+          "attack": 3758,
+          "recruit": 2396,
+          "end_turn": 2130,
+          "research": 1196,
+          "city_reward": 1177,
+          "harvest": 907,
+          "capture": 681,
+          "ability": 126
+        },
+        "combat": {
+          "model_captures": 681,
+          "model_kills": 800,
+          "opp_captures": 596,
+          "opp_kills": 763,
+          "opp_takes_city": 308,
+          "model_takes_city": 262
+        },
+        "abilities": {
+          "recover": 54,
+          "other": 70,
+          "disband": 2
+        }
+      },
+      "pressure": {
+        "games": 60,
+        "wins": 28,
+        "losses": 32,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 35.5,
+        "mean_peak_cities": 7.2,
+        "actions": {
+          "move": 18257,
+          "attack": 3751,
+          "build": 3749,
+          "recruit": 2518,
+          "end_turn": 2206,
+          "city_reward": 1159,
+          "research": 1123,
+          "harvest": 930,
+          "capture": 707,
+          "ability": 232
+        },
+        "combat": {
+          "model_captures": 707,
+          "opp_captures": 644,
+          "model_kills": 933,
+          "opp_kills": 1031,
+          "opp_takes_city": 351,
+          "model_takes_city": 295
+        },
+        "abilities": {
+          "recover": 64,
+          "other": 162,
+          "disband": 6
+        }
+      }
+    },
+    "rl_expert": {
+      "all": {
+        "games": 180,
+        "wins": 179,
+        "losses": 1,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 180
+        },
+        "median_round": 21.0
+      },
+      "balanced": {
+        "games": 60,
+        "wins": 60,
+        "losses": 0,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 22.0
+      },
+      "economy": {
+        "games": 60,
+        "wins": 59,
+        "losses": 1,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 21.0
+      },
+      "pressure": {
+        "games": 60,
+        "wins": 60,
+        "losses": 0,
+        "forfeits": 0,
+        "truncated": 0,
+        "operational": 0,
+        "statuses": {
+          "native/elimination": 60
+        },
+        "median_round": 20.0
+      }
+    }
+  },
+  "paired": {
+    "expert_sft_vs_base": {
+      "all": {
+        "a_minus_b": 0.42777777777777776,
+        "map_cluster_bootstrap_95": [
+          0.36666666666666664,
+          0.4888888888888889
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      },
+      "balanced": {
+        "a_minus_b": 0.43333333333333335,
+        "map_cluster_bootstrap_95": [
+          0.35,
+          0.5166666666666667
+        ],
+        "maps": 30,
+        "maps_a_better": 24,
+        "maps_b_better": 0
+      },
+      "economy": {
+        "a_minus_b": 0.38333333333333336,
+        "map_cluster_bootstrap_95": [
+          0.26666666666666666,
+          0.5
+        ],
+        "maps": 30,
+        "maps_a_better": 19,
+        "maps_b_better": 0
+      },
+      "pressure": {
+        "a_minus_b": 0.4666666666666667,
+        "map_cluster_bootstrap_95": [
+          0.35,
+          0.5833333333333334
+        ],
+        "maps": 30,
+        "maps_a_better": 22,
+        "maps_b_better": 0
+      }
+    },
+    "rl_expert_vs_expert_sft": {
+      "all": {
+        "a_minus_b": 0.5666666666666667,
+        "map_cluster_bootstrap_95": [
+          0.5,
+          0.6333333333333333
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      },
+      "balanced": {
+        "a_minus_b": 0.5666666666666667,
+        "map_cluster_bootstrap_95": [
+          0.48333333333333334,
+          0.65
+        ],
+        "maps": 30,
+        "maps_a_better": 28,
+        "maps_b_better": 0
+      },
+      "economy": {
+        "a_minus_b": 0.6,
+        "map_cluster_bootstrap_95": [
+          0.4666666666666667,
+          0.7166666666666667
+        ],
+        "maps": 30,
+        "maps_a_better": 25,
+        "maps_b_better": 0
+      },
+      "pressure": {
+        "a_minus_b": 0.5333333333333333,
+        "map_cluster_bootstrap_95": [
+          0.4166666666666667,
+          0.65
+        ],
+        "maps": 30,
+        "maps_a_better": 24,
+        "maps_b_better": 0
+      }
+    },
+    "rl_expert_vs_base": {
+      "all": {
+        "a_minus_b": 0.9944444444444445,
+        "map_cluster_bootstrap_95": [
+          0.9833333333333334,
+          1
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      },
+      "balanced": {
+        "a_minus_b": 1,
+        "map_cluster_bootstrap_95": [
+          1,
+          1
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      },
+      "economy": {
+        "a_minus_b": 0.9833333333333333,
+        "map_cluster_bootstrap_95": [
+          0.95,
+          1
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      },
+      "pressure": {
+        "a_minus_b": 1,
+        "map_cluster_bootstrap_95": [
+          1,
+          1
+        ],
+        "maps": 30,
+        "maps_a_better": 30,
+        "maps_b_better": 0
+      }
+    }
+  },
+  "note": "Clusters are maps (all seats and opponents of a map together). Unresolved games are never wins or losses."
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "original_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-local/task__Lfjs9Ap",
+  "recovery_trial": "artifacts/harbor-runs/split-grading-recovery-qualification-20261031b/task__s6gkLd7",
+  "games": 360,
+  "all_trace_digests_verified": true,
+  "identical_game_records_and_rewards": true,
+  "identical_source_and_wasm": true,
+  "additional_model_calls": 0,
+  "additional_authoring_seconds": 0,
+  "non_scoring_difference": "Fresh compiler diagnostic elapsed time differs"
+}

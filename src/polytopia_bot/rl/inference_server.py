@@ -39,8 +39,8 @@ BUCKETS = (32, 64, 128, 256, 512, 768, 1024, 1536, 2048, 3072, 4096, 6144, 8192,
 
 def mask_leaf_shapes(size):
     """The Rust engine's legal-mask leaves, in wire order (rust_engine.split_masks; gpu.actions.Masks fields)."""
-    n = size * size
-    return ((n, n), (n, n), (n, 128), (n, 128), (128,), (n,), (n, 3), (n, 9), *((n,),) * 6, (6,), (), ())
+    from .actions import leaf_shapes
+    return leaf_shapes(size)
 
 
 def wire_shapes(size, players=2):

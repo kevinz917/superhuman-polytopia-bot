@@ -1,0 +1,396 @@
+{
+  "jobs": [
+    {
+      "id": "heldout-100541-seat-1",
+      "seed": 100541,
+      "board_hash": "41308637a89ef9ecad7185a5966607d913cc37294fad879a45a5c0115ef4005d",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100541-seat-2",
+      "seed": 100541,
+      "board_hash": "41308637a89ef9ecad7185a5966607d913cc37294fad879a45a5c0115ef4005d",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100542-seat-1",
+      "seed": 100542,
+      "board_hash": "19bfbc882512effb10d55080f4f8575fa2826147299b5e9a263356b5a7df2d59",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100542-seat-2",
+      "seed": 100542,
+      "board_hash": "19bfbc882512effb10d55080f4f8575fa2826147299b5e9a263356b5a7df2d59",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100543-seat-1",
+      "seed": 100543,
+      "board_hash": "f6fbf98cbe7e7834025393084595adc8f1a4f7dc0c0cd5c138914d6017ebf4ab",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100543-seat-2",
+      "seed": 100543,
+      "board_hash": "f6fbf98cbe7e7834025393084595adc8f1a4f7dc0c0cd5c138914d6017ebf4ab",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100544-seat-1",
+      "seed": 100544,
+      "board_hash": "e0cb85b76dba8a4d1200bd2a603d32d9fb19a433cef0005ab50c699dda93dbd7",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100544-seat-2",
+      "seed": 100544,
+      "board_hash": "e0cb85b76dba8a4d1200bd2a603d32d9fb19a433cef0005ab50c699dda93dbd7",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100545-seat-1",
+      "seed": 100545,
+      "board_hash": "0feae06f076a6aff9ff0dad8a90c080a8804d14b35da6d894ed97c9129062116",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100545-seat-2",
+      "seed": 100545,
+      "board_hash": "0feae06f076a6aff9ff0dad8a90c080a8804d14b35da6d894ed97c9129062116",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100546-seat-1",
+      "seed": 100546,
+      "board_hash": "ff6459770302deabdb05cf687ae30266a07f8da7f88e0a5cead194fd0ba3a625",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100546-seat-2",
+      "seed": 100546,
+      "board_hash": "ff6459770302deabdb05cf687ae30266a07f8da7f88e0a5cead194fd0ba3a625",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100547-seat-1",
+      "seed": 100547,
+      "board_hash": "7ae9c6998987d715b0705adcf52ae74ee28ce02641a64a01279655418a732196",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100547-seat-2",
+      "seed": 100547,
+      "board_hash": "7ae9c6998987d715b0705adcf52ae74ee28ce02641a64a01279655418a732196",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100548-seat-1",
+      "seed": 100548,
+      "board_hash": "cf2169c8dc36f79c9ef6a6aa3711fdb60253709522f8c14b4866c14ebf9ec6e6",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100548-seat-2",
+      "seed": 100548,
+      "board_hash": "cf2169c8dc36f79c9ef6a6aa3711fdb60253709522f8c14b4866c14ebf9ec6e6",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100549-seat-1",
+      "seed": 100549,
+      "board_hash": "af60971db90db0a6f80ce7df3a2497bbc64327f1080228488a98aa4d13bf9b3e",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100549-seat-2",
+      "seed": 100549,
+      "board_hash": "af60971db90db0a6f80ce7df3a2497bbc64327f1080228488a98aa4d13bf9b3e",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100550-seat-1",
+      "seed": 100550,
+      "board_hash": "225c090fdbbac1ff0cf90c82dd220a0818f0ef3becd6d99be1ff1340889a5a64",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100550-seat-2",
+      "seed": 100550,
+      "board_hash": "225c090fdbbac1ff0cf90c82dd220a0818f0ef3becd6d99be1ff1340889a5a64",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100551-seat-1",
+      "seed": 100551,
+      "board_hash": "5a3725a52e02bf1519a6b93c583dd4db7f36d8f34bd40eeee4717b5789b00f6f",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100551-seat-2",
+      "seed": 100551,
+      "board_hash": "5a3725a52e02bf1519a6b93c583dd4db7f36d8f34bd40eeee4717b5789b00f6f",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100552-seat-1",
+      "seed": 100552,
+      "board_hash": "e9318d435cc515f9c05eeec57dc3133db0f152ddd0ed64ba5441452f9f0e68f7",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100552-seat-2",
+      "seed": 100552,
+      "board_hash": "e9318d435cc515f9c05eeec57dc3133db0f152ddd0ed64ba5441452f9f0e68f7",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100553-seat-1",
+      "seed": 100553,
+      "board_hash": "01f2bc35cb851be8b4551b82e87da9d24e2781d66574428e51a9310e715afb09",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100553-seat-2",
+      "seed": 100553,
+      "board_hash": "01f2bc35cb851be8b4551b82e87da9d24e2781d66574428e51a9310e715afb09",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100554-seat-1",
+      "seed": 100554,
+      "board_hash": "75e38c3298195ddaf12fc8b4d94c1b6834c7bd756e98645e0b0f87e0236f2026",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100554-seat-2",
+      "seed": 100554,
+      "board_hash": "75e38c3298195ddaf12fc8b4d94c1b6834c7bd756e98645e0b0f87e0236f2026",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100555-seat-1",
+      "seed": 100555,
+      "board_hash": "092ef0942c8de26bb997993fdfff81beb03ec91f059ffeb064a88e723a15ae91",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100555-seat-2",
+      "seed": 100555,
+      "board_hash": "092ef0942c8de26bb997993fdfff81beb03ec91f059ffeb064a88e723a15ae91",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100556-seat-1",
+      "seed": 100556,
+      "board_hash": "ffa1dcba4bcff366378271698700607528638246a7df17a7313d1e182eeef677",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100556-seat-2",
+      "seed": 100556,
+      "board_hash": "ffa1dcba4bcff366378271698700607528638246a7df17a7313d1e182eeef677",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100557-seat-1",
+      "seed": 100557,
+      "board_hash": "c7da41ec56455871fe05cf10dd1789e8ff519a60f9e504b8fdd1b10bd533b92d",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100557-seat-2",
+      "seed": 100557,
+      "board_hash": "c7da41ec56455871fe05cf10dd1789e8ff519a60f9e504b8fdd1b10bd533b92d",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100558-seat-1",
+      "seed": 100558,
+      "board_hash": "9901f6f366f4928a1ae74c4a1ceb104404832d468ee4fdbe52d7b77b93bdf243",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100558-seat-2",
+      "seed": 100558,
+      "board_hash": "9901f6f366f4928a1ae74c4a1ceb104404832d468ee4fdbe52d7b77b93bdf243",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100559-seat-1",
+      "seed": 100559,
+      "board_hash": "1c4c4c5868a19c57feef65f02615ec23d045eac0bb8119824a6c187208cee5a1",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100559-seat-2",
+      "seed": 100559,
+      "board_hash": "1c4c4c5868a19c57feef65f02615ec23d045eac0bb8119824a6c187208cee5a1",
+      "seat": 2,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100560-seat-1",
+      "seed": 100560,
+      "board_hash": "15cabe80f3668a512fb340a1c11e49046d65c436207a7cdc507565c6c04277ba",
+      "seat": 1,
+      "opponent": "balanced"
+    },
+    {
+      "id": "heldout-100560-seat-2",
+      "seed": 100560,
+      "board_hash": "15cabe80f3668a512fb340a1c11e49046d65c436207a7cdc507565c6c04277ba",
+      "seat": 2,
+      "opponent": "balanced"
+    }
+  ],
+  "v2_0": {
+    "decisions": 2000,
+    "games": 40,
+    "arms": {
+      "readable_v1": {
+        "prompt": "readable",
+        "adapter": "expert-sft-v1/training/model/adapter-final",
+        "accuracy": 0.3605,
+        "seconds": 420.919810798,
+        "prompt_tokens": 19208537,
+        "by_family": {
+          "ability": 0.3939393939393939,
+          "attack": 0.4739583333333333,
+          "build": 0.19823788546255505,
+          "capture": 0.9,
+          "city_reward": 1,
+          "end_turn": 0.92,
+          "harvest": 0.584070796460177,
+          "move": 0.15126050420168066,
+          "recruit": 0.5161290322580645,
+          "research": 0.3181818181818182
+        }
+      },
+      "compact_v2": {
+        "prompt": "compact",
+        "adapter": "compact-prompt-v2/training/model/adapter-final",
+        "accuracy": 0.366,
+        "seconds": 67.236656649,
+        "prompt_tokens": 6100417,
+        "by_family": {
+          "ability": 0.36363636363636365,
+          "attack": 0.46875,
+          "build": 0.20704845814977973,
+          "capture": 0.8833333333333333,
+          "city_reward": 1,
+          "end_turn": 0.928,
+          "harvest": 0.6017699115044248,
+          "move": 0.14600840336134455,
+          "recruit": 0.5741935483870968,
+          "research": 0.4318181818181818
+        }
+      }
+    },
+    "paired": {
+      "a": "readable_v1",
+      "b": "compact_v2",
+      "a_minus_b": -0.0055,
+      "game_cluster_bootstrap_95": [
+        -0.024,
+        0.0125
+      ],
+      "a_only": 143,
+      "b_only": 154,
+      "both": 578
+    }
+  },
+  "v2_1": {
+    "decisions": 2000,
+    "games": 40,
+    "arms": {
+      "readable_v1": {
+        "prompt": "readable",
+        "adapter": "expert-sft-v1/training/model/adapter-final",
+        "accuracy": 0.3595,
+        "seconds": 433.712029781,
+        "prompt_tokens": 19208537,
+        "by_family": {
+          "ability": 0.36363636363636365,
+          "attack": 0.4739583333333333,
+          "build": 0.1894273127753304,
+          "capture": 0.9,
+          "city_reward": 1,
+          "end_turn": 0.92,
+          "harvest": 0.5752212389380531,
+          "move": 0.15126050420168066,
+          "recruit": 0.5225806451612903,
+          "research": 0.3409090909090909
+        }
+      },
+      "compact_v2": {
+        "prompt": "compact",
+        "adapter": "compact-prompt-v2.1/training/model/adapter-final",
+        "accuracy": 0.363,
+        "seconds": 72.50105298599999,
+        "prompt_tokens": 6148417,
+        "by_family": {
+          "ability": 0.3333333333333333,
+          "attack": 0.4895833333333333,
+          "build": 0.18502202643171806,
+          "capture": 0.8333333333333334,
+          "city_reward": 1,
+          "end_turn": 0.92,
+          "harvest": 0.6017699115044248,
+          "move": 0.15231092436974789,
+          "recruit": 0.5548387096774193,
+          "research": 0.36363636363636365
+        }
+      }
+    },
+    "paired": {
+      "a": "readable_v1",
+      "b": "compact_v2",
+      "a_minus_b": -0.0035,
+      "game_cluster_bootstrap_95": [
+        -0.023,
+        0.0155
+      ],
+      "a_only": 146,
+      "b_only": 153,
+      "both": 573
+    }
+  }
+}

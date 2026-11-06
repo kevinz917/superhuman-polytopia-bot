@@ -94,7 +94,7 @@ def test_random_four_seat_games_run_clean():
     finished = 0
     for tick_index in range(1500):
         masks = prepared.masks
-        assert not np.asarray(masks.diplomatic).any(), 'no diplomacy with four seats'
+        # four seats have the game's diplomacy: one block per other seat (tests/test_rp2_actions.py)
         assert not np.asarray(masks.resign).any(), 'no resigning with four seats'
         current = np.asarray(states.current_player)
         alive = (np.asarray(states.players.killed_turn) == 0) & (np.asarray(states.players.resigned_turn) == 0)
@@ -229,7 +229,8 @@ def test_two_seat_features_unchanged():
     rng = np.random.default_rng(2)
     g = RustGames(14, 4)
     states, prepared = g.reset(np.arange(4, dtype=np.int32) + 7)
-    new = jax.jit(jax.vmap(lambda v: encode_view(unpack_view(v, g.layout), 14)))
+    # observation version 1 (version 2 adds the unit facing: tests/test_rp2_actions.py)
+    new = jax.jit(jax.vmap(lambda v: encode_view(unpack_view(v, g.layout), 14, 1)))
     old = jax.jit(jax.vmap(lambda v: _old_encode_view(unpack_view(v, g.layout), 14)))
     for t in range(200):
         view = np.asarray(prepared.view)
@@ -324,7 +325,7 @@ def _rotate(d, k=1):
         a = np.array(a)
         if name in OWNER_FIELDS or name == 'current_player':
             a = relabel(a)
-        elif name == 'tiles.explored' or (name.startswith('players.') and a.ndim >= 2 and a.shape[1] == 4):
+        elif name == 'tiles.explored' or (name.startswith(('players.', 'history.')) and a.ndim >= 2 and a.shape[1] == 4):
             a = np.roll(a, k, axis=1)
             if a.ndim == 3 and a.shape[2] == 4:
                 a = np.roll(a, k, axis=2)

@@ -1,0 +1,69 @@
+{
+  "schema": "polytopia-skirmish-continuous-v1",
+  "coding_seconds": 2400,
+  "maps_per_family": 10,
+  "evaluation": {
+    "max_rounds": 200,
+    "max_actions": 40000,
+    "fuel": 4000000000000,
+    "move_seconds": 2.0,
+    "game_seconds": 1800,
+    "exact_rounds": true,
+    "size": 14
+  },
+  "references": [
+    {
+      "label": "reference-weak",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-qwen38-oneshot-20m",
+      "source_sha256": "d9a68233addeef8ceb5666a3ed29228edac691dd50ff49464e879d0909a17fb0",
+      "wasm_sha256": "4439287019367bcf44445ce7d29e0e1bd05e82398ef06a2c8a910519ac017184",
+      "origin_model": "qwen/qwen3.8-max-0902",
+      "origin_track": "oneshot-20m",
+      "file": "reference-weak.wasm"
+    },
+    {
+      "label": "reference-intermediate",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m",
+      "source_sha256": "8f8dfef9402f27dbb822a559789f03bbf1e46ffea9dae84d713cbf05f6b3cd86",
+      "wasm_sha256": "ce3cf260ef9f95bbfe2920adb29940890535776333da69e00d9fc85940cf226e",
+      "origin_model": "deepseek/deepseek-v4.1-flash-1017",
+      "origin_track": "oneshot-20m",
+      "file": "reference-intermediate.wasm"
+    },
+    {
+      "label": "hero-cavalry-25",
+      "kind": "hybrid",
+      "checkpoint_sha256": "e6f4e1977e7f9cdcfbbe17358d87e49d638d82150496a6d4099e0cd389b0934f",
+      "file": "hero-1v1.npz",
+      "config_sha256": "72a038bee14879649d9be0a3addc5e2b8c945a53e99ff7cd50606f8b9900ae82",
+      "style": "cavalry",
+      "hero_turn_fraction": 0.25
+    },
+    {
+      "label": "hero-naval-50",
+      "kind": "hybrid",
+      "checkpoint_sha256": "e6f4e1977e7f9cdcfbbe17358d87e49d638d82150496a6d4099e0cd389b0934f",
+      "file": "hero-1v1.npz",
+      "config_sha256": "72a038bee14879649d9be0a3addc5e2b8c945a53e99ff7cd50606f8b9900ae82",
+      "style": "naval",
+      "hero_turn_fraction": 0.5
+    },
+    {
+      "label": "scripted-siege",
+      "kind": "scripted",
+      "style": "siege",
+      "source_sha256": "47b10d10daa0b325ebcb86b044f4a9418c9362adb3aa178c5c694f8698fc91ac"
+    },
+    {
+      "label": "hero-1v1",
+      "kind": "expert",
+      "checkpoint_sha256": "e6f4e1977e7f9cdcfbbe17358d87e49d638d82150496a6d4099e0cd389b0934f",
+      "file": "hero-1v1.npz",
+      "config_sha256": "72a038bee14879649d9be0a3addc5e2b8c945a53e99ff7cd50606f8b9900ae82"
+    }
+  ],
+  "evaluation_revision": "reference-panel-v6.1",
+  "practice_opponent": "public-greedy-v1"
+}

@@ -3,11 +3,13 @@
 use crate::geom::Geom;
 use crate::hash::{hash_word, hash_words};
 use crate::kernels::{combat, max_health};
-use crate::military::{defense_bonus, remove, summon};
+use crate::military::{defense_bonus, direction, direction_xy, remove, summon};
 use crate::rules::Rules;
 use crate::state::State;
 
-/// Spawn tiles for `target`'s city in priority order (eligible only), with the reference's seeded tie noise.
+/// Spawn tiles for `target`'s city in priority order (eligible only): infiltration reward's
+/// Evaluate: tie noise + city +2, water -0.1, a resource the player sees +0.5,
+/// defence bonus +1, a Poison improvement -0.5. Sorted best first.
 pub fn spawn_order(s: &State, target: usize, g: &Geom) -> Vec<usize> {
     let (n, size) = (s.n, s.size);
     let t = &s.tiles;
@@ -17,16 +19,24 @@ pub fn spawn_order(s: &State, target: usize, g: &Geom) -> Vec<usize> {
         let water = t.terrain[i] <= 2;
         let mut eligible = t.city[i] == target as i32 && s.units.owner[i] == 0;
         eligible &= (t.terrain[i] != 4 || tech[20]) && (t.terrain[i] != 1 || tech[10]) && (t.terrain[i] != 2 || tech[13]);
+        // is tile accessible: only tiles the infiltrator's owner has explored
+        eligible &= t.explored[s.p()][i];
         if !eligible {
             continue;
         }
         let defense = (t.terrain[i] == 4 && tech[20]) || (t.terrain[i] == 5 && tech[18]) || (water && tech[12]);
-        let known_resource = t.resource[i] > 0 && (t.resource[i] != 2 || tech[6] || tech[8] || tech[9])
+        // resource: no resource on a tile with an improvement (a farm, a mine, the
+        // city), whatever lies under it
+        let known_resource = t.resource[i] > 0 && t.structure[i] == 0 && (t.resource[i] != 2 || tech[6] || tech[8] || tech[9])
             && (t.resource[i] != 5 || tech[20] || tech[23] || tech[24]);
+        // an improvement with improvement ability Poison (Fungi 37, Clathrus 41) for a tribe without poison resist
+        // (Bardur): -0.5
+        let poison = t.structure[i] == 37 || t.structure[i] == 41;
+        // tie noise: 0.1 * hash(x, y, current turn) * 2^-32. Our `turn` is the current turn.
         let words = [(i % size) as u32, (i / size) as u32, s.turn as u32];
         let noise = (hash_word(s.initial_seed, hash_words(s.initial_seed, &words)) as f32) * 0.1f32 / 4294967296.0f32;
-        let priority = noise + (t.structure[i] == 1) as i32 as f32 * 2.0 - water as i32 as f32 * 1.6 + known_resource as i32 as f32 * 0.5
-            + defense as i32 as f32;
+        let priority = noise + (t.structure[i] == 1) as i32 as f32 * 2.0 - water as i32 as f32 * 0.1 + known_resource as i32 as f32 * 0.5
+            + defense as i32 as f32 - poison as i32 as f32 * 0.5;
         keyed.push((-priority, i));
     }
     // stable argsort on the float key, ties by index
@@ -39,8 +49,8 @@ pub fn execute(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom)
     let owner = s.current_player;
     let po = s.p();
     let c = &s.cities;
-    let mut innate = c.production[target] + (s.tiles.capital[target] == c.owner[target]) as i32;
-    innate = (innate + c.progress[target].min(0)).max(0);
+    // infiltration reward: raw production, no negative-progress term
+    let innate = (c.production[target] + (s.tiles.capital[target] == c.owner[target]) as i32).max(0);
     let count = c.level[target].min(5) as usize;
     remove(s, source, r, None, true);
     let enemy = s.units.owner[target] > 0 && s.units.owner[target] != owner;
@@ -51,6 +61,11 @@ pub fn execute(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom)
     let dead = enemy && s.units.health[target] <= 0.0;
     if dead {
         remove(s, target, r, None, true);
+    } else if enemy {
+        // perform attack: no unit on the
+        // null origin (-1, -1), and the city's unit turns toward it (perform attack)
+        let size = s.size as i32;
+        s.units.direction[target] = direction_xy((target as i32 % size, target as i32 / size), (-1, -1));
     }
     s.players.kills[po] += dead as i32;
     s.players.stars[po] += innate;
@@ -64,5 +79,9 @@ pub fn execute(s: &mut State, source: usize, target: usize, r: &Rules, g: &Geom)
         let water = s.tiles.terrain[at] <= 2;
         summon(s, at, if water { 40 } else { 37 }, r, g, false);
         s.units.home[at] = 0;
+        // training turns
+        // the new unit toward look coordinates; the same tile gives 8, none); on water the
+        // queued embark copies the facing to the Pirate
+        s.units.direction[at] = direction(s.size, at, target);
     }
 }

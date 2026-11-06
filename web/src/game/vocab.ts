@@ -112,6 +112,7 @@ const ABILITY_ART: Record<number, Art> = {
   20: { sprite: "star" },
   21: { sprite: "star" },
   22: { sprite: "star" },
+  23: { sprite: "unit-boat" },
 };
 
 export const titleCase = (s: string) => s.replace(/([a-z])([A-Z])/g, "$1 $2");
@@ -122,13 +123,15 @@ export function actLabel(meta: Meta, a: LegalAction) {
   const c = a.command,
     p = c.parameter,
     k = c.kind;
+  // diplomacy (abilities 18-22) addresses a seat: command.source is that seat's id
+  const seat = k === 3 && p >= 18 && p <= 22 ? ` (player ${c.source})` : "";
   return titleCase(
     k === 3
-      ? p === 19
-        ? c.target === 1
-          ? "Accept peace"
-          : "Reject peace"
-        : meta.abilities[p] || "Ability"
+      ? (p === 19
+          ? c.target === 1
+            ? "Accept peace"
+            : "Reject peace"
+          : meta.abilities[p] || "Ability") + seat
       : k === 4
         ? "Train " + unitName(meta, p)
         : k === 6

@@ -1,0 +1,86 @@
+{
+  "name": "expert-sft-v1",
+  "kind": "LoRA adapter (PEFT) for Qwen/Qwen3-4B-Instruct-2507",
+  "created": "2026-10-19T00:35:52-07:00",
+  "base_model": {
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "location": {
+    "provider": "Modal",
+    "environment": "staging",
+    "volume": "polytopia-sft0-training",
+    "path": "expert-sft-v1/training/model/adapter-final",
+    "intermediate_checkpoints": [
+      "expert-sft-v1/training/model/checkpoint-157",
+      "expert-sft-v1/training/model/checkpoint-314",
+      "expert-sft-v1/training/model/checkpoint-471",
+      "expert-sft-v1/training/model/checkpoint-620"
+    ]
+  },
+  "adapter_files_sha256": {
+    "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+    "adapter_model.safetensors": "d79addf5edd59827875c3223a46734a4d1edff6e6789a178cdba11cd06b17325"
+  },
+  "lora": {
+    "rank": 32,
+    "alpha": 64,
+    "dropout": 0.0,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "training": {
+    "data": "39,626 moves of the structured RL bot low256-league-rivals-v1 update 96 on 1,000 training-split games (seeds 100041-100540, both seats) vs scripted balanced",
+    "prompt": "render_readable_decision (polytopia-named-fields-v1); response {\"action_id\":\"aN\"}",
+    "recipe": "lr 1e-4 cosine, 3% warmup, effective batch 64, 1 epoch, response-only loss, max 24,576 tokens",
+    "optimizer_updates": 620,
+    "hardware": "4 x NVIDIA B200",
+    "train_seconds": 6996.6,
+    "receipt": "docs/expert-sft/training-receipt.json"
+  },
+  "inference_harness": {
+    "prompt": "render_readable_decision",
+    "grammar": "xgrammar JSON schema over the legal action IDs (thinking_readable.action_schema), applied from the first token",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "repetition_penalty": 1.0
+    },
+    "server": "vLLM 0.19.0 with enable_lora=True, max_lora_rank=32",
+    "one_call_per_move": true
+  },
+  "results": {
+    "development_30_games": {
+      "run": "expert-sft-v1",
+      "maps": "15 validation maps (100691-100705) x 2 seats vs balanced",
+      "wins": 18,
+      "losses": 12,
+      "base_model_wins": 0,
+      "summary": "docs/expert-sft/dev-30-games-summary.json"
+    },
+    "heldout_180_games": {
+      "run": "expert-sft-heldout-v1",
+      "maps": "30 test-split maps (100741-100770) x 2 seats x {balanced, pressure, economy}",
+      "wins": 77,
+      "losses": 93,
+      "unfinished_stopped_by_user": 10,
+      "base_model_wins": 0,
+      "paired_win_difference_vs_base": 0.428,
+      "map_cluster_bootstrap_95": [
+        0.367,
+        0.489
+      ],
+      "summary": "docs/expert-sft/heldout-180-games-summary.json"
+    }
+  },
+  "report": "docs/expert-sft-research-report-2026-10-19.md"
+}

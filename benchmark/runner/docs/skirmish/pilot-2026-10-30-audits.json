@@ -1,0 +1,20 @@
+{
+  "pilot-20261030-01": {
+    "tournament_id": "pilot-20261030-01",
+    "passed": true,
+    "games": 24,
+    "actions": 7820
+  },
+  "final-deepseek-pilot-20261030-03": {
+    "tournament_id": "final-deepseek-pilot-20261030-03",
+    "passed": true,
+    "games": 8,
+    "actions": 2351
+  },
+  "final-gpt56-pilot-20261030-01": {
+    "tournament_id": "final-gpt56-pilot-20261030-01",
+    "passed": true,
+    "games": 8,
+    "actions": 2266
+  }
+}

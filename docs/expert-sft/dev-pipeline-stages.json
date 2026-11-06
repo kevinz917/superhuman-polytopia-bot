@@ -1,0 +1,81 @@
+{
+  "generate": {
+    "games": 1000,
+    "failures": [],
+    "seconds": 499.738557925,
+    "expert_wins": 999,
+    "expert_losses": 1,
+    "truncated": 0,
+    "expert_decisions": 356727,
+    "median_round": 20
+  },
+  "prepare": {
+    "seconds": 328.15047772500003,
+    "records": 39626,
+    "duplicates_dropped": 0,
+    "conflicting_duplicate_labels": 0,
+    "max_tokens": 24574,
+    "mean_tokens": 9328.821884621208,
+    "total_tokens": 369663896,
+    "families": {
+      "move": 18748,
+      "build": 4046,
+      "attack": 3893,
+      "recruit": 3271,
+      "end_turn": 2402,
+      "harvest": 2314,
+      "city_reward": 2264,
+      "capture": 1214,
+      "research": 1066,
+      "ability": 408
+    }
+  },
+  "train": {
+    "exit_code": 0,
+    "occupied_seconds": 7178.006341902,
+    "finished_unix": 1792395352.7038345,
+    "status": "completed",
+    "train_seconds": 6996.569469855,
+    "adapter_files": {
+      "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+      "adapter_model.safetensors": "d79addf5edd59827875c3223a46734a4d1edff6e6789a178cdba11cd06b17325"
+    },
+    "seconds": 7191.463143256
+  },
+  "evaluate": {
+    "base": {
+      "arm": "base",
+      "exit_code": 0,
+      "worker_seconds": 904.796580392,
+      "finished_unix": 1792388242.2565467
+    },
+    "old_sft": {
+      "arm": "old_sft",
+      "exit_code": 0,
+      "worker_seconds": 1929.173201518,
+      "finished_unix": 1792389266.6189594
+    },
+    "rl_reference": {
+      "games": 30,
+      "requested_games": 30,
+      "wins": 28,
+      "losses": 2,
+      "truncations": 0,
+      "cutoffs": 0,
+      "native_win_fraction": 0.9333333333333333,
+      "native_win_fraction_wilson95": [
+        0.7867654163738308,
+        0.9815229762087295
+      ],
+      "elapsed_seconds": 691.506181363,
+      "complete": true,
+      "interpretation": "Native wins / all played games; unresolved games are not draws or wins."
+    },
+    "expert_sft": {
+      "arm": "expert_sft",
+      "exit_code": 0,
+      "worker_seconds": 5726.0221293879995,
+      "finished_unix": 1792401091.9635518
+    }
+  }
+}

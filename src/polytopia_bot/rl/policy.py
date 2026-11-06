@@ -38,15 +38,25 @@ class StructuredPolicy:
             size=self.config.size, deterministic=deterministic))
         self._encode = jax.jit(lambda view: encode_view(view, self.config.size))
 
-    def select(self, observation: Observation) -> Decision:
+    def select(self, observation: Observation, view=None) -> Decision:
+        """`view`: optionally the engine's packed-view dict of the same position (RustEnvironment.view): a network of
+        observation version 2 reads the unit facing from it, which the public observation does not carry. Version-1
+        networks always encode the public observation."""
         from dataclasses import asdict
         if observation.visible_state['board_size'] != self.config.size or not observation.legal_actions:
             raise ValueError('incompatible board or no legal decisions')
-        x = self._encode(view_from_public(asdict(observation)))
+        source = view if view is not None and self.config.obs_version >= 2 else view_from_public(asdict(observation))
+        x = self._encode(source)
         if self.params is None:
-            template = network.init(jax.random.key(0), x.board.shape[-1], x.global_state.size,
+            # the checkpoint's own input width (its observation version; the features are the newest, which the
+            # trunk fits to it)
+            from .distributed import feature_shapes
+            board, glob = feature_shapes(self.config.players, self.config.obs_version)
+            template = network.init(jax.random.key(0), board, glob,
                                     size=self.config.size, width=self.config.width, blocks=self.config.blocks,
-                                    architecture=self.config.architecture)
+                                    architecture=self.config.architecture, extra_blocks=self.config.extra_blocks,
+                                    global_pool=self.config.global_pool, block_pool=self.config.block_pool,
+                                    attention=self.config.attention)
             self.params = load_checkpoint(self.path, template)
         bounds = offsets(self.config.size)
         flat = np.zeros(bounds[-1], bool)

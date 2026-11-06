@@ -26,6 +26,9 @@ image = (modal.Image.debian_slim(python_version='3.12')
     .add_local_dir(ROOT / 'scripts', '/workspace/scripts', ignore=['**/__pycache__/**'])
     .add_local_dir(ROOT / 'experiments', '/workspace/experiments', ignore=['**/__pycache__/**'])
     .add_local_dir(ROOT / 'configs', '/workspace/configs'))
+MAPGEN_FIXTURES = 'tests/fixtures/real-mapgen'   # game-generated boards, not distributed
+if (ROOT / MAPGEN_FIXTURES).is_dir():
+    image = image.add_local_dir(ROOT / MAPGEN_FIXTURES, f'/workspace/{MAPGEN_FIXTURES}')
 app = modal.App('polytopia-rust-engine')
 
 

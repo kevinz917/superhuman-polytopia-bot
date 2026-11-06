@@ -1,0 +1,23 @@
+{
+  "from_run_id": "mini-top10-20261030a-sol61-oneshot-20m-r1",
+  "method": "Replay only recorded deterministic source-writing operations twice in original immutable image.",
+  "extra_model_calls": 0,
+  "source_edits_added": 0,
+  "extra_agent_feedback": 0,
+  "passes": [
+    {
+      "sha256": "48f9240dcc2418a9aad7078c3dd1c02ae5d4b457f22e76fe6619d808d1763cff",
+      "lines": 6425,
+      "bytes": 232833
+    },
+    {
+      "sha256": "48f9240dcc2418a9aad7078c3dd1c02ae5d4b457f22e76fe6619d808d1763cff",
+      "lines": 6425,
+      "bytes": 232833
+    }
+  ],
+  "recorded_final_line_count": 6425,
+  "source_operations_sha256": "45151476d721ce161dd4f91bb53c326617a65dbe4b2d023bdc4826294900277e",
+  "reason": "Undisclosed 200 KB source cap blocked freeze; authoring had already submitted and compiled this source.",
+  "isolated_diagnostic": "Interrupted after five games; excluded. Complete shared-map tournament supplies six expert games, as for every entrant."
+}

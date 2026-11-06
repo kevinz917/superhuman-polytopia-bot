@@ -2,12 +2,12 @@
 //! (move, attack, summon, build, research, harvest, forest, reward, capture, recover, promote, disband, heal,
 //! destroy, diplomatic, end, resign).
 //!
-//! The mask is mostly zeros (a few hundred true entries out of 130,868 on 14x14), so every family only emits its
+//! The mask is mostly zeros (a few hundred true entries out of 131,076 on 14x14), so every family only emits its
 //! true entries into a zeroed sink: dense 0/1 bytes, or bits in numpy.packbits order (the inference server's wire
 //! format). Nothing is written for false entries.
 
 use crate::capture;
-use crate::core::family_widths;
+use crate::core::{family_widths, UNIT_ROW};
 use crate::diplomacy;
 use crate::geom::Geom;
 use crate::kernels::{max_health, movement_flags, reach, research_bits, MoveScratch};
@@ -73,9 +73,17 @@ impl MaskScratch {
 }
 
 /// Dense masks into `out` (any contents; the first mask_width bytes are overwritten).
-pub fn legal_masks(s: &State, r: &Rules, g: &Geom, no_resign: bool, ms: &mut MaskScratch, out: &mut [u8]) {
+/// Training-harness restrictions on the mover's legal set (not rules: a player may always decline these).
+/// no_resign: never resign. no_peace: never propose or accept peace; a pending request can only be declined.
+#[derive(Clone, Copy, Debug, Default)]
+pub struct MaskOpts {
+    pub no_resign: bool,
+    pub no_peace: bool,
+}
+
+pub fn legal_masks(s: &State, r: &Rules, g: &Geom, opts: MaskOpts, ms: &mut MaskScratch, out: &mut [u8]) {
     out[..mask_width(s.n)].fill(0);
-    masks_into(s, r, g, no_resign, ms, &mut Dense(out));
+    masks_into(s, r, g, opts, ms, &mut Dense(out));
 }
 
 /// Forwards to another sink and records every entry in a persistent packed bitset (LegalCache).
@@ -127,16 +135,29 @@ impl Sink for Count {
 }
 
 /// Emit every true entry of actions.legal_masks (CpuGames: resign forced False when no_resign).
-pub fn masks_into<S: Sink>(s: &State, r: &Rules, g: &Geom, no_resign: bool, ms: &mut MaskScratch, out: &mut S) {
+pub fn masks_into<S: Sink>(s: &State, r: &Rules, g: &Geom, opts: MaskOpts, ms: &mut MaskScratch, out: &mut S) {
+    let no_resign = opts.no_resign;
     let active = s.core_supported && !s.terminated && !s.truncated;
     if !active {
+        return;
+    }
+    let o = family_offsets(s.n);
+    if let Some(sender) = diplomacy::pending_sender(s) {
+        // a pending peace request is answered before anything else (accept or decline; resigning stays)
+        let base = o[14] + diplomacy::seat_block(s, sender) * diplomacy::BLOCK;
+        out.set(base + 1);          // decline
+        if !opts.no_peace {
+            out.set(base + 2);      // accept
+        }
+        if !no_resign && s.np == 2 {
+            out.set(o[16]);
+        }
         return;
     }
     // reward is gated by `active` only; any reward entry is also State::pending_reward, which gates the rest
     if reward_rows(s, out) {
         return;
     }
-    let o = family_offsets(s.n);
     move_rows(s, r, g, &mut ms.mv, out);
     attack_rows(s, r, g, out);
     summon_rows(s, r, &mut ms.summon, out);
@@ -148,13 +169,18 @@ pub fn masks_into<S: Sink>(s: &State, r: &Rules, g: &Geom, no_resign: bool, ms: 
     }
     economy_rows(s, &ms.build.econ_list, out);
     unit_rows(s, r, g, out);
-    let other = 3 - s.current_player;
-    let capital = diplomacy::opponent_capital(s);
-    let abilities = [18, 19, 19, 20, 21, 22];
-    let targets = [-1, 0, 1, capital.0 as i32, -1, -1];
-    for k in 0..6 {
-        if diplomacy::legal_with(s, other, targets[k], abilities[k], capital) {
-            out.set(o[14] + k);
+    // one block per other seat, by turn-order offset from the mover (a two-seat game: block 0 only)
+    for b in 0..s.np - 1 {
+        let seat = diplomacy::block_seat(s, b);
+        let capital = diplomacy::capital_of(s, seat);
+        let targets = [-1, 0, 1, capital.0 as i32, -1, -1];
+        for k in 0..diplomacy::BLOCK {
+            if opts.no_peace && k == 4 {
+                continue;   // propose peace
+            }
+            if diplomacy::legal_with(s, seat, targets[k], diplomacy::ABILITIES[k], capital) {
+                out.set(o[14] + b * diplomacy::BLOCK + k);
+            }
         }
     }
     out.set(o[15]);
@@ -297,8 +323,12 @@ pub fn unit_rows<S: Sink>(s: &State, r: &Rules, g: &Geom, out: &mut S) {
         if idle && capture::capturable(s, i) {
             out.set(o[8] + i);
         }
+        // recover row: 0 recover, 1 disembark in place (disembark)
         if idle && u.health[i] < max_health(s, r, i) {
-            out.set(o[9] + i);
+            out.set(o[9] + i * UNIT_ROW);
+        }
+        if crate::military::can_disembark(s, r, i) {
+            out.set(o[9] + i * UNIT_ROW + 1);
         }
         if crate::military::promotable(s, r, i) {
             out.set(o[10] + i);

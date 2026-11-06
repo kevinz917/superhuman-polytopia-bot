@@ -1,0 +1,15 @@
+{
+  "source_worktree": "/Users/K.Z./Desktop/projects/polytopia-bot",
+  "captured": "2026-10-18",
+  "purpose": "Read-only inference dependencies copied before UI work; never synced back to running training.",
+  "files": {
+    "src/polytopia_bot/rl/observation.py": "e7c873d40ba7718c5933b612cda5e9533cff7a224e3267cf192b197c8d34bea0",
+    "src/polytopia_bot/rl/runner.py": "238c1be63a3430c9991bdab16f444b531a53602178f6749f6f93473d61063afc",
+    "src/polytopia_bot/rl/policy.py": "7500ea32b661f00e4b238d47ffe64c923c5bd8c4579044558336b236ac4b1be5",
+    "src/polytopia_bot/rl/actions.py": "24da3f75aad57407dcddb73c7c9d565129afc596efc753e57e48028400bb5b88",
+    "src/polytopia_bot/rl/__init__.py": "7fe64288042ecb8ea781598b4127e00afd22c3d9a75ae4dd536e3f2d9faaf0e7",
+    "src/polytopia_bot/rl/network.py": "13fd55f73053927e3ecfc9a26e40e6af760a353fdcfa1afecfb9c59653e0503c",
+    "src/polytopia_bot/rl/ppo.py": "2fbd0d94f75b6c69fb47555840314ddf9b51fca3e99c6ae95f940c7645f39f7c",
+    "src/polytopia_bot/rl/data.py": "bf5e718009468f45dd57023af8c25d5e49f3e516c1f475b9828893b8ecb79799"
+  }
+}

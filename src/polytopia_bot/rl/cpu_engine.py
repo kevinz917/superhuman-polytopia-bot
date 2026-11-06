@@ -13,7 +13,7 @@ import jax.numpy as jnp
 import numpy as np
 
 from polytopia_bot.gpu import kernels, mapgen
-from .observation import encode_view
+from .observation import HISTORY_TURNS, encode_view
 
 # observe() fields that encode_view reads; state_version is excluded on purpose.
 VIEW_EXCLUDE = ('state_version',)
@@ -43,9 +43,15 @@ RELATION_FIELDS = ('embassies_received', 'embassies_sent', 'known_players', 'pea
 
 def view_layout(size, players=2):
     """(name, shape) of every packed public-view field, in packing order. players > 2 (engine-rs only): the
-    relation fields have one entry per seat and 'alive' (one per seat) is added."""
+    relation fields have one entry per seat and 'alive' (one per seat) is added. unit_direction is engine-rs's
+    (kernels::VIEW_FIELDS)."""
     template = jax.eval_shape(lambda: kernels.observe(mapgen.reset(jnp.int32(0), size=size), jnp.int32(1)))
     fields = {k: tuple(v.shape) for k, v in template.items() if k not in VIEW_EXCLUDE}
+    # engine-rs only (2026-10-31): each visible unit's facing + 1 (the retired JAX observe has no such field)
+    fields['unit_direction'] = (size * size,)
+    # engine-rs only (2026-11-01): the seat's observation history (engine-rs history.rs; observation version 3)
+    fields.update(enemy_tech=(128,), hist_enemy_built=(size * size,), hist_enemy_trained=(size * size,),
+                  hist_enemy_unit=(HISTORY_TURNS, size * size))
     if players > 2:
         fields.update({k: (players,) for k in RELATION_FIELDS}, alive=(players,))
     return tuple(sorted(fields.items()))

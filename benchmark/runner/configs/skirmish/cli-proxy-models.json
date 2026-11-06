@@ -1,0 +1,13 @@
+{
+  "description": "Local coding-plan adapter roster; not an OpenRouter cohort manifest. Both Fable versions are supported; use 5.1 for new comparisons.",
+  "models": [
+    {"label": "astra6", "model": "openai/gpt-6-astra"},
+    {"label": "sol61", "model": "openai/gpt-6.1-sol"},
+    {"label": "luna-high", "model": "openai/gpt-6-luna"},
+    {"label": "opus55", "model": "anthropic/claude-opus-5.5"},
+    {"label": "sonnet55", "model": "anthropic/claude-sonnet-5.5"},
+    {"label": "haiku55", "model": "anthropic/claude-haiku-5-5"},
+    {"label": "fable51", "model": "anthropic/claude-fable-5-1"}
+  ],
+  "mini_parameters": {"reasoning": {"effort": "high"}, "max_tokens": 32768}
+}

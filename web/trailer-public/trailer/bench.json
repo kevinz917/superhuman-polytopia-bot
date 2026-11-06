@@ -1,0 +1,161 @@
+{
+ "source": "kevin-website src/posts/polytopia-bench/data.json (Polytopia Bench, docs/skirmish/results/continuous-full-20261031)",
+ "models": [
+  {
+   "label": "GPT-6 Astra",
+   "logo": "openai",
+   "mean": 74.94,
+   "sd": 6.02,
+   "bots": [
+    78.06,
+    75.14,
+    79.72,
+    64.58,
+    77.22
+   ]
+  },
+  {
+   "label": "GPT-6.1 Sol",
+   "logo": "openai",
+   "mean": 74.39,
+   "sd": 2.92,
+   "bots": [
+    69.58,
+    75.28,
+    73.89,
+    76.94,
+    76.25
+   ]
+  },
+  {
+   "label": "Gemini 4 Argon",
+   "logo": "gemini",
+   "mean": 64.36,
+   "sd": 5.8,
+   "bots": [
+    60.42,
+    70.69,
+    60.56,
+    70.69,
+    59.44
+   ]
+  },
+  {
+   "label": "Claude Opus 5.5",
+   "logo": "claude",
+   "mean": 43.42,
+   "sd": 3.59,
+   "bots": [
+    38.33,
+    42.22,
+    46.81,
+    42.78,
+    46.94
+   ]
+  },
+  {
+   "label": "Claude Fable 5.1",
+   "logo": "claude",
+   "mean": 31.89,
+   "sd": 5.26,
+   "bots": [
+    25.14,
+    33.47,
+    39.31,
+    32.36,
+    29.17
+   ]
+  },
+  {
+   "label": "Kimi K3.1 Pro",
+   "logo": "kimi",
+   "mean": 31.06,
+   "sd": 14.41,
+   "bots": [
+    42.92,
+    20.42,
+    31.94,
+    46.94,
+    13.06
+   ]
+  },
+  {
+   "label": "GLM 5.3",
+   "logo": "zai",
+   "mean": 30.53,
+   "sd": 19.06,
+   "bots": [
+    52.08,
+    44.72,
+    33.75,
+    8.06,
+    14.03
+   ]
+  },
+  {
+   "label": "Qwen 3.8 Max",
+   "logo": "qwen",
+   "mean": 26.56,
+   "sd": 16.93,
+   "bots": [
+    42.92,
+    24.44,
+    8.19,
+    12.36,
+    44.86
+   ]
+  },
+  {
+   "label": "GPT-6 Luna",
+   "logo": "openai",
+   "mean": 19.58,
+   "sd": 14.66,
+   "bots": [
+    20.83,
+    22.08,
+    11.81,
+    1.81,
+    41.39
+   ]
+  },
+  {
+   "label": "DeepSeek V4.1 Flash",
+   "logo": "deepseek",
+   "mean": 18.36,
+   "sd": 14.82,
+   "bots": [
+    14.03,
+    13.61,
+    15.14,
+    5.14,
+    43.89
+   ]
+  },
+  {
+   "label": "DeepSeek V4 Pro",
+   "logo": "deepseek",
+   "mean": 15.19,
+   "sd": 12.88,
+   "bots": [
+    4.86,
+    27.22,
+    1.39,
+    29.86,
+    12.64
+   ]
+  },
+  {
+   "label": "MiniMax M3.1 Flash",
+   "logo": "minimax",
+   "mean": 13.08,
+   "sd": 11.28,
+   "bots": [
+    16.81,
+    14.86,
+    2.64,
+    1.94,
+    29.17
+   ]
+  }
+ ]
+}

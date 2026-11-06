@@ -1,0 +1,268 @@
+{
+  "schema": "expert-sft-h2h-summary-v1",
+  "opponent": "dist-c460div-v1 update 3142 (delivered 2026-10-19; 117-10-1 vs league96 on final maps)",
+  "expert_sft": {
+    "games": 10,
+    "wins": 0,
+    "losses": 10,
+    "unresolved": 0
+  },
+  "league96": {
+    "games": 10,
+    "wins": 1,
+    "losses": 9,
+    "unresolved": 0
+  },
+  "games": [
+    {
+      "id": "h2h-100771-seat-1",
+      "seed": 100771,
+      "seat": 1,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 23,
+        "model_moves": 365,
+        "peak_cities": 4,
+        "combat": {
+          "opp_kills": 37,
+          "model_captures": 6,
+          "opp_captures": 7,
+          "model_kills": 16,
+          "opp_takes_city": 4
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 19
+      }
+    },
+    {
+      "id": "h2h-100771-seat-2",
+      "seed": 100771,
+      "seat": 2,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 22,
+        "model_moves": 288,
+        "peak_cities": 4,
+        "combat": {
+          "opp_captures": 9,
+          "model_captures": 6,
+          "model_kills": 12,
+          "opp_kills": 28,
+          "opp_takes_city": 5
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 17
+      }
+    },
+    {
+      "id": "h2h-100772-seat-1",
+      "seed": 100772,
+      "seat": 1,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 31,
+        "model_moves": 429,
+        "peak_cities": 5,
+        "combat": {
+          "model_captures": 8,
+          "opp_captures": 7,
+          "model_kills": 12,
+          "opp_kills": 39,
+          "opp_takes_city": 6,
+          "model_takes_city": 1
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": 1.0,
+        "round": 26
+      }
+    },
+    {
+      "id": "h2h-100772-seat-2",
+      "seed": 100772,
+      "seat": 2,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 19,
+        "model_moves": 132,
+        "peak_cities": 2,
+        "combat": {
+          "model_captures": 2,
+          "opp_captures": 8,
+          "model_kills": 2,
+          "opp_kills": 11,
+          "opp_takes_city": 3
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 20
+      }
+    },
+    {
+      "id": "h2h-100773-seat-1",
+      "seed": 100773,
+      "seat": 1,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 19,
+        "model_moves": 263,
+        "peak_cities": 6,
+        "combat": {
+          "model_captures": 8,
+          "opp_captures": 10,
+          "model_kills": 12,
+          "opp_kills": 25,
+          "opp_takes_city": 6
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 43
+      }
+    },
+    {
+      "id": "h2h-100773-seat-2",
+      "seed": 100773,
+      "seat": 2,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 20,
+        "model_moves": 192,
+        "peak_cities": 3,
+        "combat": {
+          "opp_captures": 9,
+          "model_captures": 4,
+          "model_kills": 14,
+          "opp_kills": 28,
+          "opp_takes_city": 4
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 24
+      }
+    },
+    {
+      "id": "h2h-100774-seat-1",
+      "seed": 100774,
+      "seat": 1,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 22,
+        "model_moves": 215,
+        "peak_cities": 4,
+        "combat": {
+          "model_captures": 6,
+          "opp_captures": 11,
+          "model_kills": 14,
+          "opp_kills": 17,
+          "opp_takes_city": 4
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 23
+      }
+    },
+    {
+      "id": "h2h-100774-seat-2",
+      "seed": 100774,
+      "seat": 2,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 24,
+        "model_moves": 248,
+        "peak_cities": 4,
+        "combat": {
+          "model_captures": 6,
+          "opp_captures": 9,
+          "model_kills": 16,
+          "opp_kills": 24,
+          "opp_takes_city": 6
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 30
+      }
+    },
+    {
+      "id": "h2h-100775-seat-1",
+      "seed": 100775,
+      "seat": 1,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 20,
+        "model_moves": 122,
+        "peak_cities": 1,
+        "combat": {
+          "model_captures": 1,
+          "model_kills": 4,
+          "opp_captures": 10,
+          "opp_kills": 13,
+          "opp_takes_city": 1
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 27
+      }
+    },
+    {
+      "id": "h2h-100775-seat-2",
+      "seed": 100775,
+      "seat": 2,
+      "expert_sft": {
+        "status": "native",
+        "reason": "elimination",
+        "reward": -1.0,
+        "round": 21,
+        "model_moves": 96,
+        "peak_cities": 1,
+        "combat": {
+          "opp_captures": 10,
+          "model_kills": 4,
+          "opp_kills": 8,
+          "opp_takes_city": 1
+        }
+      },
+      "league96": {
+        "status": "native",
+        "reward": -1.0,
+        "round": 25
+      }
+    }
+  ]
+}

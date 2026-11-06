@@ -32,6 +32,9 @@ passenger, status effects, home city), the enemy's score, monuments and diplomac
 no enemy units are imagined in the fog, and the sampled map is not conditioned on the seen tiles beyond
 copying them.
 
+The searcher's observation history (State.history, engine-rs history.rs) is part of its own view and passes through
+unchanged; the enemy's history is kept too (it is never observed by the searcher).
+
 The sampling itself is array code on the State layout (gpu/state.py) and reuses the map generator and the
 exploration helper of gpu/ (map generation and vision, not game rules); the game itself is engine-rs.
 """

@@ -15,24 +15,31 @@ from polytopia_bot.gpu import snapshot
 from polytopia_bot.learning.adapter import serialize
 from polytopia_bot.learning.interface import canonical
 from polytopia_bot.learning.memory import PublicMemory
-from polytopia_bot.rl.actions import offsets, shapes
+from polytopia_bot.rl.actions import DIPLOMACY_BLOCK, offsets, shapes
 
 KINDS = ('kind', 'source', 'target', 'parameter')
 
 
 def decode_command(index, state, size):
-    """Catalog index -> the engine action's (kind, source, target, parameter), as engine-rs core::decode."""
+    """Catalog index -> the engine action's (kind, source, target, parameter), as engine-rs core::decode (GameBatch
+    .decode): diplomacy addresses the seat of its block (the seat b + 1 places after the mover; source = that seat),
+    the recover family's second entry is the disembark ability 23."""
     n = size * size
     bounds = offsets(size)
     family = int(np.searchsorted(bounds, index, side='right')) - 1
     at = int(index - bounds[family])
-    other = 3 - int(state.current_player)
     if family == 14:
-        caps = np.flatnonzero((np.asarray(state.tiles.capital) == other) & (np.asarray(state.cities.owner) == other))
-        capital = int(caps[0]) if len(caps) else 0
-        return dict(kind=3, source=other, target=(-1, 0, 1, capital, -1, -1)[at], parameter=(18, 19, 19, 20, 21, 22)[at])
-    if family in (9, 10, 11, 12):
-        return dict(kind=3, source=at, target=-1, parameter=(7, 16, 8, 9)[family - 9])
+        seats, mover = int(np.asarray(state.players.stars).shape[-1]), int(state.current_player)
+        block, k = divmod(at, DIPLOMACY_BLOCK)
+        seat = (mover - 1 + block + 1) % seats + 1 if block + 1 < seats else 0
+        caps = np.flatnonzero((np.asarray(state.tiles.capital) == seat) & (np.asarray(state.cities.owner) == seat))
+        capital = int(caps[0]) if len(caps) and seat else 0
+        return dict(kind=3, source=seat, target=(-1, 0, 1, capital, -1, -1)[k], parameter=(18, 19, 19, 20, 21, 22)[k])
+    if family == 9:
+        tile, entry = divmod(at, 2)
+        return dict(kind=3, source=tile, target=-1, parameter=(7, 23)[entry])
+    if family in (10, 11, 12):
+        return dict(kind=3, source=at, target=-1, parameter=(16, 8, 9)[family - 10])
     table = {0: (1, at // n, at % n, 0), 1: (2, at // n, at % n, 0), 2: (4, at // 128, -1, at % 128),
              3: (6, -1, at // 128, at % 128), 4: (7, -1, -1, at), 5: (5, -1, at, 0), 6: (3, -1, at // 3, at % 3 + 1),
              7: (9, -1, at // 9, at % 9), 8: (8, at, -1, 0), 13: (3, -1, at, 4), 15: (10, -1, -1, 0),
@@ -53,7 +60,7 @@ class RustEnvironment:
         from polytopia_bot.rl.cpu_engine import unpack_view, view_layout
         from polytopia_bot.rl.rust_engine import RustGames
         self.size = size
-        self.games = RustGames(size, 1, no_resign=False)
+        self.games = RustGames(size, 1, no_resign=False, max_turns=0)   # human play: no round limit, as the game
         self.layout, self._unpack = view_layout(size), unpack_view
         self.state = None
         self.memory = PublicMemory()
@@ -81,7 +88,7 @@ class RustEnvironment:
     def _scratch(self):
         if not hasattr(self, '_render'):
             from polytopia_bot.rl.rust_engine import RustGames
-            self._render = RustGames(self.size, 1, no_resign=False)
+            self._render = RustGames(self.size, 1, no_resign=False, max_turns=0)
         return self._render
 
     def income(self, player):

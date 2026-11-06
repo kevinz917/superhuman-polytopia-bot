@@ -35,7 +35,13 @@ U2860 = '/results/distributed/ladder/dist-c460div-v1-update-2860.npz'
 C3 = '/retained/checkpoints/distributed-final-v1/c3-maps-ctl-update-4854/final.npz'
 # c5-omni-s1-final: c3 + 6 h of PPO with an omniscient critic (docs/c5-omni-long-2026-10-21.md), 77% vs c3.
 OMNI = '/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz'
-NAMES = {C3: 'c3 u4854', OMNI: 'OMNI c3', FINAL: 'Distributed u3142', LEAGUE96: 'league96', DIVERSE: 'diverse u176',
+# Earlier, weaker omniscient-critic checkpoints: the 1-h ablation (+125 vs c3) and the 3-h snapshot of the same run.
+OMNI_1H = '/retained/checkpoints/distributed-final-v1/abl-omni-2-final/final.npz'
+OMNI_3H = '/retained/checkpoints/distributed-final-v1/c5-omni-s1-3h/final.npz'
+# The served checkpoint seated as a raw-policy rival (no search); resolves to OMNI's file.
+OMNI_RAW = OMNI + '#raw'
+NAMES = {C3: 'c3 u4854', OMNI: 'OMNI c3', OMNI_RAW: 'raw OMNI c3', OMNI_1H: 'OMNI 1h', OMNI_3H: 'OMNI 3h',
+         FINAL: 'Distributed u3142', LEAGUE96: 'league96', DIVERSE: 'diverse u176',
          E3: 'E3 final', U2860: 'Distributed u2860'}
 SEARCH_WORKERS = 16
 # (seat-1 checkpoint, seat-2 checkpoint, map seed[, map type[, search]]); development seeds, never final-test maps.
@@ -47,6 +53,15 @@ GAME_SETS = {
              (OMNI, C3, 321111, 'highlands', True), (C3, OMNI, 321112, 'lakes', True),
              (OMNI, C3, 321113, 'waterworld', True), (C3, OMNI, 321114, 'jungle', True),
              (OMNI, C3, 321115, 'ridge', True), (C3, OMNI, 321116, 'continents', True)],
+    # OMNI c3 + search against its own raw policy, and the strongest OMNI against the earlier 3-h and 1-h
+    # omniscient-critic checkpoints (search on the final one, and raw-vs-raw), plus one raw mirror.
+    'omni2': [(OMNI, OMNI_RAW, 321120, '', True), (OMNI_RAW, OMNI, 321121, 'continents', True),
+              (OMNI, OMNI_RAW, 321122, 'pangea', True),
+              (OMNI, OMNI_3H, 321130, '', True), (OMNI_3H, OMNI, 321131, 'archipelago', True),
+              (OMNI, OMNI_3H, 321132, '', False), (OMNI_3H, OMNI, 321133, 'highlands', False),
+              (OMNI, OMNI_1H, 321140, '', True), (OMNI_1H, OMNI, 321141, 'lakes', True),
+              (OMNI, OMNI_1H, 321142, 'ridge', False),
+              (OMNI, OMNI, 321150, 'jungle', False)],
     # Latest bot against itself: two classic maps and one of each new map type (maps/variants.py).
     'c3': [(C3, C3, 321000), (C3, C3, 321001)] + [
         (C3, C3, 321010 + k, kind) for k, kind in enumerate(
@@ -67,21 +82,24 @@ def record(first: str, second: str, seed: int, kind: str = '', search: bool = Fa
     import tempfile
     from polytopia_bot.rl.policy import StructuredPolicy
     from polytopia_bot.studio.service import Studio
-    if search:
-        # The served bot (OMNI) searches; a different checkpoint in the other seat plays its raw policy.
-        if OMNI not in (first, second):
-            raise ValueError('search games need OMNI in a seat')
+    if OMNI in (first, second):
+        # The served bot (OMNI) plays its policy, searching when asked; a rival checkpoint in the other seat
+        # (another checkpoint, or OMNI's own raw policy) always plays raw.
         rival = second if first == OMNI else first
+        rival_path = rival.removesuffix('#raw')
         studio = Studio(Path(tempfile.mkdtemp()), OMNI, name='Bardur · OMNI c3 (c5-omni-s1, update 2212)',
-                        short='OMNI c3', search_workers=SEARCH_WORKERS,
+                        short='OMNI c3', search_workers=SEARCH_WORKERS if search else None,
                         training='Teacher imitation, PPO self-play on a distributed CPU-actor league (c3), '
                                  'then 6 h of PPO with an omniscient critic; leak-free turn search at play time',
-                        opponents={NAMES[rival]: rival} if rival != OMNI else None)
+                        opponents={NAMES[rival]: rival_path} if rival != OMNI else None)
         studio.warmup()
-        studio.warm_search()
-        ident = studio.create(dict(mode='watch', seed=seed, search=True,
+        if search:
+            studio.warm_search()
+        ident = studio.create(dict(mode='watch', seed=seed, search=search,
                                    **({'opponent': NAMES[rival], 'opponent_seat': 1 if first != OMNI else 2}
                                       if rival != OMNI else {})))['game_id']
+    elif search:
+        raise ValueError('search games need OMNI in a seat')
     else:
         studio = Studio(Path(tempfile.mkdtemp()), FINAL, name='Bardur · Distributed PPO u3142',
                         short='Distributed u3142', training='Teacher imitation, PPO, distributed CPU-actor self-play league')

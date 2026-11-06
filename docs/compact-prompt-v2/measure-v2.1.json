@@ -1,0 +1,69 @@
+{
+  "examples": 356727,
+  "failures": 0,
+  "failure_samples": [],
+  "old_tokens": {
+    "n": 356727,
+    "mean": 10123.865115340303,
+    "median": 9041,
+    "p90": 17273,
+    "max": 39323
+  },
+  "new_tokens": {
+    "n": 356727,
+    "mean": 3174.799266666106,
+    "median": 2975,
+    "p90": 4622,
+    "max": 10527
+  },
+  "token_ratio_new_over_old": 0.31359557150316586,
+  "old_system_tokens": 1008,
+  "new_system_tokens": 1078,
+  "old_user_chars_mean": 24586.602592458657,
+  "new_user_chars_mean": 3743.350060410342,
+  "prefix_all": {
+    "pairs": 355727,
+    "old_shared_fraction": 0.13960264432498512,
+    "new_shared_fraction": 0.6400066018439932,
+    "old_uncached_tokens": 9021.518501547534,
+    "new_uncached_tokens": 1243.663421668864
+  },
+  "prefix_same_turn": {
+    "pairs": 335737,
+    "old_shared_fraction": 0.1406857426901367,
+    "new_shared_fraction": 0.642197805607608,
+    "old_uncached_tokens": 8906.567405439377,
+    "new_uncached_tokens": 1226.7444755865454
+  },
+  "prefix_next_turn": {
+    "pairs": 19990,
+    "old_shared_fraction": 0.12141173908131855,
+    "new_shared_fraction": 0.6032047920398539,
+    "old_uncached_tokens": 10952.150625312657,
+    "new_uncached_tokens": 1527.8213106553276
+  },
+  "new_user_section_tokens_mean": {
+    "legal": 772.8827973653623,
+    "map": 466.8111473958045,
+    "features": 340.1670448884707,
+    "your_units": 226.6599324735706,
+    "cities": 116.44650467703548,
+    "recent": 80.13104001771185,
+    "enemy_units": 31.111031161786684,
+    "header": 20.0,
+    "status": 13.224940499252781,
+    "technology": 10.752781313997897
+  },
+  "new_user_section_share": {
+    "legal": 0.3719023916634175,
+    "map": 0.2246242027425726,
+    "features": 0.16368450428751774,
+    "your_units": 0.1090661757106504,
+    "cities": 0.056032730625989825,
+    "recent": 0.03855814300777659,
+    "enemy_units": 0.014970273546810494,
+    "header": 0.009623772011259019,
+    "status": 0.00636369061136374,
+    "technology": 0.005174115792642097
+  }
+}

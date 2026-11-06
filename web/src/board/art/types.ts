@@ -24,6 +24,9 @@ export interface UnitArt {
 
 export interface BoardArt {
   readonly mode: ArtMode;
+  // On-screen tile width the board opens at, centred on the player's capital, for a `w` x `h` view;
+  // null opens on the whole board.
+  openTile(w: number, h: number): number | null;
   // Terrain cube into `base`; roads, shorelines and borders into `surface` (drawn above every cube).
   ground(t: Tile, info: GroundInfo, base: Container, surface: Container): void;
   fog(tile: number): Container;

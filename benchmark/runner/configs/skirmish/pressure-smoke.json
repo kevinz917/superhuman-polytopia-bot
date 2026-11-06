@@ -1,0 +1,42 @@
+{
+  "study_id": "pressure-smoke-20261030b",
+  "assignment_seed": 301026,
+  "replicates": 1,
+  "framings": [
+    "neutral",
+    "evaluative"
+  ],
+  "models": [
+    {
+      "id": "ds",
+      "config": {
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "base_url": "https://openrouter.ai/api/v1",
+        "key_env": "OPENROUTER_API_KEY",
+        "parameters": {
+          "reasoning": {
+            "effort": "medium"
+          },
+          "max_tokens": 12000
+        }
+      }
+    }
+  ],
+  "budget_profiles": [
+    {
+      "id": "combined",
+      "budget": {
+        "seconds": 150,
+        "constraint": "combined",
+        "max_revisions": 2,
+        "max_requests": 24,
+        "max_output_tokens": 12000,
+        "max_practice_games": 4,
+        "max_campaign_maps": 1
+      }
+    }
+  ],
+  "final_maps": 1,
+  "tournament_maps": 1
+}

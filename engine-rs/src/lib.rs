@@ -8,6 +8,7 @@ pub mod discovery;
 pub mod economy;
 pub mod geom;
 pub mod hash;
+pub mod history;
 pub mod infiltration;
 pub mod kernels;
 pub mod mapgen;
@@ -42,11 +43,18 @@ pub struct GameBatch {
     states: Vec<State>,
     max_turns: Option<i32>,
     no_resign: bool,
+    no_peace: bool,
     max_actions: i32,
     scratch: Scratch,
     mscratch: MaskScratch,
     /// per game: the masks tick() last returned, while they describe the game's state (step validation)
     legal: Vec<LegalCache>,
+}
+
+impl GameBatch {
+    fn mask_opts(&self) -> crate::masks::MaskOpts {
+        crate::masks::MaskOpts { no_resign: self.no_resign, no_peace: self.no_peace }
+    }
 }
 
 fn err(msg: &str) -> PyErr {
@@ -56,9 +64,9 @@ fn err(msg: &str) -> PyErr {
 #[pymethods]
 impl GameBatch {
     #[new]
-    #[pyo3(signature = (size, games, rules_json, engine_revision=None, max_turns=None, no_resign=true, max_actions=10000, players=2))]
+    #[pyo3(signature = (size, games, rules_json, engine_revision=None, max_turns=None, no_resign=true, max_actions=10000, players=2, no_peace=false))]
     fn new(size: usize, games: usize, rules_json: &str, engine_revision: Option<&str>, max_turns: Option<i32>, no_resign: bool,
-           max_actions: i32, players: usize) -> PyResult<Self> {
+           max_actions: i32, players: usize, no_peace: bool) -> PyResult<Self> {
         if mapgen::ruins(size).is_none() {
             return Err(err("board size must be 11, 14 or 18"));
         }
@@ -73,7 +81,7 @@ impl GameBatch {
         }
         let geom = Geom::new(size);
         let states = (0..games).map(|_| State::empty_players(size, players)).collect();
-        Ok(GameBatch { size, games, players, rules, geom, states, max_turns, no_resign, max_actions, scratch: Scratch::new(size * size),
+        Ok(GameBatch { size, games, players, rules, geom, states, max_turns, no_resign, no_peace, max_actions, scratch: Scratch::new(size * size),
                      mscratch: MaskScratch::new(size * size), legal: (0..games).map(|_| LegalCache::new(size * size)).collect() })
     }
 
@@ -119,21 +127,44 @@ impl GameBatch {
             let rv: Vec<i32> = rs.row(g).to_vec();
             let cap: Vec<usize> = caps.row(g).iter().map(|&c| c as usize).collect();
             self.states[g] = mapgen::initial_state(seeds[g] as u32, &tv, &sv, &rv, &cap, &self.geom,
-                                                   self.max_turns.unwrap_or(mapgen::round_limit(self.size)));
+                                                   self.max_turns.unwrap_or(mapgen::NO_ROUND_LIMIT));
         }
         self.forget_masks();
         Ok(())
     }
 
-    /// Only the mapgen layout of one seed (terrain, structure, resource, capitals), for map checks.
-    fn layout<'py>(&self, py: Python<'py>, seed: i32) -> PyResult<Bound<'py, PyDict>> {
-        let l = mapgen::layout_players(seed, &self.geom, self.players);
+    /// Only the mapgen layout of one seed (terrain, structure, resource, capitals, plus the kept attempt's seed and
+    /// inequality), for map checks. exact=True: generate internal(seed) alone, the real generate with seed board.
+    #[pyo3(signature = (seed, exact=false))]
+    fn layout<'py>(&self, py: Python<'py>, seed: i32, exact: bool) -> PyResult<Bound<'py, PyDict>> {
+        let (l, attempt, inequality) = if exact {
+            let l = mapgen::generate_internal(seed, self.size, self.players);
+            let q = mapgen::inequality(&l, self.size);
+            (l, seed, q)
+        } else {
+            mapgen::generate(seed, self.size, self.players)
+        };
         let d = PyDict::new(py);
+        d.set_item("attempt_seed", attempt)?;
+        d.set_item("inequality", inequality)?;
         d.set_item("terrain", l.terrain.into_pyarray(py))?;
         d.set_item("structure", l.structure.into_pyarray(py))?;
         d.set_item("resource", l.resource.into_pyarray(py))?;
         d.set_item("capitals", l.capitals.iter().map(|&c| c as i32).collect::<Vec<i32>>().into_pyarray(py))?;
         Ok(d)
+    }
+
+    /// The engine action (kind, source, target, parameter) of one (family, source, target) choice per game, as
+    /// `step` would decode it in the current states: [G, 4].
+    fn decode<'py>(&self, py: Python<'py>, family: PyReadonlyArray1<i32>, source: PyReadonlyArray1<i32>,
+                   target: PyReadonlyArray1<i32>) -> PyResult<Bound<'py, PyArray2<i32>>> {
+        let (f, s, t) = (family.as_slice()?, source.as_slice()?, target.as_slice()?);
+        let mut out = Vec::with_capacity(self.games * 4);
+        for g in 0..self.games {
+            let a = decode(&self.states[g], f[g], s[g], t[g]);
+            out.extend_from_slice(&[a.kind, a.source, a.target, a.parameter]);
+        }
+        Ok(PyArray1::from_vec(py, out).reshape([self.games, 4])?)
     }
 
     /// Apply one decoded choice per game (no auto-reset, no prepare). Returns status [G].
@@ -176,7 +207,7 @@ impl GameBatch {
                 Some((a, b, c, d))
             }
         };
-        let max_turns = self.max_turns.unwrap_or(mapgen::round_limit(self.size));
+        let max_turns = self.max_turns.unwrap_or(mapgen::NO_ROUND_LIMIT);
         let np = self.players;
         let vw = view_width_np(n, np);
         let others = np - 1;
@@ -227,7 +258,7 @@ impl GameBatch {
             }
             let st = &self.states[g];
             let row = &mut masks[g * mw..(g + 1) * mw];
-            let (rules, geom, no_resign, ms, cache) = (&self.rules, &self.geom, self.no_resign, &mut self.mscratch, &mut self.legal[g]);
+            let (rules, geom, no_resign, ms, cache) = (&self.rules, &self.geom, self.mask_opts(), &mut self.mscratch, &mut self.legal[g]);
             prof::time(prof::TICK_MASKS, || if packed_masks {
                 masks_into(st, rules, geom, no_resign, ms, &mut Tee { out: &mut Packed(row), cache });
             } else {
@@ -312,8 +343,8 @@ impl GameBatch {
         })?;
         time("units", &mut |st| masks::unit_rows(st, r, g, &mut c))?;
         time("pending_reward", &mut |st| { let _ = st.pending_reward(); })?;
-        time("full_count", &mut |st| masks_into(st, r, g, self.no_resign, &mut ms.borrow_mut(), &mut c))?;
-        time("full", &mut |st| legal_masks(st, r, g, self.no_resign, &mut ms.borrow_mut(), &mut flat))?;
+        time("full_count", &mut |st| masks_into(st, r, g, self.mask_opts(), &mut ms.borrow_mut(), &mut c))?;
+        time("full", &mut |st| legal_masks(st, r, g, self.mask_opts(), &mut ms.borrow_mut(), &mut flat))?;
         let mut v = vec![0i16; view_width_np(n, self.players)];
         time("observe", &mut |st| observe(st, st.current_player, g, &mut v))?;
         d.set_item("entries", c.0)?;
@@ -340,9 +371,9 @@ impl GameBatch {
         for g in 0..self.games {
             let row = &mut masks[g * mw..(g + 1) * mw];
             if packed {
-                masks_into(&self.states[g], &self.rules, &self.geom, self.no_resign, &mut self.mscratch, &mut Packed(row));
+                masks_into(&self.states[g], &self.rules, &self.geom, self.mask_opts(), &mut self.mscratch, &mut Packed(row));
             } else {
-                masks_into(&self.states[g], &self.rules, &self.geom, self.no_resign, &mut self.mscratch, &mut Dense(row));
+                masks_into(&self.states[g], &self.rules, &self.geom, self.mask_opts(), &mut self.mscratch, &mut Dense(row));
             }
         }
         Ok(PyArray1::from_vec(py, masks).reshape([self.games, mw])?)
@@ -431,6 +462,7 @@ impl GameBatch {
         field!("tiles.explored", bool, [np, n], |s, b| for k in 0..s.np { b.extend_from_slice(&s.tiles.explored[k]); });
         field!("tiles.structure_level", i32, [n], |s, b| b.extend_from_slice(&s.tiles.structure_level));
         field!("tiles.structure_turn", i32, [n], |s, b| b.extend_from_slice(&s.tiles.structure_turn));
+        field!("tiles.route", bool, [n], |s, b| b.extend_from_slice(&s.tiles.route));
         field!("units.owner", i32, [n], |s, b| b.extend_from_slice(&s.units.owner));
         field!("units.kind", i32, [n], |s, b| b.extend_from_slice(&s.units.kind));
         field!("units.health", f32, [n], |s, b| b.extend_from_slice(&s.units.health));
@@ -450,6 +482,7 @@ impl GameBatch {
         field!("units.last_attack", i32, [n], |s, b| b.extend_from_slice(&s.units.last_attack));
         field!("units.passenger", i32, [n], |s, b| b.extend_from_slice(&s.units.passenger));
         field!("units.invisible", bool, [n], |s, b| b.extend_from_slice(&s.units.invisible));
+        field!("units.direction", i32, [n], |s, b| b.extend_from_slice(&s.units.direction));
         field!("cities.owner", i32, [n], |s, b| b.extend_from_slice(&s.cities.owner));
         field!("cities.level", i32, [n], |s, b| b.extend_from_slice(&s.cities.level));
         field!("cities.population", i32, [n], |s, b| b.extend_from_slice(&s.cities.population));
@@ -479,11 +512,19 @@ impl GameBatch {
         field!("players.embassy", bool, [np, np], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.embassy[k][..s.np]); });
         field!("players.peace_offer", bool, [np, np], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.peace_offer[k][..s.np]); });
         field!("players.truce_breaker", i32, [np, np], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.truce_breaker[k][..s.np]); });
-        field!("players.hostile_until", i32, [np], |s, b| b.extend_from_slice(&s.players.hostile_until[..s.np]));
+        field!("players.hostile_until", i32, [np, np], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.hostile_until[k][..s.np]); });
+        field!("players.peace_broken", i32, [np, np], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.peace_broken[k][..s.np]); });
         field!("players.monuments", bool, [np, 128], |s, b| for k in 0..s.np { b.extend_from_slice(&s.players.monuments[k]); });
         if np > 2 {
             field!("players.out_order", i32, [np], |s, b| b.extend_from_slice(&s.players.out_order[..s.np]));
         }
+        // observation history (history.rs); optional on import
+        let ht = crate::state::HIST_TURNS;
+        field!("history.seen_unit", bool, [np, ht, n], |s, b| for k in 0..s.np { for v in &s.history[k].seen_unit { b.extend_from_slice(v); } });
+        field!("history.prev_code", i32, [np, n], |s, b| for k in 0..s.np { b.extend_from_slice(&s.history[k].prev_code); });
+        field!("history.built", bool, [np, n], |s, b| for k in 0..s.np { b.extend_from_slice(&s.history[k].built); });
+        field!("history.trained", bool, [np, n], |s, b| for k in 0..s.np { b.extend_from_slice(&s.history[k].trained); });
+        field!("history.enemy_tech", bool, [np, 128], |s, b| for k in 0..s.np { for i in 0..128 { b.push(s.history[k].enemy_tech >> i & 1 == 1); } });
         field!("current_player", i32, [], |s, b| b.push(s.current_player));
         field!("turn", i32, [], |s, b| b.push(s.turn));
         field!("version", i32, [], |s, b| b.push(s.version));
@@ -530,6 +571,12 @@ impl GameBatch {
         load!("tiles.explored", bool, np * n, |s, v| for k in 0..s.np { s.tiles.explored[k].copy_from_slice(&v[k * n..(k + 1) * n]); });
         load!("tiles.structure_level", i32, n, |s, v| s.tiles.structure_level.copy_from_slice(v));
         load!("tiles.structure_turn", i32, n, |s, v| s.tiles.structure_turn.copy_from_slice(v));
+        // optional (gpu/state.py has no route flag): without it, the routes update routes
+        // finds on the loaded position (computed below, once every field is in)
+        let routes_given = fields.contains("tiles.route")?;
+        if routes_given {
+            load!("tiles.route", bool, n, |s, v| s.tiles.route.copy_from_slice(v));
+        }
         load!("units.owner", i32, n, |s, v| s.units.owner.copy_from_slice(v));
         load!("units.kind", i32, n, |s, v| s.units.kind.copy_from_slice(v));
         load!("units.health", f32, n, |s, v| s.units.health.copy_from_slice(v));
@@ -549,6 +596,16 @@ impl GameBatch {
         load!("units.last_attack", i32, n, |s, v| s.units.last_attack.copy_from_slice(v));
         load!("units.passenger", i32, n, |s, v| s.units.passenger.copy_from_slice(v));
         load!("units.invisible", bool, n, |s, v| s.units.invisible.copy_from_slice(v));
+        // optional (states saved before units had a facing): toward the map centre, as at creation
+        if fields.contains("units.direction")? {
+            load!("units.direction", i32, n, |s, v| s.units.direction.copy_from_slice(v));
+        } else {
+            for s in self.states.iter_mut() {
+                for t in 0..n {
+                    s.units.direction[t] = if s.units.owner[t] != 0 { crate::military::spawn_direction(s.size, t) } else { 0 };
+                }
+            }
+        }
         load!("cities.owner", i32, n, |s, v| s.cities.owner.copy_from_slice(v));
         load!("cities.level", i32, n, |s, v| s.cities.level.copy_from_slice(v));
         load!("cities.population", i32, n, |s, v| s.cities.population.copy_from_slice(v));
@@ -578,10 +635,41 @@ impl GameBatch {
         load!("players.embassy", bool, np * np, |s, v| for k in 0..s.np { s.players.embassy[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
         load!("players.peace_offer", bool, np * np, |s, v| for k in 0..s.np { s.players.peace_offer[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
         load!("players.truce_breaker", i32, np * np, |s, v| for k in 0..s.np { s.players.truce_breaker[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
-        load!("players.hostile_until", i32, np, |s, v| s.players.hostile_until[..s.np].copy_from_slice(v));
+        // per pair since 2026-10-31; states saved before hold one stamp per attacker (applied to every victim)
+        let per_attacker = {
+            let item = fields.get_item("players.hostile_until")?.ok_or_else(|| err("missing field players.hostile_until"))?;
+            let arr: PyReadonlyArrayDyn<i32> = item.extract()?;
+            arr.as_array().len() == gm * np
+        };
+        if per_attacker && np > 1 {
+            load!("players.hostile_until", i32, np, |s, v| for k in 0..s.np { s.players.hostile_until[k] = [v[k]; crate::state::MAXP]; });
+        } else {
+            load!("players.hostile_until", i32, np * np, |s, v| for k in 0..s.np { s.players.hostile_until[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
+        }
+        // optional (states saved before it existed): a cool down relation is taken as broken this turn (set below,
+        // once the turn is loaded)
+        let has_broken = fields.contains("players.peace_broken")?;
+        if has_broken {
+            load!("players.peace_broken", i32, np * np, |s, v| for k in 0..s.np { s.players.peace_broken[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
+        }
         load!("players.monuments", bool, np * 128, |s, v| for k in 0..s.np { s.players.monuments[k].copy_from_slice(&v[k * 128..(k + 1) * 128]); });
         if np > 2 {
             load!("players.out_order", i32, np, |s, v| s.players.out_order[..s.np].copy_from_slice(v));
+        }
+        // optional (states saved before the observation history existed, and gpu/state.py States without it): empty
+        let ht = crate::state::HIST_TURNS;
+        if fields.contains("history.seen_unit")? {
+            load!("history.seen_unit", bool, np * ht * n, |s, v| for k in 0..s.np { for j in 0..ht { s.history[k].seen_unit[j].copy_from_slice(&v[(k * ht + j) * n..(k * ht + j + 1) * n]); } });
+            load!("history.prev_code", i32, np * n, |s, v| for k in 0..s.np { s.history[k].prev_code.copy_from_slice(&v[k * n..(k + 1) * n]); });
+            load!("history.built", bool, np * n, |s, v| for k in 0..s.np { s.history[k].built.copy_from_slice(&v[k * n..(k + 1) * n]); });
+            load!("history.trained", bool, np * n, |s, v| for k in 0..s.np { s.history[k].trained.copy_from_slice(&v[k * n..(k + 1) * n]); });
+            load!("history.enemy_tech", bool, np * 128, |s, v| for k in 0..s.np { s.history[k].enemy_tech = (0..128).fold(0u128, |b, i| b | (v[k * 128 + i] as u128) << i); });
+        } else {
+            for s in self.states.iter_mut() {
+                for h in s.history.iter_mut() {
+                    h.clear();
+                }
+            }
         }
         load!("current_player", i32, 1, |s, v| s.current_player = v[0]);
         load!("turn", i32, 1, |s, v| s.turn = v[0]);
@@ -597,6 +685,12 @@ impl GameBatch {
         load!("initial_seed", u32, 1, |s, v| s.initial_seed = v[0]);
         for s in self.states.iter_mut() {
             s.monuments_settled = false;
+            if !has_broken {
+                s.players.peace_broken = [[s.turn; crate::state::MAXP]; crate::state::MAXP];
+            }
+            if !routes_given {
+                structures::update_routes(s, &self.rules);
+            }
         }
         self.forget_masks();
         Ok(())

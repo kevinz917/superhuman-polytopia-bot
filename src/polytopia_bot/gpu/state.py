@@ -46,6 +46,7 @@ class Units(NamedTuple):
     last_attack: Array  # index + 1; zero means absent
     passenger: Array
     invisible: Array
+    direction: Array  # facing, GridDirection 0..7 (SW, W, NW, N, NE, E, SE, S); TryPushUnit starts from it
 
 
 class Cities(NamedTuple):
@@ -81,9 +82,22 @@ class Players(NamedTuple):
     peace: Array  # symmetric [2, 2]
     embassy: Array  # sender -> capital owner, separate from tile structures
     peace_offer: Array  # recipient -> sender
-    truce_breaker: Array  # symmetric player ID; clears at breaker's next turn
-    hostile_until: Array  # per-player action-turn serial, embargo after attacking
+    truce_breaker: Array  # [p, q] != 0: p's relation to q is in cool-down after a broken peace (breaker's id)
+    hostile_until: Array  # [attacker, victim] action-turn serial of the last attack (engine-rs: per pair; this JAX
+                          # engine writes the whole attacker row; engine-rs also imports an older [2] per attacker)
     monuments: Array  # [2, 128] earned tasks persist after their condition ends
+    peace_broken: Array  # [p, q] turn p's peace with q was last broken (engine-rs: ends each side's cool-down)
+
+
+class History(NamedTuple):
+    """Per seat, what it remembers of its own past views (engine-rs history.rs; observation version 3). Carried
+    through export/import so a loaded position keeps its history; None where a State was built without one (the
+    engine then starts it empty). The retired JAX engine never updates it."""
+    seen_unit: Array  # [np, 3, n] a visible enemy unit stood here at the end of the seat's turn k + 1 turns ago
+    prev_code: Array  # [np, n] structure * 64 + level * 2 + road of the tiles seen at the end of the seat's last turn, -1 unseen
+    built: Array  # [np, n] an enemy structure/road/level appeared or changed here since the seat's last turn
+    trained: Array  # [np, n] a visible enemy unit stands on an enemy city tile where none stood at the seat's last turn
+    enemy_tech: Array  # [np, 128] techs the enemy must have, from what the seat has seen
 
 
 class State(NamedTuple):
@@ -105,6 +119,7 @@ class State(NamedTuple):
     core_supported: Array
     seed: Array
     initial_seed: Array
+    history: History | None = None
 
 
 def empty_state(size: int) -> State:
@@ -116,10 +131,10 @@ def empty_state(size: int) -> State:
     return State(
         Tiles(z(), z(), z(), jnp.full(n, -1, jnp.int32), b(), z(), z(), b(2, n), z(), z()),
         Units(z(), z(), jnp.zeros(n, jnp.float32), b(), b(), b(), z(), b(), b(), b(),
-              z(), z(), b(), z(), z(), z(), z(), z(), b()),
+              z(), z(), b(), z(), z(), z(), z(), z(), b(), z()),
         Cities(z(), z(), z(), z(), z(), z(), z(n, 9), b(n, n), b(), z(), z(), b()),
         Players(z(2), z(2), b(2, 128), z(2, 128), b(2, 2), z(2), z(2), z(2), b(2), b(2, 128), z(2), z(2), z(2),
-                b(2, 2), b(2, 2), b(2, 2), z(2, 2), z(2), b(2, 128)),
+                b(2, 2), b(2, 2), b(2, 2), z(2, 2), z(2, 2), b(2, 128), z(2, 2)),
         jnp.int32(1), jnp.int32(0), jnp.int32(115), jnp.int32(0), jnp.int32(0),
         jnp.bool_(False), jnp.bool_(False), jnp.bool_(True), jnp.int32(45), jnp.bool_(True), jnp.uint32(0), jnp.uint32(0),
     )

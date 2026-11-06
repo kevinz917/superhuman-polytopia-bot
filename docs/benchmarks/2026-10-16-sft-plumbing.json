@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-16",
+  "scope": "Local CPU training infrastructure; no 4B weight training or full-game teacher qualification",
+  "tests": {
+    "command": "uv run --project training --locked python -m pytest tests/test_learning.py tests/test_learning_training.py -q",
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 3.66
+  },
+  "engine_environment_check": {
+    "passed": 27,
+    "optional_ml_module_skipped": 1
+  },
+  "tiny_random_model": {
+    "kind": "tiny_random_qwen3_plumbing_only",
+    "steps": 80,
+    "initial_loss": 5.707754135131836,
+    "final_loss": 4.992673873901367,
+    "initial_token_accuracy": 0.0,
+    "final_token_accuracy": 1.0,
+    "checkpoint_steps": [
+      20,
+      40,
+      80
+    ],
+    "base_weights_unchanged": true,
+    "adapter_weights_changed": true,
+    "reload_max_logit_error": 0.0,
+    "passed": true,
+    "adapter_sha256": "af8b980b7f726caf207f68e5514b2260e786af7a6849507db12c5af43bd5acbb"
+  },
+  "qwen_tokenizer_preparation": {
+    "config": {
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "max_length": 8192,
+      "max_new_tokens": 32,
+      "lora_rank": 32,
+      "lora_alpha": 64,
+      "lora_dropout": 0.0,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "learning_rate": 0.0001,
+      "warmup_ratio": 0.03,
+      "epochs": 1,
+      "microbatch_size": 1,
+      "effective_batch_size": 64,
+      "max_grad_norm": 1.0,
+      "seeds": [
+        17,
+        29
+      ]
+    },
+    "source_sha256": "ebd8670baf9ca6c9eff425f4c884f4a79d653f37677bdbb343b8f864b2b42ab9",
+    "tokens_sha256": "a11a20cf32546aaf4a4a3b5cdcaef0ecaf2e7db0251538b836e4bab83540d93c",
+    "chat_template_hash": "c87c39da4214fe8fee1f49f4b54bdb5ae1e1cd5aed22a356f3ffedb59964a715",
+    "tokenizer_hash": "f1e264d1fff741970848e313688ec4090635abb93476dd27de8ebf3d6e75c459",
+    "audit": {
+      "input_records": 8,
+      "unique_records": 8,
+      "duplicates": 0,
+      "episodes": 8,
+      "maps": 8,
+      "sources": [
+        "fixture"
+      ],
+      "teacher_hashes": [
+        "e7493739e122fb1b644b64bfcd41a520d7497258f82be55bacc1b61b9a09c0d3"
+      ],
+      "observation_schema": "polytopia-public-v1"
+    },
+    "max_tokens": 826,
+    "processed_tokens": 6608,
+    "supervised_tokens": 64
+  },
+  "source_sha256": {
+    "src/polytopia_bot/learning/__init__.py": "01c29349486e3d58794c7946570a3a0e7a450f7a9e785c77a64ca57ed0b175f3",
+    "src/polytopia_bot/learning/collection.py": "62de941ffbed2b2c97c7fd4ebf26e468a389612658a1aef9af1005531ed90b7e",
+    "src/polytopia_bot/learning/data.py": "3a3695f9d48586cfaf580d270bcf115aa7eef171a91ae1418070297221da5902",
+    "src/polytopia_bot/learning/inference.py": "596af8dec9e61d3dafd70536e0ea03673d5810ae8af495755997f48a721e6296",
+    "src/polytopia_bot/learning/interface.py": "5e306484055d4c8918d37647eb1d46e1f8798b1922c49d9fcf90470d6f207e2e",
+    "src/polytopia_bot/learning/smoke.py": "2a2612784c5fcfb8c8ee550e0080d22d9102861669e381f2139619b98d732c8d",
+    "src/polytopia_bot/learning/teacher.py": "fc4c054d2961e61b3989c4b7da7e50245ef7d25c2e878f001fe1ac3de1938350",
+    "src/polytopia_bot/learning/training.py": "7af7d29620eac66b9b826e193d95f17bff4b8536b81a4cadeaff454701e409a6",
+    "scripts/sft.py": "a2a5436375f54be4382ff914eeec28abdb571b03b37f44cca15a20ff9216d896",
+    "configs/sft.json": "baa68b68383df0f14eb4a98a057099dfe7443fbf7f6118fde15fb800f8d2ae28",
+    "training/pyproject.toml": "791ffeca47403bc355281fe5e7e45137ef5918b60aef7fae0daff5c751027f85",
+    "training/uv.lock": "37a8a0b6ebd964e683236ce604d43789288691b2df275badebb2b4fd1843bd59",
+    "tests/test_learning.py": "be70ec1f88d604c83fbcb9f06e3eb44cbebe25b85eb27933211a7dd2bce537b9",
+    "tests/test_learning_training.py": "3e96fd0439ea3fc49067658e69af51a98dacc51e430d576f4b237efa83768521"
+  },
+  "remaining": [
+    "GPU public-observation adapter and redaction/legality invariance validation",
+    "Full-game scripted teacher qualification",
+    "Real demonstration generation, split/phase sampling and action replay audits",
+    "4B CUDA memory/throughput and 128-example fit validation",
+    "Main SFT and held-out game evaluation",
+    "APEX setup only after SFT"
+  ]
+}

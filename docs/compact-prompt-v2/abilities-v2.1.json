@@ -1,0 +1,80 @@
+{
+  "expert_sft_v1": {
+    "abilities": {
+      "recover": 32,
+      "clear_forest": 14,
+      "offer_peace": 4,
+      "disband": 4,
+      "demolish_own": 2,
+      "grow_forest": 2,
+      "burn_forest": 2,
+      "promote": 1
+    },
+    "games_using": {
+      "recover": 17,
+      "demolish_own": 2,
+      "offer_peace": 4,
+      "disband": 4,
+      "clear_forest": 7,
+      "grow_forest": 1,
+      "promote": 1,
+      "burn_forest": 1
+    },
+    "decisions": 17898,
+    "ability_offered": 13740
+  },
+  "compact_sft": {
+    "abilities": {
+      "demolish_own": 547,
+      "recover": 75,
+      "offer_peace": 64,
+      "disband": 41,
+      "clear_forest": 28,
+      "burn_forest": 2,
+      "embassy": 1,
+      "grow_forest": 1
+    },
+    "games_using": {
+      "disband": 13,
+      "recover": 26,
+      "offer_peace": 13,
+      "embassy": 1,
+      "demolish_own": 14,
+      "clear_forest": 7,
+      "grow_forest": 1,
+      "burn_forest": 2
+    },
+    "decisions": 21157,
+    "ability_offered": 17007
+  },
+  "compact_sft_prefix_cache": {
+    "abilities": {
+      "demolish_own": 534,
+      "recover": 82,
+      "offer_peace": 51,
+      "disband": 23,
+      "clear_forest": 9,
+      "grow_forest": 7,
+      "burn_forest": 5,
+      "promote": 3
+    },
+    "games_using": {
+      "disband": 8,
+      "recover": 17,
+      "offer_peace": 15,
+      "demolish_own": 16,
+      "burn_forest": 2,
+      "clear_forest": 4,
+      "grow_forest": 3,
+      "promote": 2
+    },
+    "decisions": 22580,
+    "ability_offered": 18657
+  },
+  "training_corpus_labels": {
+    "recover": 275,
+    "clear_forest": 126,
+    "promote": 5,
+    "offer_peace": 2
+  }
+}

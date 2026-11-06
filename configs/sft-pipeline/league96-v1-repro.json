@@ -1,0 +1,26 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "league96-v1-repro",
+  "description": "expert-sft-v1 expressed as a pipeline config: league96 on the 500 training maps x both seats vs balanced, 40 decisions per game (forced moves kept, as in v1), SFT-0 LoRA recipe on 4 x B200, development evaluation on the same 15 validation maps x 2 seats vs balanced. Example selection uses the same rule but different job ids than v1, so the sampled decisions differ.",
+  "players": {
+    "league96": {"kind": "rl", "path": "/retained/checkpoints/low256-league-rivals-v1/update-96-f998d15e220c/latest.npz",
+                 "sha256": "f998d15e220c92fe5ad091b73c4fd8952612a69b37fdd607d8b007093b26225d", "deterministic": true}
+  },
+  "generation": {
+    "experts": ["league96"],
+    "map_pool": [{"split": "train"}],
+    "opponents": [{"name": "balanced"}],
+    "games_per_call": 10,
+    "max_failed_games": 50
+  },
+  "data": {"examples_per_game": 40, "sample_seed": 17, "skip_forced": false, "games_per_shard": 25},
+  "training": {"gpus": 4, "checkpoint_every": 157, "overrides": {"epochs": 1, "max_length": 24576}},
+  "evaluation": {
+    "maps": {"split": "validation", "offset": 150, "count": 15},
+    "opponents": ["balanced"],
+    "shard_by_opponent": false,
+    "arms": {"sft": {"adapter": "trained"}},
+    "rl_reference": ["league96"],
+    "pairs": [["sft", "rl:league96"]]
+  }
+}

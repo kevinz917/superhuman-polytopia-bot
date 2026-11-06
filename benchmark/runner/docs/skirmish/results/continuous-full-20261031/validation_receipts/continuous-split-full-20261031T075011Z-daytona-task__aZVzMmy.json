@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "original_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+  "graded_trial": "/Users/K.Z./Desktop/projects/polytopia-bot-skirmish/artifacts/harbor-runs/continuous-split-full-20261031T075011Z-daytona/task__aZVzMmy",
+  "validated_at": "2026-10-31T10:26:42.053766+00:00",
+  "source_sha256": "b83421d1fd0f332ce80d5a3dedba96a490454a327ea738a939b47c7bc2d71cea",
+  "summary": {
+    "model": "moonshotai/kimi-k3.1-pro",
+    "trial": "task__aZVzMmy",
+    "score": 20.416666666666668,
+    "games": 360,
+    "profile": "standard",
+    "quality": "custom_submission",
+    "compile_returncode": 0,
+    "champion": {
+      "wins": 1,
+      "draws": 0,
+      "losses": 59
+    },
+    "practice_matches": 13,
+    "coding_budget_seconds": 2400,
+    "timing": {
+      "api_seconds": 1905.683423757553,
+      "tool_seconds": 490.41500878334045,
+      "api_calls_started": 37,
+      "api_calls_finished": 37,
+      "interrupted_api_calls": 0,
+      "tool_calls_started": 36,
+      "tool_calls_finished": 36,
+      "scheduler_wait_seconds": 0,
+      "controller_wall_seconds": 2396.7983202934265,
+      "coding_seconds": 2396.7983202934265
+    },
+    "usage": {
+      "input_tokens": 4785733,
+      "output_tokens": 20401,
+      "completed_responses": 37
+    },
+    "inference": {
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "accounting": "provider_usage",
+      "api_protocol": "chat"
+    },
+    "replay_actions": 324664,
+    "rewards": {
+      "reward": 0.20416666666666666,
+      "champion_win_rate": 0.016666666666666666,
+      "champion_points": 0.016666666666666666,
+      "games": 360,
+      "runtime_fault_rate": 0.0,
+      "compilation_loss_rate": 0.0,
+      "evaluation_is_demo": 0
+    }
+  },
+  "schedule_sha256": "4f1f3b7c3a2e2c610ba007f92a8bd56fe28f8162f036bcc55ae1cfecf442d17c",
+  "compact_blob_sha256": "e99ecfe1b1630552afb29cebf3d040cfd526e130336f9606fa8cacc32c9eb603",
+  "private_trace_hashes_verified": 360,
+  "native_public_observation_audits_passed": true,
+  "public_observation_encoding": "Lossless native-engine replay; original public SHA256 retained; decoder qualified against 36 complete original traces",
+  "raw_public_trace_bytes_rehashed_locally": false,
+  "completed_call_cost_usd": 1.422470808
+}

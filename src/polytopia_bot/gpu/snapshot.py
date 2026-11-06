@@ -13,7 +13,7 @@ import jax.numpy as jnp
 import numpy as np
 
 from . import ENGINE_REVISION
-from .state import State, empty_state
+from .state import History, State, empty_state
 
 SCHEMA = 1
 
@@ -41,6 +41,8 @@ def implementation_digest():
 def fields(state):
     for name in State._fields:
         value = getattr(state, name)
+        if value is None:   # State.history: engine-rs only, absent from the JAX engine's states
+            continue
         if isinstance(value, tuple):
             for field, array in zip(value._fields, value, strict=True):
                 yield f'{name}.{field}', array
@@ -74,6 +76,12 @@ def loads(payload, *, profile):
             raise ValueError('invalid snapshot board size')
         state = empty_state(size)
         template = dict(fields(state))
+        if 'history.seen_unit' in archive.files:   # an engine-rs state's observation history (two seats here)
+            n = size * size
+            z = lambda *shape: np.zeros(shape, bool)
+            history = History(z(2, 3, n), np.zeros((2, n), np.int32), z(2, n), z(2, n), z(2, 128))
+            template.update({f'history.{f}': a for f, a in zip(History._fields, history)})
+            state = state._replace(history=history)
         if set(archive.files) != {*template, 'metadata'}:
             raise ValueError('snapshot field set differs')
         arrays = {}
@@ -85,6 +93,6 @@ def loads(payload, *, profile):
         values = []
         for name in State._fields:
             value = getattr(state, name)
-            values.append(type(value)(*(arrays[f'{name}.{f}'] for f in value._fields))
-                          if isinstance(value, tuple) else arrays[name])
+            values.append(None if value is None else type(value)(*(arrays[f'{name}.{f}'] for f in value._fields))
+                          if isinstance(value, tuple) or value is None else arrays[name])
         return State(*values)

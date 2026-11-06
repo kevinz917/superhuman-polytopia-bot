@@ -1,0 +1,174 @@
+{
+  "schema": "expert-sft-summary-v1",
+  "arms": {
+    "base": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 0,
+      "losses": 30,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 21.5,
+      "mean_peak_cities": 1.0333333333333334,
+      "actions": {
+        "move": 1119,
+        "end_turn": 649,
+        "ability": 304,
+        "build": 235,
+        "research": 234,
+        "recruit": 234,
+        "harvest": 115,
+        "attack": 81,
+        "city_reward": 49,
+        "capture": 3
+      },
+      "combat": {
+        "opp_captures": 273,
+        "model_kills": 14,
+        "opp_kills": 53,
+        "opp_takes_city": 31,
+        "model_captures": 3
+      },
+      "abilities": {
+        "recover": 89,
+        "other": 47,
+        "disband": 168
+      }
+    },
+    "old_sft": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 1,
+      "losses": 29,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 28.5,
+      "mean_peak_cities": 2.933333333333333,
+      "actions": {
+        "move": 3339,
+        "build": 932,
+        "end_turn": 879,
+        "ability": 740,
+        "attack": 667,
+        "recruit": 561,
+        "research": 318,
+        "harvest": 306,
+        "city_reward": 169,
+        "capture": 114
+      },
+      "combat": {
+        "opp_captures": 313,
+        "model_kills": 157,
+        "opp_kills": 212,
+        "model_captures": 114,
+        "opp_takes_city": 91,
+        "model_takes_city": 13
+      },
+      "abilities": {
+        "other": 393,
+        "recover": 228,
+        "disband": 119
+      }
+    },
+    "expert_sft": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 18,
+      "losses": 12,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 34.5,
+      "mean_peak_cities": 7.4,
+      "actions": {
+        "move": 9606,
+        "attack": 1970,
+        "build": 1792,
+        "recruit": 1306,
+        "end_turn": 1084,
+        "city_reward": 617,
+        "research": 587,
+        "harvest": 510,
+        "capture": 365,
+        "ability": 61
+      },
+      "combat": {
+        "opp_kills": 400,
+        "opp_captures": 271,
+        "model_kills": 431,
+        "model_captures": 365,
+        "model_takes_city": 140,
+        "opp_takes_city": 145
+      },
+      "abilities": {
+        "recover": 32,
+        "other": 25,
+        "disband": 4
+      }
+    },
+    "rl_expert": {
+      "games": 30,
+      "statuses": {
+        "native/None": 30
+      },
+      "wins": 28,
+      "losses": 2,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 19.0,
+      "mean_peak_cities": 8.333333333333334
+    }
+  },
+  "paired": {
+    "expert_sft_vs_base": {
+      "a_minus_b": 0.6,
+      "map_cluster_bootstrap_95": [
+        0.4,
+        0.7666666666666667
+      ],
+      "maps": 15,
+      "maps_a_better": 12,
+      "maps_b_better": 0
+    },
+    "old_sft_vs_base": {
+      "a_minus_b": 0.03333333333333333,
+      "map_cluster_bootstrap_95": [
+        0,
+        0.1
+      ],
+      "maps": 15,
+      "maps_a_better": 1,
+      "maps_b_better": 0
+    },
+    "expert_sft_vs_old_sft": {
+      "a_minus_b": 0.5666666666666667,
+      "map_cluster_bootstrap_95": [
+        0.4,
+        0.7333333333333333
+      ],
+      "maps": 15,
+      "maps_a_better": 12,
+      "maps_b_better": 0
+    },
+    "rl_expert_vs_base": {
+      "a_minus_b": 0.9333333333333333,
+      "map_cluster_bootstrap_95": [
+        0.8333333333333334,
+        1
+      ],
+      "maps": 15,
+      "maps_a_better": 15,
+      "maps_b_better": 0
+    }
+  },
+  "note": "Unresolved/operational games never count as wins or losses; truncated = round-100 horizon."
+}

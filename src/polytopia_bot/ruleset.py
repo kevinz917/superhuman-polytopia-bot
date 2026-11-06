@@ -11,8 +11,9 @@ from importlib.resources import files
 
 RULESET_ID = 'polytopia-2.17.3'
 BOARD_SIZES = (11, 14, 18)
-# Round cap per board size. Reaching it truncates the game (never a win).
-ROUND_LIMITS = {11: 100, 14: 100, 18: 150}
+# The real game (Domination) has no round limit, and neither does the engine unless a harness passes max_turns.
+# Training, arenas and ladders truncate very long games at these harness defaults (a truncation, never a win).
+TRAINING_ROUND_LIMITS = {11: 200, 14: 200, 18: 300}
 
 # simulator_sha256 values of checkpoints trained under the retired research rules (bardur-1v1-v1/v2, the four-seat
 # research rules): the digest of the JAX engine package (gpu/*.py + rules.json) of their time.
@@ -22,8 +23,9 @@ LEGACY_DIGESTS = {
 }
 
 
-def round_limit(size):
-    return ROUND_LIMITS[size]
+def training_round_limit(size):
+    """Harness truncation for training and evaluation games on a `size` board (not a rule of the game)."""
+    return TRAINING_ROUND_LIMITS[size]
 
 
 def rules_json():

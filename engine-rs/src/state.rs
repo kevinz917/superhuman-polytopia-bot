@@ -15,6 +15,10 @@ pub struct Tiles {
     pub explored: [Vec<bool>; MAXP],
     pub structure_level: Vec<i32>,
     pub structure_turn: Vec<i32>,
+    /// the tile has route: the tile lies on a path update routes found between two routers (ports,
+    /// bridges) of one player. One flag per tile, shared by every player; recomputed only by update routes
+    /// (structures::update_routes), so it can be stale between updates as in the game.
+    pub route: Vec<bool>,
 }
 
 #[derive(Clone)]
@@ -38,6 +42,9 @@ pub struct Units {
     pub last_attack: Vec<i32>,
     pub passenger: Vec<i32>,
     pub invisible: Vec<bool>,
+    /// direction (grid direction 0..7 = SW, W, NW, N, NE, E, SE, S; 8 none): toward the map centre at
+    /// creation, then the last step of every move and the line of every attack. try push unit starts from it.
+    pub direction: Vec<i32>,
 }
 
 impl Units {
@@ -62,6 +69,7 @@ impl Units {
         self.last_attack[i] = 0;
         self.passenger[i] = 0;
         self.invisible[i] = false;
+        self.direction[i] = 0;
     }
     /// jax.tree.map(lambda x: x.at[t].set(x[s]).at[s].set(0), units)
     pub fn move_unit(&mut self, s: usize, t: usize) {
@@ -69,7 +77,7 @@ impl Units {
             ($($f:ident),*) => { $( { let v = self.$f[s]; self.$f[t] = v; } )* };
         }
         mv!(owner, kind, health, veteran, moved, attacked, kills, poison, frozen, boosted, home, created, converted,
-            attacks_performed, prev_x, prev_y, last_attack, passenger, invisible);
+            attacks_performed, prev_x, prev_y, last_attack, passenger, invisible, direction);
         self.clear(s);
     }
 }
@@ -108,12 +116,51 @@ pub struct Players {
     pub peace: [[bool; MAXP]; MAXP],
     pub embassy: [[bool; MAXP]; MAXP],
     pub peace_offer: [[bool; MAXP]; MAXP],
+    /// truce_breaker[p][q] != 0: p's relation to q is in cool down (diplomacy relation state 3) after a broken peace;
+    /// the value is the breaker's id. Each side's cool down ends on its own (diplomacy).
     pub truce_breaker: [[i32; MAXP]; MAXP],
-    pub hostile_until: [i32; MAXP],
+    /// hostile_until[p][q]: p attacked q (modify diplomacy relations from attack); the two are at war while
+    /// turn * np + mover < this stamp (diplomacy::at_war). Per pair.
+    pub hostile_until: [[i32; MAXP]; MAXP],
+    /// last peace broken turn of p's relation to q (set on both sides by break peace).
+    pub peace_broken: [[i32; MAXP]; MAXP],
     pub monuments: [[bool; 128]; MAXP],
     /// Engine-internal (4-player games): 1-based order in which seats left the game (killed or resigned), 0 while
     /// in. Two-player games never set it.
     pub out_order: [i32; MAXP],
+}
+
+/// Turns of enemy-unit positions a seat remembers (observation version 3; history.rs).
+pub const HIST_TURNS: usize = 3;
+
+/// What one seat remembers of what it has seen (observation version 3, 2026-11-01): built only from that seat's own
+/// past views (history.rs), so it leaks nothing. Zero at reset; states saved without it start empty.
+#[derive(Clone)]
+pub struct History {
+    /// seen_unit[k][t]: a visible enemy unit stood on t at the end of this seat's turn k + 1 of its turns ago
+    pub seen_unit: [Vec<bool>; HIST_TURNS],
+    /// structure * 64 + structure_level * 2 + road of every tile explored at the end of the seat's last turn, -1 unexplored
+    pub prev_code: Vec<i32>,
+    /// an enemy structure, road or level appeared or changed here since the end of the seat's last turn
+    pub built: Vec<bool>,
+    /// a visible enemy unit stands on an enemy city tile where none stood at the end of the seat's last turn
+    pub trained: Vec<bool>,
+    /// techs the enemy must have, deduced from enemy units, structures and roads the seat has seen (with their prerequisites)
+    pub enemy_tech: u128,
+}
+
+impl History {
+    pub fn new(n: usize) -> History {
+        History { seen_unit: std::array::from_fn(|_| vec![false; n]), prev_code: vec![-1; n], built: vec![false; n],
+                  trained: vec![false; n], enemy_tech: 0 }
+    }
+    pub fn clear(&mut self) {
+        for v in self.seen_unit.iter_mut() { v.fill(false); }
+        self.prev_code.fill(-1);
+        self.built.fill(false);
+        self.trained.fill(false);
+        self.enemy_tech = 0;
+    }
 }
 
 #[derive(Clone)]
@@ -127,6 +174,8 @@ pub struct State {
     pub units: Units,
     pub cities: Cities,
     pub players: Players,
+    /// Per seat (rows >= np unused): the seat's own observation history (observation version 3).
+    pub history: [History; MAXP],
     pub current_player: i32,
     pub turn: i32,
     pub version: i32,
@@ -161,12 +210,12 @@ impl State {
             np,
             tiles: Tiles {
                 terrain: z(), owner: z(), capital: z(), city: vec![-1; n], road: b(), structure: z(), resource: z(),
-                explored: [b(), b(), b(), b()], structure_level: z(), structure_turn: z(),
+                explored: [b(), b(), b(), b()], structure_level: z(), structure_turn: z(), route: b(),
             },
             units: Units {
                 owner: z(), kind: z(), health: vec![0.0; n], veteran: b(), moved: b(), attacked: b(), kills: z(),
                 poison: b(), frozen: b(), boosted: b(), home: z(), created: z(), converted: b(), attacks_performed: z(),
-                prev_x: z(), prev_y: z(), last_attack: z(), passenger: z(), invisible: b(),
+                prev_x: z(), prev_y: z(), last_attack: z(), passenger: z(), invisible: b(), direction: z(),
             },
             cities: Cities {
                 owner: z(), level: z(), population: z(), progress: z(), production: z(), border: z(),
@@ -177,9 +226,11 @@ impl State {
                 known: [[false; MAXP]; MAXP], kills: [0; MAXP], casualties: [0; MAXP], pacifist: [0; MAXP],
                 attacked: [false; MAXP], built: [[false; 128]; MAXP], killed_turn: [0; MAXP], resigned_turn: [0; MAXP],
                 killer: [0; MAXP], peace: [[false; MAXP]; MAXP], embassy: [[false; MAXP]; MAXP],
-                peace_offer: [[false; MAXP]; MAXP], truce_breaker: [[0; MAXP]; MAXP], hostile_until: [0; MAXP],
+                peace_offer: [[false; MAXP]; MAXP], truce_breaker: [[0; MAXP]; MAXP], hostile_until: [[0; MAXP]; MAXP],
+                peace_broken: [[0; MAXP]; MAXP],
                 monuments: [[false; 128]; MAXP], out_order: [0; MAXP],
             },
+            history: std::array::from_fn(|_| History::new(n)),
             current_player: 1,
             turn: 0,
             version: 115,
@@ -226,6 +277,13 @@ impl State {
     #[inline]
     pub fn foreign(owner: i32, me: i32) -> bool {
         owner > 0 && owner != me
+    }
+    /// The unit on `i` is hidden from `viewer` (is invisible): invisible, another player's, and not a peace
+    /// partner's (peace partners see each other's hidden units).
+    #[inline]
+    pub fn hidden_from(&self, i: usize, viewer: i32) -> bool {
+        let o = self.units.owner[i];
+        self.units.invisible[i] && Self::foreign(o, viewer) && !self.players.peace[self.pclip(viewer)][self.pclip(o)]
     }
     #[inline]
     pub fn territory(&self, city: usize, tile: usize) -> bool {

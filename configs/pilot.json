@@ -1,0 +1,77 @@
+{
+  "status": "proposal_not_runnable_trainer_config",
+  "engine": {
+    "implementation": "JAX GPU-native simulator",
+    "reference": "Polyfish Rust",
+    "reference_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+    "rules_version": 115,
+    "full_game_ready": false,
+    "fidelity_verified": false,
+    "transport": "device_arrays",
+    "validation_only_transport": "Rust JSONL oracle",
+    "experiment_environment": "Modal staging"
+  },
+  "game": {
+    "players": 2,
+    "tribes": [
+      "Bardur",
+      "Bardur"
+    ],
+    "map_width": 14,
+    "map_height": 14,
+    "map_type": "Drylands",
+    "fog_of_war": true,
+    "victory": "native_elimination_rule_pending_reference_verification",
+    "max_full_rounds": 100,
+    "max_atomic_actions": 10000,
+    "limits_are_truncations": true
+  },
+  "model": {
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": null,
+    "context_tokens": 8192,
+    "max_response_tokens": 32,
+    "lora_rank": 32,
+    "lora_alpha": 64,
+    "lora_dropout": 0,
+    "response": "action_only"
+  },
+  "sft": {
+    "examples": 50000,
+    "epochs": 1,
+    "learning_rate": 0.0001,
+    "effective_batch_size": 64,
+    "loss": "response_only"
+  },
+  "rl": {
+    "framework_candidate": "verl_with_custom_game_coordinator",
+    "algorithm": "PPO",
+    "critic": "separate_4B_frozen_base_with_value_head_and_LoRA",
+    "pilot_games": 1000,
+    "main_games": 10000,
+    "games_per_update": 64,
+    "actor_learning_rate": 1e-05,
+    "ppo_clip": 0.2,
+    "epochs_per_batch": 1,
+    "gamma": 1.0,
+    "initial_kl_coefficient": 0.01,
+    "opponents": {
+      "fixed_bots": 0.4,
+      "historical_lm": 0.4,
+      "current_frozen_lm": 0.2
+    },
+    "rewards": {
+      "win": 1,
+      "loss": -1,
+      "draw": 0
+    },
+    "training_seeds_main": 3
+  },
+  "evaluation": {
+    "validation_maps": 200,
+    "final_test_maps": 500,
+    "swap_seats": true,
+    "target_improvement_pp": 10,
+    "max_truncation_fraction": 0.05
+  }
+}

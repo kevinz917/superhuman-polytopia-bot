@@ -1,0 +1,204 @@
+<title>farsight v2 and Arm B</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (memo), with full-width result tables; verdict first, options last. */
+:root {
+  --bg: #f7f5f0;
+  --fg: #1f2420;
+  --muted: #5d655e;
+  --rule: #d9d4c7;
+  --panel: #edeae1;
+  --accent: #2f6f5e;      /* the trunk-pooling green: v2's colour */
+  --accent-2: #a2522b;    /* Arm B's colour */
+  --good: #2f6f5e;
+  --bad: #9c3d2e;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171a18; --fg: #e8e6df; --muted: #a2a89f; --rule: #343a35; --panel: #20251f;
+    --accent: #7fc2aa; --accent-2: #e0916a; --good: #7fc2aa; --bad: #e08a78; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171a18; --fg: #e8e6df; --muted: #a2a89f; --rule: #343a35; --panel: #20251f;
+  --accent: #7fc2aa; --accent-2: #e0916a; --good: #7fc2aa; --bad: #e08a78; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); line-height: 1.55; font-size: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+main { max-width: 820px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.45rem; margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.1rem; margin-top: 1.6rem; }
+p { margin: 0.8rem 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+.lede { font-size: 1.12rem; color: var(--fg); max-width: 62ch; }
+.verdict { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin: 1.6rem 0; }
+.verdict > div { background: var(--panel); padding: 14px 16px; border-left: 4px solid var(--accent); min-width: 0; }
+.verdict > div.b { border-left-color: var(--accent-2); }
+.verdict .k { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.verdict .v { font-family: var(--display); font-size: 1.5rem; font-weight: 600; margin-top: 4px; }
+.verdict .s { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+.tbl { overflow-x: auto; margin: 1rem 0 1.4rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+td.n, th.n { text-align: right; }
+td.good { color: var(--good); font-weight: 600; }
+td.bad { color: var(--bad); font-weight: 600; }
+.note { font-size: 0.9rem; color: var(--muted); max-width: 68ch; }
+ul { padding-left: 1.2rem; max-width: 68ch; }
+li { margin: 0.35rem 0; }
+code { font-family: var(--mono); font-size: 0.88em; background: var(--panel); padding: 1px 5px; border-radius: 3px; }
+.opt { border: 1px solid var(--rule); padding: 14px 16px; margin: 0.9rem 0; }
+.opt h3 { margin-top: 0; }
+.opt .cost { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.tag { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border: 1px solid var(--rule); border-radius: 3px; color: var(--muted); margin-left: 6px; vertical-align: middle; }
+</style>
+<main>
+<div class="eyebrow">Polytopia RL · from-scratch 1v1 · 1–2 Nov 2026</div>
+<h1>farsight v2 and Arm B</h1>
+<p class="lede">Two 12-hour Daytona runs on the same architecture. farsight v2 fixed the pooling that broke farsight and became the strongest from-scratch bot per update. Arm B kept that architecture and changed only the turn-cap reward. It failed its mid-run gate against v2 head-to-head, then finished as the stronger bot against every outside opponent: 87 % vs c3 and 46 % vs the champion, with parity against v2's final network. The cap rule is a general-strength lever, not a growth lever.</p>
+
+<div class="verdict">
+  <div><div class="k">farsight v2 · final, u9779</div><div class="v">80%</div><div class="s">vs bighero at the same update (102 W / 17 L of 128)</div></div>
+  <div class="b"><div class="k">Arm B · segment 2 final, u28957</div><div class="v">56%</div><div class="s">vs the champion at 7.6 B samples; 48 % vs hero-1v1 at 3.9 B, 39 % vs its 6.9 B continuation</div></div>
+  <div><div class="k">Spend</div><div class="v">≈ $1,260</div><div class="s">v2 ≈ $483 · Arm B ≈ $780 over two segments incl. false starts and ladders</div></div>
+  <div class="b"><div class="k">Running now</div><div class="v" id="running">Nothing</div><div class="s">Arm B segment 2 ended Nov 3 20:35; final ladder done 21:50; Daytona empty</div></div>
+</div>
+
+<h2>1. farsight v2 (farsight-v2-1v1)</h2>
+<p><strong>What it is.</strong> farsight's recipe: the bighero PPO settings on the real 2.17.3 rules, observation v3 (opponent history planes) and KataGo-style global pooling in the trunk. The original farsight added an unnormalized pooled bias <em>before</em> each block's LayerNorm in all four blocks; one board-wide vector swamped every tile and the policy never learned (0% vs c3 at 1.5 B samples, lr scale stuck at 0.44). Layout 2 normalizes the pooled statistics, adds them <em>after</em> the LayerNorm through a scalar gate initialized at zero, in two of four blocks. Nothing else changed. Trained from random weights for 12 h of learner clock on 4× RTX PRO 6000 plus five GPU-inference actors.</p>
+
+<h3>Ladder trajectory (64 games per reference; final 128)</h3>
+<div class="tbl"><table>
+<tr><th>update</th><th class="n">c3</th><th class="n">bighero u3880</th><th class="n">bighero u5250</th><th class="n">bighero u7750</th><th class="n">bighero u10000</th><th class="n">farsight (layout 1)</th><th class="n">champion</th><th class="n">hero1</th></tr>
+<tr><td>1240</td><td class="n">0</td><td class="n">3</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">5</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><td>2620</td><td class="n">17</td><td class="n">47</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">61</td><td class="n">3</td><td class="n">8</td></tr>
+<tr><td>3940</td><td class="n">16</td><td class="n">56</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">78</td><td class="n">4</td><td class="n">3</td></tr>
+<tr><td>5140</td><td class="n">31</td><td class="n">73</td><td class="n good">72</td><td class="n">66</td><td class="n">–</td><td class="n">88</td><td class="n">9</td><td class="n">8</td></tr>
+<tr><td>6860</td><td class="n">48</td><td class="n">83</td><td class="n">77</td><td class="n">61</td><td class="n">69</td><td class="n">97</td><td class="n">8</td><td class="n">14</td></tr>
+<tr><td><strong>9779 final</strong></td><td class="n">56</td><td class="n">86</td><td class="n">83</td><td class="n">74</td><td class="n good">80</td><td class="n">97</td><td class="n">21</td><td class="n">18</td></tr>
+</table></div>
+<p class="note">Win rates in percent of all games; a game that reaches the turn cap counts as no result. Against c3 roughly 40 % of games cap, which holds that column down for every from-scratch run. bighero is the control: the same recipe on observation v2 without pooling, trained on the Curio cluster (reference snapshots synced from it). Reference points: bighero itself had 19 % vs c3 at u2060; farsight had 0 / 1.6 / 12.5 % at u1750 / 3580 / 5360.</p>
+
+<h3>What held up</h3>
+<ul>
+  <li><strong>The pooling fix works.</strong> The probe that measures the pooled term against the per-tile features climbed from 0.17 at update 200 to about 0.5 by update 1700 and then stayed flat to the end (0.59 / 0.44 at u8860), with the gates parked at 0.25 and 0.20. farsight's final network measured 4.7 to 7.5 on the same probe.</li>
+  <li><strong>Ahead of the control at every equal-update comparison</strong>: 72 % vs bighero u5250 at u5140, 69 % vs bighero u10000 at u6860, 80 % vs u10000 at the end. Against the mature Modal bots it reached 21 % vs the champion and 18 % vs hero1 in 12 h.</li>
+  <li><strong>Training was clean throughout</strong>: KL 0.005 to 0.007, lr scale 1.0 the whole run, clip fraction 0.05 to 0.08.</li>
+</ul>
+
+<h3>Engineering findings from the run</h3>
+<ul>
+  <li><strong>The learner's Python intake is the throughput wall</strong>, not the actors. With five actors the run ingested ~47k samples/s; adding three actors changed nothing (actor GPUs at 15 %, workers blocked on their send queues, learner inbox full, learner process on one to two cores). The Oct 28 recipe on observation v2 took 120k/s on the same hosts, so v3's larger views roughly halve the GIL-bound intake.</li>
+  <li><strong>A fresh learner is twice as fast.</strong> After a spot reclaim at 03:30, the replacement learner plus fresh actors ran ~90k samples/s against the old process's 47k (57 GB RSS, 900 threads by then). A periodic learner restart is a cheap lever for long runs; coded views are the deeper fix.</li>
+  <li><strong>Daytona operations</strong>: the org cap is 250 vCPU across all sandboxes, which refused 19 of the final ladder's 36 boxes while round 5's boxes were alive (re-run by hand); the API drops TLS handshakes often enough that box creation now retries; the keeper now defers a round while one is pending and tears the fleet down before the final.</li>
+</ul>
+
+<h2>2. Arm B (farsight-v2-capfix) <span class="tag">score-at-cap</span></h2>
+<p><strong>What it is.</strong> farsight v2's config with exactly one change: a capped game pays the score-based terminal reward (<code>cap_score_reward 1.0</code>) instead of a loss for both seats (<code>truncation_reward -1</code>). Same seed, byte-identical random parent. The hypothesis, from the cap-reward design session: loss-at-cap during the first thousand updates taught the from-scratch runs that elimination is the only route to +1, which is why they never learned mid-game city growth; hero-1v1, trained under score-at-cap on the old rules, was two to three times more sample-efficient. Pre-registered gate at about u5140: (a) above 55 % head-to-head against v2's u5140 snapshot, and (b) a growth signature (more builds, city levels still rising at turn 16).</p>
+<p>One platform knob differs: <code>stream_views</code> off, after the first two learners died and deadlocked on the documented 4-GPU page-streaming hang. It does not change the learning math. Launched 10:30 local, restarted clean at 11:50, 88 to 93k samples/s throughout.</p>
+
+<h3>Early health: the cap rule did what it promised</h3>
+<div class="tbl"><table>
+<tr><th>update</th><th class="n">capped share of self-play games</th><th class="n">turns per game</th><th class="n">KL</th></tr>
+<tr><td>40</td><td class="n">47 %</td><td class="n">159</td><td class="n">0.006</td></tr>
+<tr><td>380</td><td class="n">0 %</td><td class="n">50</td><td class="n">0.006</td></tr>
+<tr><td>1020</td><td class="n">1.8 %</td><td class="n">53</td><td class="n">0.006</td></tr>
+<tr><td>2640 → 11320</td><td class="n">0 to 1 %</td><td class="n">41 to 54</td><td class="n">0.005 to 0.007</td></tr>
+</table></div>
+<p class="note">Under loss-at-cap, v2 at the same age capped three quarters of its games against c3. One transient at u4816–4930: a new frozen opponent entered the pool, KL rose to 0.016, the adaptive scale cut the learning rate to 0.25 and restored it within 90 updates. Not the farsight pattern.</p>
+
+<h3>Ladder rounds (W / L / capped of 64)</h3>
+<div class="tbl"><table>
+<tr><th>reference</th><th class="n">u940</th><th class="n">u3540</th><th class="n">u6200 (gate)</th><th>v2 at a similar age</th></tr>
+<tr><td>v2 u5140 <span class="tag">gate (a)</span></td><td class="n">0 / 31 / 33</td><td class="n">9 / 41 / 14</td><td class="n bad">14 / 32 / 18 → 22 %</td><td>needed 55 %</td></tr>
+<tr><td>v2 u6860 (equal updates)</td><td class="n">0 / 31 / 33</td><td class="n">7 / 45 / 12</td><td class="n bad">15 / 40 / 9 → 23 %</td><td></td></tr>
+<tr><td>v2 u3940</td><td class="n">0 / 16 / 48</td><td class="n">9 / 31 / 24</td><td class="n">18 / 24 / 22</td><td></td></tr>
+<tr><td>bighero u5250</td><td class="n">1 / 38 / 25</td><td class="n">29 / 22 / 13</td><td class="n good">44 / 15 / 5 → 69 %</td><td>v2 u5140: 72 %</td></tr>
+<tr><td>bighero u10000</td><td class="n">0 / 53 / 11</td><td class="n">15 / 31 / 18</td><td class="n">24 / 21 / 19 → 38 %</td><td>v2 u6860: 69 %</td></tr>
+<tr><td>c3</td><td class="n">0 / 41 / 23</td><td class="n">20 / 19 / 25</td><td class="n good">26 / 8 / 30 → 41 %</td><td>v2 u5140: 31 %, u6860: 48 %</td></tr>
+<tr><td>champion</td><td class="n">0 / 63 / 1</td><td class="n">9 / 53 / 2</td><td class="n good">15 / 48 / 1 → 23 %</td><td>v2 u6860: 8 %, final: 21 %</td></tr>
+<tr><td>hero1</td><td class="n">0 / 63 / 1</td><td class="n">7 / 56 / 1</td><td class="n good">15 / 48 / 1 → 23 %</td><td>v2 u6860: 14 %, final: 18 %</td></tr>
+</table></div>
+<p class="note">Round 3 (u8750) produced no outputs: all 24 boxes were created and the frozen checkpoint was intact, but the arena files never appeared and the boxes were gone by collection time. Round 4 was skipped to keep the CPU cap clear for the final ladder once another session's Arm C joined the same org.</p>
+
+<h3>Final ladder at u13014 (stopped at 21:58; 128 games per reference)</h3>
+<div class="tbl"><table>
+<tr><th>reference</th><th class="n">W</th><th class="n">L</th><th class="n">capped</th><th class="n">Arm B final</th><th class="n">v2 final (u9779)</th></tr>
+<tr><td>c3</td><td class="n">111</td><td class="n">5</td><td class="n">12</td><td class="n good">87 %</td><td class="n">56 %</td></tr>
+<tr><td>champion</td><td class="n">59</td><td class="n">66</td><td class="n">3</td><td class="n good">46 %</td><td class="n">21 %</td></tr>
+<tr><td>hero1</td><td class="n">53</td><td class="n">74</td><td class="n">1</td><td class="n good">41 %</td><td class="n">18 %</td></tr>
+<tr><td>bighero u10000</td><td class="n">99</td><td class="n">22</td><td class="n">7</td><td class="n">77 %</td><td class="n">80 %</td></tr>
+<tr><td>bighero u3880 / u5250 / u7750</td><td class="n">113 / 113 / 106</td><td class="n">10 / 13 / 16</td><td class="n">5 / 2 / 6</td><td class="n">88 / 88 / 83 %</td><td class="n">86 / 83 / 74 %</td></tr>
+<tr><td>v2 u6860</td><td class="n">76</td><td class="n">47</td><td class="n">5</td><td class="n">59 %</td><td></td></tr>
+<tr><td>v2 final (u9779)</td><td class="n">61</td><td class="n">57</td><td class="n">10</td><td class="n">48 %</td><td></td></tr>
+</table></div>
+<p class="note">Arm B reached 13,014 updates and 3.41 B samples in 10 h against v2's 9,779 updates and 2.6 B in 12 h, so the two finals are not an equal-update comparison: the fresh learner process with page streaming off ran at 90k samples/s for the whole run. Against the mature bots the gap is larger than the update difference explains: v2 went from 8 % to 21 % against the champion between u6860 and u9779; Arm B went from 23 % at u6200 to 46 % at u13014. In the final round's games Arm B's growth signature is at or slightly above v2's (mean city level at turn 16 2.36 vs 2.37 against v2's final, 2.38 vs 2.30 against v2 u5140) and games are short, 27 to 41 turns.</p>
+
+<h3>Gate (b): growth, measured in the gate round's own games</h3>
+<div class="tbl"><table>
+<tr><th>matchup (Arm B vs …)</th><th class="n">build actions / game</th><th class="n">cities at turn 16</th><th class="n">mean city level at turn 16</th><th class="n">cities at end</th></tr>
+<tr><td>v2 u5140</td><td class="n">49.6 vs 24.6</td><td class="n">5.4 vs 5.2</td><td class="n bad">2.18 vs 2.34</td><td class="n">4.9 vs 6.5</td></tr>
+<tr><td>v2 u6860</td><td class="n">36.9 vs 25.7</td><td class="n">5.1 vs 5.5</td><td class="n bad">2.17 vs 2.34</td><td class="n">4.1 vs 7.3</td></tr>
+<tr><td>c3</td><td class="n">51.0 vs 17.1</td><td class="n">5.9 vs 4.4</td><td class="n good">2.23 vs 1.84</td><td class="n">7.7 vs 3.5</td></tr>
+<tr><td>champion</td><td class="n">30.8 vs 26.3</td><td class="n">5.2 vs 5.6</td><td class="n">2.13 vs 2.53</td><td class="n">3.1 vs 8.5</td></tr>
+</table></div>
+<p>Arm B issues 1.5 to 2 times as many build actions as v2 but its cities are slightly <em>lower</em> level at turn 16 and it holds fewer cities at the end because it loses the fight. More building, not more growth. The growth statistics are new in the arena (per-side builds, harvests, city count and level at turn 16 and at the end) and are now recorded in every ladder round.</p>
+
+<h3>Verdict on the A/B</h3>
+<ul>
+  <li><strong>The pre-registered gate failed</strong> at u6200: 22 % against v2's u5140 snapshot and no growth advantage. By the brief's rule, the cap reward is not what separates v2 from bighero, and it is not a growth lever: Arm B builds more but its cities are no higher.</li>
+  <li><strong>The final changes the strength picture.</strong> Arm B finished stronger than v2 against every opponent it never trained against (champion 46 % vs 21 %, c3 87 % vs 56 %) and level with v2 head-to-head (61 W / 57 L). Part of that is 33 % more updates; the trajectory against the champion says most of it is the rule. Score-at-cap makes the more general bot; the sibling head-to-head understated it all day.</li>
+  <li><strong>What score-at-cap does buy</strong>: decisive games (half the caps), and a bot that generalizes better to opponents it never trained against at this age: 23 % vs champion and hero1 at u6200 where v2 had 8 to 14 %, and parity with v2 against bighero's early snapshots.</li>
+  <li><strong>One caveat on the head-to-head.</strong> The ladder scores a capped game as no result, which is the old rule's framing; under Arm B's own objective a capped game it leads on score is a win, and 9 to 24 of 64 games against v2 snapshots capped. The 22 % is a floor, not a fair-rules number, but the deficit in decided games (14 W / 32 L) is large enough that the verdict would not flip.</li>
+</ul>
+
+<h2>2b. Arm B segment 2: the equal-sample test against hero-1v1 <span class="tag">Nov 3</span></h2>
+<p><strong>What it is.</strong> Arm B resumed from its segment-1 end for another 11.3 hours of learner clock, to about 7.6 B samples, so it could be compared with hero-1v1's plain trunk at the same sample count under the same score-at-cap reward. The ladder carried hero-1v1's final at 3.9 B, its continuation at update 11500 near 6.9 B and its last checkpoint at 17840, plus the champion, farsight-v2's final, bighero u10000 and Arm B's own segment-1 end.</p>
+<p><strong>What happened on the way.</strong> The Daytona org ran out of GPU credits in the first hour, which looked like spot churn until the keeper's creates started failing; with two actors left the learner's KL blew up, so the fleet was taken down and the resume point rolled back to update 14,000. Relaunched at 09:00 once the credits were back. The warm restart at the full learning rate then produced 6,000 updates with no net gain (39 % against its own start, self-play pool rate below segment 1's), so at 13:55 the learner was switched to anneal from 1.5e-4 to 4e-5 over the remaining hours; that restart cost 30 more minutes because the actors had to be reconnected. From there the rounds climbed steadily. The hub sandbox expired mid-run and was recreated; the keeper gained retries for refused creates, an iteration-level error guard, and a 3-hour collect timeout after two rounds were lost to slow hosts; the final ladder had to be re-triggered by hand because the resumed segment inherited the previous segment's done marker.</p>
+<h3>Ladder trajectory, segment 2 (64 games per reference; final 128)</h3>
+<div class="tbl"><table>
+<tr><th>update</th><th class="n">own start u13014</th><th class="n">champion</th><th class="n">hero-1v1 3.9 B</th><th class="n">hero-1v1 6.9 B</th><th class="n">hero-1v1 last</th><th class="n">v2 final</th><th class="n">bighero u10000</th><th class="n">c3</th></tr>
+<tr><td>19460 (before anneal)</td><td class="n">39</td><td class="n">42</td><td class="n">34</td><td class="n">20</td><td class="n">14</td><td class="n">41</td><td class="n">62</td><td class="n">70</td></tr>
+<tr><td>21540</td><td class="n">59</td><td class="n">42</td><td class="n">45</td><td class="n">31</td><td class="n">20</td><td class="n">45</td><td class="n">81</td><td class="n">78</td></tr>
+<tr><td>24460</td><td class="n">72</td><td class="n">58</td><td class="n">50</td><td class="n">34</td><td class="n">34</td><td class="n">58</td><td class="n">88</td><td class="n">83</td></tr>
+<tr><td>27400</td><td class="n">61</td><td class="n">50</td><td class="n">45</td><td class="n">36</td><td class="n">38</td><td class="n">55</td><td class="n">80</td><td class="n">83</td></tr>
+<tr><td><strong>28957 final</strong></td><td class="n good">69</td><td class="n good">56</td><td class="n">48</td><td class="n bad">39</td><td class="n">36</td><td class="n">45</td><td class="n">85</td><td class="n">84</td></tr>
+</table></div>
+<p class="note">Win rates in percent of all games. The final row is 128 games per reference: champion 72 W / 47 L / 9 capped, hero-1v1 3.9 B 61 / 56 / 11, hero-1v1 6.9 B 50 / 73 / 5, v2 final 58 / 39 / 31, own start 88 / 39 / 1. In the final round's games Arm B had more cities at turn 16 than every opponent (5.8 to 6.8 vs 3.9 to 5.4) and a higher mean city level than all but the hero-1v1 continuation.</p>
+<h3>Verdict</h3>
+<ul>
+  <li><strong>Equal-sample test: not passed.</strong> At 7.6 B samples Arm B is level with hero-1v1's 3.9 B network (48 %) and behind its 6.9 B continuation (39 %). Under the same reward, the pooling-plus-history trunk did not out-learn the plain trunk per sample. The strongest 1v1 network remains hero-1v1's continuation.</li>
+  <li><strong>The segment did improve the bot</strong>: 69 % against its own segment-1 end and 56 % against the champion, up from 46 %, almost all of it after the anneal began. A continuation that starts annealed instead of at the full rate would have had about four more productive hours.</li>
+  <li><strong>What the architecture bought</strong> is unchanged from segment 1: a large edge over the matched loss-at-cap control (85 % vs bighero u10000) and better generalization than farsight-v2 to opponents it never trained on. It is not a sample-efficiency lever.</li>
+  <li><strong>Caveats</strong>: the segment lost roughly 90 minutes and 6,000 updates to infrastructure and the warm-restart mistake; hero-1v1 also had score-at-cap from update zero on observation v2, so the comparison bundles reward timing with architecture.</li>
+</ul>
+
+<h2>3. What is known now</h2>
+<ul>
+  <li><strong>Strongest from-scratch recipe per update</strong>: layout-2 pooling on observation v3 under loss-at-cap (farsight v2). Its final checkpoint is on the volume and resumable.</li>
+  <li><strong>The cap reward is not a growth lever but is a strength lever</strong> on this architecture: it did not change city growth, and it produced the bot with the best results against outside opponents of any from-scratch run (champion 46 % at 13k updates). Whether the same holds on bighero's recipe is Arm A's question, running on Curio in another session.</li>
+  <li><strong>Throughput is capped by the learner's Python intake</strong> at 47k samples/s on observation v3 (90k with a fresh process). Any run longer than 12 h should either restart the learner periodically or move to coded views, which was a 1.8× lever on Curio.</li>
+  <li><strong>Daytona needs the keeper's new guards</strong> (box retries, round deferral, teardown before the final) and a quota budget shared with whatever else the org runs.</li>
+</ul>
+
+<h2>4. Options for the next step</h2>
+<div class="opt"><h3>A. Continue Arm B from its final checkpoint</h3><p>Resume u13014 for another 12 h with the same recipe. It was gaining fastest of any run at the end (champion 23 → 46 % over the last 7,000 updates) and is the strongest from-scratch bot against outside opponents. Compare against the champion, hero1 and v2's final each round. A farsight v2 continuation is the alternative if the head-to-head matters more than generality; the two could also run side by side for a clean equal-update answer.</p><p class="cost">≈ $380 for 12 h incl. ladders at ~90k samples/s (page streaming off, learner restart at 6 h); both arms ≈ $760.</p></div>
+<div class="opt"><h3>B. Fix the intake first, then run longer</h3><p>Enable coded views for observation v3 (test <code>view_codec</code> with the history planes on Daytona first), or schedule learner restarts. Doubling samples per dollar matters more than any single 12-h run if the plan is to keep training this line.</p><p class="cost">A few hours of engineering plus a 1-h smoke (≈ $30); pays back on the first long run.</p></div>
+<div class="opt"><h3>C. Scale the architecture</h3><p>A wider or deeper layout-2 trunk from scratch on the fixed intake. The net-size sweep plan from Oct 28 is the template.</p><p class="cost">≈ $700–800 for a two-size sweep on Daytona.</p></div>
+<div class="opt"><h3>D. Settle the equal-update question cheaply</h3><p>Resume farsight v2 from u9779 for the 3,200 updates that bring it to Arm B's 13,014, then ladder both finals against the same references. That separates the rule's effect from the extra updates without a new run.</p><p class="cost">≈ $110 for about 3.5 h plus one double-map ladder.</p></div>
+
+<h2>Appendix: timeline and incidents</h2>
+<ul>
+  <li><strong>Nov 1 19:06</strong> farsight v2 launched. 19:35 raised to 8 actors on a wrong diagnosis; reverted 20:50 after tracing the stall to the learner's intake. 23:38 keeper crashed on a 10-min API outage; supervised restart. <strong>Nov 2 03:30</strong> learner spot-reclaimed, resumed on the 9th host after six failed GPU checks; fresh fleet ran 2× faster. 07:36 training ended at u9779; final ladder lost 19 boxes to the CPU cap, re-run by hand, complete at 10:20.</li>
+  <li><strong>Nov 2 10:30</strong> Arm B launched; two learner failures; <code>stream_views</code> off; clean restart 11:50. 15:00 the session's worktree was deleted externally, taking the keeper, ledgers and the original hand-off; rebuilt from the volume and the live sandboxes in a new worktree by 15:08. 17:29 gate round. 20:24 round 3 empty; round 4 skipped. <strong>21:58</strong> stop per your instruction at u13000; fleet deleted, final ladder with all 24 boxes, complete 22:45; keeper exited. Spend ≈ $385.</li>
+  <li><strong>Records</strong>: branch <code>claude/farsight-v2-e0f1fe</code> (worktree <code>.claude/worktrees/farsight-v2-capfix</code>), hand-off <code>runs/hero-daytona/farsight-v2-handoff.md</code>, ladder histories under <code>/vol/runs/&lt;run&gt;/</code> and arena JSONs under <code>/vol/results/distributed/arena/</code>.</li>
+</ul>
+<p class="note" id="final-note">All numbers final as of Nov 3, 21:50 local. No training is running; Daytona is empty.</p>
+</main>

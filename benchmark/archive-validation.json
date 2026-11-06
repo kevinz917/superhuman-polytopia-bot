@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checked_at": "2026-11-02T06:03:26.468805+00:00",
+  "models": 12,
+  "authored_submissions": 60,
+  "final_games": 21600,
+  "frozen_source_files": 207,
+  "original_validated_compact_blobs_preserved": 33,
+  "newly_encoded_private_game_hashes_reconstructed": 9720,
+  "authoring_trajectories": 60,
+  "failed_authoring_trajectory_preserved": true,
+  "completed_practice_records": 1404,
+  "practice_directories": 1425,
+  "file_hashes_verified": 1011,
+  "public_observation_validation": "Original native audits retained; no new full-game simulations run during archive verification."
+}

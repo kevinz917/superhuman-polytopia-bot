@@ -1,0 +1,4 @@
+browser = vite --mode browser
+browser:build = tsc -b && vite build --mode browser --outDir dist-browser
+browser:wasm = cd ../engine-wasm && cargo build --release && mkdir -p ../web/public/bot && cp target/wasm32-unknown-unknown/release/engine_wasm.wasm ../web/public/bot/
+browser:model = python3 ../scripts/export_browser_weights.py

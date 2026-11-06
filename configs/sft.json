@@ -1,0 +1,28 @@
+{
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "max_length": 16384,
+  "max_new_tokens": 32,
+  "lora_rank": 32,
+  "lora_alpha": 64,
+  "lora_dropout": 0.0,
+  "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "learning_rate": 0.0001,
+  "warmup_ratio": 0.03,
+  "epochs": 1,
+  "microbatch_size": 1,
+  "effective_batch_size": 64,
+  "max_grad_norm": 1.0,
+  "seeds": [
+    17,
+    29
+  ]
+}

@@ -31,7 +31,11 @@ cpu_image = (modal.Image.debian_slim(python_version='3.12')
     .env({'PYTHONPATH': '/workspace/src', 'JAX_PLATFORMS': 'cpu'})
     .add_local_dir(ROOT / 'src', '/workspace/src', ignore=['**/__pycache__/**'])
     .add_local_dir(ROOT / 'tests', '/workspace/tests', ignore=['**/__pycache__/**'])
-    .add_local_dir(ROOT / 'scripts', '/workspace/scripts', ignore=['**/__pycache__/**']))   # script tests load these
+    .add_local_dir(ROOT / 'scripts', '/workspace/scripts', ignore=['**/__pycache__/**'])   # script tests load these
+    # platform profile tests read both launchers' configs (tests/test_platform_profiles.py)
+    .add_local_dir(ROOT / 'experiments' / 'hero', '/workspace/experiments/hero', ignore=['**/__pycache__/**'])
+    .add_local_dir(ROOT / 'experiments' / 'daytona', '/workspace/experiments/daytona', ignore=['**/__pycache__/**'])   # sweep arms
+    .add_local_dir(ROOT / 'experiments' / 'curio', '/workspace/experiments/curio', ignore=['**/__pycache__/**']))
 gpu_image = (modal.Image.debian_slim(python_version='3.12')
     .pip_install('jax[cuda12]==0.11.2', 'numpy>=2.1', 'zstandard==0.23.0')
     .env({'PYTHONPATH': '/workspace/src', 'JAX_PLATFORMS': 'cuda', 'XLA_PYTHON_CLIENT_PREALLOCATE': 'false'})
@@ -342,12 +346,12 @@ def start_elo_ladder(tag: str, run_ids: str, references_json: str, interval: int
 
 
 @app.function(image=cpu_image, cpu=0.25, memory=1024, timeout=14400, retries=0, volumes=VOLUMES)
-def round_robin(tag: str, players: dict, seed_base: int, maps: int):
+def round_robin(tag: str, players: dict, seed_base: int, maps: int, map_mix: str = None):
     """Every pair of fixed players once (anchors the reference Elo scale)."""
     names = list(players)
     pairs = [(a, b) for i, a in enumerate(names) for b in names[i + 1:]]
-    calls = [(a, b, arena_match.spawn(f'{tag}-{a}-vs-{b}-{seed_base}', players[a], players[b], seed_base, maps))
-             for a, b in pairs]
+    calls = [(a, b, arena_match.spawn(f'{tag}-{a}-vs-{b}-{seed_base}', players[a], players[b], seed_base, maps,
+                                      map_mix=map_mix)) for a, b in pairs]
     rows = []
     for a, b, call in calls:
         out = call.get()
@@ -384,8 +388,8 @@ def cross_eval(tag: str, candidates_json: str, references_json: str, seed_base: 
 
 
 @app.local_entrypoint()
-def reference_round_robin(tag: str, players_json: str, seed_base: int = 319000, maps: int = 32):
-    for row in round_robin.remote(tag, json.loads(players_json), seed_base, maps):
+def reference_round_robin(tag: str, players_json: str, seed_base: int = 319000, maps: int = 32, map_mix: str = ''):
+    for row in round_robin.remote(tag, json.loads(players_json), seed_base, maps, map_mix or None):
         print(json.dumps({k: row[k] for k in ('run_id', 'reference', 'wins', 'losses', 'draws_or_truncations')}))
 
 
@@ -829,11 +833,12 @@ def grow(parent: str = C3, out: str = GROWN, size: int = 18, extra_blocks: int =
 
 @app.function(image=cpu_image, cpu=8, memory=16384, timeout=1800, volumes=VOLUMES, retries=0)
 def random_init_fn(reference: str, out: str, seed: int, head_scale: float, games: int, steps: int, blocks: int = 0,
-                   width: int = 0, players: int = 2, size: int = 0):
+                   width: int = 0, players: int = 2, size: int = 0, obs_version: int = 0):
     """A random-init parent with `reference`'s architecture (network.init(key(seed)), optionally with the policy
     output weights scaled by head_scale; blocks/width > 0 override the reference's), saved with save_checkpoint, plus how close its policy is to uniform over
     the legal actions: per-head entropy vs log(#legal) on positions it reaches in self-play on proposed-v1 maps
-    (four-v1 with players=4). players=4 builds four-seat inputs; size > 0 overrides the reference's board size."""
+    (four-v1 with players=4). players=4 builds four-seat inputs; size > 0 overrides the reference's board size.
+    obs_version: the observation features (0 = the newest, rl.observation.OBS_VERSION: with unit facing)."""
     import jax
     import jax.numpy as jnp
     import numpy as np
@@ -844,12 +849,14 @@ def random_init_fn(reference: str, out: str, seed: int, head_scale: float, games
     from polytopia_bot.rl.runner import Config, load_checkpoint, save_checkpoint, write_json
     from polytopia_bot.maps.stream import MapSource
     from polytopia_bot.rl.distributed import feature_shapes
+    from polytopia_bot.rl.observation import OBS_VERSION
     retained.reload()
     results.reload()
     spec = network_spec(reference)
     spec.update({k: v for k, v in dict(blocks=blocks, width=width, size=size).items() if v})
     spec.pop('players', None)
-    board_channels, global_features = feature_shapes(players)
+    obs_version = obs_version or OBS_VERSION
+    board_channels, global_features = feature_shapes(players, obs_version)
     params = network.init(jax.random.key(seed), board_channels, global_features,
                           size=spec['size'], width=spec['width'], blocks=spec['blocks'],
                           architecture=spec['architecture'], extra_blocks=spec['extra_blocks'])
@@ -863,7 +870,7 @@ def random_init_fn(reference: str, out: str, seed: int, head_scale: float, games
     target = Path(out)
     target.parent.mkdir(parents=True, exist_ok=True)
     save_checkpoint(target, params, Config(**{**meta['config'], 'blocks': spec['blocks'], 'width': spec['width'],
-                                              'size': spec['size'], 'players': players}),
+                                              'size': spec['size'], 'players': players, 'obs_version': obs_version}),
                     stage=f'random-init-seed{seed}-scale{head_scale:g}')
     params = load_checkpoint(target, checkpoint_template(target))
     size = spec['size']
@@ -912,12 +919,12 @@ def random_init_fn(reference: str, out: str, seed: int, head_scale: float, games
 def random_init(reference: str = '/retained/checkpoints/distributed-final-v1/c5-omni-s1-final/final.npz',
                 out: str = '/results/a6-scratch/random-init.npz', seed: int = 20261022, head_scale: float = 1.,
                 games: int = 16, steps: int = 150, ledger: str = 'runs/scratch', blocks: int = 0, width: int = 0,
-                players: int = 2, size: int = 0):
+                players: int = 2, size: int = 0, obs_version: int = 0):
     _ledger(dict(run_id=f'random-init-{Path(out).stem}-{int(time.time())}', kind='random-init',
                  hourly_usd=round(cpu_hourly(8), 2), reserved_usd=0.25, status='reserved', modal_app_id=app.app_id,
                  start_unix=time.time()), ledger)
     print(json.dumps(random_init_fn.remote(reference, out, seed, head_scale, games, steps, blocks, width, players,
-                                           size), indent=1))
+                                           size, obs_version), indent=1))
 
 
 @app.function(image=cpu_image, cpu=8, memory=16384, timeout=3600, volumes=VOLUMES, retries=0)
@@ -1199,7 +1206,9 @@ def four_convert_fn(parent: str, name: str, size: int, extra_blocks: int, global
     policy = load_checkpoint(parent, checkpoint_template(parent))
     critic_path = Path(parent).with_name(Path(parent).stem + '-critic.npz')
     critic = load_checkpoint(critic_path, _critic_template(**spec)) if critic_path.exists() else None
-    wide, wide_critic = convert(policy, critic, size=size, extra_blocks=extra_blocks, global_pool=global_pool, seed=seed)
+    ov = spec.get('obs_version', 1)   # the observation version is kept
+    wide, wide_critic = convert(policy, critic, size=size, extra_blocks=extra_blocks, global_pool=global_pool, seed=seed,
+                                obs_version=ov)
     meta = json.loads(Path(parent).with_suffix('.json').read_text())
     config = Config(**{**meta['config'], 'size': size, 'extra_blocks': extra_blocks, 'global_pool': global_pool,
                        'players': 4})
@@ -1224,13 +1233,13 @@ def four_convert_fn(parent: str, name: str, size: int, extra_blocks: int, global
     for step in range(positions):
         keys = jax.random.split(jax.random.fold_in(key, step), 8)
         a = det(loaded, prepared.features, prepared.masks, keys)
-        b = det(policy, old_part(prepared.features), prepared.masks, keys)
+        b = det(policy, old_part(prepared.features, obs_version=ov), prepared.masks, keys)
         same_choices &= all(np.array_equal(np.asarray(x), np.asarray(y)) for x, y in zip(a[0], b[0]))
         worst['policy'] = max(worst['policy'], float(np.max(np.abs(np.asarray(a[2]) - np.asarray(b[2])))))
         if loaded_critic is not None:
             full = jax.vmap(lambda f, o: critic_features(f, o, games.layout, size))(prepared.features, prepared.opp_view)
             worst['critic'] = max(worst['critic'], float(np.max(np.abs(
-                np.asarray(cval(loaded_critic, full)) - np.asarray(cval(critic, old_part(full, groups=2)))))))
+                np.asarray(cval(loaded_critic, full)) - np.asarray(cval(critic, old_part(full, groups=2, obs_version=ov)))))))
         checks += 1
         choice = sto(loaded, prepared.features, prepared.masks, keys)[0]
         tick, status = games.tick(states, choice, source.batch(range(380100 + 8 * step, 380108 + 8 * step))[0])

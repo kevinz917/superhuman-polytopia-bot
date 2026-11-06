@@ -1,0 +1,9 @@
+{
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v4-flash-0731",
+  "base_url": "https://openrouter.ai/api/v1",
+  "key_env": "OPENROUTER_API_KEY",
+  "parameters": {"reasoning": {"effort": "medium"}, "max_tokens": 12000},
+  "budget": {"seconds": 300, "max_requests": 40, "max_output_tokens": 12000, "max_practice_games": 16, "max_campaign_maps": 2},
+  "final_maps": 4
+}

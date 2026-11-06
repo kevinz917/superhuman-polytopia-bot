@@ -1,0 +1,315 @@
+{
+  "schema": "compact-prompt-ablation-v1",
+  "arms": {
+    "expert_sft_v1": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 18,
+      "losses": 12,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 34.5,
+      "mean_peak_cities": 7.4,
+      "actions": {
+        "move": 9606,
+        "attack": 1970,
+        "build": 1792,
+        "recruit": 1306,
+        "end_turn": 1084,
+        "city_reward": 617,
+        "research": 587,
+        "harvest": 510,
+        "capture": 365,
+        "ability": 61
+      },
+      "combat": {
+        "opp_kills": 400,
+        "opp_captures": 271,
+        "model_kills": 431,
+        "model_captures": 365,
+        "model_takes_city": 140,
+        "opp_takes_city": 145
+      },
+      "abilities": {
+        "recover": 32,
+        "other": 25,
+        "disband": 4
+      }
+    },
+    "base_v1": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 0,
+      "losses": 30,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 21.5,
+      "mean_peak_cities": 1.0333333333333334,
+      "actions": {
+        "move": 1119,
+        "end_turn": 649,
+        "ability": 304,
+        "build": 235,
+        "research": 234,
+        "recruit": 234,
+        "harvest": 115,
+        "attack": 81,
+        "city_reward": 49,
+        "capture": 3
+      },
+      "combat": {
+        "opp_captures": 273,
+        "model_kills": 14,
+        "opp_kills": 53,
+        "opp_takes_city": 31,
+        "model_captures": 3
+      },
+      "abilities": {
+        "recover": 89,
+        "other": 47,
+        "disband": 168
+      }
+    },
+    "compact_sft": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 30
+      },
+      "wins": 14,
+      "losses": 16,
+      "forfeits": 0,
+      "truncated": 0,
+      "operational": 0,
+      "median_round": 36.0,
+      "mean_peak_cities": 6.933333333333334,
+      "actions": {
+        "move": 11454,
+        "build": 2235,
+        "attack": 2028,
+        "recruit": 1508,
+        "end_turn": 1141,
+        "ability": 759,
+        "city_reward": 623,
+        "research": 549,
+        "harvest": 536,
+        "capture": 324
+      },
+      "combat": {
+        "opp_kills": 464,
+        "model_kills": 406,
+        "model_captures": 324,
+        "opp_captures": 286,
+        "model_takes_city": 112,
+        "opp_takes_city": 176
+      },
+      "abilities": {
+        "recover": 75,
+        "other": 643,
+        "disband": 41
+      }
+    },
+    "compact_sft_prefix_cache": {
+      "games": 30,
+      "statuses": {
+        "native/elimination": 29,
+        "truncated/research_horizon": 1
+      },
+      "wins": 20,
+      "losses": 9,
+      "forfeits": 0,
+      "truncated": 1,
+      "operational": 0,
+      "median_round": 34.5,
+      "mean_peak_cities": 7.733333333333333,
+      "actions": {
+        "move": 12901,
+        "build": 2273,
+        "attack": 2021,
+        "recruit": 1508,
+        "end_turn": 1102,
+        "ability": 714,
+        "city_reward": 642,
+        "research": 543,
+        "harvest": 536,
+        "capture": 340
+      },
+      "combat": {
+        "opp_kills": 387,
+        "model_kills": 434,
+        "model_captures": 340,
+        "opp_captures": 243,
+        "model_takes_city": 136,
+        "opp_takes_city": 136
+      },
+      "abilities": {
+        "recover": 82,
+        "other": 609,
+        "disband": 23
+      }
+    }
+  },
+  "paired": {
+    "compact_sft_vs_expert_sft_v1": {
+      "a_minus_b": -0.13333333333333333,
+      "map_cluster_bootstrap_95": [
+        -0.4,
+        0.13333333333333333
+      ],
+      "maps": 15,
+      "maps_a_better": 4,
+      "maps_b_better": 7
+    },
+    "compact_sft_prefix_cache_vs_expert_sft_v1": {
+      "a_minus_b": 0.06666666666666667,
+      "map_cluster_bootstrap_95": [
+        -0.1,
+        0.23333333333333334
+      ],
+      "maps": 15,
+      "maps_a_better": 4,
+      "maps_b_better": 2
+    },
+    "compact_sft_vs_base_v1": {
+      "a_minus_b": 0.4666666666666667,
+      "map_cluster_bootstrap_95": [
+        0.26666666666666666,
+        0.6666666666666666
+      ],
+      "maps": 15,
+      "maps_a_better": 9,
+      "maps_b_better": 0
+    },
+    "compact_sft_prefix_cache_vs_base_v1": {
+      "a_minus_b": 0.6666666666666666,
+      "map_cluster_bootstrap_95": [
+        0.5,
+        0.8
+      ],
+      "maps": 15,
+      "maps_a_better": 14,
+      "maps_b_better": 0
+    },
+    "compact_pooled_vs_expert_sft_v1": {
+      "a_minus_b": -0.03333333333333333,
+      "map_cluster_bootstrap_95": [
+        -0.23333333333333334,
+        0.16666666666666666
+      ],
+      "maps": 15,
+      "maps_a_better": 6,
+      "maps_b_better": 8
+    }
+  },
+  "evaluation": {
+    "expert_sft_v1": {
+      "timing": {
+        "calls": 17898,
+        "mean_input_tokens": 11763.93127723768,
+        "total_input_tokens": 210550842,
+        "max_input_tokens": 37098,
+        "mean_output_tokens": 8.668342831601295,
+        "mean_request_seconds": 6.342638257952789,
+        "finish_reasons": {
+          "stop": 17898
+        }
+      },
+      "execution": {
+        "arm": "expert_sft",
+        "exit_code": 0,
+        "worker_seconds": 5726.0221293879995,
+        "finished_unix": 1792401091.9635518
+      },
+      "report_elapsed": 5620.000821248001
+    },
+    "compact_sft": {
+      "timing": {
+        "calls": 21157,
+        "mean_input_tokens": 4113.372311764428,
+        "total_input_tokens": 87026618,
+        "max_input_tokens": 11489,
+        "mean_output_tokens": 8.754549321737487,
+        "mean_request_seconds": 1.672481747481967,
+        "finish_reasons": {
+          "stop": 21157
+        }
+      },
+      "execution": {
+        "arm": "compact_sft",
+        "exit_code": 0,
+        "worker_seconds": 2999.09266538,
+        "finished_unix": 1792460690.3929994,
+        "preflight_only": false
+      },
+      "report_elapsed": 2878.473407115,
+      "prefix_caching": false
+    },
+    "compact_sft_prefix_cache": {
+      "timing": {
+        "calls": 22580,
+        "mean_input_tokens": 4400.191186891054,
+        "total_input_tokens": 99356317,
+        "max_input_tokens": 14343,
+        "mean_output_tokens": 8.800708591674049,
+        "mean_request_seconds": 1.212579315266651,
+        "finish_reasons": {
+          "stop": 22580
+        }
+      },
+      "execution": {
+        "arm": "compact_sft_prefix_cache",
+        "exit_code": 0,
+        "worker_seconds": 3074.790539017,
+        "finished_unix": 1792460766.126173,
+        "preflight_only": false
+      },
+      "report_elapsed": 2968.042956289,
+      "prefix_caching": true
+    }
+  },
+  "training": {
+    "expert_sft_v1": {
+      "status": "completed",
+      "train_seconds": 6996.569469855,
+      "elapsed_seconds": 7021.891150379,
+      "steps": 620,
+      "stress": {
+        "passed": true,
+        "examples": 8,
+        "max_tokens": 24574,
+        "peak_bytes": 150241668096,
+        "optimizer_updates": 0
+      },
+      "loss_first": 1.8983266353607178,
+      "loss_last_20": 0.25999485701322556,
+      "records": 39626,
+      "mean_tokens": 9328.821884621208,
+      "max_tokens": 24574,
+      "total_tokens": 369663896
+    },
+    "compact": {
+      "status": "completed",
+      "train_seconds": 1702.416975457,
+      "elapsed_seconds": 1724.000401505,
+      "steps": 620,
+      "stress": {
+        "passed": true,
+        "examples": 8,
+        "max_tokens": 7423,
+        "peak_bytes": 51291456512,
+        "optimizer_updates": 0
+      },
+      "loss_first": 1.4665093421936035,
+      "loss_last_20": 0.24177562817931175,
+      "records": 39626,
+      "mean_tokens": 3027.040150406299,
+      "max_tokens": 7423,
+      "total_tokens": 119949493
+    }
+  }
+}

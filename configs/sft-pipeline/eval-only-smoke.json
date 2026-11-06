@@ -1,0 +1,23 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "eval-only-smoke",
+  "description": "Evaluation-only example: an existing adapter (expert-sft-v1, hashes from its training receipt) on 1 validation map vs scripted balanced and vs the learned u3142 bot, with the league96 RL reference, a paired summary and the eval-speedup serving settings. No generation or training.",
+  "stages": ["evaluate", "summarize"],
+  "players": {
+    "league96": {"kind": "rl", "path": "/retained/checkpoints/low256-league-rivals-v1/update-96-f998d15e220c/latest.npz",
+                 "sha256": "f998d15e220c92fe5ad091b73c4fd8952612a69b37fdd607d8b007093b26225d", "deterministic": true},
+    "u3142": {"kind": "rl", "path": "/retained/checkpoints/distributed-final-v1/dist-c460div-v1-update-3142/final.npz",
+              "sha256": "04cbb4745a4e957dff88de36218c40fd14f4d40cf3bdf0b80021ee2697f0bfc8", "deterministic": true}
+  },
+  "evaluation": {
+    "serving": {"max_num_batched_tokens": 32768, "enable_prefix_caching": true, "gpu_memory_utilization": 0.9},
+    "maps": {"split": "validation", "offset": 0, "count": 1},
+    "seats": [1],
+    "opponents": ["balanced", "u3142"],
+    "shard_by_opponent": true,
+    "arms": {"sft_v1": {"adapter": {"path": "expert-sft-v1/training/model/adapter-final",
+                                    "training_receipt": "expert-sft-v1/training/model/run.json"}}},
+    "rl_reference": ["league96"],
+    "pairs": [["sft_v1", "rl:league96"]]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "protocol": "polytopia-mini-v5",
+  "unit_tests": {
+    "passed": 51,
+    "skipped": 1,
+    "location": "Modal staging",
+    "skip_reason": "operator rule-book generator is outside runtime image"
+  },
+  "preflight": {
+    "offline_tools": true,
+    "no_opponent_package": true,
+    "trusted_build_protected": true,
+    "background_deadline": true,
+    "durable_cutoff": true,
+    "idempotent_freeze": true
+  },
+  "smoke": {
+    "prefix": "mini-v5-smoke-20261030b",
+    "status": "completed",
+    "audit": {
+      "passed": true,
+      "actual_games": 192,
+      "virtual_compile_failure_losses": 0,
+      "actions": 82292
+    },
+    "games": 192,
+    "score_not_official": true
+  },
+  "official": {
+    "prefix": "mini-v5-20261030a",
+    "models": 11,
+    "replicates": 3,
+    "tracks": [
+      "independent-40m",
+      "feedback-3r-40m"
+    ],
+    "authoring_cells": 66,
+    "primary_scheduled_results": 14850,
+    "maximum_peer_games": 1980
+  },
+  "infrastructure_notes": [
+    "Initial smoke coordinator failed Python namespace import before authoring; corrected experiments mount and used a separate smoke prefix.",
+    "Status readers explicitly reload the shared volume; stale status is not worker-liveness evidence.",
+    "SDK packaging uses an explicit allowlist; live sandbox confirms policy and search modules absent."
+  ]
+}

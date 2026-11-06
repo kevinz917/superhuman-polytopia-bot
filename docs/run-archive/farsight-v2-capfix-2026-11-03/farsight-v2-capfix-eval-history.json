@@ -1,0 +1,814 @@
+[
+ {
+  "round": 0,
+  "stage": "update-940",
+  "final": false,
+  "finished": 1793597744.1408682,
+  "parts": 24,
+  "expected": 24,
+  "vs": {
+   "c3": {
+    "wins": 0,
+    "losses": 41,
+    "draws_or_truncations": 23,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.18
+   },
+   "champion": {
+    "wins": 0,
+    "losses": 63,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.008
+   },
+   "hero1": {
+    "wins": 0,
+    "losses": 63,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.008
+   },
+   "bighero_u3880": {
+    "wins": 0,
+    "losses": 36,
+    "draws_or_truncations": 28,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.219
+   },
+   "bighero_u5250": {
+    "wins": 1,
+    "losses": 38,
+    "draws_or_truncations": 25,
+    "games": 64,
+    "win_rate": 0.016,
+    "score": 0.211
+   },
+   "bighero_u7750": {
+    "wins": 0,
+    "losses": 46,
+    "draws_or_truncations": 18,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.141
+   },
+   "bighero_u10000": {
+    "wins": 0,
+    "losses": 53,
+    "draws_or_truncations": 11,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.086
+   },
+   "v2_u2620": {
+    "wins": 0,
+    "losses": 9,
+    "draws_or_truncations": 55,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.43
+   },
+   "v2_u3940": {
+    "wins": 0,
+    "losses": 16,
+    "draws_or_truncations": 48,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.375
+   },
+   "v2_u5140": {
+    "wins": 0,
+    "losses": 31,
+    "draws_or_truncations": 33,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.258
+   },
+   "v2_u6860": {
+    "wins": 0,
+    "losses": 31,
+    "draws_or_truncations": 33,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.258
+   },
+   "v2_final": {
+    "wins": 0,
+    "losses": 38,
+    "draws_or_truncations": 26,
+    "games": 64,
+    "win_rate": 0.0,
+    "score": 0.203
+   }
+  }
+ },
+ {
+  "round": 1,
+  "stage": "update-3540",
+  "final": false,
+  "finished": 1793604150.947556,
+  "parts": 24,
+  "expected": 24,
+  "vs": {
+   "c3": {
+    "wins": 20,
+    "losses": 19,
+    "draws_or_truncations": 25,
+    "games": 64,
+    "win_rate": 0.312,
+    "score": 0.508
+   },
+   "champion": {
+    "wins": 9,
+    "losses": 53,
+    "draws_or_truncations": 2,
+    "games": 64,
+    "win_rate": 0.141,
+    "score": 0.156
+   },
+   "hero1": {
+    "wins": 7,
+    "losses": 56,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.109,
+    "score": 0.117
+   },
+   "bighero_u3880": {
+    "wins": 30,
+    "losses": 18,
+    "draws_or_truncations": 16,
+    "games": 64,
+    "win_rate": 0.469,
+    "score": 0.594
+   },
+   "bighero_u5250": {
+    "wins": 29,
+    "losses": 22,
+    "draws_or_truncations": 13,
+    "games": 64,
+    "win_rate": 0.453,
+    "score": 0.555
+   },
+   "bighero_u7750": {
+    "wins": 23,
+    "losses": 25,
+    "draws_or_truncations": 16,
+    "games": 64,
+    "win_rate": 0.359,
+    "score": 0.484
+   },
+   "bighero_u10000": {
+    "wins": 15,
+    "losses": 31,
+    "draws_or_truncations": 18,
+    "games": 64,
+    "win_rate": 0.234,
+    "score": 0.375
+   },
+   "v2_u2620": {
+    "wins": 11,
+    "losses": 30,
+    "draws_or_truncations": 23,
+    "games": 64,
+    "win_rate": 0.172,
+    "score": 0.352
+   },
+   "v2_u3940": {
+    "wins": 9,
+    "losses": 31,
+    "draws_or_truncations": 24,
+    "games": 64,
+    "win_rate": 0.141,
+    "score": 0.328
+   },
+   "v2_u5140": {
+    "wins": 9,
+    "losses": 41,
+    "draws_or_truncations": 14,
+    "games": 64,
+    "win_rate": 0.141,
+    "score": 0.25
+   },
+   "v2_u6860": {
+    "wins": 7,
+    "losses": 45,
+    "draws_or_truncations": 12,
+    "games": 64,
+    "win_rate": 0.109,
+    "score": 0.203
+   },
+   "v2_final": {
+    "wins": 5,
+    "losses": 47,
+    "draws_or_truncations": 12,
+    "games": 64,
+    "win_rate": 0.078,
+    "score": 0.172
+   }
+  }
+ },
+ {
+  "round": 2,
+  "stage": "update-6200",
+  "final": false,
+  "finished": 1793611585.721195,
+  "parts": 24,
+  "expected": 24,
+  "vs": {
+   "c3": {
+    "wins": 26,
+    "losses": 8,
+    "draws_or_truncations": 30,
+    "games": 64,
+    "win_rate": 0.406,
+    "score": 0.641
+   },
+   "champion": {
+    "wins": 15,
+    "losses": 48,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.234,
+    "score": 0.242
+   },
+   "hero1": {
+    "wins": 15,
+    "losses": 48,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.234,
+    "score": 0.242
+   },
+   "bighero_u3880": {
+    "wins": 43,
+    "losses": 9,
+    "draws_or_truncations": 12,
+    "games": 64,
+    "win_rate": 0.672,
+    "score": 0.766
+   },
+   "bighero_u5250": {
+    "wins": 44,
+    "losses": 15,
+    "draws_or_truncations": 5,
+    "games": 64,
+    "win_rate": 0.688,
+    "score": 0.727
+   },
+   "bighero_u7750": {
+    "wins": 29,
+    "losses": 18,
+    "draws_or_truncations": 17,
+    "games": 64,
+    "win_rate": 0.453,
+    "score": 0.586
+   },
+   "bighero_u10000": {
+    "wins": 24,
+    "losses": 21,
+    "draws_or_truncations": 19,
+    "games": 64,
+    "win_rate": 0.375,
+    "score": 0.523
+   },
+   "v2_u2620": {
+    "wins": 28,
+    "losses": 17,
+    "draws_or_truncations": 19,
+    "games": 64,
+    "win_rate": 0.438,
+    "score": 0.586
+   },
+   "v2_u3940": {
+    "wins": 18,
+    "losses": 24,
+    "draws_or_truncations": 22,
+    "games": 64,
+    "win_rate": 0.281,
+    "score": 0.453
+   },
+   "v2_u5140": {
+    "wins": 14,
+    "losses": 32,
+    "draws_or_truncations": 18,
+    "games": 64,
+    "win_rate": 0.219,
+    "score": 0.359
+   },
+   "v2_u6860": {
+    "wins": 15,
+    "losses": 40,
+    "draws_or_truncations": 9,
+    "games": 64,
+    "win_rate": 0.234,
+    "score": 0.305
+   },
+   "v2_final": {
+    "wins": 10,
+    "losses": 40,
+    "draws_or_truncations": 14,
+    "games": 64,
+    "win_rate": 0.156,
+    "score": 0.266
+   }
+  }
+ },
+ {
+  "round": 3,
+  "stage": "update-8750",
+  "final": false,
+  "finished": 1793622227.049678,
+  "parts": 0,
+  "expected": 24,
+  "vs": {}
+ },
+ {
+  "round": 0,
+  "stage": "update-13014",
+  "final": true,
+  "finished": 1793630554.307926,
+  "parts": 24,
+  "expected": 24,
+  "vs": {
+   "c3": {
+    "wins": 111,
+    "losses": 5,
+    "draws_or_truncations": 12,
+    "games": 128,
+    "win_rate": 0.867,
+    "score": 0.914
+   },
+   "champion": {
+    "wins": 59,
+    "losses": 66,
+    "draws_or_truncations": 3,
+    "games": 128,
+    "win_rate": 0.461,
+    "score": 0.473
+   },
+   "hero1": {
+    "wins": 53,
+    "losses": 74,
+    "draws_or_truncations": 1,
+    "games": 128,
+    "win_rate": 0.414,
+    "score": 0.418
+   },
+   "bighero_u3880": {
+    "wins": 113,
+    "losses": 10,
+    "draws_or_truncations": 5,
+    "games": 128,
+    "win_rate": 0.883,
+    "score": 0.902
+   },
+   "bighero_u5250": {
+    "wins": 113,
+    "losses": 13,
+    "draws_or_truncations": 2,
+    "games": 128,
+    "win_rate": 0.883,
+    "score": 0.891
+   },
+   "bighero_u7750": {
+    "wins": 106,
+    "losses": 16,
+    "draws_or_truncations": 6,
+    "games": 128,
+    "win_rate": 0.828,
+    "score": 0.852
+   },
+   "bighero_u10000": {
+    "wins": 99,
+    "losses": 22,
+    "draws_or_truncations": 7,
+    "games": 128,
+    "win_rate": 0.773,
+    "score": 0.801
+   },
+   "v2_u2620": {
+    "wins": 91,
+    "losses": 17,
+    "draws_or_truncations": 20,
+    "games": 128,
+    "win_rate": 0.711,
+    "score": 0.789
+   },
+   "v2_u3940": {
+    "wins": 85,
+    "losses": 32,
+    "draws_or_truncations": 11,
+    "games": 128,
+    "win_rate": 0.664,
+    "score": 0.707
+   },
+   "v2_u5140": {
+    "wins": 83,
+    "losses": 36,
+    "draws_or_truncations": 9,
+    "games": 128,
+    "win_rate": 0.648,
+    "score": 0.684
+   },
+   "v2_u6860": {
+    "wins": 76,
+    "losses": 47,
+    "draws_or_truncations": 5,
+    "games": 128,
+    "win_rate": 0.594,
+    "score": 0.613
+   },
+   "v2_final": {
+    "wins": 61,
+    "losses": 57,
+    "draws_or_truncations": 10,
+    "games": 128,
+    "win_rate": 0.477,
+    "score": 0.516
+   }
+  }
+ },
+ {
+  "round": 0,
+  "stage": "update-16580",
+  "final": false,
+  "finished": 1793681427.799532,
+  "parts": 0,
+  "expected": 16,
+  "vs": {}
+ },
+ {
+  "round": 1,
+  "stage": "update-19460",
+  "final": false,
+  "finished": 1793684369.466835,
+  "parts": 16,
+  "expected": 16,
+  "vs": {
+   "c3": {
+    "wins": 45,
+    "losses": 1,
+    "draws_or_truncations": 18,
+    "games": 64,
+    "win_rate": 0.703,
+    "score": 0.844
+   },
+   "champion": {
+    "wins": 27,
+    "losses": 32,
+    "draws_or_truncations": 5,
+    "games": 64,
+    "win_rate": 0.422,
+    "score": 0.461
+   },
+   "hero1": {
+    "wins": 22,
+    "losses": 34,
+    "draws_or_truncations": 8,
+    "games": 64,
+    "win_rate": 0.344,
+    "score": 0.406
+   },
+   "hero1_u11500": {
+    "wins": 13,
+    "losses": 45,
+    "draws_or_truncations": 6,
+    "games": 64,
+    "win_rate": 0.203,
+    "score": 0.25
+   },
+   "hero1_final": {
+    "wins": 9,
+    "losses": 46,
+    "draws_or_truncations": 9,
+    "games": 64,
+    "win_rate": 0.141,
+    "score": 0.211
+   },
+   "bighero_u10000": {
+    "wins": 40,
+    "losses": 9,
+    "draws_or_truncations": 15,
+    "games": 64,
+    "win_rate": 0.625,
+    "score": 0.742
+   },
+   "v2_final": {
+    "wins": 26,
+    "losses": 24,
+    "draws_or_truncations": 14,
+    "games": 64,
+    "win_rate": 0.406,
+    "score": 0.516
+   },
+   "self_u13014": {
+    "wins": 25,
+    "losses": 28,
+    "draws_or_truncations": 11,
+    "games": 64,
+    "win_rate": 0.391,
+    "score": 0.477
+   }
+  }
+ },
+ {
+  "round": 2,
+  "stage": "update-21540",
+  "final": false,
+  "finished": 1793692723.02515,
+  "parts": 16,
+  "expected": 16,
+  "vs": {
+   "c3": {
+    "wins": 50,
+    "losses": 1,
+    "draws_or_truncations": 13,
+    "games": 64,
+    "win_rate": 0.781,
+    "score": 0.883
+   },
+   "champion": {
+    "wins": 27,
+    "losses": 32,
+    "draws_or_truncations": 5,
+    "games": 64,
+    "win_rate": 0.422,
+    "score": 0.461
+   },
+   "hero1": {
+    "wins": 29,
+    "losses": 29,
+    "draws_or_truncations": 6,
+    "games": 64,
+    "win_rate": 0.453,
+    "score": 0.5
+   },
+   "hero1_u11500": {
+    "wins": 20,
+    "losses": 37,
+    "draws_or_truncations": 7,
+    "games": 64,
+    "win_rate": 0.312,
+    "score": 0.367
+   },
+   "hero1_final": {
+    "wins": 13,
+    "losses": 43,
+    "draws_or_truncations": 8,
+    "games": 64,
+    "win_rate": 0.203,
+    "score": 0.266
+   },
+   "bighero_u10000": {
+    "wins": 52,
+    "losses": 9,
+    "draws_or_truncations": 3,
+    "games": 64,
+    "win_rate": 0.812,
+    "score": 0.836
+   },
+   "v2_final": {
+    "wins": 29,
+    "losses": 23,
+    "draws_or_truncations": 12,
+    "games": 64,
+    "win_rate": 0.453,
+    "score": 0.547
+   },
+   "self_u13014": {
+    "wins": 38,
+    "losses": 24,
+    "draws_or_truncations": 2,
+    "games": 64,
+    "win_rate": 0.594,
+    "score": 0.609
+   }
+  }
+ },
+ {
+  "round": 3,
+  "stage": "update-24460",
+  "final": false,
+  "finished": 1793699670.713809,
+  "parts": 16,
+  "expected": 16,
+  "vs": {
+   "c3": {
+    "wins": 53,
+    "losses": 0,
+    "draws_or_truncations": 11,
+    "games": 64,
+    "win_rate": 0.828,
+    "score": 0.914
+   },
+   "champion": {
+    "wins": 37,
+    "losses": 25,
+    "draws_or_truncations": 2,
+    "games": 64,
+    "win_rate": 0.578,
+    "score": 0.594
+   },
+   "hero1": {
+    "wins": 32,
+    "losses": 30,
+    "draws_or_truncations": 2,
+    "games": 64,
+    "win_rate": 0.5,
+    "score": 0.516
+   },
+   "hero1_u11500": {
+    "wins": 22,
+    "losses": 38,
+    "draws_or_truncations": 4,
+    "games": 64,
+    "win_rate": 0.344,
+    "score": 0.375
+   },
+   "hero1_final": {
+    "wins": 22,
+    "losses": 38,
+    "draws_or_truncations": 4,
+    "games": 64,
+    "win_rate": 0.344,
+    "score": 0.375
+   },
+   "bighero_u10000": {
+    "wins": 56,
+    "losses": 6,
+    "draws_or_truncations": 2,
+    "games": 64,
+    "win_rate": 0.875,
+    "score": 0.891
+   },
+   "v2_final": {
+    "wins": 37,
+    "losses": 16,
+    "draws_or_truncations": 11,
+    "games": 64,
+    "win_rate": 0.578,
+    "score": 0.664
+   },
+   "self_u13014": {
+    "wins": 46,
+    "losses": 17,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.719,
+    "score": 0.727
+   }
+  }
+ },
+ {
+  "round": 4,
+  "stage": "update-27400",
+  "final": false,
+  "finished": 1793706549.766301,
+  "parts": 16,
+  "expected": 16,
+  "vs": {
+   "c3": {
+    "wins": 53,
+    "losses": 3,
+    "draws_or_truncations": 8,
+    "games": 64,
+    "win_rate": 0.828,
+    "score": 0.891
+   },
+   "champion": {
+    "wins": 32,
+    "losses": 31,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.5,
+    "score": 0.508
+   },
+   "hero1": {
+    "wins": 29,
+    "losses": 32,
+    "draws_or_truncations": 3,
+    "games": 64,
+    "win_rate": 0.453,
+    "score": 0.477
+   },
+   "hero1_u11500": {
+    "wins": 23,
+    "losses": 37,
+    "draws_or_truncations": 4,
+    "games": 64,
+    "win_rate": 0.359,
+    "score": 0.391
+   },
+   "hero1_final": {
+    "wins": 24,
+    "losses": 36,
+    "draws_or_truncations": 4,
+    "games": 64,
+    "win_rate": 0.375,
+    "score": 0.406
+   },
+   "bighero_u10000": {
+    "wins": 51,
+    "losses": 13,
+    "draws_or_truncations": 0,
+    "games": 64,
+    "win_rate": 0.797,
+    "score": 0.797
+   },
+   "v2_final": {
+    "wins": 35,
+    "losses": 22,
+    "draws_or_truncations": 7,
+    "games": 64,
+    "win_rate": 0.547,
+    "score": 0.602
+   },
+   "self_u13014": {
+    "wins": 39,
+    "losses": 24,
+    "draws_or_truncations": 1,
+    "games": 64,
+    "win_rate": 0.609,
+    "score": 0.617
+   }
+  }
+ },
+ {
+  "round": 0,
+  "stage": "update-28957",
+  "final": true,
+  "finished": 1793713566.160241,
+  "parts": 16,
+  "expected": 16,
+  "vs": {
+   "c3": {
+    "wins": 108,
+    "losses": 4,
+    "draws_or_truncations": 16,
+    "games": 128,
+    "win_rate": 0.844,
+    "score": 0.906
+   },
+   "champion": {
+    "wins": 72,
+    "losses": 47,
+    "draws_or_truncations": 9,
+    "games": 128,
+    "win_rate": 0.562,
+    "score": 0.598
+   },
+   "hero1": {
+    "wins": 61,
+    "losses": 56,
+    "draws_or_truncations": 11,
+    "games": 128,
+    "win_rate": 0.477,
+    "score": 0.52
+   },
+   "hero1_u11500": {
+    "wins": 50,
+    "losses": 73,
+    "draws_or_truncations": 5,
+    "games": 128,
+    "win_rate": 0.391,
+    "score": 0.41
+   },
+   "hero1_final": {
+    "wins": 46,
+    "losses": 73,
+    "draws_or_truncations": 9,
+    "games": 128,
+    "win_rate": 0.359,
+    "score": 0.395
+   },
+   "bighero_u10000": {
+    "wins": 109,
+    "losses": 14,
+    "draws_or_truncations": 5,
+    "games": 128,
+    "win_rate": 0.852,
+    "score": 0.871
+   },
+   "v2_final": {
+    "wins": 58,
+    "losses": 39,
+    "draws_or_truncations": 31,
+    "games": 128,
+    "win_rate": 0.453,
+    "score": 0.574
+   },
+   "self_u13014": {
+    "wins": 88,
+    "losses": 39,
+    "draws_or_truncations": 1,
+    "games": 128,
+    "win_rate": 0.688,
+    "score": 0.691
+   }
+  }
+ }
+]

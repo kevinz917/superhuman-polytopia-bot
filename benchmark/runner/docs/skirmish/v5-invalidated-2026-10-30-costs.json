@@ -1,0 +1,64 @@
+{
+  "cohort": "mini-v5-20261030a",
+  "invalidated": true,
+  "by_model": {
+    "google/gemini-4-argon": {
+      "saved_api_cost": 1.8384401079,
+      "completed_calls": 49,
+      "trajectory_files": 3
+    },
+    "openai/gpt-6-astra": {
+      "saved_api_cost": 11.734796205,
+      "completed_calls": 65,
+      "trajectory_files": 5
+    },
+    "deepseek/deepseek-v4.1-flash-1017": {
+      "saved_api_cost": 0.10993285710000002,
+      "completed_calls": 116,
+      "trajectory_files": 4
+    },
+    "deepseek/deepseek-v4-pro-0813": {
+      "saved_api_cost": 0.71431003512,
+      "completed_calls": 98,
+      "trajectory_files": 4
+    },
+    "z-ai/glm-5.3": {
+      "saved_api_cost": 4.503478716,
+      "completed_calls": 90,
+      "trajectory_files": 3
+    },
+    "moonshotai/kimi-k3.1-pro": {
+      "saved_api_cost": 1.1364249599999998,
+      "completed_calls": 30,
+      "trajectory_files": 4
+    },
+    "openai/gpt-6-luna": {
+      "saved_api_cost": 0.13315088655,
+      "completed_calls": 44,
+      "trajectory_files": 2
+    },
+    "minimax/minimax-m3.1-flash": {
+      "saved_api_cost": 0.40950507014999993,
+      "completed_calls": 121,
+      "trajectory_files": 4
+    },
+    "anthropic/claude-opus-5.5": {
+      "saved_api_cost": 26.267202719999997,
+      "completed_calls": 131,
+      "trajectory_files": 7
+    },
+    "qwen/qwen3.8-max-0902": {
+      "saved_api_cost": 1.28881566,
+      "completed_calls": 61,
+      "trajectory_files": 4
+    },
+    "openai/gpt-6.1-sol": {
+      "saved_api_cost": 3.0981496589999997,
+      "completed_calls": 74,
+      "trajectory_files": 5
+    }
+  },
+  "saved_api_cost": 51.23420687682,
+  "incomplete_trajectory_files": [],
+  "coverage": "saved completed calls only, excludes probes, Modal compute, in-flight billing and any uncommitted/corrupt logs; no financial limits or balance checks"
+}

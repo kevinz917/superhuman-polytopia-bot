@@ -1,0 +1,218 @@
+[
+  {
+    "label": "minimax31",
+    "model": "minimax/minimax-m3.1-flash",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "minimax/minimax-m3.1-flash",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 6.912675e-05
+    }
+  },
+  {
+    "label": "luna-high",
+    "model": "openai/gpt-6-luna",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "cliproxyapi",
+      "base_url": "http://127.0.0.1:8317/v1",
+      "model": "gpt-6-luna",
+      "accounting": "subscription_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": null
+    }
+  },
+  {
+    "label": "deepseek-flash",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.00016166898
+    }
+  },
+  {
+    "label": "opus55",
+    "model": "anthropic/claude-opus-5.5",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "cliproxyapi",
+      "base_url": "http://127.0.0.1:8317/v1",
+      "model": "claude-opus-5-5",
+      "accounting": "subscription_usage",
+      "api_protocol": "anthropic",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": null
+    }
+  },
+  {
+    "label": "glm53",
+    "model": "z-ai/glm-5.3",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "z-ai/glm-5.3",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.0003166416
+    }
+  },
+  {
+    "label": "fable51",
+    "model": "anthropic/claude-fable-5-1",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "cliproxyapi",
+      "base_url": "http://127.0.0.1:8317/v1",
+      "model": "claude-fable-5-1",
+      "accounting": "subscription_usage",
+      "api_protocol": "anthropic",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": null
+    }
+  },
+  {
+    "label": "deepseek-pro",
+    "model": "deepseek/deepseek-v4-pro-0813",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.00051413868
+    }
+  },
+  {
+    "label": "astra6",
+    "model": "openai/gpt-6-astra",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "cliproxyapi",
+      "base_url": "http://127.0.0.1:8317/v1",
+      "model": "gpt-6-astra",
+      "accounting": "subscription_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": null
+    }
+  },
+  {
+    "label": "sol61",
+    "model": "openai/gpt-6.1-sol",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "cliproxyapi",
+      "base_url": "http://127.0.0.1:8317/v1",
+      "model": "gpt-6.1-sol",
+      "accounting": "subscription_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": null
+    }
+  },
+  {
+    "label": "kimi31",
+    "model": "moonshotai/kimi-k3.1-pro",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.0026076600000000004
+    }
+  },
+  {
+    "label": "argon4",
+    "model": "google/gemini-4-argon",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "google/gemini-4-argon",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.002448072
+    }
+  },
+  {
+    "label": "qwen38",
+    "model": "qwen/qwen3.8-max-0902",
+    "passed": true,
+    "receipt": {
+      "protocol": "mini-swe-agent",
+      "backend": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "model": "qwen/qwen3.8-max-0902",
+      "accounting": "provider_usage",
+      "api_protocol": "chat",
+      "tool_roundtrip": true,
+      "calls": 2,
+      "format_repairs": 0,
+      "nonce_instruction_followed": true,
+      "api_charge_usd": 0.00316206
+    }
+  }
+]

@@ -24,7 +24,7 @@ STATIC = Path(__file__).with_name('static')
 RULES = json.loads((Path(__file__).parents[1] / 'gpu/rules.json').read_text())
 TERRAIN = {0:'Unknown',1:'Shallow water',2:'Ocean',3:'Field',4:'Mountain',5:'Forest',6:'Ice',7:'Wetland',8:'Flooded field'}
 RESOURCE = {0:'None',1:'Animal',2:'Crop',3:'Fish',4:'Whale',5:'Metal',6:'Fruit',7:'Fungi',8:'Starfish'}
-ABILITY = {1:'Burn forest',2:'Clear forest',3:'Grow forest',4:'Destroy',7:'Recover',8:'Disband',9:'Heal others',16:'Promote',18:'Break peace',19:'Respond to peace',20:'Establish embassy',21:'Offer peace',22:'Remove embassy'}
+ABILITY = {1:'Burn forest',2:'Clear forest',3:'Grow forest',4:'Destroy',7:'Recover',8:'Disband',9:'Heal others',16:'Promote',18:'Break peace',19:'Respond to peace',20:'Establish embassy',21:'Offer peace',22:'Remove embassy',23:'Disembark'}
 REWARD = {1:'City wall',2:'Park',3:'Workshop',4:'Explorer',5:'Border growth',6:'Super unit',7:'Resources',8:'Population growth'}
 
 
@@ -191,11 +191,11 @@ class Studio:
         env=RustEnvironment(14)
         obs=env.reset(seed=1810000001,settings={})
         policy=StructuredPolicy(self.checkpoint, seed=101, deterministic=True)
-        choice=policy.select(obs)
+        choice=policy.select(obs,view=env.view(1))
         env.step(action_id=choice.action.action_id,expected_state_version=obs.state_version)
         self.policies[1]=policy
         self.policies[2]=StructuredPolicy(self.checkpoint,seed=102,deterministic=True)
-        self.policies[2].select(env.observe(int(env.state.current_player)))
+        self.policies[2].select(env.observe(int(env.state.current_player)),view=env.view(int(env.state.current_player)))
         env.close()
         self.ready=True
         return {'ready':True}
@@ -212,11 +212,11 @@ class Studio:
         if self.searcher is not None or self.search_workers is None:return {'search_ready':self.search_ready}
         import jax
         from polytopia_bot.studio.environment import RustEnvironment
-        from polytopia_bot.rl.distributed import _template_params
+        from polytopia_bot.rl.distributed import checkpoint_template
         from polytopia_bot.rl.runner import load_checkpoint
         from polytopia_bot.rl.search import TurnSearcher
         start=time.monotonic()
-        params=load_checkpoint(self.checkpoint,_template_params(14))
+        params=load_checkpoint(self.checkpoint,checkpoint_template(self.checkpoint))   # its own architecture/obs version
         searcher=TurnSearcher(params,size=14,workers=self.search_workers or None,**SEARCH)
         env=RustEnvironment(14);env.reset(seed=1810000001,settings={})
         searcher.compile(env.state,jax.random.key(0))
@@ -361,7 +361,7 @@ class Studio:
                 # (it is keyed by state version, so the bot replans on its next turn).
                 with self.lock:
                     obs=env.observe(player);start=time.monotonic()
-                    decision=self.opponent_policy(g['opponent']).select(obs)
+                    decision=self.opponent_policy(g['opponent']).select(obs,view=env.view(player))
                     self._apply(g,decision.action.action_id,obs.state_version,'checkpoint',
                                 {'value':decision.value,'log_probability':decision.log_probability,
                                  'seconds':time.monotonic()-start,'policy':g['opponent']})
@@ -387,7 +387,7 @@ class Studio:
                         print(f'search action {action_id} rejected ({e}); policy plays this step',flush=True)
                         g['queue']=[]
                 start=time.monotonic()
-                decision=self.policies[player].select(obs)
+                decision=self.policies[player].select(obs,view=env.view(player))
                 self._apply(g,decision.action.action_id,obs.state_version,'checkpoint',
                             {'value':decision.value,'log_probability':decision.log_probability,'seconds':time.monotonic()-start})
         return self.describe(g)

@@ -1,0 +1,215 @@
+{
+  "schema": "polytopia-mini-cohort-v2",
+  "date": "2026-10-30",
+  "tracks": [
+    "independent-40m",
+    "feedback-3r-40m"
+  ],
+  "models": [
+    {
+      "label": "astra6",
+      "model": "openai/gpt-6-astra",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "opus55",
+      "model": "anthropic/claude-opus-5.5",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "anthropic"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "sol61",
+      "model": "openai/gpt-6.1-sol",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "argon4",
+      "model": "google/gemini-4-argon",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "google-vertex/us"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "kimi31",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "moonshotai/mxfp4"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "qwen38",
+      "model": "qwen/qwen3.8-max-0902",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "alibaba"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "glm53",
+      "model": "z-ai/glm-5.3",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "z-ai/fp8"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "deepseek-pro",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "deepseek-flash",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "minimax31",
+      "model": "minimax/minimax-m3.1-flash",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "minimax"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "luna-high",
+      "model": "openai/gpt-6-luna",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    }
+  ],
+  "replicates": 3,
+  "maps_per_family": 5,
+  "references": [
+    {
+      "label": "reference-weak",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-qwen38-oneshot-20m"
+    },
+    {
+      "label": "reference-intermediate",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m"
+    },
+    {
+      "label": "hero-1v1",
+      "kind": "expert"
+    }
+  ]
+}

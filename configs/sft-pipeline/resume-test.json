@@ -1,0 +1,23 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "resume-test",
+  "description": "Training-resume test: smoke.json data (games reused from sftp-smoke-3), max_examples 320 = 5 updates on 4 x B200, a checkpoint every 2 steps. Run it twice: once uninterrupted, once with the train call cancelled after checkpoint-2 and relaunched with --action resume --retry train; the resumed steps 3-5 must match the uninterrupted run.",
+  "stages": ["generate", "prepare", "train"],
+  "generation": {"reuse_run": "sftp-smoke-3"},
+  "data": {
+    "examples_per_game": "all",
+    "skip_forced": true,
+    "max_move_fraction": 0.45,
+    "upweight": {"attack": 2.0, "capture": 1.5},
+    "max_examples": 320,
+    "min_examples": 320,
+    "games_per_shard": 1
+  },
+  "training": {
+    "gpus": 4,
+    "checkpoint_every": 2,
+    "timeout_hours": 2,
+    "overrides": {"epochs": 1, "max_length": 24576}
+  },
+  "evaluation": {"arms": {}}
+}

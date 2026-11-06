@@ -337,7 +337,7 @@ function Chronicle() {
 
 function Relations() {
   const game = useGame();
-  const actions = game.legal.filter((a) => a.command.kind === 3 && a.command.parameter >= 18);
+  const actions = game.legal.filter((a) => a.command.kind === 3 && a.command.parameter >= 18 && a.command.parameter <= 22);
   return (
     <>
       <Heading

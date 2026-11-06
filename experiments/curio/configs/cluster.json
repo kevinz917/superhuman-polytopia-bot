@@ -1,0 +1,101 @@
+{
+ "_doc": "Curio cluster topology (docs/curio-hero-2026-10-31.md): the GPU head plus both EPYC CPU servers. Addresses and logins are placeholders: set them to your own hosts. Core ranges are inclusive.",
+ "head": {
+  "ssh": "curio-gpu",
+  "root": "/data/polytopia",
+  "lan_ip": "10.0.0.4",
+  "data_ip": "10.0.1.4",
+  "gpus": 8,
+  "cores": 240
+ },
+ "port": 7070,
+ "learner": {
+  "gpus": [
+   4,
+   5,
+   6,
+   7,
+   0,
+   1,
+   2,
+   3
+  ],
+  "cores": "60-119,180-239",
+  "_note": "training on GPUs 4-7, value pass + mirrored coded-view decode on GPUs 0-3 (value_devices 4; the actors' inference servers share 0-3). Trials 2026-10-31: 76.8k samples/s (t19) vs 66k with everything on 4-7 (t2), 45-50k with an 8-GPU learner."
+ },
+ "head_actors": [
+  {
+   "gpu": 0,
+   "cores": "0-14,120-134",
+   "processes": 60,
+   "games": 24
+  },
+  {
+   "gpu": 1,
+   "cores": "15-29,135-149",
+   "processes": 60,
+   "games": 24
+  },
+  {
+   "gpu": 2,
+   "cores": "30-44,150-164",
+   "processes": 60,
+   "games": 24
+  },
+  {
+   "gpu": 3,
+   "cores": "45-59,165-179",
+   "processes": 60,
+   "games": 24
+  }
+ ],
+ "serve_options": {
+  "trunk_dtype": "bfloat16",
+  "server_cores": 2
+ },
+ "worker_actors": {
+  "cores": "0-255",
+  "processes": 0,
+  "games": 48,
+  "_note": "0 = no actors on the CPU servers (CPU inference is ~10x slower per thread and the GPU-inference head actors already out-supply the learner)"
+ },
+ "eval": {
+  "host": "w84",
+  "cores": "256-511",
+  "processes": 128,
+  "map_mix": "proposed-v1",
+  "size": 14,
+  "interval": 7200,
+  "maps": 32,
+  "final_maps": 64,
+  "seed_base": 560000
+ },
+ "search": {
+  "host": "w83",
+  "cores": "256-511",
+  "processes": 128,
+  "maps": 64,
+  "seed_base": 398000,
+  "lanes": 16,
+  "depth": 1,
+  "rollout_temperature": 1.0,
+  "replies": 64,
+  "determinize": true
+ },
+ "workers": [
+  {
+   "name": "w83",
+   "ssh": "user@10.0.0.2",
+   "root": "/home/ps/polytopia",
+   "data_ip": "10.0.1.2",
+   "cores": 512
+  },
+  {
+   "name": "w84",
+   "ssh": "user@10.0.0.3",
+   "root": "/home/ps/polytopia",
+   "data_ip": "10.0.1.3",
+   "cores": 512
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+  "study_id": "constraints-stage2-v1",
+  "assignment_seed": 301028,
+  "replicates": 5,
+  "framings": [
+    "neutral",
+    "evaluative",
+    "supportive",
+    "challenge"
+  ],
+  "models": [
+    {
+      "id": "ds",
+      "config": {
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "base_url": "https://openrouter.ai/api/v1",
+        "key_env": "OPENROUTER_API_KEY",
+        "parameters": {
+          "reasoning": {
+            "effort": "medium"
+          },
+          "max_tokens": 12000
+        }
+      }
+    }
+  ],
+  "budget_profiles": [
+    {
+      "id": "time",
+      "budget": {
+        "seconds": 600,
+        "constraint": "time",
+        "max_requests": 160,
+        "max_practice_games": 64
+      }
+    },
+    {
+      "id": "revisions",
+      "budget": {
+        "seconds": 1800,
+        "constraint": "revisions",
+        "max_revisions": 8,
+        "max_requests": 160,
+        "max_practice_games": 64
+      }
+    },
+    {
+      "id": "combined",
+      "budget": {
+        "seconds": 600,
+        "constraint": "combined",
+        "max_revisions": 8,
+        "max_requests": 160,
+        "max_practice_games": 64
+      }
+    }
+  ],
+  "final_maps": 4,
+  "tournament_maps": 16
+}

@@ -563,7 +563,7 @@ function renderSelection() {
         ((a.command.kind === 8 && a.command.source === selected) ||
           (a.command.kind === 3 &&
             a.command.source === selected &&
-            a.command.parameter < 18)),
+            (a.command.parameter < 18 || a.command.parameter === 23))),
     ))
       orders.append(roundAction(a));
     return;
@@ -1092,7 +1092,7 @@ function relations() {
     "Diplomatic actions are available when the other tribe is known and the required technology is researched.",
   );
   const actions = legal.filter(
-    (a) => a.command.kind === 3 && a.command.parameter >= 18,
+    (a) => a.command.kind === 3 && a.command.parameter >= 18 && a.command.parameter <= 22,
   );
   if (actions.length && canAct()) {
     const row = text("div", "", "actions");

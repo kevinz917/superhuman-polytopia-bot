@@ -1,0 +1,43 @@
+schema_version = "1.4"
+[[artifacts]]
+source = "/verify/cutoffs/stage-0"
+destination = "submission"
+
+[[artifacts]]
+source = "/bot/practice"
+destination = "practice"
+
+[task]
+name = "polytopia/skirmish"
+version = "1.0.0"
+description = "Build the strongest Polytopia Rust bot in one 40-minute session."
+
+[metadata]
+coding_budget_seconds = 2400
+protocol = "polytopia-skirmish-continuous-v1"
+primary_metric = "mean fixed-panel match points"
+agent_timeout_note = "21600s is an infrastructure guard for large local queues; official adapter enforces 2400 active seconds, excluding scheduler waits."
+environment_timeout_note = "43200s permits queued local graders to await CPU admission before startup; verifier execution retains its own 7200s guard."
+
+[agent]
+timeout_sec = 21600
+user = "coder"
+
+[environment]
+build_timeout_sec = 43200
+docker_image = "sha256:d7882f1a91c5251baea3a00d39b8eeadf4bd445c2db47f360d7b3018b2b2527c"
+cpus = 2
+memory_mb = 2048
+network_mode = "no-network"
+workdir = "/bot"
+
+[verifier]
+timeout_sec = 7200
+environment_mode = "separate"
+user = "root"
+
+[verifier.environment]
+docker_image = "sha256:6c45547b931879cc55fdee947a8250b927abb032141c5ced676f0eeae608884e"
+cpus = 2
+memory_mb = 4096
+network_mode = "no-network"

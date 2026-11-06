@@ -1,0 +1,23 @@
+[package]
+name = "polytopia_engine_rs"
+version = "0.1.0"
+edition = "2021"
+description = "Polytopia game engine for training and evaluation: the rules of the real game (Steam 2.17.3, game version 123), Bardur, 2 or 4 seats"
+license = "Apache-2.0"
+
+[lib]
+name = "polytopia_engine_rs"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "0.23", features = ["extension-module", "abi3-py311"] }
+numpy = "0.23"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+overflow-checks = false

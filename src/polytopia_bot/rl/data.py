@@ -66,7 +66,8 @@ def prepare(records, manifest_path, output, *, count=2048, seed=17):
         if len(match) != 1:
             raise ValueError('teacher command must uniquely match the legal catalog')
         selected = int(match[0]['action_id'])
-        choice, path = from_catalog([int(a['action_id']) for a in obs['legal_actions']], selected, size)
+        # the demonstrations are the JAX engine's: catalog layout version 1 (rl.actions.shapes)
+        choice, path = from_catalog([int(a['action_id']) for a in obs['legal_actions']], selected, size, version=1)
         choices.append(choice)
         masks.append(path)
         views.append(view_from_public(obs))

@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "fixture_prefix": "mini-v51-terminal-guard-20261031a",
+  "mutable_status": "needs_attention",
+  "dry_run": {
+    "status": "already_evaluated",
+    "prefix": "mini-v51-terminal-guard-20261031a",
+    "report_exists": true
+  },
+  "actual_call_rejected": "Cohort already has a report; do not overwrite it",
+  "unchanged": [
+    "authoring-plan.json",
+    "evaluation-plan.json",
+    "report.json",
+    "status.json"
+  ],
+  "new_model_calls": 0,
+  "new_games": 0,
+  "created_unix": 1793393301.4192483
+}

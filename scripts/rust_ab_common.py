@@ -29,8 +29,11 @@ def rules_json():
 
 
 def shapes(size):
+    """rl.actions.shapes (action layout version 2: recover rows of 2, diplomacy blocks of 6 per other seat); an
+    engine build from before 2026-10-31 has the version-1 layout, so A/B runs need both builds on one side of it."""
     n = size * size
-    return ((n, n), (n, n), (n, 128), (n, 128), (1, 128), (n, 1), (n, 3), (n, 9), *((n, 1),) * 6, (1, 6), (1, 1), (1, 1))
+    return ((n, n), (n, n), (n, 128), (n, 128), (1, 128), (n, 1), (n, 3), (n, 9), (n, 1), (n, 2), *((n, 1),) * 4, (1, 18),
+            (1, 1), (1, 1))
 
 
 def offsets(size):

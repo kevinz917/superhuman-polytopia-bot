@@ -50,6 +50,7 @@ WARRIOR = 2
 VIEW_KEYS = ('view', 'opp_view')    # packed int16 public views, the bulk of a row
 TRAIN_KEYS = ('family_mask', 'source_mask', 'target_mask', 'choice', 'logp', 'advantage', 'returns', 'upgo_advantage')
 VALUE_CHUNK = 8192                  # rows per device chunk of the learner's value pass
+PROBE_AT = {int(u) for u in os.environ.get('POLYTOPIA_PROBE_AT', '').split(',') if u.strip()}
 VALUE_SUB = 1024                    # four seats: rows per sub-chunk inside a value-pass chunk
 
 
@@ -167,6 +168,8 @@ class LearnerConfig:
     learning_rate_end: float = None # learning-rate decay: None = constant learning_rate. A number: the rate runs
     lr_decay_fraction: float = .1   # linearly from learning_rate to learning_rate_end over the last lr_decay_fraction
                                     # of training_seconds (a polish phase at the end of the run)
+    lr_warmup_updates: int = 0      # linear learning-rate warmup from 0 over the first N updates (times the scheduled
+                                    # rate; lookout 2026-11-01: a from-scratch attention trunk under PPO)
     entropy_coef: float = .005
     entropy_target: float = None    # adaptive entropy: None = fixed entropy_coef. A number: after every update the
     entropy_target_end: float = None  # coefficient moves in log space by entropy_adapt_rate * (target - entropy),
@@ -174,6 +177,11 @@ class LearnerConfig:
                                     # entropy_target_end (default: constant) over training_seconds
     clip: float = .2
     target_kl: float = .03
+    kl_adapt_target: float = None   # adaptive learning rate: None = the schedule alone. A number: the scheduled rate is
+    kl_adapt_down: float = .9       # multiplied by a scale that drops by kl_adapt_down after every update whose smoothed
+    kl_adapt_up: float = 1.02       # approx_kl (EMA, factor kl_adapt_smoothing) exceeds 1.5 x the target, recovers by
+    kl_adapt_floor: float = .25     # kl_adapt_up below .7 x the target, and stays in [kl_adapt_floor, 1] (farsight,
+    kl_adapt_smoothing: float = .8  # 2026-11-01: the pooled trunk's KL ramped 0.010 -> 0.03 twice at a fixed rate)
     max_lag: int = 6                # drop samples from older policy versions
     publish_every: int = 2
     self_play_probability: float = .5
@@ -200,13 +208,22 @@ class LearnerConfig:
                                     # for both seats (0 = the cap counts as a draw, as in evaluation)
     checkpoint_every: int = 10
     snapshot_every: int = 50
+    snapshot_at: tuple = ()         # extra updates that also save a snapshot (weights, Adam state, critic): the fork
+                                    # points of a sweep's cooldown runs (docs/isoflop-sweep-plan-2026-10-28.md)
     training_seconds: int = 3600
+    training_updates: int = 0       # > 0: stop after this many updates (samples = updates x batch) and run the LR decay
+                                    # and entropy-target schedules over updates instead of training_seconds, which
+                                    # stays the wall-clock backstop. A fork resumed from update u of a trunk with the
+                                    # same budget-free schedule then follows exactly the schedule of a run of this length
     seed: int = 20261019
     send_samples: int = 512         # actor message size; smaller = fresher weights on actors
     map_seed_low: int = 200000
     map_seed_high: int = 300000     # dev evaluation starts at 300000, final at 400000
     maps: str = 'classic'           # map mix (polytopia_bot.maps.stream): 'classic' = today's mapgen.reset maps
-    max_turns: int = None           # round cap; None = the default for the board size (ruleset.round_limit)
+    max_turns: int = None           # harness round cap; None = ruleset.training_round_limit(size), 0 = no limit
+    # Training-harness restriction: the actors' seats never propose or accept peace (a pending request can only be
+    # declined). Self-play otherwise found a peace-until-the-cap equilibrium on the 1:1 rules (Curio, 2026-11-01).
+    no_peace: bool = False
     critic_warmup: int = 0          # first N updates train only the critic-only parameters (critic_hidden, value);
                                     # every other gradient is zeroed, so the policy is exactly unchanged meanwhile
     advantage_floor: float = .05    # batch advantages are divided by max(std, floor). 18x18 raw std is ~0.024-0.04
@@ -231,6 +248,26 @@ class LearnerConfig:
     # batch and the batch statistics are bitwise those of the host path (False, kept as the reference).
     stream_views: bool = True
     assembly_threads: int = 4       # A6 host-page copy threads (0 = copy on the assembler thread)
+    # ---- platform knobs. The defaults are the Modal (H100) behaviour; experiments/curio/configs/*.json set the
+    # Curio (RTX 4090, driver 550) values. See docs/platforms.md.
+    # DeviceRows page uploads on their own thread: +21% assembly on Modal H100s (b8bb62b). Curio/Daytona set False:
+    # on workstation-GPU multi-GPU learners the thread's per-device writes raced the sharded programs (6 hangs in
+    # 4.5 h on 4x RTX PRO 6000, 0 in 3 h without it; runs/hero-daytona/status.md).
+    send_thread: bool = True
+    # One lock around every GPU program launch (Learner.gpu_lock). Off on Modal; Curio's measured runs used it.
+    serialize_gpu: bool = False
+    # The last `value_devices` visible devices run the learner_values pass (critic over every assembled row) on their
+    # own mesh, so it no longer competes with the training step (Curio: the GPUs that also host the actors'
+    # inference servers). 0 = the training devices. Needs coded_views or the host view path (not stream_views).
+    value_devices: int = 0
+    # Coded-view decode: pad its shapes to never-shrinking per-device high-water marks (view_codec.CodedRows.finish)
+    # instead of per-batch buckets. Same views; fewer recompiles, more memory. Curio's measured runs used it.
+    codec_shape_caps: bool = False
+    # Fully unroll the minibatch scan and the value pass's chunk loop. Without CUDA graphs (off on drivers that
+    # reject their memset nodes) XLA runs a loop from the host, waiting on the GPU at every iteration, so one
+    # program holds its device's launch path for its whole runtime and other work queues behind it (Curio,
+    # 2026-10-31). Same arithmetic; longer compile.
+    unroll_loops: bool = False
     # Coded views (rl/view_codec.py): actors send each view stream as sparse row-to-row int16 deltas (~28x fewer
     # bytes than the dense views on 18x18 four seats) and the learner rebuilds the dense views on the device, so
     # the host never decompresses, copies or uploads dense views. Exact (lossless); needs learner_values.
@@ -238,6 +275,9 @@ class LearnerConfig:
     # Four seats: rows per serial sub-chunk of the learner's value pass (the 4-view critic stem's memory). 1024 fits
     # an 80 GB H100; a B200 runs whole VALUE_CHUNK chunks (value_sub >= VALUE_CHUNK: no sub-chunking).
     value_sub: int = VALUE_SUB
+    # Two seats: sub-chunk the value pass too (value_sub rows per serial sub-chunk). Off = the 1v1 pass as measured
+    # (whole VALUE_CHUNK chunks); on for trunks whose per-row activations are large (attention: lookout, 2026-11-01).
+    value_sub_two_seats: bool = False
     # Lever 4 (docs/levers-egress-2026-10-22.md): zstd level of the actors' sample uploads. Lossless; on real
     # mid-game messages level 7 is 150 vs 186 wire bytes per row at level 1 (-19% upload egress) for ~13 us more
     # actor CPU per row (~0.6% of a process); the learner's decompression is no slower.
@@ -267,6 +307,8 @@ class LearnerConfig:
             raise ValueError('training maps must stay below the development evaluation seeds')
         if self.trusted_check_every < 0:
             raise ValueError('trusted_check_every must be >= 0')
+        if self.training_updates < 0 or any(int(u) < 1 for u in self.snapshot_at):
+            raise ValueError('training_updates must be >= 0 and snapshot_at updates >= 1')
         if self.players not in (2, 4):
             raise ValueError('players must be 2 or 4')
         if self.engine != 'rust':
@@ -275,6 +317,8 @@ class LearnerConfig:
                                  or self.truncation_reward is not None):
             raise ValueError('four seats need the rust engine and learner_values, and use rank rewards at the cap '
                              '(no pbrs, cap_score_reward or truncation_reward)')
+        if self.value_devices < 0 or (self.value_devices and self.stream_views and not self.coded_views):
+            raise ValueError('value_devices needs coded_views or stream_views off')
 
 
 # ----------------------------------------------------------------------------- trajectories
@@ -343,9 +387,73 @@ def upgo_returns(values, bootstrap, last_reward, terminal, gamma, end_turn=None,
     return out, follow
 
 
+def warmed_learning_rate(rate, version, warmup_updates):
+    """rate scaled linearly from 1/warmup_updates at update 0 to 1 at update warmup_updates - 1 (0 = no warmup)."""
+    if warmup_updates <= 0 or version >= warmup_updates:
+        return float(rate)
+    return float(rate) * (version + 1) / warmup_updates
+
+
+def training_progress(config, version, elapsed):
+    """Fraction of the run done: updates over training_updates when that is set, else elapsed over training_seconds."""
+    if config.training_updates:
+        return version / config.training_updates
+    return elapsed / config.training_seconds
+
+
+def conv_parameters(params):
+    """Convolution weights of a network's trunk (stem, blocks, extra blocks). Each runs at every tile, so they are
+    nearly all of a forward pass's FLOPs: ~2 x tiles x conv_parameters."""
+    def leaves(x):
+        if isinstance(x, dict):
+            return [l for v in x.values() for l in leaves(v)]
+        if isinstance(x, (list, tuple)):
+            return [l for v in x for l in leaves(v)]
+        return [x]
+    # 4-d leaves only: the convolution kernels (pooling layers, attention and gates of the wider trunks are skipped)
+    kernels = [k for k in leaves([params['stem'], params['blocks'], params.get('extra_blocks', ())])
+               if getattr(k, 'ndim', 0) == 4]
+    return sum(int(np.prod(k.shape)) for k in kernels)
+
+
+def sample_flops(size, policy_conv, critic_conv, epochs):
+    """Training FLOPs per sample: the actor's policy forward and the critic's value pass (learner or actor), then
+    forward + backward (3 passes) of the policy and the omniscient critic per epoch."""
+    return 2 * size * size * (1 + 3 * epochs) * (policy_conv + critic_conv)
+
+
+def fork_run(trunk, fork, update):
+    """A sweep's cooldown fork (docs/isoflop-sweep-plan-2026-10-28.md): a new run folder whose latest checkpoint is
+    the trunk's snapshot at `update` (weights, Adam state, critic; snapshot_at saves one), with the trunk's earlier
+    snapshots (the self-play pool a resume rebuilds) and its log up to that update. A Learner started in the folder
+    resumes there (Learner._resume), and with training_updates set runs the schedule of a run of that length.
+    Writes with a rename (training_log.rewrite): build it off the Daytona volume and copy it over."""
+    import re
+    import shutil
+    trunk, fork = Path(trunk), Path(fork)
+    if not (trunk / 'snapshots' / f'update-{update}.npz').exists():
+        raise FileNotFoundError(f'{trunk} has no snapshot at update {update} (snapshot_at)')
+    if (fork / 'latest.npz').exists():
+        raise FileExistsError(f'{fork} already holds a run')
+    (fork / 'snapshots').mkdir(parents=True, exist_ok=True)
+    for src in sorted((trunk / 'snapshots').iterdir()):
+        m = re.match(r'update-(\d+)', src.name)
+        if m and int(m.group(1)) <= update:
+            shutil.copyfile(src, fork / 'snapshots' / src.name)
+    for suffix in ('.npz', '.json', '-raw.npz', '-raw.json', '-critic.npz', '-critic.json'):
+        src = trunk / 'snapshots' / f'update-{update}{suffix}'
+        if src.exists():
+            shutil.copyfile(src, fork / f'latest{suffix}')
+    rows = [r for r in training_log.read(trunk) if r['update'] <= update]
+    if not rows or rows[-1]['update'] != update:
+        raise ValueError(f'the trunk log does not reach update {update}')
+    training_log.rewrite(fork / training_log.JSONL, rows)
+    return fork
+
+
 def scheduled_learning_rate(base, end, decay_fraction, frac):
-    """Learning rate at fraction frac of training_seconds: base until the last decay_fraction of the run, then
-    linear to end at frac = 1. end None = constant base."""
+    """Learning rate at fraction frac of the run (training_progress): base until the last decay_fraction of the
+    run, then linear to end at frac = 1. end None = constant base."""
     if end is None:
         return float(base)
     if frac >= 1. or (decay_fraction > 0 and frac - (1. - decay_fraction) >= decay_fraction):
@@ -354,6 +462,16 @@ def scheduled_learning_rate(base, end, decay_fraction, frac):
         return float(base)
     t = max((frac - (1. - decay_fraction)) / decay_fraction, 0.)
     return float(base + t * (end - base))
+
+
+def adapt_lr_scale(scale, kl, target, down=.9, up=1.02, floor=.25, high=1.5, low=.7):
+    """One adaptive-learning-rate step: shrink the scale while the smoothed KL per update is above high x target,
+    recover it slowly below low x target, clipped to [floor, 1]."""
+    if kl > high * target:
+        scale *= down
+    elif kl < low * target:
+        scale *= up
+    return float(np.clip(scale, floor, 1.))
 
 
 def adapt_entropy_coef(coef, entropy, target, rate, low=1e-4, high=.05):
@@ -585,25 +703,30 @@ def potentials(states, seat, scale):
     return scale * phi
 
 
-def feature_shapes(players=2):
-    """(board channels, global features) of encode_view for games with `players` seats (board-size independent)."""
+def feature_shapes(players=2, obs_version=1):
+    """(board channels, global features) of encode_view for games with `players` seats (board-size independent),
+    as a network of observation version `obs_version` reads them (observation.OBS_VERSION; 1, the default, is every
+    checkpoint saved before 2026-10-31)."""
     import jax
     import jax.numpy as jnp
-    from .cpu_engine import view_features, view_layout
+    from .cpu_engine import unpack_view, view_layout
+    from .observation import encode_view
     layout = view_layout(14, players)
     width = sum(int(np.prod(s)) for _, s in layout)
-    shapes = jax.eval_shape(lambda: view_features(jnp.zeros(width, jnp.int16).at[0].set(1), layout, 14))
+    shapes = jax.eval_shape(lambda: encode_view(unpack_view(jnp.zeros(width, jnp.int16).at[0].set(1), layout), 14,
+                                                obs_version))
     return shapes.board.shape[-1], shapes.global_state.shape[-1]
 
 
 def _critic_template(size, blocks=2, extra_blocks=0, width=64, architecture='normalized-v2', players=2,
-                     global_pool=False):
+                     global_pool=False, obs_version=1, block_pool=False, attention=0):
     """Omniscient critic: a normalized-v2 trunk on the union of every seat's view (channels x players)."""
     import jax
     from . import network
-    board, glob = feature_shapes(players)
+    board, glob = feature_shapes(players, obs_version)
     return network.init(jax.random.key(1), players * board, players * glob, size=size, width=width, blocks=blocks,
-                        architecture=architecture, extra_blocks=extra_blocks, global_pool=global_pool)
+                        architecture=architecture, extra_blocks=extra_blocks, global_pool=global_pool,
+                        block_pool=block_pool, attention=attention)
 
 
 def initial_critic(config, network, log=print):
@@ -828,6 +951,7 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
     omni = bool(cfg.get('omniscient_critic'))
     learner_values = bool(cfg.get('learner_values', False))   # A1: no critic here, the learner scores the rows
     engine = RustGames(size, games, map_batch=source is not None, max_turns=cfg.get('max_turns'), both_views=omni,
+                       no_peace=bool(cfg.get('no_peace', False)),
                        players=players, served=inference is not None)   # served: packed masks, no encode here
     note('engine', actor_id, 'rust')
     note('compiled', actor_id, time.monotonic() - started)
@@ -1203,19 +1327,21 @@ def _connect(address, timeout):
 
 
 def _template_params(size, blocks=2, extra_blocks=0, width=64, architecture='normalized-v2', players=2,
-                     global_pool=False):
+                     global_pool=False, obs_version=1, block_pool=False, attention=0):
     """Parameter tree of a normalized-v2 network; `size` only sets the parameter_embedding row count."""
     import jax
     from . import network
     # Feature widths do not depend on the board size; traced on 14x14.
-    board, glob = feature_shapes(players)
+    board, glob = feature_shapes(players, obs_version)
     return network.init(jax.random.key(0), board, glob, size=size, width=width, blocks=blocks,
-                        architecture=architecture, extra_blocks=extra_blocks, global_pool=global_pool)
+                        architecture=architecture, extra_blocks=extra_blocks, global_pool=global_pool,
+                        block_pool=block_pool, attention=attention)
 
 
 def network_spec(path):
     """Architecture of a saved checkpoint, from its JSON config (older checkpoints have no extra_blocks, and are
-    two-seat networks without global pooling)."""
+    two-seat networks without global pooling, of observation version 1: no obs_version in their config; block_pool
+    is True for farsight's layout 1 checkpoints and the layout number for later ones)."""
     config = json.loads(Path(path).with_suffix('.json').read_text())['config']
     spec = dict(size=config['size'], blocks=config['blocks'], extra_blocks=config.get('extra_blocks', 0),
                 width=config['width'], architecture=config['architecture'])
@@ -1223,6 +1349,12 @@ def network_spec(path):
         spec['players'] = config['players']
     if config.get('global_pool'):
         spec['global_pool'] = True
+    if config.get('block_pool'):
+        spec['block_pool'] = config['block_pool']   # True (layout 1, farsight) or a layout number (2: farsight v2)
+    if config.get('attention'):
+        spec['attention'] = config['attention']
+    if config.get('obs_version', 1) != 1:
+        spec['obs_version'] = config['obs_version']
     return spec
 
 
@@ -1401,6 +1533,14 @@ class CodedRowsMarker:
         self.rows = rows
 
 
+class _NoLock:
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        return False
+
+
 class DeviceRows:
     """A6: rows of packed views staged in reusable host pages of VALUE_CHUNK rows and sent to the devices a page
     at a time as messages arrive.
@@ -1500,8 +1640,9 @@ class DeviceRows:
                 self.buffers[k] = [self._zeros(dev, self.pages * C, host[k]) for dev in self.devices]
         if q >= self.pages:
             self._grow(q + 1)
-        pieces = jax.device_put([host[k] for k in keys], self.devices[i])
-        bufs = self.learner._write_rows(tuple(self.buffers[k][i] for k in keys), tuple(pieces), np.int32(q * C))
+        with self.learner.gpu_lock:
+            pieces = jax.device_put([host[k] for k in keys], self.devices[i])
+            bufs = self.learner._write_rows(tuple(self.buffers[k][i] for k in keys), tuple(pieces), np.int32(q * C))
         for k, b in zip(keys, bufs):
             self.buffers[k][i] = b
         self.used.append(host)
@@ -1616,9 +1757,14 @@ class Learner:
         from concurrent.futures import ThreadPoolExecutor
         self.copy_pool = ThreadPoolExecutor(config.assembly_threads) if config.assembly_threads else None
         # DeviceRows' page uploads (device_put + buffer write), off the assembler thread; one thread keeps page order
-        self.send_pool = ThreadPoolExecutor(1) if config.assembly_threads else None
+        self.send_pool = ThreadPoolExecutor(1) if config.assembly_threads and config.send_thread else None
+        # One GPU program at a time across threads (training step on the main thread; DeviceRows page writes, the
+        # value pass and batch puts on the assembler thread). On a 4x RTX 4090 host (PCIe, no NVLink) concurrent
+        # launches deadlocked the allreduce after update 1: three ranks spinning, rank 0 never launched (2026-10-31).
+        self.gpu_lock = threading.Lock() if config.serialize_gpu else _NoLock()
         self.rng = np.random.default_rng(config.seed)
         self.resume_history, self.resume_elapsed = [], 0.
+        self.lr_scale, self.kl_ema = 1., None   # adaptive learning rate (kl_adapt_target); restored by _resume
         self._build_trainer()
         if restarted and (self.root / 'latest.npz').exists():
             self._resume()
@@ -1672,6 +1818,8 @@ class Learner:
         training_log.rewrite(self.root / training_log.JSONL, history)
         self.resume_history = history
         self.resume_elapsed = float(history[-1]['elapsed']) if history else 0.
+        if history and cfg.kl_adapt_target is not None:
+            self.lr_scale, self.kl_ema = float(history[-1].get('lr_scale', 1.)), history[-1].get('kl_ema')
         self.version = version
         self.published = (version, self._leaves(self.params), self._critic_leaves())
         self.historical = []
@@ -1828,7 +1976,13 @@ class Learner:
         from .actions import Choice, PathMasks
         from .cpu_engine import view_features
         cfg = self.config
+        import math
         devices = jax.devices()
+        value_devices = None
+        if cfg.value_devices:
+            if cfg.value_devices >= len(devices):
+                raise ValueError(f'value_devices={cfg.value_devices} leaves no training device of {len(devices)}')
+            devices, value_devices = devices[:-cfg.value_devices], devices[-cfg.value_devices:]
         self.devices = len(devices)
         if cfg.minibatch % self.devices or cfg.batch % self.devices:
             raise ValueError('batch and minibatch must split evenly over devices')
@@ -1836,6 +1990,15 @@ class Learner:
         self.mesh = mesh
         self.data_sharding = NamedSharding(mesh, P('data'))
         self.replicated = NamedSharding(mesh, P())
+        # the value pass's mesh: the training mesh, or its own devices (value_devices)
+        vmesh = Mesh(np.array(value_devices), ('data',)) if value_devices else mesh
+        self.value_mesh, self.split_values = vmesh, value_devices is not None
+        self.value_sharding = NamedSharding(vmesh, P('data'))
+        self.value_replicated = NamedSharding(vmesh, P())
+        self.value_count = len(value_devices) if value_devices else self.devices
+        # rows are padded so both meshes split them into whole VALUE_CHUNK pages
+        self.pad_unit = VALUE_CHUNK * math.lcm(self.devices, self.value_count)
+        self.value_lock = _NoLock() if self.split_values else self.gpu_lock
         size, layout = cfg.size, self.layout
         n = size * size
         local_mb = cfg.minibatch // self.devices
@@ -1920,7 +2083,7 @@ class Learner:
                                                                            entropy_coef)
                         return jax.tree.map(jnp.add, acc, g), m
                     zero = jax.tree.map(jnp.zeros_like, trainable)
-                    grads, ms = jax.lax.scan(micro, zero, jnp.arange(accum))
+                    grads, ms = jax.lax.scan(micro, zero, jnp.arange(accum), unroll=bool(cfg.unroll_loops) or 1)
                     grads = jax.tree.map(lambda g: g / accum, grads)
                     metrics = jax.tree.map(jnp.mean, ms)
                 grads = jax.lax.pmean(grads, 'data')
@@ -1932,7 +2095,8 @@ class Learner:
                 metrics = jax.lax.pmean(metrics, 'data')
                 trainable, opt, norm = ppo.adam_step(trainable, (pgrads, cgrads), opt, learning_rate=learning_rate)
                 return (trainable, opt), dict(metrics, grad_norm=norm)
-            (trainable, opt), metrics = jax.lax.scan(step, (trainable, opt), jnp.arange(steps))
+            (trainable, opt), metrics = jax.lax.scan(step, (trainable, opt), jnp.arange(steps),
+                                                     unroll=bool(cfg.unroll_loops) or 1)
             return trainable, opt, jax.tree.map(jnp.mean, metrics)
 
         shard = jax.shard_map(epoch, mesh=mesh, in_specs=(P(), P(), P(), P(), P('data'), P(), P(), P(), P()),
@@ -1949,6 +2113,11 @@ class Learner:
 
         # learner_values: the critic (or the policy's value head) over every assembled row, in fixed chunks per
         # device; rows are padded to a multiple of VALUE_CHUNK * devices (_put_views)
+        def loop_map(f, xs):
+            if not cfg.unroll_loops:
+                return jax.lax.map(f, xs)
+            return jax.lax.scan(lambda c, x: (c, f(x)), None, xs, unroll=True)[1]
+
         def local_values(net, view, opp_view):
             chunks = view.shape[0] // VALUE_CHUNK
             def one(xs):
@@ -1958,18 +2127,20 @@ class Learner:
                     f = jax.vmap(lambda a, b: critic_features(a, b, layout, size))(f, o)
                 return jax.vmap(lambda x: network.trunk(net, x)[2])(f)
             sub = min(cfg.value_sub, VALUE_CHUNK)
-            if cfg.players > 2 and sub < VALUE_CHUNK:
+            if (cfg.players > 2 or cfg.value_sub_two_seats) and sub < VALUE_CHUNK:
                 # four seats: the critic's 4-view stem may need sub-chunks of value_sub rows to fit in memory
+                # (two seats on request: value_sub_two_seats)
                 whole = one
                 def one(xs):
                     v, o = xs
                     k = v.shape[0] // sub
-                    return jax.lax.map(whole, (v.reshape(k, sub, -1), o.reshape(k, sub, -1))).reshape(-1)
+                    return loop_map(whole, (v.reshape(k, sub, -1), o.reshape(k, sub, -1))).reshape(-1)
             opp = opp_view.reshape(chunks, VALUE_CHUNK, -1) if omni else view.reshape(chunks, VALUE_CHUNK, -1)
-            return jax.lax.map(one, (view.reshape(chunks, VALUE_CHUNK, -1), opp)).reshape(-1)
-        self._values = jax.jit(jax.shard_map(local_values, mesh=mesh, in_specs=(P(), P('data'), P('data')),
+            return loop_map(one, (view.reshape(chunks, VALUE_CHUNK, -1), opp)).reshape(-1)
+        self._values = jax.jit(jax.shard_map(local_values, mesh=vmesh, in_specs=(P(), P('data'), P('data')),
                                              out_specs=P('data'), check_vma=False))
         self._gather = jax.jit(lambda a, idx: a[idx], out_shardings=self.data_sharding)
+        self._value_gather = jax.jit(lambda a, idx: a[idx], out_shardings=self.value_sharding)
         self._write_rows = jax.jit(lambda bufs, xs, at: tuple(
             jax.lax.dynamic_update_slice(b, x, (at,) + (0,) * (x.ndim - 1)) for b, x in zip(bufs, xs)), donate_argnums=0)
         self.params = jax.device_put(self.params, self.replicated)
@@ -2056,7 +2227,7 @@ class Learner:
         t = time.monotonic()
         if self.learner_values:
             # pad to the value pass's chunking in the one concatenation (no second copy of the views)
-            padded = -(-n // (VALUE_CHUNK * self.devices)) * VALUE_CHUNK * self.devices
+            padded = -(-n // self.pad_unit) * self.pad_unit
             if padded > n:
                 chunks.append({k: np.zeros((padded - n,) + v.shape[1:], v.dtype) for k, v in chunks[0].items()})
         data = {k: np.concatenate([c[k] for c in chunks]) for k in chunks[0]}
@@ -2111,7 +2282,8 @@ class Learner:
                 a = rows[k]
                 if len(a) < n_pad:
                     a = np.concatenate([a, np.zeros((n_pad - len(a),) + a.shape[1:], a.dtype)])
-                out[k] = jax.device_put(a, self.data_sharding)
+                with self.value_lock:
+                    out[k] = jax.device_put(a, self.value_sharding)
         return out
 
     def _score(self, data, segs, n, info, clock, streams=None):
@@ -2123,10 +2295,11 @@ class Learner:
         t = time.monotonic()
         n_pad = len(data['logp'])
         n_seg = len(segs['length'])
-        seg_pad = -(-n_seg // (VALUE_CHUNK * self.devices)) * VALUE_CHUNK * self.devices
+        seg_pad = -(-n_seg // self.pad_unit) * self.pad_unit
         if isinstance(streams, CodedRowsMarker):
             views, boots = streams.rows.finish(n, n_pad, n_seg, seg_pad)
             row_at, seg_at = slice(0, n), slice(0, n_seg)
+            info.update({f'codec_{k}_seconds': round(v, 4) for k, v in getattr(streams.rows, 'timing', {}).items()})
         elif streams is None:
             views = self._put_views(data, n_pad)
             boots = self._put_views(dict(view=segs['boot_view'], opp_view=segs.get('boot_opp_view')), seg_pad)
@@ -2141,8 +2314,13 @@ class Learner:
             boots.pop('opp_view', None)
         clock['views'] = time.monotonic() - t
         t = time.monotonic()
-        values = np.asarray(self._values(net, views['view'], views.get('opp_view', views['view'])))[row_at]
-        boot_values = np.asarray(self._values(net, boots['view'], boots.get('opp_view', boots['view'])))[seg_at]
+        with self.value_lock:
+            if self.split_values:   # the current critic, copied to the value devices (a few MB per update)
+                net = self.jax.device_put(net, self.value_replicated)
+            values = np.asarray(self._values(net, views['view'], views.get('opp_view', views['view'])))[row_at]
+            boot_values = np.asarray(self._values(net, boots['view'], boots.get('opp_view', boots['view'])))[seg_at]
+        if isinstance(streams, CodedRowsMarker) and getattr(streams.rows, 'mirrored', False):
+            views = streams   # the training thread decodes its own copy (CodedRows.train_views)
         if streams is not None and not isinstance(streams, CodedRowsMarker):
             for stream in streams:
                 stream.release()
@@ -2167,11 +2345,23 @@ class Learner:
     def _device_batch(self, data):
         """The training batch on the devices: host fields put, views gathered from the value pass's copy."""
         jax = self.jax
-        batch = jax.device_put(data['host'], self.data_sharding)
-        if data['views'] is not None:
-            keep = jax.device_put(np.asarray(data['keep'], np.int32), self.replicated)
-            for k, a in data['views'].items():
-                batch[k] = self._gather(a, keep)
+        with self.gpu_lock:
+            batch = jax.device_put(data['host'], self.data_sharding)
+            if isinstance(data['views'], CodedRowsMarker):
+                views = data['views'].rows.train_views()
+                self.mirror_timing = getattr(data['views'].rows, 'mirror_timing', {})
+                keep = jax.device_put(np.asarray(data['keep'], np.int32), self.replicated)
+                for k, a in views.items():
+                    batch[k] = self._gather(a, keep)
+            elif data['views'] is not None and self.split_values:
+                # gather the kept rows on the value devices, then move them to the training devices
+                keep = jax.device_put(np.asarray(data['keep'], np.int32), self.value_replicated)
+                for k, a in data['views'].items():
+                    batch[k] = jax.device_put(self._value_gather(a, keep), self.data_sharding)
+            elif data['views'] is not None:
+                keep = jax.device_put(np.asarray(data['keep'], np.int32), self.replicated)
+                for k, a in data['views'].items():
+                    batch[k] = self._gather(a, keep)
             data['views'] = None   # release the padded copy; the gathered batch is what trains
         return batch
 
@@ -2192,6 +2382,29 @@ class Learner:
                     choice=np.zeros((n, 3), np.int32), logp=np.full(n, -3., np.float32),
                     value=np.zeros(n, np.float32), version=np.zeros(n, np.int32),
                     advantage=rng.normal(size=n).astype(np.float32), returns=rng.normal(size=n).astype(np.float32))
+
+    def _probe(self, batch, key, weight, learning_rate):
+        """Diagnostics (POLYTOPIA_PROBE_AT=u1,u2,...): time one extra training epoch on the live batch and one on
+        the benchmark's synthetic batch, in the live process under live load, then restore the weights and Adam
+        state, so the run is unchanged. Separates "live data is slower" from "the live environment is slower"."""
+        jax = self.jax
+        saved = (self.params, self.critic, self.opt)
+        out = {}
+        for name in ('live', 'synthetic', 'live_again'):
+            if name == 'synthetic':
+                data = {k: v for k, v in self.synthetic_batch(self.config.batch).items() if k in TRAIN_KEYS + VIEW_KEYS}
+                b = jax.device_put(data, self.data_sharding)
+                jax.block_until_ready(b)
+            else:
+                b = batch
+            t = time.monotonic()
+            with self.gpu_lock:
+                (p, c), o, metrics = self.train_epoch(saved[:2], saved[2], self.reference, self.anchor, b, key, weight,
+                                                      self.entropy_coef, learning_rate)
+                jax.block_until_ready(p)
+            out[f'{name}_seconds'] = round(time.monotonic() - t, 3)
+        self.params, self.critic, self.opt = saved
+        self.log(json.dumps(dict(stage='probe', update=self.version + 1, **out)))
 
     def benchmark(self, epochs=4):
         jax = self.jax
@@ -2340,6 +2553,9 @@ class Learner:
         last = time.monotonic()
         received_at_last = 0
         self.deadline = started + cfg.training_seconds
+        finished = lambda: cfg.training_updates and self.version >= cfg.training_updates
+        convs = (conv_parameters(self.params), conv_parameters(self.critic) if self.critic is not None else 0)
+        flops = float(history[-1].get('flops', 0.)) if history else 0.
         # Assembly (decompressed rows -> one fixed batch) overlaps GPU training.
         self.ready, self.assembler_error = queue.Queue(maxsize=1), None
         def assembler():
@@ -2354,7 +2570,7 @@ class Learner:
                 import traceback
                 self.assembler_error = traceback.format_exc()
         threading.Thread(target=assembler, daemon=True).start()
-        while time.monotonic() < self.deadline:
+        while time.monotonic() < self.deadline and not finished():
             tick = time.monotonic()
             item = None
             while item is None and time.monotonic() < self.deadline:
@@ -2373,27 +2589,40 @@ class Learner:
                 self.log(json.dumps(dict(stage='first_batch_assembled', seconds=assembled - started)))
             batch = self._device_batch(data)
             info['device_batch_seconds'] = time.monotonic() - assembled
+            info.update(getattr(self, 'mirror_timing', {}))
             metrics_all = []
             learning_rate = scheduled_learning_rate(cfg.learning_rate, cfg.learning_rate_end, cfg.lr_decay_fraction,
-                                                    (assembled - started) / cfg.training_seconds)
-            if cfg.learning_rate_end is not None:
+                                                    training_progress(cfg, self.version, assembled - started))
+            learning_rate = warmed_learning_rate(learning_rate, self.version, cfg.lr_warmup_updates)
+            if cfg.kl_adapt_target is not None:
+                learning_rate *= self.lr_scale
+            if cfg.learning_rate_end is not None or cfg.kl_adapt_target is not None or cfg.lr_warmup_updates:
                 info['learning_rate'] = learning_rate
             for _ in range(cfg.epochs):
                 key, sub = jax.random.split(key)
                 weight = np.float32(0. if self.version < cfg.critic_warmup else 1.)
-                (self.params, self.critic), self.opt, metrics = self.train_epoch(
-                    (self.params, self.critic), self.opt, self.reference, self.anchor, batch, sub, weight,
-                    self.entropy_coef, learning_rate)
-                metrics = {k: float(v) for k, v in metrics.items()}
+                with self.gpu_lock:
+                    (self.params, self.critic), self.opt, metrics = self.train_epoch(
+                        (self.params, self.critic), self.opt, self.reference, self.anchor, batch, sub, weight,
+                        self.entropy_coef, learning_rate)
+                    metrics = {k: float(v) for k, v in metrics.items()}   # blocks until the step is done
                 metrics_all.append(metrics)
                 if not all(np.isfinite(list(metrics.values()))):
                     raise RuntimeError(f'nonfinite PPO metrics {metrics}')
                 if metrics['approx_kl'] > cfg.target_kl and self.version >= cfg.critic_warmup:
                     break
             trained = time.monotonic()
+            if cfg.kl_adapt_target is not None:
+                kl = float(np.mean([m['approx_kl'] for m in metrics_all]))
+                self.kl_ema = kl if self.kl_ema is None else cfg.kl_adapt_smoothing * self.kl_ema + (1 - cfg.kl_adapt_smoothing) * kl
+                self.lr_scale = adapt_lr_scale(self.lr_scale, self.kl_ema, cfg.kl_adapt_target, cfg.kl_adapt_down,
+                                               cfg.kl_adapt_up, cfg.kl_adapt_floor)
+                info.update(lr_scale=self.lr_scale, kl_ema=self.kl_ema)
+            if self.version + 1 in PROBE_AT:
+                self._probe(batch, sub, weight, learning_rate)
             if cfg.entropy_target is not None:
                 # adaptive entropy: move the coefficient (log space) toward the scheduled target entropy
-                frac = min(max((trained - started) / cfg.training_seconds, 0.), 1.)
+                frac = min(max(training_progress(cfg, self.version, trained - started), 0.), 1.)
                 end = cfg.entropy_target if cfg.entropy_target_end is None else cfg.entropy_target_end
                 target = cfg.entropy_target + frac * (end - cfg.entropy_target)
                 entropy = float(np.mean([m['entropy'] for m in metrics_all]))
@@ -2420,7 +2649,8 @@ class Learner:
                 relays = self.relays
             info.update({f'receiver_{k}_seconds': v for k, v in receiver.items()})
             now = time.monotonic()
-            row = dict(update=self.version, samples=self.version * cfg.batch, seconds=now - tick,
+            flops += cfg.batch * sample_flops(cfg.size, *convs, len(metrics_all))
+            row = dict(update=self.version, samples=self.version * cfg.batch, flops=flops, seconds=now - tick,
                        assemble_seconds=assembled - tick, train_seconds=trained - assembled, epochs_run=len(metrics_all),
                        received_samples_per_second=(self.received_samples - received_at_last) / max(now - last, 1e-9),
                        connections=self.connections, relays=relays, inbox=self.inbox.qsize(), elapsed=now - started,
@@ -2432,13 +2662,17 @@ class Learner:
             self.log(json.dumps(dict(stage='update', **row)))
             if self.status is not None:
                 self._post_status(row)
-            if self.version % cfg.checkpoint_every == 0:
-                names = ['latest'] + ([f'snapshots/update-{self.version}'] if self.version % cfg.snapshot_every == 0 else [])
+            # snapshots keep their own cadence: a resume rebuilds the self-play pool from them, so one skipped
+            # because checkpoint_every does not divide snapshot_every (20 vs 250 on Daytona) left the pool short
+            snapshot = self.version % cfg.snapshot_every == 0 or self.version in {int(u) for u in cfg.snapshot_at}
+            if self.version % cfg.checkpoint_every == 0 or snapshot:
+                names = ['latest'] + ([f'snapshots/update-{self.version}'] if snapshot else [])
                 self._post_checkpoint(history[logged:], names)
                 logged = len(history)
             if self.bookkeeping_error:
                 raise RuntimeError(f'bookkeeping failed: {self.bookkeeping_error}')
             bookkeeping = time.monotonic() - now   # this update's work after its row; logged in the next row
+        self.deadline = time.monotonic()   # a training_updates stop ends the assembler too
         with self.publish_cond:
             self.stop = True
             self.publish_cond.notify_all()
@@ -2446,8 +2680,9 @@ class Learner:
             from concurrent.futures import ThreadPoolExecutor
             self.copy_pool.shutdown()
             self.copy_pool = ThreadPoolExecutor(cfg.assembly_threads)
-            self.send_pool.shutdown()
-            self.send_pool = ThreadPoolExecutor(1)
+            if self.send_pool is not None:
+                self.send_pool.shutdown()
+                self.send_pool = ThreadPoolExecutor(1)
         self._drain_bookkeeper()
         training_log.append(self.root / training_log.JSONL, history[logged:])
         write_json(self.root / training_log.JSON, history)   # once, for readers of finished runs

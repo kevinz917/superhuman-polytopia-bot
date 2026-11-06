@@ -182,6 +182,10 @@ export class MockArt implements BoardArt {
     return null;
   }
 
+  openTile() {
+    return null;
+  }
+
   labelBand(team: Team) {
     return { color: team.dark, alpha: 0.88 };
   }

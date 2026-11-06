@@ -82,7 +82,7 @@ def test_device_rows_layout_and_growth(tmp_path, monkeypatch):
     a = np.arange(100 * 3, dtype=np.int16).reshape(100, 3)
     for lo, hi in ((0, 7), (7, 40), (40, 41), (41, 100)):
         rows.add(dict(view=a[lo:hi]))
-    rows._poll(block=True)                      # add() sends a page only once its threaded copies are done
+    rows._poll(block=True)                      # the sends run on the learner's send thread
     rows._drain()
     assert rows.pages == 6                      # six full pages sent; the partial 7th goes at finish
     n_pad = 112

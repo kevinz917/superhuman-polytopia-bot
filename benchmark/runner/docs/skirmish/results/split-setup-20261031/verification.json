@@ -1,0 +1,213 @@
+{
+  "status": "verified_and_prepared_not_launched",
+  "checked_at": "2026-10-31T07:32:25.218520+00:00",
+  "official_benchmark_attempts_started": 0,
+  "unit_tests": {
+    "passed": 89,
+    "legacy_skipped": 16,
+    "log": "artifacts/harbor-split-final-checks-v6.log"
+  },
+  "fixtures": {
+    "local": {
+      "passed": true,
+      "backend": "docker",
+      "real_harbor_trials": 2,
+      "actual_model_calls": 0,
+      "practice_and_trace": true,
+      "compilation_failure_scores_zero": true,
+      "rewards": [
+        {
+          "reward": 0.0,
+          "champion_win_rate": 0.0,
+          "champion_points": 0.0,
+          "games": 36,
+          "runtime_fault_rate": 0.0,
+          "compilation_loss_rate": 1.0,
+          "evaluation_is_demo": 1
+        },
+        {
+          "reward": 0.0,
+          "champion_win_rate": 0.0,
+          "champion_points": 0.0,
+          "games": 36,
+          "runtime_fault_rate": 0.0,
+          "compilation_loss_rate": 0.0,
+          "evaluation_is_demo": 1
+        }
+      ]
+    },
+    "daytona": {
+      "passed": true,
+      "backend": "daytona",
+      "real_harbor_trials": 2,
+      "actual_model_calls": 0,
+      "practice_and_trace": true,
+      "compilation_failure_scores_zero": true,
+      "rewards": [
+        {
+          "reward": 0.0,
+          "champion_win_rate": 0.0,
+          "champion_points": 0.0,
+          "games": 36,
+          "runtime_fault_rate": 0.0,
+          "compilation_loss_rate": 0.0,
+          "evaluation_is_demo": 1
+        },
+        {
+          "reward": 0.0,
+          "champion_win_rate": 0.0,
+          "champion_points": 0.0,
+          "games": 36,
+          "runtime_fault_rate": 0.0,
+          "compilation_loss_rate": 1.0,
+          "evaluation_is_demo": 1
+        }
+      ]
+    }
+  },
+  "live_smokes": [
+    {
+      "backend": "local",
+      "model": "openai/gpt-6-luna",
+      "passed": true,
+      "trial": "artifacts/harbor-runs/split-local-live-smoke-20261031/local-live-smoke-task__wCsHHDQ",
+      "completed_responses": 8,
+      "coding_seconds": 33.1857123374939,
+      "source_sha256": "b03adf3be07954adb199670aa1c502afa653130cc2ff542e468eff981fe8d64d",
+      "wasm_sha256": "ff82e54b4cc05e8d1f3320e147b0d2b9bcde269e451c98b63a4eb06ebd2ff2a1",
+      "final_games": 36,
+      "replay_actions": 9611,
+      "practice_reports": 1,
+      "filesystem_smoke": {
+        "passed": true,
+        "bytes": 2097152,
+        "sha256": "91d3beb88a9b2f778a6c44a1c53b63d3c79931845a9aef84b3fb414610bd1938"
+      },
+      "integration_only": true
+    },
+    {
+      "backend": "daytona",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "passed": true,
+      "trial": "artifacts/harbor-runs/split-daytona-live-smoke-20261031/daytona-live-smoke-task__95Qg6zr",
+      "completed_responses": 8,
+      "coding_seconds": 67.48473501205444,
+      "source_sha256": "b03adf3be07954adb199670aa1c502afa653130cc2ff542e468eff981fe8d64d",
+      "wasm_sha256": "82759e3381b34f709744c6130d2a18dc7270624e047cbbb1b8186dc2fa38a0f7",
+      "final_games": 36,
+      "replay_actions": 9611,
+      "practice_reports": 1,
+      "filesystem_smoke": {
+        "passed": true,
+        "bytes": 2097152,
+        "sha256": "91d3beb88a9b2f778a6c44a1c53b63d3c79931845a9aef84b3fb414610bd1938"
+      },
+      "integration_only": true
+    }
+  ],
+  "permissions": {
+    "local": {
+      "passed": true,
+      "fixture": true,
+      "actual_model_calls": 0,
+      "checks": {
+        "/logs/agent/clock-canary.json": true,
+        "/logs/agent/forged.json": true,
+        "/logs/verifier/reward.json": true,
+        "/verify/forged-clock.json": true,
+        "rename": true
+      }
+    },
+    "daytona": {
+      "passed": true,
+      "fixture": true,
+      "actual_model_calls": 0,
+      "checks": {
+        "/logs/agent/clock-canary.json": true,
+        "/logs/agent/forged.json": true,
+        "/logs/verifier/reward.json": true,
+        "/verify/forged-clock.json": true,
+        "rename": true
+      }
+    }
+  },
+  "packages": {
+    "local": {
+      "path": "artifacts/harbor-packages/split-local-release-v6-20261031",
+      "source_files": 207,
+      "manifest_sha256": "7ebf960def6ec91432cec5a77607a9191cb94c4a3ea5e6193e878277b723c308",
+      "maps_sha256": "32dca3cca7782e6c10a24648c3aa7095ba7929fa3cc8884f312b537f7ccd3134",
+      "source_archive_sha256": "b8dc4e98fb90f7c131cd262fdbd825cd9a7579c0e8b336d0f3162f333a048330"
+    },
+    "daytona": {
+      "path": "artifacts/harbor-packages/split-daytona-release-v6-20261031",
+      "source_files": 207,
+      "manifest_sha256": "7ebf960def6ec91432cec5a77607a9191cb94c4a3ea5e6193e878277b723c308",
+      "maps_sha256": "32dca3cca7782e6c10a24648c3aa7095ba7929fa3cc8884f312b537f7ccd3134",
+      "source_archive_sha256": "c9e6de9258ec2a402840856453b920f2dd1da8c75f6a08f6734f83bed66f475c"
+    }
+  },
+  "notes": [
+    "Integration smoke tasks are not model-performance benchmark attempts.",
+    "All API credentials remain on the host.",
+    "Full five-attempt/model campaign is prepared, not launched."
+  ],
+  "daytona_deadline": {
+    "passed": true,
+    "fixture": true,
+    "actual_model_calls": 0,
+    "budget_seconds": 8,
+    "long_command_started": true,
+    "source_unchanged_after_late_write_window": true,
+    "capture": {
+      "captured_unix": 1793431676.5454628,
+      "source_sha256": "6a0e6e4310e060a2a5953e4b0aee46cf83c9bd32ddfabd6ccc71652cc0cc5c61",
+      "source_bytes": 872
+    },
+    "timing": {
+      "api_seconds": 0.0568540096282959,
+      "tool_seconds": 7.94477915763855,
+      "api_calls_started": 1,
+      "api_calls_finished": 1,
+      "interrupted_api_calls": 0,
+      "tool_calls_started": 1,
+      "tool_calls_finished": 1,
+      "scheduler_wait_seconds": 0,
+      "controller_wall_seconds": 8.083118677139282,
+      "coding_seconds": 8
+    }
+  },
+  "capacity": {
+    "local": {
+      "backend": "local",
+      "passed": true,
+      "infrastructure_trials": 25,
+      "configured_concurrent_trials": 25,
+      "simultaneously_ready_sandboxes": 25,
+      "actual_benchmark_attempts": 0,
+      "actual_model_calls": 0,
+      "elapsed_seconds": 26.704362869262695
+    },
+    "daytona": {
+      "backend": "daytona",
+      "passed": true,
+      "infrastructure_trials": 35,
+      "configured_concurrent_trials": 35,
+      "simultaneously_ready_sandboxes": 35,
+      "actual_benchmark_attempts": 0,
+      "actual_model_calls": 0,
+      "elapsed_seconds": 121.69895696640015
+    },
+    "notes": "The V6 release changes only native task queue guards after the V5 capacity qualification; controller/environment code and cloud snapshots are identical."
+  },
+  "guards": {
+    "environment_start_including_grader_queue_seconds": 43200,
+    "outer_agent_seconds": 21600,
+    "active_coding_seconds": 2400,
+    "verifier_execution_seconds": 7200
+  },
+  "temporary_sandboxes_remaining": {
+    "local": 0,
+    "daytona": 0
+  }
+}

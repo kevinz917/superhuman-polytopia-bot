@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 
 from polytopia_bot.maps.stream import MapSource
-from polytopia_bot.ruleset import LEGACY_DIGESTS, RULESET_ID, compatible, round_limit
+from polytopia_bot.ruleset import LEGACY_DIGESTS, RULESET_ID, compatible, training_round_limit
 from polytopia_bot.rl import network
 from polytopia_bot.rl.cpu_arena import summarize, tech_summary
 from polytopia_bot.rl.distributed import _template_params, checkpoint_template, network_spec
@@ -41,11 +41,11 @@ def _position(seed, size, kind='classic', steps=0):
 
 def test_round_limits_and_large_reset():
     from polytopia_bot.rl.rust_engine import RustGames
-    assert (round_limit(11), round_limit(14), round_limit(18)) == (100, 100, 150)
+    assert (training_round_limit(11), training_round_limit(14), training_round_limit(18)) == (200, 200, 300)
     games = RustGames(18, 1)
     states, prepared = games.reset(np.array([370001], np.int32))
     s = jax.tree.map(lambda a: np.asarray(a)[0], states)
-    assert s.tiles.terrain.shape == (324,) and int(s.reference_max_turns) == 150
+    assert s.tiles.terrain.shape == (324,) and int(s.reference_max_turns) == 300
     assert (np.asarray(s.tiles.structure) == 2).sum() == 9   # ruins, reference Large count
     caps = np.flatnonzero(np.asarray(s.tiles.capital) > 0)
     assert len(caps) == 2
@@ -80,7 +80,7 @@ def _old_target_logits(params, tiles, g, family, source):
 
 def test_new_target_keys_keep_every_legal_logprob_at_native_size():
     params = _random_params(14)
-    x, m = _position(300123, 14, steps=40)
+    x, m = _position(300123, 14, steps=12)
     tiles, g, _ = network.trunk(params, x)
     from polytopia_bot.rl.actions import family_mask, source_mask, target_mask
     fm = np.asarray(family_mask(m))
@@ -131,10 +131,34 @@ def test_engine_uses_the_size_round_limit():
     from polytopia_bot.rl.rust_engine import RustGames
     games = RustGames(18, 2, map_batch=True)
     states, _ = games.reset(MapSource('proposed-v1', 18).batch([370010, 370011])[0])
-    np.testing.assert_array_equal(np.asarray(states.reference_max_turns), [150, 150])
+    np.testing.assert_array_equal(np.asarray(states.reference_max_turns), [300, 300])
     capped = RustGames(18, 2, map_batch=False, max_turns=120)
     states, _ = capped.reset(np.array([370012, 370013]))
     np.testing.assert_array_equal(np.asarray(states.reference_max_turns), [120, 120])
+    unlimited = RustGames(14, 1, max_turns=0)   # the real game has no round limit
+    states, _ = unlimited.reset(np.array([370014]))
+    assert int(np.asarray(states.reference_max_turns)[0]) == 2 ** 31 - 1
+
+
+def test_round_cap_plays_exactly_n_rounds():
+    """max_turns=N truncates after N full rounds (turns 0..N-1), not N+1; without a cap nothing truncates."""
+    from polytopia_bot.rl.rust_engine import RustGames
+    from polytopia_bot.rl.distributed import END_FAMILY as END
+    for cap, expect in ((3, 3), (0, None)):
+        g = RustGames(14, 1, max_turns=cap)
+        g.reset(np.array([370020], np.int32))
+        rounds = 0
+        for _ in range(2 * 8):
+            g.batch.step(np.array([END], np.int32), np.array([0], np.int32), np.array([0], np.int32))
+            s = g.batch.export()
+            if bool(s['truncated'][0]):
+                break
+            if int(s['current_player'][0]) == 1:
+                rounds += 1
+        if expect is None:
+            assert not bool(s['truncated'][0]) and rounds == 8
+        else:
+            assert bool(s['truncated'][0]) and rounds == expect - 1 and int(s['turn'][0]) == expect
 
 
 def test_tech_summary_counts_by_turn_and_tier():

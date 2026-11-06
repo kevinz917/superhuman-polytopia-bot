@@ -1,0 +1,12 @@
+{
+  "harness": "mini-swe-agent",
+  "provider": "openrouter",
+  "model": "openai/gpt-6-luna",
+  "parameters": {
+    "reasoning": {
+      "effort": "high"
+    },
+    "max_tokens": 32768
+  },
+  "track": "feedback-3r"
+}

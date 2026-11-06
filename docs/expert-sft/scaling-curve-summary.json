@@ -1,0 +1,274 @@
+{
+  "schema": "expert-sft-scaling-curve-v1",
+  "run": "expert-sft-scaling-v1",
+  "source_run": "expert-sft-v1",
+  "jobs": "expert-sft-v1 dev games: 15 validation maps (100691-100705) x 2 seats vs scripted balanced",
+  "adapters": {
+    "ckpt157": {
+      "path": "expert-sft-v1/training/model/checkpoint-157",
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "e8742644ea215c22b6888d9d6c49e821a94d119ca0445151abadf585aad5764e"
+      }
+    },
+    "ckpt314": {
+      "path": "expert-sft-v1/training/model/checkpoint-314",
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "37ad246b55aecddae95631cd69f1a14921e7ebc2304de6ec5135fb7baa7b25eb"
+      }
+    },
+    "ckpt471": {
+      "path": "expert-sft-v1/training/model/checkpoint-471",
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "743496309de23f4f8864d36c216a8a233598de94ca82ddef9fb4f136071b7590"
+      }
+    }
+  },
+  "table": [
+    {
+      "arm": "base",
+      "step": 0,
+      "examples_seen": 0,
+      "fraction": 0.0,
+      "wins": 0,
+      "losses": 30,
+      "unfinished": 0,
+      "games": 30,
+      "win_rate": 0.0,
+      "median_round": 21.5,
+      "median_round_wins": null,
+      "median_model_moves": 106.5,
+      "mean_peak_cities": 1.0333333333333334,
+      "median_peak_cities": 1.0,
+      "max_peak_cities": 2,
+      "learning_rate": null,
+      "train_loss_last20": null,
+      "statuses": {
+        "native/elimination": 30
+      }
+    },
+    {
+      "arm": "ckpt157",
+      "step": 157,
+      "examples_seen": 10048,
+      "fraction": 0.2535708878009388,
+      "wins": 9,
+      "losses": 21,
+      "unfinished": 0,
+      "games": 30,
+      "win_rate": 0.3,
+      "median_round": 31.5,
+      "median_round_wins": 40,
+      "median_model_moves": 402.0,
+      "mean_peak_cities": 5.8,
+      "median_peak_cities": 6.0,
+      "max_peak_cities": 11,
+      "learning_rate": 8.75452802486058e-05,
+      "train_loss_last20": 0.2663984179496765,
+      "statuses": {
+        "native/elimination": 28,
+        "native/resignation": 2
+      }
+    },
+    {
+      "arm": "ckpt314",
+      "step": 314,
+      "examples_seen": 20096,
+      "fraction": 0.5071417756018776,
+      "wins": 9,
+      "losses": 21,
+      "unfinished": 0,
+      "games": 30,
+      "win_rate": 0.3,
+      "median_round": 35.0,
+      "median_round_wins": 33,
+      "median_model_moves": 445.0,
+      "mean_peak_cities": 6.033333333333333,
+      "median_peak_cities": 5.5,
+      "max_peak_cities": 11,
+      "learning_rate": 5.143730277548685e-05,
+      "train_loss_last20": 0.25879194810986517,
+      "statuses": {
+        "native/elimination": 30
+      }
+    },
+    {
+      "arm": "ckpt471",
+      "step": 471,
+      "examples_seen": 30144,
+      "fraction": 0.7607126634028163,
+      "wins": 14,
+      "losses": 16,
+      "unfinished": 0,
+      "games": 30,
+      "win_rate": 0.4666666666666667,
+      "median_round": 36.0,
+      "median_round_wins": 28.0,
+      "median_model_moves": 527.5,
+      "mean_peak_cities": 6.933333333333334,
+      "median_peak_cities": 7.0,
+      "max_peak_cities": 11,
+      "learning_rate": 1.441440219135189e-05,
+      "train_loss_last20": 0.24898699298501015,
+      "statuses": {
+        "native/elimination": 30
+      }
+    },
+    {
+      "arm": "final",
+      "step": 620,
+      "examples_seen": 39626,
+      "fraction": 1.0,
+      "wins": 18,
+      "losses": 12,
+      "unfinished": 0,
+      "games": 30,
+      "win_rate": 0.6,
+      "median_round": 34.5,
+      "median_round_wins": 29.5,
+      "median_model_moves": 567.0,
+      "mean_peak_cities": 7.4,
+      "median_peak_cities": 8.0,
+      "max_peak_cities": 11,
+      "learning_rate": 0.0,
+      "train_loss_last20": 0.25999485701322556,
+      "statuses": {
+        "native/elimination": 30
+      }
+    }
+  ],
+  "paired": {
+    "ckpt157_vs_final": {
+      "a_minus_b": -0.3,
+      "map_cluster_bootstrap_95": [
+        -0.5666666666666667,
+        0.0
+      ],
+      "maps": 15,
+      "maps_a_better": 2,
+      "maps_b_better": 8
+    },
+    "ckpt157_vs_base": {
+      "a_minus_b": 0.3,
+      "map_cluster_bootstrap_95": [
+        0.13333333333333333,
+        0.5
+      ],
+      "maps": 15,
+      "maps_a_better": 7,
+      "maps_b_better": 0
+    },
+    "ckpt314_vs_final": {
+      "a_minus_b": -0.3,
+      "map_cluster_bootstrap_95": [
+        -0.5,
+        -0.1
+      ],
+      "maps": 15,
+      "maps_a_better": 1,
+      "maps_b_better": 8
+    },
+    "ckpt314_vs_base": {
+      "a_minus_b": 0.3,
+      "map_cluster_bootstrap_95": [
+        0.16666666666666666,
+        0.43333333333333335
+      ],
+      "maps": 15,
+      "maps_a_better": 9,
+      "maps_b_better": 0
+    },
+    "ckpt471_vs_final": {
+      "a_minus_b": -0.13333333333333333,
+      "map_cluster_bootstrap_95": [
+        -0.3333333333333333,
+        0.06666666666666667
+      ],
+      "maps": 15,
+      "maps_a_better": 2,
+      "maps_b_better": 5
+    },
+    "ckpt471_vs_base": {
+      "a_minus_b": 0.4666666666666667,
+      "map_cluster_bootstrap_95": [
+        0.3,
+        0.6333333333333333
+      ],
+      "maps": 15,
+      "maps_a_better": 11,
+      "maps_b_better": 0
+    },
+    "ckpt314_vs_ckpt157": {
+      "a_minus_b": 0.0,
+      "map_cluster_bootstrap_95": [
+        -0.2,
+        0.16666666666666666
+      ],
+      "maps": 15,
+      "maps_a_better": 3,
+      "maps_b_better": 2
+    },
+    "ckpt471_vs_ckpt314": {
+      "a_minus_b": 0.16666666666666666,
+      "map_cluster_bootstrap_95": [
+        -0.03333333333333333,
+        0.36666666666666664
+      ],
+      "maps": 15,
+      "maps_a_better": 4,
+      "maps_b_better": 1
+    },
+    "final_vs_ckpt471": {
+      "a_minus_b": 0.13333333333333333,
+      "map_cluster_bootstrap_95": [
+        -0.06666666666666667,
+        0.3333333333333333
+      ],
+      "maps": 15,
+      "maps_a_better": 5,
+      "maps_b_better": 2
+    }
+  },
+  "fit": {
+    "model": "win ~ logistic(a + b*log2(examples_seen)), 4 SFT checkpoints x 30 games",
+    "a": -9.530411084550025,
+    "b": 0.6353392925784984,
+    "slope_odds_ratio_per_doubling": 1.8876625026955614,
+    "slope_bootstrap_95": [
+      0.024524867339075714,
+      1.368155946539945
+    ],
+    "slope_positive_fraction": 0.9785,
+    "bootstrap_reps": 4000,
+    "predicted_win_rate": {
+      "1x": {
+        "examples": 39626,
+        "point": 0.5433565261278293,
+        "map_cluster_bootstrap_95": [
+          0.37251147613023966,
+          0.699946432854885
+        ]
+      },
+      "2x": {
+        "examples": 79252,
+        "point": 0.6919394380574918,
+        "map_cluster_bootstrap_95": [
+          0.4034792480834063,
+          0.8927506769241448
+        ]
+      },
+      "4x": {
+        "examples": 158504,
+        "point": 0.8091569180483409,
+        "map_cluster_bootstrap_95": [
+          0.41649390542852144,
+          0.969073801728421
+        ]
+      }
+    },
+    "caveat": "2x/4x are extrapolations of one cosine-LR run; treat as directional only."
+  },
+  "doc": "docs/expert-sft-scaling-curve-2026-10-19.md"
+}

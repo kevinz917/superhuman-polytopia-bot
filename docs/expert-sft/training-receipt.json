@@ -1,0 +1,250 @@
+{
+  "status": "completed",
+  "schema": "expert-training-v1",
+  "config": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "max_length": 24576,
+    "max_new_tokens": 32,
+    "lora_rank": 32,
+    "lora_alpha": 64,
+    "lora_dropout": 0.0,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "learning_rate": 0.0001,
+    "warmup_ratio": 0.03,
+    "epochs": 1,
+    "microbatch_size": 4,
+    "effective_batch_size": 64,
+    "max_grad_norm": 1.0,
+    "seeds": [
+      17,
+      29
+    ]
+  },
+  "seed": 17,
+  "variant": "castfree_segmented_8192_checkpoint_False",
+  "hardware": "NVIDIA B200",
+  "world_size": 4,
+  "planned_steps": 620,
+  "global_step": 620,
+  "train_seconds": 6996.569469855,
+  "elapsed_seconds": 7021.891150379,
+  "max_gpu_memory_bytes": 150498528256,
+  "corpus_stress": {
+    "passed": true,
+    "examples": 8,
+    "max_tokens": 24574,
+    "peak_bytes": 150241668096,
+    "optimizer_updates": 0
+  },
+  "trainable_parameters": 66060288,
+  "adapter_files": {
+    "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+    "adapter_model.safetensors": "d79addf5edd59827875c3223a46734a4d1edff6e6789a178cdba11cd06b17325"
+  },
+  "frozen_weights_unchanged": true,
+  "adapter_changed": true,
+  "data_manifest": {
+    "schema": "polytopia-expert-prepared-v1",
+    "config_hash": "ce7eea56367f7f5d41bb5a9621d44e6be78dc37b87634cbfb510d7e40361e8ed",
+    "tokens_sha256": "d84196b2bdcf990c0232a3c6971beaebde65ab16972ea2b36ccf3aaea53c879f",
+    "tokenizer_hash": "f1e264d1fff741970848e313688ec4090635abb93476dd27de8ebf3d6e75c459",
+    "chat_template_hash": "c87c39da4214fe8fee1f49f4b54bdb5ae1e1cd5aed22a356f3ffedb59964a715",
+    "records": 39626,
+    "duplicates_dropped": 0,
+    "conflicting_duplicate_labels": 0,
+    "max_tokens": 24574,
+    "mean_tokens": 9328.821884621208,
+    "total_tokens": 369663896,
+    "families": {
+      "move": 18748,
+      "build": 4046,
+      "attack": 3893,
+      "recruit": 3271,
+      "end_turn": 2402,
+      "harvest": 2314,
+      "city_reward": 2264,
+      "capture": 1214,
+      "research": 1066,
+      "ability": 408
+    },
+    "source_stats": {
+      "games": 1000,
+      "expert_decisions": 356727,
+      "game_wins": 999,
+      "sampled": 39626,
+      "skipped_too_long": 374
+    },
+    "sources": [
+      "rl_expert"
+    ]
+  },
+  "loss_curve": [
+    {
+      "step": 1,
+      "loss": 1.8983
+    },
+    {
+      "step": 20,
+      "loss": 0.3552
+    },
+    {
+      "step": 40,
+      "loss": 0.3056
+    },
+    {
+      "step": 60,
+      "loss": 0.2938
+    },
+    {
+      "step": 80,
+      "loss": 0.2839
+    },
+    {
+      "step": 100,
+      "loss": 0.2744
+    },
+    {
+      "step": 120,
+      "loss": 0.2901
+    },
+    {
+      "step": 140,
+      "loss": 0.2502
+    },
+    {
+      "step": 160,
+      "loss": 0.2819
+    },
+    {
+      "step": 180,
+      "loss": 0.2617
+    },
+    {
+      "step": 200,
+      "loss": 0.2559
+    },
+    {
+      "step": 220,
+      "loss": 0.2808
+    },
+    {
+      "step": 240,
+      "loss": 0.2328
+    },
+    {
+      "step": 260,
+      "loss": 0.2591
+    },
+    {
+      "step": 280,
+      "loss": 0.2487
+    },
+    {
+      "step": 300,
+      "loss": 0.2479
+    },
+    {
+      "step": 320,
+      "loss": 0.2356
+    },
+    {
+      "step": 340,
+      "loss": 0.3058
+    },
+    {
+      "step": 360,
+      "loss": 0.2487
+    },
+    {
+      "step": 380,
+      "loss": 0.213
+    },
+    {
+      "step": 400,
+      "loss": 0.2614
+    },
+    {
+      "step": 420,
+      "loss": 0.2679
+    },
+    {
+      "step": 440,
+      "loss": 0.2456
+    },
+    {
+      "step": 460,
+      "loss": 0.2457
+    },
+    {
+      "step": 480,
+      "loss": 0.248
+    },
+    {
+      "step": 500,
+      "loss": 0.2661
+    },
+    {
+      "step": 520,
+      "loss": 0.2374
+    },
+    {
+      "step": 540,
+      "loss": 0.2576
+    },
+    {
+      "step": 560,
+      "loss": 0.2509
+    },
+    {
+      "step": 580,
+      "loss": 0.2593
+    },
+    {
+      "step": 600,
+      "loss": 0.2426
+    },
+    {
+      "step": 620,
+      "loss": 0.2617
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": 157,
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "e8742644ea215c22b6888d9d6c49e821a94d119ca0445151abadf585aad5764e"
+      }
+    },
+    {
+      "step": 314,
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "37ad246b55aecddae95631cd69f1a14921e7ebc2304de6ec5135fb7baa7b25eb"
+      }
+    },
+    {
+      "step": 471,
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "743496309de23f4f8864d36c216a8a233598de94ca82ddef9fb4f136071b7590"
+      }
+    },
+    {
+      "step": 620,
+      "adapter_files": {
+        "adapter_config.json": "51de236ec42cee1dbcaaf6cbeb694a498d5f00704f005a616029927f9f8cebe1",
+        "adapter_model.safetensors": "d79addf5edd59827875c3223a46734a4d1edff6e6789a178cdba11cd06b17325"
+      }
+    }
+  ]
+}

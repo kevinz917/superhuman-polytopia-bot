@@ -1,0 +1,135 @@
+{
+  "source": "docs/skirmish/v51-2026-10-30.json",
+  "historical_protocol": "independent-40m; three completed builds/model",
+  "accounting": "saved completed calls only, excluding interrupted requests, probes and invalidated attempts; historical observations, not current vendor quotes",
+  "models": [
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-deepseek-pro-r1-independent-40m",
+          "saved_completed_call_usd": 0.53687456064
+        },
+        {
+          "run_id": "mini-v51-20261030a-deepseek-pro-r2-independent-40m",
+          "saved_completed_call_usd": 0.49639290227999994
+        },
+        {
+          "run_id": "mini-v51-20261030a-deepseek-pro-r3-independent-40m",
+          "saved_completed_call_usd": 0.41545206252000016
+        }
+      ],
+      "mean_usd": 0.48290650848000005
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-deepseek-flash-r1-independent-40m",
+          "saved_completed_call_usd": 0.13431649769999995
+        },
+        {
+          "run_id": "mini-v51-20261030a-deepseek-flash-r2-independent-40m",
+          "saved_completed_call_usd": 0.1473997635
+        },
+        {
+          "run_id": "mini-v51-20261030a-deepseek-flash-r3-independent-40m",
+          "saved_completed_call_usd": 0.10171237229999999
+        }
+      ],
+      "mean_usd": 0.12780954449999998
+    },
+    {
+      "model": "google/gemini-4-argon",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-argon4-r1-independent-40m",
+          "saved_completed_call_usd": 2.699883648
+        },
+        {
+          "run_id": "mini-v51-20261030a-argon4-r2-independent-40m-infra1",
+          "saved_completed_call_usd": 2.2075854075
+        },
+        {
+          "run_id": "mini-v51-20261030a-argon4-r3-independent-40m",
+          "saved_completed_call_usd": 1.3089765842999999
+        }
+      ],
+      "mean_usd": 2.0721485466
+    },
+    {
+      "model": "minimax/minimax-m3.1-flash",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-minimax31-r1-independent-40m",
+          "saved_completed_call_usd": 0.23043438495000007
+        },
+        {
+          "run_id": "mini-v51-20261030a-minimax31-r2-independent-40m",
+          "saved_completed_call_usd": 0.17826599340000002
+        },
+        {
+          "run_id": "mini-v51-20261030a-minimax31-r3-independent-40m",
+          "saved_completed_call_usd": 0.07712788544999997
+        }
+      ],
+      "mean_usd": 0.16194275460000002
+    },
+    {
+      "model": "moonshotai/kimi-k3.1-pro",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-kimi31-r1-independent-40m",
+          "saved_completed_call_usd": 1.5540247800000002
+        },
+        {
+          "run_id": "mini-v51-20261030a-kimi31-r2-independent-40m",
+          "saved_completed_call_usd": 1.108921572
+        },
+        {
+          "run_id": "mini-v51-20261030a-kimi31-r3-independent-40m",
+          "saved_completed_call_usd": 0.9916928999999999
+        }
+      ],
+      "mean_usd": 1.218213084
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-qwen38-r1-independent-40m",
+          "saved_completed_call_usd": 0.8718237000000002
+        },
+        {
+          "run_id": "mini-v51-20261030a-qwen38-r2-independent-40m",
+          "saved_completed_call_usd": 1.2209709599999996
+        },
+        {
+          "run_id": "mini-v51-20261030a-qwen38-r3-independent-40m",
+          "saved_completed_call_usd": 1.1943241199999999
+        }
+      ],
+      "mean_usd": 1.0957062599999998
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "attempts": [
+        {
+          "run_id": "mini-v51-20261030a-glm53-r1-independent-40m",
+          "saved_completed_call_usd": 3.7318039704000006
+        },
+        {
+          "run_id": "mini-v51-20261030a-glm53-r2-independent-40m",
+          "saved_completed_call_usd": 2.324630484
+        },
+        {
+          "run_id": "mini-v51-20261030a-glm53-r3-independent-40m",
+          "saved_completed_call_usd": 3.296313583199999
+        }
+      ],
+      "mean_usd": 3.1175826792
+    }
+  ],
+  "mean_one_pass_usd": 8.276309377379999,
+  "five_passes_usd": 41.3815468869
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "sft-pipeline-config-v1",
+  "name": "smoke",
+  "description": "End-to-end smoke: 2 expert games (one vs scripted balanced on a train map, one vs the learned u3142 bot on a fresh-seed map), all decisions with every selection rule on, a 128-row corpus (2 updates on 4 x B200), and a 2-game evaluation (vs balanced and vs u3142) plus the RL reference.",
+  "stages": ["generate", "prepare", "train", "evaluate", "summarize"],
+  "players": {
+    "league96": {"kind": "rl", "path": "/retained/checkpoints/low256-league-rivals-v1/update-96-f998d15e220c/latest.npz",
+                 "sha256": "f998d15e220c92fe5ad091b73c4fd8952612a69b37fdd607d8b007093b26225d", "deterministic": true},
+    "u3142": {"kind": "rl", "path": "/retained/checkpoints/distributed-final-v1/dist-c460div-v1-update-3142/final.npz",
+              "sha256": "04cbb4745a4e957dff88de36218c40fd14f4d40cf3bdf0b80021ee2697f0bfc8", "deterministic": true}
+  },
+  "prompt": {"renderer": "readable-v1"},
+  "generation": {
+    "experts": ["league96"],
+    "map_pool": [{"split": "train", "offset": 0, "count": 1}, {"fresh_seeds": {"start": 2000000, "count": 1}}],
+    "opponents": [{"name": "balanced", "maps": 1, "map_offset": 0, "seats": [1]},
+                  {"name": "u3142", "maps": 1, "map_offset": 1, "seats": [2]}],
+    "games_per_call": 1,
+    "max_failed_games": 0
+  },
+  "data": {
+    "examples_per_game": "all",
+    "skip_forced": true,
+    "max_move_fraction": 0.45,
+    "upweight": {"attack": 2.0, "capture": 1.5},
+    "max_examples": 128,
+    "min_examples": 128,
+    "games_per_shard": 1
+  },
+  "training": {
+    "gpus": 4,
+    "checkpoint_every": 1000,
+    "timeout_hours": 2,
+    "overrides": {"epochs": 1, "max_length": 24576}
+  },
+  "evaluation": {
+    "maps": {"split": "validation", "offset": 0, "count": 1},
+    "seats": [1],
+    "opponents": ["balanced", "u3142"],
+    "shard_by_opponent": false,
+    "arms": {"sft": {"adapter": "trained"}},
+    "rl_reference": ["league96"],
+    "pairs": [["sft", "rl:league96"]]
+  }
+}

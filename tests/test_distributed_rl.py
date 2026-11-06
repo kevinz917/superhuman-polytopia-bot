@@ -383,3 +383,16 @@ def test_scheduled_learning_rate_decays_over_the_last_fraction():
     assert scheduled_learning_rate(3e-4, 1e-4, .1, 1.) == 1e-4
     assert scheduled_learning_rate(3e-4, 1e-4, .1, 1.3) == 1e-4    # past the deadline: clamped
     assert scheduled_learning_rate(3e-4, 1e-4, 0., .99) == 3e-4    # zero fraction: a step at the end
+
+
+def test_adapt_lr_scale_shrinks_above_target_and_recovers_below():
+    from polytopia_bot.rl.distributed import adapt_lr_scale
+    assert adapt_lr_scale(1., .03, .01) == .9                     # hot: shrink
+    assert adapt_lr_scale(1., .012, .01) == 1.                    # inside the band: hold
+    assert adapt_lr_scale(.5, .005, .01) == .51                   # cold: recover slowly
+    assert adapt_lr_scale(1., .005, .01) == 1.                    # never above 1
+    s = 1.
+    for _ in range(100):
+        s = adapt_lr_scale(s, .05, .01)
+    assert s == .25                                               # floor
+

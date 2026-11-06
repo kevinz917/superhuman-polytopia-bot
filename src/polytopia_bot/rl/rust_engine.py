@@ -13,8 +13,8 @@ import numpy as np
 from polytopia_bot.gpu import ENGINE_REVISION
 from polytopia_bot.ruleset import rules_json
 from polytopia_bot.gpu.actions import Masks
-from polytopia_bot.gpu.state import Cities, Players, State, Tiles, Units
-from .actions import shapes
+from polytopia_bot.gpu.state import Cities, History, Players, State, Tiles, Units
+from .actions import leaf_shapes, shapes
 from .cpu_engine import Prepared, Tick, view_features, view_layout
 
 _GROUPS = (("tiles", Tiles), ("units", Units), ("cities", Cities), ("players", Players))
@@ -31,12 +31,16 @@ def state_to_dict(state):
             out[f"{name}.{f}"] = np.asarray(getattr(group, f))
     for f in _SCALARS:
         out[f] = np.asarray(getattr(state, f))
+    if state.history is not None:   # observation history (engine-rs history.rs); import treats it as optional
+        for f in History._fields:
+            out[f"history.{f}"] = np.asarray(getattr(state.history, f))
     return out
 
 
 def dict_to_state(d):
     groups = [cls(*(d[f"{name}.{f}"] for f in cls._fields)) for name, cls in _GROUPS]
-    return State(*groups, *(d[f] for f in _SCALARS))
+    history = History(*(d[f"history.{f}"] for f in History._fields)) if "history.seen_unit" in d else None
+    return State(*groups, *(d[f] for f in _SCALARS), history)
 
 
 def split_masks(flat, size):
@@ -46,8 +50,7 @@ def split_masks(flat, size):
     the families are views into that fresh per-tick buffer, as they were into the astype copy before."""
     flat = np.asarray(flat)
     flat = flat.view(bool) if flat.dtype == np.uint8 else flat.astype(bool)
-    n = size * size
-    target = ((n, n), (n, n), (n, 128), (n, 128), (128,), (n,), (n, 3), (n, 9), *((n,),) * 6, (6,), (), ())
+    target = leaf_shapes(size)
     out, at = [], 0
     for shape in target:
         k = int(np.prod(shape)) if shape else 1
@@ -68,7 +71,7 @@ class RustGames:
     """
 
     def __init__(self, size=14, games=32, *, no_resign=True, map_batch=False, max_turns=None, both_views=False,
-                 max_actions=10_000, fast=True, trusted=None, build_rows=None, players=2, served=False):
+                 max_actions=10_000, fast=True, trusted=None, build_rows=None, players=2, served=False, no_peace=False):
         """map_batch=True: reset/tick take a maps.state.MapBatch of per-lane layouts instead of seeds.
         players: seats per game (2 or 4). With both_views and more than two seats,
         Prepared.opp_view is [games, players - 1, width]: the other seats in turn order after the mover.
@@ -79,7 +82,13 @@ class RustGames:
         from polytopia_engine_rs import GameBatch
         self.size, self.games, self.both_views, self.map_batch = size, games, both_views, map_batch
         self.players, self.served = players, served
-        self.batch = GameBatch(size, games, rules_json(), ENGINE_REVISION, max_turns, no_resign, max_actions, players)
+        # max_turns: None = the training harness default for the board (ruleset.training_round_limit); 0 = no limit,
+        # exactly as the real game (human play); N = truncate after N rounds.
+        from polytopia_bot.ruleset import training_round_limit
+        limit = training_round_limit(size) if max_turns is None else (None if max_turns == 0 else int(max_turns))
+        self.max_turns = limit
+        # no_peace: training harness option (never propose or accept peace; LearnerConfig.no_peace)
+        self.batch = GameBatch(size, games, rules_json(), ENGINE_REVISION, limit, no_resign, max_actions, players, no_peace)
         self.layout = view_layout(size, players)
         names = [k for k, _ in self.layout]
         if names != list(self.batch.view_fields()):

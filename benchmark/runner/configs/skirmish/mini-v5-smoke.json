@@ -1,0 +1,62 @@
+{
+  "schema": "polytopia-mini-cohort-v2",
+  "date": "2026-10-30",
+  "tracks": [
+    "independent-40m",
+    "feedback-3r-40m"
+  ],
+  "models": [
+    {
+      "label": "deepseek-flash",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "deepseek"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    },
+    {
+      "label": "luna-high",
+      "model": "openai/gpt-6-luna",
+      "parameters": {
+        "reasoning": {
+          "effort": "high"
+        },
+        "max_tokens": 32768,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      }
+    }
+  ],
+  "replicates": 1,
+  "maps_per_family": 5,
+  "references": [
+    {
+      "label": "reference-weak",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-qwen38-oneshot-20m"
+    },
+    {
+      "label": "reference-intermediate",
+      "kind": "frozen",
+      "run_id": "mini-top10-20261030a-deepseek-flash-oneshot-20m"
+    },
+    {
+      "label": "hero-1v1",
+      "kind": "expert"
+    }
+  ]
+}

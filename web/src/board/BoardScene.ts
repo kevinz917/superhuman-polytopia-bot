@@ -243,16 +243,29 @@ export class BoardScene {
     }
     this.invalidate();
   }
+  // Tile width that fits the whole board in the view.
+  private fitTile() {
+    const n = this.size;
+    return Math.min(110, (this.w - 100) / n, (this.h - 190) / (n * 0.6));
+  }
+  // Zoom range: in to 2.7x; out to 0.45x, or far enough to see the whole board when the art opens close in.
+  private clampZoom(z: number) {
+    const open = this.art.openTile(this.w, this.h),
+      lo = open === null ? 0.45 : Math.min(0.45, (0.9 * this.fitTile()) / open);
+    return Math.max(lo, Math.min(2.7, z));
+  }
   private layout() {
     const n = this.size,
-      mobile = this.w < 760;
-    const tw = (mobile ? 92 : Math.min(110, (this.w - 100) / n, (this.h - 190) / (n * 0.6))) * this.zoom;
+      mobile = this.w < 760,
+      open = this.art.openTile(this.w, this.h);
+    const tw = (open ?? (mobile ? 92 : this.fitTile())) * this.zoom;
     this.k = tw / TW;
     const th = tw * 0.6;
     this.ox = this.w / 2 + this.pan.x;
     this.oy = (this.h - 50) / 2 - ((n - 1) * th) / 2 + this.pan.y;
     const v = this.observation?.visible_state;
-    if (mobile && v) {
+    // Close-in cameras (mobile, or art that opens close in) centre on the player's capital.
+    if ((mobile || open !== null) && v) {
       if (this.anchor === null) {
         const own = v.cities.filter((a) => a.owner === this.observation!.player);
         this.anchor = (
@@ -274,7 +287,7 @@ export class BoardScene {
     this.overlay.style.transform = `matrix(${this.k},0,0,${this.k},${this.ox},${this.oy})`;
   }
   zoomBy(z: number) {
-    this.zoom = Math.max(0.45, Math.min(2.7, this.zoom * z));
+    this.zoom = this.clampZoom(this.zoom * z);
     this.invalidate();
   }
   center() {
@@ -339,9 +352,8 @@ export class BoardScene {
       this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (this.pinch && this.pointers.size === 2) {
         const [a, b] = [...this.pointers.values()];
-        this.zoom = Math.max(
-          0.45,
-          Math.min(2.7, (this.pinch.zoom * Math.hypot(a.x - b.x, a.y - b.y)) / Math.max(1, this.pinch.distance)),
+        this.zoom = this.clampZoom(
+          (this.pinch.zoom * Math.hypot(a.x - b.x, a.y - b.y)) / Math.max(1, this.pinch.distance),
         );
         this.invalidate();
         return;

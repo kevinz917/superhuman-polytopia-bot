@@ -61,7 +61,16 @@ def _play_items(candidate_path, opponent_path, items, games, deterministic, seed
         return queues[i][at][0] if at < len(queues[i]) else dummy
     states, prepared = engine.reset(batch([seed_of(i, 0) for i in range(games)]))
     blank = lambda: dict(steps=0, cand_units={}, opp_units={}, cand_research_early=0, first_non_warrior=None,
-                         opp_first_non_warrior=None, turn=0, captures=0, ports=0, cand_tech=[], opp_tech=[])
+                         opp_first_non_warrior=None, turn=0, captures=0, ports=0, cand_tech=[], opp_tech=[],
+                         # growth signature (score-at-cap A/B, 2026-11-02): improvement builds and harvests per side,
+                         # and each side's city count / mean city level at turn 16 and at the end
+                         cand_builds=0, opp_builds=0, cand_harvests=0, opp_harvests=0,
+                         cand_cities_t16=None, cand_level_t16=None, opp_cities_t16=None, opp_level_t16=None,
+                         cand_cities_end=None, cand_level_end=None, opp_cities_end=None, opp_level_end=None)
+    def city_stats(level_row, owner_row, player):   # owner and seats: 0 neutral, 1/2 players (gpu/state.py)
+        mask = owner_row == player
+        n = int(mask.sum())
+        return n, (float(level_row[mask].mean()) if n else 0.)
     known = [None] * games  # per lane: tech array [2, 128] at the previous decision of the current game
     per_game = [blank() for _ in range(games)]
     results = []
@@ -78,6 +87,7 @@ def _play_items(candidate_path, opponent_path, items, games, deterministic, seed
         sel = jnp.asarray(ours)
         choice = Choice(*(jnp.where(sel, x, y) for x, y in zip(a, b)))
         fam, tgt = np.asarray(choice.family), np.asarray(choice.target)
+        levels, owners = np.asarray(states.cities.level), np.asarray(states.cities.owner)
         for i in range(games):
             if cursor[i] >= len(queues[i]):
                 continue
@@ -93,6 +103,13 @@ def _play_items(candidate_path, opponent_path, items, games, deterministic, seed
             g['turn'] = int(turn[i])
             g['captures'] += int(fam[i] == 8)
             g['ports'] += int(fam[i] == 3 and tgt[i] == 8)
+            if fam[i] == 3:
+                g['cand_builds' if ours[i] else 'opp_builds'] += 1
+            if fam[i] == 5:
+                g['cand_harvests' if ours[i] else 'opp_harvests'] += 1
+            if turn[i] >= 16 and g['cand_level_t16'] is None:
+                g['cand_cities_t16'], g['cand_level_t16'] = city_stats(levels[i], owners[i], int(seat_i))
+                g['opp_cities_t16'], g['opp_level_t16'] = city_stats(levels[i], owners[i], 3 - int(seat_i))
             if fam[i] == 2:
                 unit = int(tgt[i])
                 side = 'cand_units' if ours[i] else 'opp_units'
@@ -111,6 +128,9 @@ def _play_items(candidate_path, opponent_path, items, games, deterministic, seed
             if cursor[i] >= len(queues[i]):
                 continue
             map_seed, seat = queues[i][cursor[i]]
+            g = per_game[i]   # end-of-game cities from the last pre-action state
+            g['cand_cities_end'], g['cand_level_end'] = city_stats(levels[i], owners[i], int(seat))
+            g['opp_cities_end'], g['opp_level_end'] = city_stats(levels[i], owners[i], 3 - int(seat))
             r = float(np.asarray(tick.rewards)[i][seat - 1])
             results.append(dict(seed=int(map_seed), seat=int(seat), reward=r, truncated=bool(np.asarray(tick.truncated)[i]),
                                 map=kind_of(int(map_seed)), **per_game[i]))
@@ -163,6 +183,11 @@ def summarize(rows, seconds=None):
                 ci95=[float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))],
                 candidate_unit_mix=mix('cand_units'), opponent_unit_mix=mix('opp_units'),
                 candidate_non_warrior_games=int(nonwarrior_games),
+                growth={k: (float(np.mean([r[k] for r in rows if r.get(k) is not None]))
+                            if any(r.get(k) is not None for r in rows) else None)
+                        for k in ('cand_builds', 'opp_builds', 'cand_harvests', 'opp_harvests', 'cand_cities_t16',
+                                  'cand_level_t16', 'opp_cities_t16', 'opp_level_t16', 'cand_cities_end',
+                                  'cand_level_end', 'opp_cities_end', 'opp_level_end')},
                 candidate_unit_types_per_game=float(np.mean([len(r['cand_units']) for r in rows])) if rows else 0.,
                 candidate_first_non_warrior_turn_median=float(np.median(first)) if first else None,
                 candidate_early_research_mean=float(np.mean([r['cand_research_early'] for r in rows])) if rows else 0.,

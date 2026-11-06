@@ -1,0 +1,30 @@
+{
+  "status": "ready",
+  "protocol": "polytopia-skirmish-continuous-v1",
+  "attempts_per_model": 5,
+  "coding_seconds": 2400,
+  "profile": "standard",
+  "local_models": [
+    "openai/gpt-6-astra",
+    "anthropic/claude-opus-5.5",
+    "openai/gpt-6.1-sol",
+    "openai/gpt-6-luna",
+    "anthropic/claude-fable-5-1"
+  ],
+  "daytona_models": [
+    "google/gemini-4-argon",
+    "moonshotai/kimi-k3.1-pro",
+    "qwen/qwen3.8-max-0902",
+    "z-ai/glm-5.3",
+    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash-1017",
+    "minimax/minimax-m3.1-flash"
+  ],
+  "local_trials": 25,
+  "daytona_trials": 35,
+  "final_matches": 21600,
+  "manifest_sha256": "7ebf960def6ec91432cec5a77607a9191cb94c4a3ea5e6193e878277b723c308",
+  "maps_sha256": "32dca3cca7782e6c10a24648c3aa7095ba7929fa3cc8884f312b537f7ccd3134",
+  "routing_sha256": "821f370e4563f65f73609897d338f7ad46d8bb58b445e66c1f981e8a8aac4300",
+  "no_automatic_paid_fallback": true
+}

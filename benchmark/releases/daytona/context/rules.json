@@ -1,0 +1,1823 @@
+{
+  "engine_revision": "a9f90ab54607f5633556d02422d7457f548cc58f",
+  "structures": [
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 0,
+      "name": "None",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 1,
+      "name": "Village",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 2,
+      "name": "Ruin",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 3,
+      "id": 3,
+      "name": "Road",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3,
+        5,
+        7,
+        8
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 5,
+      "name": "Farm",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 2,
+      "resource": 2,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [
+        5
+      ],
+      "cost": 5,
+      "id": 6,
+      "name": "Windmill",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 7,
+      "id": 8,
+      "name": "Port",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        1
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 3,
+      "id": 12,
+      "name": "LumberHut",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        5
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [
+        12
+      ],
+      "cost": 5,
+      "id": 13,
+      "name": "Sawmill",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 20,
+      "id": 17,
+      "name": "Temple",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 15,
+      "id": 18,
+      "name": "ForestTemple",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        5
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 20,
+      "id": 19,
+      "name": "WaterTemple",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        1,
+        2
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 20,
+      "id": 20,
+      "name": "MountainTemple",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        4
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 21,
+      "name": "Mine",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 2,
+      "resource": 5,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        4
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [
+        21
+      ],
+      "cost": 5,
+      "id": 22,
+      "name": "Forge",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 2,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3,
+        5
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 23,
+      "name": "AltarOfPeace",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 24,
+      "name": "TowerOfWisdom",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 25,
+      "name": "GrandBazaar",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 26,
+      "name": "EmperorsTomb",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 27,
+      "name": "GateOfPower",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 28,
+      "name": "ParkOfFortune",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 29,
+      "name": "EyeOfGod",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        6
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 32,
+      "name": "Sanctuary",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 1,
+      "terrain": [
+        3,
+        4,
+        5
+      ],
+      "tribe": 5
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 33,
+      "name": "Outpost",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        6
+      ],
+      "tribe": 16
+    },
+    {
+      "adjacent": [],
+      "cost": 20,
+      "id": 34,
+      "name": "IceBank",
+      "per_city": false,
+      "per_tribe": true,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3,
+        6
+      ],
+      "tribe": 16
+    },
+    {
+      "adjacent": [],
+      "cost": 20,
+      "id": 35,
+      "name": "IceTemple",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        6
+      ],
+      "tribe": 16
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 37,
+      "name": "Fungi",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": 7,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        3
+      ],
+      "tribe": 17
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 38,
+      "name": "Algae",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 1,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        1,
+        2
+      ],
+      "tribe": 17
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 39,
+      "name": "Mycelium",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tribe": 17
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 41,
+      "name": "Clathrus",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 1,
+      "terrain": [
+        1,
+        2
+      ],
+      "tribe": 17
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 47,
+      "name": "Lighthouse",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 48,
+      "name": "Bridge",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [
+        1
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [
+        6,
+        13,
+        22
+      ],
+      "cost": 5,
+      "id": 50,
+      "name": "Market",
+      "per_city": true,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 1,
+      "terrain": [
+        3
+      ],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": 5,
+      "id": 70,
+      "name": "Embassy",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 0,
+      "resource": null,
+      "score": 0,
+      "stars": 0,
+      "terrain": [],
+      "tribe": null
+    },
+    {
+      "adjacent": [],
+      "cost": null,
+      "id": 123,
+      "name": "ChurchOfConverts",
+      "per_city": false,
+      "per_tribe": false,
+      "population": 3,
+      "resource": null,
+      "score": 400,
+      "stars": 0,
+      "terrain": [
+        1,
+        3,
+        5
+      ],
+      "tribe": null
+    }
+  ],
+  "technologies": [
+    {
+      "id": -1,
+      "name": "BeyondComprehension",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 0,
+      "name": "Basic",
+      "next": [
+        1,
+        6,
+        20,
+        10,
+        15
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 0,
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Riding",
+      "next": [
+        2,
+        4
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "name": "FreeSpirit",
+      "next": [
+        3
+      ],
+      "requires": 1,
+      "structures": [
+        17
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 3,
+      "name": "Chivalry",
+      "next": [],
+      "requires": 2,
+      "structures": [],
+      "tier": 3,
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Roads",
+      "next": [
+        5
+      ],
+      "requires": 1,
+      "structures": [
+        3,
+        48,
+        39
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 5,
+      "name": "Trade",
+      "next": [],
+      "requires": 4,
+      "structures": [
+        50,
+        41
+      ],
+      "tier": 3,
+      "units": []
+    },
+    {
+      "id": 6,
+      "name": "Organization",
+      "next": [
+        7,
+        8
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 7,
+      "name": "Strategy",
+      "next": [
+        38
+      ],
+      "requires": 6,
+      "structures": [],
+      "tier": 2,
+      "units": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Farming",
+      "next": [
+        9
+      ],
+      "requires": 6,
+      "structures": [
+        5,
+        37
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 9,
+      "name": "Construction",
+      "next": [],
+      "requires": 8,
+      "structures": [
+        6
+      ],
+      "tier": 3,
+      "units": []
+    },
+    {
+      "id": 10,
+      "name": "Fishing",
+      "next": [
+        13,
+        44
+      ],
+      "requires": null,
+      "structures": [
+        8
+      ],
+      "tier": 1,
+      "units": [
+        43
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Aquatism",
+      "next": [],
+      "requires": 44,
+      "structures": [
+        19
+      ],
+      "tier": 3,
+      "units": []
+    },
+    {
+      "id": 13,
+      "name": "Sailing",
+      "next": [
+        14
+      ],
+      "requires": 10,
+      "structures": [],
+      "tier": 2,
+      "units": [
+        42
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Navigation",
+      "next": [],
+      "requires": 44,
+      "structures": [],
+      "tier": 3,
+      "units": [
+        41
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Hunting",
+      "next": [
+        18,
+        16
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 16,
+      "name": "Forestry",
+      "next": [
+        17
+      ],
+      "requires": 15,
+      "structures": [
+        12,
+        32
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 17,
+      "name": "Mathematics",
+      "next": [],
+      "requires": 16,
+      "structures": [
+        13
+      ],
+      "tier": 3,
+      "units": [
+        8
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Archery",
+      "next": [
+        19
+      ],
+      "requires": 15,
+      "structures": [],
+      "tier": 2,
+      "units": [
+        9
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Spiritualism",
+      "next": [],
+      "requires": 18,
+      "structures": [
+        18
+      ],
+      "tier": 3,
+      "units": []
+    },
+    {
+      "id": 20,
+      "name": "Climbing",
+      "next": [
+        23,
+        21
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 21,
+      "name": "Meditation",
+      "next": [
+        22
+      ],
+      "requires": 20,
+      "structures": [
+        20
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 22,
+      "name": "Philosophy",
+      "next": [],
+      "requires": 21,
+      "structures": [],
+      "tier": 3,
+      "units": [
+        10
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Mining",
+      "next": [
+        24
+      ],
+      "requires": 20,
+      "structures": [
+        21
+      ],
+      "tier": 2,
+      "units": []
+    },
+    {
+      "id": 24,
+      "name": "Smithery",
+      "next": [],
+      "requires": 23,
+      "structures": [
+        22
+      ],
+      "tier": 3,
+      "units": [
+        11
+      ]
+    },
+    {
+      "id": 25,
+      "name": "FreeDiving",
+      "next": [
+        3
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 26,
+      "name": "Spearing",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 28,
+      "name": "ForestMagic",
+      "next": [
+        18,
+        16
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 30,
+      "name": "Frostwork",
+      "next": [
+        32
+      ],
+      "requires": null,
+      "structures": [
+        33
+      ],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 31,
+      "name": "PolarWarfare",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 32,
+      "name": "Polarism",
+      "next": [],
+      "requires": null,
+      "structures": [
+        35
+      ],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 35,
+      "name": "ShockTactics",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 36,
+      "name": "Recycling",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 37,
+      "name": "Hydrology",
+      "next": [
+        14
+      ],
+      "requires": null,
+      "structures": [
+        38
+      ],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 38,
+      "name": "Diplomacy",
+      "next": [],
+      "requires": 7,
+      "structures": [
+        70
+      ],
+      "tier": 3,
+      "units": [
+        38
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Sledding",
+      "next": [
+        31
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 42,
+      "name": "IceFishing",
+      "next": [
+        32
+      ],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 44,
+      "name": "Ramming",
+      "next": [
+        12
+      ],
+      "requires": 10,
+      "structures": [],
+      "tier": 2,
+      "units": [
+        44
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Waterways",
+      "next": [],
+      "requires": 1,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 49,
+      "name": "Oceantology",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 120,
+      "name": "Synergy",
+      "next": [],
+      "requires": null,
+      "structures": [],
+      "tier": 1,
+      "units": []
+    },
+    {
+      "id": 121,
+      "name": "Rituals",
+      "next": [
+        22
+      ],
+      "requires": 20,
+      "structures": [],
+      "tier": 2,
+      "units": []
+    }
+  ],
+  "units": [
+    {
+      "attack": -1.0,
+      "cost": -1,
+      "defense": 0.0,
+      "health": 1.0,
+      "id": 0,
+      "movement": 1,
+      "name": "None",
+      "range": 1,
+      "skills": []
+    },
+    {
+      "attack": 2.0,
+      "cost": 2,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 2,
+      "movement": 1,
+      "name": "Warrior",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Fortify"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 3,
+      "movement": 2,
+      "name": "Rider",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Escape",
+        "Fortify"
+      ]
+    },
+    {
+      "attack": 3.5,
+      "cost": 8,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 4,
+      "movement": 3,
+      "name": "Knight",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Fortify",
+        "Persist"
+      ]
+    },
+    {
+      "attack": 1.0,
+      "cost": 3,
+      "defense": 3.0,
+      "health": 15.0,
+      "id": 5,
+      "movement": 1,
+      "name": "Defender",
+      "range": 1,
+      "skills": [
+        "Fortify"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 8,
+      "defense": 0.0,
+      "health": 10.0,
+      "id": 8,
+      "movement": 1,
+      "name": "Catapult",
+      "range": 3,
+      "skills": [
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 9,
+      "movement": 1,
+      "name": "Archer",
+      "range": 2,
+      "skills": [
+        "Dash",
+        "Fortify"
+      ]
+    },
+    {
+      "attack": 0.0,
+      "cost": 5,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 10,
+      "movement": 1,
+      "name": "MindBender",
+      "range": 1,
+      "skills": [
+        "Convert",
+        "HealOthers",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 3.0,
+      "health": 15.0,
+      "id": 11,
+      "movement": 1,
+      "name": "Swordsman",
+      "range": 1,
+      "skills": [
+        "Dash"
+      ]
+    },
+    {
+      "attack": 5.0,
+      "cost": 10,
+      "defense": 4.0,
+      "health": 40.0,
+      "id": 12,
+      "movement": 1,
+      "name": "Giant",
+      "range": 1,
+      "skills": [
+        "Static"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 2,
+      "defense": 1.0,
+      "health": 15.0,
+      "id": 15,
+      "movement": 1,
+      "name": "Polytaur",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Fortify",
+        "Independent",
+        "Static"
+      ]
+    },
+    {
+      "attack": -1.0,
+      "cost": 10,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 17,
+      "movement": 1,
+      "name": "DragonEgg",
+      "range": 1,
+      "skills": [
+        "Fortify",
+        "Grow",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 10,
+      "defense": 3.0,
+      "health": 15.0,
+      "id": 18,
+      "movement": 2,
+      "name": "BabyDragon",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Escape",
+        "Fly",
+        "Grow",
+        "Scout",
+        "Static"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 10,
+      "defense": 3.0,
+      "health": 20.0,
+      "id": 19,
+      "movement": 3,
+      "name": "FireDragon",
+      "range": 2,
+      "skills": [
+        "Dash",
+        "Fly",
+        "Scout",
+        "Splash",
+        "Static"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 20,
+      "movement": 2,
+      "name": "Amphibian",
+      "range": 1,
+      "skills": [
+        "Amphibious",
+        "Dash",
+        "Escape",
+        "Fortify"
+      ]
+    },
+    {
+      "attack": 2.5,
+      "cost": 8,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 21,
+      "movement": 2,
+      "name": "Tridention",
+      "range": 2,
+      "skills": [
+        "Amphibious",
+        "Dash",
+        "Persist"
+      ]
+    },
+    {
+      "attack": 0.0,
+      "cost": 5,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 22,
+      "movement": 1,
+      "name": "Mooni",
+      "range": 1,
+      "skills": [
+        "AutoFreeze",
+        "Skate",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 2.0,
+      "health": 15.0,
+      "id": 23,
+      "movement": 2,
+      "name": "BattleSled",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Escape",
+        "Skate"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 15,
+      "defense": 3.0,
+      "health": 20.0,
+      "id": 24,
+      "movement": 1,
+      "name": "IceFortress",
+      "range": 2,
+      "skills": [
+        "Escape",
+        "Scout",
+        "Skate",
+        "Static"
+      ]
+    },
+    {
+      "attack": 1.0,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 25,
+      "movement": 1,
+      "name": "IceArcher",
+      "range": 2,
+      "skills": [
+        "Dash",
+        "Fortify",
+        "Freeze",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 10,
+      "defense": 5.0,
+      "health": 40.0,
+      "id": 26,
+      "movement": 2,
+      "name": "Crab",
+      "range": 1,
+      "skills": [
+        "Amphibious",
+        "AutoFlood",
+        "Escape",
+        "Static"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 10,
+      "defense": 3.0,
+      "health": 30.0,
+      "id": 27,
+      "movement": 1,
+      "name": "Gaami",
+      "range": 1,
+      "skills": [
+        "AutoFreeze",
+        "FreezeArea",
+        "Static"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 5.0,
+      "id": 28,
+      "movement": 2,
+      "name": "Hexapod",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Escape",
+        "Sneak"
+      ]
+    },
+    {
+      "attack": 3.5,
+      "cost": 10,
+      "defense": 2.0,
+      "health": 20.0,
+      "id": 29,
+      "movement": 3,
+      "name": "Doomux",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Explode",
+        "Static"
+      ]
+    },
+    {
+      "attack": 0.699999988079071,
+      "cost": 3,
+      "defense": 1.0,
+      "health": 5.0,
+      "id": 30,
+      "movement": 2,
+      "name": "Phychi",
+      "range": 2,
+      "skills": [
+        "Dash",
+        "DoubleAttack",
+        "Fly",
+        "Poison",
+        "Surprise"
+      ]
+    },
+    {
+      "attack": 1.0,
+      "cost": 3,
+      "defense": 3.0,
+      "health": 15.0,
+      "id": 31,
+      "movement": 1,
+      "name": "Kiton",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Poison"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 8,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 32,
+      "movement": 1,
+      "name": "Exida",
+      "range": 3,
+      "skills": [
+        "Creep",
+        "Poison",
+        "Splash"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 10,
+      "defense": 3.0,
+      "health": 20.0,
+      "id": 33,
+      "movement": 2,
+      "name": "Centipede",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Eat",
+        "Static"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 10,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 34,
+      "movement": 1,
+      "name": "Segment",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Explode",
+        "Independent",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 35,
+      "movement": 3,
+      "name": "Raychi",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Water"
+      ]
+    },
+    {
+      "attack": 1.0,
+      "cost": 10,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 36,
+      "movement": 1,
+      "name": "Shaman",
+      "range": 1,
+      "skills": [
+        "Convert",
+        "Static",
+        "Swarm"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 2,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 37,
+      "movement": 1,
+      "name": "Dagger",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Independent",
+        "Static",
+        "Surprise"
+      ]
+    },
+    {
+      "attack": 0.0,
+      "cost": 8,
+      "defense": 0.5,
+      "health": 5.0,
+      "id": 38,
+      "movement": 2,
+      "name": "Cloak",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Hide",
+        "Infiltrate",
+        "Scout",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 0.0,
+      "cost": 2,
+      "defense": 0.5,
+      "health": 5.0,
+      "id": 39,
+      "movement": 2,
+      "name": "Dinghy",
+      "range": 1,
+      "skills": [
+        "Carry",
+        "Dash",
+        "Float",
+        "Hide",
+        "Infiltrate",
+        "Scout",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 2,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 40,
+      "movement": 2,
+      "name": "Pirate",
+      "range": 1,
+      "skills": [
+        "Carry",
+        "Dash",
+        "Float",
+        "Independent",
+        "Static",
+        "Surprise"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 15,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 41,
+      "movement": 2,
+      "name": "Bomber",
+      "range": 3,
+      "skills": [
+        "Carry",
+        "Float",
+        "Splash",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 5,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 42,
+      "movement": 3,
+      "name": "Scoutship",
+      "range": 2,
+      "skills": [
+        "Carry",
+        "Dash",
+        "Float",
+        "Scout",
+        "Static"
+      ]
+    },
+    {
+      "attack": 0.0,
+      "cost": 0,
+      "defense": 1.0,
+      "health": 10.0,
+      "id": 43,
+      "movement": 2,
+      "name": "Raft",
+      "range": 2,
+      "skills": [
+        "Carry",
+        "Float",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 3.0,
+      "health": 10.0,
+      "id": 44,
+      "movement": 3,
+      "name": "Rammership",
+      "range": 1,
+      "skills": [
+        "Carry",
+        "Dash",
+        "Float",
+        "Static"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 10,
+      "defense": 4.0,
+      "health": 40.0,
+      "id": 45,
+      "movement": 2,
+      "name": "Juggernaut",
+      "range": 1,
+      "skills": [
+        "Carry",
+        "Float",
+        "Static",
+        "Stiff",
+        "Stomp"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 3.0,
+      "health": 10.0,
+      "id": 56,
+      "movement": 2,
+      "name": "Boomchi",
+      "range": 1,
+      "skills": [
+        "Amphibious",
+        "Dash",
+        "Explode",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 4.0,
+      "cost": 20,
+      "defense": 4.0,
+      "health": 20.0,
+      "id": 57,
+      "movement": 2,
+      "name": "LivingIsland",
+      "range": 1,
+      "skills": [
+        "Algae",
+        "Poison",
+        "Static",
+        "Stomp",
+        "Water"
+      ]
+    },
+    {
+      "attack": 3.0,
+      "cost": 5,
+      "defense": 3.0,
+      "health": 15.0,
+      "id": 59,
+      "movement": 1,
+      "name": "Mantis",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 0,
+      "defense": 3.0,
+      "health": 10.0,
+      "id": 60,
+      "movement": 0,
+      "name": "InsectEgg",
+      "range": 1,
+      "skills": [
+        "Explode",
+        "Grow",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 5,
+      "defense": 0.10000000149011612,
+      "health": 10.0,
+      "id": 61,
+      "movement": 2,
+      "name": "Moth",
+      "range": 1,
+      "skills": [
+        "Dash",
+        "Fly",
+        "Infiltrate",
+        "Poison",
+        "Sneak",
+        "Static",
+        "Stiff"
+      ]
+    },
+    {
+      "attack": 2.0,
+      "cost": 0,
+      "defense": 2.0,
+      "health": 10.0,
+      "id": 62,
+      "movement": 1,
+      "name": "Larva",
+      "range": 1,
+      "skills": [
+        "Creep",
+        "Dash",
+        "Grow",
+        "Independent",
+        "Static",
+        "Surprise"
+      ]
+    }
+  ]
+}
