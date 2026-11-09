@@ -1,0 +1,4433 @@
+{
+ "schema": "plato-benchmarks-v1",
+ "model": "Plato",
+ "checkpoint": "weights/plato/final.npz",
+ "checkpoint_sha256": "aced9e4ea74527631b63236a0e0697bff37896549d7349083698d672c15e9420",
+ "method": {
+  "arena": "engine-rs (Polytopia 2.17.3 rules), 14x14 classic maps, 1v1; seat-paired: every map is played twice with the seats swapped; raw policies with sampled actions, no search; maps unseen in training",
+  "round_cap": "200 rounds, a harness limit (not a game rule). score: a capped game counts for the side ahead on score; elimination_only_score: a capped game counts as a draw",
+  "interval": "99% map-clustered (the arena standard error with both seat swaps of a map in one cluster, x 2.5758)",
+  "score": "(wins + draws/2) / games, for the candidate",
+  "preregistration": "each panel (matches, seeds, decision rules) was frozen, with the SHA-256 of its JSON, before the candidate was evaluated",
+  "checkpoint_names": "plato-u<N> = the Plato training run at update N; dollar labels are cumulative training+evaluation spend when it was saved"
+ },
+ "opponents": {
+  "hero1 (weights/hero-1v1)": "4x128 CNN (1.97M params), strongest earlier 1v1 bot on the game rules; byte-identical to weights/hero-1v1/final.npz (sha256 e6f4e197...)",
+  "champion (weights/champion)": "2x64 CNN, the site bot; raw policy here (no search); byte-identical to weights/champion/final.npz (sha256 90618f5a...)",
+  "CNN control final ($97)": "hero-1v1 architecture (4x128 normalized-v2) trained from scratch with the same recipe and a matched $100 budget, run alongside stage 1 as a control; not released",
+  "Cloak exploiter (not released)": "the CNN control fine-tuned for 1 h against plato-u23270 only; learned a Cloak/Dagger infiltration line that beat u23270 .87",
+  "x3d peace exploiter (not released)": "a from-scratch 4x128 exploiter trained against plato-u23270; it only ever won through peace treaties"
+ },
+ "checks": [
+  {
+   "check": "Equal-dollar crossover: Plato run vs the CNN control at $25 each",
+   "preregistered_pt": "2026-11-07 13:23 PT",
+   "prereg_sha256": "f5a5e1c0e1f77b61a50930a2a715fe223cc434ed53a9295d85f508399f1cc65a",
+   "decision_rule": "information only",
+   "rows": [
+    {
+     "match": "crossover-usd25-flagship-vs-cnn",
+     "candidate": "plato $25 snapshot",
+     "opponent": "CNN control ($25 snapshot)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4016,
+     "ci99": [
+      0.3741,
+      0.4291
+     ],
+     "wins": 822,
+     "losses": 1225,
+     "draws": 1,
+     "capped_games": 401,
+     "elimination_only_score": 0.3777,
+     "elimination_wins": 573,
+     "elimination_losses": 1074
+    }
+   ]
+  },
+  {
+   "check": "Equal-dollar crossover at $50 each",
+   "preregistered_pt": "2026-11-07 13:55 PT",
+   "prereg_sha256": "0ef3caec04bfac5b9c42677772835c70f23df209842c5c24ac43997a1b60f56e",
+   "decision_rule": "information only",
+   "rows": [
+    {
+     "match": "crossover-usd50-flagship-vs-cnn",
+     "candidate": "plato $50 snapshot",
+     "opponent": "CNN control ($50 snapshot)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.3931,
+     "ci99": [
+      0.3665,
+      0.4196
+     ],
+     "wins": 805,
+     "losses": 1243,
+     "draws": 0,
+     "capped_games": 57,
+     "elimination_only_score": 0.387,
+     "elimination_wins": 764,
+     "elimination_losses": 1227
+    }
+   ]
+  },
+  {
+   "check": "Equal-dollar crossover at ~$100 each (both stage-1 finals)",
+   "preregistered_pt": "2026-11-07 15:16 PT",
+   "prereg_sha256": "86169893a6bb34b4cbf5bfbee04dda45bc937ba1354c399c89aafd620cbbdfa7",
+   "decision_rule": "information only",
+   "rows": [
+    {
+     "match": "crossover-usd97-flagship-vs-cnn",
+     "candidate": "plato-u8169 ($100, stage 1 end)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4546,
+     "ci99": [
+      0.4269,
+      0.4822
+     ],
+     "wins": 931,
+     "losses": 1117,
+     "draws": 0,
+     "capped_games": 16,
+     "elimination_only_score": 0.4546,
+     "elimination_wins": 923,
+     "elimination_losses": 1109
+    }
+   ]
+  },
+  {
+   "check": "$100 check (end of stage 1)",
+   "preregistered_pt": "2026-11-07 14:49 PT",
+   "prereg_sha256": "69f44bc02fe94dcd315a969004a2ac050eed441599a90a216811b133dd4c2185",
+   "decision_rule": "continue if lower99 > .5 vs u250 on both scorings; fixed references reported as progress",
+   "rows": [
+    {
+     "match": "s1-improve-vs-u250",
+     "candidate": "plato-u8169 ($100, stage 1 end)",
+     "opponent": "plato-u250",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9951,
+     "ci99": [
+      0.9912,
+      0.9991
+     ],
+     "wins": 2038,
+     "losses": 10,
+     "draws": 0,
+     "capped_games": 3,
+     "elimination_only_score": 0.9958,
+     "elimination_wins": 2038,
+     "elimination_losses": 7
+    },
+    {
+     "match": "s1-vs-hero1",
+     "candidate": "plato-u8169 ($100, stage 1 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.0068,
+     "ci99": [
+      0.0022,
+      0.0115
+     ],
+     "wins": 14,
+     "losses": 2034,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.0071,
+     "elimination_wins": 14,
+     "elimination_losses": 2033
+    },
+    {
+     "match": "s1-vs-champion",
+     "candidate": "plato-u8169 ($100, stage 1 end)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.1221,
+     "ci99": [
+      0.1041,
+      0.1401
+     ],
+     "wins": 250,
+     "losses": 1798,
+     "draws": 0,
+     "capped_games": 6,
+     "elimination_only_score": 0.1235,
+     "elimination_wins": 250,
+     "elimination_losses": 1792
+    },
+    {
+     "match": "s1-final-vs-usd50",
+     "candidate": "plato-u8169 ($100, stage 1 end)",
+     "opponent": "plato $50 snapshot",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7832,
+     "ci99": [
+      0.7614,
+      0.805
+     ],
+     "wins": 1604,
+     "losses": 444,
+     "draws": 0,
+     "capped_games": 7,
+     "elimination_only_score": 0.7844,
+     "elimination_wins": 1603,
+     "elimination_losses": 438
+    },
+    {
+     "match": "s1-u500-vs-1gpu-H_h4-u500",
+     "candidate": "plato-u500",
+     "opponent": "1-GPU run of the same architecture, u500 (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.1978,
+     "ci99": [
+      0.1753,
+      0.2202
+     ],
+     "wins": 405,
+     "losses": 1643,
+     "draws": 0,
+     "capped_games": 1036,
+     "elimination_only_score": 0.3877,
+     "elimination_wins": 276,
+     "elimination_losses": 736
+    }
+   ]
+  },
+  {
+   "check": "$300 check (end of stage 2)",
+   "preregistered_pt": "2026-11-07 20:37 PT",
+   "prereg_sha256": "63c7d94d06ecfaa4f0e7bfb7f42b5a94b078133347c40dd810ec7746c326a6f2",
+   "decision_rule": "improvement = lower99 > .5 vs the stage-1 checkpoint on both scorings; fixed references reported as progress",
+   "rows": [
+    {
+     "match": "s2-improve-vs-stage1",
+     "candidate": "plato-u23270 ($300, stage 2 end)",
+     "opponent": "plato-u8169 ($100, stage 1 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8521,
+     "ci99": [
+      0.8324,
+      0.8717
+     ],
+     "wins": 1745,
+     "losses": 303,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.8521,
+     "elimination_wins": 1744,
+     "elimination_losses": 302
+    },
+    {
+     "match": "s2-vs-hero1",
+     "candidate": "plato-u23270 ($300, stage 2 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.0684,
+     "ci99": [
+      0.054,
+      0.0828
+     ],
+     "wins": 140,
+     "losses": 1908,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.0679,
+     "elimination_wins": 138,
+     "elimination_losses": 1908
+    },
+    {
+     "match": "s2-vs-champion",
+     "candidate": "plato-u23270 ($300, stage 2 end)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.2676,
+     "ci99": [
+      0.2432,
+      0.292
+     ],
+     "wins": 548,
+     "losses": 1500,
+     "draws": 0,
+     "capped_games": 48,
+     "elimination_only_score": 0.271,
+     "elimination_wins": 531,
+     "elimination_losses": 1469
+    },
+    {
+     "match": "s2-vs-cnn-control-final",
+     "candidate": "plato-u23270 ($300, stage 2 end)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.6309,
+     "ci99": [
+      0.6045,
+      0.6572
+     ],
+     "wins": 1292,
+     "losses": 756,
+     "draws": 0,
+     "capped_games": 3,
+     "elimination_only_score": 0.6301,
+     "elimination_wins": 1289,
+     "elimination_losses": 756
+    },
+    {
+     "match": "s2-final-vs-usd200",
+     "candidate": "plato-u23270 ($300, stage 2 end)",
+     "opponent": "plato $200 snapshot",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7026,
+     "ci99": [
+      0.6787,
+      0.7265
+     ],
+     "wins": 1439,
+     "losses": 609,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.7026,
+     "elimination_wins": 1439,
+     "elimination_losses": 609
+    }
+   ]
+  },
+  {
+   "check": "$500 check (stage 3)",
+   "preregistered_pt": "2026-11-08 00:49 PT",
+   "prereg_sha256": "ae253763d39535df40378e628cc047dbcb865bfb42e302fe32cc047e41819179",
+   "decision_rule": "improvement under the training rule (no peace): lower99 > .5 vs the previous boundary on both scorings, else pause (plateau)",
+   "rows": [
+    {
+     "match": "s3-usd500-improve-vs-previous-nopeace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "plato-u23270 ($300, stage 2 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.5723,
+     "ci99": [
+      0.5507,
+      0.5939
+     ],
+     "wins": 1172,
+     "losses": 876,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.5723,
+     "elimination_wins": 1172,
+     "elimination_losses": 876
+    },
+    {
+     "match": "s3-usd500-improve-vs-previous-peace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "plato-u23270 ($300, stage 2 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.5498,
+     "ci99": [
+      0.5266,
+      0.573
+     ],
+     "wins": 1126,
+     "losses": 922,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.5498,
+     "elimination_wins": 1126,
+     "elimination_losses": 922
+    },
+    {
+     "match": "s3-usd500-vs-hero1-nopeace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.3315,
+     "ci99": [
+      0.3044,
+      0.3587
+     ],
+     "wins": 679,
+     "losses": 1369,
+     "draws": 0,
+     "capped_games": 5,
+     "elimination_only_score": 0.3328,
+     "elimination_wins": 679,
+     "elimination_losses": 1364
+    },
+    {
+     "match": "s3-usd500-vs-hero1-peace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.124,
+     "ci99": [
+      0.1051,
+      0.143
+     ],
+     "wins": 254,
+     "losses": 1794,
+     "draws": 0,
+     "capped_games": 15,
+     "elimination_only_score": 0.1252,
+     "elimination_wins": 249,
+     "elimination_losses": 1784
+    },
+    {
+     "match": "s3-usd500-vs-champion-nopeace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7881,
+     "ci99": [
+      0.7656,
+      0.8106
+     ],
+     "wins": 1614,
+     "losses": 434,
+     "draws": 0,
+     "capped_games": 5,
+     "elimination_only_score": 0.7893,
+     "elimination_wins": 1614,
+     "elimination_losses": 429
+    },
+    {
+     "match": "s3-usd500-vs-champion-peace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4521,
+     "ci99": [
+      0.4257,
+      0.4786
+     ],
+     "wins": 926,
+     "losses": 1122,
+     "draws": 0,
+     "capped_games": 98,
+     "elimination_only_score": 0.4712,
+     "elimination_wins": 916,
+     "elimination_losses": 1034
+    },
+    {
+     "match": "s3-usd500-vs-cnn-control-final-nopeace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7603,
+     "ci99": [
+      0.7376,
+      0.7829
+     ],
+     "wins": 1557,
+     "losses": 491,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.7603,
+     "elimination_wins": 1557,
+     "elimination_losses": 491
+    },
+    {
+     "match": "s3-usd500-vs-cnn-control-final-peace",
+     "candidate": "plato-u37641 ($500)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7295,
+     "ci99": [
+      0.7057,
+      0.7532
+     ],
+     "wins": 1494,
+     "losses": 554,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.7297,
+     "elimination_wins": 1494,
+     "elimination_losses": 553
+    }
+   ]
+  },
+  {
+   "check": "$1,000 check (end of stage 3)",
+   "preregistered_pt": "2026-11-08 08:18 PT",
+   "prereg_sha256": "b68c4997b15b0fdcd586d238e2b0f6c5a11c3e4718bd1df8ac6831e1ba4fece6",
+   "decision_rule": "improvement under the training rule (no peace): lower99 > .5 vs the previous boundary on both scorings, else pause (plateau)",
+   "rows": [
+    {
+     "match": "s3-usd1000-improve-vs-previous-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "plato-u37641 ($500)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7563,
+     "ci99": [
+      0.7352,
+      0.7775
+     ],
+     "wins": 1549,
+     "losses": 499,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.7563,
+     "elimination_wins": 1549,
+     "elimination_losses": 499
+    },
+    {
+     "match": "s3-usd1000-improve-vs-previous-peace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "plato-u37641 ($500)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7598,
+     "ci99": [
+      0.7384,
+      0.7812
+     ],
+     "wins": 1556,
+     "losses": 492,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.7595,
+     "elimination_wins": 1555,
+     "elimination_losses": 492
+    },
+    {
+     "match": "s3-usd1000-vs-hero1-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7661,
+     "ci99": [
+      0.7429,
+      0.7893
+     ],
+     "wins": 1569,
+     "losses": 479,
+     "draws": 0,
+     "capped_games": 6,
+     "elimination_only_score": 0.7666,
+     "elimination_wins": 1567,
+     "elimination_losses": 475
+    },
+    {
+     "match": "s3-usd1000-vs-hero1-peace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.3296,
+     "ci99": [
+      0.304,
+      0.3551
+     ],
+     "wins": 675,
+     "losses": 1373,
+     "draws": 0,
+     "capped_games": 22,
+     "elimination_only_score": 0.3335,
+     "elimination_wins": 672,
+     "elimination_losses": 1354
+    },
+    {
+     "match": "s3-usd1000-vs-champion-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9502,
+     "ci99": [
+      0.9379,
+      0.9625
+     ],
+     "wins": 1946,
+     "losses": 102,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.95,
+     "elimination_wins": 1945,
+     "elimination_losses": 102
+    },
+    {
+     "match": "s3-usd1000-vs-champion-peace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7148,
+     "ci99": [
+      0.6903,
+      0.7394
+     ],
+     "wins": 1464,
+     "losses": 584,
+     "draws": 0,
+     "capped_games": 79,
+     "elimination_only_score": 0.7283,
+     "elimination_wins": 1452,
+     "elimination_losses": 517
+    },
+    {
+     "match": "s3-usd1000-vs-cnn-control-final-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9238,
+     "ci99": [
+      0.9094,
+      0.9383
+     ],
+     "wins": 1892,
+     "losses": 156,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9238,
+     "elimination_wins": 1892,
+     "elimination_losses": 156
+    },
+    {
+     "match": "s3-usd1000-vs-cnn-control-final-peace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9058,
+     "ci99": [
+      0.8897,
+      0.9218
+     ],
+     "wins": 1855,
+     "losses": 193,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9058,
+     "elimination_wins": 1855,
+     "elimination_losses": 193
+    }
+   ]
+  },
+  {
+   "check": "Stage-4 pilot 1 gates",
+   "preregistered_pt": "2026-11-08 09:14 PT",
+   "prereg_sha256": "623788144460baf942ff6ec3f24728809d0f7b4aa931f9874ac350fd5aac9a9e",
+   "decision_rule": "gate 1: peace-legal vs hero1 improves over u72889 (difference lower99 > 0); gate 2: no-peace vs u72889 lower99 > .45; gate 3: peace-legal vs u72889 < 10% capped; any fail = stop",
+   "rows": [
+    {
+     "match": "p4-cand-vs-hero1-peace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7207,
+     "ci99": [
+      0.6967,
+      0.7447
+     ],
+     "wins": 1476,
+     "losses": 572,
+     "draws": 0,
+     "capped_games": 18,
+     "elimination_only_score": 0.7246,
+     "elimination_wins": 1475,
+     "elimination_losses": 555
+    },
+    {
+     "match": "p4-base-vs-hero1-peace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.3174,
+     "ci99": [
+      0.2925,
+      0.3423
+     ],
+     "wins": 650,
+     "losses": 1398,
+     "draws": 0,
+     "capped_games": 16,
+     "elimination_only_score": 0.3193,
+     "elimination_wins": 646,
+     "elimination_losses": 1386
+    },
+    {
+     "match": "p4-cand-vs-hero1-nopeace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.75,
+     "ci99": [
+      0.7263,
+      0.7737
+     ],
+     "wins": 1536,
+     "losses": 512,
+     "draws": 0,
+     "capped_games": 16,
+     "elimination_only_score": 0.7534,
+     "elimination_wins": 1535,
+     "elimination_losses": 497
+    },
+    {
+     "match": "p4-base-vs-hero1-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.75,
+     "ci99": [
+      0.7262,
+      0.7738
+     ],
+     "wins": 1536,
+     "losses": 512,
+     "draws": 0,
+     "capped_games": 3,
+     "elimination_only_score": 0.7502,
+     "elimination_wins": 1535,
+     "elimination_losses": 510
+    },
+    {
+     "match": "p4-cand-vs-u72889-nopeace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4165,
+     "ci99": [
+      0.3948,
+      0.4382
+     ],
+     "wins": 853,
+     "losses": 1195,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.4163,
+     "elimination_wins": 852,
+     "elimination_losses": 1195
+    },
+    {
+     "match": "p4-cand-vs-u72889-peace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.958,
+     "ci99": [
+      0.9466,
+      0.9695
+     ],
+     "wins": 1962,
+     "losses": 86,
+     "draws": 0,
+     "capped_games": 8,
+     "elimination_only_score": 0.9565,
+     "elimination_wins": 1955,
+     "elimination_losses": 85
+    },
+    {
+     "match": "p4-cand-vs-champion-peace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8857,
+     "ci99": [
+      0.868,
+      0.9035
+     ],
+     "wins": 1814,
+     "losses": 234,
+     "draws": 0,
+     "capped_games": 177,
+     "elimination_only_score": 0.9255,
+     "elimination_wins": 1807,
+     "elimination_losses": 64
+    },
+    {
+     "match": "p4-cand-vs-cloak-peace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "Cloak exploiter (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9851,
+     "ci99": [
+      0.9783,
+      0.9919
+     ],
+     "wins": 2017,
+     "losses": 30,
+     "draws": 1,
+     "capped_games": 40,
+     "elimination_only_score": 0.9883,
+     "elimination_wins": 2004,
+     "elimination_losses": 4
+    }
+   ]
+  },
+  {
+   "check": "Stage-4 pilot 1 diagnostic (why gate 2 failed)",
+   "preregistered_pt": "2026-11-08 11:04 PT",
+   "prereg_sha256": "6f4573b631c4ac9c46e93b02bcb95cf374071378d017c625a4631fdf6fd7cd90",
+   "decision_rule": "information only (diagnosis of the gate-2 failure)",
+   "rows": [
+    {
+     "match": "d4-u73000-vs-u72889-nopeace",
+     "candidate": "plato-u73000",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.481,
+     "ci99": [
+      0.4608,
+      0.5011
+     ],
+     "wins": 985,
+     "losses": 1063,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.481,
+     "elimination_wins": 985,
+     "elimination_losses": 1063
+    },
+    {
+     "match": "d4-u73125-vs-u72889-nopeace",
+     "candidate": "plato-u73125",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4355,
+     "ci99": [
+      0.4146,
+      0.4565
+     ],
+     "wins": 892,
+     "losses": 1156,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.4355,
+     "elimination_wins": 892,
+     "elimination_losses": 1156
+    },
+    {
+     "match": "d4-u73250-vs-u72889-nopeace",
+     "candidate": "plato-u73250",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.437,
+     "ci99": [
+      0.4151,
+      0.4589
+     ],
+     "wins": 895,
+     "losses": 1153,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.437,
+     "elimination_wins": 894,
+     "elimination_losses": 1152
+    },
+    {
+     "match": "d4-u73375-vs-u72889-nopeace",
+     "candidate": "plato-u73375",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4233,
+     "ci99": [
+      0.4017,
+      0.445
+     ],
+     "wins": 867,
+     "losses": 1181,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.4233,
+     "elimination_wins": 867,
+     "elimination_losses": 1181
+    },
+    {
+     "match": "d4-u73430-vs-champion-nopeace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.959,
+     "ci99": [
+      0.9479,
+      0.97
+     ],
+     "wins": 1964,
+     "losses": 84,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.9595,
+     "elimination_wins": 1964,
+     "elimination_losses": 82
+    },
+    {
+     "match": "d4-u72889-vs-champion-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9546,
+     "ci99": [
+      0.943,
+      0.9662
+     ],
+     "wins": 1955,
+     "losses": 93,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9546,
+     "elimination_wins": 1955,
+     "elimination_losses": 93
+    },
+    {
+     "match": "d4-u73430-vs-cnnctl-nopeace",
+     "candidate": "plato-u73430 (stage-4 pilot 1)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8989,
+     "ci99": [
+      0.8824,
+      0.9155
+     ],
+     "wins": 1841,
+     "losses": 207,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.8989,
+     "elimination_wins": 1841,
+     "elimination_losses": 207
+    },
+    {
+     "match": "d4-u72889-vs-cnnctl-nopeace",
+     "candidate": "plato-u72889 ($1,000, stage 3 end)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9224,
+     "ci99": [
+      0.9076,
+      0.9372
+     ],
+     "wins": 1889,
+     "losses": 159,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9224,
+     "elimination_wins": 1889,
+     "elimination_losses": 159
+    }
+   ]
+  },
+  {
+   "check": "Stage-4 pilot 2 gates",
+   "preregistered_pt": "2026-11-08 11:20 PT",
+   "prereg_sha256": "60da934ff59c730ed61b3d2c2fb6524ed3584aeaeb86f9706e68b0745f2807f3",
+   "decision_rule": "gate 1: peace-legal vs hero1 lower99 > .5; gate 2: no-peace vs u72889 lower99 > .45; gate 3: < 10% capped; any fail = stop and ask",
+   "rows": [
+    {
+     "match": "p4b-cand-vs-u72889-nopeace",
+     "candidate": "plato-u73870 (stage-4 pilot 2)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.46,
+     "ci99": [
+      0.4378,
+      0.4821
+     ],
+     "wins": 942,
+     "losses": 1106,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.46,
+     "elimination_wins": 942,
+     "elimination_losses": 1106
+    },
+    {
+     "match": "p4b-cand-vs-hero1-peace",
+     "candidate": "plato-u73870 (stage-4 pilot 2)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.7998,
+     "ci99": [
+      0.7778,
+      0.8218
+     ],
+     "wins": 1638,
+     "losses": 410,
+     "draws": 0,
+     "capped_games": 18,
+     "elimination_only_score": 0.8042,
+     "elimination_wins": 1638,
+     "elimination_losses": 392
+    },
+    {
+     "match": "p4b-cand-vs-u72889-peace",
+     "candidate": "plato-u73870 (stage-4 pilot 2)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9585,
+     "ci99": [
+      0.9472,
+      0.9697
+     ],
+     "wins": 1963,
+     "losses": 85,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.9583,
+     "elimination_wins": 1962,
+     "elimination_losses": 85
+    }
+   ]
+  },
+  {
+   "check": "$1,250 check (stage 4, +$250)",
+   "preregistered_pt": "2026-11-08 20:11 PT",
+   "prereg_sha256": "bb5a650daec2f766ea9e241c647e686d8767fcf3f9f51cb50ad2da430235fff1",
+   "decision_rule": "success target: beat hero1 with peace legal (lower99 > .5); safeguard: pause if no-peace vs u72889 < .42 or the collusion monitors tripped",
+   "rows": [
+    {
+     "match": "s4-usd250-vs-u72889-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9658,
+     "ci99": [
+      0.9555,
+      0.9761
+     ],
+     "wins": 1978,
+     "losses": 70,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.9653,
+     "elimination_wins": 1976,
+     "elimination_losses": 70
+    },
+    {
+     "match": "s4-usd250-vs-u72889-nopeace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.4976,
+     "ci99": [
+      0.4767,
+      0.5184
+     ],
+     "wins": 1019,
+     "losses": 1029,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.4976,
+     "elimination_wins": 1019,
+     "elimination_losses": 1029
+    },
+    {
+     "match": "s4-usd250-vs-hero1-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8511,
+     "ci99": [
+      0.8315,
+      0.8707
+     ],
+     "wins": 1743,
+     "losses": 305,
+     "draws": 0,
+     "capped_games": 72,
+     "elimination_only_score": 0.8467,
+     "elimination_wins": 1698,
+     "elimination_losses": 278
+    },
+    {
+     "match": "s4-usd250-vs-hero1-nopeace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8037,
+     "ci99": [
+      0.7821,
+      0.8253
+     ],
+     "wins": 1646,
+     "losses": 402,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.8037,
+     "elimination_wins": 1646,
+     "elimination_losses": 402
+    },
+    {
+     "match": "s4-usd250-vs-champion-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9829,
+     "ci99": [
+      0.9756,
+      0.9902
+     ],
+     "wins": 2013,
+     "losses": 35,
+     "draws": 0,
+     "capped_games": 95,
+     "elimination_only_score": 0.9763,
+     "elimination_wins": 1952,
+     "elimination_losses": 1
+    },
+    {
+     "match": "s4-usd250-vs-champion-nopeace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9727,
+     "ci99": [
+      0.9633,
+      0.982
+     ],
+     "wins": 1992,
+     "losses": 56,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9727,
+     "elimination_wins": 1992,
+     "elimination_losses": 56
+    },
+    {
+     "match": "s4-usd250-vs-cnn-control-final-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 1.0,
+     "ci99": [
+      1.0,
+      1.0
+     ],
+     "wins": 2048,
+     "losses": 0,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 1.0,
+     "elimination_wins": 2048,
+     "elimination_losses": 0
+    },
+    {
+     "match": "s4-usd250-vs-cnn-control-final-nopeace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9268,
+     "ci99": [
+      0.9124,
+      0.9411
+     ],
+     "wins": 1898,
+     "losses": 150,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9268,
+     "elimination_wins": 1898,
+     "elimination_losses": 150
+    },
+    {
+     "match": "s4-usd250-vs-cloak-exploiter-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "Cloak exploiter (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 256,
+     "games": 512,
+     "score": 0.9922,
+     "ci99": [
+      0.9822,
+      1.0
+     ],
+     "wins": 508,
+     "losses": 4,
+     "draws": 0,
+     "capped_games": 2,
+     "elimination_only_score": 0.9941,
+     "elimination_wins": 508,
+     "elimination_losses": 2
+    },
+    {
+     "match": "s4-usd250-vs-cloak-exploiter-nopeace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "Cloak exploiter (not released)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 256,
+     "games": 512,
+     "score": 0.9707,
+     "ci99": [
+      0.9518,
+      0.9896
+     ],
+     "wins": 497,
+     "losses": 15,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9707,
+     "elimination_wins": 497,
+     "elimination_losses": 15
+    },
+    {
+     "match": "s4-usd250-vs-x3d-scratch-exploiter-peace",
+     "candidate": "plato-u79150 ($1,250 check)",
+     "opponent": "x3d peace exploiter (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 256,
+     "games": 512,
+     "score": 1.0,
+     "ci99": [
+      1.0,
+      1.0
+     ],
+     "wins": 512,
+     "losses": 0,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 1.0,
+     "elimination_wins": 512,
+     "elimination_losses": 0
+    }
+   ]
+  },
+  {
+   "check": "$1,500 FINAL check (Plato)",
+   "preregistered_pt": "2026-11-08 23:57 PT",
+   "prereg_sha256": "1bad02a79c5092c574b637f2ab87ae0569ebdf9ea4563c7437d758a1e7193756",
+   "decision_rule": "success target: beat hero1 with peace legal (lower99 > .5); progress vs u72889 under both rules (lower99 > .5 = improved)",
+   "rows": [
+    {
+     "match": "s4-final-vs-u72889-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.981,
+     "ci99": [
+      0.9732,
+      0.9887
+     ],
+     "wins": 2009,
+     "losses": 39,
+     "draws": 0,
+     "capped_games": 4,
+     "elimination_only_score": 0.981,
+     "elimination_wins": 2007,
+     "elimination_losses": 37
+    },
+    {
+     "match": "s4-final-vs-u72889-nopeace",
+     "candidate": "Plato (u85270)",
+     "opponent": "plato-u72889 ($1,000, stage 3 end)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.5278,
+     "ci99": [
+      0.5061,
+      0.5495
+     ],
+     "wins": 1081,
+     "losses": 967,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.5278,
+     "elimination_wins": 1081,
+     "elimination_losses": 967
+    },
+    {
+     "match": "s4-final-vs-hero1-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.8916,
+     "ci99": [
+      0.874,
+      0.9092
+     ],
+     "wins": 1826,
+     "losses": 222,
+     "draws": 0,
+     "capped_games": 5,
+     "elimination_only_score": 0.8928,
+     "elimination_wins": 1826,
+     "elimination_losses": 217
+    },
+    {
+     "match": "s4-final-vs-hero1-nopeace",
+     "candidate": "Plato (u85270)",
+     "opponent": "hero1 (weights/hero-1v1)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.853,
+     "ci99": [
+      0.8335,
+      0.8725
+     ],
+     "wins": 1747,
+     "losses": 301,
+     "draws": 0,
+     "capped_games": 1,
+     "elimination_only_score": 0.8533,
+     "elimination_wins": 1747,
+     "elimination_losses": 300
+    },
+    {
+     "match": "s4-final-vs-champion-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "champion (weights/champion)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9717,
+     "ci99": [
+      0.9624,
+      0.981
+     ],
+     "wins": 1990,
+     "losses": 58,
+     "draws": 0,
+     "capped_games": 57,
+     "elimination_only_score": 0.9856,
+     "elimination_wins": 1990,
+     "elimination_losses": 1
+    },
+    {
+     "match": "s4-final-vs-champion-nopeace",
+     "candidate": "Plato (u85270)",
+     "opponent": "champion (weights/champion)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9839,
+     "ci99": [
+      0.9768,
+      0.991
+     ],
+     "wins": 2015,
+     "losses": 33,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9839,
+     "elimination_wins": 2015,
+     "elimination_losses": 33
+    },
+    {
+     "match": "s4-final-vs-cnn-control-final-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "CNN control final ($97)",
+     "rules": "peace legal (the game rules)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9995,
+     "ci99": [
+      0.9983,
+      1.0
+     ],
+     "wins": 2047,
+     "losses": 1,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9995,
+     "elimination_wins": 2047,
+     "elimination_losses": 1
+    },
+    {
+     "match": "s4-final-vs-cnn-control-final-nopeace",
+     "candidate": "Plato (u85270)",
+     "opponent": "CNN control final ($97)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 1024,
+     "games": 2048,
+     "score": 0.9336,
+     "ci99": [
+      0.9199,
+      0.9473
+     ],
+     "wins": 1912,
+     "losses": 136,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9336,
+     "elimination_wins": 1912,
+     "elimination_losses": 136
+    },
+    {
+     "match": "s4-final-vs-cloak-exploiter-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "Cloak exploiter (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 256,
+     "games": 512,
+     "score": 0.9961,
+     "ci99": [
+      0.989,
+      1.0
+     ],
+     "wins": 510,
+     "losses": 2,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9961,
+     "elimination_wins": 510,
+     "elimination_losses": 2
+    },
+    {
+     "match": "s4-final-vs-cloak-exploiter-nopeace",
+     "candidate": "Plato (u85270)",
+     "opponent": "Cloak exploiter (not released)",
+     "rules": "no peace (diplomacy disabled)",
+     "maps": 256,
+     "games": 512,
+     "score": 0.9609,
+     "ci99": [
+      0.9393,
+      0.9826
+     ],
+     "wins": 492,
+     "losses": 20,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 0.9609,
+     "elimination_wins": 492,
+     "elimination_losses": 20
+    },
+    {
+     "match": "s4-final-vs-x3d-scratch-exploiter-peace",
+     "candidate": "Plato (u85270)",
+     "opponent": "x3d peace exploiter (not released)",
+     "rules": "peace legal (the game rules)",
+     "maps": 256,
+     "games": 512,
+     "score": 1.0,
+     "ci99": [
+      1.0,
+      1.0
+     ],
+     "wins": 512,
+     "losses": 0,
+     "draws": 0,
+     "capped_games": 0,
+     "elimination_only_score": 1.0,
+     "elimination_wins": 512,
+     "elimination_losses": 0
+    }
+   ]
+  }
+ ],
+ "stage4_collusion_monitors": {
+  "note": "training-time counters of the peace-legal game sets over the last 50 updates (all GPUs). selfplay_capped: share of Plato-vs-Plato games reaching the round cap; at_peace_step_share: share of game steps played while the two sides are at peace",
+  "segments": {
+   "pilot": "8 H100, score-at-cap reward, 2 of 4 game sets peace-legal, peace self-play .30",
+   "4a": "16 H100, score-at-cap reward, 2 of 4 sets peace-legal, peace self-play .30",
+   "4b-i": "23 min: 3 of 4 sets peace-legal, peace self-play cut to .10 (reverted)",
+   "4b-ii": "cap = loss for both sides, 3 of 4 sets peace-legal, peace self-play .30"
+  },
+  "series": [
+   {
+    "update": 72950,
+    "segment": "pilot",
+    "peace_games": 4874,
+    "selfplay_games": 1388,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.04079,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 29.54637
+   },
+   {
+    "update": 73000,
+    "segment": "pilot",
+    "peace_games": 8546,
+    "selfplay_games": 3369,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.05976,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 26.38123
+   },
+   {
+    "update": 73050,
+    "segment": "pilot",
+    "peace_games": 9880,
+    "selfplay_games": 3942,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.06208,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 23.15435
+   },
+   {
+    "update": 73100,
+    "segment": "pilot",
+    "peace_games": 8607,
+    "selfplay_games": 3332,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.0604,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 26.87847
+   },
+   {
+    "update": 73150,
+    "segment": "pilot",
+    "peace_games": 9289,
+    "selfplay_games": 3149,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.06144,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 26.85327
+   },
+   {
+    "update": 73200,
+    "segment": "pilot",
+    "peace_games": 7498,
+    "selfplay_games": 2611,
+    "selfplay_capped": 0.0,
+    "capped": 0.00013,
+    "at_peace_step_share": 0.06222,
+    "late_round_step_share": 0.00012,
+    "diplomatic_actions_per_game": 34.80822
+   },
+   {
+    "update": 73250,
+    "segment": "pilot",
+    "peace_games": 8909,
+    "selfplay_games": 3067,
+    "selfplay_capped": 0.0,
+    "capped": 0.00022,
+    "at_peace_step_share": 0.06309,
+    "late_round_step_share": 0.00088,
+    "diplomatic_actions_per_game": 28.55001
+   },
+   {
+    "update": 73300,
+    "segment": "pilot",
+    "peace_games": 8662,
+    "selfplay_games": 3022,
+    "selfplay_capped": 0.0,
+    "capped": 0.00035,
+    "at_peace_step_share": 0.06351,
+    "late_round_step_share": 0.00339,
+    "diplomatic_actions_per_game": 29.27245
+   },
+   {
+    "update": 73350,
+    "segment": "pilot",
+    "peace_games": 8825,
+    "selfplay_games": 2426,
+    "selfplay_capped": 0.0,
+    "capped": 0.00136,
+    "at_peace_step_share": 0.07075,
+    "late_round_step_share": 0.00594,
+    "diplomatic_actions_per_game": 26.64283
+   },
+   {
+    "update": 73400,
+    "segment": "pilot",
+    "peace_games": 8671,
+    "selfplay_games": 2066,
+    "selfplay_capped": 0.0,
+    "capped": 0.00865,
+    "at_peace_step_share": 0.07989,
+    "late_round_step_share": 0.00647,
+    "diplomatic_actions_per_game": 26.94061
+   },
+   {
+    "update": 73950,
+    "segment": "4a",
+    "peace_games": 3741,
+    "selfplay_games": 801,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.02341,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 59.01337
+   },
+   {
+    "update": 74000,
+    "segment": "4a",
+    "peace_games": 10084,
+    "selfplay_games": 2818,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.02882,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 23.13913
+   },
+   {
+    "update": 74050,
+    "segment": "4a",
+    "peace_games": 10368,
+    "selfplay_games": 3724,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.03538,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 20.67409
+   },
+   {
+    "update": 74100,
+    "segment": "4a",
+    "peace_games": 9541,
+    "selfplay_games": 3012,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.04117,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 22.90787
+   },
+   {
+    "update": 74150,
+    "segment": "4a",
+    "peace_games": 9640,
+    "selfplay_games": 3164,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.04628,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 22.8472
+   },
+   {
+    "update": 74200,
+    "segment": "4a",
+    "peace_games": 8988,
+    "selfplay_games": 3044,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.05063,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 25.01113
+   },
+   {
+    "update": 74250,
+    "segment": "4a",
+    "peace_games": 10126,
+    "selfplay_games": 3435,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.05576,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 21.42218
+   },
+   {
+    "update": 74300,
+    "segment": "4a",
+    "peace_games": 9689,
+    "selfplay_games": 3347,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.06268,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 22.20033
+   },
+   {
+    "update": 74350,
+    "segment": "4a",
+    "peace_games": 9618,
+    "selfplay_games": 3293,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.06997,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 21.74194
+   },
+   {
+    "update": 74400,
+    "segment": "4a",
+    "peace_games": 9355,
+    "selfplay_games": 3146,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.07824,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 21.55927
+   },
+   {
+    "update": 74450,
+    "segment": "4a",
+    "peace_games": 9351,
+    "selfplay_games": 3130,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.08968,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 20.7735
+   },
+   {
+    "update": 74500,
+    "segment": "4a",
+    "peace_games": 9280,
+    "selfplay_games": 3190,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.10176,
+    "late_round_step_share": 2e-05,
+    "diplomatic_actions_per_game": 20.08093
+   },
+   {
+    "update": 74550,
+    "segment": "4a",
+    "peace_games": 9123,
+    "selfplay_games": 3134,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.11135,
+    "late_round_step_share": 5e-05,
+    "diplomatic_actions_per_game": 20.325
+   },
+   {
+    "update": 74600,
+    "segment": "4a",
+    "peace_games": 9432,
+    "selfplay_games": 3294,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.12118,
+    "late_round_step_share": 0.00014,
+    "diplomatic_actions_per_game": 19.22063
+   },
+   {
+    "update": 74650,
+    "segment": "4a",
+    "peace_games": 8476,
+    "selfplay_games": 3295,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.1299,
+    "late_round_step_share": 0.00018,
+    "diplomatic_actions_per_game": 22.0374
+   },
+   {
+    "update": 74700,
+    "segment": "4a",
+    "peace_games": 8915,
+    "selfplay_games": 3339,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.13806,
+    "late_round_step_share": 0.00036,
+    "diplomatic_actions_per_game": 20.65653
+   },
+   {
+    "update": 74750,
+    "segment": "4a",
+    "peace_games": 9189,
+    "selfplay_games": 3395,
+    "selfplay_capped": 0.0,
+    "capped": 0.00011,
+    "at_peace_step_share": 0.14989,
+    "late_round_step_share": 0.00097,
+    "diplomatic_actions_per_game": 19.00533
+   },
+   {
+    "update": 74800,
+    "segment": "4a",
+    "peace_games": 8672,
+    "selfplay_games": 3038,
+    "selfplay_capped": 0.0,
+    "capped": 0.00035,
+    "at_peace_step_share": 0.15825,
+    "late_round_step_share": 0.00225,
+    "diplomatic_actions_per_game": 19.63203
+   },
+   {
+    "update": 74850,
+    "segment": "4a",
+    "peace_games": 8415,
+    "selfplay_games": 2510,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.16565,
+    "late_round_step_share": 0.00432,
+    "diplomatic_actions_per_game": 19.91919
+   },
+   {
+    "update": 74900,
+    "segment": "4a",
+    "peace_games": 8542,
+    "selfplay_games": 2500,
+    "selfplay_capped": 0.0224,
+    "capped": 0.01943,
+    "at_peace_step_share": 0.17196,
+    "late_round_step_share": 0.00701,
+    "diplomatic_actions_per_game": 19.2661
+   },
+   {
+    "update": 74950,
+    "segment": "4a",
+    "peace_games": 9455,
+    "selfplay_games": 2914,
+    "selfplay_capped": 0.03535,
+    "capped": 0.03088,
+    "at_peace_step_share": 0.17143,
+    "late_round_step_share": 0.00469,
+    "diplomatic_actions_per_game": 16.66441
+   },
+   {
+    "update": 75000,
+    "segment": "4a",
+    "peace_games": 8445,
+    "selfplay_games": 2650,
+    "selfplay_capped": 0.00755,
+    "capped": 0.01089,
+    "at_peace_step_share": 0.17485,
+    "late_round_step_share": 0.00555,
+    "diplomatic_actions_per_game": 18.76862
+   },
+   {
+    "update": 75050,
+    "segment": "4a",
+    "peace_games": 8808,
+    "selfplay_games": 2683,
+    "selfplay_capped": 0.0246,
+    "capped": 0.01873,
+    "at_peace_step_share": 0.17618,
+    "late_round_step_share": 0.00585,
+    "diplomatic_actions_per_game": 17.97968
+   },
+   {
+    "update": 75100,
+    "segment": "4a",
+    "peace_games": 8110,
+    "selfplay_games": 2592,
+    "selfplay_capped": 0.03704,
+    "capped": 0.0254,
+    "at_peace_step_share": 0.18021,
+    "late_round_step_share": 0.00656,
+    "diplomatic_actions_per_game": 19.46449
+   },
+   {
+    "update": 75150,
+    "segment": "4a",
+    "peace_games": 8517,
+    "selfplay_games": 2642,
+    "selfplay_capped": 0.04315,
+    "capped": 0.02266,
+    "at_peace_step_share": 0.18268,
+    "late_round_step_share": 0.00717,
+    "diplomatic_actions_per_game": 18.22437
+   },
+   {
+    "update": 75200,
+    "segment": "4a",
+    "peace_games": 8603,
+    "selfplay_games": 2896,
+    "selfplay_capped": 0.04523,
+    "capped": 0.02615,
+    "at_peace_step_share": 0.18507,
+    "late_round_step_share": 0.00786,
+    "diplomatic_actions_per_game": 17.54063
+   },
+   {
+    "update": 75250,
+    "segment": "4a",
+    "peace_games": 8570,
+    "selfplay_games": 2836,
+    "selfplay_capped": 0.05148,
+    "capped": 0.02835,
+    "at_peace_step_share": 0.18574,
+    "late_round_step_share": 0.00899,
+    "diplomatic_actions_per_game": 17.47818
+   },
+   {
+    "update": 75300,
+    "segment": "4a",
+    "peace_games": 9048,
+    "selfplay_games": 3189,
+    "selfplay_capped": 0.0508,
+    "capped": 0.02896,
+    "at_peace_step_share": 0.18798,
+    "late_round_step_share": 0.00965,
+    "diplomatic_actions_per_game": 16.23795
+   },
+   {
+    "update": 75350,
+    "segment": "4a",
+    "peace_games": 8263,
+    "selfplay_games": 2750,
+    "selfplay_capped": 0.06764,
+    "capped": 0.03352,
+    "at_peace_step_share": 0.18641,
+    "late_round_step_share": 0.01067,
+    "diplomatic_actions_per_game": 17.83432
+   },
+   {
+    "update": 75400,
+    "segment": "4a",
+    "peace_games": 8193,
+    "selfplay_games": 2685,
+    "selfplay_capped": 0.07747,
+    "capped": 0.03576,
+    "at_peace_step_share": 0.18568,
+    "late_round_step_share": 0.01165,
+    "diplomatic_actions_per_game": 17.64018
+   },
+   {
+    "update": 75450,
+    "segment": "4a",
+    "peace_games": 8190,
+    "selfplay_games": 2701,
+    "selfplay_capped": 0.07775,
+    "capped": 0.03822,
+    "at_peace_step_share": 0.18658,
+    "late_round_step_share": 0.0121,
+    "diplomatic_actions_per_game": 17.74396
+   },
+   {
+    "update": 75500,
+    "segment": "4a",
+    "peace_games": 8520,
+    "selfplay_games": 2995,
+    "selfplay_capped": 0.07179,
+    "capped": 0.03404,
+    "at_peace_step_share": 0.18586,
+    "late_round_step_share": 0.01211,
+    "diplomatic_actions_per_game": 16.98826
+   },
+   {
+    "update": 75550,
+    "segment": "4a",
+    "peace_games": 8602,
+    "selfplay_games": 3030,
+    "selfplay_capped": 0.07624,
+    "capped": 0.03836,
+    "at_peace_step_share": 0.18458,
+    "late_round_step_share": 0.01113,
+    "diplomatic_actions_per_game": 16.6273
+   },
+   {
+    "update": 75600,
+    "segment": "4a",
+    "peace_games": 7842,
+    "selfplay_games": 2656,
+    "selfplay_capped": 0.08509,
+    "capped": 0.03902,
+    "at_peace_step_share": 0.18508,
+    "late_round_step_share": 0.01023,
+    "diplomatic_actions_per_game": 18.96302
+   },
+   {
+    "update": 75650,
+    "segment": "4a",
+    "peace_games": 8802,
+    "selfplay_games": 3011,
+    "selfplay_capped": 0.07672,
+    "capped": 0.03499,
+    "at_peace_step_share": 0.18542,
+    "late_round_step_share": 0.00946,
+    "diplomatic_actions_per_game": 16.74301
+   },
+   {
+    "update": 75700,
+    "segment": "4a",
+    "peace_games": 8292,
+    "selfplay_games": 2743,
+    "selfplay_capped": 0.05651,
+    "capped": 0.02762,
+    "at_peace_step_share": 0.18724,
+    "late_round_step_share": 0.00967,
+    "diplomatic_actions_per_game": 17.6821
+   },
+   {
+    "update": 75750,
+    "segment": "4a",
+    "peace_games": 8142,
+    "selfplay_games": 2480,
+    "selfplay_capped": 0.06532,
+    "capped": 0.02923,
+    "at_peace_step_share": 0.18878,
+    "late_round_step_share": 0.00949,
+    "diplomatic_actions_per_game": 18.48723
+   },
+   {
+    "update": 75800,
+    "segment": "4a",
+    "peace_games": 8992,
+    "selfplay_games": 2843,
+    "selfplay_capped": 0.06753,
+    "capped": 0.02914,
+    "at_peace_step_share": 0.18991,
+    "late_round_step_share": 0.01,
+    "diplomatic_actions_per_game": 16.09976
+   },
+   {
+    "update": 75850,
+    "segment": "4a",
+    "peace_games": 8738,
+    "selfplay_games": 2825,
+    "selfplay_capped": 0.06478,
+    "capped": 0.02976,
+    "at_peace_step_share": 0.19062,
+    "late_round_step_share": 0.01004,
+    "diplomatic_actions_per_game": 16.4065
+   },
+   {
+    "update": 75900,
+    "segment": "4a",
+    "peace_games": 8654,
+    "selfplay_games": 2757,
+    "selfplay_capped": 0.06493,
+    "capped": 0.02739,
+    "at_peace_step_share": 0.19001,
+    "late_round_step_share": 0.0104,
+    "diplomatic_actions_per_game": 16.08794
+   },
+   {
+    "update": 75950,
+    "segment": "4a",
+    "peace_games": 9028,
+    "selfplay_games": 2955,
+    "selfplay_capped": 0.06971,
+    "capped": 0.02946,
+    "at_peace_step_share": 0.19013,
+    "late_round_step_share": 0.01196,
+    "diplomatic_actions_per_game": 15.38436
+   },
+   {
+    "update": 76000,
+    "segment": "4a",
+    "peace_games": 8494,
+    "selfplay_games": 2789,
+    "selfplay_capped": 0.07673,
+    "capped": 0.0312,
+    "at_peace_step_share": 0.19077,
+    "late_round_step_share": 0.01334,
+    "diplomatic_actions_per_game": 16.65069
+   },
+   {
+    "update": 76050,
+    "segment": "4a",
+    "peace_games": 8546,
+    "selfplay_games": 2801,
+    "selfplay_capped": 0.0689,
+    "capped": 0.02996,
+    "at_peace_step_share": 0.19121,
+    "late_round_step_share": 0.01529,
+    "diplomatic_actions_per_game": 17.05792
+   },
+   {
+    "update": 76100,
+    "segment": "4a",
+    "peace_games": 8693,
+    "selfplay_games": 2941,
+    "selfplay_capped": 0.08773,
+    "capped": 0.03693,
+    "at_peace_step_share": 0.18999,
+    "late_round_step_share": 0.01613,
+    "diplomatic_actions_per_game": 16.91062
+   },
+   {
+    "update": 76150,
+    "segment": "4a",
+    "peace_games": 8686,
+    "selfplay_games": 3037,
+    "selfplay_capped": 0.07014,
+    "capped": 0.03051,
+    "at_peace_step_share": 0.18868,
+    "late_round_step_share": 0.01748,
+    "diplomatic_actions_per_game": 16.87152
+   },
+   {
+    "update": 76200,
+    "segment": "4a",
+    "peace_games": 8423,
+    "selfplay_games": 2858,
+    "selfplay_capped": 0.06333,
+    "capped": 0.02873,
+    "at_peace_step_share": 0.18828,
+    "late_round_step_share": 0.01957,
+    "diplomatic_actions_per_game": 17.89742
+   },
+   {
+    "update": 76250,
+    "segment": "4a",
+    "peace_games": 9427,
+    "selfplay_games": 3349,
+    "selfplay_capped": 0.07256,
+    "capped": 0.03151,
+    "at_peace_step_share": 0.18704,
+    "late_round_step_share": 0.02146,
+    "diplomatic_actions_per_game": 15.4067
+   },
+   {
+    "update": 76300,
+    "segment": "4a",
+    "peace_games": 8259,
+    "selfplay_games": 3039,
+    "selfplay_capped": 0.09312,
+    "capped": 0.0385,
+    "at_peace_step_share": 0.1855,
+    "late_round_step_share": 0.02293,
+    "diplomatic_actions_per_game": 17.58252
+   },
+   {
+    "update": 76400,
+    "segment": "4a",
+    "peace_games": 8789,
+    "selfplay_games": 3026,
+    "selfplay_capped": 0.09683,
+    "capped": 0.03789,
+    "at_peace_step_share": 0.17732,
+    "late_round_step_share": 0.02118,
+    "diplomatic_actions_per_game": 16.80624
+   },
+   {
+    "update": 76450,
+    "segment": "4a",
+    "peace_games": 8681,
+    "selfplay_games": 3039,
+    "selfplay_capped": 0.08128,
+    "capped": 0.03444,
+    "at_peace_step_share": 0.17577,
+    "late_round_step_share": 0.01995,
+    "diplomatic_actions_per_game": 17.21127
+   },
+   {
+    "update": 76500,
+    "segment": "4a",
+    "peace_games": 8580,
+    "selfplay_games": 3040,
+    "selfplay_capped": 0.07237,
+    "capped": 0.0296,
+    "at_peace_step_share": 0.17503,
+    "late_round_step_share": 0.0206,
+    "diplomatic_actions_per_game": 17.43345
+   },
+   {
+    "update": 76550,
+    "segment": "4a",
+    "peace_games": 8734,
+    "selfplay_games": 3032,
+    "selfplay_capped": 0.07652,
+    "capped": 0.0316,
+    "at_peace_step_share": 0.17285,
+    "late_round_step_share": 0.02104,
+    "diplomatic_actions_per_game": 16.70529
+   },
+   {
+    "update": 76600,
+    "segment": "4a",
+    "peace_games": 8316,
+    "selfplay_games": 2752,
+    "selfplay_capped": 0.0923,
+    "capped": 0.03656,
+    "at_peace_step_share": 0.17255,
+    "late_round_step_share": 0.02125,
+    "diplomatic_actions_per_game": 17.47306
+   },
+   {
+    "update": 76650,
+    "segment": "4a",
+    "peace_games": 8590,
+    "selfplay_games": 2849,
+    "selfplay_capped": 0.08003,
+    "capped": 0.03097,
+    "at_peace_step_share": 0.17414,
+    "late_round_step_share": 0.02064,
+    "diplomatic_actions_per_game": 16.82829
+   },
+   {
+    "update": 76700,
+    "segment": "4a",
+    "peace_games": 8630,
+    "selfplay_games": 2861,
+    "selfplay_capped": 0.08389,
+    "capped": 0.03326,
+    "at_peace_step_share": 0.17443,
+    "late_round_step_share": 0.0193,
+    "diplomatic_actions_per_game": 16.8073
+   },
+   {
+    "update": 76750,
+    "segment": "4a",
+    "peace_games": 8564,
+    "selfplay_games": 2814,
+    "selfplay_capped": 0.09595,
+    "capped": 0.03667,
+    "at_peace_step_share": 0.17687,
+    "late_round_step_share": 0.01805,
+    "diplomatic_actions_per_game": 16.86969
+   },
+   {
+    "update": 76800,
+    "segment": "4a",
+    "peace_games": 8283,
+    "selfplay_games": 2782,
+    "selfplay_capped": 0.07872,
+    "capped": 0.03127,
+    "at_peace_step_share": 0.17822,
+    "late_round_step_share": 0.01762,
+    "diplomatic_actions_per_game": 17.99264
+   },
+   {
+    "update": 76850,
+    "segment": "4a",
+    "peace_games": 8829,
+    "selfplay_games": 2933,
+    "selfplay_capped": 0.07876,
+    "capped": 0.03126,
+    "at_peace_step_share": 0.18113,
+    "late_round_step_share": 0.01646,
+    "diplomatic_actions_per_game": 17.14396
+   },
+   {
+    "update": 76900,
+    "segment": "4a",
+    "peace_games": 8674,
+    "selfplay_games": 3000,
+    "selfplay_capped": 0.06633,
+    "capped": 0.02767,
+    "at_peace_step_share": 0.18161,
+    "late_round_step_share": 0.01701,
+    "diplomatic_actions_per_game": 17.53459
+   },
+   {
+    "update": 76950,
+    "segment": "4a",
+    "peace_games": 8541,
+    "selfplay_games": 2985,
+    "selfplay_capped": 0.07035,
+    "capped": 0.03044,
+    "at_peace_step_share": 0.18039,
+    "late_round_step_share": 0.01706,
+    "diplomatic_actions_per_game": 17.90645
+   },
+   {
+    "update": 77000,
+    "segment": "4a",
+    "peace_games": 8509,
+    "selfplay_games": 2955,
+    "selfplay_capped": 0.07547,
+    "capped": 0.03267,
+    "at_peace_step_share": 0.18106,
+    "late_round_step_share": 0.01756,
+    "diplomatic_actions_per_game": 18.15419
+   },
+   {
+    "update": 77050,
+    "segment": "4a",
+    "peace_games": 8962,
+    "selfplay_games": 3300,
+    "selfplay_capped": 0.06455,
+    "capped": 0.02812,
+    "at_peace_step_share": 0.18281,
+    "late_round_step_share": 0.01702,
+    "diplomatic_actions_per_game": 16.78855
+   },
+   {
+    "update": 77100,
+    "segment": "4a",
+    "peace_games": 8576,
+    "selfplay_games": 3189,
+    "selfplay_capped": 0.06742,
+    "capped": 0.03125,
+    "at_peace_step_share": 0.18516,
+    "late_round_step_share": 0.01639,
+    "diplomatic_actions_per_game": 17.2205
+   },
+   {
+    "update": 77150,
+    "segment": "4a",
+    "peace_games": 8613,
+    "selfplay_games": 3129,
+    "selfplay_capped": 0.07063,
+    "capped": 0.03042,
+    "at_peace_step_share": 0.18582,
+    "late_round_step_share": 0.01554,
+    "diplomatic_actions_per_game": 17.54871
+   },
+   {
+    "update": 77200,
+    "segment": "4a",
+    "peace_games": 8552,
+    "selfplay_games": 3081,
+    "selfplay_capped": 0.07011,
+    "capped": 0.03005,
+    "at_peace_step_share": 0.18487,
+    "late_round_step_share": 0.01532,
+    "diplomatic_actions_per_game": 17.46305
+   },
+   {
+    "update": 77250,
+    "segment": "4a",
+    "peace_games": 8367,
+    "selfplay_games": 2795,
+    "selfplay_capped": 0.06547,
+    "capped": 0.02856,
+    "at_peace_step_share": 0.18302,
+    "late_round_step_share": 0.01668,
+    "diplomatic_actions_per_game": 17.77698
+   },
+   {
+    "update": 77300,
+    "segment": "4a",
+    "peace_games": 8294,
+    "selfplay_games": 2814,
+    "selfplay_capped": 0.07854,
+    "capped": 0.03135,
+    "at_peace_step_share": 0.18116,
+    "late_round_step_share": 0.01815,
+    "diplomatic_actions_per_game": 18.10646
+   },
+   {
+    "update": 77350,
+    "segment": "4a",
+    "peace_games": 8823,
+    "selfplay_games": 2961,
+    "selfplay_capped": 0.07025,
+    "capped": 0.02992,
+    "at_peace_step_share": 0.17953,
+    "late_round_step_share": 0.01996,
+    "diplomatic_actions_per_game": 16.35396
+   },
+   {
+    "update": 77400,
+    "segment": "4a",
+    "peace_games": 8563,
+    "selfplay_games": 2896,
+    "selfplay_capped": 0.07355,
+    "capped": 0.03048,
+    "at_peace_step_share": 0.1808,
+    "late_round_step_share": 0.02187,
+    "diplomatic_actions_per_game": 17.14177
+   },
+   {
+    "update": 77450,
+    "segment": "4a",
+    "peace_games": 8956,
+    "selfplay_games": 2896,
+    "selfplay_capped": 0.07873,
+    "capped": 0.03339,
+    "at_peace_step_share": 0.18154,
+    "late_round_step_share": 0.02313,
+    "diplomatic_actions_per_game": 16.43971
+   },
+   {
+    "update": 77500,
+    "segment": "4a",
+    "peace_games": 8635,
+    "selfplay_games": 2833,
+    "selfplay_capped": 0.08683,
+    "capped": 0.03544,
+    "at_peace_step_share": 0.1813,
+    "late_round_step_share": 0.02312,
+    "diplomatic_actions_per_game": 16.98854
+   },
+   {
+    "update": 77550,
+    "segment": "4a",
+    "peace_games": 8995,
+    "selfplay_games": 3049,
+    "selfplay_capped": 0.08232,
+    "capped": 0.03335,
+    "at_peace_step_share": 0.18151,
+    "late_round_step_share": 0.02324,
+    "diplomatic_actions_per_game": 16.23669
+   },
+   {
+    "update": 77600,
+    "segment": "4a",
+    "peace_games": 8262,
+    "selfplay_games": 2708,
+    "selfplay_capped": 0.08604,
+    "capped": 0.0351,
+    "at_peace_step_share": 0.1815,
+    "late_round_step_share": 0.02368,
+    "diplomatic_actions_per_game": 17.82885
+   },
+   {
+    "update": 77650,
+    "segment": "4a",
+    "peace_games": 9136,
+    "selfplay_games": 3010,
+    "selfplay_capped": 0.08339,
+    "capped": 0.03448,
+    "at_peace_step_share": 0.17948,
+    "late_round_step_share": 0.02496,
+    "diplomatic_actions_per_game": 16.24737
+   },
+   {
+    "update": 77700,
+    "segment": "4a",
+    "peace_games": 8558,
+    "selfplay_games": 2812,
+    "selfplay_capped": 0.07432,
+    "capped": 0.03248,
+    "at_peace_step_share": 0.17814,
+    "late_round_step_share": 0.02552,
+    "diplomatic_actions_per_game": 17.1255
+   },
+   {
+    "update": 77750,
+    "segment": "4a",
+    "peace_games": 8107,
+    "selfplay_games": 2589,
+    "selfplay_capped": 0.09579,
+    "capped": 0.03873,
+    "at_peace_step_share": 0.17606,
+    "late_round_step_share": 0.02579,
+    "diplomatic_actions_per_game": 17.79623
+   },
+   {
+    "update": 77800,
+    "segment": "4a",
+    "peace_games": 7902,
+    "selfplay_games": 2449,
+    "selfplay_capped": 0.10494,
+    "capped": 0.0405,
+    "at_peace_step_share": 0.17325,
+    "late_round_step_share": 0.02434,
+    "diplomatic_actions_per_game": 18.72172
+   },
+   {
+    "update": 77850,
+    "segment": "4a",
+    "peace_games": 8054,
+    "selfplay_games": 2469,
+    "selfplay_capped": 0.08465,
+    "capped": 0.0329,
+    "at_peace_step_share": 0.17344,
+    "late_round_step_share": 0.02317,
+    "diplomatic_actions_per_game": 18.59871
+   },
+   {
+    "update": 77900,
+    "segment": "4a",
+    "peace_games": 8304,
+    "selfplay_games": 2630,
+    "selfplay_capped": 0.08555,
+    "capped": 0.03601,
+    "at_peace_step_share": 0.17734,
+    "late_round_step_share": 0.02284,
+    "diplomatic_actions_per_game": 17.70725
+   },
+   {
+    "update": 77950,
+    "segment": "4a",
+    "peace_games": 8566,
+    "selfplay_games": 2833,
+    "selfplay_capped": 0.07907,
+    "capped": 0.0342,
+    "at_peace_step_share": 0.18017,
+    "late_round_step_share": 0.02039,
+    "diplomatic_actions_per_game": 17.11931
+   },
+   {
+    "update": 78000,
+    "segment": "4a",
+    "peace_games": 9195,
+    "selfplay_games": 3000,
+    "selfplay_capped": 0.066,
+    "capped": 0.02838,
+    "at_peace_step_share": 0.18371,
+    "late_round_step_share": 0.01879,
+    "diplomatic_actions_per_game": 16.30223
+   },
+   {
+    "update": 78050,
+    "segment": "4a",
+    "peace_games": 8727,
+    "selfplay_games": 2893,
+    "selfplay_capped": 0.06775,
+    "capped": 0.03002,
+    "at_peace_step_share": 0.18407,
+    "late_round_step_share": 0.01705,
+    "diplomatic_actions_per_game": 17.17635
+   },
+   {
+    "update": 78100,
+    "segment": "4a",
+    "peace_games": 8843,
+    "selfplay_games": 2789,
+    "selfplay_capped": 0.07422,
+    "capped": 0.03121,
+    "at_peace_step_share": 0.18525,
+    "late_round_step_share": 0.01512,
+    "diplomatic_actions_per_game": 17.21497
+   },
+   {
+    "update": 78150,
+    "segment": "4a",
+    "peace_games": 8751,
+    "selfplay_games": 2757,
+    "selfplay_capped": 0.06819,
+    "capped": 0.02731,
+    "at_peace_step_share": 0.18308,
+    "late_round_step_share": 0.01363,
+    "diplomatic_actions_per_game": 17.09016
+   },
+   {
+    "update": 78200,
+    "segment": "4a",
+    "peace_games": 8460,
+    "selfplay_games": 2650,
+    "selfplay_capped": 0.06679,
+    "capped": 0.02766,
+    "at_peace_step_share": 0.18263,
+    "late_round_step_share": 0.01211,
+    "diplomatic_actions_per_game": 17.26962
+   },
+   {
+    "update": 78250,
+    "segment": "4a",
+    "peace_games": 8266,
+    "selfplay_games": 2608,
+    "selfplay_capped": 0.07132,
+    "capped": 0.03194,
+    "at_peace_step_share": 0.18422,
+    "late_round_step_share": 0.0118,
+    "diplomatic_actions_per_game": 17.47629
+   },
+   {
+    "update": 78300,
+    "segment": "4a",
+    "peace_games": 8735,
+    "selfplay_games": 2794,
+    "selfplay_capped": 0.05655,
+    "capped": 0.02347,
+    "at_peace_step_share": 0.18818,
+    "late_round_step_share": 0.01261,
+    "diplomatic_actions_per_game": 16.51162
+   },
+   {
+    "update": 78350,
+    "segment": "4a",
+    "peace_games": 8702,
+    "selfplay_games": 2828,
+    "selfplay_capped": 0.07037,
+    "capped": 0.02988,
+    "at_peace_step_share": 0.19034,
+    "late_round_step_share": 0.01289,
+    "diplomatic_actions_per_game": 16.68088
+   },
+   {
+    "update": 78400,
+    "segment": "4a",
+    "peace_games": 8403,
+    "selfplay_games": 2796,
+    "selfplay_capped": 0.07439,
+    "capped": 0.03249,
+    "at_peace_step_share": 0.19106,
+    "late_round_step_share": 0.01239,
+    "diplomatic_actions_per_game": 17.51779
+   },
+   {
+    "update": 78450,
+    "segment": "4a",
+    "peace_games": 8785,
+    "selfplay_games": 3006,
+    "selfplay_capped": 0.08084,
+    "capped": 0.03438,
+    "at_peace_step_share": 0.18917,
+    "late_round_step_share": 0.0115,
+    "diplomatic_actions_per_game": 16.72681
+   },
+   {
+    "update": 78500,
+    "segment": "4a",
+    "peace_games": 8553,
+    "selfplay_games": 2929,
+    "selfplay_capped": 0.08126,
+    "capped": 0.03718,
+    "at_peace_step_share": 0.18899,
+    "late_round_step_share": 0.01036,
+    "diplomatic_actions_per_game": 16.88694
+   },
+   {
+    "update": 78550,
+    "segment": "4a",
+    "peace_games": 8593,
+    "selfplay_games": 3083,
+    "selfplay_capped": 0.06812,
+    "capped": 0.03107,
+    "at_peace_step_share": 0.18898,
+    "late_round_step_share": 0.01006,
+    "diplomatic_actions_per_game": 17.47213
+   },
+   {
+    "update": 78600,
+    "segment": "4a",
+    "peace_games": 8832,
+    "selfplay_games": 3135,
+    "selfplay_capped": 0.0689,
+    "capped": 0.03148,
+    "at_peace_step_share": 0.18856,
+    "late_round_step_share": 0.01023,
+    "diplomatic_actions_per_game": 16.83322
+   },
+   {
+    "update": 78650,
+    "segment": "4a",
+    "peace_games": 8465,
+    "selfplay_games": 2947,
+    "selfplay_capped": 0.0716,
+    "capped": 0.03237,
+    "at_peace_step_share": 0.18663,
+    "late_round_step_share": 0.01048,
+    "diplomatic_actions_per_game": 17.51707
+   },
+   {
+    "update": 78700,
+    "segment": "4a",
+    "peace_games": 8562,
+    "selfplay_games": 2927,
+    "selfplay_capped": 0.08029,
+    "capped": 0.03609,
+    "at_peace_step_share": 0.18378,
+    "late_round_step_share": 0.01159,
+    "diplomatic_actions_per_game": 17.56949
+   },
+   {
+    "update": 78750,
+    "segment": "4a",
+    "peace_games": 9108,
+    "selfplay_games": 3151,
+    "selfplay_capped": 0.08188,
+    "capped": 0.0348,
+    "at_peace_step_share": 0.18225,
+    "late_round_step_share": 0.01206,
+    "diplomatic_actions_per_game": 16.21651
+   },
+   {
+    "update": 78800,
+    "segment": "4a",
+    "peace_games": 9102,
+    "selfplay_games": 3194,
+    "selfplay_capped": 0.08015,
+    "capped": 0.0345,
+    "at_peace_step_share": 0.17994,
+    "late_round_step_share": 0.01227,
+    "diplomatic_actions_per_game": 16.39574
+   },
+   {
+    "update": 78850,
+    "segment": "4a",
+    "peace_games": 8741,
+    "selfplay_games": 2982,
+    "selfplay_capped": 0.07076,
+    "capped": 0.03112,
+    "at_peace_step_share": 0.17654,
+    "late_round_step_share": 0.01413,
+    "diplomatic_actions_per_game": 17.39229
+   },
+   {
+    "update": 78900,
+    "segment": "4a",
+    "peace_games": 8506,
+    "selfplay_games": 2782,
+    "selfplay_capped": 0.08339,
+    "capped": 0.03539,
+    "at_peace_step_share": 0.17356,
+    "late_round_step_share": 0.01524,
+    "diplomatic_actions_per_game": 17.53409
+   },
+   {
+    "update": 78950,
+    "segment": "4a",
+    "peace_games": 8940,
+    "selfplay_games": 2900,
+    "selfplay_capped": 0.07345,
+    "capped": 0.02987,
+    "at_peace_step_share": 0.17294,
+    "late_round_step_share": 0.01626,
+    "diplomatic_actions_per_game": 16.79206
+   },
+   {
+    "update": 79000,
+    "segment": "4a",
+    "peace_games": 9499,
+    "selfplay_games": 3114,
+    "selfplay_capped": 0.06583,
+    "capped": 0.02885,
+    "at_peace_step_share": 0.17274,
+    "late_round_step_share": 0.01729,
+    "diplomatic_actions_per_game": 15.14623
+   },
+   {
+    "update": 79050,
+    "segment": "4a",
+    "peace_games": 8948,
+    "selfplay_games": 2912,
+    "selfplay_capped": 0.07761,
+    "capped": 0.03319,
+    "at_peace_step_share": 0.1726,
+    "late_round_step_share": 0.01712,
+    "diplomatic_actions_per_game": 16.09555
+   },
+   {
+    "update": 79100,
+    "segment": "4a",
+    "peace_games": 8709,
+    "selfplay_games": 2705,
+    "selfplay_capped": 0.08503,
+    "capped": 0.03422,
+    "at_peace_step_share": 0.17132,
+    "late_round_step_share": 0.01668,
+    "diplomatic_actions_per_game": 16.86382
+   },
+   {
+    "update": 79150,
+    "segment": "4a",
+    "peace_games": 8812,
+    "selfplay_games": 2900,
+    "selfplay_capped": 0.08172,
+    "capped": 0.03314,
+    "at_peace_step_share": 0.16982,
+    "late_round_step_share": 0.01638,
+    "diplomatic_actions_per_game": 16.55197
+   },
+   {
+    "update": 79250,
+    "segment": "4b-i",
+    "peace_games": 16250,
+    "selfplay_games": 1039,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.03244,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 14.06628
+   },
+   {
+    "update": 79300,
+    "segment": "4b-i",
+    "peace_games": 18365,
+    "selfplay_games": 2206,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.04603,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 12.0128
+   },
+   {
+    "update": 79500,
+    "segment": "4b-ii",
+    "peace_games": 11623,
+    "selfplay_games": 1714,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.03482,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 27.0407
+   },
+   {
+    "update": 79550,
+    "segment": "4b-ii",
+    "peace_games": 17173,
+    "selfplay_games": 4586,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.04883,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.73255
+   },
+   {
+    "update": 79600,
+    "segment": "4b-ii",
+    "peace_games": 16107,
+    "selfplay_games": 4616,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.06458,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.45136
+   },
+   {
+    "update": 79650,
+    "segment": "4b-ii",
+    "peace_games": 14906,
+    "selfplay_games": 3519,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.08214,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 18.50973
+   },
+   {
+    "update": 79700,
+    "segment": "4b-ii",
+    "peace_games": 14639,
+    "selfplay_games": 3741,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.10127,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 18.31088
+   },
+   {
+    "update": 79750,
+    "segment": "4b-ii",
+    "peace_games": 15111,
+    "selfplay_games": 3720,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.11717,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 17.47594
+   },
+   {
+    "update": 79800,
+    "segment": "4b-ii",
+    "peace_games": 15204,
+    "selfplay_games": 4297,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.1316,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.88431
+   },
+   {
+    "update": 79850,
+    "segment": "4b-ii",
+    "peace_games": 15312,
+    "selfplay_games": 3844,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.14386,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.31936
+   },
+   {
+    "update": 79900,
+    "segment": "4b-ii",
+    "peace_games": 14438,
+    "selfplay_games": 3813,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.15504,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.78148
+   },
+   {
+    "update": 79950,
+    "segment": "4b-ii",
+    "peace_games": 13847,
+    "selfplay_games": 3628,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.16539,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.67206
+   },
+   {
+    "update": 80000,
+    "segment": "4b-ii",
+    "peace_games": 13903,
+    "selfplay_games": 3489,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.17546,
+    "late_round_step_share": 0.0,
+    "diplomatic_actions_per_game": 16.37366
+   },
+   {
+    "update": 80050,
+    "segment": "4b-ii",
+    "peace_games": 13178,
+    "selfplay_games": 3696,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.18643,
+    "late_round_step_share": 2e-05,
+    "diplomatic_actions_per_game": 17.76901
+   },
+   {
+    "update": 80100,
+    "segment": "4b-ii",
+    "peace_games": 12168,
+    "selfplay_games": 3696,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.19594,
+    "late_round_step_share": 0.00011,
+    "diplomatic_actions_per_game": 20.02211
+   },
+   {
+    "update": 80150,
+    "segment": "4b-ii",
+    "peace_games": 12180,
+    "selfplay_games": 4109,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.20564,
+    "late_round_step_share": 0.00032,
+    "diplomatic_actions_per_game": 20.39721
+   },
+   {
+    "update": 80200,
+    "segment": "4b-ii",
+    "peace_games": 11673,
+    "selfplay_games": 4325,
+    "selfplay_capped": 0.0,
+    "capped": 0.0,
+    "at_peace_step_share": 0.21466,
+    "late_round_step_share": 0.00087,
+    "diplomatic_actions_per_game": 21.25323
+   },
+   {
+    "update": 80250,
+    "segment": "4b-ii",
+    "peace_games": 11786,
+    "selfplay_games": 4343,
+    "selfplay_capped": 0.0,
+    "capped": 8e-05,
+    "at_peace_step_share": 0.22201,
+    "late_round_step_share": 0.00224,
+    "diplomatic_actions_per_game": 21.29433
+   },
+   {
+    "update": 80300,
+    "segment": "4b-ii",
+    "peace_games": 12444,
+    "selfplay_games": 4898,
+    "selfplay_capped": 0.0,
+    "capped": 8e-05,
+    "at_peace_step_share": 0.23022,
+    "late_round_step_share": 0.00576,
+    "diplomatic_actions_per_game": 19.92261
+   },
+   {
+    "update": 80350,
+    "segment": "4b-ii",
+    "peace_games": 11740,
+    "selfplay_games": 4809,
+    "selfplay_capped": 0.0,
+    "capped": 0.00017,
+    "at_peace_step_share": 0.2345,
+    "late_round_step_share": 0.01263,
+    "diplomatic_actions_per_game": 20.87445
+   },
+   {
+    "update": 80400,
+    "segment": "4b-ii",
+    "peace_games": 13751,
+    "selfplay_games": 6254,
+    "selfplay_capped": 0.24864,
+    "capped": 0.13999,
+    "at_peace_step_share": 0.2248,
+    "late_round_step_share": 0.0136,
+    "diplomatic_actions_per_game": 17.59385
+   },
+   {
+    "update": 80450,
+    "segment": "4b-ii",
+    "peace_games": 12264,
+    "selfplay_games": 5030,
+    "selfplay_capped": 0.09423,
+    "capped": 0.04754,
+    "at_peace_step_share": 0.2073,
+    "late_round_step_share": 0.00806,
+    "diplomatic_actions_per_game": 19.76288
+   },
+   {
+    "update": 80500,
+    "segment": "4b-ii",
+    "peace_games": 12942,
+    "selfplay_games": 5062,
+    "selfplay_capped": 0.05907,
+    "capped": 0.03122,
+    "at_peace_step_share": 0.21299,
+    "late_round_step_share": 0.01667,
+    "diplomatic_actions_per_game": 18.61567
+   },
+   {
+    "update": 80550,
+    "segment": "4b-ii",
+    "peace_games": 13144,
+    "selfplay_games": 5264,
+    "selfplay_capped": 0.11512,
+    "capped": 0.0563,
+    "at_peace_step_share": 0.21152,
+    "late_round_step_share": 0.02713,
+    "diplomatic_actions_per_game": 17.62759
+   },
+   {
+    "update": 80600,
+    "segment": "4b-ii",
+    "peace_games": 13005,
+    "selfplay_games": 4779,
+    "selfplay_capped": 0.1266,
+    "capped": 0.05629,
+    "at_peace_step_share": 0.20475,
+    "late_round_step_share": 0.03324,
+    "diplomatic_actions_per_game": 17.87236
+   },
+   {
+    "update": 80650,
+    "segment": "4b-ii",
+    "peace_games": 13525,
+    "selfplay_games": 4813,
+    "selfplay_capped": 0.09578,
+    "capped": 0.04377,
+    "at_peace_step_share": 0.20122,
+    "late_round_step_share": 0.0363,
+    "diplomatic_actions_per_game": 16.7268
+   },
+   {
+    "update": 80700,
+    "segment": "4b-ii",
+    "peace_games": 12519,
+    "selfplay_games": 4583,
+    "selfplay_capped": 0.10059,
+    "capped": 0.04769,
+    "at_peace_step_share": 0.19724,
+    "late_round_step_share": 0.03754,
+    "diplomatic_actions_per_game": 18.15233
+   },
+   {
+    "update": 80750,
+    "segment": "4b-ii",
+    "peace_games": 13158,
+    "selfplay_games": 4496,
+    "selfplay_capped": 0.09809,
+    "capped": 0.04241,
+    "at_peace_step_share": 0.19338,
+    "late_round_step_share": 0.03931,
+    "diplomatic_actions_per_game": 17.7204
+   },
+   {
+    "update": 80800,
+    "segment": "4b-ii",
+    "peace_games": 13157,
+    "selfplay_games": 4779,
+    "selfplay_capped": 0.09751,
+    "capped": 0.04659,
+    "at_peace_step_share": 0.19037,
+    "late_round_step_share": 0.04053,
+    "diplomatic_actions_per_game": 17.27917
+   },
+   {
+    "update": 80850,
+    "segment": "4b-ii",
+    "peace_games": 14234,
+    "selfplay_games": 5036,
+    "selfplay_capped": 0.09392,
+    "capped": 0.04019,
+    "at_peace_step_share": 0.18578,
+    "late_round_step_share": 0.04107,
+    "diplomatic_actions_per_game": 16.21357
+   },
+   {
+    "update": 80900,
+    "segment": "4b-ii",
+    "peace_games": 13486,
+    "selfplay_games": 4644,
+    "selfplay_capped": 0.09324,
+    "capped": 0.04041,
+    "at_peace_step_share": 0.18324,
+    "late_round_step_share": 0.04293,
+    "diplomatic_actions_per_game": 17.33702
+   },
+   {
+    "update": 80950,
+    "segment": "4b-ii",
+    "peace_games": 13178,
+    "selfplay_games": 4549,
+    "selfplay_capped": 0.09167,
+    "capped": 0.03999,
+    "at_peace_step_share": 0.18126,
+    "late_round_step_share": 0.04382,
+    "diplomatic_actions_per_game": 18.16831
+   },
+   {
+    "update": 81000,
+    "segment": "4b-ii",
+    "peace_games": 13922,
+    "selfplay_games": 4770,
+    "selfplay_capped": 0.09476,
+    "capped": 0.039,
+    "at_peace_step_share": 0.1772,
+    "late_round_step_share": 0.04381,
+    "diplomatic_actions_per_game": 17.10379
+   },
+   {
+    "update": 81050,
+    "segment": "4b-ii",
+    "peace_games": 13224,
+    "selfplay_games": 4695,
+    "selfplay_capped": 0.10714,
+    "capped": 0.04409,
+    "at_peace_step_share": 0.17416,
+    "late_round_step_share": 0.04088,
+    "diplomatic_actions_per_game": 18.42861
+   },
+   {
+    "update": 81100,
+    "segment": "4b-ii",
+    "peace_games": 12215,
+    "selfplay_games": 4341,
+    "selfplay_capped": 0.11449,
+    "capped": 0.04445,
+    "at_peace_step_share": 0.17392,
+    "late_round_step_share": 0.039,
+    "diplomatic_actions_per_game": 20.54752
+   },
+   {
+    "update": 81150,
+    "segment": "4b-ii",
+    "peace_games": 14146,
+    "selfplay_games": 5136,
+    "selfplay_capped": 0.0919,
+    "capped": 0.03626,
+    "at_peace_step_share": 0.17342,
+    "late_round_step_share": 0.03782,
+    "diplomatic_actions_per_game": 17.56023
+   },
+   {
+    "update": 81200,
+    "segment": "4b-ii",
+    "peace_games": 12321,
+    "selfplay_games": 4564,
+    "selfplay_capped": 0.10933,
+    "capped": 0.04423,
+    "at_peace_step_share": 0.17137,
+    "late_round_step_share": 0.03938,
+    "diplomatic_actions_per_game": 20.4313
+   },
+   {
+    "update": 81250,
+    "segment": "4b-ii",
+    "peace_games": 14451,
+    "selfplay_games": 5246,
+    "selfplay_capped": 0.09798,
+    "capped": 0.0391,
+    "at_peace_step_share": 0.16456,
+    "late_round_step_share": 0.04373,
+    "diplomatic_actions_per_game": 16.99668
+   },
+   {
+    "update": 81300,
+    "segment": "4b-ii",
+    "peace_games": 12262,
+    "selfplay_games": 4456,
+    "selfplay_capped": 0.1048,
+    "capped": 0.04233,
+    "at_peace_step_share": 0.15984,
+    "late_round_step_share": 0.04569,
+    "diplomatic_actions_per_game": 20.13114
+   },
+   {
+    "update": 81350,
+    "segment": "4b-ii",
+    "peace_games": 13840,
+    "selfplay_games": 4854,
+    "selfplay_capped": 0.09023,
+    "capped": 0.03526,
+    "at_peace_step_share": 0.15685,
+    "late_round_step_share": 0.04566,
+    "diplomatic_actions_per_game": 17.68064
+   },
+   {
+    "update": 81400,
+    "segment": "4b-ii",
+    "peace_games": 13555,
+    "selfplay_games": 4924,
+    "selfplay_capped": 0.08712,
+    "capped": 0.03563,
+    "at_peace_step_share": 0.1539,
+    "late_round_step_share": 0.04473,
+    "diplomatic_actions_per_game": 17.69495
+   },
+   {
+    "update": 81450,
+    "segment": "4b-ii",
+    "peace_games": 12878,
+    "selfplay_games": 4555,
+    "selfplay_capped": 0.10165,
+    "capped": 0.04007,
+    "at_peace_step_share": 0.15093,
+    "late_round_step_share": 0.04276,
+    "diplomatic_actions_per_game": 18.9232
+   },
+   {
+    "update": 81500,
+    "segment": "4b-ii",
+    "peace_games": 13520,
+    "selfplay_games": 4497,
+    "selfplay_capped": 0.09873,
+    "capped": 0.03735,
+    "at_peace_step_share": 0.14657,
+    "late_round_step_share": 0.03994,
+    "diplomatic_actions_per_game": 18.49334
+   },
+   {
+    "update": 81550,
+    "segment": "4b-ii",
+    "peace_games": 14040,
+    "selfplay_games": 5008,
+    "selfplay_capped": 0.08486,
+    "capped": 0.03447,
+    "at_peace_step_share": 0.14336,
+    "late_round_step_share": 0.03784,
+    "diplomatic_actions_per_game": 17.86026
+   },
+   {
+    "update": 81600,
+    "segment": "4b-ii",
+    "peace_games": 14216,
+    "selfplay_games": 5020,
+    "selfplay_capped": 0.07649,
+    "capped": 0.03018,
+    "at_peace_step_share": 0.14264,
+    "late_round_step_share": 0.03656,
+    "diplomatic_actions_per_game": 17.73811
+   },
+   {
+    "update": 81650,
+    "segment": "4b-ii",
+    "peace_games": 13294,
+    "selfplay_games": 4417,
+    "selfplay_capped": 0.08128,
+    "capped": 0.03069,
+    "at_peace_step_share": 0.13942,
+    "late_round_step_share": 0.03517,
+    "diplomatic_actions_per_game": 19.25989
+   },
+   {
+    "update": 81700,
+    "segment": "4b-ii",
+    "peace_games": 13784,
+    "selfplay_games": 4659,
+    "selfplay_capped": 0.05988,
+    "capped": 0.0238,
+    "at_peace_step_share": 0.13845,
+    "late_round_step_share": 0.03405,
+    "diplomatic_actions_per_game": 18.27496
+   },
+   {
+    "update": 81750,
+    "segment": "4b-ii",
+    "peace_games": 14710,
+    "selfplay_games": 5042,
+    "selfplay_capped": 0.05851,
+    "capped": 0.02345,
+    "at_peace_step_share": 0.13867,
+    "late_round_step_share": 0.03386,
+    "diplomatic_actions_per_game": 17.04602
+   },
+   {
+    "update": 81800,
+    "segment": "4b-ii",
+    "peace_games": 13581,
+    "selfplay_games": 4776,
+    "selfplay_capped": 0.07915,
+    "capped": 0.031,
+    "at_peace_step_share": 0.13867,
+    "late_round_step_share": 0.03244,
+    "diplomatic_actions_per_game": 18.62072
+   },
+   {
+    "update": 81850,
+    "segment": "4b-ii",
+    "peace_games": 13980,
+    "selfplay_games": 4592,
+    "selfplay_capped": 0.08776,
+    "capped": 0.03326,
+    "at_peace_step_share": 0.13723,
+    "late_round_step_share": 0.03107,
+    "diplomatic_actions_per_game": 18.46116
+   },
+   {
+    "update": 81900,
+    "segment": "4b-ii",
+    "peace_games": 13945,
+    "selfplay_games": 4665,
+    "selfplay_capped": 0.07996,
+    "capped": 0.03012,
+    "at_peace_step_share": 0.13529,
+    "late_round_step_share": 0.02947,
+    "diplomatic_actions_per_game": 18.45314
+   },
+   {
+    "update": 81950,
+    "segment": "4b-ii",
+    "peace_games": 13956,
+    "selfplay_games": 4583,
+    "selfplay_capped": 0.07244,
+    "capped": 0.02744,
+    "at_peace_step_share": 0.13523,
+    "late_round_step_share": 0.02744,
+    "diplomatic_actions_per_game": 18.38277
+   },
+   {
+    "update": 82000,
+    "segment": "4b-ii",
+    "peace_games": 14384,
+    "selfplay_games": 4705,
+    "selfplay_capped": 0.06334,
+    "capped": 0.02343,
+    "at_peace_step_share": 0.13424,
+    "late_round_step_share": 0.02597,
+    "diplomatic_actions_per_game": 17.40983
+   },
+   {
+    "update": 82050,
+    "segment": "4b-ii",
+    "peace_games": 14275,
+    "selfplay_games": 4817,
+    "selfplay_capped": 0.05626,
+    "capped": 0.02291,
+    "at_peace_step_share": 0.13292,
+    "late_round_step_share": 0.02453,
+    "diplomatic_actions_per_game": 17.58032
+   },
+   {
+    "update": 82100,
+    "segment": "4b-ii",
+    "peace_games": 14376,
+    "selfplay_games": 4864,
+    "selfplay_capped": 0.05592,
+    "capped": 0.02233,
+    "at_peace_step_share": 0.13329,
+    "late_round_step_share": 0.02393,
+    "diplomatic_actions_per_game": 17.36568
+   },
+   {
+    "update": 82150,
+    "segment": "4b-ii",
+    "peace_games": 14530,
+    "selfplay_games": 4894,
+    "selfplay_capped": 0.05946,
+    "capped": 0.0234,
+    "at_peace_step_share": 0.13197,
+    "late_round_step_share": 0.02315,
+    "diplomatic_actions_per_game": 17.27213
+   },
+   {
+    "update": 82200,
+    "segment": "4b-ii",
+    "peace_games": 14048,
+    "selfplay_games": 4739,
+    "selfplay_capped": 0.05465,
+    "capped": 0.02185,
+    "at_peace_step_share": 0.13108,
+    "late_round_step_share": 0.02246,
+    "diplomatic_actions_per_game": 17.93679
+   },
+   {
+    "update": 82250,
+    "segment": "4b-ii",
+    "peace_games": 13561,
+    "selfplay_games": 4510,
+    "selfplay_capped": 0.05233,
+    "capped": 0.02138,
+    "at_peace_step_share": 0.1302,
+    "late_round_step_share": 0.02241,
+    "diplomatic_actions_per_game": 18.83711
+   },
+   {
+    "update": 82300,
+    "segment": "4b-ii",
+    "peace_games": 14171,
+    "selfplay_games": 4938,
+    "selfplay_capped": 0.05569,
+    "capped": 0.02286,
+    "at_peace_step_share": 0.12926,
+    "late_round_step_share": 0.02319,
+    "diplomatic_actions_per_game": 18.43201
+   },
+   {
+    "update": 82350,
+    "segment": "4b-ii",
+    "peace_games": 14017,
+    "selfplay_games": 4798,
+    "selfplay_capped": 0.05732,
+    "capped": 0.02504,
+    "at_peace_step_share": 0.12764,
+    "late_round_step_share": 0.02329,
+    "diplomatic_actions_per_game": 18.47036
+   },
+   {
+    "update": 82400,
+    "segment": "4b-ii",
+    "peace_games": 15051,
+    "selfplay_games": 5236,
+    "selfplay_capped": 0.05157,
+    "capped": 0.02153,
+    "at_peace_step_share": 0.12638,
+    "late_round_step_share": 0.02414,
+    "diplomatic_actions_per_game": 16.65052
+   },
+   {
+    "update": 82450,
+    "segment": "4b-ii",
+    "peace_games": 13684,
+    "selfplay_games": 4768,
+    "selfplay_capped": 0.05411,
+    "capped": 0.02251,
+    "at_peace_step_share": 0.1269,
+    "late_round_step_share": 0.02559,
+    "diplomatic_actions_per_game": 18.47844
+   },
+   {
+    "update": 82500,
+    "segment": "4b-ii",
+    "peace_games": 13995,
+    "selfplay_games": 4696,
+    "selfplay_capped": 0.0641,
+    "capped": 0.02458,
+    "at_peace_step_share": 0.12556,
+    "late_round_step_share": 0.02699,
+    "diplomatic_actions_per_game": 18.29018
+   },
+   {
+    "update": 82550,
+    "segment": "4b-ii",
+    "peace_games": 14536,
+    "selfplay_games": 5095,
+    "selfplay_capped": 0.06065,
+    "capped": 0.02442,
+    "at_peace_step_share": 0.12336,
+    "late_round_step_share": 0.02747,
+    "diplomatic_actions_per_game": 17.44263
+   },
+   {
+    "update": 82600,
+    "segment": "4b-ii",
+    "peace_games": 13814,
+    "selfplay_games": 4889,
+    "selfplay_capped": 0.06259,
+    "capped": 0.02483,
+    "at_peace_step_share": 0.12293,
+    "late_round_step_share": 0.02828,
+    "diplomatic_actions_per_game": 18.25547
+   },
+   {
+    "update": 82650,
+    "segment": "4b-ii",
+    "peace_games": 14662,
+    "selfplay_games": 5158,
+    "selfplay_capped": 0.05739,
+    "capped": 0.02367,
+    "at_peace_step_share": 0.12314,
+    "late_round_step_share": 0.02868,
+    "diplomatic_actions_per_game": 17.32137
+   },
+   {
+    "update": 82700,
+    "segment": "4b-ii",
+    "peace_games": 14332,
+    "selfplay_games": 5111,
+    "selfplay_capped": 0.063,
+    "capped": 0.02658,
+    "at_peace_step_share": 0.12031,
+    "late_round_step_share": 0.02733,
+    "diplomatic_actions_per_game": 17.81426
+   },
+   {
+    "update": 82750,
+    "segment": "4b-ii",
+    "peace_games": 13454,
+    "selfplay_games": 4722,
+    "selfplay_capped": 0.06374,
+    "capped": 0.0272,
+    "at_peace_step_share": 0.11878,
+    "late_round_step_share": 0.02636,
+    "diplomatic_actions_per_game": 19.30994
+   },
+   {
+    "update": 82800,
+    "segment": "4b-ii",
+    "peace_games": 14562,
+    "selfplay_games": 5237,
+    "selfplay_capped": 0.059,
+    "capped": 0.02465,
+    "at_peace_step_share": 0.1162,
+    "late_round_step_share": 0.02512,
+    "diplomatic_actions_per_game": 18.03571
+   },
+   {
+    "update": 82850,
+    "segment": "4b-ii",
+    "peace_games": 14093,
+    "selfplay_games": 5092,
+    "selfplay_capped": 0.05145,
+    "capped": 0.02115,
+    "at_peace_step_share": 0.11371,
+    "late_round_step_share": 0.02494,
+    "diplomatic_actions_per_game": 18.37955
+   },
+   {
+    "update": 82900,
+    "segment": "4b-ii",
+    "peace_games": 14975,
+    "selfplay_games": 5425,
+    "selfplay_capped": 0.04387,
+    "capped": 0.0189,
+    "at_peace_step_share": 0.11357,
+    "late_round_step_share": 0.02528,
+    "diplomatic_actions_per_game": 17.48741
+   },
+   {
+    "update": 82950,
+    "segment": "4b-ii",
+    "peace_games": 14671,
+    "selfplay_games": 5338,
+    "selfplay_capped": 0.04646,
+    "capped": 0.02024,
+    "at_peace_step_share": 0.11296,
+    "late_round_step_share": 0.02563,
+    "diplomatic_actions_per_game": 18.25288
+   },
+   {
+    "update": 83000,
+    "segment": "4b-ii",
+    "peace_games": 14869,
+    "selfplay_games": 5330,
+    "selfplay_capped": 0.04916,
+    "capped": 0.02159,
+    "at_peace_step_share": 0.1116,
+    "late_round_step_share": 0.0249,
+    "diplomatic_actions_per_game": 17.82359
+   },
+   {
+    "update": 83050,
+    "segment": "4b-ii",
+    "peace_games": 14309,
+    "selfplay_games": 5157,
+    "selfplay_capped": 0.04266,
+    "capped": 0.02006,
+    "at_peace_step_share": 0.1122,
+    "late_round_step_share": 0.02425,
+    "diplomatic_actions_per_game": 18.9378
+   },
+   {
+    "update": 83100,
+    "segment": "4b-ii",
+    "peace_games": 14255,
+    "selfplay_games": 5059,
+    "selfplay_capped": 0.04843,
+    "capped": 0.02112,
+    "at_peace_step_share": 0.11041,
+    "late_round_step_share": 0.02317,
+    "diplomatic_actions_per_game": 18.77664
+   },
+   {
+    "update": 83150,
+    "segment": "4b-ii",
+    "peace_games": 14379,
+    "selfplay_games": 4945,
+    "selfplay_capped": 0.04449,
+    "capped": 0.01906,
+    "at_peace_step_share": 0.11008,
+    "late_round_step_share": 0.02186,
+    "diplomatic_actions_per_game": 18.21643
+   },
+   {
+    "update": 83200,
+    "segment": "4b-ii",
+    "peace_games": 13890,
+    "selfplay_games": 4810,
+    "selfplay_capped": 0.04324,
+    "capped": 0.01893,
+    "at_peace_step_share": 0.11204,
+    "late_round_step_share": 0.02125,
+    "diplomatic_actions_per_game": 18.90778
+   },
+   {
+    "update": 83250,
+    "segment": "4b-ii",
+    "peace_games": 15386,
+    "selfplay_games": 5341,
+    "selfplay_capped": 0.03932,
+    "capped": 0.0169,
+    "at_peace_step_share": 0.11106,
+    "late_round_step_share": 0.02114,
+    "diplomatic_actions_per_game": 16.37567
+   },
+   {
+    "update": 83300,
+    "segment": "4b-ii",
+    "peace_games": 14753,
+    "selfplay_games": 5233,
+    "selfplay_capped": 0.04739,
+    "capped": 0.02088,
+    "at_peace_step_share": 0.11134,
+    "late_round_step_share": 0.02158,
+    "diplomatic_actions_per_game": 17.05768
+   },
+   {
+    "update": 83350,
+    "segment": "4b-ii",
+    "peace_games": 14084,
+    "selfplay_games": 4856,
+    "selfplay_capped": 0.04675,
+    "capped": 0.01903,
+    "at_peace_step_share": 0.11277,
+    "late_round_step_share": 0.02139,
+    "diplomatic_actions_per_game": 18.20427
+   },
+   {
+    "update": 83400,
+    "segment": "4b-ii",
+    "peace_games": 14908,
+    "selfplay_games": 5066,
+    "selfplay_capped": 0.0533,
+    "capped": 0.0222,
+    "at_peace_step_share": 0.11201,
+    "late_round_step_share": 0.02142,
+    "diplomatic_actions_per_game": 17.44882
+   },
+   {
+    "update": 83450,
+    "segment": "4b-ii",
+    "peace_games": 14616,
+    "selfplay_games": 5061,
+    "selfplay_capped": 0.04663,
+    "capped": 0.01977,
+    "at_peace_step_share": 0.11278,
+    "late_round_step_share": 0.02047,
+    "diplomatic_actions_per_game": 17.84011
+   },
+   {
+    "update": 83500,
+    "segment": "4b-ii",
+    "peace_games": 13649,
+    "selfplay_games": 4509,
+    "selfplay_capped": 0.05434,
+    "capped": 0.02125,
+    "at_peace_step_share": 0.11125,
+    "late_round_step_share": 0.01952,
+    "diplomatic_actions_per_game": 19.52964
+   },
+   {
+    "update": 83550,
+    "segment": "4b-ii",
+    "peace_games": 14393,
+    "selfplay_games": 4747,
+    "selfplay_capped": 0.04972,
+    "capped": 0.02043,
+    "at_peace_step_share": 0.11013,
+    "late_round_step_share": 0.0181,
+    "diplomatic_actions_per_game": 18.49336
+   },
+   {
+    "update": 83600,
+    "segment": "4b-ii",
+    "peace_games": 14645,
+    "selfplay_games": 4828,
+    "selfplay_capped": 0.04101,
+    "capped": 0.01673,
+    "at_peace_step_share": 0.11045,
+    "late_round_step_share": 0.01774,
+    "diplomatic_actions_per_game": 18.22888
+   },
+   {
+    "update": 83650,
+    "segment": "4b-ii",
+    "peace_games": 15060,
+    "selfplay_games": 5206,
+    "selfplay_capped": 0.0436,
+    "capped": 0.01886,
+    "at_peace_step_share": 0.11046,
+    "late_round_step_share": 0.01746,
+    "diplomatic_actions_per_game": 17.34781
+   },
+   {
+    "update": 83700,
+    "segment": "4b-ii",
+    "peace_games": 14897,
+    "selfplay_games": 5062,
+    "selfplay_capped": 0.03477,
+    "capped": 0.01638,
+    "at_peace_step_share": 0.11084,
+    "late_round_step_share": 0.01759,
+    "diplomatic_actions_per_game": 17.57817
+   },
+   {
+    "update": 83750,
+    "segment": "4b-ii",
+    "peace_games": 14627,
+    "selfplay_games": 4962,
+    "selfplay_capped": 0.03406,
+    "capped": 0.01443,
+    "at_peace_step_share": 0.11111,
+    "late_round_step_share": 0.01802,
+    "diplomatic_actions_per_game": 17.92582
+   },
+   {
+    "update": 83800,
+    "segment": "4b-ii",
+    "peace_games": 14285,
+    "selfplay_games": 4851,
+    "selfplay_capped": 0.04288,
+    "capped": 0.01855,
+    "at_peace_step_share": 0.10977,
+    "late_round_step_share": 0.01823,
+    "diplomatic_actions_per_game": 18.09618
+   },
+   {
+    "update": 83850,
+    "segment": "4b-ii",
+    "peace_games": 15010,
+    "selfplay_games": 5160,
+    "selfplay_capped": 0.04109,
+    "capped": 0.01759,
+    "at_peace_step_share": 0.10941,
+    "late_round_step_share": 0.01837,
+    "diplomatic_actions_per_game": 16.84444
+   },
+   {
+    "update": 83900,
+    "segment": "4b-ii",
+    "peace_games": 14754,
+    "selfplay_games": 5130,
+    "selfplay_capped": 0.04152,
+    "capped": 0.01749,
+    "at_peace_step_share": 0.11152,
+    "late_round_step_share": 0.01883,
+    "diplomatic_actions_per_game": 17.55917
+   },
+   {
+    "update": 83950,
+    "segment": "4b-ii",
+    "peace_games": 15661,
+    "selfplay_games": 5365,
+    "selfplay_capped": 0.04623,
+    "capped": 0.01941,
+    "at_peace_step_share": 0.11166,
+    "late_round_step_share": 0.01826,
+    "diplomatic_actions_per_game": 16.66107
+   },
+   {
+    "update": 84000,
+    "segment": "4b-ii",
+    "peace_games": 13818,
+    "selfplay_games": 4816,
+    "selfplay_capped": 0.05212,
+    "capped": 0.02229,
+    "at_peace_step_share": 0.10977,
+    "late_round_step_share": 0.01726,
+    "diplomatic_actions_per_game": 19.31908
+   },
+   {
+    "update": 84050,
+    "segment": "4b-ii",
+    "peace_games": 15325,
+    "selfplay_games": 5324,
+    "selfplay_capped": 0.04245,
+    "capped": 0.01879,
+    "at_peace_step_share": 0.1075,
+    "late_round_step_share": 0.01695,
+    "diplomatic_actions_per_game": 17.41546
+   },
+   {
+    "update": 84100,
+    "segment": "4b-ii",
+    "peace_games": 14593,
+    "selfplay_games": 5023,
+    "selfplay_capped": 0.04559,
+    "capped": 0.01953,
+    "at_peace_step_share": 0.10682,
+    "late_round_step_share": 0.01734,
+    "diplomatic_actions_per_game": 17.93161
+   },
+   {
+    "update": 84150,
+    "segment": "4b-ii",
+    "peace_games": 14991,
+    "selfplay_games": 5049,
+    "selfplay_capped": 0.03941,
+    "capped": 0.01634,
+    "at_peace_step_share": 0.10603,
+    "late_round_step_share": 0.0179,
+    "diplomatic_actions_per_game": 17.59115
+   },
+   {
+    "update": 84200,
+    "segment": "4b-ii",
+    "peace_games": 15107,
+    "selfplay_games": 5133,
+    "selfplay_capped": 0.04773,
+    "capped": 0.019,
+    "at_peace_step_share": 0.10719,
+    "late_round_step_share": 0.01871,
+    "diplomatic_actions_per_game": 17.49831
+   },
+   {
+    "update": 84250,
+    "segment": "4b-ii",
+    "peace_games": 15126,
+    "selfplay_games": 5147,
+    "selfplay_capped": 0.04818,
+    "capped": 0.02003,
+    "at_peace_step_share": 0.10605,
+    "late_round_step_share": 0.01834,
+    "diplomatic_actions_per_game": 17.3732
+   },
+   {
+    "update": 84300,
+    "segment": "4b-ii",
+    "peace_games": 14885,
+    "selfplay_games": 5178,
+    "selfplay_capped": 0.04519,
+    "capped": 0.01774,
+    "at_peace_step_share": 0.10477,
+    "late_round_step_share": 0.01825,
+    "diplomatic_actions_per_game": 17.80638
+   },
+   {
+    "update": 84350,
+    "segment": "4b-ii",
+    "peace_games": 15387,
+    "selfplay_games": 5239,
+    "selfplay_capped": 0.04505,
+    "capped": 0.01898,
+    "at_peace_step_share": 0.10302,
+    "late_round_step_share": 0.01784,
+    "diplomatic_actions_per_game": 17.08462
+   },
+   {
+    "update": 84400,
+    "segment": "4b-ii",
+    "peace_games": 14213,
+    "selfplay_games": 4879,
+    "selfplay_capped": 0.05165,
+    "capped": 0.02069,
+    "at_peace_step_share": 0.10215,
+    "late_round_step_share": 0.01617,
+    "diplomatic_actions_per_game": 18.83628
+   },
+   {
+    "update": 84450,
+    "segment": "4b-ii",
+    "peace_games": 14856,
+    "selfplay_games": 5241,
+    "selfplay_capped": 0.0395,
+    "capped": 0.01737,
+    "at_peace_step_share": 0.10027,
+    "late_round_step_share": 0.01518,
+    "diplomatic_actions_per_game": 17.72644
+   },
+   {
+    "update": 84500,
+    "segment": "4b-ii",
+    "peace_games": 15442,
+    "selfplay_games": 5144,
+    "selfplay_capped": 0.03577,
+    "capped": 0.01483,
+    "at_peace_step_share": 0.09908,
+    "late_round_step_share": 0.01523,
+    "diplomatic_actions_per_game": 17.04546
+   },
+   {
+    "update": 84550,
+    "segment": "4b-ii",
+    "peace_games": 14799,
+    "selfplay_games": 5288,
+    "selfplay_capped": 0.03196,
+    "capped": 0.01466,
+    "at_peace_step_share": 0.09942,
+    "late_round_step_share": 0.01567,
+    "diplomatic_actions_per_game": 17.58896
+   },
+   {
+    "update": 84600,
+    "segment": "4b-ii",
+    "peace_games": 15080,
+    "selfplay_games": 5313,
+    "selfplay_capped": 0.03727,
+    "capped": 0.01678,
+    "at_peace_step_share": 0.10013,
+    "late_round_step_share": 0.01573,
+    "diplomatic_actions_per_game": 17.50192
+   },
+   {
+    "update": 84650,
+    "segment": "4b-ii",
+    "peace_games": 14886,
+    "selfplay_games": 5155,
+    "selfplay_capped": 0.03783,
+    "capped": 0.01585,
+    "at_peace_step_share": 0.09932,
+    "late_round_step_share": 0.01515,
+    "diplomatic_actions_per_game": 17.92819
+   },
+   {
+    "update": 84700,
+    "segment": "4b-ii",
+    "peace_games": 15397,
+    "selfplay_games": 5405,
+    "selfplay_capped": 0.03922,
+    "capped": 0.01708,
+    "at_peace_step_share": 0.09903,
+    "late_round_step_share": 0.01497,
+    "diplomatic_actions_per_game": 17.16912
+   },
+   {
+    "update": 84750,
+    "segment": "4b-ii",
+    "peace_games": 15053,
+    "selfplay_games": 5198,
+    "selfplay_capped": 0.04406,
+    "capped": 0.01887,
+    "at_peace_step_share": 0.09888,
+    "late_round_step_share": 0.01433,
+    "diplomatic_actions_per_game": 17.82694
+   },
+   {
+    "update": 84800,
+    "segment": "4b-ii",
+    "peace_games": 15235,
+    "selfplay_games": 5236,
+    "selfplay_capped": 0.03552,
+    "capped": 0.0147,
+    "at_peace_step_share": 0.09903,
+    "late_round_step_share": 0.01404,
+    "diplomatic_actions_per_game": 17.60597
+   },
+   {
+    "update": 84850,
+    "segment": "4b-ii",
+    "peace_games": 15477,
+    "selfplay_games": 5257,
+    "selfplay_capped": 0.04014,
+    "capped": 0.01667,
+    "at_peace_step_share": 0.0988,
+    "late_round_step_share": 0.01422,
+    "diplomatic_actions_per_game": 17.44731
+   },
+   {
+    "update": 84900,
+    "segment": "4b-ii",
+    "peace_games": 15407,
+    "selfplay_games": 5327,
+    "selfplay_capped": 0.03942,
+    "capped": 0.01636,
+    "at_peace_step_share": 0.09903,
+    "late_round_step_share": 0.01451,
+    "diplomatic_actions_per_game": 17.55631
+   },
+   {
+    "update": 84950,
+    "segment": "4b-ii",
+    "peace_games": 15458,
+    "selfplay_games": 5169,
+    "selfplay_capped": 0.04778,
+    "capped": 0.01889,
+    "at_peace_step_share": 0.09869,
+    "late_round_step_share": 0.01553,
+    "diplomatic_actions_per_game": 17.33044
+   },
+   {
+    "update": 85000,
+    "segment": "4b-ii",
+    "peace_games": 15090,
+    "selfplay_games": 5010,
+    "selfplay_capped": 0.0475,
+    "capped": 0.01856,
+    "at_peace_step_share": 0.09761,
+    "late_round_step_share": 0.01656,
+    "diplomatic_actions_per_game": 18.01418
+   },
+   {
+    "update": 85050,
+    "segment": "4b-ii",
+    "peace_games": 14630,
+    "selfplay_games": 4881,
+    "selfplay_capped": 0.04774,
+    "capped": 0.01907,
+    "at_peace_step_share": 0.09632,
+    "late_round_step_share": 0.01727,
+    "diplomatic_actions_per_game": 18.64785
+   },
+   {
+    "update": 85100,
+    "segment": "4b-ii",
+    "peace_games": 15874,
+    "selfplay_games": 5185,
+    "selfplay_capped": 0.04397,
+    "capped": 0.01606,
+    "at_peace_step_share": 0.09422,
+    "late_round_step_share": 0.01753,
+    "diplomatic_actions_per_game": 16.85706
+   },
+   {
+    "update": 85150,
+    "segment": "4b-ii",
+    "peace_games": 14853,
+    "selfplay_games": 4944,
+    "selfplay_capped": 0.04268,
+    "capped": 0.01643,
+    "at_peace_step_share": 0.09389,
+    "late_round_step_share": 0.01799,
+    "diplomatic_actions_per_game": 18.04619
+   },
+   {
+    "update": 85200,
+    "segment": "4b-ii",
+    "peace_games": 15558,
+    "selfplay_games": 5189,
+    "selfplay_capped": 0.04336,
+    "capped": 0.01697,
+    "at_peace_step_share": 0.09379,
+    "late_round_step_share": 0.0174,
+    "diplomatic_actions_per_game": 16.8003
+   },
+   {
+    "update": 85250,
+    "segment": "4b-ii",
+    "peace_games": 15237,
+    "selfplay_games": 4992,
+    "selfplay_capped": 0.04107,
+    "capped": 0.01601,
+    "at_peace_step_share": 0.09248,
+    "late_round_step_share": 0.01732,
+    "diplomatic_actions_per_game": 17.0886
+   }
+  ]
+ },
+ "builtin_ai": {
+  "opponent": "a replica of Polytopia 2.17.3's built-in AI at Crazy (hardest) difficulty, re-implemented to play on engine-rs; NOT the retail game",
+  "plato": "raw policy (greedy, no search)",
+  "games": 48,
+  "wins": 48,
+  "losses": 0,
+  "capped": 0,
+  "turns_median": 16.0,
+  "turns_min": 9,
+  "turns_max": 20,
+  "rejected_commands": 0,
+  "per_game": [
+   {
+    "map_seed": 1000000,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000000,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000001,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000001,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000002,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000002,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 18,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000003,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 19,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000003,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000004,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 10,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000004,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 19,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000005,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000005,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000006,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 13,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000006,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000007,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 18,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000007,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 18,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000008,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000008,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000009,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000009,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000010,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000010,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 10,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000011,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000011,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 20,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000012,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 12,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000012,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000013,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000013,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 13,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000014,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000014,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 11,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000015,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 20,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000015,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000016,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 9,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000016,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 10,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000017,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000017,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000018,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000018,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000019,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000019,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 18,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000020,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 14,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000020,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000021,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 16,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000021,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000022,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000022,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 17,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000023,
+    "plato_seat": 1,
+    "result": "win",
+    "turns": 15,
+    "rejected_commands": 0
+   },
+   {
+    "map_seed": 1000023,
+    "plato_seat": 2,
+    "result": "win",
+    "turns": 20,
+    "rejected_commands": 0
+   }
+  ],
+  "earlier": "plato-u79150 ($1,250): 48-0 on another 24 maps"
+ }
+}

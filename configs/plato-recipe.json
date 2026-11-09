@@ -1,0 +1,221 @@
+{
+ "schema": "plato-recipe-v1",
+ "model": "Plato",
+ "network": {
+  "architecture": "transformer-v3-p2-h4",
+  "blocks": 6,
+  "width": 128,
+  "attention_heads": 4,
+  "obs_version": 3,
+  "players": 2,
+  "board": 14,
+  "description": "hybrid trunk: 3x3 conv stem + 4 residual conv blocks (width 128), then 2x2 patch tokens (49) + 1 global token through 6 pre-LayerNorm transformer blocks with learned relative attention bias; factorized action heads (family from the global token, source per tile, target as a query-key pointer); patch tokens decode back to tiles with a skip from the conv features",
+  "policy_parameters": 3212922,
+  "critic": "separate privileged branch (400,805 parameters): reads the policy tokens plus the other seat's view, 1 transformer block; used only in training"
+ },
+ "algorithm": "PPO self-play from random weights, GAE (turn clock gamma .99 / lambda .95), omniscient critic, opponent pool of historical snapshots",
+ "rules": {
+  "game": "Polytopia 2.17.3 rules on engine-rs, 1v1, 14x14 classic maps",
+  "round_cap": 200,
+  "resignation": "disabled",
+  "terminal": "a game ends when a side loses its last city (elimination)"
+ },
+ "stages": [
+  {
+   "stage": 1,
+   "updates": [
+    0,
+    8169
+   ],
+   "gpus": "8 H100",
+   "batch": 262144,
+   "minibatch": 16384,
+   "config": "early_config below",
+   "rules": "no peace (diplomacy disabled)",
+   "cap_reward": "score at cap (+1 leader / -1)",
+   "spend_usd": 97.22
+  },
+  {
+   "stage": 2,
+   "updates": [
+    8169,
+    23270
+   ],
+   "gpus": "8 H100",
+   "batch": 262144,
+   "minibatch": 16384,
+   "config": "early_config below",
+   "lr": "linear decay to 1e-4 by u23270",
+   "rules": "no peace",
+   "cap_reward": "score at cap",
+   "spend_usd": 182.87
+  },
+  {
+   "stage": 3,
+   "updates": [
+    23270,
+    72889
+   ],
+   "gpus": "16 H100",
+   "batch": 262144,
+   "minibatch": 16384,
+   "config": "early_config below",
+   "lr": "warm restart 1e-4 -> 3e-4 over 150 updates, constant, linear decay to 1e-4 over the last 25%",
+   "rules": "no peace",
+   "cap_reward": "score at cap",
+   "spend_usd": 698.26
+  },
+  {
+   "stage": "4 pilots",
+   "updates": [
+    72889,
+    73870
+   ],
+   "gpus": "8 H100",
+   "batch": 524288,
+   "minibatch": 32768,
+   "config": "b2 bigger batch (configs/plato.json with cap_score_reward 1, truncation_reward null)",
+   "lr": "pilot 1: warm restart to 4.24e-4; pilot 2: annealed 4.24e-4 -> 1.41e-4",
+   "rules": "2 of 4 game sets peace-legal",
+   "cap_reward": "score at cap",
+   "spend_usd": 40.65
+  },
+  {
+   "stage": "4a",
+   "updates": [
+    73870,
+    79150
+   ],
+   "gpus": "16 H100",
+   "batch": 524288,
+   "minibatch": 32768,
+   "lr": "1.41e-4 -> 2.12e-4 over 75 updates, constant",
+   "rules": "2 of 4 game sets peace-legal",
+   "cap_reward": "score at cap",
+   "peace_selfplay": 0.3,
+   "spend_usd": 186.7
+  },
+  {
+   "stage": "4b",
+   "updates": [
+    79150,
+    85270
+   ],
+   "gpus": "16 H100",
+   "batch": 524288,
+   "minibatch": 32768,
+   "config": "configs/plato.json",
+   "lr": "2.12e-4, linear decay to 1.41e-4 over the last 25% of the plan",
+   "rules": "3 of 4 game sets peace-legal",
+   "cap_reward": "cap = LOSS for both sides (-1/-1, terminal) from u79400; u79150-u79400 used score at cap with peace self-play .10",
+   "peace_selfplay": 0.3,
+   "spend_usd": 230.01
+  }
+ ],
+ "stage4_curriculum": {
+  "game_sets": "each GPU runs 4 game sets of 1,024 games; a set is either no-peace or peace-legal for its whole life",
+  "opponent_pool_no_peace": {
+   "self-play": 0.8,
+   "historical snapshots": 0.1,
+   "hero1": 0.04,
+   "Cloak exploiter": 0.06
+  },
+  "opponent_pool_peace_legal": {
+   "self-play": 0.3,
+   "historical snapshots": 0.1,
+   "plato-u72889": 0.1,
+   "plato-u37641": 0.08,
+   "plato-u23270": 0.06,
+   "hero1": 0.15,
+   "champion": 0.07,
+   "CNN control": 0.04,
+   "Cloak exploiter": 0.08,
+   "x3d exploiter": 0.02
+  },
+  "collusion_monitors": {
+   "window_updates": 50,
+   "pause_window_updates": 150,
+   "min_games": 200,
+   "warn": {
+    "selfplay_capped": 0.1,
+    "capped": 0.1,
+    "at_peace": 0.25,
+    "late_rounds": 0.1
+   },
+   "pause": {
+    "selfplay_capped": 0.3,
+    "at_peace": 0.5,
+    "late_rounds": 0.3
+   }
+  }
+ },
+ "totals": {
+  "updates": 85270,
+  "samples": 25600000000.0,
+  "samples_note": "updates x batch",
+  "h100_hours": 337,
+  "wall_clock_hours": 25.7,
+  "training_usd": 1435.71,
+  "total_usd_incl_evaluations": 1497.84,
+  "cost_note": "list-price estimates from the run supervisor clock (H100 at about $4.27/GPU-hour); the provider invoice may differ"
+ },
+ "early_config": {
+  "advantage_floor": 0.05,
+  "advantage_keep": 1.0,
+  "anchor_coef": 0.0,
+  "anchor_path": "",
+  "assembly_threads": 4,
+  "batch": 262144,
+  "build_rows": true,
+  "cap_score_reward": 1.0,
+  "checkpoint_every": 50,
+  "clip": 0.2,
+  "critic_path": "",
+  "critic_warmup": 0,
+  "ema_decay": 0.0,
+  "engine": "rust",
+  "entropy_coef": 0.01,
+  "epochs": 1,
+  "frozen": [],
+  "gae_lambda": 0.99,
+  "gamma": 0.995,
+  "historical_every": 250,
+  "historical_keep": 8,
+  "historical_probability": 0.1,
+  "learner_values": true,
+  "learning_rate": 0.0003,
+  "learning_rate_end": 0.0001,
+  "lr_decay_fraction": 0.25,
+  "lr_warmup_updates": 150,
+  "map_seed_high": 300000,
+  "map_seed_low": 200000,
+  "maps": "classic",
+  "max_lag": 10,
+  "max_turns": null,
+  "minibatch": 16384,
+  "no_peace": true,
+  "omniscient_critic": true,
+  "pbrs_anneal_updates": 0,
+  "pbrs_coef": 0.0,
+  "pool_per_process": true,
+  "publish_every": 2,
+  "seed": 801,
+  "segment": 32,
+  "self_play_probability": 0.5,
+  "send_samples": 512,
+  "size": 14,
+  "snapshot_every": 250,
+  "stream_views": true,
+  "target_kl": 0.03,
+  "truncation_reward": null,
+  "trusted_check_every": 64,
+  "trusted_step": true,
+  "turn_gamma": 0.99,
+  "turn_lambda": 0.95,
+  "unit_entropy_coef": 0.0,
+  "unit_kl_coef": 0.0,
+  "unit_kl_reference": "",
+  "upgo_coef": 0.0,
+  "upload_zstd_level": 7
+ }
+}

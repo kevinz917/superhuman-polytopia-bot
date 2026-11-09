@@ -39,8 +39,9 @@ blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://th
   [a hosted version](https://polytopia-bot-kappa.vercel.app) you can play right now.
 - 📦 **Weights included.** The champion (2 MB, with the value head search needs) is in
   [`weights/champion/`](weights/champion/); the newer, stronger raw policy **hero-1v1** (7 MB) is in
-  [`weights/hero-1v1/`](weights/hero-1v1/). Twelve more checkpoints from the training history, with their critics,
-  are indexed in [`weights/README.md`](weights/README.md).
+  [`weights/hero-1v1/`](weights/hero-1v1/), and the strongest, **Plato** (12 MB, a 3.2M-parameter transformer), is in
+  [`weights/plato/`](weights/plato/). Twelve more checkpoints from the training history, with their critics, are
+  indexed in [`weights/README.md`](weights/README.md).
 - 🤖 **Polytopia Bench.** 12 frontier models each write a Rust bot in 40 minutes and play it against this RL bot
   and five other opponents: 21,600 graded games. The harness, every conversation, every bot and every replay are
   in [`benchmark/`](benchmark/); the write-up is [*Introducing Polytopia Bench*](https://thekevinz.com/blog/polytopia-bench).
@@ -80,6 +81,14 @@ by turn 21. Details: [docs/champion-vs-real-crazy-2026-10-24.md](docs/champion-v
 directly on the game's rules for about 15.5 hours (6.95 billion samples), beats the champion **68%** (+131 Elo) and
 every other bot it was tested against, raw policy against raw policy over 128 seat-paired games. It has no fog-of-war value head
 yet, so it plays without search; see [`weights/hero-1v1/`](weights/hero-1v1/).
+
+**Plato.** A hybrid convolution + transformer network (6 blocks × 128 channels, 3.2M parameters) trained from random
+weights by self-play for 85,270 updates (25.6 billion samples, ~337 H100-hours, ~$1,498). In its last stage it
+learned to play with peace treaties legal, and a game that reaches the round cap counted as a loss for both sides.
+With peace legal it beats hero-1v1 **89%** and the champion **97%** (raw policies, 2,048 seat-paired games each). It
+wins almost entirely by elimination and went 48–0 against a replica of the built-in Crazy AI. Its network code is
+not in this repository yet, so it cannot be played here; see [`weights/plato/`](weights/plato/) and the
+[report](docs/plato-2026-11-09.md).
 
 **The game.** Since 2026-10-27 every bot here trains and plays Polytopia's own rules (Steam 2.17.3, game version
 123): two Bardur tribes with fog of war and the full tech tree, cities, villages, ruins, navy, diplomacy and cloaks,
@@ -228,7 +237,7 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 | `legacy/ruleset-v2/` | the earlier research ruleset's engine and its in-browser WASM bot |
 | `scripts/` | Elo fits, run status, fixture generators, ruleset verification |
 | `tools/` | Polyfish oracle builds, Studio asset setup, clip recorder for this README |
-| `weights/` | released checkpoints: the champion, hero-1v1 and 12 milestones from the 1v1 and four-player runs; index in [weights/README.md](weights/README.md) |
+| `weights/` | released checkpoints: the champion, hero-1v1, Plato and 12 milestones from the 1v1 and four-player runs; index in [weights/README.md](weights/README.md) |
 | `docs/` | rules, engine notes and the research notebook (run reports, sweeps, reviews, the run archive in `docs/run-archive/`); start at [docs/README.md](docs/README.md) |
 | `benchmark/` | Polytopia Bench: LLM-authored bot benchmark, harness, conversations, bots, replays and results |
 
