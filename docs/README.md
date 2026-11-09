@@ -38,6 +38,7 @@ Checkpoints from these runs are in [`weights/`](../weights).
 The weights are in [`weights/plato/`](../weights/plato).
 
 - [plato-2026-11-09.md](plato-2026-11-09.md): the 3.2M-parameter hybrid transformer trained from scratch in four stages ($1,498, 25.6 B samples), the stage-4 peace curriculum with collusion monitors and the cap = loss rule, every preregistered check, the learning curve and the negatives. Data: [benchmarks/2026-11-09-plato.json](benchmarks/2026-11-09-plato.json).
+- [plato-strategy-2026-11-09.md](plato-strategy-2026-11-09.md): how Plato plays compared with its $300 checkpoint on the same maps: tech order, the Knight answer to hero-1v1's rush, income by round, Explorer vs Workshop, Lumber Huts, diplomacy and how games end. Data: [benchmarks/2026-11-09-plato-strategy.json](benchmarks/2026-11-09-plato-strategy.json).
 
 ## Humans against the bot
 

@@ -1,0 +1,8219 @@
+{
+ "schema": "plato-strategy-v1",
+ "method": "seat-paired games on engine-rs (2.17.3 rules, 14x14 classic), 128 maps x both seats per pairing, sampled T=1; Plato and its $300 checkpoint (update 23270) on the same map seeds. 'A' = Plato / the $300 checkpoint, 'B' = the opponent. by_round values average the games still running.",
+ "pairings": [
+  {
+   "pairing": "vs hero1, peace legal",
+   "plato": {
+    "name": "plato-vs-hero1",
+    "a": "Plato (u85270)",
+    "b": "hero1 (weights/hero-1v1)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 227,
+     "losses": 29,
+     "draws": 0,
+     "score": 0.88671875,
+     "ci95": [
+      0.8503162809066808,
+      0.9231212190933192
+     ]
+    },
+    "terminal_only": {
+     "wins": 227,
+     "losses": 29,
+     "draws": 0,
+     "score": 0.88671875,
+     "ci95": [
+      0.8503162809066808,
+      0.9231212190933192
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 227,
+      "losses": 29,
+      "terminal_wins": 227,
+      "cap_wins": 0,
+      "terminal_losses": 29,
+      "cap_losses": 0,
+      "median_end_round_win": 34.0,
+      "median_end_round_loss": 32.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        102
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        83
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        53
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        18
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        23
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        22
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Temple",
+        15
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > LumberHut",
+        13
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        12
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        130
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        68
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        25
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        7
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        5
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        1.0
+       ],
+       [
+        "Organization",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.984
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.977
+       ],
+       [
+        "Strategy",
+        12.0,
+        0.121
+       ],
+       [
+        "Riding",
+        13.0,
+        0.895
+       ],
+       [
+        "FreeSpirit",
+        14.0,
+        0.91
+       ],
+       [
+        "Mining",
+        16.0,
+        0.289
+       ],
+       [
+        "Chivalry",
+        16.0,
+        0.91
+       ],
+       [
+        "Smithery",
+        21.0,
+        0.211
+       ],
+       [
+        "Fishing",
+        27.5,
+        0.328
+       ],
+       [
+        "Ramming",
+        27.5,
+        0.023
+       ],
+       [
+        "Farming",
+        29.0,
+        0.082
+       ],
+       [
+        "Meditation",
+        32.0,
+        0.051
+       ],
+       [
+        "Mathematics",
+        32.0,
+        0.012
+       ],
+       [
+        "Sailing",
+        35.5,
+        0.031
+       ],
+       [
+        "Navigation",
+        36.5,
+        0.016
+       ],
+       [
+        "Aquatism",
+        41.0,
+        0.008
+       ],
+       [
+        "Diplomacy",
+        75.0,
+        0.008
+       ],
+       [
+        "Construction",
+        99.0,
+        0.004
+       ]
+      ],
+      "trained": {
+       "Archer": 0.413,
+       "Knight": 0.219,
+       "Warrior": 0.171,
+       "Rider": 0.102,
+       "Swordsman": 0.072,
+       "Defender": 0.022,
+       "Catapult": 0.001,
+       "MindBender": 0.0
+      },
+      "trained_per_game": 124.4,
+      "army_r10": {
+       "Archer": 0.687,
+       "Warrior": 0.278,
+       "Giant": 0.019,
+       "Swordsman": 0.014,
+       "Rider": 0.002,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.578,
+       "Knight": 0.154,
+       "Warrior": 0.115,
+       "Rider": 0.093,
+       "Giant": 0.029,
+       "Defender": 0.019
+      },
+      "built": {
+       "Mine": 3.16,
+       "Temple": 2.81,
+       "Road": 1.39,
+       "Forge": 1.28,
+       "LumberHut": 1.18,
+       "GateOfPower": 1.0,
+       "ParkOfFortune": 0.88,
+       "EyeOfGod": 0.83,
+       "Sawmill": 0.04,
+       "MountainTemple": 0.04
+      },
+      "rewards": {
+       "Explorer": 4.79,
+       "Resources": 4.12,
+       "Workshop": 1.67,
+       "SuperUnit": 1.27,
+       "PopulationGrowth": 1.2,
+       "BorderGrowth": 0.27,
+       "CityWall?": 0.23,
+       "Park": 0.01
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 18.0,
+      "share_took_enemy_city": 0.934,
+      "cities_taken_mean": 4.85,
+      "attacks_by_r10_mean": 13.7,
+      "attacks_per_game": 230.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.04,
+        "stars": 5.15,
+        "techs": 2.02,
+        "units": 3.01,
+        "territory": 9.0,
+        "score": 827.79,
+        "kills": 0.03
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.25,
+        "production": 4.91,
+        "stars": 5.81,
+        "techs": 3.76,
+        "units": 4.01,
+        "territory": 20.21,
+        "score": 1671.48,
+        "kills": 0.23
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.71,
+        "production": 8.8,
+        "stars": 6.81,
+        "techs": 5.01,
+        "units": 7.86,
+        "territory": 33.54,
+        "score": 2777.95,
+        "kills": 1.82
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.75,
+        "production": 12.16,
+        "stars": 8.88,
+        "techs": 5.56,
+        "units": 11.43,
+        "territory": 42.9,
+        "score": 3581.31,
+        "kills": 4.42
+       },
+       "15": {
+        "n": 255,
+        "cities": 6.2,
+        "production": 18.28,
+        "stars": 15.64,
+        "techs": 7.65,
+        "units": 17.91,
+        "territory": 56.43,
+        "score": 5341.73,
+        "kills": 17.53
+       },
+       "20": {
+        "n": 252,
+        "cities": 7.12,
+        "production": 22.18,
+        "stars": 12.66,
+        "techs": 9.02,
+        "units": 18.67,
+        "territory": 65.54,
+        "score": 5614.46,
+        "kills": 36.25
+       },
+       "30": {
+        "n": 175,
+        "cities": 8.67,
+        "production": 29.41,
+        "stars": 12.76,
+        "techs": 9.94,
+        "units": 22.92,
+        "territory": 80.71,
+        "score": 6022.89,
+        "kills": 71.05
+       },
+       "40": {
+        "n": 85,
+        "cities": 9.09,
+        "production": 32.81,
+        "stars": 11.92,
+        "techs": 10.64,
+        "units": 24.25,
+        "territory": 86.06,
+        "score": 6459.18,
+        "kills": 107.04
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 26,
+      "losses_level_income_r10": 1,
+      "losses_ahead_income_r10": 2,
+      "win_rate_when_ahead_r10": [
+       0.984,
+       124
+      ],
+      "win_rate_when_behind_r10": [
+       0.755,
+       106
+      ]
+     },
+     "B": {
+      "wins": 29,
+      "losses": 227,
+      "terminal_wins": 29,
+      "cap_wins": 0,
+      "terminal_losses": 227,
+      "cap_losses": 0,
+      "median_end_round_win": 32.0,
+      "median_end_round_loss": 34.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        136
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        68
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        33
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        15
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        252
+       ],
+       [
+        "Warrior > Archer",
+        4
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        176
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        16
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        15
+       ],
+       [
+        "GateOfPower > LumberHut > LumberHut > LumberHut",
+        7
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > Sawmill",
+        6
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        110
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        34
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        19
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        13
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        12
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        0.973
+       ],
+       [
+        "Archery",
+        5.0,
+        0.992
+       ],
+       [
+        "Climbing",
+        7.0,
+        1.0
+       ],
+       [
+        "Organization",
+        12.0,
+        0.918
+       ],
+       [
+        "Riding",
+        17.0,
+        0.887
+       ],
+       [
+        "Strategy",
+        19.0,
+        0.789
+       ],
+       [
+        "Fishing",
+        20.0,
+        0.75
+       ],
+       [
+        "Mathematics",
+        20.0,
+        0.59
+       ],
+       [
+        "FreeSpirit",
+        20.0,
+        0.832
+       ],
+       [
+        "Chivalry",
+        21.0,
+        0.816
+       ],
+       [
+        "Sailing",
+        28.0,
+        0.02
+       ],
+       [
+        "Farming",
+        31.0,
+        0.066
+       ],
+       [
+        "Meditation",
+        31.0,
+        0.273
+       ],
+       [
+        "Roads",
+        32.0,
+        0.262
+       ],
+       [
+        "Ramming",
+        36.0,
+        0.145
+       ],
+       [
+        "Navigation",
+        38.0,
+        0.02
+       ],
+       [
+        "Philosophy",
+        41.0,
+        0.062
+       ],
+       [
+        "Aquatism",
+        43.0,
+        0.059
+       ],
+       [
+        "Trade",
+        43.5,
+        0.125
+       ],
+       [
+        "Mining",
+        44.0,
+        0.031
+       ],
+       [
+        "Construction",
+        44.0,
+        0.004
+       ],
+       [
+        "Spiritualism",
+        51.0,
+        0.008
+       ],
+       [
+        "Smithery",
+        57.5,
+        0.008
+       ],
+       [
+        "Diplomacy",
+        63.0,
+        0.012
+       ]
+      ],
+      "trained": {
+       "Archer": 0.358,
+       "Defender": 0.249,
+       "Warrior": 0.204,
+       "Knight": 0.147,
+       "Catapult": 0.032,
+       "Rider": 0.007,
+       "Cloak": 0.001,
+       "Swordsman": 0.001
+      },
+      "trained_per_game": 99.9,
+      "army_r10": {
+       "Archer": 0.671,
+       "Warrior": 0.308,
+       "Swordsman": 0.016,
+       "Giant": 0.003,
+       "Catapult": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.569,
+       "Warrior": 0.133,
+       "Defender": 0.119,
+       "Knight": 0.062,
+       "Catapult": 0.06,
+       "Giant": 0.044
+      },
+      "built": {
+       "LumberHut": 7.18,
+       "Road": 6.01,
+       "Sawmill": 1.7,
+       "GateOfPower": 0.98,
+       "Temple": 0.86,
+       "ParkOfFortune": 0.68,
+       "Market": 0.3,
+       "Mine": 0.27,
+       "EyeOfGod": 0.18,
+       "MountainTemple": 0.14
+      },
+      "rewards": {
+       "Workshop": 4.8,
+       "Resources": 2.55,
+       "CityWall?": 1.52,
+       "PopulationGrowth": 1.3,
+       "SuperUnit": 1.12,
+       "Explorer": 0.85,
+       "BorderGrowth": 0.26,
+       "Park": 0.0
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 21.0,
+      "share_took_enemy_city": 0.602,
+      "cities_taken_mean": 1.41,
+      "attacks_by_r10_mean": 11.8,
+      "attacks_per_game": 147.2,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.99,
+        "techs": 2.04,
+        "units": 2.97,
+        "territory": 9.0,
+        "score": 649.06,
+        "kills": 0.0
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.16,
+        "production": 5.49,
+        "stars": 5.27,
+        "techs": 3.33,
+        "units": 4.2,
+        "territory": 19.48,
+        "score": 1336.78,
+        "kills": 0.08
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.32,
+        "production": 8.95,
+        "stars": 7.41,
+        "techs": 4.59,
+        "units": 7.46,
+        "territory": 29.98,
+        "score": 2172.99,
+        "kills": 1.32
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.17,
+        "production": 11.7,
+        "stars": 8.99,
+        "techs": 5.16,
+        "units": 9.57,
+        "territory": 37.62,
+        "score": 2722.19,
+        "kills": 3.15
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.24,
+        "production": 18.65,
+        "stars": 13.53,
+        "techs": 6.64,
+        "units": 13.3,
+        "territory": 48.05,
+        "score": 4221.12,
+        "kills": 13.52
+       },
+       "20": {
+        "n": 252,
+        "cities": 5.03,
+        "production": 19.31,
+        "stars": 14.34,
+        "techs": 8.77,
+        "units": 12.22,
+        "territory": 46.7,
+        "score": 4712.9,
+        "kills": 28.52
+       },
+       "30": {
+        "n": 175,
+        "cities": 4.1,
+        "production": 16.54,
+        "stars": 15.51,
+        "techs": 11.42,
+        "units": 10.62,
+        "territory": 38.43,
+        "score": 4767.14,
+        "kills": 58.64
+       },
+       "40": {
+        "n": 85,
+        "cities": 4.14,
+        "production": 17.62,
+        "stars": 17.44,
+        "techs": 12.67,
+        "units": 11.33,
+        "territory": 40.16,
+        "score": 5343.71,
+        "kills": 96.0
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 122,
+      "losses_level_income_r10": 25,
+      "losses_ahead_income_r10": 80,
+      "win_rate_when_ahead_r10": [
+       0.245,
+       106
+      ],
+      "win_rate_when_behind_r10": [
+       0.016,
+       124
+      ]
+     }
+    }
+   },
+   "checkpoint_300": {
+    "name": "strat-final-vs-hero1",
+    "a": "plato-u23270 ($300)",
+    "b": "hero1 (weights/hero-1v1)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 16,
+     "losses": 240,
+     "draws": 0,
+     "score": 0.0625,
+     "ci95": [
+      0.033740373059925076,
+      0.09125962694007492
+     ]
+    },
+    "terminal_only": {
+     "wins": 16,
+     "losses": 240,
+     "draws": 0,
+     "score": 0.0625,
+     "ci95": [
+      0.033740373059925076,
+      0.09125962694007492
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 16,
+      "losses": 240,
+      "terminal_wins": 16,
+      "cap_wins": 0,
+      "terminal_losses": 240,
+      "cap_losses": 0,
+      "median_end_round_win": 38.5,
+      "median_end_round_loss": 45.5,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        114
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        63
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        59
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        20
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        27
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        24
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        15
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > Mine > Mine",
+        13
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        13
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        122
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        77
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        23
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        8
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        7
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.988
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.996
+       ],
+       [
+        "Archery",
+        5.0,
+        0.98
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.949
+       ],
+       [
+        "Mining",
+        15.0,
+        0.902
+       ],
+       [
+        "Smithery",
+        19.0,
+        0.699
+       ],
+       [
+        "Spiritualism",
+        23.0,
+        0.004
+       ],
+       [
+        "Riding",
+        26.0,
+        0.707
+       ],
+       [
+        "Mathematics",
+        27.0,
+        0.336
+       ],
+       [
+        "Fishing",
+        28.0,
+        0.52
+       ],
+       [
+        "Strategy",
+        28.0,
+        0.648
+       ],
+       [
+        "Farming",
+        28.0,
+        0.398
+       ],
+       [
+        "FreeSpirit",
+        33.0,
+        0.539
+       ],
+       [
+        "Ramming",
+        33.0,
+        0.242
+       ],
+       [
+        "Meditation",
+        34.0,
+        0.199
+       ],
+       [
+        "Construction",
+        35.0,
+        0.211
+       ],
+       [
+        "Chivalry",
+        37.0,
+        0.434
+       ],
+       [
+        "Sailing",
+        37.5,
+        0.234
+       ],
+       [
+        "Roads",
+        37.5,
+        0.086
+       ],
+       [
+        "Aquatism",
+        38.0,
+        0.133
+       ],
+       [
+        "Diplomacy",
+        39.0,
+        0.125
+       ],
+       [
+        "Philosophy",
+        41.0,
+        0.129
+       ],
+       [
+        "Navigation",
+        42.0,
+        0.152
+       ],
+       [
+        "Trade",
+        55.0,
+        0.062
+       ]
+      ],
+      "trained": {
+       "Archer": 0.408,
+       "Swordsman": 0.27,
+       "Warrior": 0.172,
+       "Defender": 0.08,
+       "Catapult": 0.024,
+       "Rider": 0.022,
+       "Knight": 0.016,
+       "MindBender": 0.004,
+       "Cloak": 0.003
+      },
+      "trained_per_game": 154.3,
+      "army_r10": {
+       "Archer": 0.668,
+       "Warrior": 0.299,
+       "Giant": 0.02,
+       "Swordsman": 0.011,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.69,
+       "Warrior": 0.162,
+       "Swordsman": 0.059,
+       "Giant": 0.053,
+       "Defender": 0.024,
+       "Rider": 0.011
+      },
+      "built": {
+       "Road": 9.0,
+       "Mine": 7.84,
+       "Forge": 5.01,
+       "Temple": 3.62,
+       "LumberHut": 1.76,
+       "Sawmill": 1.3,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.86,
+       "EyeOfGod": 0.67,
+       "Market": 0.59
+      },
+      "rewards": {
+       "Explorer": 5.91,
+       "Resources": 5.54,
+       "SuperUnit": 3.25,
+       "PopulationGrowth": 2.64,
+       "BorderGrowth": 1.06,
+       "Workshop": 0.75,
+       "Park": 0.27,
+       "CityWall?": 0.23
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 17.0,
+      "share_took_enemy_city": 0.656,
+      "cities_taken_mean": 1.68,
+      "attacks_by_r10_mean": 14.0,
+      "attacks_per_game": 202.4,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.02,
+        "stars": 5.14,
+        "techs": 2.01,
+        "units": 2.98,
+        "territory": 9.0,
+        "score": 827.07,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.24,
+        "production": 4.54,
+        "stars": 5.47,
+        "techs": 3.8,
+        "units": 3.94,
+        "territory": 20.18,
+        "score": 1752.77,
+        "kills": 0.2
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.64,
+        "production": 8.06,
+        "stars": 6.21,
+        "techs": 4.85,
+        "units": 7.71,
+        "territory": 32.87,
+        "score": 2770.68,
+        "kills": 1.77
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.65,
+        "production": 11.08,
+        "stars": 8.52,
+        "techs": 5.26,
+        "units": 11.1,
+        "territory": 42.1,
+        "score": 3505.2,
+        "kills": 4.31
+       },
+       "15": {
+        "n": 256,
+        "cities": 6.06,
+        "production": 17.05,
+        "stars": 14.4,
+        "techs": 6.54,
+        "units": 17.38,
+        "territory": 56.3,
+        "score": 5118.98,
+        "kills": 16.61
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.4,
+        "production": 21.26,
+        "stars": 15.6,
+        "techs": 7.71,
+        "units": 18.51,
+        "territory": 61.43,
+        "score": 5884.67,
+        "kills": 31.71
+       },
+       "30": {
+        "n": 193,
+        "cities": 6.77,
+        "production": 27.0,
+        "stars": 22.01,
+        "techs": 10.59,
+        "units": 22.79,
+        "territory": 68.76,
+        "score": 7065.54,
+        "kills": 58.76
+       },
+       "40": {
+        "n": 146,
+        "cities": 6.86,
+        "production": 28.64,
+        "stars": 19.23,
+        "techs": 13.39,
+        "units": 23.15,
+        "territory": 70.34,
+        "score": 7616.4,
+        "kills": 80.65
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 138,
+      "losses_level_income_r10": 23,
+      "losses_ahead_income_r10": 79,
+      "win_rate_when_ahead_r10": [
+       0.112,
+       89
+      ],
+      "win_rate_when_behind_r10": [
+       0.028,
+       142
+      ]
+     },
+     "B": {
+      "wins": 240,
+      "losses": 16,
+      "terminal_wins": 240,
+      "cap_wins": 0,
+      "terminal_losses": 16,
+      "cap_losses": 0,
+      "median_end_round_win": 45.5,
+      "median_end_round_loss": 38.5,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        140
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        71
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        28
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        11
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        4
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        251
+       ],
+       [
+        "Warrior > Archer",
+        5
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        174
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        21
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        16
+       ],
+       [
+        "LumberHut > GateOfPower > LumberHut > LumberHut",
+        6
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > ParkOfFortune",
+        6
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        102
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        28
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        25
+       ],
+       [
+        "Forestry > Archery > Climbing > Riding",
+        18
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        17
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        0.977
+       ],
+       [
+        "Archery",
+        5.0,
+        0.992
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.992
+       ],
+       [
+        "Organization",
+        12.0,
+        0.91
+       ],
+       [
+        "Riding",
+        16.0,
+        0.957
+       ],
+       [
+        "Mathematics",
+        19.0,
+        0.609
+       ],
+       [
+        "Fishing",
+        19.0,
+        0.855
+       ],
+       [
+        "FreeSpirit",
+        19.0,
+        0.984
+       ],
+       [
+        "Chivalry",
+        20.0,
+        0.984
+       ],
+       [
+        "Strategy",
+        24.0,
+        0.562
+       ],
+       [
+        "Roads",
+        29.0,
+        0.527
+       ],
+       [
+        "Farming",
+        35.5,
+        0.094
+       ],
+       [
+        "Trade",
+        38.0,
+        0.281
+       ],
+       [
+        "Mining",
+        39.0,
+        0.113
+       ],
+       [
+        "Ramming",
+        40.0,
+        0.121
+       ],
+       [
+        "Philosophy",
+        40.5,
+        0.078
+       ],
+       [
+        "Meditation",
+        41.0,
+        0.148
+       ],
+       [
+        "Aquatism",
+        41.5,
+        0.055
+       ],
+       [
+        "Diplomacy",
+        46.0,
+        0.09
+       ],
+       [
+        "Sailing",
+        46.0,
+        0.121
+       ],
+       [
+        "Smithery",
+        48.0,
+        0.051
+       ],
+       [
+        "Spiritualism",
+        51.5,
+        0.031
+       ],
+       [
+        "Navigation",
+        53.0,
+        0.055
+       ],
+       [
+        "Construction",
+        55.0,
+        0.027
+       ]
+      ],
+      "trained": {
+       "Archer": 0.364,
+       "Knight": 0.25,
+       "Warrior": 0.203,
+       "Defender": 0.117,
+       "Catapult": 0.044,
+       "Rider": 0.019,
+       "Swordsman": 0.002,
+       "Cloak": 0.002,
+       "MindBender": 0.0
+      },
+      "trained_per_game": 129.0,
+      "army_r10": {
+       "Archer": 0.683,
+       "Warrior": 0.299,
+       "Swordsman": 0.015,
+       "Giant": 0.001,
+       "Catapult": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.658,
+       "Knight": 0.11,
+       "Warrior": 0.104,
+       "Catapult": 0.047,
+       "Giant": 0.042,
+       "Defender": 0.02
+      },
+      "built": {
+       "Road": 36.37,
+       "LumberHut": 8.12,
+       "Temple": 4.95,
+       "Sawmill": 3.24,
+       "Market": 1.29,
+       "Mine": 1.21,
+       "GateOfPower": 1.0,
+       "ParkOfFortune": 0.94,
+       "EyeOfGod": 0.7,
+       "GrandBazaar": 0.46
+      },
+      "rewards": {
+       "Workshop": 5.07,
+       "Resources": 3.21,
+       "SuperUnit": 2.18,
+       "CityWall?": 1.77,
+       "PopulationGrowth": 1.74,
+       "Explorer": 0.96,
+       "BorderGrowth": 0.69,
+       "Park": 0.09
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 21.0,
+      "share_took_enemy_city": 0.965,
+      "cities_taken_mean": 6.71,
+      "attacks_by_r10_mean": 12.5,
+      "attacks_per_game": 251.2,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.93,
+        "techs": 2.05,
+        "units": 2.96,
+        "territory": 9.0,
+        "score": 650.7,
+        "kills": 0.02
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.16,
+        "production": 5.55,
+        "stars": 5.17,
+        "techs": 3.33,
+        "units": 4.23,
+        "territory": 19.48,
+        "score": 1339.04,
+        "kills": 0.19
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.38,
+        "production": 9.06,
+        "stars": 7.99,
+        "techs": 4.58,
+        "units": 7.56,
+        "territory": 30.38,
+        "score": 2195.74,
+        "kills": 1.54
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.34,
+        "production": 11.97,
+        "stars": 10.11,
+        "techs": 5.07,
+        "units": 9.93,
+        "territory": 39.05,
+        "score": 2758.24,
+        "kills": 3.72
+       },
+       "15": {
+        "n": 256,
+        "cities": 5.53,
+        "production": 19.63,
+        "stars": 14.11,
+        "techs": 6.79,
+        "units": 14.79,
+        "territory": 50.54,
+        "score": 4440.8,
+        "kills": 15.44
+       },
+       "20": {
+        "n": 254,
+        "cities": 5.92,
+        "production": 22.43,
+        "stars": 15.62,
+        "techs": 9.01,
+        "units": 16.54,
+        "territory": 54.65,
+        "score": 5220.14,
+        "kills": 33.76
+       },
+       "30": {
+        "n": 193,
+        "cities": 6.1,
+        "production": 25.17,
+        "stars": 14.58,
+        "techs": 11.91,
+        "units": 19.14,
+        "territory": 58.33,
+        "score": 6155.31,
+        "kills": 68.12
+       },
+       "40": {
+        "n": 146,
+        "cities": 6.12,
+        "production": 27.53,
+        "stars": 12.18,
+        "techs": 13.67,
+        "units": 19.55,
+        "territory": 61.34,
+        "score": 6819.08,
+        "kills": 96.24
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 10,
+      "losses_level_income_r10": 2,
+      "losses_ahead_income_r10": 4,
+      "win_rate_when_ahead_r10": [
+       0.972,
+       142
+      ],
+      "win_rate_when_behind_r10": [
+       0.888,
+       89
+      ]
+     }
+    }
+   },
+   "extra": {
+    "plato": {
+     "A": {
+      "lumber_huts_by_r10": 0.49,
+      "diplomatic_actions_per_game": 13.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 11.59,
+      "production": {
+       "3": [
+        2.04,
+        256
+       ],
+       "5": [
+        4.91,
+        256
+       ],
+       "10": [
+        12.16,
+        256
+       ],
+       "15": [
+        18.28,
+        255
+       ],
+       "20": [
+        22.18,
+        252
+       ],
+       "30": [
+        29.41,
+        175
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.02,
+      "diplomatic_actions_per_game": 14.1,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 4.31,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.49,
+        256
+       ],
+       "10": [
+        11.7,
+        256
+       ],
+       "15": [
+        18.65,
+        255
+       ],
+       "20": [
+        19.31,
+        252
+       ],
+       "30": [
+        16.54,
+        175
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.887,
+     "capped": 0,
+     "median_end_round": 34.0,
+     "ended_by_r30": 0.352,
+     "opp_knight_rush_games": 86,
+     "score_in_opp_knight_rush_games": 0.744
+    },
+    "u23270": {
+     "A": {
+      "lumber_huts_by_r10": 0.36,
+      "diplomatic_actions_per_game": 27.0,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.11,
+      "production": {
+       "3": [
+        2.02,
+        256
+       ],
+       "5": [
+        4.54,
+        256
+       ],
+       "10": [
+        11.08,
+        256
+       ],
+       "15": [
+        17.05,
+        256
+       ],
+       "20": [
+        21.26,
+        254
+       ],
+       "30": [
+        27,
+        193
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.23,
+      "diplomatic_actions_per_game": 20.5,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 8.62,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.55,
+        256
+       ],
+       "10": [
+        11.97,
+        256
+       ],
+       "15": [
+        19.63,
+        256
+       ],
+       "20": [
+        22.43,
+        254
+       ],
+       "30": [
+        25.17,
+        193
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.062,
+     "capped": 0,
+     "median_end_round": 45.0,
+     "ended_by_r30": 0.273,
+     "opp_knight_rush_games": 150,
+     "score_in_opp_knight_rush_games": 0.053
+    }
+   }
+  },
+  {
+   "pairing": "vs champion, peace legal",
+   "plato": {
+    "name": "plato-vs-champion",
+    "a": "Plato (u85270)",
+    "b": "champion (weights/champion)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 247,
+     "losses": 9,
+     "draws": 0,
+     "score": 0.96484375,
+     "ci95": [
+      0.9426101913198834,
+      0.9870773086801166
+     ]
+    },
+    "terminal_only": {
+     "wins": 247,
+     "losses": 0,
+     "draws": 9,
+     "score": 0.982421875,
+     "ci95": [
+      0.9713050956599417,
+      0.9935386543400583
+     ]
+    },
+    "truncated": 9,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 247,
+      "losses": 9,
+      "terminal_wins": 247,
+      "cap_wins": 0,
+      "terminal_losses": 0,
+      "cap_losses": 9,
+      "median_end_round_win": 27.0,
+      "median_end_round_loss": 188.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        94
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        81
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        60
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        19
+       ],
+       [
+        "Warrior > Warrior > Rider > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        32
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Temple",
+        16
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        13
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > LumberHut",
+        10
+       ],
+       [
+        "LumberHut > GateOfPower > ParkOfFortune > EyeOfGod",
+        10
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        144
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        61
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        21
+       ],
+       [
+        "Organization > Forestry > Archery > Riding",
+        5
+       ],
+       [
+        "Organization > Archery > Forestry > Climbing",
+        4
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.984
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.996
+       ],
+       [
+        "Archery",
+        5.0,
+        1.0
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.977
+       ],
+       [
+        "Strategy",
+        11.0,
+        0.043
+       ],
+       [
+        "Riding",
+        13.0,
+        0.949
+       ],
+       [
+        "FreeSpirit",
+        14.0,
+        0.988
+       ],
+       [
+        "Mining",
+        14.0,
+        0.152
+       ],
+       [
+        "Chivalry",
+        16.0,
+        0.977
+       ],
+       [
+        "Smithery",
+        20.0,
+        0.082
+       ],
+       [
+        "Fishing",
+        23.0,
+        0.352
+       ],
+       [
+        "Meditation",
+        25.0,
+        0.105
+       ],
+       [
+        "Ramming",
+        27.0,
+        0.016
+       ],
+       [
+        "Farming",
+        30.0,
+        0.102
+       ],
+       [
+        "Mathematics",
+        33.0,
+        0.004
+       ],
+       [
+        "Aquatism",
+        104.0,
+        0.008
+       ],
+       [
+        "Construction",
+        114.0,
+        0.012
+       ],
+       [
+        "Sailing",
+        167.5,
+        0.023
+       ],
+       [
+        "Philosophy",
+        179.0,
+        0.004
+       ],
+       [
+        "Navigation",
+        181.0,
+        0.008
+       ],
+       [
+        "Roads",
+        186.0,
+        0.004
+       ],
+       [
+        "Diplomacy",
+        186.0,
+        0.004
+       ],
+       [
+        "Trade",
+        189.0,
+        0.004
+       ],
+       [
+        "Spiritualism",
+        189.0,
+        0.004
+       ]
+      ],
+      "trained": {
+       "Archer": 0.432,
+       "Warrior": 0.209,
+       "Knight": 0.173,
+       "Rider": 0.126,
+       "Defender": 0.032,
+       "Swordsman": 0.027,
+       "Catapult": 0.001,
+       "MindBender": 0.0
+      },
+      "trained_per_game": 90.3,
+      "army_r10": {
+       "Archer": 0.667,
+       "Warrior": 0.291,
+       "Giant": 0.024,
+       "Swordsman": 0.013,
+       "Rider": 0.004,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.541,
+       "Knight": 0.162,
+       "Warrior": 0.135,
+       "Rider": 0.121,
+       "Giant": 0.026,
+       "Swordsman": 0.008
+      },
+      "built": {
+       "Temple": 3.81,
+       "Mine": 1.83,
+       "LumberHut": 1.3,
+       "GateOfPower": 0.97,
+       "EyeOfGod": 0.84,
+       "ParkOfFortune": 0.83,
+       "Road": 0.71,
+       "Forge": 0.55,
+       "Sawmill": 0.06,
+       "MountainTemple": 0.03
+      },
+      "rewards": {
+       "Explorer": 4.8,
+       "Resources": 3.8,
+       "Workshop": 1.45,
+       "SuperUnit": 1.0,
+       "PopulationGrowth": 0.99,
+       "BorderGrowth": 0.25,
+       "CityWall?": 0.22,
+       "Park": 0.02
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 16.0,
+      "share_took_enemy_city": 0.957,
+      "cities_taken_mean": 4.25,
+      "attacks_by_r10_mean": 14.8,
+      "attacks_per_game": 150.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.03,
+        "stars": 5.34,
+        "techs": 2.02,
+        "units": 3.0,
+        "territory": 9.0,
+        "score": 826.31,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.19,
+        "production": 4.75,
+        "stars": 5.67,
+        "techs": 3.82,
+        "units": 3.95,
+        "territory": 19.74,
+        "score": 1656.41,
+        "kills": 0.29
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.76,
+        "production": 9.08,
+        "stars": 6.93,
+        "techs": 5.02,
+        "units": 8.15,
+        "territory": 34.14,
+        "score": 2861.0,
+        "kills": 1.91
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.89,
+        "production": 12.78,
+        "stars": 8.86,
+        "techs": 5.59,
+        "units": 11.94,
+        "territory": 44.41,
+        "score": 3730.84,
+        "kills": 4.86
+       },
+       "15": {
+        "n": 253,
+        "cities": 6.3,
+        "production": 18.66,
+        "stars": 15.6,
+        "techs": 7.89,
+        "units": 18.43,
+        "territory": 57.62,
+        "score": 5387.85,
+        "kills": 18.76
+       },
+       "20": {
+        "n": 238,
+        "cities": 7.56,
+        "production": 23.47,
+        "stars": 12.24,
+        "techs": 9.21,
+        "units": 20.16,
+        "territory": 69.95,
+        "score": 5527.65,
+        "kills": 38.19
+       },
+       "30": {
+        "n": 108,
+        "cities": 9.44,
+        "production": 32.72,
+        "stars": 15.86,
+        "techs": 10.11,
+        "units": 24.8,
+        "territory": 92.8,
+        "score": 6194.12,
+        "kills": 69.01
+       },
+       "40": {
+        "n": 32,
+        "cities": 8.97,
+        "production": 34.38,
+        "stars": 55.03,
+        "techs": 11.28,
+        "units": 24.16,
+        "territory": 93.97,
+        "score": 6032.97,
+        "kills": 85.0
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 9,
+      "losses_level_income_r10": 0,
+      "losses_ahead_income_r10": 0,
+      "win_rate_when_ahead_r10": [
+       1.0,
+       149
+      ],
+      "win_rate_when_behind_r10": [
+       0.89,
+       82
+      ]
+     },
+     "B": {
+      "wins": 9,
+      "losses": 247,
+      "terminal_wins": 0,
+      "cap_wins": 9,
+      "terminal_losses": 247,
+      "cap_losses": 0,
+      "median_end_round_win": 188.0,
+      "median_end_round_loss": 27.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        163
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        56
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        20
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        14
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        253
+       ],
+       [
+        "Warrior > Archer",
+        3
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        156
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        25
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        10
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > Sawmill",
+        9
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower",
+        7
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        105
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        35
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        24
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        13
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        11
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        3.0,
+        0.973
+       ],
+       [
+        "Archery",
+        5.0,
+        0.996
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.973
+       ],
+       [
+        "Organization",
+        12.0,
+        0.93
+       ],
+       [
+        "Mathematics",
+        16.0,
+        0.598
+       ],
+       [
+        "Diplomacy",
+        19.0,
+        0.043
+       ],
+       [
+        "Strategy",
+        20.0,
+        0.805
+       ],
+       [
+        "Riding",
+        20.5,
+        0.312
+       ],
+       [
+        "Fishing",
+        21.0,
+        0.602
+       ],
+       [
+        "FreeSpirit",
+        22.5,
+        0.133
+       ],
+       [
+        "Meditation",
+        23.0,
+        0.5
+       ],
+       [
+        "Sailing",
+        27.0,
+        0.219
+       ],
+       [
+        "Chivalry",
+        27.0,
+        0.113
+       ],
+       [
+        "Mining",
+        28.0,
+        0.273
+       ],
+       [
+        "Navigation",
+        28.0,
+        0.133
+       ],
+       [
+        "Ramming",
+        28.5,
+        0.258
+       ],
+       [
+        "Farming",
+        29.0,
+        0.145
+       ],
+       [
+        "Philosophy",
+        30.0,
+        0.121
+       ],
+       [
+        "Construction",
+        32.0,
+        0.039
+       ],
+       [
+        "Smithery",
+        34.0,
+        0.066
+       ],
+       [
+        "Aquatism",
+        34.5,
+        0.102
+       ],
+       [
+        "Spiritualism",
+        36.0,
+        0.07
+       ],
+       [
+        "Trade",
+        37.0,
+        0.035
+       ],
+       [
+        "Roads",
+        37.5,
+        0.047
+       ]
+      ],
+      "trained": {
+       "Archer": 0.395,
+       "Warrior": 0.305,
+       "Defender": 0.161,
+       "Catapult": 0.055,
+       "Swordsman": 0.035,
+       "Knight": 0.028,
+       "Cloak": 0.01,
+       "Rider": 0.007,
+       "MindBender": 0.003
+      },
+      "trained_per_game": 69.4,
+      "army_r10": {
+       "Archer": 0.624,
+       "Warrior": 0.356,
+       "Swordsman": 0.014,
+       "Catapult": 0.004,
+       "Defender": 0.001,
+       "Giant": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.494,
+       "Warrior": 0.201,
+       "Catapult": 0.135,
+       "Defender": 0.111,
+       "Giant": 0.044,
+       "Swordsman": 0.007
+      },
+      "built": {
+       "LumberHut": 11.97,
+       "Temple": 7.51,
+       "Sawmill": 4.05,
+       "Road": 3.92,
+       "Mine": 2.4,
+       "Market": 2.09,
+       "MountainTemple": 1.8,
+       "Forge": 1.53,
+       "ForestTemple": 1.44,
+       "GateOfPower": 0.93
+      },
+      "rewards": {
+       "Workshop": 4.75,
+       "Resources": 2.09,
+       "CityWall?": 1.44,
+       "SuperUnit": 1.12,
+       "BorderGrowth": 0.85,
+       "PopulationGrowth": 0.52,
+       "Explorer": 0.34,
+       "Park": 0.02
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 21.5,
+      "share_took_enemy_city": 0.312,
+      "cities_taken_mean": 0.38,
+      "attacks_by_r10_mean": 11.9,
+      "attacks_per_game": 79.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.68,
+        "techs": 2.11,
+        "units": 2.97,
+        "territory": 9.0,
+        "score": 659.71,
+        "kills": 0.0
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.11,
+        "production": 5.5,
+        "stars": 4.87,
+        "techs": 3.39,
+        "units": 4.22,
+        "territory": 18.95,
+        "score": 1330.8,
+        "kills": 0.11
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.17,
+        "production": 8.6,
+        "stars": 7.57,
+        "techs": 4.64,
+        "units": 7.39,
+        "territory": 28.72,
+        "score": 2101.13,
+        "kills": 1.17
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.0,
+        "production": 11.22,
+        "stars": 9.1,
+        "techs": 5.12,
+        "units": 9.1,
+        "territory": 36.39,
+        "score": 2586.41,
+        "kills": 3.05
+       },
+       "15": {
+        "n": 253,
+        "cities": 4.68,
+        "production": 16.47,
+        "stars": 13.14,
+        "techs": 6.2,
+        "units": 11.36,
+        "territory": 46.43,
+        "score": 3800.93,
+        "kills": 12.95
+       },
+       "20": {
+        "n": 238,
+        "cities": 4.16,
+        "production": 16.24,
+        "stars": 13.96,
+        "techs": 7.66,
+        "units": 9.05,
+        "territory": 43.66,
+        "score": 4168.91,
+        "kills": 26.13
+       },
+       "30": {
+        "n": 108,
+        "cities": 2.86,
+        "production": 12.4,
+        "stars": 12.23,
+        "techs": 11.18,
+        "units": 8.19,
+        "territory": 31.06,
+        "score": 4451.16,
+        "kills": 50.51
+       },
+       "40": {
+        "n": 32,
+        "cities": 3.53,
+        "production": 17.16,
+        "stars": 15.34,
+        "techs": 16.62,
+        "units": 12.78,
+        "territory": 40.78,
+        "score": 7213.12,
+        "kills": 65.28
+       }
+      },
+      "losses_ended_before_r10": 1,
+      "losses_behind_income_r10": 149,
+      "losses_level_income_r10": 24,
+      "losses_ahead_income_r10": 73,
+      "win_rate_when_ahead_r10": [
+       0.11,
+       82
+      ],
+      "win_rate_when_behind_r10": [
+       0.0,
+       149
+      ]
+     }
+    }
+   },
+   "checkpoint_300": {
+    "name": "strat-final-vs-champion",
+    "a": "plato-u23270 ($300)",
+    "b": "champion (weights/champion)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 74,
+     "losses": 182,
+     "draws": 0,
+     "score": 0.2890625,
+     "ci95": [
+      0.23737583549028568,
+      0.3407491645097143
+     ]
+    },
+    "terminal_only": {
+     "wins": 73,
+     "losses": 178,
+     "draws": 5,
+     "score": 0.294921875,
+     "ci95": [
+      0.24410085266239986,
+      0.34574289733760016
+     ]
+    },
+    "truncated": 5,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 74,
+      "losses": 182,
+      "terminal_wins": 73,
+      "cap_wins": 1,
+      "terminal_losses": 178,
+      "cap_losses": 4,
+      "median_end_round_win": 68.0,
+      "median_end_round_loss": 63.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        104
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        70
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        58
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        22
+       ],
+       [
+        "Warrior > Warrior > Warrior > Rider",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        38
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        17
+       ],
+       [
+        "LumberHut > GateOfPower > Mine > Mine",
+        12
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        11
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Mine",
+        10
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        121
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        84
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        20
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        7
+       ],
+       [
+        "Organization > Forestry > Climbing > Archery",
+        3
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.996
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.992
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.957
+       ],
+       [
+        "Mining",
+        15.0,
+        0.969
+       ],
+       [
+        "Smithery",
+        19.0,
+        0.914
+       ],
+       [
+        "Riding",
+        25.0,
+        0.914
+       ],
+       [
+        "Mathematics",
+        25.0,
+        0.43
+       ],
+       [
+        "Fishing",
+        27.0,
+        0.648
+       ],
+       [
+        "Farming",
+        29.0,
+        0.492
+       ],
+       [
+        "FreeSpirit",
+        30.0,
+        0.879
+       ],
+       [
+        "Meditation",
+        30.0,
+        0.355
+       ],
+       [
+        "Strategy",
+        32.0,
+        0.477
+       ],
+       [
+        "Chivalry",
+        33.0,
+        0.762
+       ],
+       [
+        "Construction",
+        34.0,
+        0.367
+       ],
+       [
+        "Sailing",
+        34.5,
+        0.398
+       ],
+       [
+        "Ramming",
+        35.0,
+        0.395
+       ],
+       [
+        "Navigation",
+        41.0,
+        0.289
+       ],
+       [
+        "Philosophy",
+        41.0,
+        0.262
+       ],
+       [
+        "Roads",
+        41.0,
+        0.234
+       ],
+       [
+        "Diplomacy",
+        44.0,
+        0.215
+       ],
+       [
+        "Aquatism",
+        44.5,
+        0.305
+       ],
+       [
+        "Trade",
+        56.0,
+        0.184
+       ],
+       [
+        "Spiritualism",
+        73.5,
+        0.047
+       ]
+      ],
+      "trained": {
+       "Archer": 0.362,
+       "Swordsman": 0.242,
+       "Warrior": 0.184,
+       "Defender": 0.081,
+       "Rider": 0.045,
+       "Knight": 0.04,
+       "Catapult": 0.03,
+       "MindBender": 0.011,
+       "Cloak": 0.005
+      },
+      "trained_per_game": 234.7,
+      "army_r10": {
+       "Archer": 0.668,
+       "Warrior": 0.301,
+       "Giant": 0.018,
+       "Swordsman": 0.012,
+       "Rider": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.694,
+       "Warrior": 0.178,
+       "Swordsman": 0.056,
+       "Giant": 0.049,
+       "Defender": 0.013,
+       "Rider": 0.007
+      },
+      "built": {
+       "Road": 28.91,
+       "Mine": 13.27,
+       "Temple": 10.13,
+       "Forge": 7.62,
+       "LumberHut": 4.45,
+       "Sawmill": 2.29,
+       "Market": 1.73,
+       "MountainTemple": 1.58,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.95
+      },
+      "rewards": {
+       "Resources": 6.38,
+       "Explorer": 6.01,
+       "SuperUnit": 5.2,
+       "PopulationGrowth": 3.32,
+       "BorderGrowth": 1.73,
+       "Workshop": 1.0,
+       "Park": 0.64,
+       "CityWall?": 0.53
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 19.5,
+      "share_took_enemy_city": 0.852,
+      "cities_taken_mean": 4.29,
+      "attacks_by_r10_mean": 14.8,
+      "attacks_per_game": 357.4,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.01,
+        "stars": 5.33,
+        "techs": 2.01,
+        "units": 2.99,
+        "territory": 9.0,
+        "score": 825.8,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.11,
+        "production": 4.31,
+        "stars": 5.4,
+        "techs": 3.73,
+        "units": 3.83,
+        "territory": 18.98,
+        "score": 1694.98,
+        "kills": 0.29
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.69,
+        "production": 8.25,
+        "stars": 6.0,
+        "techs": 4.87,
+        "units": 8.01,
+        "territory": 33.7,
+        "score": 2825.45,
+        "kills": 1.79
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.75,
+        "production": 11.33,
+        "stars": 8.51,
+        "techs": 5.3,
+        "units": 11.47,
+        "territory": 43.68,
+        "score": 3563.76,
+        "kills": 4.69
+       },
+       "15": {
+        "n": 255,
+        "cities": 6.22,
+        "production": 17.89,
+        "stars": 14.55,
+        "techs": 6.69,
+        "units": 18.42,
+        "territory": 58.22,
+        "score": 5317.53,
+        "kills": 17.86
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.81,
+        "production": 23.33,
+        "stars": 17.39,
+        "techs": 7.98,
+        "units": 22.26,
+        "territory": 66.83,
+        "score": 6309.07,
+        "kills": 34.35
+       },
+       "30": {
+        "n": 244,
+        "cities": 7.55,
+        "production": 30.57,
+        "stars": 19.84,
+        "techs": 11.71,
+        "units": 26.25,
+        "territory": 78.27,
+        "score": 7663.91,
+        "kills": 62.16
+       },
+       "40": {
+        "n": 227,
+        "cities": 7.61,
+        "production": 32.11,
+        "stars": 15.53,
+        "techs": 13.94,
+        "units": 24.16,
+        "territory": 80.65,
+        "score": 8110.77,
+        "kills": 87.78
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 109,
+      "losses_level_income_r10": 10,
+      "losses_ahead_income_r10": 63,
+      "win_rate_when_ahead_r10": [
+       0.4,
+       105
+      ],
+      "win_rate_when_behind_r10": [
+       0.168,
+       131
+      ]
+     },
+     "B": {
+      "wins": 182,
+      "losses": 74,
+      "terminal_wins": 178,
+      "cap_wins": 4,
+      "terminal_losses": 73,
+      "cap_losses": 1,
+      "median_end_round_win": 63.0,
+      "median_end_round_loss": 68.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        163
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        54
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        24
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        14
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        255
+       ],
+       [
+        "Warrior > Archer",
+        1
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        175
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        26
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        14
+       ],
+       [
+        "GateOfPower > LumberHut > LumberHut > LumberHut",
+        6
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > Sawmill",
+        6
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        103
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        34
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        20
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        10
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        8
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        3.0,
+        0.988
+       ],
+       [
+        "Archery",
+        5.0,
+        0.988
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.988
+       ],
+       [
+        "Organization",
+        13.0,
+        0.965
+       ],
+       [
+        "Mathematics",
+        17.0,
+        0.914
+       ],
+       [
+        "Fishing",
+        22.0,
+        0.852
+       ],
+       [
+        "Strategy",
+        23.0,
+        0.906
+       ],
+       [
+        "Riding",
+        26.0,
+        0.871
+       ],
+       [
+        "Meditation",
+        28.5,
+        0.625
+       ],
+       [
+        "FreeSpirit",
+        29.0,
+        0.832
+       ],
+       [
+        "Chivalry",
+        30.0,
+        0.801
+       ],
+       [
+        "Sailing",
+        32.0,
+        0.594
+       ],
+       [
+        "Navigation",
+        34.0,
+        0.484
+       ],
+       [
+        "Ramming",
+        34.0,
+        0.574
+       ],
+       [
+        "Mining",
+        35.0,
+        0.496
+       ],
+       [
+        "Diplomacy",
+        37.0,
+        0.602
+       ],
+       [
+        "Farming",
+        39.0,
+        0.469
+       ],
+       [
+        "Philosophy",
+        39.0,
+        0.418
+       ],
+       [
+        "Aquatism",
+        40.0,
+        0.438
+       ],
+       [
+        "Smithery",
+        42.0,
+        0.375
+       ],
+       [
+        "Roads",
+        44.0,
+        0.422
+       ],
+       [
+        "Construction",
+        44.0,
+        0.363
+       ],
+       [
+        "Trade",
+        46.0,
+        0.324
+       ],
+       [
+        "Spiritualism",
+        48.0,
+        0.285
+       ]
+      ],
+      "trained": {
+       "Archer": 0.247,
+       "Defender": 0.216,
+       "Warrior": 0.214,
+       "Knight": 0.136,
+       "Catapult": 0.093,
+       "Swordsman": 0.035,
+       "Cloak": 0.035,
+       "Rider": 0.021,
+       "MindBender": 0.003
+      },
+      "trained_per_game": 174.3,
+      "army_r10": {
+       "Archer": 0.64,
+       "Warrior": 0.34,
+       "Swordsman": 0.017,
+       "Catapult": 0.002,
+       "Defender": 0.001,
+       "Giant": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.567,
+       "Warrior": 0.176,
+       "Catapult": 0.154,
+       "Defender": 0.043,
+       "Giant": 0.032,
+       "Swordsman": 0.009
+      },
+      "built": {
+       "Road": 21.46,
+       "LumberHut": 12.6,
+       "Temple": 6.4,
+       "Sawmill": 6.11,
+       "Mine": 4.38,
+       "MountainTemple": 2.71,
+       "Market": 2.17,
+       "Forge": 2.12,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.93
+      },
+      "rewards": {
+       "Workshop": 5.25,
+       "SuperUnit": 3.17,
+       "Resources": 2.96,
+       "CityWall?": 1.99,
+       "BorderGrowth": 1.75,
+       "PopulationGrowth": 1.32,
+       "Explorer": 0.54,
+       "Park": 0.16
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 35.0,
+      "share_took_enemy_city": 0.898,
+      "cities_taken_mean": 7.09,
+      "attacks_by_r10_mean": 12.1,
+      "attacks_per_game": 284.3,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.68,
+        "techs": 2.11,
+        "units": 2.96,
+        "territory": 9.0,
+        "score": 660.66,
+        "kills": 0.02
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.14,
+        "production": 5.53,
+        "stars": 5.15,
+        "techs": 3.35,
+        "units": 4.28,
+        "territory": 19.27,
+        "score": 1335.31,
+        "kills": 0.24
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.28,
+        "production": 8.82,
+        "stars": 7.66,
+        "techs": 4.64,
+        "units": 7.63,
+        "territory": 29.55,
+        "score": 2140.0,
+        "kills": 1.32
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.22,
+        "production": 11.8,
+        "stars": 9.01,
+        "techs": 5.09,
+        "units": 9.64,
+        "territory": 38.29,
+        "score": 2676.22,
+        "kills": 3.44
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.33,
+        "production": 18.07,
+        "stars": 13.25,
+        "techs": 6.3,
+        "units": 13.35,
+        "territory": 52.19,
+        "score": 4102.69,
+        "kills": 14.19
+       },
+       "20": {
+        "n": 254,
+        "cities": 5.39,
+        "production": 20.74,
+        "stars": 15.76,
+        "techs": 7.84,
+        "units": 14.9,
+        "territory": 56.45,
+        "score": 4915.1,
+        "kills": 29.41
+       },
+       "30": {
+        "n": 244,
+        "cities": 5.13,
+        "production": 22.11,
+        "stars": 19.74,
+        "techs": 11.59,
+        "units": 17.82,
+        "territory": 56.34,
+        "score": 6095.53,
+        "kills": 61.24
+       },
+       "40": {
+        "n": 227,
+        "cities": 5.29,
+        "production": 23.94,
+        "stars": 19.14,
+        "techs": 14.6,
+        "units": 19.42,
+        "territory": 58.18,
+        "score": 7194.98,
+        "kills": 89.57
+       }
+      },
+      "losses_ended_before_r10": 1,
+      "losses_behind_income_r10": 42,
+      "losses_level_income_r10": 9,
+      "losses_ahead_income_r10": 22,
+      "win_rate_when_ahead_r10": [
+       0.832,
+       131
+      ],
+      "win_rate_when_behind_r10": [
+       0.6,
+       105
+      ]
+     }
+    }
+   },
+   "extra": {
+    "plato": {
+     "A": {
+      "lumber_huts_by_r10": 0.39,
+      "diplomatic_actions_per_game": 5.8,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 10.57,
+      "production": {
+       "3": [
+        2.03,
+        256
+       ],
+       "5": [
+        4.75,
+        256
+       ],
+       "10": [
+        12.78,
+        255
+       ],
+       "15": [
+        18.66,
+        253
+       ],
+       "20": [
+        23.47,
+        238
+       ],
+       "30": [
+        32.72,
+        108
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.29,
+      "diplomatic_actions_per_game": 5.9,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.32,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.5,
+        256
+       ],
+       "10": [
+        11.22,
+        255
+       ],
+       "15": [
+        16.47,
+        253
+       ],
+       "20": [
+        16.24,
+        238
+       ],
+       "30": [
+        12.4,
+        108
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.965,
+     "capped": 9,
+     "median_end_round": 28.0,
+     "ended_by_r30": 0.633,
+     "opp_knight_rush_games": 8,
+     "score_in_opp_knight_rush_games": 1.0
+    },
+    "u23270": {
+     "A": {
+      "lumber_huts_by_r10": 0.36,
+      "diplomatic_actions_per_game": 35.9,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.41,
+      "production": {
+       "3": [
+        2.01,
+        256
+       ],
+       "5": [
+        4.31,
+        256
+       ],
+       "10": [
+        11.33,
+        255
+       ],
+       "15": [
+        17.89,
+        255
+       ],
+       "20": [
+        23.33,
+        254
+       ],
+       "30": [
+        30.57,
+        244
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.32,
+      "diplomatic_actions_per_game": 22.9,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 1.01,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.53,
+        256
+       ],
+       "10": [
+        11.8,
+        255
+       ],
+       "15": [
+        18.07,
+        255
+       ],
+       "20": [
+        20.74,
+        254
+       ],
+       "30": [
+        22.11,
+        244
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.289,
+     "capped": 5,
+     "median_end_round": 64.0,
+     "ended_by_r30": 0.051,
+     "opp_knight_rush_games": 21,
+     "score_in_opp_knight_rush_games": 0.095
+    }
+   }
+  },
+  {
+   "pairing": "vs hero1, no peace",
+   "plato": {
+    "name": "plato-np-vs-hero1",
+    "a": "Plato (u85270)",
+    "b": "hero1 (weights/hero-1v1)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 220,
+     "losses": 36,
+     "draws": 0,
+     "score": 0.859375,
+     "ci95": [
+      0.8202765618074777,
+      0.8984734381925223
+     ]
+    },
+    "terminal_only": {
+     "wins": 220,
+     "losses": 36,
+     "draws": 0,
+     "score": 0.859375,
+     "ci95": [
+      0.8202765618074777,
+      0.8984734381925223
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 220,
+      "losses": 36,
+      "terminal_wins": 220,
+      "cap_wins": 0,
+      "terminal_losses": 36,
+      "cap_losses": 0,
+      "median_end_round_win": 35.0,
+      "median_end_round_loss": 32.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        102
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        83
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        53
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        18
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        27
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        22
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Temple",
+        16
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > LumberHut",
+        12
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        10
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        130
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        68
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        25
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        7
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        5
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        1.0
+       ],
+       [
+        "Organization",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.984
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.977
+       ],
+       [
+        "Riding",
+        13.0,
+        0.906
+       ],
+       [
+        "FreeSpirit",
+        14.0,
+        0.91
+       ],
+       [
+        "Strategy",
+        15.0,
+        0.148
+       ],
+       [
+        "Mining",
+        16.0,
+        0.27
+       ],
+       [
+        "Chivalry",
+        16.0,
+        0.91
+       ],
+       [
+        "Smithery",
+        21.5,
+        0.188
+       ],
+       [
+        "Meditation",
+        26.0,
+        0.062
+       ],
+       [
+        "Fishing",
+        27.0,
+        0.328
+       ],
+       [
+        "Farming",
+        29.0,
+        0.105
+       ],
+       [
+        "Ramming",
+        29.0,
+        0.027
+       ],
+       [
+        "Aquatism",
+        29.0,
+        0.004
+       ],
+       [
+        "Sailing",
+        30.0,
+        0.051
+       ],
+       [
+        "Mathematics",
+        53.0,
+        0.004
+       ],
+       [
+        "Diplomacy",
+        64.0,
+        0.004
+       ],
+       [
+        "Navigation",
+        68.0,
+        0.012
+       ],
+       [
+        "Construction",
+        68.0,
+        0.004
+       ]
+      ],
+      "trained": {
+       "Archer": 0.418,
+       "Knight": 0.217,
+       "Warrior": 0.179,
+       "Rider": 0.101,
+       "Swordsman": 0.061,
+       "Defender": 0.024,
+       "Catapult": 0.001
+      },
+      "trained_per_game": 125.9,
+      "army_r10": {
+       "Archer": 0.687,
+       "Warrior": 0.278,
+       "Giant": 0.019,
+       "Swordsman": 0.014,
+       "Rider": 0.002,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.58,
+       "Knight": 0.147,
+       "Warrior": 0.117,
+       "Rider": 0.097,
+       "Giant": 0.03,
+       "Defender": 0.017
+      },
+      "built": {
+       "Temple": 3.11,
+       "Mine": 2.77,
+       "LumberHut": 1.31,
+       "Forge": 1.15,
+       "Road": 1.02,
+       "GateOfPower": 1.0,
+       "ParkOfFortune": 0.88,
+       "EyeOfGod": 0.79,
+       "Sawmill": 0.05,
+       "MountainTemple": 0.03
+      },
+      "rewards": {
+       "Explorer": 4.77,
+       "Resources": 4.19,
+       "Workshop": 1.7,
+       "SuperUnit": 1.23,
+       "PopulationGrowth": 1.19,
+       "BorderGrowth": 0.25,
+       "CityWall?": 0.2,
+       "Park": 0.01
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 18.0,
+      "share_took_enemy_city": 0.914,
+      "cities_taken_mean": 4.57,
+      "attacks_by_r10_mean": 13.7,
+      "attacks_per_game": 238.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.04,
+        "stars": 5.15,
+        "techs": 2.02,
+        "units": 3.01,
+        "territory": 9.0,
+        "score": 827.79,
+        "kills": 0.03
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.25,
+        "production": 4.91,
+        "stars": 5.81,
+        "techs": 3.76,
+        "units": 4.01,
+        "territory": 20.21,
+        "score": 1671.48,
+        "kills": 0.23
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.71,
+        "production": 8.8,
+        "stars": 6.82,
+        "techs": 5.01,
+        "units": 7.85,
+        "territory": 33.54,
+        "score": 2777.91,
+        "kills": 1.82
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.75,
+        "production": 12.16,
+        "stars": 8.88,
+        "techs": 5.56,
+        "units": 11.43,
+        "territory": 42.95,
+        "score": 3582.25,
+        "kills": 4.42
+       },
+       "15": {
+        "n": 255,
+        "cities": 6.19,
+        "production": 18.24,
+        "stars": 15.51,
+        "techs": 7.65,
+        "units": 17.87,
+        "territory": 56.45,
+        "score": 5334.53,
+        "kills": 17.56
+       },
+       "20": {
+        "n": 252,
+        "cities": 7.13,
+        "production": 22.1,
+        "stars": 12.66,
+        "techs": 9.04,
+        "units": 18.78,
+        "territory": 65.54,
+        "score": 5618.67,
+        "kills": 36.54
+       },
+       "30": {
+        "n": 182,
+        "cities": 8.73,
+        "production": 29.31,
+        "stars": 12.62,
+        "techs": 9.91,
+        "units": 22.69,
+        "territory": 80.79,
+        "score": 6048.76,
+        "kills": 72.02
+       },
+       "40": {
+        "n": 94,
+        "cities": 9.34,
+        "production": 33.77,
+        "stars": 12.35,
+        "techs": 10.54,
+        "units": 23.96,
+        "territory": 88.72,
+        "score": 6396.91,
+        "kills": 107.85
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 30,
+      "losses_level_income_r10": 1,
+      "losses_ahead_income_r10": 5,
+      "win_rate_when_ahead_r10": [
+       0.96,
+       125
+      ],
+      "win_rate_when_behind_r10": [
+       0.717,
+       106
+      ]
+     },
+     "B": {
+      "wins": 36,
+      "losses": 220,
+      "terminal_wins": 36,
+      "cap_wins": 0,
+      "terminal_losses": 220,
+      "cap_losses": 0,
+      "median_end_round_win": 32.0,
+      "median_end_round_loss": 35.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        136
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        68
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        33
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        15
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        252
+       ],
+       [
+        "Warrior > Archer",
+        4
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        175
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        16
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        15
+       ],
+       [
+        "GateOfPower > LumberHut > LumberHut > LumberHut",
+        8
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > Sawmill",
+        6
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        111
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        34
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        19
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        13
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        12
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        0.973
+       ],
+       [
+        "Archery",
+        5.0,
+        0.992
+       ],
+       [
+        "Climbing",
+        7.0,
+        1.0
+       ],
+       [
+        "Organization",
+        12.0,
+        0.93
+       ],
+       [
+        "Riding",
+        16.0,
+        0.883
+       ],
+       [
+        "Fishing",
+        19.0,
+        0.734
+       ],
+       [
+        "Strategy",
+        19.0,
+        0.801
+       ],
+       [
+        "FreeSpirit",
+        19.0,
+        0.812
+       ],
+       [
+        "Mathematics",
+        20.0,
+        0.582
+       ],
+       [
+        "Chivalry",
+        21.0,
+        0.805
+       ],
+       [
+        "Meditation",
+        30.5,
+        0.234
+       ],
+       [
+        "Sailing",
+        30.5,
+        0.023
+       ],
+       [
+        "Roads",
+        31.0,
+        0.266
+       ],
+       [
+        "Farming",
+        32.0,
+        0.074
+       ],
+       [
+        "Ramming",
+        34.0,
+        0.105
+       ],
+       [
+        "Smithery",
+        34.0,
+        0.008
+       ],
+       [
+        "Philosophy",
+        35.5,
+        0.062
+       ],
+       [
+        "Diplomacy",
+        35.5,
+        0.008
+       ],
+       [
+        "Aquatism",
+        38.0,
+        0.051
+       ],
+       [
+        "Mining",
+        40.0,
+        0.035
+       ],
+       [
+        "Navigation",
+        40.5,
+        0.008
+       ],
+       [
+        "Construction",
+        41.0,
+        0.004
+       ],
+       [
+        "Trade",
+        44.5,
+        0.078
+       ]
+      ],
+      "trained": {
+       "Archer": 0.358,
+       "Defender": 0.249,
+       "Warrior": 0.203,
+       "Knight": 0.153,
+       "Catapult": 0.029,
+       "Rider": 0.005,
+       "Cloak": 0.001,
+       "Swordsman": 0.001
+      },
+      "trained_per_game": 100.2,
+      "army_r10": {
+       "Archer": 0.673,
+       "Warrior": 0.307,
+       "Swordsman": 0.016,
+       "Giant": 0.003,
+       "Catapult": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.579,
+       "Warrior": 0.132,
+       "Defender": 0.112,
+       "Knight": 0.065,
+       "Catapult": 0.059,
+       "Giant": 0.042
+      },
+      "built": {
+       "LumberHut": 7.09,
+       "Road": 6.46,
+       "Sawmill": 1.61,
+       "GateOfPower": 0.98,
+       "Temple": 0.73,
+       "ParkOfFortune": 0.7,
+       "EyeOfGod": 0.19,
+       "Mine": 0.17,
+       "Market": 0.12,
+       "GrandBazaar": 0.07
+      },
+      "rewards": {
+       "Workshop": 4.83,
+       "Resources": 2.55,
+       "CityWall?": 1.49,
+       "PopulationGrowth": 1.25,
+       "SuperUnit": 1.14,
+       "Explorer": 0.82,
+       "BorderGrowth": 0.27,
+       "Park": 0.02
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 20.0,
+      "share_took_enemy_city": 0.531,
+      "cities_taken_mean": 1.43,
+      "attacks_by_r10_mean": 11.8,
+      "attacks_per_game": 149.0,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.99,
+        "techs": 2.04,
+        "units": 2.97,
+        "territory": 9.0,
+        "score": 649.06,
+        "kills": 0.0
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.16,
+        "production": 5.49,
+        "stars": 5.27,
+        "techs": 3.33,
+        "units": 4.2,
+        "territory": 19.48,
+        "score": 1336.78,
+        "kills": 0.08
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.32,
+        "production": 8.95,
+        "stars": 7.41,
+        "techs": 4.59,
+        "units": 7.46,
+        "territory": 29.98,
+        "score": 2172.99,
+        "kills": 1.32
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.17,
+        "production": 11.69,
+        "stars": 9.0,
+        "techs": 5.16,
+        "units": 9.56,
+        "territory": 37.62,
+        "score": 2722.07,
+        "kills": 3.16
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.25,
+        "production": 18.68,
+        "stars": 13.29,
+        "techs": 6.65,
+        "units": 13.28,
+        "territory": 48.05,
+        "score": 4225.14,
+        "kills": 13.58
+       },
+       "20": {
+        "n": 252,
+        "cities": 5.03,
+        "production": 19.3,
+        "stars": 13.97,
+        "techs": 8.81,
+        "units": 12.1,
+        "territory": 46.56,
+        "score": 4693.65,
+        "kills": 28.71
+       },
+       "30": {
+        "n": 182,
+        "cities": 4.05,
+        "production": 16.42,
+        "stars": 15.38,
+        "techs": 11.32,
+        "units": 9.73,
+        "territory": 38.36,
+        "score": 4749.84,
+        "kills": 59.27
+       },
+       "40": {
+        "n": 94,
+        "cities": 3.85,
+        "production": 16.16,
+        "stars": 14.95,
+        "techs": 12.61,
+        "units": 10.32,
+        "territory": 36.53,
+        "score": 5088.09,
+        "kills": 97.05
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 120,
+      "losses_level_income_r10": 24,
+      "losses_ahead_income_r10": 76,
+      "win_rate_when_ahead_r10": [
+       0.283,
+       106
+      ],
+      "win_rate_when_behind_r10": [
+       0.04,
+       125
+      ]
+     }
+    }
+   },
+   "checkpoint_300": {
+    "name": "strat-np-final-vs-hero1",
+    "a": "plato-u23270 ($300)",
+    "b": "hero1 (weights/hero-1v1)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 73,
+     "losses": 183,
+     "draws": 0,
+     "score": 0.28515625,
+     "ci95": [
+      0.23006760070462806,
+      0.34024489929537194
+     ]
+    },
+    "terminal_only": {
+     "wins": 73,
+     "losses": 182,
+     "draws": 1,
+     "score": 0.287109375,
+     "ci95": [
+      0.23219380419465513,
+      0.34202494580534487
+     ]
+    },
+    "truncated": 1,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 73,
+      "losses": 183,
+      "terminal_wins": 73,
+      "cap_wins": 0,
+      "terminal_losses": 182,
+      "cap_losses": 1,
+      "median_end_round_win": 43.0,
+      "median_end_round_loss": 36.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        114
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        63
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        59
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        20
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        27
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        23
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        14
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > Mine > Mine",
+        13
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        13
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        122
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        77
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        23
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        8
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        7
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.988
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.996
+       ],
+       [
+        "Archery",
+        5.0,
+        0.98
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.945
+       ],
+       [
+        "Mining",
+        15.0,
+        0.906
+       ],
+       [
+        "Smithery",
+        19.0,
+        0.707
+       ],
+       [
+        "Riding",
+        27.0,
+        0.703
+       ],
+       [
+        "Mathematics",
+        27.5,
+        0.289
+       ],
+       [
+        "Fishing",
+        28.0,
+        0.484
+       ],
+       [
+        "Strategy",
+        28.0,
+        0.656
+       ],
+       [
+        "Farming",
+        29.0,
+        0.375
+       ],
+       [
+        "Ramming",
+        31.0,
+        0.215
+       ],
+       [
+        "FreeSpirit",
+        32.0,
+        0.426
+       ],
+       [
+        "Construction",
+        32.5,
+        0.141
+       ],
+       [
+        "Chivalry",
+        33.0,
+        0.328
+       ],
+       [
+        "Meditation",
+        33.0,
+        0.18
+       ],
+       [
+        "Sailing",
+        33.0,
+        0.207
+       ],
+       [
+        "Philosophy",
+        33.5,
+        0.094
+       ],
+       [
+        "Aquatism",
+        36.0,
+        0.098
+       ],
+       [
+        "Roads",
+        37.0,
+        0.121
+       ],
+       [
+        "Navigation",
+        38.0,
+        0.09
+       ],
+       [
+        "Diplomacy",
+        43.0,
+        0.086
+       ],
+       [
+        "Trade",
+        49.0,
+        0.023
+       ]
+      ],
+      "trained": {
+       "Archer": 0.395,
+       "Swordsman": 0.316,
+       "Warrior": 0.148,
+       "Defender": 0.056,
+       "Knight": 0.043,
+       "Catapult": 0.021,
+       "Rider": 0.02,
+       "MindBender": 0.002,
+       "Cloak": 0.001
+      },
+      "trained_per_game": 160.4,
+      "army_r10": {
+       "Archer": 0.667,
+       "Warrior": 0.3,
+       "Giant": 0.02,
+       "Swordsman": 0.011,
+       "Defender": 0.002
+      },
+      "army_r20": {
+       "Archer": 0.686,
+       "Warrior": 0.166,
+       "Swordsman": 0.058,
+       "Giant": 0.056,
+       "Defender": 0.025,
+       "Rider": 0.009
+      },
+      "built": {
+       "Road": 10.19,
+       "Mine": 7.93,
+       "Forge": 5.12,
+       "LumberHut": 1.52,
+       "Temple": 1.46,
+       "Sawmill": 1.14,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.87,
+       "EyeOfGod": 0.7,
+       "MountainTemple": 0.5
+      },
+      "rewards": {
+       "Explorer": 5.9,
+       "Resources": 5.6,
+       "SuperUnit": 2.92,
+       "PopulationGrowth": 2.54,
+       "BorderGrowth": 1.08,
+       "Workshop": 0.73,
+       "CityWall?": 0.32,
+       "Park": 0.2
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 17.0,
+      "share_took_enemy_city": 0.672,
+      "cities_taken_mean": 2.46,
+      "attacks_by_r10_mean": 14.0,
+      "attacks_per_game": 258.6,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.02,
+        "stars": 5.14,
+        "techs": 2.01,
+        "units": 2.98,
+        "territory": 9.0,
+        "score": 827.07,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.24,
+        "production": 4.54,
+        "stars": 5.47,
+        "techs": 3.8,
+        "units": 3.94,
+        "territory": 20.18,
+        "score": 1752.77,
+        "kills": 0.2
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.64,
+        "production": 8.06,
+        "stars": 6.21,
+        "techs": 4.85,
+        "units": 7.71,
+        "territory": 32.87,
+        "score": 2770.68,
+        "kills": 1.77
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.65,
+        "production": 11.08,
+        "stars": 8.52,
+        "techs": 5.26,
+        "units": 11.11,
+        "territory": 42.1,
+        "score": 3505.29,
+        "kills": 4.32
+       },
+       "15": {
+        "n": 256,
+        "cities": 6.07,
+        "production": 17.06,
+        "stars": 14.32,
+        "techs": 6.53,
+        "units": 17.39,
+        "territory": 56.33,
+        "score": 5119.75,
+        "kills": 16.66
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.41,
+        "production": 21.4,
+        "stars": 15.59,
+        "techs": 7.69,
+        "units": 18.51,
+        "territory": 61.87,
+        "score": 5918.11,
+        "kills": 32.43
+       },
+       "30": {
+        "n": 188,
+        "cities": 6.96,
+        "production": 27.79,
+        "stars": 22.04,
+        "techs": 10.47,
+        "units": 22.93,
+        "territory": 70.34,
+        "score": 7152.02,
+        "kills": 64.44
+       },
+       "40": {
+        "n": 129,
+        "cities": 7.52,
+        "production": 31.17,
+        "stars": 20.91,
+        "techs": 12.49,
+        "units": 24.12,
+        "territory": 76.78,
+        "score": 7872.91,
+        "kills": 99.09
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 118,
+      "losses_level_income_r10": 13,
+      "losses_ahead_income_r10": 52,
+      "win_rate_when_ahead_r10": [
+       0.416,
+       89
+      ],
+      "win_rate_when_behind_r10": [
+       0.163,
+       141
+      ]
+     },
+     "B": {
+      "wins": 183,
+      "losses": 73,
+      "terminal_wins": 182,
+      "cap_wins": 1,
+      "terminal_losses": 73,
+      "cap_losses": 0,
+      "median_end_round_win": 36.0,
+      "median_end_round_loss": 43.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        140
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        71
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        28
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        11
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        4
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        251
+       ],
+       [
+        "Warrior > Archer",
+        5
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        176
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        20
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        14
+       ],
+       [
+        "LumberHut > GateOfPower > LumberHut > LumberHut",
+        7
+       ],
+       [
+        "GateOfPower > LumberHut > LumberHut > LumberHut",
+        6
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        102
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        28
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        25
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        18
+       ],
+       [
+        "Forestry > Archery > Climbing > Riding",
+        18
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        4.0,
+        0.977
+       ],
+       [
+        "Archery",
+        5.0,
+        0.992
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.992
+       ],
+       [
+        "Organization",
+        12.0,
+        0.906
+       ],
+       [
+        "Riding",
+        16.0,
+        0.953
+       ],
+       [
+        "Fishing",
+        18.0,
+        0.812
+       ],
+       [
+        "Mathematics",
+        19.0,
+        0.57
+       ],
+       [
+        "FreeSpirit",
+        19.0,
+        0.957
+       ],
+       [
+        "Chivalry",
+        20.0,
+        0.953
+       ],
+       [
+        "Strategy",
+        25.0,
+        0.57
+       ],
+       [
+        "Roads",
+        30.0,
+        0.387
+       ],
+       [
+        "Meditation",
+        32.5,
+        0.141
+       ],
+       [
+        "Ramming",
+        36.0,
+        0.086
+       ],
+       [
+        "Sailing",
+        37.0,
+        0.078
+       ],
+       [
+        "Trade",
+        39.0,
+        0.16
+       ],
+       [
+        "Farming",
+        40.0,
+        0.039
+       ],
+       [
+        "Philosophy",
+        42.0,
+        0.043
+       ],
+       [
+        "Aquatism",
+        43.0,
+        0.051
+       ],
+       [
+        "Mining",
+        46.0,
+        0.074
+       ],
+       [
+        "Diplomacy",
+        50.0,
+        0.055
+       ],
+       [
+        "Smithery",
+        55.0,
+        0.035
+       ],
+       [
+        "Navigation",
+        65.5,
+        0.039
+       ],
+       [
+        "Construction",
+        68.0,
+        0.016
+       ],
+       [
+        "Spiritualism",
+        75.0,
+        0.016
+       ]
+      ],
+      "trained": {
+       "Archer": 0.33,
+       "Knight": 0.255,
+       "Warrior": 0.181,
+       "Defender": 0.18,
+       "Catapult": 0.037,
+       "Rider": 0.015,
+       "Swordsman": 0.002,
+       "Cloak": 0.002,
+       "MindBender": 0.0
+      },
+      "trained_per_game": 139.1,
+      "army_r10": {
+       "Archer": 0.683,
+       "Warrior": 0.299,
+       "Swordsman": 0.015,
+       "Giant": 0.001,
+       "Catapult": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.662,
+       "Knight": 0.108,
+       "Warrior": 0.097,
+       "Catapult": 0.05,
+       "Giant": 0.043,
+       "Defender": 0.021
+      },
+      "built": {
+       "Road": 18.09,
+       "LumberHut": 8.01,
+       "Sawmill": 2.55,
+       "Temple": 2.46,
+       "GateOfPower": 1.0,
+       "ParkOfFortune": 0.87,
+       "Mine": 0.71,
+       "Market": 0.62,
+       "EyeOfGod": 0.52,
+       "MountainTemple": 0.28
+      },
+      "rewards": {
+       "Workshop": 5.05,
+       "Resources": 2.96,
+       "CityWall?": 1.73,
+       "SuperUnit": 1.68,
+       "PopulationGrowth": 1.64,
+       "Explorer": 0.96,
+       "BorderGrowth": 0.4,
+       "Park": 0.04
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 21.0,
+      "share_took_enemy_city": 0.891,
+      "cities_taken_mean": 5.14,
+      "attacks_by_r10_mean": 12.5,
+      "attacks_per_game": 281.6,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.93,
+        "techs": 2.05,
+        "units": 2.96,
+        "territory": 9.0,
+        "score": 650.7,
+        "kills": 0.02
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.16,
+        "production": 5.55,
+        "stars": 5.17,
+        "techs": 3.33,
+        "units": 4.23,
+        "territory": 19.48,
+        "score": 1339.04,
+        "kills": 0.19
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.38,
+        "production": 9.06,
+        "stars": 7.99,
+        "techs": 4.58,
+        "units": 7.56,
+        "territory": 30.38,
+        "score": 2195.74,
+        "kills": 1.54
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.34,
+        "production": 11.97,
+        "stars": 10.17,
+        "techs": 5.07,
+        "units": 9.92,
+        "territory": 39.05,
+        "score": 2757.54,
+        "kills": 3.72
+       },
+       "15": {
+        "n": 256,
+        "cities": 5.53,
+        "production": 19.63,
+        "stars": 14.28,
+        "techs": 6.77,
+        "units": 14.77,
+        "territory": 50.59,
+        "score": 4441.64,
+        "kills": 15.55
+       },
+       "20": {
+        "n": 254,
+        "cities": 5.89,
+        "production": 22.3,
+        "stars": 15.84,
+        "techs": 8.92,
+        "units": 16.19,
+        "territory": 54.44,
+        "score": 5175.69,
+        "kills": 34.39
+       },
+       "30": {
+        "n": 188,
+        "cities": 5.88,
+        "production": 23.92,
+        "stars": 16.71,
+        "techs": 11.51,
+        "units": 17.13,
+        "territory": 55.37,
+        "score": 5760.21,
+        "kills": 74.74
+       },
+       "40": {
+        "n": 129,
+        "cities": 5.45,
+        "production": 24.12,
+        "stars": 14.66,
+        "techs": 12.94,
+        "units": 16.16,
+        "territory": 52.81,
+        "score": 6244.46,
+        "kills": 122.33
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 37,
+      "losses_level_income_r10": 13,
+      "losses_ahead_income_r10": 23,
+      "win_rate_when_ahead_r10": [
+       0.837,
+       141
+      ],
+      "win_rate_when_behind_r10": [
+       0.584,
+       89
+      ]
+     }
+    }
+   },
+   "extra": {
+    "plato": {
+     "A": {
+      "lumber_huts_by_r10": 0.49,
+      "diplomatic_actions_per_game": 0.0,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 11.59,
+      "production": {
+       "3": [
+        2.04,
+        256
+       ],
+       "5": [
+        4.91,
+        256
+       ],
+       "10": [
+        12.16,
+        256
+       ],
+       "15": [
+        18.24,
+        255
+       ],
+       "20": [
+        22.1,
+        252
+       ],
+       "30": [
+        29.31,
+        182
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.02,
+      "diplomatic_actions_per_game": 0.0,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 4.56,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.49,
+        256
+       ],
+       "10": [
+        11.69,
+        256
+       ],
+       "15": [
+        18.68,
+        255
+       ],
+       "20": [
+        19.3,
+        252
+       ],
+       "30": [
+        16.42,
+        182
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.859,
+     "capped": 0,
+     "median_end_round": 34.5,
+     "ended_by_r30": 0.348,
+     "opp_knight_rush_games": 88,
+     "score_in_opp_knight_rush_games": 0.67
+    },
+    "u23270": {
+     "A": {
+      "lumber_huts_by_r10": 0.36,
+      "diplomatic_actions_per_game": 0.3,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.19,
+      "production": {
+       "3": [
+        2.02,
+        256
+       ],
+       "5": [
+        4.54,
+        256
+       ],
+       "10": [
+        11.08,
+        256
+       ],
+       "15": [
+        17.06,
+        256
+       ],
+       "20": [
+        21.4,
+        254
+       ],
+       "30": [
+        27.79,
+        188
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.23,
+      "diplomatic_actions_per_game": 0.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 8.37,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.55,
+        256
+       ],
+       "10": [
+        11.97,
+        256
+       ],
+       "15": [
+        19.63,
+        256
+       ],
+       "20": [
+        22.3,
+        254
+       ],
+       "30": [
+        23.92,
+        188
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.285,
+     "capped": 1,
+     "median_end_round": 40.0,
+     "ended_by_r30": 0.289,
+     "opp_knight_rush_games": 150,
+     "score_in_opp_knight_rush_games": 0.213
+    }
+   }
+  },
+  {
+   "pairing": "vs champion, no peace",
+   "plato": {
+    "name": "plato-np-vs-champion",
+    "a": "Plato (u85270)",
+    "b": "champion (weights/champion)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 250,
+     "losses": 6,
+     "draws": 0,
+     "score": 0.9765625,
+     "ci95": [
+      0.9581814724453028,
+      0.9949435275546972
+     ]
+    },
+    "terminal_only": {
+     "wins": 250,
+     "losses": 6,
+     "draws": 0,
+     "score": 0.9765625,
+     "ci95": [
+      0.9581814724453028,
+      0.9949435275546972
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 250,
+      "losses": 6,
+      "terminal_wins": 250,
+      "cap_wins": 0,
+      "terminal_losses": 6,
+      "cap_losses": 0,
+      "median_end_round_win": 27.5,
+      "median_end_round_loss": 46.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        94
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        81
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        60
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        19
+       ],
+       [
+        "Warrior > Warrior > Rider > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        32
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Temple",
+        17
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        13
+       ],
+       [
+        "LumberHut > GateOfPower > ParkOfFortune > EyeOfGod",
+        10
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > LumberHut",
+        9
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        144
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        61
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        21
+       ],
+       [
+        "Organization > Forestry > Archery > Riding",
+        5
+       ],
+       [
+        "Organization > Archery > Forestry > Climbing",
+        4
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.984
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.996
+       ],
+       [
+        "Archery",
+        5.0,
+        1.0
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.98
+       ],
+       [
+        "Strategy",
+        11.5,
+        0.047
+       ],
+       [
+        "Riding",
+        12.5,
+        0.945
+       ],
+       [
+        "FreeSpirit",
+        14.0,
+        0.98
+       ],
+       [
+        "Mining",
+        14.0,
+        0.145
+       ],
+       [
+        "Chivalry",
+        16.0,
+        0.973
+       ],
+       [
+        "Smithery",
+        20.0,
+        0.074
+       ],
+       [
+        "Ramming",
+        21.5,
+        0.016
+       ],
+       [
+        "Fishing",
+        22.0,
+        0.309
+       ],
+       [
+        "Meditation",
+        22.0,
+        0.062
+       ],
+       [
+        "Farming",
+        26.0,
+        0.082
+       ],
+       [
+        "Sailing",
+        41.0,
+        0.012
+       ],
+       [
+        "Spiritualism",
+        94.0,
+        0.004
+       ],
+       [
+        "Navigation",
+        95.0,
+        0.004
+       ],
+       [
+        "Mathematics",
+        95.0,
+        0.004
+       ]
+      ],
+      "trained": {
+       "Archer": 0.439,
+       "Warrior": 0.209,
+       "Knight": 0.176,
+       "Rider": 0.125,
+       "Swordsman": 0.03,
+       "Defender": 0.02,
+       "Catapult": 0.001
+      },
+      "trained_per_game": 87.9,
+      "army_r10": {
+       "Archer": 0.667,
+       "Warrior": 0.292,
+       "Giant": 0.024,
+       "Swordsman": 0.013,
+       "Rider": 0.004,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.545,
+       "Knight": 0.164,
+       "Warrior": 0.131,
+       "Rider": 0.12,
+       "Giant": 0.026,
+       "Swordsman": 0.008
+      },
+      "built": {
+       "Temple": 3.19,
+       "Mine": 1.75,
+       "LumberHut": 1.27,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.82,
+       "EyeOfGod": 0.81,
+       "Road": 0.65,
+       "Forge": 0.44,
+       "Sawmill": 0.02,
+       "MountainTemple": 0.01
+      },
+      "rewards": {
+       "Explorer": 4.81,
+       "Resources": 3.8,
+       "Workshop": 1.46,
+       "PopulationGrowth": 0.98,
+       "SuperUnit": 0.97,
+       "BorderGrowth": 0.22,
+       "CityWall?": 0.21,
+       "Park": 0.03
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 17.0,
+      "share_took_enemy_city": 0.988,
+      "cities_taken_mean": 4.48,
+      "attacks_by_r10_mean": 14.8,
+      "attacks_per_game": 158.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.03,
+        "stars": 5.34,
+        "techs": 2.02,
+        "units": 3.0,
+        "territory": 9.0,
+        "score": 826.31,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.19,
+        "production": 4.75,
+        "stars": 5.67,
+        "techs": 3.82,
+        "units": 3.95,
+        "territory": 19.74,
+        "score": 1656.41,
+        "kills": 0.29
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.76,
+        "production": 9.08,
+        "stars": 6.93,
+        "techs": 5.02,
+        "units": 8.15,
+        "territory": 34.14,
+        "score": 2861.0,
+        "kills": 1.91
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.89,
+        "production": 12.76,
+        "stars": 8.86,
+        "techs": 5.6,
+        "units": 11.94,
+        "territory": 44.42,
+        "score": 3729.22,
+        "kills": 4.86
+       },
+       "15": {
+        "n": 254,
+        "cities": 6.3,
+        "production": 18.66,
+        "stars": 15.74,
+        "techs": 7.89,
+        "units": 18.38,
+        "territory": 57.63,
+        "score": 5398.74,
+        "kills": 18.8
+       },
+       "20": {
+        "n": 238,
+        "cities": 7.6,
+        "production": 23.63,
+        "stars": 12.35,
+        "techs": 9.21,
+        "units": 20.06,
+        "territory": 70.11,
+        "score": 5557.67,
+        "kills": 38.77
+       },
+       "30": {
+        "n": 104,
+        "cities": 9.62,
+        "production": 33.54,
+        "stars": 13.42,
+        "techs": 9.9,
+        "units": 24.47,
+        "territory": 94.65,
+        "score": 6235.19,
+        "kills": 72.2
+       },
+       "40": {
+        "n": 35,
+        "cities": 9.83,
+        "production": 37.06,
+        "stars": 13.69,
+        "techs": 10.57,
+        "units": 23.74,
+        "territory": 99.83,
+        "score": 6402.0,
+        "kills": 101.8
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 6,
+      "losses_level_income_r10": 0,
+      "losses_ahead_income_r10": 0,
+      "win_rate_when_ahead_r10": [
+       1.0,
+       149
+      ],
+      "win_rate_when_behind_r10": [
+       0.927,
+       82
+      ]
+     },
+     "B": {
+      "wins": 6,
+      "losses": 250,
+      "terminal_wins": 6,
+      "cap_wins": 0,
+      "terminal_losses": 250,
+      "cap_losses": 0,
+      "median_end_round_win": 46.0,
+      "median_end_round_loss": 27.5,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        163
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        56
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        20
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        14
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        253
+       ],
+       [
+        "Warrior > Archer",
+        3
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        158
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        24
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        9
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > Sawmill",
+        9
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower",
+        7
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        104
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        35
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        23
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        14
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        11
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        3.0,
+        0.973
+       ],
+       [
+        "Archery",
+        5.0,
+        0.996
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.973
+       ],
+       [
+        "Organization",
+        12.0,
+        0.934
+       ],
+       [
+        "Mathematics",
+        16.0,
+        0.594
+       ],
+       [
+        "Strategy",
+        20.0,
+        0.809
+       ],
+       [
+        "Fishing",
+        21.0,
+        0.613
+       ],
+       [
+        "Riding",
+        22.0,
+        0.324
+       ],
+       [
+        "FreeSpirit",
+        22.0,
+        0.109
+       ],
+       [
+        "Meditation",
+        23.0,
+        0.426
+       ],
+       [
+        "Diplomacy",
+        23.0,
+        0.035
+       ],
+       [
+        "Mining",
+        24.5,
+        0.18
+       ],
+       [
+        "Philosophy",
+        26.0,
+        0.066
+       ],
+       [
+        "Chivalry",
+        26.0,
+        0.094
+       ],
+       [
+        "Farming",
+        27.0,
+        0.172
+       ],
+       [
+        "Ramming",
+        29.0,
+        0.246
+       ],
+       [
+        "Spiritualism",
+        29.0,
+        0.027
+       ],
+       [
+        "Sailing",
+        30.0,
+        0.207
+       ],
+       [
+        "Navigation",
+        32.0,
+        0.094
+       ],
+       [
+        "Aquatism",
+        36.5,
+        0.078
+       ],
+       [
+        "Smithery",
+        39.0,
+        0.02
+       ],
+       [
+        "Construction",
+        42.0,
+        0.016
+       ],
+       [
+        "Roads",
+        48.0,
+        0.004
+       ],
+       [
+        "Trade",
+        59.0,
+        0.004
+       ]
+      ],
+      "trained": {
+       "Archer": 0.421,
+       "Warrior": 0.317,
+       "Defender": 0.159,
+       "Catapult": 0.063,
+       "Knight": 0.016,
+       "Cloak": 0.016,
+       "Rider": 0.006,
+       "Swordsman": 0.002
+      },
+      "trained_per_game": 66.0,
+      "army_r10": {
+       "Archer": 0.624,
+       "Warrior": 0.356,
+       "Swordsman": 0.014,
+       "Catapult": 0.004,
+       "Defender": 0.001,
+       "Giant": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.485,
+       "Warrior": 0.201,
+       "Catapult": 0.143,
+       "Defender": 0.11,
+       "Giant": 0.045,
+       "Swordsman": 0.008
+      },
+      "built": {
+       "LumberHut": 7.2,
+       "Sawmill": 2.09,
+       "GateOfPower": 0.94,
+       "ParkOfFortune": 0.45,
+       "Mine": 0.45,
+       "MountainTemple": 0.28,
+       "Temple": 0.07,
+       "EyeOfGod": 0.05,
+       "Forge": 0.03,
+       "AltarOfPeace": 0.03
+      },
+      "rewards": {
+       "Workshop": 4.78,
+       "Resources": 2.07,
+       "CityWall?": 1.41,
+       "BorderGrowth": 0.79,
+       "SuperUnit": 0.71,
+       "PopulationGrowth": 0.44,
+       "Explorer": 0.31,
+       "Park": 0.04
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 20.0,
+      "share_took_enemy_city": 0.277,
+      "cities_taken_mean": 0.57,
+      "attacks_by_r10_mean": 11.9,
+      "attacks_per_game": 91.9,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.68,
+        "techs": 2.11,
+        "units": 2.97,
+        "territory": 9.0,
+        "score": 659.71,
+        "kills": 0.0
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.11,
+        "production": 5.5,
+        "stars": 4.87,
+        "techs": 3.39,
+        "units": 4.22,
+        "territory": 18.95,
+        "score": 1330.8,
+        "kills": 0.11
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.17,
+        "production": 8.6,
+        "stars": 7.57,
+        "techs": 4.64,
+        "units": 7.39,
+        "territory": 28.72,
+        "score": 2101.13,
+        "kills": 1.17
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.0,
+        "production": 11.22,
+        "stars": 9.15,
+        "techs": 5.11,
+        "units": 9.11,
+        "territory": 36.39,
+        "score": 2585.45,
+        "kills": 3.06
+       },
+       "15": {
+        "n": 254,
+        "cities": 4.67,
+        "production": 16.39,
+        "stars": 13.04,
+        "techs": 6.19,
+        "units": 11.33,
+        "territory": 46.21,
+        "score": 3793.35,
+        "kills": 13.04
+       },
+       "20": {
+        "n": 238,
+        "cities": 4.18,
+        "production": 16.25,
+        "stars": 13.21,
+        "techs": 7.64,
+        "units": 8.91,
+        "territory": 43.76,
+        "score": 4169.66,
+        "kills": 26.43
+       },
+       "30": {
+        "n": 104,
+        "cities": 2.95,
+        "production": 12.09,
+        "stars": 13.07,
+        "techs": 10.52,
+        "units": 8.23,
+        "territory": 31.17,
+        "score": 4133.8,
+        "kills": 53.34
+       },
+       "40": {
+        "n": 35,
+        "cities": 2.97,
+        "production": 12.8,
+        "stars": 12.51,
+        "techs": 13.2,
+        "units": 10.23,
+        "territory": 32.46,
+        "score": 5128.0,
+        "kills": 81.4
+       }
+      },
+      "losses_ended_before_r10": 1,
+      "losses_behind_income_r10": 149,
+      "losses_level_income_r10": 24,
+      "losses_ahead_income_r10": 76,
+      "win_rate_when_ahead_r10": [
+       0.073,
+       82
+      ],
+      "win_rate_when_behind_r10": [
+       0.0,
+       149
+      ]
+     }
+    }
+   },
+   "checkpoint_300": {
+    "name": "strat-np-final-vs-champion",
+    "a": "plato-u23270 ($300)",
+    "b": "champion (weights/champion)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "normalized-v2",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 184,
+     "losses": 72,
+     "draws": 0,
+     "score": 0.71875,
+     "ci95": [
+      0.6657756013771858,
+      0.7717243986228142
+     ]
+    },
+    "terminal_only": {
+     "wins": 184,
+     "losses": 72,
+     "draws": 0,
+     "score": 0.71875,
+     "ci95": [
+      0.6657756013771858,
+      0.7717243986228142
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 184,
+      "losses": 72,
+      "terminal_wins": 184,
+      "cap_wins": 0,
+      "terminal_losses": 72,
+      "cap_losses": 0,
+      "median_end_round_win": 47.0,
+      "median_end_round_loss": 46.5,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        104
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        70
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        58
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        22
+       ],
+       [
+        "Warrior > Warrior > Warrior > Rider",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        39
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        17
+       ],
+       [
+        "LumberHut > GateOfPower > Mine > Mine",
+        14
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        11
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Mine",
+        10
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        121
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        84
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        20
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        7
+       ],
+       [
+        "Organization > Forestry > Climbing > Archery",
+        3
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.996
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.996
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.957
+       ],
+       [
+        "Mining",
+        14.0,
+        0.961
+       ],
+       [
+        "Smithery",
+        19.0,
+        0.906
+       ],
+       [
+        "Riding",
+        25.0,
+        0.875
+       ],
+       [
+        "Mathematics",
+        25.0,
+        0.438
+       ],
+       [
+        "Fishing",
+        26.0,
+        0.59
+       ],
+       [
+        "Farming",
+        27.0,
+        0.445
+       ],
+       [
+        "FreeSpirit",
+        29.0,
+        0.664
+       ],
+       [
+        "Chivalry",
+        30.0,
+        0.473
+       ],
+       [
+        "Strategy",
+        30.0,
+        0.434
+       ],
+       [
+        "Meditation",
+        30.0,
+        0.301
+       ],
+       [
+        "Sailing",
+        31.0,
+        0.336
+       ],
+       [
+        "Construction",
+        31.0,
+        0.305
+       ],
+       [
+        "Ramming",
+        33.0,
+        0.312
+       ],
+       [
+        "Navigation",
+        33.0,
+        0.148
+       ],
+       [
+        "Aquatism",
+        34.0,
+        0.152
+       ],
+       [
+        "Philosophy",
+        34.0,
+        0.16
+       ],
+       [
+        "Roads",
+        34.0,
+        0.195
+       ],
+       [
+        "Diplomacy",
+        36.0,
+        0.141
+       ],
+       [
+        "Trade",
+        40.0,
+        0.059
+       ],
+       [
+        "Spiritualism",
+        65.0,
+        0.012
+       ]
+      ],
+      "trained": {
+       "Archer": 0.409,
+       "Swordsman": 0.237,
+       "Warrior": 0.18,
+       "Knight": 0.05,
+       "Defender": 0.048,
+       "Rider": 0.044,
+       "Catapult": 0.025,
+       "MindBender": 0.005,
+       "Cloak": 0.002
+      },
+      "trained_per_game": 164.7,
+      "army_r10": {
+       "Archer": 0.668,
+       "Warrior": 0.301,
+       "Giant": 0.018,
+       "Swordsman": 0.012,
+       "Rider": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.694,
+       "Warrior": 0.178,
+       "Swordsman": 0.054,
+       "Giant": 0.051,
+       "Defender": 0.014,
+       "Rider": 0.007
+      },
+      "built": {
+       "Road": 17.5,
+       "Mine": 11.12,
+       "Forge": 7.11,
+       "Temple": 3.36,
+       "LumberHut": 2.93,
+       "Sawmill": 2.0,
+       "GateOfPower": 0.99,
+       "MountainTemple": 0.98,
+       "ParkOfFortune": 0.95,
+       "EyeOfGod": 0.8
+      },
+      "rewards": {
+       "Resources": 6.27,
+       "Explorer": 5.97,
+       "SuperUnit": 4.08,
+       "PopulationGrowth": 3.13,
+       "BorderGrowth": 1.58,
+       "Workshop": 0.97,
+       "CityWall?": 0.56,
+       "Park": 0.45
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 19.0,
+      "share_took_enemy_city": 0.859,
+      "cities_taken_mean": 4.14,
+      "attacks_by_r10_mean": 14.8,
+      "attacks_per_game": 296.1,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.01,
+        "stars": 5.33,
+        "techs": 2.01,
+        "units": 2.99,
+        "territory": 9.0,
+        "score": 825.8,
+        "kills": 0.04
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.11,
+        "production": 4.31,
+        "stars": 5.4,
+        "techs": 3.73,
+        "units": 3.83,
+        "territory": 18.98,
+        "score": 1694.98,
+        "kills": 0.29
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.69,
+        "production": 8.25,
+        "stars": 6.0,
+        "techs": 4.87,
+        "units": 8.01,
+        "territory": 33.7,
+        "score": 2825.45,
+        "kills": 1.79
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.75,
+        "production": 11.33,
+        "stars": 8.51,
+        "techs": 5.3,
+        "units": 11.47,
+        "territory": 43.68,
+        "score": 3563.76,
+        "kills": 4.69
+       },
+       "15": {
+        "n": 255,
+        "cities": 6.22,
+        "production": 17.88,
+        "stars": 14.35,
+        "techs": 6.71,
+        "units": 18.36,
+        "territory": 58.19,
+        "score": 5321.0,
+        "kills": 17.93
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.83,
+        "production": 23.39,
+        "stars": 17.76,
+        "techs": 7.99,
+        "units": 22.36,
+        "territory": 67.13,
+        "score": 6329.17,
+        "kills": 34.94
+       },
+       "30": {
+        "n": 232,
+        "cities": 7.79,
+        "production": 31.93,
+        "stars": 21.05,
+        "techs": 11.59,
+        "units": 27.58,
+        "territory": 81.2,
+        "score": 7884.38,
+        "kills": 67.45
+       },
+       "40": {
+        "n": 178,
+        "cities": 8.25,
+        "production": 35.34,
+        "stars": 16.96,
+        "techs": 13.33,
+        "units": 25.99,
+        "territory": 87.78,
+        "score": 8355.9,
+        "kills": 101.57
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 56,
+      "losses_level_income_r10": 3,
+      "losses_ahead_income_r10": 13,
+      "win_rate_when_ahead_r10": [
+       0.876,
+       105
+      ],
+      "win_rate_when_behind_r10": [
+       0.573,
+       131
+      ]
+     },
+     "B": {
+      "wins": 72,
+      "losses": 184,
+      "terminal_wins": 72,
+      "cap_wins": 0,
+      "terminal_losses": 184,
+      "cap_losses": 0,
+      "median_end_round_win": 46.5,
+      "median_end_round_loss": 47.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        163
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        54
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        24
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        14
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        255
+       ],
+       [
+        "Warrior > Archer",
+        1
+       ]
+      ],
+      "opening_builds": [
+       [
+        "LumberHut > LumberHut > LumberHut > LumberHut",
+        177
+       ],
+       [
+        "LumberHut > LumberHut > LumberHut > GateOfPower",
+        27
+       ],
+       [
+        "LumberHut > LumberHut > GateOfPower > LumberHut",
+        13
+       ],
+       [
+        "GateOfPower > LumberHut > LumberHut > LumberHut",
+        4
+       ],
+       [
+        "GateOfPower",
+        4
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Forestry > Archery > Climbing > Organization",
+        103
+       ],
+       [
+        "Forestry > Archery > Climbing > Mathematics",
+        34
+       ],
+       [
+        "Forestry > Climbing > Archery > Organization",
+        20
+       ],
+       [
+        "Archery > Climbing > Forestry > Organization",
+        10
+       ],
+       [
+        "Archery > Forestry > Climbing > Organization",
+        8
+       ]
+      ],
+      "tech_order": [
+       [
+        "Forestry",
+        3.0,
+        0.977
+       ],
+       [
+        "Archery",
+        5.0,
+        0.988
+       ],
+       [
+        "Climbing",
+        7.0,
+        0.988
+       ],
+       [
+        "Organization",
+        13.0,
+        0.965
+       ],
+       [
+        "Mathematics",
+        17.0,
+        0.812
+       ],
+       [
+        "Fishing",
+        22.0,
+        0.84
+       ],
+       [
+        "Strategy",
+        23.0,
+        0.891
+       ],
+       [
+        "Riding",
+        24.0,
+        0.707
+       ],
+       [
+        "FreeSpirit",
+        25.0,
+        0.5
+       ],
+       [
+        "Diplomacy",
+        25.0,
+        0.242
+       ],
+       [
+        "Chivalry",
+        26.0,
+        0.469
+       ],
+       [
+        "Meditation",
+        28.0,
+        0.578
+       ],
+       [
+        "Sailing",
+        29.0,
+        0.457
+       ],
+       [
+        "Navigation",
+        32.0,
+        0.352
+       ],
+       [
+        "Ramming",
+        32.5,
+        0.414
+       ],
+       [
+        "Mining",
+        33.0,
+        0.391
+       ],
+       [
+        "Farming",
+        35.0,
+        0.309
+       ],
+       [
+        "Aquatism",
+        38.5,
+        0.219
+       ],
+       [
+        "Philosophy",
+        39.0,
+        0.184
+       ],
+       [
+        "Roads",
+        42.0,
+        0.145
+       ],
+       [
+        "Smithery",
+        43.0,
+        0.184
+       ],
+       [
+        "Construction",
+        44.0,
+        0.125
+       ],
+       [
+        "Spiritualism",
+        48.0,
+        0.109
+       ],
+       [
+        "Trade",
+        51.0,
+        0.078
+       ]
+      ],
+      "trained": {
+       "Archer": 0.295,
+       "Warrior": 0.239,
+       "Defender": 0.213,
+       "Knight": 0.121,
+       "Catapult": 0.085,
+       "Cloak": 0.026,
+       "Rider": 0.015,
+       "Swordsman": 0.004,
+       "MindBender": 0.001
+      },
+      "trained_per_game": 131.3,
+      "army_r10": {
+       "Archer": 0.64,
+       "Warrior": 0.34,
+       "Swordsman": 0.017,
+       "Catapult": 0.002,
+       "Defender": 0.001,
+       "Giant": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.561,
+       "Warrior": 0.176,
+       "Catapult": 0.159,
+       "Defender": 0.043,
+       "Giant": 0.032,
+       "Swordsman": 0.009
+      },
+      "built": {
+       "LumberHut": 9.14,
+       "Road": 4.66,
+       "Sawmill": 4.11,
+       "MountainTemple": 1.43,
+       "Mine": 1.26,
+       "GateOfPower": 0.98,
+       "Temple": 0.82,
+       "ParkOfFortune": 0.74,
+       "Forge": 0.41,
+       "EyeOfGod": 0.29
+      },
+      "rewards": {
+       "Workshop": 5.18,
+       "Resources": 2.77,
+       "CityWall?": 1.8,
+       "SuperUnit": 1.57,
+       "BorderGrowth": 1.34,
+       "PopulationGrowth": 0.91,
+       "Explorer": 0.5,
+       "Park": 0.11
+      },
+      "first_attack_median": 5.0,
+      "first_city_taken_median": 25.0,
+      "share_took_enemy_city": 0.609,
+      "cities_taken_mean": 2.53,
+      "attacks_by_r10_mean": 12.1,
+      "attacks_per_game": 232.5,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 3.0,
+        "stars": 4.68,
+        "techs": 2.11,
+        "units": 2.96,
+        "territory": 9.0,
+        "score": 660.66,
+        "kills": 0.02
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.14,
+        "production": 5.53,
+        "stars": 5.15,
+        "techs": 3.35,
+        "units": 4.28,
+        "territory": 19.27,
+        "score": 1335.31,
+        "kills": 0.24
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.28,
+        "production": 8.82,
+        "stars": 7.66,
+        "techs": 4.64,
+        "units": 7.63,
+        "territory": 29.55,
+        "score": 2140.0,
+        "kills": 1.32
+       },
+       "10": {
+        "n": 255,
+        "cities": 4.22,
+        "production": 11.8,
+        "stars": 9.01,
+        "techs": 5.09,
+        "units": 9.64,
+        "territory": 38.29,
+        "score": 2676.22,
+        "kills": 3.44
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.32,
+        "production": 18.06,
+        "stars": 13.04,
+        "techs": 6.29,
+        "units": 13.31,
+        "territory": 52.15,
+        "score": 4104.04,
+        "kills": 14.28
+       },
+       "20": {
+        "n": 254,
+        "cities": 5.36,
+        "production": 20.61,
+        "stars": 15.54,
+        "techs": 7.78,
+        "units": 14.6,
+        "territory": 56.0,
+        "score": 4885.51,
+        "kills": 29.72
+       },
+       "30": {
+        "n": 232,
+        "cities": 4.92,
+        "production": 20.84,
+        "stars": 18.18,
+        "techs": 11.12,
+        "units": 15.78,
+        "territory": 54.03,
+        "score": 5753.88,
+        "kills": 66.23
+       },
+       "40": {
+        "n": 178,
+        "cities": 4.79,
+        "production": 20.78,
+        "stars": 17.18,
+        "techs": 13.13,
+        "units": 15.87,
+        "territory": 52.81,
+        "score": 6262.39,
+        "kills": 107.15
+       }
+      },
+      "losses_ended_before_r10": 1,
+      "losses_behind_income_r10": 92,
+      "losses_level_income_r10": 16,
+      "losses_ahead_income_r10": 75,
+      "win_rate_when_ahead_r10": [
+       0.427,
+       131
+      ],
+      "win_rate_when_behind_r10": [
+       0.124,
+       105
+      ]
+     }
+    }
+   },
+   "extra": {
+    "plato": {
+     "A": {
+      "lumber_huts_by_r10": 0.38,
+      "diplomatic_actions_per_game": 0,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 10.49,
+      "production": {
+       "3": [
+        2.03,
+        256
+       ],
+       "5": [
+        4.75,
+        256
+       ],
+       "10": [
+        12.76,
+        255
+       ],
+       "15": [
+        18.66,
+        254
+       ],
+       "20": [
+        23.63,
+        238
+       ],
+       "30": [
+        33.54,
+        104
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.3,
+      "diplomatic_actions_per_game": 0.1,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.31,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.5,
+        256
+       ],
+       "10": [
+        11.22,
+        255
+       ],
+       "15": [
+        16.39,
+        254
+       ],
+       "20": [
+        16.25,
+        238
+       ],
+       "30": [
+        12.09,
+        104
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.977,
+     "capped": 0,
+     "median_end_round": 28.0,
+     "ended_by_r30": 0.621,
+     "opp_knight_rush_games": 7,
+     "score_in_opp_knight_rush_games": 1.0
+    },
+    "u23270": {
+     "A": {
+      "lumber_huts_by_r10": 0.36,
+      "diplomatic_actions_per_game": 0.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.45,
+      "production": {
+       "3": [
+        2.01,
+        256
+       ],
+       "5": [
+        4.31,
+        256
+       ],
+       "10": [
+        11.33,
+        255
+       ],
+       "15": [
+        17.88,
+        255
+       ],
+       "20": [
+        23.39,
+        254
+       ],
+       "30": [
+        31.93,
+        232
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 3.32,
+      "diplomatic_actions_per_game": 0.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 1.0,
+      "production": {
+       "3": [
+        3,
+        256
+       ],
+       "5": [
+        5.53,
+        256
+       ],
+       "10": [
+        11.8,
+        255
+       ],
+       "15": [
+        18.06,
+        255
+       ],
+       "20": [
+        20.61,
+        254
+       ],
+       "30": [
+        20.84,
+        232
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.719,
+     "capped": 0,
+     "median_end_round": 47.0,
+     "ended_by_r30": 0.098,
+     "opp_knight_rush_games": 20,
+     "score_in_opp_knight_rush_games": 0.65
+    }
+   }
+  },
+  {
+   "pairing": "vs itself, peace legal",
+   "plato": {
+    "name": "plato-vs-plato",
+    "a": "Plato (u85270)",
+    "b": "Plato (u85270)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "transformer-v3-p2-h4",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 131,
+     "losses": 125,
+     "draws": 0,
+     "score": 0.51171875,
+     "ci95": [
+      0.46500905336186,
+      0.55842844663814
+     ]
+    },
+    "terminal_only": {
+     "wins": 127,
+     "losses": 122,
+     "draws": 7,
+     "score": 0.509765625,
+     "ci95": [
+      0.4638394299097319,
+      0.5556918200902681
+     ]
+    },
+    "truncated": 7,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 131,
+      "losses": 125,
+      "terminal_wins": 127,
+      "cap_wins": 4,
+      "terminal_losses": 122,
+      "cap_losses": 3,
+      "median_end_round_win": 32.0,
+      "median_end_round_loss": 33.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        95
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        76
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        70
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        12
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        254
+       ],
+       [
+        "Warrior > Archer",
+        2
+       ]
+      ],
+      "opening_builds": [
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        19
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        17
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        14
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        14
+       ],
+       [
+        "LumberHut > GateOfPower > Mine > Mine",
+        12
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        108
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        58
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        43
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        16
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        8
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.992
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.988
+       ],
+       [
+        "Archery",
+        5.0,
+        0.996
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.977
+       ],
+       [
+        "Strategy",
+        12.0,
+        0.477
+       ],
+       [
+        "Riding",
+        15.0,
+        0.777
+       ],
+       [
+        "FreeSpirit",
+        16.0,
+        0.703
+       ],
+       [
+        "Mining",
+        16.0,
+        0.578
+       ],
+       [
+        "Chivalry",
+        17.0,
+        0.641
+       ],
+       [
+        "Smithery",
+        21.0,
+        0.438
+       ],
+       [
+        "Fishing",
+        26.0,
+        0.484
+       ],
+       [
+        "Meditation",
+        27.5,
+        0.07
+       ],
+       [
+        "Farming",
+        29.0,
+        0.168
+       ],
+       [
+        "Sailing",
+        29.0,
+        0.168
+       ],
+       [
+        "Mathematics",
+        29.5,
+        0.039
+       ],
+       [
+        "Navigation",
+        32.0,
+        0.082
+       ],
+       [
+        "Ramming",
+        32.0,
+        0.129
+       ],
+       [
+        "Aquatism",
+        32.0,
+        0.043
+       ],
+       [
+        "Construction",
+        33.0,
+        0.012
+       ],
+       [
+        "Spiritualism",
+        39.0,
+        0.004
+       ],
+       [
+        "Diplomacy",
+        41.5,
+        0.008
+       ],
+       [
+        "Roads",
+        45.5,
+        0.008
+       ],
+       [
+        "Philosophy",
+        48.0,
+        0.012
+       ]
+      ],
+      "trained": {
+       "Archer": 0.401,
+       "Warrior": 0.201,
+       "Knight": 0.141,
+       "Defender": 0.119,
+       "Rider": 0.07,
+       "Swordsman": 0.068,
+       "Catapult": 0.0
+      },
+      "trained_per_game": 101.6,
+      "army_r10": {
+       "Archer": 0.691,
+       "Warrior": 0.276,
+       "Giant": 0.015,
+       "Swordsman": 0.013,
+       "Rider": 0.003,
+       "Defender": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.543,
+       "Warrior": 0.164,
+       "Knight": 0.098,
+       "Defender": 0.073,
+       "Rider": 0.056,
+       "Giant": 0.043
+      },
+      "built": {
+       "Mine": 5.17,
+       "Forge": 2.82,
+       "Temple": 1.65,
+       "LumberHut": 1.29,
+       "GateOfPower": 1.0,
+       "ParkOfFortune": 0.88,
+       "EyeOfGod": 0.56,
+       "Road": 0.2,
+       "Sawmill": 0.03,
+       "MountainTemple": 0.03
+      },
+      "rewards": {
+       "Explorer": 4.41,
+       "Resources": 4.11,
+       "Workshop": 1.65,
+       "SuperUnit": 1.48,
+       "PopulationGrowth": 1.37,
+       "BorderGrowth": 0.44,
+       "CityWall?": 0.18,
+       "Park": 0.0
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 17.0,
+      "share_took_enemy_city": 0.742,
+      "cities_taken_mean": 3.04,
+      "attacks_by_r10_mean": 11.4,
+      "attacks_per_game": 162.7,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.03,
+        "stars": 4.88,
+        "techs": 2.01,
+        "units": 3.0,
+        "territory": 9.0,
+        "score": 820.9,
+        "kills": 0.01
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.19,
+        "production": 4.93,
+        "stars": 5.7,
+        "techs": 3.72,
+        "units": 3.86,
+        "territory": 19.78,
+        "score": 1648.77,
+        "kills": 0.12
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.57,
+        "production": 8.72,
+        "stars": 6.66,
+        "techs": 5.03,
+        "units": 7.88,
+        "territory": 32.37,
+        "score": 2751.11,
+        "kills": 1.19
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.53,
+        "production": 11.74,
+        "stars": 8.86,
+        "techs": 5.6,
+        "units": 11.24,
+        "territory": 41.03,
+        "score": 3469.98,
+        "kills": 3.16
+       },
+       "15": {
+        "n": 256,
+        "cities": 5.75,
+        "production": 17.36,
+        "stars": 14.68,
+        "techs": 7.49,
+        "units": 16.34,
+        "territory": 52.71,
+        "score": 5041.99,
+        "kills": 15.45
+       },
+       "20": {
+        "n": 255,
+        "cities": 6.09,
+        "production": 19.64,
+        "stars": 14.11,
+        "techs": 8.98,
+        "units": 16.88,
+        "territory": 56.61,
+        "score": 5377.39,
+        "kills": 31.79
+       },
+       "30": {
+        "n": 176,
+        "cities": 6.6,
+        "production": 23.24,
+        "stars": 11.22,
+        "techs": 10.81,
+        "units": 17.98,
+        "territory": 63.4,
+        "score": 5644.55,
+        "kills": 62.85
+       },
+       "40": {
+        "n": 49,
+        "cities": 5.84,
+        "production": 22.53,
+        "stars": 18.57,
+        "techs": 11.92,
+        "units": 17.51,
+        "territory": 58.55,
+        "score": 5540.92,
+        "kills": 91.92
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 83,
+      "losses_level_income_r10": 16,
+      "losses_ahead_income_r10": 26,
+      "win_rate_when_ahead_r10": [
+       0.77,
+       113
+      ],
+      "win_rate_when_behind_r10": [
+       0.291,
+       117
+      ]
+     },
+     "B": {
+      "wins": 125,
+      "losses": 131,
+      "terminal_wins": 122,
+      "cap_wins": 3,
+      "terminal_losses": 127,
+      "cap_losses": 4,
+      "median_end_round_win": 33.0,
+      "median_end_round_loss": 32.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        93
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        85
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        63
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        12
+       ],
+       [
+        "Warrior > Archer > Archer > Archer",
+        2
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        253
+       ],
+       [
+        "Warrior > Archer",
+        3
+       ]
+      ],
+      "opening_builds": [
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        18
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Temple",
+        16
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        12
+       ],
+       [
+        "LumberHut > ParkOfFortune > EyeOfGod > GateOfPower",
+        9
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        8
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        114
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        47
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        35
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        13
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        8
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.992
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.996
+       ],
+       [
+        "Climbing",
+        10.0,
+        0.953
+       ],
+       [
+        "Strategy",
+        12.0,
+        0.496
+       ],
+       [
+        "Riding",
+        15.0,
+        0.738
+       ],
+       [
+        "FreeSpirit",
+        15.0,
+        0.676
+       ],
+       [
+        "Mining",
+        16.0,
+        0.602
+       ],
+       [
+        "Chivalry",
+        17.0,
+        0.652
+       ],
+       [
+        "Smithery",
+        20.5,
+        0.414
+       ],
+       [
+        "Diplomacy",
+        25.0,
+        0.004
+       ],
+       [
+        "Mathematics",
+        26.0,
+        0.027
+       ],
+       [
+        "Farming",
+        26.5,
+        0.148
+       ],
+       [
+        "Fishing",
+        27.0,
+        0.395
+       ],
+       [
+        "Meditation",
+        27.0,
+        0.043
+       ],
+       [
+        "Ramming",
+        29.0,
+        0.062
+       ],
+       [
+        "Sailing",
+        31.0,
+        0.129
+       ],
+       [
+        "Construction",
+        31.0,
+        0.016
+       ],
+       [
+        "Navigation",
+        33.0,
+        0.035
+       ],
+       [
+        "Aquatism",
+        40.0,
+        0.012
+       ]
+      ],
+      "trained": {
+       "Archer": 0.399,
+       "Warrior": 0.209,
+       "Knight": 0.146,
+       "Defender": 0.113,
+       "Rider": 0.069,
+       "Swordsman": 0.061,
+       "Catapult": 0.002,
+       "Cloak": 0.0
+      },
+      "trained_per_game": 101.5,
+      "army_r10": {
+       "Archer": 0.691,
+       "Warrior": 0.28,
+       "Giant": 0.014,
+       "Swordsman": 0.012,
+       "Defender": 0.001,
+       "Rider": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.53,
+       "Warrior": 0.168,
+       "Knight": 0.094,
+       "Defender": 0.092,
+       "Rider": 0.047,
+       "Giant": 0.044
+      },
+      "built": {
+       "Mine": 5.07,
+       "Forge": 1.96,
+       "Temple": 1.64,
+       "GateOfPower": 0.98,
+       "ParkOfFortune": 0.84,
+       "LumberHut": 0.83,
+       "EyeOfGod": 0.59,
+       "Road": 0.09,
+       "Sawmill": 0.03,
+       "MountainTemple": 0.01
+      },
+      "rewards": {
+       "Explorer": 4.43,
+       "Resources": 4.11,
+       "Workshop": 1.6,
+       "SuperUnit": 1.51,
+       "PopulationGrowth": 1.41,
+       "BorderGrowth": 0.46,
+       "CityWall?": 0.19,
+       "Park": 0.01
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 18.0,
+      "share_took_enemy_city": 0.738,
+      "cities_taken_mean": 2.93,
+      "attacks_by_r10_mean": 11.2,
+      "attacks_per_game": 161.5,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.03,
+        "stars": 4.81,
+        "techs": 2.03,
+        "units": 2.99,
+        "territory": 9.0,
+        "score": 823.81,
+        "kills": 0.01
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.21,
+        "production": 4.93,
+        "stars": 5.51,
+        "techs": 3.69,
+        "units": 3.86,
+        "territory": 19.9,
+        "score": 1648.05,
+        "kills": 0.12
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.6,
+        "production": 8.72,
+        "stars": 6.76,
+        "techs": 5.03,
+        "units": 7.85,
+        "territory": 32.54,
+        "score": 2747.97,
+        "kills": 1.16
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.56,
+        "production": 11.75,
+        "stars": 8.86,
+        "techs": 5.57,
+        "units": 11.06,
+        "territory": 41.45,
+        "score": 3450.04,
+        "kills": 3.06
+       },
+       "15": {
+        "n": 256,
+        "cities": 5.75,
+        "production": 17.32,
+        "stars": 14.97,
+        "techs": 7.53,
+        "units": 15.61,
+        "territory": 53.23,
+        "score": 5049.59,
+        "kills": 14.97
+       },
+       "20": {
+        "n": 255,
+        "cities": 6.04,
+        "production": 19.4,
+        "stars": 13.88,
+        "techs": 8.91,
+        "units": 16.58,
+        "territory": 56.54,
+        "score": 5376.37,
+        "kills": 31.12
+       },
+       "30": {
+        "n": 176,
+        "cities": 6.16,
+        "production": 21.77,
+        "stars": 11.61,
+        "techs": 10.69,
+        "units": 17.13,
+        "territory": 58.98,
+        "score": 5390.31,
+        "kills": 61.92
+       },
+       "40": {
+        "n": 49,
+        "cities": 7.04,
+        "production": 26.8,
+        "stars": 25.02,
+        "techs": 11.63,
+        "units": 20.33,
+        "territory": 70.33,
+        "score": 5859.59,
+        "kills": 92.65
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 87,
+      "losses_level_income_r10": 10,
+      "losses_ahead_income_r10": 34,
+      "win_rate_when_ahead_r10": [
+       0.709,
+       117
+      ],
+      "win_rate_when_behind_r10": [
+       0.23,
+       113
+      ]
+     }
+    }
+   },
+   "checkpoint_300": {
+    "name": "strat-final-vs-final",
+    "a": "plato-u23270 ($300)",
+    "b": "plato-u23270 ($300)",
+    "arch_a": "transformer-v3-p2-h4",
+    "arch_b": "transformer-v3-p2-h4",
+    "games": 256,
+    "score_at_cap": {
+     "wins": 121,
+     "losses": 135,
+     "draws": 0,
+     "score": 0.47265625,
+     "ci95": [
+      0.42614460257541276,
+      0.5191678974245872
+     ]
+    },
+    "terminal_only": {
+     "wins": 121,
+     "losses": 135,
+     "draws": 0,
+     "score": 0.47265625,
+     "ci95": [
+      0.42614460257541276,
+      0.5191678974245872
+     ]
+    },
+    "truncated": 0,
+    "unfinished": 0,
+    "sides": {
+     "A": {
+      "wins": 121,
+      "losses": 135,
+      "terminal_wins": 121,
+      "cap_wins": 0,
+      "terminal_losses": 135,
+      "cap_losses": 0,
+      "median_end_round_win": 51.0,
+      "median_end_round_loss": 53.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        113
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        72
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        55
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        15
+       ],
+       [
+        "Warrior > Warrior > Rider > Rider",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        33
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        23
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        21
+       ],
+       [
+        "LumberHut > GateOfPower > Mine > Mine",
+        9
+       ],
+       [
+        "EyeOfGod > GateOfPower > ParkOfFortune > Mine",
+        8
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        132
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        63
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        18
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        13
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        9
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.988
+       ],
+       [
+        "Forestry",
+        4.0,
+        0.992
+       ],
+       [
+        "Archery",
+        5.0,
+        0.988
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.949
+       ],
+       [
+        "Mining",
+        15.0,
+        0.945
+       ],
+       [
+        "Smithery",
+        20.0,
+        0.898
+       ],
+       [
+        "Strategy",
+        22.0,
+        0.645
+       ],
+       [
+        "Riding",
+        24.0,
+        0.891
+       ],
+       [
+        "Fishing",
+        25.5,
+        0.703
+       ],
+       [
+        "Mathematics",
+        26.0,
+        0.445
+       ],
+       [
+        "Farming",
+        28.0,
+        0.602
+       ],
+       [
+        "Sailing",
+        30.0,
+        0.492
+       ],
+       [
+        "FreeSpirit",
+        31.0,
+        0.684
+       ],
+       [
+        "Ramming",
+        31.0,
+        0.531
+       ],
+       [
+        "Construction",
+        33.0,
+        0.438
+       ],
+       [
+        "Chivalry",
+        33.0,
+        0.434
+       ],
+       [
+        "Meditation",
+        34.0,
+        0.43
+       ],
+       [
+        "Navigation",
+        35.0,
+        0.395
+       ],
+       [
+        "Aquatism",
+        36.0,
+        0.363
+       ],
+       [
+        "Roads",
+        38.0,
+        0.262
+       ],
+       [
+        "Diplomacy",
+        38.0,
+        0.277
+       ],
+       [
+        "Philosophy",
+        39.0,
+        0.305
+       ],
+       [
+        "Spiritualism",
+        45.0,
+        0.027
+       ],
+       [
+        "Trade",
+        55.0,
+        0.113
+       ]
+      ],
+      "trained": {
+       "Archer": 0.408,
+       "Warrior": 0.206,
+       "Swordsman": 0.161,
+       "Defender": 0.119,
+       "Rider": 0.036,
+       "Catapult": 0.03,
+       "Knight": 0.023,
+       "MindBender": 0.01,
+       "Cloak": 0.007
+      },
+      "trained_per_game": 136.7,
+      "army_r10": {
+       "Archer": 0.669,
+       "Warrior": 0.306,
+       "Giant": 0.012,
+       "Swordsman": 0.012,
+       "Rider": 0.0,
+       "Defender": 0.0
+      },
+      "army_r20": {
+       "Archer": 0.673,
+       "Warrior": 0.186,
+       "Giant": 0.05,
+       "Swordsman": 0.046,
+       "Defender": 0.042,
+       "Rider": 0.004
+      },
+      "built": {
+       "Road": 22.5,
+       "Mine": 8.94,
+       "Temple": 6.86,
+       "Forge": 5.85,
+       "LumberHut": 2.25,
+       "Sawmill": 1.36,
+       "MountainTemple": 1.07,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.94,
+       "Market": 0.77
+      },
+      "rewards": {
+       "Explorer": 5.61,
+       "Resources": 5.25,
+       "SuperUnit": 3.87,
+       "PopulationGrowth": 2.98,
+       "BorderGrowth": 1.23,
+       "Workshop": 0.72,
+       "CityWall?": 0.62,
+       "Park": 0.57
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 19.0,
+      "share_took_enemy_city": 0.75,
+      "cities_taken_mean": 3.04,
+      "attacks_by_r10_mean": 12.5,
+      "attacks_per_game": 213.7,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.02,
+        "stars": 5.0,
+        "techs": 2.0,
+        "units": 2.98,
+        "territory": 9.0,
+        "score": 819.65,
+        "kills": 0.03
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.14,
+        "production": 4.46,
+        "stars": 5.57,
+        "techs": 3.65,
+        "units": 3.78,
+        "territory": 19.36,
+        "score": 1690.82,
+        "kills": 0.22
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.62,
+        "production": 8.23,
+        "stars": 6.21,
+        "techs": 4.97,
+        "units": 7.87,
+        "territory": 33.29,
+        "score": 2803.55,
+        "kills": 1.31
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.62,
+        "production": 10.94,
+        "stars": 8.31,
+        "techs": 5.38,
+        "units": 10.85,
+        "territory": 42.38,
+        "score": 3433.75,
+        "kills": 3.71
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.83,
+        "production": 16.4,
+        "stars": 13.73,
+        "techs": 6.55,
+        "units": 16.51,
+        "territory": 54.33,
+        "score": 4958.71,
+        "kills": 15.49
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.08,
+        "production": 20.0,
+        "stars": 16.4,
+        "techs": 7.9,
+        "units": 19.78,
+        "territory": 58.87,
+        "score": 5762.26,
+        "kills": 29.25
+       },
+       "30": {
+        "n": 235,
+        "cities": 6.29,
+        "production": 24.87,
+        "stars": 19.77,
+        "techs": 12.16,
+        "units": 24.26,
+        "territory": 63.54,
+        "score": 7170.38,
+        "kills": 54.94
+       },
+       "40": {
+        "n": 185,
+        "cities": 6.3,
+        "production": 26.22,
+        "stars": 16.01,
+        "techs": 15.22,
+        "units": 22.42,
+        "territory": 64.32,
+        "score": 7971.78,
+        "kills": 80.06
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 83,
+      "losses_level_income_r10": 13,
+      "losses_ahead_income_r10": 39,
+      "win_rate_when_ahead_r10": [
+       0.69,
+       126
+      ],
+      "win_rate_when_behind_r10": [
+       0.224,
+       107
+      ]
+     },
+     "B": {
+      "wins": 135,
+      "losses": 121,
+      "terminal_wins": 135,
+      "cap_wins": 0,
+      "terminal_losses": 121,
+      "cap_losses": 0,
+      "median_end_round_win": 53.0,
+      "median_end_round_loss": 51.0,
+      "opening_units": [
+       [
+        "Warrior > Warrior > Warrior > Warrior",
+        120
+       ],
+       [
+        "Warrior > Warrior > Warrior > Archer",
+        66
+       ],
+       [
+        "Warrior > Warrior > Archer > Archer",
+        53
+       ],
+       [
+        "Warrior > Warrior > Archer > Warrior",
+        14
+       ],
+       [
+        "Warrior > Warrior > Rider > Archer",
+        1
+       ]
+      ],
+      "opening_first2_units": [
+       [
+        "Warrior > Warrior",
+        256
+       ]
+      ],
+      "opening_builds": [
+       [
+        "ParkOfFortune > EyeOfGod > GateOfPower > Mine",
+        25
+       ],
+       [
+        "GateOfPower > ParkOfFortune > Mine > Mine",
+        23
+       ],
+       [
+        "GateOfPower > Mine > Mine > Mine",
+        17
+       ],
+       [
+        "ParkOfFortune > EyeOfGod > Mine > Mine",
+        13
+       ],
+       [
+        "GateOfPower > ParkOfFortune > EyeOfGod > Mine",
+        10
+       ]
+      ],
+      "opening_techs": [
+       [
+        "Organization > Forestry > Archery > Climbing",
+        128
+       ],
+       [
+        "Forestry > Archery > Organization > Climbing",
+        60
+       ],
+       [
+        "Forestry > Organization > Archery > Climbing",
+        21
+       ],
+       [
+        "Organization > Forestry > Archery > Strategy",
+        17
+       ],
+       [
+        "Forestry > Archery > Organization > Strategy",
+        9
+       ]
+      ],
+      "tech_order": [
+       [
+        "Organization",
+        4.0,
+        0.996
+       ],
+       [
+        "Forestry",
+        4.0,
+        1.0
+       ],
+       [
+        "Archery",
+        5.0,
+        0.988
+       ],
+       [
+        "Climbing",
+        11.0,
+        0.922
+       ],
+       [
+        "Mining",
+        15.0,
+        0.926
+       ],
+       [
+        "Smithery",
+        20.0,
+        0.875
+       ],
+       [
+        "Strategy",
+        22.0,
+        0.672
+       ],
+       [
+        "Riding",
+        25.0,
+        0.863
+       ],
+       [
+        "Mathematics",
+        26.0,
+        0.5
+       ],
+       [
+        "Fishing",
+        26.0,
+        0.723
+       ],
+       [
+        "Farming",
+        26.5,
+        0.562
+       ],
+       [
+        "FreeSpirit",
+        30.5,
+        0.688
+       ],
+       [
+        "Construction",
+        30.5,
+        0.453
+       ],
+       [
+        "Sailing",
+        31.0,
+        0.477
+       ],
+       [
+        "Meditation",
+        31.0,
+        0.43
+       ],
+       [
+        "Ramming",
+        32.0,
+        0.504
+       ],
+       [
+        "Navigation",
+        35.0,
+        0.336
+       ],
+       [
+        "Chivalry",
+        35.0,
+        0.457
+       ],
+       [
+        "Aquatism",
+        35.5,
+        0.336
+       ],
+       [
+        "Philosophy",
+        37.0,
+        0.34
+       ],
+       [
+        "Roads",
+        38.0,
+        0.219
+       ],
+       [
+        "Diplomacy",
+        38.0,
+        0.32
+       ],
+       [
+        "Trade",
+        49.0,
+        0.102
+       ],
+       [
+        "Spiritualism",
+        63.0,
+        0.027
+       ]
+      ],
+      "trained": {
+       "Archer": 0.397,
+       "Warrior": 0.204,
+       "Swordsman": 0.159,
+       "Defender": 0.122,
+       "Rider": 0.041,
+       "Catapult": 0.035,
+       "Knight": 0.024,
+       "MindBender": 0.01,
+       "Cloak": 0.008
+      },
+      "trained_per_game": 141.8,
+      "army_r10": {
+       "Archer": 0.673,
+       "Warrior": 0.299,
+       "Swordsman": 0.014,
+       "Giant": 0.014,
+       "Rider": 0.001
+      },
+      "army_r20": {
+       "Archer": 0.662,
+       "Warrior": 0.187,
+       "Giant": 0.052,
+       "Swordsman": 0.045,
+       "Defender": 0.041,
+       "Rider": 0.007
+      },
+      "built": {
+       "Road": 19.18,
+       "Mine": 9.07,
+       "Temple": 7.66,
+       "Forge": 5.88,
+       "LumberHut": 2.49,
+       "Sawmill": 1.43,
+       "MountainTemple": 1.1,
+       "GateOfPower": 0.99,
+       "ParkOfFortune": 0.91,
+       "Market": 0.85
+      },
+      "rewards": {
+       "Explorer": 5.51,
+       "Resources": 5.24,
+       "SuperUnit": 3.93,
+       "PopulationGrowth": 2.97,
+       "BorderGrowth": 1.16,
+       "Workshop": 0.7,
+       "Park": 0.62,
+       "CityWall?": 0.51
+      },
+      "first_attack_median": 6.0,
+      "first_city_taken_median": 18.0,
+      "share_took_enemy_city": 0.766,
+      "cities_taken_mean": 3.38,
+      "attacks_by_r10_mean": 12.5,
+      "attacks_per_game": 214.0,
+      "by_round": {
+       "3": {
+        "n": 256,
+        "cities": 1.0,
+        "production": 2.01,
+        "stars": 4.88,
+        "techs": 2.0,
+        "units": 2.99,
+        "territory": 9.0,
+        "score": 819.88,
+        "kills": 0.03
+       },
+       "5": {
+        "n": 256,
+        "cities": 2.16,
+        "production": 4.47,
+        "stars": 5.51,
+        "techs": 3.7,
+        "units": 3.76,
+        "territory": 19.41,
+        "score": 1704.8,
+        "kills": 0.21
+       },
+       "8": {
+        "n": 256,
+        "cities": 3.58,
+        "production": 8.17,
+        "stars": 6.18,
+        "techs": 4.97,
+        "units": 7.8,
+        "territory": 32.78,
+        "score": 2787.46,
+        "kills": 1.22
+       },
+       "10": {
+        "n": 256,
+        "cities": 4.51,
+        "production": 10.68,
+        "stars": 8.35,
+        "techs": 5.35,
+        "units": 10.91,
+        "territory": 41.2,
+        "score": 3392.19,
+        "kills": 3.6
+       },
+       "15": {
+        "n": 255,
+        "cities": 5.77,
+        "production": 16.3,
+        "stars": 14.28,
+        "techs": 6.55,
+        "units": 16.58,
+        "territory": 53.54,
+        "score": 4990.75,
+        "kills": 15.47
+       },
+       "20": {
+        "n": 254,
+        "cities": 6.07,
+        "production": 20.15,
+        "stars": 16.66,
+        "techs": 7.96,
+        "units": 19.65,
+        "territory": 58.45,
+        "score": 5819.11,
+        "kills": 29.44
+       },
+       "30": {
+        "n": 235,
+        "cities": 6.29,
+        "production": 24.71,
+        "stars": 20.73,
+        "techs": 12.26,
+        "units": 24.0,
+        "territory": 62.63,
+        "score": 7246.23,
+        "kills": 54.55
+       },
+       "40": {
+        "n": 185,
+        "cities": 6.48,
+        "production": 26.58,
+        "stars": 17.24,
+        "techs": 15.14,
+        "units": 23.14,
+        "territory": 65.21,
+        "score": 8168.16,
+        "kills": 79.56
+       }
+      },
+      "losses_ended_before_r10": 0,
+      "losses_behind_income_r10": 87,
+      "losses_level_income_r10": 10,
+      "losses_ahead_income_r10": 24,
+      "win_rate_when_ahead_r10": [
+       0.776,
+       107
+      ],
+      "win_rate_when_behind_r10": [
+       0.31,
+       126
+      ]
+     }
+    }
+   },
+   "extra": {
+    "plato": {
+     "A": {
+      "lumber_huts_by_r10": 0.5,
+      "diplomatic_actions_per_game": 18.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 6.81,
+      "production": {
+       "3": [
+        2.03,
+        256
+       ],
+       "5": [
+        4.93,
+        256
+       ],
+       "10": [
+        11.74,
+        256
+       ],
+       "15": [
+        17.36,
+        256
+       ],
+       "20": [
+        19.64,
+        255
+       ],
+       "30": [
+        23.24,
+        176
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 0.41,
+      "diplomatic_actions_per_game": 18.6,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 6.42,
+      "production": {
+       "3": [
+        2.03,
+        256
+       ],
+       "5": [
+        4.93,
+        256
+       ],
+       "10": [
+        11.75,
+        256
+       ],
+       "15": [
+        17.32,
+        256
+       ],
+       "20": [
+        19.4,
+        255
+       ],
+       "30": [
+        21.77,
+        176
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.512,
+     "capped": 7,
+     "median_end_round": 32.0,
+     "ended_by_r30": 0.375,
+     "opp_knight_rush_games": 125,
+     "score_in_opp_knight_rush_games": 0.184
+    },
+    "u23270": {
+     "A": {
+      "lumber_huts_by_r10": 0.31,
+      "diplomatic_actions_per_game": 26.8,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.16,
+      "production": {
+       "3": [
+        2.02,
+        256
+       ],
+       "5": [
+        4.46,
+        256
+       ],
+       "10": [
+        10.94,
+        256
+       ],
+       "15": [
+        16.4,
+        255
+       ],
+       "20": [
+        20.0,
+        254
+       ],
+       "30": [
+        24.87,
+        235
+       ]
+      }
+     },
+     "B": {
+      "lumber_huts_by_r10": 0.3,
+      "diplomatic_actions_per_game": 27.0,
+      "embassies_per_game": 0,
+      "knights_trained_by_r25": 0.13,
+      "production": {
+       "3": [
+        2.01,
+        256
+       ],
+       "5": [
+        4.47,
+        256
+       ],
+       "10": [
+        10.68,
+        256
+       ],
+       "15": [
+        16.3,
+        255
+       ],
+       "20": [
+        20.15,
+        254
+       ],
+       "30": [
+        24.71,
+        235
+       ]
+      }
+     },
+     "games": 256,
+     "score": 0.473,
+     "capped": 0,
+     "median_end_round": 51.5,
+     "ended_by_r30": 0.102,
+     "opp_knight_rush_games": 2,
+     "score_in_opp_knight_rush_games": 1.0
+    }
+   }
+  }
+ ]
+}

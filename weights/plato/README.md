@@ -46,6 +46,9 @@ The full report, with every earlier checkpoint, the learning curve, the peace-co
 negatives, is [docs/plato-2026-11-09.md](../../docs/plato-2026-11-09.md). The machine-readable results are in
 [docs/benchmarks/2026-11-09-plato.json](../../docs/benchmarks/2026-11-09-plato.json).
 
+How it plays: an early Knight answer, wins by round 28–34, Explorer over Workshop. The full write-up is
+[docs/plato-strategy-2026-11-09.md](../../docs/plato-strategy-2026-11-09.md).
+
 ## Training in brief
 
 | Stage | Updates | Hardware | Batch | Rules in training | Spend |
