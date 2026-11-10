@@ -1,0 +1,28 @@
+{
+  "request": "User explicitly requested stopping and restarting the two stuck attempts.",
+  "requested_at": "2026-11-10T10:12:26.624066+00:00",
+  "original_campaign": "fable52-local-full-20261110",
+  "replacement_campaign": "fable52-local-replacements-20261110T101226Z",
+  "stopped_trials": [
+    "task__2xZ5Ac4",
+    "task__U63HnNA"
+  ],
+  "retained_original_trials": [
+    "task__cPjVoRk",
+    "task__fyG35eh",
+    "task__x3guP3E"
+  ],
+  "excluded_reason": "User-requested restart after an unbounded filesystem search; not score-based selection.",
+  "original_logs_preserved": true,
+  "replacement_attempts": 2,
+  "coding_seconds_per_replacement": 2400,
+  "same_prompt_and_protocol": true,
+  "publication_note": "The two interrupted attempts must be disclosed separately; combine the three retained original attempts with the two new attempts only after all grading is complete.",
+  "replacement_trials": [
+    "task__Q4zSJ9K",
+    "task__zSeiYjB"
+  ],
+  "confirmed_running_at": "2026-11-10T10:13:30.913254+00:00",
+  "raw_original_errors": "Harbor records the two operator-killed workers as RuntimeError. They are intentional user cancellations, not model scores.",
+  "original_automatic_export_invalidated": true
+}

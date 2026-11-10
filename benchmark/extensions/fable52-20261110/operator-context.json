@@ -1,0 +1,10 @@
+{
+  "claude_cli_version": "2.1.322 (Claude Code)",
+  "proxy_version": "CLIProxyAPI 8.0.20",
+  "proxy_compatibility": "Uses the installed Claude CLI version 2.1.322",
+  "setup_transport_failure": "Initial pre-authoring probe rejected outdated 2.1.280 compatibility setting; corrected before any timed attempt.",
+  "authoring_attempts_restarted": 2,
+  "paid_api_fallback": false,
+  "interruption_record": "operator-requested-restarts.json",
+  "restart_disclosure": "Two externally interrupted searches are preserved separately; retain three original complete attempts and two replacement attempts."
+}

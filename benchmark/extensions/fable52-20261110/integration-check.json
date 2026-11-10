@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "backend": "docker",
+  "real_harbor_trials": 2,
+  "actual_model_calls": 0,
+  "practice_and_trace": true,
+  "compilation_failure_scores_zero": true,
+  "rewards": [
+    {
+      "reward": 0.0,
+      "champion_win_rate": 0.0,
+      "champion_points": 0.0,
+      "games": 36,
+      "runtime_fault_rate": 0.0,
+      "compilation_loss_rate": 0.0,
+      "evaluation_is_demo": 1
+    },
+    {
+      "reward": 0.0,
+      "champion_win_rate": 0.0,
+      "champion_points": 0.0,
+      "games": 36,
+      "runtime_fault_rate": 0.0,
+      "compilation_loss_rate": 1.0,
+      "evaluation_is_demo": 1
+    }
+  ]
+}

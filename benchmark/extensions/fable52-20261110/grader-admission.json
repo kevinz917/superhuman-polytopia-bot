@@ -1,0 +1,1 @@
+{"phase": "full_parallel_grading", "grader_containers": 3, "game_workers": 12, "reason": "All five selected original/replacement sources are frozen", "started_unix": 1794304806.1140108, "released_unix": 1794307702.605529, "selected_trials": ["task__cPjVoRk", "task__fyG35eh", "task__x3guP3E", "task__Q4zSJ9K", "task__zSeiYjB"]}

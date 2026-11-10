@@ -1,0 +1,16 @@
+[
+  {
+    "protocol": "mini-swe-agent",
+    "backend": "cliproxyapi",
+    "base_url": "http://127.0.0.1:8317/v1",
+    "model": "claude-fable-5-2",
+    "accounting": "subscription_usage",
+    "api_protocol": "anthropic",
+    "tool_roundtrip": true,
+    "calls": 2,
+    "format_repairs": 0,
+    "nonce_instruction_followed": true,
+    "api_charge_usd": null,
+    "requested_model": "anthropic/claude-fable-5.2"
+  }
+]

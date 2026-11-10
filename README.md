@@ -42,9 +42,10 @@ blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://th
   [`weights/hero-1v1/`](weights/hero-1v1/), and the strongest, **Plato** (12 MB, a 3.2M-parameter transformer), is in
   [`weights/plato/`](weights/plato/). Twelve more checkpoints from the training history, with their critics, are
   indexed in [`weights/README.md`](weights/README.md).
-- 🤖 **Polytopia Bench.** 12 frontier models each write a Rust bot in 40 minutes and play it against this RL bot
-  and five other opponents: 21,600 graded games. The harness, every conversation, every bot and every replay are
-  in [`benchmark/`](benchmark/); the write-up is [*Introducing Polytopia Bench*](https://thekevinz.com/blog/polytopia-bench).
+- 🤖 **Polytopia Bench.** 13 frontier models write Rust bots with a 40-minute allowance and play them against this RL bot
+  and five other opponents: 65 completed attempts and 23,400 graded games. See the [current results](benchmark/INDEX.md),
+  the [original October 31 archive](benchmark/README.md), and the [Fable 5.2 follow-up and restart disclosure](benchmark/extensions/fable52-20261110/README.md).
+  The harness, conversations, bots and replays are in [`benchmark/`](benchmark/); the write-up is [*Introducing Polytopia Bench*](https://thekevinz.com/blog/polytopia-bench).
 
 ## 📊 Results
 

@@ -1,0 +1,354 @@
+{
+  "status": "completed_validated",
+  "campaign": "fable52-local-full-20261110",
+  "protocol": "polytopia-skirmish-continuous-v1",
+  "model": "anthropic/claude-fable-5.2",
+  "completed_at": "2026-11-10T11:17:56.352326+00:00",
+  "attempts_per_model": 5,
+  "authored_submissions": 5,
+  "coding_seconds": 2400,
+  "total_final_outcomes": 1800,
+  "mean_score": 54.333333333333336,
+  "score_sd": 11.963566734563138,
+  "actual_played_games": 1800,
+  "virtual_compile_failure_losses": 0,
+  "champion_wdl": {
+    "wins": 4,
+    "draws": 0,
+    "losses": 296
+  },
+  "schedule_sha256": "4f1f3b7c3a2e2c610ba007f92a8bd56fe28f8162f036bcc55ae1cfecf442d17c",
+  "trials": [
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "trial": "task__cPjVoRk",
+      "score": 56.666666666666664,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 82,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 1008.6219534873962,
+        "tool_seconds": 715.0819418430328,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 1.7126269340515137,
+        "controller_wall_seconds": 1728.9213230609894,
+        "coding_seconds": 1727.2086961269379
+      },
+      "usage": {
+        "input_tokens": 6808784,
+        "output_tokens": 62376,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-2",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 335337,
+      "rewards": {
+        "reward": 0.5666666666666667,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "source_file": "sources/task__cPjVoRk.rs",
+      "source_sha256": "dad570d355cac229c9a483aa83a5ceb91a5fffdf186a3143a0c4014710adc191",
+      "wasm_sha256": "38e98934a9df04477e013ecef71416221afb7899f3cbc446787dd0f5a87c0a1d",
+      "original_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__cPjVoRk",
+      "graded_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__cPjVoRk",
+      "archive": "runs/task__cPjVoRk",
+      "response_models": [
+        "claude-fable-5-2"
+      ]
+    },
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "trial": "task__fyG35eh",
+      "score": 67.36111111111111,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 75,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 728.1868216991425,
+        "tool_seconds": 879.3868358135223,
+        "api_calls_started": 36,
+        "api_calls_finished": 36,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 36,
+        "tool_calls_finished": 36,
+        "scheduler_wait_seconds": 1.8432388305664062,
+        "controller_wall_seconds": 1613.2458708286285,
+        "coding_seconds": 1611.4026319980621
+      },
+      "usage": {
+        "input_tokens": 7766173,
+        "output_tokens": 65143,
+        "completed_responses": 36
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-2",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 329168,
+      "rewards": {
+        "reward": 0.6736111111111112,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "source_file": "sources/task__fyG35eh.rs",
+      "source_sha256": "12bbf5fea5a50a2f966d7f1610dd1f3e4fd69f24df1f39cb83bf40141bf61297",
+      "wasm_sha256": "a15b955f0ad02baac7c0a9ccb43976b94be16a064b3dba07a7f2aed11e51ae2b",
+      "original_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__fyG35eh",
+      "graded_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__fyG35eh",
+      "archive": "runs/task__fyG35eh",
+      "response_models": [
+        "claude-fable-5-2"
+      ]
+    },
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "trial": "task__x3guP3E",
+      "score": 61.111111111111114,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 84,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 849.9228136539459,
+        "tool_seconds": 821.7840974330902,
+        "api_calls_started": 40,
+        "api_calls_finished": 40,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 39,
+        "tool_calls_finished": 39,
+        "scheduler_wait_seconds": 1.9590668678283691,
+        "controller_wall_seconds": 1677.8281390666962,
+        "coding_seconds": 1675.8690721988678
+      },
+      "usage": {
+        "input_tokens": 8879862,
+        "output_tokens": 77556,
+        "completed_responses": 40
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-2",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 298282,
+      "rewards": {
+        "reward": 0.6111111111111112,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "source_file": "sources/task__x3guP3E.rs",
+      "source_sha256": "3a70a080d653b373e32505aa355bcad187ac3e8e6fdc5aab2b0be70769f8b2cc",
+      "wasm_sha256": "10af52cdf457c116f4c32c18dd7f257ae5005872482fc43dfa067634d524a341",
+      "original_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__x3guP3E",
+      "graded_trial": "artifacts/harbor-runs/fable52-local-full-20261110/task__x3guP3E",
+      "archive": "runs/task__x3guP3E",
+      "response_models": [
+        "claude-fable-5-2"
+      ]
+    },
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "trial": "task__Q4zSJ9K",
+      "score": 50.55555555555556,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 59
+      },
+      "practice_matches": 143,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 660.4893796443939,
+        "tool_seconds": 1217.4719099998474,
+        "api_calls_started": 33,
+        "api_calls_finished": 33,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 33,
+        "tool_calls_finished": 33,
+        "scheduler_wait_seconds": 1.6921706199645996,
+        "controller_wall_seconds": 1883.203132867813,
+        "coding_seconds": 1881.5109622478485
+      },
+      "usage": {
+        "input_tokens": 6851288,
+        "output_tokens": 60196,
+        "completed_responses": 33
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-2",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 373153,
+      "rewards": {
+        "reward": 0.5055555555555555,
+        "champion_win_rate": 0.016666666666666666,
+        "champion_points": 0.016666666666666666,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "source_file": "sources/task__Q4zSJ9K.rs",
+      "source_sha256": "bda9a0742450d332f1f48dc34ca781f3b6dd03b99b3d039a5643a76ac2cff3d4",
+      "wasm_sha256": "ae7d5c9f93a43fc44dd98474ef6d5df45a714d59b760cd5c7333ae8efe9ac1dc",
+      "original_trial": "artifacts/harbor-runs/fable52-local-replacements-20261110T101226Z/task__Q4zSJ9K",
+      "graded_trial": "artifacts/harbor-runs/fable52-local-replacements-20261110T101226Z/task__Q4zSJ9K",
+      "archive": "runs/task__Q4zSJ9K",
+      "response_models": [
+        "claude-fable-5-2"
+      ]
+    },
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "trial": "task__zSeiYjB",
+      "score": 35.97222222222222,
+      "games": 360,
+      "profile": "standard",
+      "quality": "custom_submission",
+      "compile_returncode": 0,
+      "champion": {
+        "wins": 0,
+        "draws": 0,
+        "losses": 60
+      },
+      "practice_matches": 17,
+      "coding_budget_seconds": 2400,
+      "timing": {
+        "api_seconds": 106.99999046325684,
+        "tool_seconds": 2030.6738409996033,
+        "api_calls_started": 12,
+        "api_calls_finished": 12,
+        "interrupted_api_calls": 0,
+        "tool_calls_started": 12,
+        "tool_calls_finished": 12,
+        "scheduler_wait_seconds": 0.6584568023681641,
+        "controller_wall_seconds": 2139.662244081497,
+        "coding_seconds": 2139.003787279129
+      },
+      "usage": {
+        "input_tokens": 1793647,
+        "output_tokens": 10242,
+        "completed_responses": 12
+      },
+      "inference": {
+        "backend": "cliproxyapi",
+        "base_url": "http://127.0.0.1:8317/v1",
+        "model": "claude-fable-5-2",
+        "accounting": "subscription_usage",
+        "api_protocol": "anthropic"
+      },
+      "replay_actions": 341256,
+      "rewards": {
+        "reward": 0.3597222222222222,
+        "champion_win_rate": 0.0,
+        "champion_points": 0.0,
+        "games": 360,
+        "runtime_fault_rate": 0.0,
+        "compilation_loss_rate": 0.0,
+        "evaluation_is_demo": 0
+      },
+      "source_file": "sources/task__zSeiYjB.rs",
+      "source_sha256": "6efa551ff8264b140e44146499915cef702242274cce3e2a355b491e82f34158",
+      "wasm_sha256": "903c9603482a9b1c2e3ec3086c0ba3d7830cef66d890fdef9a6b670d6beb574d",
+      "original_trial": "artifacts/harbor-runs/fable52-local-replacements-20261110T101226Z/task__zSeiYjB",
+      "graded_trial": "artifacts/harbor-runs/fable52-local-replacements-20261110T101226Z/task__zSeiYjB",
+      "archive": "runs/task__zSeiYjB",
+      "response_models": [
+        "claude-fable-5-2"
+      ]
+    }
+  ],
+  "usage": {
+    "input_tokens": 310,
+    "cache_creation_input_tokens": 1215267,
+    "cache_read_input_tokens": 30884177,
+    "output_tokens": 275513
+  },
+  "completed_call_cost_usd": null,
+  "inference": "local CLI proxy; subscription usage",
+  "usage_scope": "Completed responses from the five scored attempts; interrupted sessions remain in their separate authoring archives.",
+  "selection_rule": "Three retained original submissions plus two replacements after externally requested interruptions; every scheduled final outcome from these five completed attempts counts.",
+  "comparison": {
+    "original_campaign": "continuous-full-20261031",
+    "identical_coder_image": true,
+    "identical_maps_and_opponents": true,
+    "identical_game_and_bot_limits": true,
+    "changed_infrastructure_sources": [
+      "scripts/build_skirmish_harbor.py",
+      "scripts/check_skirmish_harbor.py",
+      "scripts/run_skirmish_harbor.py",
+      "src/polytopia_bot/skirmish/harbor_verifier.py",
+      "src/polytopia_bot/skirmish/local_eval.py"
+    ],
+    "grading_workers_per_container": 4,
+    "max_grader_containers": 3,
+    "grader_cpus_per_container": 4,
+    "grading_admission": "One four-worker verifier while authoring remains active; up to three after all sources are frozen.",
+    "caveat": "Follow-up on the original fixed panel. Maps and references were published after the original campaign; they remain unavailable inside this offline authoring sandbox.",
+    "selection_deviation": "Two original sessions were stopped during unbounded filesystem searches and replaced. The interrupted sessions are archived and excluded. This differs from the original uninterrupted five-attempt procedure."
+  },
+  "replacement_campaign": "fable52-local-replacements-20261110T101226Z",
+  "interrupted_attempts": [
+    "task__2xZ5Ac4",
+    "task__U63HnNA"
+  ],
+  "total_authoring_sessions": 7,
+  "excluded_interrupted_submissions": 2
+}

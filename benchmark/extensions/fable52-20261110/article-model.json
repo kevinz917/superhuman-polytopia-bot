@@ -1,0 +1,1124 @@
+{
+  "id": "anthropic/claude-fable-5.2",
+  "label": "Claude Fable 5.2",
+  "mean": 54.333333333333336,
+  "sd": 11.963566734563138,
+  "trials": [
+    {
+      "id": "task__Q4zSJ9K",
+      "score": 50.55555555555556,
+      "source": "sources/task__Q4zSJ9K.rs",
+      "sourceSha256": "bda9a0742450d332f1f48dc34ca781f3b6dd03b99b3d039a5643a76ac2cff3d4",
+      "wasmSha256": "ae7d5c9f93a43fc44dd98474ef6d5df45a714d59b760cd5c7333ae8efe9ac1dc",
+      "practiceMatches": 143,
+      "activeMinutes": 31.358516037464142,
+      "cells": [
+        {
+          "opponent": "hero-1v1",
+          "map": "continents",
+          "wins": 1,
+          "draws": 0,
+          "losses": 19,
+          "faults": 0,
+          "turns": 541
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "drylands",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 314
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "lakes",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 397
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "continents",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 1030
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "drylands",
+          "wins": 18,
+          "draws": 0,
+          "losses": 2,
+          "faults": 0,
+          "turns": 636
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "lakes",
+          "wins": 16,
+          "draws": 0,
+          "losses": 4,
+          "faults": 0,
+          "turns": 757
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "continents",
+          "wins": 3,
+          "draws": 0,
+          "losses": 17,
+          "faults": 0,
+          "turns": 810
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "drylands",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 716
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "lakes",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 782
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "continents",
+          "wins": 9,
+          "draws": 3,
+          "losses": 8,
+          "faults": 0,
+          "turns": 1534
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "drylands",
+          "wins": 10,
+          "draws": 0,
+          "losses": 10,
+          "faults": 0,
+          "turns": 586
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "lakes",
+          "wins": 11,
+          "draws": 0,
+          "losses": 9,
+          "faults": 0,
+          "turns": 954
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "continents",
+          "wins": 18,
+          "draws": 1,
+          "losses": 1,
+          "faults": 0,
+          "turns": 1077
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 380
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "lakes",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 473
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "continents",
+          "wins": 9,
+          "draws": 0,
+          "losses": 11,
+          "faults": 0,
+          "turns": 1082
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "drylands",
+          "wins": 7,
+          "draws": 0,
+          "losses": 13,
+          "faults": 0,
+          "turns": 629
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "lakes",
+          "wins": 11,
+          "draws": 0,
+          "losses": 9,
+          "faults": 0,
+          "turns": 785
+        }
+      ]
+    },
+    {
+      "id": "task__cPjVoRk",
+      "score": 56.666666666666664,
+      "source": "sources/task__cPjVoRk.rs",
+      "sourceSha256": "dad570d355cac229c9a483aa83a5ceb91a5fffdf186a3143a0c4014710adc191",
+      "wasmSha256": "38e98934a9df04477e013ecef71416221afb7899f3cbc446787dd0f5a87c0a1d",
+      "practiceMatches": 82,
+      "activeMinutes": 28.78681160211563,
+      "cells": [
+        {
+          "opponent": "hero-1v1",
+          "map": "continents",
+          "wins": 1,
+          "draws": 0,
+          "losses": 19,
+          "faults": 0,
+          "turns": 466
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "drylands",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 335
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "lakes",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 386
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "continents",
+          "wins": 14,
+          "draws": 2,
+          "losses": 4,
+          "faults": 0,
+          "turns": 1368
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "drylands",
+          "wins": 18,
+          "draws": 0,
+          "losses": 2,
+          "faults": 0,
+          "turns": 562
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "lakes",
+          "wins": 19,
+          "draws": 0,
+          "losses": 1,
+          "faults": 0,
+          "turns": 593
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "continents",
+          "wins": 5,
+          "draws": 0,
+          "losses": 15,
+          "faults": 0,
+          "turns": 754
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "drylands",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 627
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "lakes",
+          "wins": 8,
+          "draws": 0,
+          "losses": 12,
+          "faults": 0,
+          "turns": 730
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "continents",
+          "wins": 11,
+          "draws": 1,
+          "losses": 8,
+          "faults": 0,
+          "turns": 1196
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "drylands",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 590
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "lakes",
+          "wins": 16,
+          "draws": 0,
+          "losses": 4,
+          "faults": 0,
+          "turns": 665
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "continents",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 759
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 347
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "lakes",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 402
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "continents",
+          "wins": 13,
+          "draws": 1,
+          "losses": 6,
+          "faults": 0,
+          "turns": 1286
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "drylands",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 576
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "lakes",
+          "wins": 10,
+          "draws": 0,
+          "losses": 10,
+          "faults": 0,
+          "turns": 687
+        }
+      ]
+    },
+    {
+      "id": "task__fyG35eh",
+      "score": 67.36111111111111,
+      "source": "sources/task__fyG35eh.rs",
+      "sourceSha256": "12bbf5fea5a50a2f966d7f1610dd1f3e4fd69f24df1f39cb83bf40141bf61297",
+      "wasmSha256": "a15b955f0ad02baac7c0a9ccb43976b94be16a064b3dba07a7f2aed11e51ae2b",
+      "practiceMatches": 75,
+      "activeMinutes": 26.856710533301037,
+      "cells": [
+        {
+          "opponent": "hero-1v1",
+          "map": "continents",
+          "wins": 1,
+          "draws": 0,
+          "losses": 19,
+          "faults": 0,
+          "turns": 527
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "drylands",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 350
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "lakes",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 402
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "continents",
+          "wins": 19,
+          "draws": 0,
+          "losses": 1,
+          "faults": 0,
+          "turns": 759
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 614
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "lakes",
+          "wins": 19,
+          "draws": 0,
+          "losses": 1,
+          "faults": 0,
+          "turns": 614
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "continents",
+          "wins": 7,
+          "draws": 0,
+          "losses": 13,
+          "faults": 0,
+          "turns": 727
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "drylands",
+          "wins": 9,
+          "draws": 0,
+          "losses": 11,
+          "faults": 0,
+          "turns": 729
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "lakes",
+          "wins": 9,
+          "draws": 0,
+          "losses": 11,
+          "faults": 0,
+          "turns": 775
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "continents",
+          "wins": 19,
+          "draws": 0,
+          "losses": 1,
+          "faults": 0,
+          "turns": 804
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "drylands",
+          "wins": 18,
+          "draws": 1,
+          "losses": 1,
+          "faults": 0,
+          "turns": 852
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "lakes",
+          "wins": 18,
+          "draws": 0,
+          "losses": 2,
+          "faults": 0,
+          "turns": 657
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "continents",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 708
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 347
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "lakes",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 456
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "continents",
+          "wins": 16,
+          "draws": 0,
+          "losses": 4,
+          "faults": 0,
+          "turns": 865
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "drylands",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 678
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "lakes",
+          "wins": 12,
+          "draws": 0,
+          "losses": 8,
+          "faults": 0,
+          "turns": 647
+        }
+      ]
+    },
+    {
+      "id": "task__x3guP3E",
+      "score": 61.111111111111114,
+      "source": "sources/task__x3guP3E.rs",
+      "sourceSha256": "3a70a080d653b373e32505aa355bcad187ac3e8e6fdc5aab2b0be70769f8b2cc",
+      "wasmSha256": "10af52cdf457c116f4c32c18dd7f257ae5005872482fc43dfa067634d524a341",
+      "practiceMatches": 84,
+      "activeMinutes": 27.931151203314464,
+      "cells": [
+        {
+          "opponent": "hero-1v1",
+          "map": "continents",
+          "wins": 1,
+          "draws": 0,
+          "losses": 19,
+          "faults": 0,
+          "turns": 522
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "drylands",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 330
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "lakes",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 383
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "continents",
+          "wins": 17,
+          "draws": 1,
+          "losses": 2,
+          "faults": 0,
+          "turns": 997
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 610
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "lakes",
+          "wins": 19,
+          "draws": 0,
+          "losses": 1,
+          "faults": 0,
+          "turns": 623
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "continents",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 745
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "drylands",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 607
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "lakes",
+          "wins": 8,
+          "draws": 0,
+          "losses": 12,
+          "faults": 0,
+          "turns": 631
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "continents",
+          "wins": 15,
+          "draws": 1,
+          "losses": 4,
+          "faults": 0,
+          "turns": 1037
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "drylands",
+          "wins": 16,
+          "draws": 0,
+          "losses": 4,
+          "faults": 0,
+          "turns": 591
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "lakes",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 625
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "continents",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 652
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 370
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "lakes",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 456
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "continents",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 1050
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "drylands",
+          "wins": 8,
+          "draws": 0,
+          "losses": 12,
+          "faults": 0,
+          "turns": 609
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "lakes",
+          "wins": 13,
+          "draws": 0,
+          "losses": 7,
+          "faults": 0,
+          "turns": 618
+        }
+      ]
+    },
+    {
+      "id": "task__zSeiYjB",
+      "score": 35.97222222222222,
+      "source": "sources/task__zSeiYjB.rs",
+      "sourceSha256": "6efa551ff8264b140e44146499915cef702242274cce3e2a355b491e82f34158",
+      "wasmSha256": "903c9603482a9b1c2e3ec3086c0ba3d7830cef66d890fdef9a6b670d6beb574d",
+      "practiceMatches": 17,
+      "activeMinutes": 35.650063121318816,
+      "cells": [
+        {
+          "opponent": "hero-1v1",
+          "map": "continents",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 467
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "drylands",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 299
+        },
+        {
+          "opponent": "hero-1v1",
+          "map": "lakes",
+          "wins": 0,
+          "draws": 0,
+          "losses": 20,
+          "faults": 0,
+          "turns": 339
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "continents",
+          "wins": 4,
+          "draws": 6,
+          "losses": 10,
+          "faults": 0,
+          "turns": 2200
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "drylands",
+          "wins": 13,
+          "draws": 0,
+          "losses": 7,
+          "faults": 0,
+          "turns": 607
+        },
+        {
+          "opponent": "hero-cavalry-25",
+          "map": "lakes",
+          "wins": 15,
+          "draws": 0,
+          "losses": 5,
+          "faults": 0,
+          "turns": 831
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "continents",
+          "wins": 2,
+          "draws": 0,
+          "losses": 18,
+          "faults": 0,
+          "turns": 680
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "drylands",
+          "wins": 3,
+          "draws": 0,
+          "losses": 17,
+          "faults": 0,
+          "turns": 502
+        },
+        {
+          "opponent": "hero-naval-50",
+          "map": "lakes",
+          "wins": 3,
+          "draws": 0,
+          "losses": 17,
+          "faults": 0,
+          "turns": 632
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "continents",
+          "wins": 0,
+          "draws": 8,
+          "losses": 12,
+          "faults": 0,
+          "turns": 2173
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "drylands",
+          "wins": 8,
+          "draws": 0,
+          "losses": 12,
+          "faults": 0,
+          "turns": 518
+        },
+        {
+          "opponent": "reference-intermediate",
+          "map": "lakes",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 754
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "continents",
+          "wins": 9,
+          "draws": 7,
+          "losses": 4,
+          "faults": 0,
+          "turns": 2130
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "drylands",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 451
+        },
+        {
+          "opponent": "reference-weak",
+          "map": "lakes",
+          "wins": 20,
+          "draws": 0,
+          "losses": 0,
+          "faults": 0,
+          "turns": 519
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "continents",
+          "wins": 2,
+          "draws": 2,
+          "losses": 16,
+          "faults": 0,
+          "turns": 1441
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "drylands",
+          "wins": 7,
+          "draws": 0,
+          "losses": 13,
+          "faults": 0,
+          "turns": 568
+        },
+        {
+          "opponent": "scripted-siege",
+          "map": "lakes",
+          "wins": 6,
+          "draws": 0,
+          "losses": 14,
+          "faults": 0,
+          "turns": 720
+        }
+      ]
+    }
+  ],
+  "navalUpgrades": [
+    {
+      "name": "Rammership",
+      "count": 7364
+    },
+    {
+      "name": "Bomber",
+      "count": 0
+    },
+    {
+      "name": "Scoutship",
+      "count": 0
+    }
+  ],
+  "recruits": [
+    {
+      "name": "Swordsman",
+      "count": 35676
+    },
+    {
+      "name": "Warrior",
+      "count": 23608
+    },
+    {
+      "name": "Defender",
+      "count": 9125
+    },
+    {
+      "name": "Rider",
+      "count": 4064
+    },
+    {
+      "name": "Catapult",
+      "count": 2237
+    },
+    {
+      "name": "Archer",
+      "count": 333
+    }
+  ],
+  "earlyRecruits": [
+    {
+      "name": "Warrior",
+      "count": 22814
+    },
+    {
+      "name": "Swordsman",
+      "count": 8278
+    },
+    {
+      "name": "Rider",
+      "count": 3854
+    },
+    {
+      "name": "Defender",
+      "count": 2652
+    },
+    {
+      "name": "Archer",
+      "count": 208
+    },
+    {
+      "name": "Catapult",
+      "count": 63
+    }
+  ],
+  "research": [
+    {
+      "name": "Climbing",
+      "count": 1753
+    },
+    {
+      "name": "Organization",
+      "count": 1752
+    },
+    {
+      "name": "Mining",
+      "count": 1664
+    },
+    {
+      "name": "Smithery",
+      "count": 1560
+    },
+    {
+      "name": "Strategy",
+      "count": 1524
+    },
+    {
+      "name": "Forestry",
+      "count": 1510
+    },
+    {
+      "name": "Riding",
+      "count": 1398
+    },
+    {
+      "name": "Fishing",
+      "count": 1302
+    },
+    {
+      "name": "Farming",
+      "count": 1288
+    },
+    {
+      "name": "Archery",
+      "count": 1132
+    },
+    {
+      "name": "Sailing",
+      "count": 1034
+    },
+    {
+      "name": "Mathematics",
+      "count": 935
+    },
+    {
+      "name": "FreeSpirit",
+      "count": 765
+    },
+    {
+      "name": "Construction",
+      "count": 759
+    },
+    {
+      "name": "Chivalry",
+      "count": 628
+    },
+    {
+      "name": "Ramming",
+      "count": 607
+    },
+    {
+      "name": "Roads",
+      "count": 605
+    },
+    {
+      "name": "Meditation",
+      "count": 496
+    },
+    {
+      "name": "Trade",
+      "count": 249
+    },
+    {
+      "name": "Navigation",
+      "count": 247
+    },
+    {
+      "name": "Spiritualism",
+      "count": 190
+    },
+    {
+      "name": "Philosophy",
+      "count": 189
+    },
+    {
+      "name": "Aquatism",
+      "count": 171
+    },
+    {
+      "name": "Diplomacy",
+      "count": 110
+    }
+  ],
+  "builds": [
+    {
+      "name": "LumberHut",
+      "count": 18844
+    },
+    {
+      "name": "Port",
+      "count": 3682
+    },
+    {
+      "name": "Sawmill",
+      "count": 3425
+    },
+    {
+      "name": "Temple",
+      "count": 1526
+    },
+    {
+      "name": "GateOfPower",
+      "count": 1006
+    },
+    {
+      "name": "Mine",
+      "count": 782
+    },
+    {
+      "name": "ParkOfFortune",
+      "count": 780
+    },
+    {
+      "name": "Forge",
+      "count": 698
+    },
+    {
+      "name": "MountainTemple",
+      "count": 528
+    },
+    {
+      "name": "Market",
+      "count": 515
+    },
+    {
+      "name": "WaterTemple",
+      "count": 421
+    },
+    {
+      "name": "TowerOfWisdom",
+      "count": 103
+    },
+    {
+      "name": "EmperorsTomb",
+      "count": 45
+    },
+    {
+      "name": "AltarOfPeace",
+      "count": 38
+    },
+    {
+      "name": "EyeOfGod",
+      "count": 36
+    },
+    {
+      "name": "Farm",
+      "count": 1
+    },
+    {
+      "name": "Windmill",
+      "count": 1
+    },
+    {
+      "name": "GrandBazaar",
+      "count": 1
+    }
+  ],
+  "actionFamilies": {
+    "0": 376630,
+    "2": 82407,
+    "5": 20342,
+    "15": 65011,
+    "7": 18483,
+    "8": 14928,
+    "4": 21868,
+    "1": 74999,
+    "3": 32432,
+    "10": 3584,
+    "9": 9250
+  }
+}

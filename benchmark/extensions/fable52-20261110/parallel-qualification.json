@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "matches": 6,
+  "workers": 4,
+  "elapsed_seconds": 19.604958541924134,
+  "comparison": "Exact original outcomes, action chains, public and private replay hashes across all six opponent types",
+  "checks": [
+    {
+      "index": 0,
+      "all_identical": true,
+      "differences": []
+    },
+    {
+      "index": 60,
+      "all_identical": true,
+      "differences": []
+    },
+    {
+      "index": 120,
+      "all_identical": true,
+      "differences": []
+    },
+    {
+      "index": 180,
+      "all_identical": true,
+      "differences": []
+    },
+    {
+      "index": 240,
+      "all_identical": true,
+      "differences": []
+    },
+    {
+      "index": 300,
+      "all_identical": true,
+      "differences": []
+    }
+  ]
+}

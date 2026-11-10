@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checked_at": "2026-11-10T11:19:17.821527+00:00",
+  "authored_submissions": 5,
+  "final_games": 1800,
+  "replay_actions": 1677196,
+  "actual_played_games": 1800,
+  "virtual_compile_failure_losses": 0,
+  "private_game_hashes_reconstructed": 1800,
+  "authoring_trajectories": 5,
+  "original_public_and_private_hashes_checked": true,
+  "source_and_wasm_hashes_checked": true,
+  "same_original_schedule": true,
+  "response_model_verified": true,
+  "file_hashes_verified": 35,
+  "same_task_instruction_verified": true,
+  "interrupted_archives_checked": 2,
+  "public_observation_validation": "Original native replay audits and export-time public SHA256 checks retained; this verifier reconstructs every private log byte without new model calls."
+}
