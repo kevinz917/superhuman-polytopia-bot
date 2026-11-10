@@ -85,10 +85,13 @@ The file follows this folder's format: arrays `p0` … `p105`, the leaves of the
 `shasum -a 256 weights/plato/final.npz` or this repository's `polytopia_bot.rl.runner.load_checkpoint`. That loader
 checks the hash, the ruleset, every tensor shape and finiteness.
 
-**Not yet runnable from this repository.** The `transformer-v3` network builder that turns these arrays into a
-playable policy is not part of this repository yet; `network.init` here knows only `legacy` and `normalized-v2`. So
-the Studio (`./scripts/studio.sh --checkpoint …`) and the arena cannot play Plato until that code is added. The
-weights, configs and results are complete. Every result above was produced with that network code on engine-rs.
+**Runnable from this repository (2026-11-10).** The V3 builder, attention primitives, shared privileged critic,
+PPO integration, GPU-resident trainer, C/CUDA simulator and stage-4 harness are now included. Run
+`.venv/bin/python scripts/plato.py verify` to check both checkpoints and make eight legal Studio decisions, or
+`./scripts/studio.sh --checkpoint weights/plato/final.npz` to play. The [reproduction guide](../../docs/plato-reproduction.md)
+covers installation, paired evaluation, training, source provenance and the historical artifacts still missing.
+The public CPU path defaults to float32 attention; it does not require CUDA, torch, Tokamax or Modal. V3 has no
+trained public value head for turn search; use its raw policy. The privileged critic is used only during training.
 
 ## Limitations
 

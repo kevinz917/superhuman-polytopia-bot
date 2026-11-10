@@ -43,6 +43,24 @@ def dict_to_state(d):
     return State(*groups, *(d[f] for f in _SCALARS), history)
 
 
+class LightPlayers(NamedTuple):
+    score: np.ndarray
+    killed_turn: np.ndarray
+    resigned_turn: np.ndarray
+
+
+class LightState(NamedTuple):
+    """The post-tick fields an actor reads (RustGames(light_states=True)), instead of every State field."""
+    current_player: np.ndarray
+    turn: np.ndarray
+    players: LightPlayers
+
+
+def light_state(out):
+    return LightState(out["current_player"], out["turn"],
+                      LightPlayers(out["score"], out["killed_turn"], out["resigned_turn"]))
+
+
 def split_masks(flat, size):
     """Flat [games, mask_width] (uint8/bool) -> Masks of [games, ...] bool arrays shaped like gpu.actions.legal_masks.
 
@@ -71,17 +89,21 @@ class RustGames:
     """
 
     def __init__(self, size=14, games=32, *, no_resign=True, map_batch=False, max_turns=None, both_views=False,
-                 max_actions=10_000, fast=True, trusted=None, build_rows=None, players=2, served=False, no_peace=False):
+                 max_actions=10_000, fast=True, trusted=None, build_rows=None, players=2, served=False, no_peace=False,
+                 light_states=False):
         """map_batch=True: reset/tick take a maps.state.MapBatch of per-lane layouts instead of seeds.
         players: seats per game (2 or 4). With both_views and more than two seats,
         Prepared.opp_view is [games, players - 1, width]: the other seats in turn order after the mover.
         served=True (the policy runs on the node's inference server, rl/inference_server.py): Prepared.features is
         None and Prepared.masks is the engine's [games, ceil(mask_width/8)] uint8 packed bits (numpy.packbits
-        order, the server's wire format), so the actor runs no feature encode and no mask split."""
+        order, the server's wire format), so the actor runs no feature encode and no mask split.
+        light_states=True: Tick.states is a LightState (current player, turn, score, killed / resigned turn), not a
+        full export of every field (a ~1 MB copy per tick, cities.territory alone [games, n, n])."""
         import jax
         from polytopia_engine_rs import GameBatch
         self.size, self.games, self.both_views, self.map_batch = size, games, both_views, map_batch
-        self.players, self.served = players, served
+        self.players, self.served, self.light_states = players, served, light_states
+        self.timing = {}   # seconds summed per tick phase (rust_s, export_s, post_s); the actor reports and resets it
         # max_turns: None = the training harness default for the board (ruleset.training_round_limit); 0 = no limit,
         # exactly as the real game (human play); N = truncate after N rounds.
         from polytopia_bot.ruleset import training_round_limit
@@ -139,9 +161,13 @@ class RustGames:
     def tick(self, states, choices, seeds, check=False):
         """Returns (Tick, status); `states` and `check` are ignored (see class docstring)."""
         import jax
+        import time
+        t0 = time.perf_counter()
         f, s, t = (np.ascontiguousarray(np.asarray(a), np.int32) for a in choices)
         seeds, layouts = self._layouts(seeds)
         out = self.batch.tick(f, s, t, seeds, self.both_views, layouts, self.served)
+        t1 = time.perf_counter()
+        self.timing['rust_s'] = self.timing.get('rust_s', 0.) + (t1 - t0)
         final_views = out["final_view"]
         seats = self.players
         if np.any(out["truncated"]):
@@ -153,8 +179,13 @@ class RustGames:
                                    np.asarray(a).reshape((self.games, seats) + a.shape[1:]), 0).astype(np.float32), flat)
         else:
             final_features = None
-        tick = Tick(self.states(), self._prepare(out), out["done"], out["terminated"], out["truncated"], out["rewards"],
+        t2 = time.perf_counter()
+        exported = light_state(out) if self.light_states else self.states()
+        t3 = time.perf_counter()
+        tick = Tick(exported, self._prepare(out), out["done"], out["terminated"], out["truncated"], out["rewards"],
                     final_features, final_views)
+        self.timing['export_s'] = self.timing.get('export_s', 0.) + (t3 - t2)
+        self.timing['post_s'] = self.timing.get('post_s', 0.) + (time.perf_counter() - t3) + (t2 - t1)
         return tick, out["status"]
 
     def step(self, choices):

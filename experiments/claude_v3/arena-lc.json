@@ -1,0 +1,8 @@
+[{"name":"lc-B-vs-A-final","a":"/results/distributed/lc-B-v3p2-6x128/final.npz","b":"/results/distributed/lc-A-v2-6x128/final.npz","maps":1024},
+ {"name":"lc-C-vs-A-final","a":"/results/distributed/lc-C-v3p2-6x256/final.npz","b":"/results/distributed/lc-A-v2-6x128/final.npz","maps":1024},
+ {"name":"lc-B-vs-C-final","a":"/results/distributed/lc-B-v3p2-6x128/final.npz","b":"/results/distributed/lc-C-v3p2-6x256/final.npz","maps":1024},
+ {"name":"lc-Bu150-vs-A-final","a":"/results/distributed/lc-B-v3p2-6x128/snapshots/update-150.npz","b":"/results/distributed/lc-A-v2-6x128/final.npz","maps":1024},
+ {"name":"lc-Cu150-vs-A-final","a":"/results/distributed/lc-C-v3p2-6x256/snapshots/update-150.npz","b":"/results/distributed/lc-A-v2-6x128/final.npz","maps":1024},
+ {"name":"lc-A-vs-random","a":"/results/distributed/lc-A-v2-6x128/final.npz","b":"random","maps":128},
+ {"name":"lc-B-vs-random","a":"/results/distributed/lc-B-v3p2-6x128/final.npz","b":"random","maps":128},
+ {"name":"lc-C-vs-random","a":"/results/distributed/lc-C-v3p2-6x256/final.npz","b":"random","maps":128}]

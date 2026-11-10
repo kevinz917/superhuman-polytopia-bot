@@ -282,6 +282,10 @@ class LearnerConfig:
     # mid-game messages level 7 is 150 vs 186 wire bytes per row at level 1 (-19% upload egress) for ~13 us more
     # actor CPU per row (~0.6% of a process); the learner's decompression is no slower.
     upload_zstd_level: int = 7
+    # Data messages the learner buffers before actors block (backpressure). The old actors send ~500-row messages
+    # (128 = a quarter batch); the vector actor sends ~8k-row ones, where 128 buffered four whole batches: 8-version
+    # lag and 10-14% of rows dropped as stale while learner-bound (2026-11-06). Size it to ~1 batch for them.
+    inbox_size: int = 128
 
     def validate(self):
         if self.upgo_coef < 0:
@@ -724,6 +728,11 @@ def _critic_template(size, blocks=2, extra_blocks=0, width=64, architecture='nor
     import jax
     from . import network
     board, glob = feature_shapes(players, obs_version)
+    from . import transformer_v3
+    if transformer_v3.is_v3(architecture):
+        # V3: only the critic-exclusive branch; it reads the policy's public tokens plus the other seat's view
+        return transformer_v3.init_critic(jax.random.key(1), board, glob, size=size, width=width,
+                                          architecture=architecture)
     return network.init(jax.random.key(1), players * board, players * glob, size=size, width=width, blocks=blocks,
                         architecture=architecture, extra_blocks=extra_blocks, global_pool=global_pool,
                         block_pool=block_pool, attention=attention)
@@ -952,7 +961,9 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
     learner_values = bool(cfg.get('learner_values', False))   # A1: no critic here, the learner scores the rows
     engine = RustGames(size, games, map_batch=source is not None, max_turns=cfg.get('max_turns'), both_views=omni,
                        no_peace=bool(cfg.get('no_peace', False)),
-                       players=players, served=inference is not None)   # served: packed masks, no encode here
+                       players=players, served=inference is not None,   # served: packed masks, no encode here
+                       # PBRS potentials read the full state; otherwise the actor needs only a few scalars per tick
+                       light_states=not float(cfg.get('pbrs_coef', 0.)) > 0)
     note('engine', actor_id, 'rust')
     note('compiled', actor_id, time.monotonic() - started)
     spec = cfg.get('network', dict(size=size))
@@ -1135,7 +1146,13 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
     send_samples = cfg.get('send_samples', 2048)
     finished_since_rotation = 0
     ticks = 0
+    clock = time.perf_counter
+    def lap(name, since):
+        now = clock()
+        stats[name] = stats.get(name, 0.) + (now - since)
+        return now
     while not shared['stop'] and not (stop_event is not None and stop_event.is_set()):
+        t_lap = clock()
         if shared['params'] is not None:
             version, leaves, cleaves = shared['params']
             params, shared['params'] = unflatten(leaves), None
@@ -1172,7 +1189,9 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
         # Usually one pool opponent per process; lanes keep theirs until their game ends.
         for opp_name in sorted({lanes[i][0] for i in range(games) if opponent_turn[i]}):
             groups[opp_name] = np.nonzero(opponent_turn & np.array([lane[0] == opp_name for lane in lanes]))[0]
+        t_lap = lap('t_pre', t_lap)
         forwards = infer(groups, k1)
+        t_lap = clock()
         if len(mine):
             choice, (fam_np, src_np, tgt_np), logp, values = forwards['learner']
             for j in range(3):
@@ -1208,9 +1227,11 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
                 unit = int(c_np[2][i])
                 stats['summons'][unit] = stats['summons'].get(unit, 0) + 1
         ticks += 1
+        t_lap = lap('t_rows', t_lap)
         t_engine = time.perf_counter()
         tick, status = engine.tick(states, choice, next_maps())
         stats['engine_s'] = stats.get('engine_s', 0.) + (time.perf_counter() - t_engine)
+        t_lap = clock()
         status = np.asarray(status)
         if np.any(status != 0):
             raise RuntimeError(f'illegal policy actions on lanes {np.nonzero(status)[0].tolist()}')
@@ -1276,6 +1297,7 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
                 lanes[i] = assign()
             refill([int(i) for i in np.nonzero(done)[0]])
         states, prepared = tick.states, tick.prepared
+        t_lap = lap('t_done', t_lap)
         if learner_values:
             rows, segments = traj.take()
             offset = np.int32(len(pending_segments))
@@ -1285,8 +1307,13 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
             pending_segments.extend(segments)
         else:
             pending.extend(traj.take())
+        t_lap = lap('t_take', t_lap)
         now = time.monotonic()
         if len(pending) >= send_samples or now - last_report > report_every:
+            for k, v in getattr(engine, 'timing', {}).items():
+                stats['engine_' + k] = v
+            if hasattr(engine, 'timing'):
+                engine.timing = {}
             batch_rows = stack_rows(pending) if pending else None
             seg_rows = stack_rows(pending_segments) if pending_segments else None
             if coded_views and batch_rows is not None:   # sparse row-to-row view deltas (view_codec)
@@ -1294,8 +1321,11 @@ def _actor_process(address, actor_id, games, stop_event=None, *, report_every=30
             message = dict(type='data', actor=actor_id, have=sorted(pool), batch=batch_rows, stats=stats,
                            segments=seg_rows)
             note('sent', actor_id, len(pending), stats['steps'])
+            stats['t_send'] = stats.get('t_send', 0.) + (clock() - t_lap)   # stack + encode, before the put
+            t_put = clock()
             outbox.put(message)
             pending, pending_segments, stats, last_report = [], [], _new_actor_stats(), now
+            stats['t_put'] = clock() - t_put   # blocked on the sender (learner backpressure), in the next message
     outbox.put(None)
     thread.join(timeout=30)
     connection['sock'].close()
@@ -1742,7 +1772,7 @@ class Learner:
         self.published = (0, self._leaves(self.params), self._critic_leaves())
         self.pool_version = 0
         self.session = os.urandom(8).hex()
-        self.inbox = queue.Queue(maxsize=128)
+        self.inbox = queue.Queue(maxsize=int(config.inbox_size))
         self.port = port
         self.stop = False
         self.connections = 0

@@ -51,7 +51,8 @@ class Config:
     def validate(self):
         if self.reward_mode not in ('native', 'own-potential-v1'):
             raise ValueError('unknown reward mode')
-        if self.architecture not in ('legacy', 'normalized-v2'):
+        from .transformer_v3 import is_v3
+        if self.architecture not in ('legacy', 'normalized-v2', 'transformer-v1', 'transformer-v2') and not is_v3(self.architecture):
             raise ValueError('unknown architecture')
         if self.obs_version not in (1, 2, 3):
             raise ValueError('unknown observation version')

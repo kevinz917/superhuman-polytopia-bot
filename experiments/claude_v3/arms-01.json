@@ -1,0 +1,14 @@
+[
+ {"name":"v2-6x128","architecture":"transformer-v2","width":128,"blocks":6},
+ {"name":"v3-6x128","architecture":"transformer-v3","width":128,"blocks":6},
+ {"name":"v3-6x128-c0","architecture":"transformer-v3-c0","width":128,"blocks":6},
+ {"name":"v3-4x128","architecture":"transformer-v3","width":128,"blocks":4},
+ {"name":"v3-2x128","architecture":"transformer-v3","width":128,"blocks":2},
+ {"name":"v3-2x64","architecture":"transformer-v3","width":64,"blocks":2},
+ {"name":"v3-4x64","architecture":"transformer-v3","width":64,"blocks":4},
+ {"name":"v3-6x192","architecture":"transformer-v3","width":192,"blocks":6},
+ {"name":"v3p2-6x128","architecture":"transformer-v3-p2","width":128,"blocks":6},
+ {"name":"v3p2-6x256","architecture":"transformer-v3-p2","width":256,"blocks":6},
+ {"name":"v3p2-4x192","architecture":"transformer-v3-p2","width":192,"blocks":4},
+ {"name":"v3p2-8x256","architecture":"transformer-v3-p2","width":256,"blocks":8}
+]

@@ -25,9 +25,9 @@ class PathMasks(NamedTuple):
 # Catalog layout versions (engine-rs core::family_widths). Every version keeps the 17 families in the same order and
 # every older entry at its (family, source, target): new entries are appended at the end of a family's rows, so a
 # network's heads (family logits, per-tile source logits, per-family target embeddings) index the same entries in
-# every layout and older checkpoints play on as they are (docs/rules-parity-2-summary.md).
+# every layout and older checkpoints play on as they are (docs/rules-parity-2-actions.md).
 #   1: the layout before 2026-10-31 (the retired JAX engine's gpu.actions catalog, the frozen learning line's demos).
-#   2: recover rows (n, 2): target 1 = disembark (a boat on a bridge lands in place); diplomatic (1, 18): one
+#   2: recover rows (n, 2): target 1 = DisembarkCommand (a boat on a bridge lands in place); diplomatic (1, 18): one
 #      block of 6 per other seat by turn-order offset from the mover (two seats: block 0 only, the version-1 entries).
 ACTION_VERSION = 2
 RECOVER, DIPLOMATIC, END, RESIGN = 9, 14, 15, 16

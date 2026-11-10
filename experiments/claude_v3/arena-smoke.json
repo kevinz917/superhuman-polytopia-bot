@@ -1,0 +1,3 @@
+[{"name":"smoke-v3p2-vs-v2-15m","a":"/results/distributed/e2e-v3p2-6x128/final.npz","b":"/results/distributed/e2e-v2-6x128/final.npz","maps":1024},
+ {"name":"smoke-v3p2-vs-random","a":"/results/distributed/e2e-v3p2-6x128/final.npz","b":"random","maps":256},
+ {"name":"smoke-v2-vs-random","a":"/results/distributed/e2e-v2-6x128/final.npz","b":"random","maps":256}]

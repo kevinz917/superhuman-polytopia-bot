@@ -88,8 +88,9 @@ weights by self-play for 85,270 updates (25.6 billion samples, ~337 H100-hours, 
 learned to play with peace treaties legal, and a game that reaches the round cap counted as a loss for both sides.
 With peace legal it beats hero-1v1 **89%** and the champion **97%** (raw policies, 2,048 seat-paired games each). It
 wins almost entirely by elimination and went 48–0 against a replica of the built-in Crazy AI. Its network code is
-not in this repository yet, so it cannot be played here; see [`weights/plato/`](weights/plato/) and the
-[report](docs/plato-2026-11-09.md).
+included in this repository, along with the shared critic, GPU trainer and C/CUDA simulator. Run it with
+`./scripts/studio.sh --checkpoint weights/plato/final.npz`; see the [reproduction guide](docs/plato-reproduction.md)
+and [report](docs/plato-2026-11-09.md).
 
 **The game.** Since 2026-10-27 every bot here trains and plays Polytopia's own rules (Steam 2.17.3, game version
 123): two Bardur tribes with fog of war and the full tech tree, cities, villages, ruins, navy, diplomacy and cloaks,

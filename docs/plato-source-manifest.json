@@ -1,0 +1,577 @@
+{
+  "schema": "plato-source-export-v1",
+  "source_ref": "ops/claude-v3l-stage4",
+  "source_commit": "1212facef0e3c5e4b6fabd3535e1a89926e7e2aa",
+  "public_base_commit": "536384a6a5970a407cd16bc6e3837269f5aa492f",
+  "files": [
+    {
+      "path": "docs/gpu-engine-design-2026-11-06.md",
+      "source_sha256": "c5d784ca6e46af918746221e30ae42b1b9bc35e9cb6253734354770ca0d60f63",
+      "exported_sha256": "c5d784ca6e46af918746221e30ae42b1b9bc35e9cb6253734354770ca0d60f63",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-compute/design-4a.md",
+      "source_sha256": "d27a5a4879385898b90e83119126a0043407af168e44ceb0eaa2e3101f028811",
+      "exported_sha256": "d27a5a4879385898b90e83119126a0043407af168e44ceb0eaa2e3101f028811",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-compute/learning-check-prereg.md",
+      "source_sha256": "118c3f44e5deef2ad1e03239c9d44037793f55c81514d8c13b5bdbfbbf8f26c4",
+      "exported_sha256": "118c3f44e5deef2ad1e03239c9d44037793f55c81514d8c13b5bdbfbbf8f26c4",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-compute/rematch-nopeace-prereg.md",
+      "source_sha256": "28c9b9dfb2951e7b69ef54ffd226ea38455f0993878366a44d742948f16258c8",
+      "exported_sha256": "28c9b9dfb2951e7b69ef54ffd226ea38455f0993878366a44d742948f16258c8",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-compute/session-e.md",
+      "source_sha256": "1b5082c7e1c3e172083fcc4cdc610c487b50c14d7dd114a46c715277fe5f4adb",
+      "exported_sha256": "1b5082c7e1c3e172083fcc4cdc610c487b50c14d7dd114a46c715277fe5f4adb",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-hybrid/prereg.md",
+      "source_sha256": "9c8c62b8215c287bde68367b8d36806f8e71778f0efcf977eb855bfbf9351fcf",
+      "exported_sha256": "9c8c62b8215c287bde68367b8d36806f8e71778f0efcf977eb855bfbf9351fcf",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "docs/v3-hybrid/session-h.md",
+      "source_sha256": "d0bca675363c48b81da7f5ce54fc3cc4e3c73a3eade8d3fec1ed56f15faa96eb",
+      "exported_sha256": "d0bca675363c48b81da7f5ce54fc3cc4e3c73a3eade8d3fec1ed56f15faa96eb",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/Makefile",
+      "source_sha256": "632ec13a49efa8bd75442ca501d832505e6f1422dae0f7192f9ff1dc4b5db95f",
+      "exported_sha256": "632ec13a49efa8bd75442ca501d832505e6f1422dae0f7192f9ff1dc4b5db95f",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/capture.h",
+      "source_sha256": "7bd888c9ccc6fa187c496406f86a3d572d849ac705153c4d875b4ebd1e397ee9",
+      "exported_sha256": "7bd888c9ccc6fa187c496406f86a3d572d849ac705153c4d875b4ebd1e397ee9",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/core.h",
+      "source_sha256": "611ebee32cd00b84629311be71e61379503ce42bb82a65fb2150a5b26cce2060",
+      "exported_sha256": "611ebee32cd00b84629311be71e61379503ce42bb82a65fb2150a5b26cce2060",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/diplomacy.h",
+      "source_sha256": "15c917a5cc1006e76846fcf96ea8100c71e2416a141d518ccf17342495cfdcef",
+      "exported_sha256": "15c917a5cc1006e76846fcf96ea8100c71e2416a141d518ccf17342495cfdcef",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/discovery.h",
+      "source_sha256": "2bfd0b5214fd73762b34457094b7cfff681b6fbfe43fb6d2d8690c8c4957aabe",
+      "exported_sha256": "2bfd0b5214fd73762b34457094b7cfff681b6fbfe43fb6d2d8690c8c4957aabe",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/economy.h",
+      "source_sha256": "63f443f5720c1e425acd2003797760394f441bd9dd0b7071b042a82fec0844c6",
+      "exported_sha256": "63f443f5720c1e425acd2003797760394f441bd9dd0b7071b042a82fec0844c6",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/engine.h",
+      "source_sha256": "ef37454ef7d4d8eb8dcb794347849fea76befb09aeb243c84e1232f861e0dcce",
+      "exported_sha256": "ef37454ef7d4d8eb8dcb794347849fea76befb09aeb243c84e1232f861e0dcce",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/hash.h",
+      "source_sha256": "e480879ed9feeae4fd1b51f9e36f07cc1527b2bd0d63483915bdd0901d773cea",
+      "exported_sha256": "e480879ed9feeae4fd1b51f9e36f07cc1527b2bd0d63483915bdd0901d773cea",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/history.h",
+      "source_sha256": "318c93cb253f473b2ad7ad78ac4e5047886d956054231df19711770ab2314cf5",
+      "exported_sha256": "318c93cb253f473b2ad7ad78ac4e5047886d956054231df19711770ab2314cf5",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/infiltration.h",
+      "source_sha256": "10a9cc3c00b6364625e8b9d9205981eb145441769bae2a25a2ddd3b0681bd90a",
+      "exported_sha256": "10a9cc3c00b6364625e8b9d9205981eb145441769bae2a25a2ddd3b0681bd90a",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/kernels.h",
+      "source_sha256": "4dddbbe93e7bea359f77316dd49de8c17ca4d13353c1a5a226d20862fd33914e",
+      "exported_sha256": "4dddbbe93e7bea359f77316dd49de8c17ca4d13353c1a5a226d20862fd33914e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/masks.h",
+      "source_sha256": "41d45e2162aa01a64669e84e835c4421c88774e96bfbd6ecb5eae5ad0e6fb97e",
+      "exported_sha256": "41d45e2162aa01a64669e84e835c4421c88774e96bfbd6ecb5eae5ad0e6fb97e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/military.h",
+      "source_sha256": "d1432a6450d2015ea8826ac36de7ecb860bff78905f528f5657b4f083e098e17",
+      "exported_sha256": "d1432a6450d2015ea8826ac36de7ecb860bff78905f528f5657b4f083e098e17",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pathfinding.h",
+      "source_sha256": "23a44b30e09dfa0423a5fb0b4261823293c5eb4dbaff7bd2665acbb81fd1a42e",
+      "exported_sha256": "23a44b30e09dfa0423a5fb0b4261823293c5eb4dbaff7bd2665acbb81fd1a42e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pc.h",
+      "source_sha256": "c05fcd7a6c3c58533e32a784d5cc1a68389a3f2605f10d920a845389c4f79da9",
+      "exported_sha256": "c05fcd7a6c3c58533e32a784d5cc1a68389a3f2605f10d920a845389c4f79da9",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pc_api.h",
+      "source_sha256": "48958efc109aeba63a811a73a7c437efc36d6539fe87aa9f6c7ee3d25639063c",
+      "exported_sha256": "48958efc109aeba63a811a73a7c437efc36d6539fe87aa9f6c7ee3d25639063c",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pc_cpu.c",
+      "source_sha256": "f89d49243d10676d5d8c5f8d0eebc2a112e9b677887377935b7d810204b81757",
+      "exported_sha256": "f89d49243d10676d5d8c5f8d0eebc2a112e9b677887377935b7d810204b81757",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pc_cuda.cu",
+      "source_sha256": "59b73417c19327bc9b505b0f4977addae378ef2c0e31e06aa258db0eb723b3ae",
+      "exported_sha256": "59b73417c19327bc9b505b0f4977addae378ef2c0e31e06aa258db0eb723b3ae",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/pc_state_io.h",
+      "source_sha256": "e12f2f92667e346f616a333f52bfc71ac97320a9cf11265d611596ea68d83e09",
+      "exported_sha256": "e12f2f92667e346f616a333f52bfc71ac97320a9cf11265d611596ea68d83e09",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/rules.h",
+      "source_sha256": "ec4ff5dabf5625250a49326bdff48f3bd2ca7302e766755bacb1bcf392b7c2c8",
+      "exported_sha256": "ec4ff5dabf5625250a49326bdff48f3bd2ca7302e766755bacb1bcf392b7c2c8",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/src/structures.h",
+      "source_sha256": "44d91d38d3fd14e3932273bfd0d6adbaf0458ca71a4d6a1ebdc80ac7dd47c8b7",
+      "exported_sha256": "44d91d38d3fd14e3932273bfd0d6adbaf0458ca71a4d6a1ebdc80ac7dd47c8b7",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-cu/tools/tick_bench.py",
+      "source_sha256": "e47112be93d0939ca939285c0dddfa4dd5b55ab9b6cced69cec56c16fcb6c3a2",
+      "exported_sha256": "e47112be93d0939ca939285c0dddfa4dd5b55ab9b6cced69cec56c16fcb6c3a2",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-rs/Cargo.lock",
+      "source_sha256": "428659dac4b1303e92ea7b1d6a877dc046126f4d9c0523e59c98f6d2e5aa8b3e",
+      "exported_sha256": "428659dac4b1303e92ea7b1d6a877dc046126f4d9c0523e59c98f6d2e5aa8b3e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-rs/Cargo.toml",
+      "source_sha256": "c950bc8c520a00615d258973e2793b0deec95c9f0526177162e4507e2cc7c542",
+      "exported_sha256": "c950bc8c520a00615d258973e2793b0deec95c9f0526177162e4507e2cc7c542",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "engine-rs/src/lib.rs",
+      "source_sha256": "f5025bb87d42724300b2466deb79a9ff38bed82e77bec926672f77fb90e2fe4d",
+      "exported_sha256": "f5025bb87d42724300b2466deb79a9ff38bed82e77bec926672f77fb90e2fe4d",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-curve.json",
+      "source_sha256": "879e753e0d5a9755677240eb88424f7d1651842c2442c98a30a3252859658717",
+      "exported_sha256": "879e753e0d5a9755677240eb88424f7d1651842c2442c98a30a3252859658717",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-diag.json",
+      "source_sha256": "ba86615d321eea7d7190d888871d3f8366e0b2ec10992e7ac3ae782ea4de1442",
+      "exported_sha256": "ba86615d321eea7d7190d888871d3f8366e0b2ec10992e7ac3ae782ea4de1442",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-lc.json",
+      "source_sha256": "2a3aa748b772ad90d275607410802124e97851427d3fdac4ad077fdd4ac8bd63",
+      "exported_sha256": "2a3aa748b772ad90d275607410802124e97851427d3fdac4ad077fdd4ac8bd63",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-np.json",
+      "source_sha256": "12a606a047ac705c8819a5ad43bac4fcb1178bd873c538224cca649d567f2050",
+      "exported_sha256": "12a606a047ac705c8819a5ad43bac4fcb1178bd873c538224cca649d567f2050",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-persample.json",
+      "source_sha256": "bc525e917aa81bb5d2fcedfd2ce0979a6964712e8cf00444d49027f3784821af",
+      "exported_sha256": "bc525e917aa81bb5d2fcedfd2ce0979a6964712e8cf00444d49027f3784821af",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-smoke.json",
+      "source_sha256": "b84ddc12926eca26297c333bce46909a7973556afeccae98f9679c9715db0bef",
+      "exported_sha256": "b84ddc12926eca26297c333bce46909a7973556afeccae98f9679c9715db0bef",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arena-smoke2.json",
+      "source_sha256": "cf565777a216087d28e1b3ad66cb19deb92831e1f37150764538fdc89678314e",
+      "exported_sha256": "cf565777a216087d28e1b3ad66cb19deb92831e1f37150764538fdc89678314e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arms-01.json",
+      "source_sha256": "eb9c4a6b124ef07c7b968e97b68b6c3baf75fa1d1a33fbcb94155c1ae4571a33",
+      "exported_sha256": "eb9c4a6b124ef07c7b968e97b68b6c3baf75fa1d1a33fbcb94155c1ae4571a33",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/arms-02.json",
+      "source_sha256": "9fc6670add0995f941f0d619924053ce547a24aedf6928c3d19ec761bf29dc6b",
+      "exported_sha256": "9fc6670add0995f941f0d619924053ce547a24aedf6928c3d19ec761bf29dc6b",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/bench_v3.py",
+      "source_sha256": "be9a32881601a51cfacbd5088607ba8ec943fba6556ccecebbf451e12ae8a970",
+      "exported_sha256": "be9a32881601a51cfacbd5088607ba8ec943fba6556ccecebbf451e12ae8a970",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/gpu_arena.py",
+      "source_sha256": "468d96c823892dbc14092bd8ff1e1d7ecf5542fd2e0e335052cb98bd04b34c75",
+      "exported_sha256": "f80922beca9ce055127cca8ac38f657c1e5a2b7674e137982d4e234dd2bbca53",
+      "modified_for_public_release": true
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic-nopeace-warm150-b2-caploss.json",
+      "source_sha256": "184a66dff003d4c743c2c576d38261d0b0bb9c836442a08ab2f54d25f2df996f",
+      "exported_sha256": "184a66dff003d4c743c2c576d38261d0b0bb9c836442a08ab2f54d25f2df996f",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic-nopeace-warm150-b2.json",
+      "source_sha256": "d1e1cce3d19c6481e95b506e63e72d0e2e34d7d2c9d0c710384cca368fd84b48",
+      "exported_sha256": "d1e1cce3d19c6481e95b506e63e72d0e2e34d7d2c9d0c710384cca368fd84b48",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic-nopeace-warm150-b2.md",
+      "source_sha256": "c45eacf2b7eab6f59b0df6e2f572d969f2470a42cf87bdff1427dc54ba4f74dd",
+      "exported_sha256": "c45eacf2b7eab6f59b0df6e2f572d969f2470a42cf87bdff1427dc54ba4f74dd",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic-nopeace-warm150.json",
+      "source_sha256": "d01544f9bb768a2a276b5a86a372788c0d1412714dc254fdb546e38b315c31ff",
+      "exported_sha256": "d01544f9bb768a2a276b5a86a372788c0d1412714dc254fdb546e38b315c31ff",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic-nopeace.json",
+      "source_sha256": "973ad7d8907e0f94e01ccf78f55d737b48e3309b6176d8121e0f70bc1f823daf",
+      "exported_sha256": "973ad7d8907e0f94e01ccf78f55d737b48e3309b6176d8121e0f70bc1f823daf",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/hero-1v1-classic.json",
+      "source_sha256": "86cda3f42699d231fbac3b6e2a41aac8cdb5f25d397f3e01e26012290d7f3d6e",
+      "exported_sha256": "86cda3f42699d231fbac3b6e2a41aac8cdb5f25d397f3e01e26012290d7f3d6e",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/launch.sh",
+      "source_sha256": "ef9faf387d5d0b60e2eb37804d92a0ea1440f8e0a2203bc7c70227fcfe6459e2",
+      "exported_sha256": "ef9faf387d5d0b60e2eb37804d92a0ea1440f8e0a2203bc7c70227fcfe6459e2",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/ledger.py",
+      "source_sha256": "f6f49aeba0a36bb9408250673c2a85576313cb7ed534c4f6d51e603d7af9975a",
+      "exported_sha256": "f6f49aeba0a36bb9408250673c2a85576313cb7ed534c4f6d51e603d7af9975a",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/modal_map_table.py",
+      "source_sha256": "430f31bc493f02b671f0c4845d1a6654c5fea7c3dd2da6197e14372474c7a7d6",
+      "exported_sha256": "430f31bc493f02b671f0c4845d1a6654c5fea7c3dd2da6197e14372474c7a7d6",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/modal_v3.py",
+      "source_sha256": "5f7d6df5781b354187f69e4dca1fd8abe6984cb86871966f2adecad1590b8304",
+      "exported_sha256": "5f7d6df5781b354187f69e4dca1fd8abe6984cb86871966f2adecad1590b8304",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/results-arena-curve.json",
+      "source_sha256": "82fbfd78443b004c7a2d7d6ba950131c98ed661a28ffe60de83367ec78eb2b75",
+      "exported_sha256": "82fbfd78443b004c7a2d7d6ba950131c98ed661a28ffe60de83367ec78eb2b75",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/results-arena-lc.json",
+      "source_sha256": "aff7c676aece7dd821952784c7ce0619a0e3097300d4185ce63509b684b5d5af",
+      "exported_sha256": "aff7c676aece7dd821952784c7ce0619a0e3097300d4185ce63509b684b5d5af",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/results-bench-01.json",
+      "source_sha256": "0d9579f16c5d55722547b6f717d243fca007abe3684c1bbc4399849184301a6c",
+      "exported_sha256": "0d9579f16c5d55722547b6f717d243fca007abe3684c1bbc4399849184301a6c",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/results-bench-02.json",
+      "source_sha256": "ff073048604809df26e66f106ac76efd0c842467e7f466b7dd2369d5237e9fb9",
+      "exported_sha256": "ff073048604809df26e66f106ac76efd0c842467e7f466b7dd2369d5237e9fb9",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/results-e2e-summary.jsonl",
+      "source_sha256": "0562dc683165294db7129c05f3476df55e2e47e99c9d076fee0e77f39ec1c394",
+      "exported_sha256": "0562dc683165294db7129c05f3476df55e2e47e99c9d076fee0e77f39ec1c394",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3/summarize_e2e.py",
+      "source_sha256": "f4766d5d731259943b412b64c00f14b45142879167a3effb53e8701cfb0afe13",
+      "exported_sha256": "f4766d5d731259943b412b64c00f14b45142879167a3effb53e8701cfb0afe13",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3h/launch.sh",
+      "source_sha256": "19e1ece15caac2a6e5d4ebe65ac38ef81f67814933b5bd800f671b509763c15d",
+      "exported_sha256": "19e1ece15caac2a6e5d4ebe65ac38ef81f67814933b5bd800f671b509763c15d",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3h/ledger.py",
+      "source_sha256": "71ec19ca0998a90a78eaf2f6688f37437859f4c291e1ed034d8b1403c6dd45ca",
+      "exported_sha256": "71ec19ca0998a90a78eaf2f6688f37437859f4c291e1ed034d8b1403c6dd45ca",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3h/make_matches.py",
+      "source_sha256": "24666c530536a2f8512ee97781552813b2e8ee97a81630733716835deac56055",
+      "exported_sha256": "24666c530536a2f8512ee97781552813b2e8ee97a81630733716835deac56055",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3h/modal_v3h.py",
+      "source_sha256": "c3e8f1557dff3abea2bc27f589479d4f25e19ddb9f9ea0a5dee1d4b1d75e594f",
+      "exported_sha256": "c3e8f1557dff3abea2bc27f589479d4f25e19ddb9f9ea0a5dee1d4b1d75e594f",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/flagship_harness.py",
+      "source_sha256": "2e30d7d0ae3f7f096bc31574845b0b71a510eadb0557a93f3088a11f0ff76a75",
+      "exported_sha256": "2e30d7d0ae3f7f096bc31574845b0b71a510eadb0557a93f3088a11f0ff76a75",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/group.py",
+      "source_sha256": "47099f980aabdfb22a0ac5e91f2cc51b6e72c7f6855139b60fd6612fe6946f8c",
+      "exported_sha256": "47099f980aabdfb22a0ac5e91f2cc51b6e72c7f6855139b60fd6612fe6946f8c",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/launcher.py",
+      "source_sha256": "47ad7497a749fc7cbf449e5305e67aec498ae869ff3cc01a11120330cfd47abd",
+      "exported_sha256": "6b992b0cf9d30ff9eec1255ee8c788139cdd198a4e970fe71d9c223f1131b334",
+      "modified_for_public_release": true
+    },
+    {
+      "path": "experiments/claude_v3l/make_manifest.py",
+      "source_sha256": "cdd6e7ab395f9d1cab888390035c21e239bc4544a609dba21bd517be2737a8f3",
+      "exported_sha256": "cdd6e7ab395f9d1cab888390035c21e239bc4544a609dba21bd517be2737a8f3",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/modal_flagship.py",
+      "source_sha256": "2376dff4dff839c547625843fc734b931c8fe737c8314f4a947edf807d2e75c4",
+      "exported_sha256": "2376dff4dff839c547625843fc734b931c8fe737c8314f4a947edf807d2e75c4",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/monitor.py",
+      "source_sha256": "8de9cf6b4f5f6d59305d4dcb60cdf4f0ff5840597acdda7268f4c32c702c6b37",
+      "exported_sha256": "56a58dbcd37b2c86f00a2cbeaa0ed75b2e3618ef2f81e9d4c0eff280b67c6184",
+      "modified_for_public_release": true
+    },
+    {
+      "path": "experiments/claude_v3l/policy.py",
+      "source_sha256": "d8c5290ad5207ce0726b924e45ba8b1b6d4b3f36beae20d75d4aa7cbb9e2e72c",
+      "exported_sha256": "d8c5290ad5207ce0726b924e45ba8b1b6d4b3f36beae20d75d4aa7cbb9e2e72c",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/stage_check.py",
+      "source_sha256": "467bd928d4c60646f1ebe7b34a49e681aecd1ead21ba8eea4da3f5820b257069",
+      "exported_sha256": "467bd928d4c60646f1ebe7b34a49e681aecd1ead21ba8eea4da3f5820b257069",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/claude_v3l/supervisor.py",
+      "source_sha256": "9c43c9a437baf34939078e7233704b28524ab8bc69fa647b17897d1d11a65e5b",
+      "exported_sha256": "9c43c9a437baf34939078e7233704b28524ab8bc69fa647b17897d1d11a65e5b",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/gpu_ppo_smoke.py",
+      "source_sha256": "628f44d9f6b7e0a04d3fb394ebabf0edb2bb8457559c67b80b15a8461221440b",
+      "exported_sha256": "628f44d9f6b7e0a04d3fb394ebabf0edb2bb8457559c67b80b15a8461221440b",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/gpu_resident_train.py",
+      "source_sha256": "9c3b21661811d9de04034038c6db14fef994c67221bdd3be2a86a916374bb444",
+      "exported_sha256": "9c3b21661811d9de04034038c6db14fef994c67221bdd3be2a86a916374bb444",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "experiments/modal_gpu_engine.py",
+      "source_sha256": "e199f159cf97f5738187671daedc0d92b7e47a63bd4168e7f531d9146e410c97",
+      "exported_sha256": "e199f159cf97f5738187671daedc0d92b7e47a63bd4168e7f531d9146e410c97",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/actions.py",
+      "source_sha256": "93e692c88b1788ef814e9337be4b95702f152059e015e6060d6df13a8a21dfe9",
+      "exported_sha256": "93e692c88b1788ef814e9337be4b95702f152059e015e6060d6df13a8a21dfe9",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/distributed.py",
+      "source_sha256": "8b6aa7570c2fd71e563ce2b6b3e1df7af335bd19f24ca0345f0f70f829946dbf",
+      "exported_sha256": "8b6aa7570c2fd71e563ce2b6b3e1df7af335bd19f24ca0345f0f70f829946dbf",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/gpu_engine.py",
+      "source_sha256": "a45dffdb2ab645b2c7b14256c1cb94b542629b017ef6aa9e1ea5ee409e2fd54d",
+      "exported_sha256": "a45dffdb2ab645b2c7b14256c1cb94b542629b017ef6aa9e1ea5ee409e2fd54d",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/gpu_resident.py",
+      "source_sha256": "fc8adf3a57e3fe92fa2392705764da1f23d6e624706b2396ab1361481d6e16e4",
+      "exported_sha256": "fc8adf3a57e3fe92fa2392705764da1f23d6e624706b2396ab1361481d6e16e4",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/network.py",
+      "source_sha256": "b6a5efbf95947780ac4271fabe672ae9f234c3bd0f95e3243822bf45f44a259f",
+      "exported_sha256": "b6a5efbf95947780ac4271fabe672ae9f234c3bd0f95e3243822bf45f44a259f",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/ppo.py",
+      "source_sha256": "74557e96886a62546895516d57ae2bb3dbcbd8830ff937989bb01f82ad90e0ab",
+      "exported_sha256": "74557e96886a62546895516d57ae2bb3dbcbd8830ff937989bb01f82ad90e0ab",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/runner.py",
+      "source_sha256": "1af0c0b416c07ba3cb02ca5d349bb3bf7c274e67cd718344235875988fb07f2c",
+      "exported_sha256": "1af0c0b416c07ba3cb02ca5d349bb3bf7c274e67cd718344235875988fb07f2c",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/rust_engine.py",
+      "source_sha256": "9b3fa5ab99f7f159aa2bbdfdc0300f3d36f38d497a09f1489ad9d80f51b21a9b",
+      "exported_sha256": "9b3fa5ab99f7f159aa2bbdfdc0300f3d36f38d497a09f1489ad9d80f51b21a9b",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/transformer.py",
+      "source_sha256": "88cd65c504c190d1269bb368e9d3f3cd19c6c9cce14d876df96b4ba49b5350b9",
+      "exported_sha256": "88cd65c504c190d1269bb368e9d3f3cd19c6c9cce14d876df96b4ba49b5350b9",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "src/polytopia_bot/rl/transformer_v3.py",
+      "source_sha256": "bd0b2ca0f78954fa8a3c2cd069de177972106cc3d5b25c68e9970ef547f57126",
+      "exported_sha256": "d308576a37d82c24c17541199253a03cc8b0ae95a058f560199d279dc8f89ddb",
+      "modified_for_public_release": true
+    },
+    {
+      "path": "src/polytopia_bot/rl/vector_actor.py",
+      "source_sha256": "72a8579722e37d8adf9aa327d4a0ffa605ccc7f824dcc8fe082fc08683dc693f",
+      "exported_sha256": "72a8579722e37d8adf9aa327d4a0ffa605ccc7f824dcc8fe082fc08683dc693f",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_gpu_engine.py",
+      "source_sha256": "d46f3ee111aaf190759d2a534a79dc64b76d60232411158e3746f3be99ac0a75",
+      "exported_sha256": "d46f3ee111aaf190759d2a534a79dc64b76d60232411158e3746f3be99ac0a75",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_gpu_resident.py",
+      "source_sha256": "2ad86f34edb30866aef329eeb63b338a5c52f424323b15ed8a62175c36cc2f39",
+      "exported_sha256": "2ad86f34edb30866aef329eeb63b338a5c52f424323b15ed8a62175c36cc2f39",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_transformer_v3.py",
+      "source_sha256": "6663592aa25b02a765064e0d2513a0816ce03f2e53c66b13b0881a120dc2bee5",
+      "exported_sha256": "6663592aa25b02a765064e0d2513a0816ce03f2e53c66b13b0881a120dc2bee5",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_v3l_harness.py",
+      "source_sha256": "c2bfaaac5d1349fe7260355cd5ae74b1ad4923a44934d941a953a6d9693205e6",
+      "exported_sha256": "c2bfaaac5d1349fe7260355cd5ae74b1ad4923a44934d941a953a6d9693205e6",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_v3l_supervisor.py",
+      "source_sha256": "bd00d021701ac3f4300364fea781c884ecc7d29ca9e3972f437b5f8cc7697032",
+      "exported_sha256": "bd00d021701ac3f4300364fea781c884ecc7d29ca9e3972f437b5f8cc7697032",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/test_vector_actor.py",
+      "source_sha256": "000c08002f9e5799380dba8b1eca3b036c88df75a77fed1ebb9910f94bbd9bae",
+      "exported_sha256": "000c08002f9e5799380dba8b1eca3b036c88df75a77fed1ebb9910f94bbd9bae",
+      "modified_for_public_release": false
+    },
+    {
+      "path": "tests/v3l_fake_trainer.py",
+      "source_sha256": "b859feb1d692857566433c29c75405f4ba83de8fc92c9a427a77bb7324b81037",
+      "exported_sha256": "b859feb1d692857566433c29c75405f4ba83de8fc92c9a427a77bb7324b81037",
+      "modified_for_public_release": false
+    }
+  ],
+  "adaptations": {
+    "experiments/claude_v3/gpu_arena.py": "Adds engine-rs and CPU C backends; rejects illegal actions; no confidence interval for a single map. Original CUDA backend remains the default for original Modal callers.",
+    "experiments/claude_v3l/launcher.py": "Portable local paths/executables and time formatting; historical stage and budget validation retained.",
+    "experiments/claude_v3l/monitor.py": "Local logs/status by default; original coordinator integration is opt-in.",
+    "src/polytopia_bot/rl/transformer_v3.py": "Design comment points to public documentation; executable code unchanged."
+  },
+  "notes": [
+    "Source snapshot is the recovered stage-4 branch; it is not proof of an identical runtime on every original training update.",
+    "The public base supplies unchanged observation encoding, action protocol, rules, map generation and Studio code.",
+    "New CLI, release tests, reconstructed harness example and reproduction guide are authored for this export; they are not original run artifacts."
+  ]
+}

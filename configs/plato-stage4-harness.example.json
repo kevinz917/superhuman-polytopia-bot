@@ -1,0 +1,58 @@
+{
+  "_note": "Reconstructed API example from the published recipe, not an original worker manifest. Supply every historical checkpoint path before running.",
+  "run_id": "plato-stage4",
+  "run_dir": "runs/plato-stage4",
+  "stage": 4,
+  "leak_check": true,
+  "stage4": {
+    "terminal_rule": "cap_loss_both",
+    "peace_sets": [
+      0,
+      1,
+      2
+    ],
+    "pool_batched": true,
+    "opponents": {
+      "plato-u72889": "weights/plato-history/u72889.npz",
+      "plato-u37641": "weights/plato-history/u37641.npz",
+      "plato-u23270": "weights/plato-history/u23270.npz",
+      "hero1": "weights/hero-1v1/final.npz",
+      "champion": "weights/champion/final.npz",
+      "CNN-control": "weights/plato-history/cnn-control.npz",
+      "Cloak-exploiter": "weights/plato-history/cloak-exploiter.npz",
+      "x3d-exploiter": "weights/plato-history/x3d-exploiter.npz"
+    },
+    "historical": {
+      "no_peace": 0.1,
+      "peace": 0.1
+    },
+    "pool": {
+      "no_peace": {
+        "hero1": 0.04,
+        "Cloak-exploiter": 0.06
+      },
+      "peace": {
+        "plato-u72889": 0.1,
+        "plato-u37641": 0.08,
+        "plato-u23270": 0.06,
+        "hero1": 0.15,
+        "champion": 0.07,
+        "CNN-control": 0.04,
+        "Cloak-exploiter": 0.08,
+        "x3d-exploiter": 0.02
+      }
+    },
+    "monitor": {
+      "window": 50,
+      "pause_window": 150,
+      "min_games": 200,
+      "warn_selfplay_capped": 0.1,
+      "warn_capped": 0.1,
+      "warn_at_peace": 0.25,
+      "pause_selfplay_capped": 0.3,
+      "pause_at_peace": 0.5,
+      "warn_late": 0.1,
+      "pause_late": 0.3
+    }
+  }
+}

@@ -1,0 +1,79 @@
+[
+ {
+  "name": "np-B-vs-D-final",
+  "a": "/results/distributed/np-B-v3p2-6x128/final.npz",
+  "b": "/results/distributed/np-D-cnn-4x128/final.npz",
+  "maps": 1024,
+  "timeout": 900
+ },
+ {
+  "name": "np-Bw-vs-D-final",
+  "a": "/results/distributed/np-Bw-v3p2-6x128/final.npz",
+  "b": "/results/distributed/np-D-cnn-4x128/final.npz",
+  "maps": 1024,
+  "timeout": 900
+ },
+ {
+  "name": "np-Bu650-vs-D-final",
+  "a": "/results/distributed/np-B-v3p2-6x128/snapshots/update-650.npz",
+  "b": "/results/distributed/np-D-cnn-4x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "np-Bwu650-vs-D-final",
+  "a": "/results/distributed/np-Bw-v3p2-6x128/snapshots/update-650.npz",
+  "b": "/results/distributed/np-D-cnn-4x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "np-Bw-vs-B-final",
+  "a": "/results/distributed/np-Bw-v3p2-6x128/final.npz",
+  "b": "/results/distributed/np-B-v3p2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "np-B-vs-lcB-final",
+  "a": "/results/distributed/np-B-v3p2-6x128/final.npz",
+  "b": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "np-D-vs-lcD-final",
+  "a": "/results/distributed/np-D-cnn-4x128/final.npz",
+  "b": "/results/distributed/lc-D-cnn-4x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-E-vs-A",
+  "a": "/results/distributed/lc-E-v3-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-B-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-D-vs-A",
+  "a": "/results/distributed/lc-D-cnn-4x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-E-vs-B",
+  "a": "/results/distributed/lc-E-v3-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ }
+]

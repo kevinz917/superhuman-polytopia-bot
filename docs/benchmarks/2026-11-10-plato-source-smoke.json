@@ -1,0 +1,136 @@
+{
+  "schema": "plato-source-release-verification-v1",
+  "date": "2026-11-10",
+  "purpose": "Release smoke and compatibility checks; not a strength estimate or a rerun of the historical benchmark.",
+  "platform": "Darwin arm64",
+  "python": "3.14.7",
+  "packages": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.4",
+    "pytest": "9.2.0"
+  },
+  "suites": [
+    {
+      "files": [
+        "tests/test_transformer_v3.py",
+        "tests/test_v3l_harness.py",
+        "tests/test_v3l_supervisor.py",
+        "tests/test_gpu_resident.py"
+      ],
+      "passed": 98,
+      "overlap_with_other_suites": true
+    },
+    {
+      "files": [
+        "tests/test_vector_actor.py",
+        "tests/test_attention_trunk.py",
+        "tests/test_distributed_rl.py",
+        "tests/test_no_peace.py",
+        "tests/test_studio_environment.py"
+      ],
+      "passed": 35,
+      "overlap_with_other_suites": true
+    },
+    {
+      "files": [
+        "tests/test_plato_release.py",
+        "tests/test_v3l_harness.py",
+        "tests/test_v3l_supervisor.py",
+        "tests/test_structured_rl.py",
+        "tests/test_search.py"
+      ],
+      "passed": 68,
+      "overlap_with_other_suites": true
+    },
+    {
+      "files": [
+        "tests/test_v3l_harness.py"
+      ],
+      "passed": 21,
+      "overlap_with_other_suites": true
+    }
+  ],
+  "engine_gates": [
+    "ok size=14 games=8 players=2 ticks=300 steps=2400 finished=0 terminated=0 truncated=0 nonok=0 exports=13 resigns=0 device=-1 mode=rust-vs-c policy=random policy_actions=0 max_turn=0 c_build=libpc_cpu_14.so/thread seconds=5.84 ref_ms_per_tick=0.149 c_ms_per_tick=0.1933 ref_steps_per_s=53687 c_steps_per_s=41384 seed=0 end_boost=0.12 resign_every=97 export_every=25 bench=False",
+    "ok size=14 games=4 players=2 ticks=1500 steps=6000 finished=3 terminated=3 truncated=0 nonok=0 exports=16 resigns=0 device=-1 mode=rust-vs-c policy=plato/final policy_actions=5686 max_turn=41 c_build=libpc_cpu_14.so/thread policy_temp=1.0 epsilon=0.05 obs_version=3 width=128 blocks=6 seconds=21.87 ref_ms_per_tick=0.0957 c_ms_per_tick=0.1335 policy_ms_per_tick=5.08 policy_compile_s=0.44 policy_load_s=1.08 ref_steps_per_s=41782 c_steps_per_s=29961 seed=0 end_boost=0.12 resign_every=97 export_every=100 bench=False"
+  ],
+  "paired_smoke": {
+    "rust": {
+      "backend": "rust",
+      "unfinished": 0,
+      "no_peace": false,
+      "a": "weights/plato/final.npz",
+      "b": "weights/hero-1v1/final.npz",
+      "arch_a": "transformer-v3-p2-h4",
+      "arch_b": "normalized-v2",
+      "maps": 2,
+      "games": 4,
+      "seed_base": 500000,
+      "deterministic": false,
+      "ticks": 3234,
+      "seconds": 22.3,
+      "truncated": 0,
+      "terminal_only": {
+        "wins": 4,
+        "losses": 0,
+        "draws": 0,
+        "score": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "score_at_cap": {
+        "wins": 4,
+        "losses": 0,
+        "draws": 0,
+        "score": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "c_cpu": {
+      "backend": "cpu",
+      "unfinished": 0,
+      "no_peace": false,
+      "a": "weights/plato/final.npz",
+      "b": "weights/hero-1v1/final.npz",
+      "arch_a": "transformer-v3-p2-h4",
+      "arch_b": "normalized-v2",
+      "maps": 2,
+      "games": 4,
+      "seed_base": 500000,
+      "deterministic": false,
+      "ticks": 3234,
+      "seconds": 22.6,
+      "truncated": 0,
+      "terminal_only": {
+        "wins": 4,
+        "losses": 0,
+        "draws": 0,
+        "score": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "score_at_cap": {
+        "wins": 4,
+        "losses": 0,
+        "draws": 0,
+        "score": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "same_outcomes_and_ticks": true
+  },
+  "modal_entrypoints_imported": true,
+  "cuda_training_executed": false,
+  "full_historical_run_reproduced": false
+}

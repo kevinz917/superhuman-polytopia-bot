@@ -23,6 +23,16 @@ HEAD_PRECISION = getattr(jax.lax.Precision, os.environ.get('POLYTOPIA_HEAD_PRECI
 # Conv torso operand dtype. POLYTOPIA_TRUNK_DTYPE=bfloat16 (GPU learner only) runs the convolutions on bf16
 # operands and casts each result back to fp32; weights, residual sums, norms and heads stay fp32.
 TRUNK_DTYPE = jnp.dtype(os.environ.get('POLYTOPIA_TRUNK_DTYPE', 'float32'))
+# Dtype the conv torso's activations are stored in between kernels (POLYTOPIA_ACT_DTYPE). float32 (default) is the
+# reference path. bfloat16 keeps each convolution's output, the residual stream and the normalized activations in
+# bf16 between kernels (every norm and SiLU still computes in fp32 inside its fused kernel); the actors' policy
+# forward is memory-bound on those fp32 tensors (2026-11-06, scripts/bench_forward.py), so this is an actor-side
+# inference option: the learner keeps fp32 and PPO's ratio corrects the behaviour policy's rounding.
+ACT_DTYPE = jnp.dtype(os.environ.get('POLYTOPIA_ACT_DTYPE', 'float32'))
+# POLYTOPIA_PAD_STEM=k: zero-pad the stem convolution's input channels (and its kernel's input rows) to a multiple of k.
+# The padded channels are zero, so the convolution's value is unchanged; channel counts that are not a multiple of 8
+# keep cuDNN off its tensor-core kernels for that layer. 0 (default): no padding.
+PAD_STEM = int(os.environ.get('POLYTOPIA_PAD_STEM', '0'))
 # Attention blocks (init attention): dims per head; width 128 = 4 heads.
 ATTENTION_HEAD = 32
 # Attention kernel (POLYTOPIA_ATTENTION_IMPL, read when the trunk is traced): 'einsum' (XLA, fp32 scores and softmax;
@@ -75,8 +85,20 @@ def init(key, board_channels, global_channels, *, size=14, width=64, blocks=2, a
     positional embedding ('pos', one row per tile of a `size` board), closed by a final LayerNorm ('attention_norm'):
     every tile reads every other tile directly, where the convolutions only widen the receptive field by one ring per
     layer (lookout, 2026-11-01). Needs normalized-v2."""
-    if architecture not in ('legacy', 'normalized-v2'):
+    from . import transformer_v3
+    if transformer_v3.is_v3(architecture):
+        # V3 (rl/transformer_v3.py): shared public encoder; the critic is its own tree (transformer_v3.init_critic)
+        if extra_blocks or global_pool or block_pool or attention:
+            raise ValueError('transformer-v3 has no CNN growth/hybrid options')
+        return transformer_v3.init_policy(key, board_channels, global_channels, size=size, width=width, blocks=blocks,
+                                          architecture=architecture)
+    if architecture not in ('legacy', 'normalized-v2', 'transformer-v1', 'transformer-v2'):
         raise ValueError('unknown network architecture')
+    # transformer-v1/v2 (rl/transformer.py, the V2 campaign's encoder at 849a931): tile tokens instead of the trunk's
+    # residual convolutions; same pooled heads as normalized-v2
+    transformer = architecture in ('transformer-v1', 'transformer-v2')
+    if transformer and (width % 4 or width < 4 or blocks < 1 or extra_blocks or global_pool or block_pool or attention):
+        raise ValueError('transformer needs width divisible by 4, blocks >= 1, and no CNN growth/hybrid options')
     def weights(shape, scale=1.):
         nonlocal key
         key, draw = jax.random.split(key)
@@ -98,9 +120,10 @@ def init(key, board_channels, global_channels, *, size=14, width=64, blocks=2, a
         c = min(BLOCK_POOL_CHANNELS, width)
         return ({'w': weights((2 * c, width)), 'b': jnp.zeros(width), 'gate': jnp.zeros(())},)
     params = {
-        "stem": weights((3, 3, board_channels, width), math.sqrt(2)),
-        "blocks": tuple((weights((3, 3, width, width), math.sqrt(2)),
-                         weights((3, 3, width, width))) + pool_layer(i) for i in range(blocks)),
+        "stem": weights((1, 1, board_channels, width) if architecture == 'transformer-v1'
+                        else (3, 3, board_channels, width), math.sqrt(2)),
+        "blocks": (() if transformer else tuple((weights((3, 3, width, width), math.sqrt(2)),
+                         weights((3, 3, width, width))) + pool_layer(i) for i in range(blocks))),
         "global": linear(global_channels + width, width),
         "family": linear(width, 17, .01),
         "source": linear(width, 17, .01),
@@ -109,12 +132,21 @@ def init(key, board_channels, global_channels, *, size=14, width=64, blocks=2, a
         "parameter_embedding": weights((17, max(size * size, 128), width), .1),
         "value": linear(width, 1, .1),
     }
-    if architecture == 'normalized-v2':
+    if architecture in ('normalized-v2', 'transformer-v1', 'transformer-v2'):
         # Versioned tensor layout keeps old checkpoints loadable without silently
         # interpreting their weights under a different forward pass.
         params['global'] = linear(global_channels + 2 * width, width)
         params['norm'] = {'scale': jnp.ones(width), 'bias': jnp.zeros(width)}
         params['critic_hidden'] = linear(global_channels + 2 * width, width)
+    if transformer:
+        params['transformer'] = tuple(dict(qkv=linear(width, 3 * width), out=linear(width, width),
+            ff_in=linear(width, 4 * width, math.sqrt(2)), ff_out=linear(4 * width, width),
+            attention_norm=dict(scale=jnp.ones(width), bias=jnp.zeros(width)),
+            ff_norm=dict(scale=jnp.ones(width), bias=jnp.zeros(width))) for _ in range(blocks))
+    if architecture == 'transformer-v2':
+        params['global_token'] = linear(global_channels, width)
+        params['transformer'] = tuple(dict(block, relative_bias=jnp.zeros((4, 2 * size - 1, 2 * size - 1)))
+                                      for block in params['transformer'])
     if extra_blocks:
         params['extra_blocks'] = tuple((weights((3, 3, width, width), math.sqrt(2)), jnp.zeros((3, 3, width, width)))
                                        + ((linear(2 * width, width),) if global_pool else ())
@@ -240,13 +272,32 @@ def trunk(params, features, pool_stats=None):
     appends dict(conv_rms, bias_rms, gate) of this position (the RMS of the tiles the bias is added to, of the bias,
     and the gate, None in layout 1): the farsight diagnosis measured bias_rms / conv_rms at 3-5x (see BLOCK_POOL_LAYOUTS);
     the tiles returned are the same with or without it."""
+    f32 = jnp.float32
     def conv(x, kernel):
         return jax.lax.conv_general_dilated(x[None].astype(TRUNK_DTYPE), kernel.astype(TRUNK_DTYPE), (1, 1), "SAME",
-                    dimension_numbers=("NHWC", "HWIO", "NHWC"), precision=PRECISION)[0].astype(jnp.float32)
+                    dimension_numbers=("NHWC", "HWIO", "NHWC"), precision=PRECISION)[0].astype(ACT_DTYPE)
     normalized = 'norm' in params
-    activate = (lambda z: jax.nn.silu(layer_norm(z))) if normalized else jax.nn.relu
+    if ACT_DTYPE == f32:
+        activate = (lambda z: jax.nn.silu(layer_norm(z))) if normalized else jax.nn.relu
+    else:
+        activate = ((lambda z: jax.nn.silu(layer_norm(z.astype(f32))).astype(ACT_DTYPE)) if normalized else
+                    (lambda z: jax.nn.relu(z)))
     # the features are always the newest observation version; an older network reads its own channels of them
-    x = activate(conv(fit_board(features.board, params["stem"].shape[2]), params["stem"]))
+    if 'v3_stem' in params:
+        from . import transformer_v3
+        return transformer_v3.trunk(params, features)
+    board, stem = fit_board(features.board, params["stem"].shape[2]), params["stem"]
+    if PAD_STEM and stem.shape[2] % PAD_STEM:
+        extra = PAD_STEM - stem.shape[2] % PAD_STEM
+        board = jnp.pad(board, ((0, 0), (0, 0), (0, extra)))
+        stem = jnp.pad(stem, ((0, 0), (0, 0), (0, extra), (0, 0)))
+    if 'transformer' in params:
+        from .transformer import encode
+        glob_in = (fit_global(features.global_state, params['global_token']['w'].shape[0])
+                   if 'global_token' in params else None)
+        x = encode(params, board, glob_in)
+    else:
+        x = activate(conv(board, stem))
     def branch(h, block):
         """A block's first convolution output -> the activated input of its second convolution, through the block's
         pooling layer when it has one (block[2]): layout 1 and the extra blocks' global_pool add the bias of the
@@ -254,25 +305,26 @@ def trunk(params, features, pool_stats=None):
         of the first BLOCK_POOL_CHANNELS normalized channels after it (BLOCK_POOL_LAYOUTS)."""
         if len(block) == 2:
             return activate(h)
+        h = h.astype(f32)   # pooling layers run in fp32 (their outputs go back to ACT_DTYPE below)
         layer = block[2]
         if 'gate' not in layer:
             flat = h.reshape(-1, h.shape[-1])
             bias = dense(jnp.concatenate((flat.mean(0), flat.max(0))), layer)
             if pool_stats is not None:
                 pool_stats.append(dict(conv_rms=_rms(h), bias_rms=_rms(bias), gate=None))
-            return activate(h + bias)
+            return activate((h + bias).astype(ACT_DTYPE))
         hn = layer_norm(h)
         sub = hn.reshape(-1, hn.shape[-1])[:, :layer['w'].shape[0] // 2]
         pooled = jnp.concatenate((layer_norm(sub.mean(0)), layer_norm(sub.max(0))))
         bias = layer['gate'] * dense(pooled, layer)
         if pool_stats is not None:
             pool_stats.append(dict(conv_rms=_rms(hn), bias_rms=_rms(bias), gate=layer['gate']))
-        return jax.nn.silu(hn + bias)
+        return jax.nn.silu(hn + bias).astype(ACT_DTYPE)
     for block in params["blocks"]:
         x = activate(x + conv(branch(conv(x, block[0]), block), block[1]))
     for block in params.get("extra_blocks", ()):
         x = x + conv(branch(conv(x, block[0]), block), block[1])
-    tiles = x.reshape(-1, x.shape[-1])
+    tiles = x.reshape(-1, x.shape[-1]).astype(f32)
     if 'attention' in params:
         tiles = attend(params, tiles)
     # likewise the global vector: an older network reads its own entries (none of the version-3 enemy techs)
@@ -290,6 +342,21 @@ def trunk(params, features, pool_stats=None):
 def layer_norm(x):
     centered = x - x.mean(axis=-1, keepdims=True)
     return centered * jax.lax.rsqrt(jnp.mean(centered ** 2, axis=-1, keepdims=True) + 1e-5)
+
+
+# Normalization backend of the transformer blocks (POLYTOPIA_LAYER_NORM; V2 campaign source 849a931): 'original' is the
+# expression above; 'tokamax-affine' an opt-in native FP32 affine kernel (needs the tokamax package).
+LAYER_NORM = os.environ.get('POLYTOPIA_LAYER_NORM', 'original')
+if LAYER_NORM not in ('original', 'tokamax-affine'):
+    raise ValueError('POLYTOPIA_LAYER_NORM must select a registered normalization backend')
+
+
+def affine_layer_norm(x, scale, bias):
+    if LAYER_NORM != 'tokamax-affine':
+        return layer_norm(x) * scale + bias
+    import tokamax
+    return tokamax.layer_norm(x, scale, bias, axis=-1, epsilon=1e-5, scale_offset=0., subtract_mean=True,
+                              implementation='triton')
 
 
 def _affine_norm(x, norm):
@@ -382,6 +449,12 @@ def evaluate(params, features, choice, masks):
 
 def sample(params, features, masks, key, *, size, deterministic=False):
     tiles, g, value = trunk(params, features)
+    choice, path, logp = sample_from(params, tiles, g, masks, key, size=size, deterministic=deterministic)
+    return choice, path, logp, value
+
+
+def sample_from(params, tiles, g, masks, key, *, size, deterministic=False):
+    """sample's heads on an already-encoded state (tiles, g): (choice, path masks, logp)."""
     keys = jax.random.split(key, 3)
     def draw(logits, mask, key):
         lp = log_distribution(logits, mask)
@@ -396,4 +469,4 @@ def sample(params, features, masks, key, *, size, deterministic=False):
     # Reuse the trunk instead of doing another encoder pass.
     logits = (dense(g, params["family"]), dense(tiles, params["source"])[:, f], target_logits(params, tiles, g, f, s))
     logp = sum(logprob_entropy(l, m, a)[0] for l, m, a in zip(logits, path, choice, strict=True))
-    return choice, path, logp, value
+    return choice, path, logp

@@ -1,0 +1,468 @@
+{
+ "rows": [
+  {
+   "unfinished": 833,
+   "a": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+   "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "transformer-v2",
+   "maps": 1024,
+   "games": 2048,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 458.6,
+   "truncated": 834,
+   "terminal_only": {
+    "wins": 138,
+    "losses": 1076,
+    "draws": 834,
+    "score": 0.27099609375,
+    "ci95": [
+     0.2578607466121453,
+     0.2841314408878547
+    ]
+   },
+   "score_at_cap": {
+    "wins": 802,
+    "losses": 1246,
+    "draws": 0,
+    "score": 0.3916015625,
+    "ci95": [
+     0.3706703849802739,
+     0.4125327400197261
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 3, \"seconds\": 45.4, \"mean_turn\": 11.55908203125}",
+    "{\"ticks\": 500, \"finished\": 25, \"seconds\": 63.3, \"mean_turn\": 16.55078125}",
+    "{\"ticks\": 750, \"finished\": 48, \"seconds\": 81.3, \"mean_turn\": 20.62744140625}",
+    "{\"ticks\": 1000, \"finished\": 88, \"seconds\": 99.6, \"mean_turn\": 24.25}",
+    "{\"ticks\": 1250, \"finished\": 165, \"seconds\": 118.0, \"mean_turn\": 27.283203125}",
+    "{\"ticks\": 1500, \"finished\": 288, \"seconds\": 136.3, \"mean_turn\": 29.67626953125}",
+    "{\"ticks\": 1750, \"finished\": 409, \"seconds\": 154.3, \"mean_turn\": 31.9423828125}",
+    "{\"ticks\": 2000, \"finished\": 540, \"seconds\": 172.4, \"mean_turn\": 33.80126953125}",
+    "{\"ticks\": 2250, \"finished\": 644, \"seconds\": 190.5, \"mean_turn\": 35.87109375}",
+    "{\"ticks\": 2500, \"finished\": 725, \"seconds\": 208.6, \"mean_turn\": 37.99951171875}",
+    "{\"ticks\": 2750, \"finished\": 795, \"seconds\": 226.3, \"mean_turn\": 40.1337890625}",
+    "{\"ticks\": 3000, \"finished\": 857, \"seconds\": 245.3, \"mean_turn\": 42.32763671875}",
+    "{\"ticks\": 3250, \"finished\": 912, \"seconds\": 263.1, \"mean_turn\": 44.26416015625}",
+    "{\"ticks\": 3500, \"finished\": 968, \"seconds\": 280.7, \"mean_turn\": 46.21826171875}",
+    "{\"ticks\": 3750, \"finished\": 1006, \"seconds\": 298.3, \"mean_turn\": 48.56103515625}",
+    "{\"ticks\": 4000, \"finished\": 1037, \"seconds\": 316.0, \"mean_turn\": 51.05712890625}",
+    "{\"ticks\": 4250, \"finished\": 1065, \"seconds\": 333.6, \"mean_turn\": 53.26708984375}",
+    "{\"ticks\": 4500, \"finished\": 1094, \"seconds\": 351.4, \"mean_turn\": 55.40283203125}",
+    "{\"ticks\": 4750, \"finished\": 1113, \"seconds\": 369.4, \"mean_turn\": 57.958984375}",
+    "{\"ticks\": 5000, \"finished\": 1144, \"seconds\": 387.5, \"mean_turn\": 60.0751953125}",
+    "{\"ticks\": 5250, \"finished\": 1166, \"seconds\": 405.5, \"mean_turn\": 62.447265625}",
+    "{\"ticks\": 5500, \"finished\": 1180, \"seconds\": 423.1, \"mean_turn\": 65.24072265625}",
+    "{\"ticks\": 5750, \"finished\": 1192, \"seconds\": 440.9, \"mean_turn\": 67.7265625}",
+    "{\"ticks\": 6000, \"finished\": 1215, \"seconds\": 458.6, \"mean_turn\": 69.91455078125}"
+   ],
+   "name": "lc-B-vs-A-final",
+   "wall_seconds": 472.7
+  },
+  {
+   "unfinished": 465,
+   "a": "/results/distributed/lc-C-v3p2-6x256/final.npz",
+   "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "transformer-v2",
+   "maps": 1024,
+   "games": 2048,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 473.1,
+   "truncated": 465,
+   "terminal_only": {
+    "wins": 0,
+    "losses": 1583,
+    "draws": 465,
+    "score": 0.113525390625,
+    "ci95": [
+     0.10457082056913504,
+     0.12247996068086496
+    ]
+   },
+   "score_at_cap": {
+    "wins": 389,
+    "losses": 1659,
+    "draws": 0,
+    "score": 0.18994140625,
+    "ci95": [
+     0.17326812014581125,
+     0.20661469235418875
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 33, \"seconds\": 37.1, \"mean_turn\": 11.67578125}",
+    "{\"ticks\": 500, \"finished\": 133, \"seconds\": 56.2, \"mean_turn\": 16.41259765625}",
+    "{\"ticks\": 750, \"finished\": 249, \"seconds\": 75.4, \"mean_turn\": 19.87158203125}",
+    "{\"ticks\": 1000, \"finished\": 420, \"seconds\": 94.5, \"mean_turn\": 22.2958984375}",
+    "{\"ticks\": 1250, \"finished\": 654, \"seconds\": 113.3, \"mean_turn\": 23.73046875}",
+    "{\"ticks\": 1500, \"finished\": 908, \"seconds\": 132.0, \"mean_turn\": 24.4208984375}",
+    "{\"ticks\": 1750, \"finished\": 1104, \"seconds\": 150.8, \"mean_turn\": 25.3974609375}",
+    "{\"ticks\": 2000, \"finished\": 1264, \"seconds\": 169.8, \"mean_turn\": 26.27001953125}",
+    "{\"ticks\": 2250, \"finished\": 1341, \"seconds\": 188.8, \"mean_turn\": 27.8505859375}",
+    "{\"ticks\": 2500, \"finished\": 1395, \"seconds\": 207.9, \"mean_turn\": 29.275390625}",
+    "{\"ticks\": 2750, \"finished\": 1433, \"seconds\": 227.1, \"mean_turn\": 30.93603515625}",
+    "{\"ticks\": 3000, \"finished\": 1458, \"seconds\": 246.2, \"mean_turn\": 32.3857421875}",
+    "{\"ticks\": 3250, \"finished\": 1482, \"seconds\": 265.3, \"mean_turn\": 33.56396484375}",
+    "{\"ticks\": 3500, \"finished\": 1494, \"seconds\": 284.3, \"mean_turn\": 35.236328125}",
+    "{\"ticks\": 3750, \"finished\": 1505, \"seconds\": 303.5, \"mean_turn\": 36.958984375}",
+    "{\"ticks\": 4000, \"finished\": 1520, \"seconds\": 322.3, \"mean_turn\": 38.28857421875}",
+    "{\"ticks\": 4250, \"finished\": 1526, \"seconds\": 341.1, \"mean_turn\": 40.01611328125}",
+    "{\"ticks\": 4500, \"finished\": 1537, \"seconds\": 359.8, \"mean_turn\": 41.8466796875}",
+    "{\"ticks\": 4750, \"finished\": 1547, \"seconds\": 378.6, \"mean_turn\": 43.65625}",
+    "{\"ticks\": 5000, \"finished\": 1552, \"seconds\": 397.3, \"mean_turn\": 45.3310546875}",
+    "{\"ticks\": 5250, \"finished\": 1562, \"seconds\": 416.2, \"mean_turn\": 47.0927734375}",
+    "{\"ticks\": 5500, \"finished\": 1570, \"seconds\": 435.2, \"mean_turn\": 49.01708984375}",
+    "{\"ticks\": 5750, \"finished\": 1579, \"seconds\": 454.2, \"mean_turn\": 50.72509765625}",
+    "{\"ticks\": 6000, \"finished\": 1583, \"seconds\": 473.1, \"mean_turn\": 52.66845703125}"
+   ],
+   "name": "lc-C-vs-A-final",
+   "wall_seconds": 484.7
+  },
+  {
+   "unfinished": 602,
+   "a": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+   "b": "/results/distributed/lc-C-v3p2-6x256/final.npz",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "transformer-v3-p2",
+   "maps": 1024,
+   "games": 2048,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 373.9,
+   "truncated": 605,
+   "terminal_only": {
+    "wins": 1443,
+    "losses": 0,
+    "draws": 605,
+    "score": 0.852294921875,
+    "ci95": [
+     0.8425355499891102,
+     0.8620542937608898
+    ]
+   },
+   "score_at_cap": {
+    "wins": 1949,
+    "losses": 99,
+    "draws": 0,
+    "score": 0.95166015625,
+    "ci95": [
+     0.9423065774531432,
+     0.9610137350468568
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 8, \"seconds\": 24.8, \"mean_turn\": 12.14501953125}",
+    "{\"ticks\": 500, \"finished\": 50, \"seconds\": 39.7, \"mean_turn\": 17.408203125}",
+    "{\"ticks\": 750, \"finished\": 93, \"seconds\": 54.5, \"mean_turn\": 21.5712890625}",
+    "{\"ticks\": 1000, \"finished\": 178, \"seconds\": 69.4, \"mean_turn\": 24.94677734375}",
+    "{\"ticks\": 1250, \"finished\": 296, \"seconds\": 84.2, \"mean_turn\": 27.92431640625}",
+    "{\"ticks\": 1500, \"finished\": 452, \"seconds\": 98.9, \"mean_turn\": 30.3857421875}",
+    "{\"ticks\": 1750, \"finished\": 640, \"seconds\": 113.8, \"mean_turn\": 32.2431640625}",
+    "{\"ticks\": 2000, \"finished\": 833, \"seconds\": 128.6, \"mean_turn\": 33.8662109375}",
+    "{\"ticks\": 2250, \"finished\": 1000, \"seconds\": 143.5, \"mean_turn\": 35.53564453125}",
+    "{\"ticks\": 2500, \"finished\": 1130, \"seconds\": 158.5, \"mean_turn\": 37.5361328125}",
+    "{\"ticks\": 2750, \"finished\": 1239, \"seconds\": 174.1, \"mean_turn\": 39.677734375}",
+    "{\"ticks\": 3000, \"finished\": 1316, \"seconds\": 190.1, \"mean_turn\": 42.1474609375}",
+    "{\"ticks\": 3250, \"finished\": 1364, \"seconds\": 206.0, \"mean_turn\": 44.85205078125}",
+    "{\"ticks\": 3500, \"finished\": 1392, \"seconds\": 221.9, \"mean_turn\": 47.92919921875}",
+    "{\"ticks\": 3750, \"finished\": 1415, \"seconds\": 237.8, \"mean_turn\": 50.9130859375}",
+    "{\"ticks\": 4000, \"finished\": 1420, \"seconds\": 253.5, \"mean_turn\": 54.25}",
+    "{\"ticks\": 4250, \"finished\": 1426, \"seconds\": 268.7, \"mean_turn\": 57.650390625}",
+    "{\"ticks\": 4500, \"finished\": 1431, \"seconds\": 283.7, \"mean_turn\": 60.88623046875}",
+    "{\"ticks\": 4750, \"finished\": 1436, \"seconds\": 298.8, \"mean_turn\": 64.05810546875}",
+    "{\"ticks\": 5000, \"finished\": 1438, \"seconds\": 313.7, \"mean_turn\": 67.3359375}",
+    "{\"ticks\": 5250, \"finished\": 1440, \"seconds\": 328.7, \"mean_turn\": 70.67041015625}",
+    "{\"ticks\": 5500, \"finished\": 1442, \"seconds\": 343.7, \"mean_turn\": 73.77783203125}",
+    "{\"ticks\": 5750, \"finished\": 1443, \"seconds\": 358.7, \"mean_turn\": 77.20751953125}",
+    "{\"ticks\": 6000, \"finished\": 1446, \"seconds\": 373.8, \"mean_turn\": 80.328125}"
+   ],
+   "name": "lc-B-vs-C-final",
+   "wall_seconds": 383.7
+  },
+  {
+   "unfinished": 33,
+   "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-150.npz",
+   "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "transformer-v2",
+   "maps": 1024,
+   "games": 2048,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 430.5,
+   "truncated": 33,
+   "terminal_only": {
+    "wins": 0,
+    "losses": 2015,
+    "draws": 33,
+    "score": 0.008056640625,
+    "ci95": [
+     0.005351112183749845,
+     0.010762169066250155
+    ]
+   },
+   "score_at_cap": {
+    "wins": 4,
+    "losses": 2044,
+    "draws": 0,
+    "score": 0.001953125,
+    "ci95": [
+     4.187110386068846e-05,
+     0.0038643788961393115
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 39, \"seconds\": 22.9, \"mean_turn\": 11.99169921875}",
+    "{\"ticks\": 500, \"finished\": 172, \"seconds\": 40.8, \"mean_turn\": 16.66748046875}",
+    "{\"ticks\": 750, \"finished\": 348, \"seconds\": 58.9, \"mean_turn\": 19.78955078125}",
+    "{\"ticks\": 1000, \"finished\": 606, \"seconds\": 76.8, \"mean_turn\": 21.5341796875}",
+    "{\"ticks\": 1250, \"finished\": 935, \"seconds\": 94.6, \"mean_turn\": 22.0263671875}",
+    "{\"ticks\": 1500, \"finished\": 1280, \"seconds\": 112.7, \"mean_turn\": 21.630859375}",
+    "{\"ticks\": 1750, \"finished\": 1553, \"seconds\": 130.6, \"mean_turn\": 21.21044921875}",
+    "{\"ticks\": 2000, \"finished\": 1734, \"seconds\": 148.3, \"mean_turn\": 20.99560546875}",
+    "{\"ticks\": 2250, \"finished\": 1847, \"seconds\": 165.9, \"mean_turn\": 21.40478515625}",
+    "{\"ticks\": 2500, \"finished\": 1919, \"seconds\": 183.5, \"mean_turn\": 21.53173828125}",
+    "{\"ticks\": 2750, \"finished\": 1950, \"seconds\": 201.1, \"mean_turn\": 22.0751953125}",
+    "{\"ticks\": 3000, \"finished\": 1969, \"seconds\": 218.7, \"mean_turn\": 22.2216796875}",
+    "{\"ticks\": 3250, \"finished\": 1979, \"seconds\": 236.4, \"mean_turn\": 22.3408203125}",
+    "{\"ticks\": 3500, \"finished\": 1989, \"seconds\": 253.9, \"mean_turn\": 22.328125}",
+    "{\"ticks\": 3750, \"finished\": 1993, \"seconds\": 271.6, \"mean_turn\": 22.232421875}",
+    "{\"ticks\": 4000, \"finished\": 1995, \"seconds\": 289.2, \"mean_turn\": 22.67431640625}",
+    "{\"ticks\": 4250, \"finished\": 1998, \"seconds\": 307.0, \"mean_turn\": 22.71533203125}",
+    "{\"ticks\": 4500, \"finished\": 2003, \"seconds\": 324.7, \"mean_turn\": 23.06494140625}",
+    "{\"ticks\": 4750, \"finished\": 2007, \"seconds\": 342.3, \"mean_turn\": 23.09521484375}",
+    "{\"ticks\": 5000, \"finished\": 2009, \"seconds\": 359.9, \"mean_turn\": 22.9873046875}",
+    "{\"ticks\": 5250, \"finished\": 2010, \"seconds\": 377.4, \"mean_turn\": 23.47607421875}",
+    "{\"ticks\": 5500, \"finished\": 2013, \"seconds\": 395.0, \"mean_turn\": 23.88720703125}",
+    "{\"ticks\": 5750, \"finished\": 2014, \"seconds\": 412.7, \"mean_turn\": 23.95166015625}",
+    "{\"ticks\": 6000, \"finished\": 2015, \"seconds\": 430.5, \"mean_turn\": 24.15283203125}"
+   ],
+   "name": "lc-Bu150-vs-A-final",
+   "wall_seconds": 439.8
+  },
+  {
+   "unfinished": 67,
+   "a": "/results/distributed/lc-C-v3p2-6x256/snapshots/update-150.npz",
+   "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "transformer-v2",
+   "maps": 1024,
+   "games": 2048,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 458.3,
+   "truncated": 67,
+   "terminal_only": {
+    "wins": 1,
+    "losses": 1980,
+    "draws": 67,
+    "score": 0.016845703125,
+    "ci95": [
+     0.012830179879639952,
+     0.020861226370360048
+    ]
+   },
+   "score_at_cap": {
+    "wins": 14,
+    "losses": 2034,
+    "draws": 0,
+    "score": 0.0068359375,
+    "ci95": [
+     0.003277879633743864,
+     0.010393995366256136
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 37, \"seconds\": 24.0, \"mean_turn\": 11.77783203125}",
+    "{\"ticks\": 500, \"finished\": 139, \"seconds\": 42.7, \"mean_turn\": 16.4912109375}",
+    "{\"ticks\": 750, \"finished\": 237, \"seconds\": 61.5, \"mean_turn\": 20.1064453125}",
+    "{\"ticks\": 1000, \"finished\": 379, \"seconds\": 80.2, \"mean_turn\": 22.84375}",
+    "{\"ticks\": 1250, \"finished\": 598, \"seconds\": 98.9, \"mean_turn\": 24.25}",
+    "{\"ticks\": 1500, \"finished\": 885, \"seconds\": 117.7, \"mean_turn\": 24.53955078125}",
+    "{\"ticks\": 1750, \"finished\": 1127, \"seconds\": 136.8, \"mean_turn\": 24.8603515625}",
+    "{\"ticks\": 2000, \"finished\": 1356, \"seconds\": 155.7, \"mean_turn\": 24.5615234375}",
+    "{\"ticks\": 2250, \"finished\": 1514, \"seconds\": 174.4, \"mean_turn\": 25.0615234375}",
+    "{\"ticks\": 2500, \"finished\": 1627, \"seconds\": 193.1, \"mean_turn\": 25.72216796875}",
+    "{\"ticks\": 2750, \"finished\": 1719, \"seconds\": 211.9, \"mean_turn\": 25.8857421875}",
+    "{\"ticks\": 3000, \"finished\": 1792, \"seconds\": 230.7, \"mean_turn\": 25.73681640625}",
+    "{\"ticks\": 3250, \"finished\": 1840, \"seconds\": 249.8, \"mean_turn\": 26.09814453125}",
+    "{\"ticks\": 3500, \"finished\": 1876, \"seconds\": 268.8, \"mean_turn\": 26.2724609375}",
+    "{\"ticks\": 3750, \"finished\": 1899, \"seconds\": 287.8, \"mean_turn\": 26.45556640625}",
+    "{\"ticks\": 4000, \"finished\": 1915, \"seconds\": 306.7, \"mean_turn\": 26.5751953125}",
+    "{\"ticks\": 4250, \"finished\": 1928, \"seconds\": 325.3, \"mean_turn\": 27.203125}",
+    "{\"ticks\": 4500, \"finished\": 1941, \"seconds\": 343.9, \"mean_turn\": 27.666015625}",
+    "{\"ticks\": 4750, \"finished\": 1951, \"seconds\": 363.2, \"mean_turn\": 27.810546875}",
+    "{\"ticks\": 5000, \"finished\": 1959, \"seconds\": 382.2, \"mean_turn\": 28.12939453125}",
+    "{\"ticks\": 5250, \"finished\": 1970, \"seconds\": 401.3, \"mean_turn\": 28.2587890625}",
+    "{\"ticks\": 5500, \"finished\": 1976, \"seconds\": 420.4, \"mean_turn\": 28.8349609375}",
+    "{\"ticks\": 5750, \"finished\": 1979, \"seconds\": 439.5, \"mean_turn\": 28.69970703125}",
+    "{\"ticks\": 6000, \"finished\": 1981, \"seconds\": 458.3, \"mean_turn\": 29.1318359375}"
+   ],
+   "name": "lc-Cu150-vs-A-final",
+   "wall_seconds": 470.0
+  },
+  {
+   "unfinished": 0,
+   "a": "/results/distributed/lc-A-v2-6x128/final.npz",
+   "b": "random",
+   "arch_a": "transformer-v2",
+   "arch_b": "random",
+   "maps": 128,
+   "games": 256,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 1921,
+   "seconds": 29.4,
+   "truncated": 0,
+   "terminal_only": {
+    "wins": 256,
+    "losses": 0,
+    "draws": 0,
+    "score": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "score_at_cap": {
+    "wins": 256,
+    "losses": 0,
+    "draws": 0,
+    "score": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 94, \"seconds\": 13.4, \"mean_turn\": 10.98828125}",
+    "{\"ticks\": 500, \"finished\": 196, \"seconds\": 15.8, \"mean_turn\": 11.953125}",
+    "{\"ticks\": 750, \"finished\": 237, \"seconds\": 18.2, \"mean_turn\": 12.09765625}",
+    "{\"ticks\": 1000, \"finished\": 249, \"seconds\": 20.6, \"mean_turn\": 12.37890625}",
+    "{\"ticks\": 1250, \"finished\": 254, \"seconds\": 22.9, \"mean_turn\": 13.11328125}",
+    "{\"ticks\": 1500, \"finished\": 254, \"seconds\": 25.3, \"mean_turn\": 12.67578125}",
+    "{\"ticks\": 1750, \"finished\": 255, \"seconds\": 27.7, \"mean_turn\": 12.15625}"
+   ],
+   "name": "lc-A-vs-random",
+   "wall_seconds": 35.0
+  },
+  {
+   "unfinished": 0,
+   "a": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+   "b": "random",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "random",
+   "maps": 128,
+   "games": 256,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 1834,
+   "seconds": 23.1,
+   "truncated": 0,
+   "terminal_only": {
+    "wins": 256,
+    "losses": 0,
+    "draws": 0,
+    "score": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "score_at_cap": {
+    "wins": 256,
+    "losses": 0,
+    "draws": 0,
+    "score": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 38, \"seconds\": 11.2, \"mean_turn\": 13.265625}",
+    "{\"ticks\": 500, \"finished\": 147, \"seconds\": 13.0, \"mean_turn\": 14.46875}",
+    "{\"ticks\": 750, \"finished\": 225, \"seconds\": 14.9, \"mean_turn\": 13.9140625}",
+    "{\"ticks\": 1000, \"finished\": 240, \"seconds\": 16.8, \"mean_turn\": 14.9140625}",
+    "{\"ticks\": 1250, \"finished\": 248, \"seconds\": 18.7, \"mean_turn\": 15.015625}",
+    "{\"ticks\": 1500, \"finished\": 252, \"seconds\": 20.6, \"mean_turn\": 14.7734375}",
+    "{\"ticks\": 1750, \"finished\": 255, \"seconds\": 22.5, \"mean_turn\": 14.71484375}"
+   ],
+   "name": "lc-B-vs-random",
+   "wall_seconds": 27.9
+  },
+  {
+   "unfinished": 39,
+   "a": "/results/distributed/lc-C-v3p2-6x256/final.npz",
+   "b": "random",
+   "arch_a": "transformer-v3-p2",
+   "arch_b": "random",
+   "maps": 128,
+   "games": 256,
+   "seed_base": 300000,
+   "deterministic": false,
+   "ticks": 6000,
+   "seconds": 56.8,
+   "truncated": 39,
+   "terminal_only": {
+    "wins": 217,
+    "losses": 0,
+    "draws": 39,
+    "score": 0.923828125,
+    "ci95": [
+     0.9004140629413042,
+     0.9472421870586958
+    ]
+   },
+   "score_at_cap": {
+    "wins": 256,
+    "losses": 0,
+    "draws": 0,
+    "score": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "progress": [
+    "{\"ticks\": 250, \"finished\": 3, \"seconds\": 12.2, \"mean_turn\": 16.23046875}",
+    "{\"ticks\": 500, \"finished\": 10, \"seconds\": 14.1, \"mean_turn\": 23.67578125}",
+    "{\"ticks\": 750, \"finished\": 19, \"seconds\": 16.0, \"mean_turn\": 29.46484375}",
+    "{\"ticks\": 1000, \"finished\": 31, \"seconds\": 17.9, \"mean_turn\": 34.02734375}",
+    "{\"ticks\": 1250, \"finished\": 40, \"seconds\": 19.8, \"mean_turn\": 38.34765625}",
+    "{\"ticks\": 1500, \"finished\": 52, \"seconds\": 21.7, \"mean_turn\": 41.88671875}",
+    "{\"ticks\": 1750, \"finished\": 70, \"seconds\": 23.6, \"mean_turn\": 44.3203125}",
+    "{\"ticks\": 2000, \"finished\": 84, \"seconds\": 25.6, \"mean_turn\": 47.26953125}",
+    "{\"ticks\": 2250, \"finished\": 97, \"seconds\": 27.5, \"mean_turn\": 49.54296875}",
+    "{\"ticks\": 2500, \"finished\": 109, \"seconds\": 29.5, \"mean_turn\": 52.05078125}",
+    "{\"ticks\": 2750, \"finished\": 118, \"seconds\": 31.5, \"mean_turn\": 54.90234375}",
+    "{\"ticks\": 3000, \"finished\": 129, \"seconds\": 33.4, \"mean_turn\": 56.984375}",
+    "{\"ticks\": 3250, \"finished\": 137, \"seconds\": 35.3, \"mean_turn\": 60.19140625}",
+    "{\"ticks\": 3500, \"finished\": 146, \"seconds\": 37.3, \"mean_turn\": 61.66015625}",
+    "{\"ticks\": 3750, \"finished\": 151, \"seconds\": 39.3, \"mean_turn\": 65.421875}",
+    "{\"ticks\": 4000, \"finished\": 161, \"seconds\": 41.2, \"mean_turn\": 65.7734375}",
+    "{\"ticks\": 4250, \"finished\": 170, \"seconds\": 43.2, \"mean_turn\": 66.73046875}",
+    "{\"ticks\": 4500, \"finished\": 181, \"seconds\": 45.1, \"mean_turn\": 65.08203125}",
+    "{\"ticks\": 4750, \"finished\": 185, \"seconds\": 47.1, \"mean_turn\": 67.609375}",
+    "{\"ticks\": 5000, \"finished\": 192, \"seconds\": 49.0, \"mean_turn\": 66.1015625}",
+    "{\"ticks\": 5250, \"finished\": 199, \"seconds\": 51.0, \"mean_turn\": 67.18359375}",
+    "{\"ticks\": 5500, \"finished\": 206, \"seconds\": 52.9, \"mean_turn\": 65.2734375}",
+    "{\"ticks\": 5750, \"finished\": 209, \"seconds\": 54.8, \"mean_turn\": 67.28515625}",
+    "{\"ticks\": 6000, \"finished\": 217, \"seconds\": 56.8, \"mean_turn\": 66.140625}"
+   ],
+   "name": "lc-C-vs-random",
+   "wall_seconds": 61.9
+  }
+ ],
+ "container_seconds": 2376.9,
+ "gpu": "NVIDIA H100 80GB HBM3, 610.57.04, 81559 MiB"
+}

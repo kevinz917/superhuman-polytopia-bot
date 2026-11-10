@@ -1,0 +1,10 @@
+[
+ {"name":"v3p2-6x128-m1024","architecture":"transformer-v3-p2","width":128,"blocks":6},
+ {"name":"v3p2-6x128-m2048","architecture":"transformer-v3-p2","width":128,"blocks":6,"micro":2048,"rollout_rows":2048},
+ {"name":"v3p2-6x128-m4096","architecture":"transformer-v3-p2","width":128,"blocks":6,"micro":4096,"rollout_rows":4096},
+ {"name":"v3p2-6x128-c0","architecture":"transformer-v3-p2-c0","width":128,"blocks":6},
+ {"name":"v3p2-2x128","architecture":"transformer-v3-p2","width":128,"blocks":2},
+ {"name":"v3p2-4x128","architecture":"transformer-v3-p2","width":128,"blocks":4},
+ {"name":"v3p2-12x128","architecture":"transformer-v3-p2","width":128,"blocks":12},
+ {"name":"v3p2-6x256-m2048","architecture":"transformer-v3-p2","width":256,"blocks":6,"micro":2048,"rollout_rows":2048}
+]

@@ -20,3 +20,4 @@ node_modules/
 # Claude Code agent worktrees
 .claude/worktrees/
 .claude/launch.json
+engine-cu/build/

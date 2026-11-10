@@ -1,0 +1,30 @@
+[
+ {
+  "name": "ps110-E-vs-A",
+  "a": "/results/distributed/lc-E-v3-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-B-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-D-vs-A",
+  "a": "/results/distributed/lc-D-cnn-4x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "ps110-E-vs-B",
+  "a": "/results/distributed/lc-E-v3-6x128/snapshots/update-110.npz",
+  "b": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-110.npz",
+  "maps": 512,
+  "timeout": 900
+ }
+]

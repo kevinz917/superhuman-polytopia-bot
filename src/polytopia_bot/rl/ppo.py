@@ -78,11 +78,9 @@ def loss(params, batch, *, clip=.2, value_coef=.5, entropy_coef=.01, anchor_coef
         params, batch['features'], batch['choice'], batch['masks'])
     logratio = logp - batch['logp']
     ratio = jnp.exp(logratio)
-    adv = batch['advantage']
-    policy_loss = -jnp.mean(jnp.minimum(ratio * adv, jnp.clip(ratio, 1 - clip, 1 + clip) * adv))
+    policy_total, policy_metrics = policy_objective(logp, entropy, batch, clip=clip, entropy_coef=entropy_coef)
     value_loss = .5 * jnp.mean((value - batch['returns']) ** 2)
-    entropy_mean = joint_entropy(logp, batch['logp']).mean()
-    total = policy_loss + value_coef * value_loss - entropy_coef * entropy_mean
+    total = policy_total + value_coef * value_loss
     extra = {}
     if 'anchor_logp' in batch:
         d = batch['anchor_logp'] - logp
@@ -94,10 +92,22 @@ def loss(params, batch, *, clip=.2, value_coef=.5, entropy_coef=.01, anchor_coef
         upgo_loss = -jnp.mean(jnp.minimum(ratio * u, jnp.clip(ratio, 1 - clip, 1 + clip) * u))
         total = total + upgo_coef * upgo_loss
         extra = dict(extra, upgo_loss=upgo_loss)
-    return total, dict(extra, loss=total, policy_loss=policy_loss, value_loss=value_loss, entropy=entropy_mean,
-                      path_entropy=entropy.mean(), value_mean=value.mean(), value_std=value.std(),
-                      return_std=batch['returns'].std(),
-                      approx_kl=jnp.mean((ratio - 1) - logratio), clip_fraction=jnp.mean(jnp.abs(ratio - 1) > clip))
+    return total, dict(policy_metrics, **extra, loss=total, value_loss=value_loss, value_mean=value.mean(),
+                       value_std=value.std())
+
+
+def policy_objective(logp, path_entropy, batch, *, clip=.2, entropy_coef=.01):
+    """The clipped PPO surrogate minus the entropy bonus, from per-row log-probabilities of the taken paths, and its
+    diagnostics. Shared by `loss` and V3's one-encoder learner loss (gpu_resident loss_v3)."""
+    logratio = logp - batch['logp']
+    ratio = jnp.exp(logratio)
+    adv = batch['advantage']
+    policy_loss = -jnp.mean(jnp.minimum(ratio * adv, jnp.clip(ratio, 1 - clip, 1 + clip) * adv))
+    entropy_mean = joint_entropy(logp, batch['logp']).mean()
+    total = policy_loss - entropy_coef * entropy_mean
+    return total, dict(loss=total, policy_loss=policy_loss, entropy=entropy_mean, path_entropy=path_entropy.mean(),
+                       return_std=batch['returns'].std(), approx_kl=jnp.mean((ratio - 1) - logratio),
+                       clip_fraction=jnp.mean(jnp.abs(ratio - 1) > clip))
 
 
 def bc_loss(params, batch):

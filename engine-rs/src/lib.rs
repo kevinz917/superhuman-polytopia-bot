@@ -20,7 +20,7 @@ pub mod rules;
 pub mod state;
 pub mod structures;
 
-use numpy::{IntoPyArray, PyArray1, PyArray2, PyArray3, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2, PyReadonlyArrayDyn};
+use numpy::{IntoPyArray, PyArray1, PyArray2, PyArray3, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2, PyReadonlyArrayDyn, PyUntypedArrayMethods};
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyList};
@@ -49,6 +49,9 @@ pub struct GameBatch {
     mscratch: MaskScratch,
     /// per game: the masks tick() last returned, while they describe the game's state (step validation)
     legal: Vec<LegalCache>,
+    /// set_threads: the worker pool tick() steps the games on, and one pair of scratch buffers per worker
+    pool: Option<rayon::ThreadPool>,
+    pool_scratch: Vec<(Scratch, MaskScratch)>,
 }
 
 impl GameBatch {
@@ -82,7 +85,8 @@ impl GameBatch {
         let geom = Geom::new(size);
         let states = (0..games).map(|_| State::empty_players(size, players)).collect();
         Ok(GameBatch { size, games, players, rules, geom, states, max_turns, no_resign, no_peace, max_actions, scratch: Scratch::new(size * size),
-                     mscratch: MaskScratch::new(size * size), legal: (0..games).map(|_| LegalCache::new(size * size)).collect() })
+                     mscratch: MaskScratch::new(size * size), legal: (0..games).map(|_| LegalCache::new(size * size)).collect(),
+                     pool: None, pool_scratch: Vec::new() })
     }
 
     #[getter]
@@ -134,7 +138,7 @@ impl GameBatch {
     }
 
     /// Only the mapgen layout of one seed (terrain, structure, resource, capitals, plus the kept attempt's seed and
-    /// inequality), for map checks. exact=True: generate internal(seed) alone, the real generate with seed board.
+    /// GetInequality), for map checks. exact=True: GenerateInternal(seed) alone, the real GenerateWithSeed board.
     #[pyo3(signature = (seed, exact=false))]
     fn layout<'py>(&self, py: Python<'py>, seed: i32, exact: bool) -> PyResult<Bound<'py, PyDict>> {
         let (l, attempt, inequality) = if exact {
@@ -186,6 +190,8 @@ impl GameBatch {
     /// packed_masks: "masks" holds [G, ceil(mask_width/8)] bits (numpy.packbits order) instead of [G, mask_width] bytes.
     /// Per-seat outputs: rewards [G, players], final_view [G, players, vw]. both_views: "opp_view" is [G, vw] (the seat
     /// not to move) with two seats, else [G, players - 1, vw]: the other seats in turn order after the mover.
+    /// With set_threads(k > 1) the games are stepped on k worker threads with the GIL released (each game is
+    /// independent; results are identical to the sequential loop).
     #[pyo3(signature = (family, source, target, seeds, both_views=true, layouts=None, packed_masks=false))]
     fn tick<'py>(&mut self, py: Python<'py>, family: PyReadonlyArray1<i32>, source: PyReadonlyArray1<i32>,
                  target: PyReadonlyArray1<i32>, seeds: PyReadonlyArray1<i32>, both_views: bool,
@@ -193,105 +199,111 @@ impl GameBatch {
                  packed_masks: bool)
                  -> PyResult<Bound<'py, PyDict>> {
         let n = self.size * self.size;
-        let (f, s, t, seeds) = (family.as_slice()?, source.as_slice()?, target.as_slice()?, seeds.as_slice()?);
-        if f.len() != self.games || seeds.len() != self.games {
-            return Err(err("choice and seed arrays must have one entry per game"));
-        }
-        let layouts = match &layouts {
-            None => None,
-            Some((a, b, c, d)) => {
-                let (a, b, c, d) = (a.as_array(), b.as_array(), c.as_array(), d.as_array());
-                if a.shape() != [self.games, n] || b.shape() != [self.games, n] || c.shape() != [self.games, n] || d.shape() != [self.games, self.players] {
-                    return Err(err("layout arrays must be [games, n] and capitals [games, players]"));
-                }
-                Some((a, b, c, d))
-            }
-        };
-        let max_turns = self.max_turns.unwrap_or(mapgen::NO_ROUND_LIMIT);
+        let games = self.games;
         let np = self.players;
         let vw = view_width_np(n, np);
         let others = np - 1;
         let mw = if packed_masks { packed_width(n) } else { mask_width(n) };
-        // The views are written in full, so they start uninitialised (numpy's PyArray::new contract); the masks
-        // only write their true entries and the final views only for truncated games, so those start zeroed.
-        let (mut masks, view_arr, opp_arr, mut final_view) = prof::time(prof::TICK_ALLOC, || (
-            vec![0u8; self.games * mw],
-            unsafe { PyArray2::<i16>::new(py, [self.games, vw], false) },
-            unsafe { PyArray2::<i16>::new(py, [if both_views { self.games * others } else { 0 }, vw], false) },
-            vec![0i16; self.games * np * vw]));
-        // SAFETY: fresh contiguous arrays owned here; every element is written in the loop below before they are
-        // returned (view: every game; opp: every game when both_views, else empty).
-        let (view, opp) = unsafe { (view_arr.as_slice_mut()?, opp_arr.as_slice_mut()?) };
-        let mut done = vec![false; self.games];
-        let mut terminated = vec![false; self.games];
-        let mut truncated = vec![false; self.games];
-        let mut rewards = vec![0f32; self.games * np];
-        let mut status = vec![0i32; self.games];
-        for g in 0..self.games {
-            let st = &mut self.states[g];
-            let a = decode(st, f[g], s[g], t[g]);
-            let v = st.state_version;
-            // the masks the previous tick returned describe exactly this state (until it is stepped below)
-            let cache = &mut self.legal[g];
-            let legal = if cache.valid { Some(&cache.bits[..]) } else { None };
-            status[g] = prof::time(prof::TICK_STEP, || step_with(st, a, v, &self.rules, &self.geom, self.max_actions, &mut self.scratch, legal));
-            cache.clear();
-            terminated[g] = st.terminated;
-            truncated[g] = st.truncated;
-            done[g] = st.terminated || st.truncated;
-            let rw = terminal_rewards(st);
-            rewards[g * np..(g + 1) * np].copy_from_slice(&rw[..np]);
-            if st.truncated {
-                prof::time(prof::TICK_FINAL, || {
-                    for seat in 0..np {
-                        let off = (g * np + seat) * vw;
-                        observe(st, seat as i32 + 1, &self.geom, &mut final_view[off..off + vw]);
-                    }
-                });
-            }
-            if done[g] {
-                *st = prof::time(prof::TICK_RESET, || match &layouts {
-                    None => mapgen::reset_players(seeds[g], &self.geom, self.max_turns, np),
-                    Some((a, b, c, d)) => mapgen::initial_state(seeds[g] as u32, &a.row(g).to_vec(), &b.row(g).to_vec(), &c.row(g).to_vec(),
-                                                                &d.row(g).iter().map(|&c| c as usize).collect::<Vec<usize>>(), &self.geom, max_turns),
-                });
-            }
-            let st = &self.states[g];
-            let row = &mut masks[g * mw..(g + 1) * mw];
-            let (rules, geom, no_resign, ms, cache) = (&self.rules, &self.geom, self.mask_opts(), &mut self.mscratch, &mut self.legal[g]);
-            prof::time(prof::TICK_MASKS, || if packed_masks {
-                masks_into(st, rules, geom, no_resign, ms, &mut Tee { out: &mut Packed(row), cache });
-            } else {
-                masks_into(st, rules, geom, no_resign, ms, &mut Tee { out: &mut Dense(row), cache });
-            });
-            self.legal[g].valid = true;
-            prof::time(prof::TICK_OBSERVE, || observe(st, st.current_player, geom, &mut view[g * vw..(g + 1) * vw]));
-            if both_views {
-                prof::time(prof::TICK_OBSERVE_OPP, || for (k, seat) in other_seats(st).enumerate() {
-                    let off = (g * others + k) * vw;
-                    observe(st, seat, geom, &mut opp[off..off + vw]);
-                });
-            }
-        }
+        let ow = if both_views { others * vw } else { 0 };
+        let (mut masks, mut view, mut opp, mut final_view) = prof::time(prof::TICK_ALLOC, || (
+            vec![0u8; games * mw], vec![0i16; games * vw], vec![0i16; games * ow], vec![0i16; games * np * vw]));
+        let (f, s, t, seeds) = (family.as_slice()?, source.as_slice()?, target.as_slice()?, seeds.as_slice()?);
+        let lay = layout_slices(&layouts, games, n, np)?;
+        let (flags, rewards) = self.step_games(py, f, s, t, seeds, lay, both_views, packed_masks, &mut masks, &mut view, &mut opp,
+                                               &mut final_view)?;
         prof::time(prof::TICK_OUTPUT, || {
         let d = PyDict::new(py);
-        d.set_item("masks", PyArray1::from_vec(py, masks).reshape([self.games, mw])?)?;
-        d.set_item("view", view_arr)?;
+        d.set_item("masks", PyArray1::from_vec(py, masks).reshape([games, mw])?)?;
+        d.set_item("view", PyArray1::from_vec(py, view).reshape([games, vw])?)?;
         if both_views {
             if np > 2 {
-                d.set_item("opp_view", opp_arr.reshape([self.games, others, vw])?)?;
+                d.set_item("opp_view", PyArray1::from_vec(py, opp).reshape([games, others, vw])?)?;
             } else {
-                d.set_item("opp_view", opp_arr)?;
+                d.set_item("opp_view", PyArray1::from_vec(py, opp).reshape([games, vw])?)?;
             }
         }
-        d.set_item("final_view", PyArray1::from_vec(py, final_view).reshape([self.games, np, vw])?)?;
-        d.set_item("done", done.into_pyarray(py))?;
-        d.set_item("terminated", terminated.into_pyarray(py))?;
-        d.set_item("truncated", truncated.into_pyarray(py))?;
-        d.set_item("rewards", PyArray1::from_vec(py, rewards).reshape([self.games, np])?)?;
-        d.set_item("status", status.into_pyarray(py))?;
+        d.set_item("final_view", PyArray1::from_vec(py, final_view).reshape([games, np, vw])?)?;
+        self.small_outputs(py, &d, &flags, rewards)?;
         Ok(d)
         })
+    }
+
+    /// tick() writing the views and masks into caller-owned arrays instead of fresh ones (no per-tick allocation:
+    /// fresh multi-MB arrays page-fault on first write and serialize the worker threads on the address-space lock).
+    /// view [G, vw] i16, opp_view [G * (players - 1), vw] i16 (both_views) or [0, vw], masks [G, mask bytes] u8 (packed
+    /// when packed_masks; every row is rewritten), final_view [G * players, vw] i16 (rows written for truncated games
+    /// only). Returns the small outputs: done, terminated, truncated, rewards, status, current_player, turn, score,
+    /// killed_turn, resigned_turn.
+    #[pyo3(signature = (family, source, target, seeds, view, opp_view, masks, final_view, both_views=true, layouts=None,
+                        packed_masks=true))]
+    fn tick_into<'py>(&mut self, py: Python<'py>, family: PyReadonlyArray1<i32>, source: PyReadonlyArray1<i32>,
+                      target: PyReadonlyArray1<i32>, seeds: PyReadonlyArray1<i32>, view: Bound<'py, PyArray2<i16>>,
+                      opp_view: Bound<'py, PyArray2<i16>>, masks: Bound<'py, PyArray2<u8>>, final_view: Bound<'py, PyArray2<i16>>,
+                      both_views: bool,
+                      layouts: Option<(PyReadonlyArray2<'py, i32>, PyReadonlyArray2<'py, i32>, PyReadonlyArray2<'py, i32>, PyReadonlyArray2<'py, i32>)>,
+                      packed_masks: bool)
+                      -> PyResult<Bound<'py, PyDict>> {
+        let n = self.size * self.size;
+        let games = self.games;
+        let np = self.players;
+        let vw = view_width_np(n, np);
+        let others = np - 1;
+        let mw = if packed_masks { packed_width(n) } else { mask_width(n) };
+        let ow = if both_views { others * vw } else { 0 };
+        if view.shape() != [games, vw] || masks.shape() != [games, mw] || final_view.shape() != [games * np, vw]
+            || (both_views && opp_view.shape() != [games * others, vw]) {
+            return Err(err("tick_into: output arrays have the wrong shapes"));
+        }
+        let (f, s, t, seeds) = (family.as_slice()?, source.as_slice()?, target.as_slice()?, seeds.as_slice()?);
+        let lay = layout_slices(&layouts, games, n, np)?;
+        // SAFETY: the caller hands over contiguous arrays it does not touch during the call (checked contiguous by
+        // as_slice_mut); the GIL is held except inside step_games, where only these slices are written.
+        let (vs, os, ms, fs) = unsafe { (view.as_slice_mut()?, if both_views { opp_view.as_slice_mut()? } else { &mut [] },
+                                         masks.as_slice_mut()?, final_view.as_slice_mut()?) };
+        let _ = ow;
+        let (flags, rewards) = self.step_games(py, f, s, t, seeds, lay, both_views, packed_masks, ms, vs, os, fs)?;
+        let d = PyDict::new(py);
+        self.small_outputs(py, &d, &flags, rewards)?;
+        Ok(d)
+    }
+
+    /// Turn the phase profile on (resetting it) or off on the calling thread and every worker thread.
+    fn profile_threads(&self, on: bool) {
+        prof::enable(on);
+        if let Some(pool) = &self.pool {
+            pool.broadcast(|_| prof::enable(on));
+        }
+    }
+
+    /// phase_profile() summed over the calling thread and the worker threads.
+    fn phase_profile_threads<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyDict>> {
+        let mut all: Vec<Vec<(String, u64, f64)>> = vec![prof::snapshot()];
+        if let Some(pool) = &self.pool {
+            all.extend(pool.broadcast(|_| prof::snapshot()));
+        }
+        let mut sum: std::collections::BTreeMap<String, (u64, f64)> = std::collections::BTreeMap::new();
+        for snap in all {
+            for (name, calls, ms) in snap {
+                let e = sum.entry(name).or_insert((0, 0.));
+                e.0 += calls;
+                e.1 += ms;
+            }
+        }
+        let d = PyDict::new(py);
+        for (name, v) in sum {
+            d.set_item(name, v)?;
+        }
+        Ok(d)
+    }
+
+    /// Step tick()'s games on `threads` worker threads (1: the calling thread, the default).
+    fn set_threads(&mut self, threads: usize) -> PyResult<()> {
+        self.pool = if threads > 1 {
+            Some(rayon::ThreadPoolBuilder::new().num_threads(threads).build().map_err(|e| err(&e.to_string()))?)
+        } else {
+            None
+        };
+        Ok(())
     }
 
     /// Turn the phase profile on (resetting it) or off; read it with phase_profile().
@@ -571,7 +583,7 @@ impl GameBatch {
         load!("tiles.explored", bool, np * n, |s, v| for k in 0..s.np { s.tiles.explored[k].copy_from_slice(&v[k * n..(k + 1) * n]); });
         load!("tiles.structure_level", i32, n, |s, v| s.tiles.structure_level.copy_from_slice(v));
         load!("tiles.structure_turn", i32, n, |s, v| s.tiles.structure_turn.copy_from_slice(v));
-        // optional (gpu/state.py has no route flag): without it, the routes update routes
+        // optional (gpu/state.py has no TileData.hasRoute): without it, the routes MapDataExtensions.UpdateRoutes
         // finds on the loaded position (computed below, once every field is in)
         let routes_given = fields.contains("tiles.route")?;
         if routes_given {
@@ -646,7 +658,7 @@ impl GameBatch {
         } else {
             load!("players.hostile_until", i32, np * np, |s, v| for k in 0..s.np { s.players.hostile_until[k][..s.np].copy_from_slice(&v[k * s.np..(k + 1) * s.np]); });
         }
-        // optional (states saved before it existed): a cool down relation is taken as broken this turn (set below,
+        // optional (states saved before it existed): a CoolDown relation is taken as broken this turn (set below,
         // once the turn is loaded)
         let has_broken = fields.contains("players.peace_broken")?;
         if has_broken {
@@ -704,6 +716,120 @@ impl GameBatch {
 }
 
 /// Seat ids (1-based) other than the mover, in turn order after it: with two seats the single opponent.
+impl GameBatch {
+    /// Step every game once (sequentially, or on the worker pool with the GIL released) into the given buffers.
+    #[allow(clippy::too_many_arguments)]
+    fn step_games(&mut self, py: Python<'_>, f: &[i32], s: &[i32], t: &[i32], seeds: &[i32],
+                  lay: Option<(&[i32], &[i32], &[i32], &[i32])>, both_views: bool, packed: bool, masks: &mut [u8],
+                  view: &mut [i16], opp: &mut [i16], final_view: &mut [i16])
+                  -> PyResult<(Vec<(i32, bool, bool, bool)>, Vec<f32>)> {
+        let n = self.size * self.size;
+        let games = self.games;
+        if f.len() != games || s.len() != games || t.len() != games || seeds.len() != games {
+            return Err(err("choice and seed arrays must have one entry per game"));
+        }
+        let np = self.players;
+        let vw = view_width_np(n, np);
+        let others = np - 1;
+        let mw = if packed { packed_width(n) } else { mask_width(n) };
+        let ow = if both_views { others * vw } else { 0 };
+        let mut flags = vec![(0i32, false, false, false); games];   // status, done, terminated, truncated
+        let mut rewards = vec![0f32; games * np];
+        let ctx = TickCtx { rules: &self.rules, geom: &self.geom, max_actions: self.max_actions, max_turns_opt: self.max_turns,
+                            max_turns: self.max_turns.unwrap_or(mapgen::NO_ROUND_LIMIT), np, n, vw, packed,
+                            both_views, opts: self.mask_opts(), f, s, t, seeds, lay };
+        let threads = self.pool.as_ref().map(|p| p.current_num_threads()).unwrap_or(1);
+        if threads <= 1 || games < 2 {
+            for (g, ((((((st, cache), m), v), o), fv), (fl, rw))) in self.states.iter_mut().zip(self.legal.iter_mut())
+                .zip(masks.chunks_mut(mw)).zip(view.chunks_mut(vw)).zip(chunk_or_empty(opp, ow, games))
+                .zip(final_view.chunks_mut(np * vw)).zip(flags.iter_mut().zip(rewards.chunks_mut(np))).enumerate() {
+                *fl = tick_game(&ctx, g, st, cache, &mut self.scratch, &mut self.mscratch, m, v, o, fv, rw);
+            }
+        } else {
+            // one task per contiguous run of games, each with its own scratch buffers
+            let per = games.div_ceil(threads);
+            while self.pool_scratch.len() < threads {
+                self.pool_scratch.push((Scratch::new(n), MaskScratch::new(n)));
+            }
+            let mut tasks = Vec::with_capacity(threads);
+            let (mut st, mut lg, mut mk, mut vi, mut op, mut fv, mut fl, mut rw) = (&mut self.states[..], &mut self.legal[..],
+                &mut masks[..], &mut view[..], &mut opp[..], &mut final_view[..], &mut flags[..], &mut rewards[..]);
+            let mut first = 0;
+            for scratch in self.pool_scratch.iter_mut() {
+                let k = per.min(games - first);
+                if k == 0 { break; }
+                let (a, b) = st.split_at_mut(k); st = b;
+                let (c, d) = lg.split_at_mut(k); lg = d;
+                let (e, h) = mk.split_at_mut(k * mw); mk = h;
+                let (i, j) = vi.split_at_mut(k * vw); vi = j;
+                let (l, q) = op.split_at_mut(k * ow); op = q;
+                let (u, w) = fv.split_at_mut(k * np * vw); fv = w;
+                let (x, y) = fl.split_at_mut(k); fl = y;
+                let (z, zz) = rw.split_at_mut(k * np); rw = zz;
+                tasks.push((first, a, c, e, i, l, u, x, z, scratch));
+                first += k;
+            }
+            let pool = self.pool.as_ref().unwrap();
+            let ctx = &ctx;
+            py.allow_threads(|| pool.install(|| {
+                use rayon::prelude::*;
+                tasks.into_par_iter().for_each(|(first, st, lg, mk, vi, op, fv, fl, rw, scratch)| {
+                    let (sc, ms) = (&mut scratch.0, &mut scratch.1);
+                    for k in 0..st.len() {
+                        let o: &mut [i16] = if ow > 0 { &mut op[k * ow..(k + 1) * ow] } else { &mut [] };
+                        fl[k] = tick_game(ctx, first + k, &mut st[k], &mut lg[k], sc, ms, &mut mk[k * mw..(k + 1) * mw],
+                                          &mut vi[k * vw..(k + 1) * vw], o, &mut fv[k * np * vw..(k + 1) * np * vw],
+                                          &mut rw[k * np..(k + 1) * np]);
+                    }
+                });
+            }));
+        }
+        Ok((flags, rewards))
+    }
+
+    /// done / terminated / truncated / rewards / status and the light post-tick scalars into `d`.
+    fn small_outputs<'py>(&self, py: Python<'py>, d: &Bound<'py, PyDict>, flags: &[(i32, bool, bool, bool)], rewards: Vec<f32>)
+                          -> PyResult<()> {
+        let games = self.games;
+        let np = self.players;
+        d.set_item("done", flags.iter().map(|x| x.1).collect::<Vec<bool>>().into_pyarray(py))?;
+        d.set_item("terminated", flags.iter().map(|x| x.2).collect::<Vec<bool>>().into_pyarray(py))?;
+        d.set_item("truncated", flags.iter().map(|x| x.3).collect::<Vec<bool>>().into_pyarray(py))?;
+        d.set_item("rewards", PyArray1::from_vec(py, rewards).reshape([games, np])?)?;
+        d.set_item("status", flags.iter().map(|x| x.0).collect::<Vec<i32>>().into_pyarray(py))?;
+        // The few post-tick fields an actor reads (RustGames(light_states=True)), so it needs no full export():
+        // current player and turn [G], score / killed_turn / resigned_turn [G, players].
+        let sts = &self.states;
+        d.set_item("current_player", sts.iter().map(|s| s.current_player).collect::<Vec<i32>>().into_pyarray(py))?;
+        d.set_item("turn", sts.iter().map(|s| s.turn).collect::<Vec<i32>>().into_pyarray(py))?;
+        let per_seat = |pick: fn(&State) -> &[i32; crate::state::MAXP]| -> Vec<i32> {
+            let mut out = Vec::with_capacity(games * np);
+            for st in sts { out.extend_from_slice(&pick(st)[..np]); }
+            out
+        };
+        d.set_item("score", PyArray1::from_vec(py, per_seat(|s| &s.players.score)).reshape([games, np])?)?;
+        d.set_item("killed_turn", PyArray1::from_vec(py, per_seat(|s| &s.players.killed_turn)).reshape([games, np])?)?;
+        d.set_item("resigned_turn", PyArray1::from_vec(py, per_seat(|s| &s.players.resigned_turn)).reshape([games, np])?)?;
+        Ok(())
+    }
+}
+
+type Layouts<'a> = Option<(&'a [i32], &'a [i32], &'a [i32], &'a [i32])>;
+
+fn layout_slices<'a, 'py>(layouts: &'a Option<(PyReadonlyArray2<'py, i32>, PyReadonlyArray2<'py, i32>, PyReadonlyArray2<'py, i32>,
+                                                 PyReadonlyArray2<'py, i32>)>, games: usize, n: usize, np: usize)
+                          -> PyResult<Layouts<'a>> {
+    match layouts {
+        None => Ok(None),
+        Some((a, b, c, d)) => {
+            if a.shape() != [games, n] || b.shape() != [games, n] || c.shape() != [games, n] || d.shape() != [games, np] {
+                return Err(err("layout arrays must be [games, n] and capitals [games, players]"));
+            }
+            Ok(Some((a.as_slice()?, b.as_slice()?, c.as_slice()?, d.as_slice()?)))
+        }
+    }
+}
+
 fn other_seats(st: &State) -> impl Iterator<Item = i32> + '_ {
     let np = st.np as i32;
     (1..np).map(move |k| (st.current_player - 1 + k) % np + 1)
@@ -718,12 +844,167 @@ impl GameBatch {
     }
 }
 
+/// Sparse row deltas for the coded-view wire format (rl/view_codec.py), straight from the arrays the rows live in.
+/// arrays: 2-d i16 arrays of one width; src / base: i64 [m, streams, 2] = (array index, row) of output row r's
+/// stream s and of the row its delta is taken from ((-1, -1): zeros). Returns the nonzero entries of src - base
+/// (wrapping int16, as view_codec's int16 deltas) in row-major order: (row i32, stream i8, col i16, val i16).
+#[pyfunction]
+#[pyo3(signature = (arrays, src, base, threads=4))]
+fn coo_deltas<'py>(py: Python<'py>, arrays: Vec<PyReadonlyArray2<'py, i16>>, src: numpy::PyReadonlyArray3<'py, i64>,
+                   base: numpy::PyReadonlyArray3<'py, i64>, threads: usize)
+                   -> PyResult<(Bound<'py, PyArray1<i32>>, Bound<'py, PyArray1<i8>>, Bound<'py, PyArray1<i16>>, Bound<'py, PyArray1<i16>>)> {
+    let shape = src.shape().to_vec();
+    if shape.len() != 3 || shape[2] != 2 || base.shape() != shape.as_slice() {
+        return Err(err("src and base must be [rows, streams, 2] of the same shape"));
+    }
+    let (m, streams) = (shape[0], shape[1]);
+    let width = if arrays.is_empty() { 0 } else { arrays[0].shape()[1] };
+    let mut views: Vec<(&[i16], usize)> = Vec::with_capacity(arrays.len());
+    for a in &arrays {
+        if a.shape()[1] != width {
+            return Err(err("arrays must share one width"));
+        }
+        views.push((a.as_slice()?, a.shape()[0]));
+    }
+    let (src, base) = (src.as_slice()?, base.as_slice()?);
+    // bounds-check every reference up front
+    for v in src.chunks(2).chain(base.chunks(2)) {
+        if v[0] >= 0 && (v[0] as usize >= views.len() || v[1] < 0 || v[1] as usize >= views[v[0] as usize].1) {
+            return Err(err("row reference out of range"));
+        }
+    }
+    let zeros = vec![0i16; width];
+    let chunk = m.div_ceil(threads.max(1) * 4).max(1);
+    let parts: Vec<(Vec<i32>, Vec<i8>, Vec<i16>, Vec<i16>)> = py.allow_threads(|| {
+        use rayon::prelude::*;
+        let run = || (0..m.div_ceil(chunk)).into_par_iter().map(|k| {
+            let (mut r_, mut s_, mut c_, mut v_) = (Vec::new(), Vec::new(), Vec::new(), Vec::new());
+            for r in k * chunk..((k + 1) * chunk).min(m) {
+                for st in 0..streams {
+                    let at = (r * streams + st) * 2;
+                    let row = |x: &[i64]| -> &[i16] {
+                        if x[at] < 0 { &zeros[..] } else {
+                            let (a, i) = (views[x[at] as usize].0, x[at + 1] as usize);
+                            &a[i * width..(i + 1) * width]
+                        }
+                    };
+                    let (cur, prev) = (row(src), row(base));
+                    for c in 0..width {
+                        let d = cur[c].wrapping_sub(prev[c]);
+                        if d != 0 {
+                            r_.push(r as i32);
+                            s_.push(st as i8);
+                            c_.push(c as i16);
+                            v_.push(d);
+                        }
+                    }
+                }
+            }
+            (r_, s_, c_, v_)
+        }).collect::<Vec<_>>();
+        match rayon::ThreadPoolBuilder::new().num_threads(threads.max(1)).build() {
+            Ok(pool) => pool.install(run),
+            Err(_) => run(),
+        }
+    });
+    let total: usize = parts.iter().map(|p| p.0.len()).sum();
+    let (mut r, mut s_, mut c, mut v) = (Vec::with_capacity(total), Vec::with_capacity(total), Vec::with_capacity(total),
+                                         Vec::with_capacity(total));
+    for p in parts {
+        r.extend(p.0);
+        s_.extend(p.1);
+        c.extend(p.2);
+        v.extend(p.3);
+    }
+    Ok((r.into_pyarray(py), s_.into_pyarray(py), c.into_pyarray(py), v.into_pyarray(py)))
+}
+
 #[pymodule]
 fn polytopia_engine_rs(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<GameBatch>()?;
+    m.add_function(wrap_pyfunction!(coo_deltas, m)?)?;
     m.add("OK", core::OK)?;
     Ok(())
 }
 
 #[allow(dead_code)]
 fn _unused(_: &PyArray3<i16>) {}
+
+
+/// Read-only inputs of one tick, shared by the worker threads.
+struct TickCtx<'a> {
+    rules: &'a Rules,
+    geom: &'a Geom,
+    max_actions: i32,
+    max_turns_opt: Option<i32>,
+    max_turns: i32,
+    np: usize,
+    n: usize,
+    vw: usize,
+    packed: bool,
+    both_views: bool,
+    opts: crate::masks::MaskOpts,
+    f: &'a [i32],
+    s: &'a [i32],
+    t: &'a [i32],
+    seeds: &'a [i32],
+    lay: Option<(&'a [i32], &'a [i32], &'a [i32], &'a [i32])>,
+}
+
+fn chunk_or_empty(buf: &mut [i16], width: usize, games: usize) -> Box<dyn Iterator<Item = &mut [i16]> + '_> {
+    if width == 0 {
+        Box::new((0..games).map(|_| -> &mut [i16] { &mut [] }))
+    } else {
+        Box::new(buf.chunks_mut(width))
+    }
+}
+
+/// One game of a tick (GameBatch::tick): step game g, reset it if it ended, then its masks and views.
+/// Returns (status, done, terminated, truncated).
+#[allow(clippy::too_many_arguments)]
+fn tick_game(c: &TickCtx, g: usize, st: &mut State, cache: &mut LegalCache, sc: &mut Scratch, ms: &mut MaskScratch,
+             masks: &mut [u8], view: &mut [i16], opp: &mut [i16], final_view: &mut [i16], rewards: &mut [f32])
+             -> (i32, bool, bool, bool) {
+    let (np, n, vw) = (c.np, c.n, c.vw);
+    let a = decode(st, c.f[g], c.s[g], c.t[g]);
+    let v = st.state_version;
+    // the masks the previous tick returned describe exactly this state (until it is stepped below)
+    let legal = if cache.valid { Some(&cache.bits[..]) } else { None };
+    let status = prof::time(prof::TICK_STEP, || step_with(st, a, v, c.rules, c.geom, c.max_actions, sc, legal));
+    cache.clear();
+    let (terminated, truncated) = (st.terminated, st.truncated);
+    let done = terminated || truncated;
+    let rw = terminal_rewards(st);
+    rewards.copy_from_slice(&rw[..np]);
+    if truncated {
+        prof::time(prof::TICK_FINAL, || {
+            for seat in 0..np {
+                observe(st, seat as i32 + 1, c.geom, &mut final_view[seat * vw..(seat + 1) * vw]);
+            }
+        });
+    }
+    if done {
+        *st = prof::time(prof::TICK_RESET, || match &c.lay {
+            None => mapgen::reset_players(c.seeds[g], c.geom, c.max_turns_opt, np),
+            Some((a, b, cc, d)) => mapgen::initial_state(c.seeds[g] as u32, &a[g * n..(g + 1) * n], &b[g * n..(g + 1) * n],
+                                                         &cc[g * n..(g + 1) * n],
+                                                         &d[g * np..(g + 1) * np].iter().map(|&x| x as usize).collect::<Vec<usize>>(),
+                                                         c.geom, c.max_turns),
+        });
+    }
+    let st = &*st;
+    masks.fill(0);   // masks_into only sets the true entries; tick_into reuses its buffers
+    prof::time(prof::TICK_MASKS, || if c.packed {
+        masks_into(st, c.rules, c.geom, c.opts, ms, &mut Tee { out: &mut Packed(masks), cache });
+    } else {
+        masks_into(st, c.rules, c.geom, c.opts, ms, &mut Tee { out: &mut Dense(masks), cache });
+    });
+    cache.valid = true;
+    prof::time(prof::TICK_OBSERVE, || observe(st, st.current_player, c.geom, view));
+    if c.both_views {
+        prof::time(prof::TICK_OBSERVE_OPP, || for (k, seat) in other_seats(st).enumerate() {
+            observe(st, seat, c.geom, &mut opp[k * vw..(k + 1) * vw]);
+        });
+    }
+    (status, done, terminated, truncated)
+}

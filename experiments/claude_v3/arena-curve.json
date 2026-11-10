@@ -1,0 +1,86 @@
+[
+ {
+  "name": "lc-D-vs-A-final",
+  "a": "/results/distributed/lc-D-cnn-4x128/final.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 1024,
+  "timeout": 900
+ },
+ {
+  "name": "lc-B-vs-D-final",
+  "a": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+  "b": "/results/distributed/lc-D-cnn-4x128/final.npz",
+  "maps": 1024,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu50-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-50.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu100-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-100.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu190-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-190.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu250-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-250.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu350-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-350.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu450-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-450.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu550-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-550.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bu650-vs-A",
+  "a": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-650.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-e2eV3p2-15m-vs-A",
+  "a": "/results/distributed/e2e-v3p2-6x128/final.npz",
+  "b": "/results/distributed/lc-A-v2-6x128/final.npz",
+  "maps": 512,
+  "timeout": 900
+ },
+ {
+  "name": "curve-Bfinal-vs-Bu190",
+  "a": "/results/distributed/lc-B-v3p2-6x128/final.npz",
+  "b": "/results/distributed/lc-B-v3p2-6x128/snapshots/update-190.npz",
+  "maps": 512,
+  "timeout": 900
+ }
+]
