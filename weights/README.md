@@ -16,6 +16,7 @@ Three rulesets appear below. `polytopia-2.17.3` is the game's own rules, the onl
 | [`champion/`](champion) | The site's bot: from-scratch self-play plus a fog-of-war value head for turn search | 2x64 | bardur-1v1-v2 |
 | [`hero-1v1/`](hero-1v1) | Strongest CNN on the game's rules: 68% vs the champion | 4x128 | polytopia-2.17.3 |
 | [`plato/`](plato) | Strongest 1v1 bot: hybrid transformer, trained with peace legal; 89% vs hero-1v1 and 97% vs the champion with peace legal. [Runnable code and reproduction guide](../docs/plato-reproduction.md) | transformer-v3-p2-h4, 6x128 | polytopia-2.17.3 |
+| [`plato-t3/`](plato-t3) | Plato T3 (update 96,070), the latest Plato variant and the website's bot: board sizes 11 to 20, six map types, Bardur. Browser weight format only; the training checkpoint is not included. [Guide](../docs/plato-t3.md) | transformer-v3-p2-h4, 6x128, observation 6 | polytopia-2.17.3 |
 
 ## 1v1 lineage, research rules
 

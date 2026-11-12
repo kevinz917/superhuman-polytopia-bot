@@ -1,0 +1,871 @@
+{
+ "schema": "plato-t3-source-export-v1",
+ "public_base_commit": "a6b1ae98ef71c8b46230eb4f3e0efc557b1e6c69",
+ "sources": {
+  "site": {
+   "ref": "ux/t3-site",
+   "commit": "68cda9c4b7c8e4d5c69397e3fe7be81b45eb54ff",
+   "what": "website release that serves T3: weights, manifest, prebuilt engine, map boards"
+  },
+  "engine": {
+   "ref": "ux/t3-engine-gen",
+   "commit": "a6685999040931b7a2044244a688a5da7b3a3073",
+   "what": "engine source the prebuilt engine_wasm.wasm was built from; the weight exporter"
+  },
+  "training": {
+   "ref": "ops/claude-v3l-t3-combined",
+   "commit": "b81241e1a70e2d875f7bd2c273baae6befb32268",
+   "what": "T3's training line at the recipe's commit"
+  }
+ },
+ "files": [
+  {
+   "path": "weights/plato-t3/plato.bin",
+   "source": "site",
+   "source_path": "web/public/bot/plato.bin",
+   "source_sha256": "f1c61ed405decdf3473cbcb70aa166098f97863351179b46f1147cd90366f149",
+   "exported_sha256": "f1c61ed405decdf3473cbcb70aa166098f97863351179b46f1147cd90366f149",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "weights/plato-t3/plato.json",
+   "source": "site",
+   "source_path": "web/public/bot/plato.json",
+   "source_sha256": "3b34c808a4739839cc411460eebd13728b6914bdfc7535f1ea1c66e36bde2ac7",
+   "exported_sha256": "b75c9bd58549ae33402014da4889b34cc5d9a1e832edd3fe8ebbd4db496ae143",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/runtime/bank-11.json",
+   "source": "site",
+   "source_path": "web/public/bot/bank-11.json",
+   "source_sha256": "926831cb375121847fa8be76e081270360f6a355f675c7cbc514e39ba4db2dfb",
+   "exported_sha256": "926831cb375121847fa8be76e081270360f6a355f675c7cbc514e39ba4db2dfb",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/runtime/bank-14.json",
+   "source": "site",
+   "source_path": "web/public/bot/bank-14.json",
+   "source_sha256": "10b68c136735912c2392e403bccc6535285a954ae19ddcb71635bf710c065ba2",
+   "exported_sha256": "10b68c136735912c2392e403bccc6535285a954ae19ddcb71635bf710c065ba2",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/runtime/bank-16.json",
+   "source": "site",
+   "source_path": "web/public/bot/bank-16.json",
+   "source_sha256": "da55d4691f28c2f27c9d04f96a228e07ef078aeb3ce42a5da60d7320e7ce3462",
+   "exported_sha256": "da55d4691f28c2f27c9d04f96a228e07ef078aeb3ce42a5da60d7320e7ce3462",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/runtime/bank-18.json",
+   "source": "site",
+   "source_path": "web/public/bot/bank-18.json",
+   "source_sha256": "df55e7ebe0b2ead6dc1bdbfd784484ad2d8b645d98d07fdc5fd946dcfd44477f",
+   "exported_sha256": "df55e7ebe0b2ead6dc1bdbfd784484ad2d8b645d98d07fdc5fd946dcfd44477f",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/runtime/bank-20.json",
+   "source": "site",
+   "source_path": "web/public/bot/bank-20.json",
+   "source_sha256": "32069d66ce0fe7342976773794c2b67b4bca0914fc9f1cd7f9f794fe2cc613a3",
+   "exported_sha256": "32069d66ce0fe7342976773794c2b67b4bca0914fc9f1cd7f9f794fe2cc613a3",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/runtime/engine_wasm.wasm",
+   "source": "site",
+   "source_path": "web/public/bot/engine_wasm.wasm",
+   "source_sha256": "d5525b0cd2f774065cffd927c7ef5ce577813fe2e71378800887aa9737e7ffde",
+   "exported_sha256": "d5525b0cd2f774065cffd927c7ef5ce577813fe2e71378800887aa9737e7ffde",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/.gitignore",
+   "source": "engine",
+   "source_path": "engine-rs/.gitignore",
+   "source_sha256": "a64cb6602bcff2709c16e8b57d1c94aebf70a01c222acea2156acfa58f4c007f",
+   "exported_sha256": "a64cb6602bcff2709c16e8b57d1c94aebf70a01c222acea2156acfa58f4c007f",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/Cargo.lock",
+   "source": "engine",
+   "source_path": "engine-rs/Cargo.lock",
+   "source_sha256": "428659dac4b1303e92ea7b1d6a877dc046126f4d9c0523e59c98f6d2e5aa8b3e",
+   "exported_sha256": "428659dac4b1303e92ea7b1d6a877dc046126f4d9c0523e59c98f6d2e5aa8b3e",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/Cargo.toml",
+   "source": "engine",
+   "source_path": "engine-rs/Cargo.toml",
+   "source_sha256": "d8869bc071cc47d0c051334f0b2a7495e0f84c55105f037be511b4babc2a2d36",
+   "exported_sha256": "d8869bc071cc47d0c051334f0b2a7495e0f84c55105f037be511b4babc2a2d36",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/pyproject.toml",
+   "source": "engine",
+   "source_path": "engine-rs/pyproject.toml",
+   "source_sha256": "d1829bf965fd39d632cae60381899bcf617ba8d832f5cdc6b9e7c7806881bfcc",
+   "exported_sha256": "d1829bf965fd39d632cae60381899bcf617ba8d832f5cdc6b9e7c7806881bfcc",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/aquarion.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/aquarion.rs",
+   "source_sha256": "e943cabfb2d3961e15232da7b6abd49dd474ded92a615d3ea63269010eb92576",
+   "exported_sha256": "65a9922cd5c9737ba3c641c7446d18b08866ff9ac75fa291d8395a0d56828e0b",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/capture.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/capture.rs",
+   "source_sha256": "b11574904cde801a3abda69247f0b88d10541f355cb401fa573414b278720b37",
+   "exported_sha256": "1df99d7af8537fe65763978c05056f85be5a7139f64ec4842503651157e8eb20",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/core.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/core.rs",
+   "source_sha256": "52585e422f6c6fef441bf2c24ee7ef9b7f6ff31e5dd70a4f0c565bd752d8322b",
+   "exported_sha256": "8889e3dabcfd1128caccbf5911e620147c906f883d3a16019fe3a1e58287083d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/cov.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/cov.rs",
+   "source_sha256": "85926c0a0886712febd0221c709358e8e40386fa4f185c8fb4f68226b382051f",
+   "exported_sha256": "85926c0a0886712febd0221c709358e8e40386fa4f185c8fb4f68226b382051f",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/cymanti.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/cymanti.rs",
+   "source_sha256": "256d64453d75a84e651fc171cdc25bea51631ac9b34b74442edbed93d106b4f5",
+   "exported_sha256": "04c3f3ccb179470480480e963d24f4232cfa3de97d6e9d339d01578a0c62b669",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/diplomacy.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/diplomacy.rs",
+   "source_sha256": "47822f8d4a208bd9c054a2b7296adb4766e54890b9eeada58794a4a06642cf09",
+   "exported_sha256": "b4113a042146304432f16672eb5ed12efd5cfc07b15e3ef19272bccdf5cd0783",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/discovery.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/discovery.rs",
+   "source_sha256": "d3d812a3f1ff43fe542db086331c76a7f094ea9e9890aad561beb9bbfe1fd350",
+   "exported_sha256": "a10a928da0495682fecd8f2c1504c87d37b802f56e9cd9b7b3ae4bb7c467c68a",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/economy.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/economy.rs",
+   "source_sha256": "46ea97ff1b498418d515cdec6d205949ed02eff68aeea91732bf26a69030c654",
+   "exported_sha256": "4844ba6f89e51a89ed1881cc590348ea17ecb6616ef244a7b5d0faa0cdb4ff97",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/geom.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/geom.rs",
+   "source_sha256": "b991366bb031f5294c38226687a45828a5977f356b552cb280eab4b46a3a1ce9",
+   "exported_sha256": "b991366bb031f5294c38226687a45828a5977f356b552cb280eab4b46a3a1ce9",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/hash.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/hash.rs",
+   "source_sha256": "0094124ded08360639ff81e5ecd594d872661ca5fe59d079d1cd2fc353c6da14",
+   "exported_sha256": "f9fab8479528d8988c9aa5c09aaa64a02c69be584e0aaaba493dbb86e90bbcbc",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/history.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/history.rs",
+   "source_sha256": "95e8c13312c2b135c3253835e3174a6d2f77660987cf73b7e0f8399e3ee6efcc",
+   "exported_sha256": "95e8c13312c2b135c3253835e3174a6d2f77660987cf73b7e0f8399e3ee6efcc",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/infiltration.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/infiltration.rs",
+   "source_sha256": "3d513857780aee072aa1cbd499a085823f50af8373fb248f5a5e0901a0568635",
+   "exported_sha256": "b6d6f9ccbbb6c0fcb1e9f522891d4213e1a8f1d6a0bede7ebd2e2fdb523b383d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/kernels.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/kernels.rs",
+   "source_sha256": "0f67a5cc5b1f685d0a78a01675f83ec1c83f8a404cf87f24c08e350e5142ae38",
+   "exported_sha256": "05e196e161d8e424c71c2ceea3de84bec6a6f2e83a5812e720cb7af3f80f869f",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/lib.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/lib.rs",
+   "source_sha256": "bee4a8bfb7b726f5860ded03e7800108aad95eacff39707c00cc565fbddfd0c7",
+   "exported_sha256": "bee4a8bfb7b726f5860ded03e7800108aad95eacff39707c00cc565fbddfd0c7",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/mapgen.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/mapgen.rs",
+   "source_sha256": "51be3b7542de5f7e533132ab915fe2267c2609f57057ff306d9059678d9d6fcb",
+   "exported_sha256": "fe9096dcc0086759664da84b74d01ed4c25ce42141b092c19e01fc148e74b7cf",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/masks.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/masks.rs",
+   "source_sha256": "83790244906d954f4091824b393556309feade06e92644ee57818c4dce78b012",
+   "exported_sha256": "6b60d175502b09d871bb5065b61ec444c4424022260d9a3a1c120dc8e17718d0",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/military.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/military.rs",
+   "source_sha256": "d9d9dfdddd98d716605f3070a3ecb82291f03fea2b835ea70126d96b41a684c0",
+   "exported_sha256": "a9dfd11645c2a7d14a6d2a6b6c7daedac3a8b976d972980c3df05d1fec855297",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/pathfinding.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/pathfinding.rs",
+   "source_sha256": "a14e2dfdfdd88070d943f256dd9fa975d27fb262d5d73427cbf90c3827be8173",
+   "exported_sha256": "7d6320c93ccf43d646c2030596da918638eafb4a8b693ce2c75147db015c9a17",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/polaris.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/polaris.rs",
+   "source_sha256": "71c9d06ee6de938f3048d7183b8083b1c84a6e0e59edf70054d8165f15b2f38c",
+   "exported_sha256": "93d88fd3902e230912d9fc4abe3e24d47c767e595f9562fddc1785f6e7da415f",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/prof.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/prof.rs",
+   "source_sha256": "0a1e86ed7d6220e907f5868db23a2cd1a996dbf980a0a01b514164d8dc5d29d3",
+   "exported_sha256": "0a1e86ed7d6220e907f5868db23a2cd1a996dbf980a0a01b514164d8dc5d29d3",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/public.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/public.rs",
+   "source_sha256": "c824abeed7e955452b3c37edfab864e8ef5117782459291eb3861bf6b9ac7012",
+   "exported_sha256": "155b497aa5f80955330cc5e5ff8838c524830c897638a4ea3436fa06804bbacf",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/python.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/python.rs",
+   "source_sha256": "02e724e83ea225f137edcb91da8171c0f76a296bb04419d0adafd2ca6335743f",
+   "exported_sha256": "7afba1c5a812a0840d18f9f0f00755e5df7aa26483e33e505059442c9f05839b",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/rules.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/rules.rs",
+   "source_sha256": "4942dffaa216fded143d292718644272e7f0d42dc71d3a188180ecbfcf9d46f5",
+   "exported_sha256": "36ed5b7a3331a0653672b4be6a43ab027452680597bcaae49d20e03bb1521a64",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/state.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/state.rs",
+   "source_sha256": "1da0f43597141180800b4c7cd9c491780df7e939c9a4d7587a6352cf7ffe7a66",
+   "exported_sha256": "81e9573299a46a54bdae5a7a36563f75f0dbe98e5419fe205cb22ac7cc8f4623",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/structures.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/structures.rs",
+   "source_sha256": "a8c7681b41ffd3caa7aa8c2ddca345bec7f9145f21f4dedb8f82a0d7a827cd60",
+   "exported_sha256": "a555caef6c77585a29f8c5b530695c50815408b43a5d8506449d067dafa19843",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/telemetry.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/telemetry.rs",
+   "source_sha256": "78bfaa0978f70826ccd1d124518ca84023824b4ffc357479b299144e82a296d1",
+   "exported_sha256": "78bfaa0978f70826ccd1d124518ca84023824b4ffc357479b299144e82a296d1",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-rs/src/tribes.rs",
+   "source": "engine",
+   "source_path": "engine-rs/src/tribes.rs",
+   "source_sha256": "0202d72abd9d7f24e300e8006e5465c7e388913c3ea5b847deefbc33a3c29add",
+   "exported_sha256": "5c3a300132472d9ff07351019de6ca72064e2cf224a8884eebc851d6d2fb25e2",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/.gitignore",
+   "source": "engine",
+   "source_path": "engine-wasm/.gitignore",
+   "source_sha256": "44c92e3a70ad3307b7056871c2bdb096d8bfa9373f5bf06a79bb6324a20ff2fb",
+   "exported_sha256": "44c92e3a70ad3307b7056871c2bdb096d8bfa9373f5bf06a79bb6324a20ff2fb",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/Cargo.lock",
+   "source": "engine",
+   "source_path": "engine-wasm/Cargo.lock",
+   "source_sha256": "2ae9e7a86acfc172b2520bae0ed3e7a770de5d3dad3ce80e9ea3c4713e03b95e",
+   "exported_sha256": "2ae9e7a86acfc172b2520bae0ed3e7a770de5d3dad3ce80e9ea3c4713e03b95e",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/Cargo.toml",
+   "source": "engine",
+   "source_path": "engine-wasm/Cargo.toml",
+   "source_sha256": "14b98ad64bce753d29efc015443ab586be07863246883f8b24360003ecec2c8a",
+   "exported_sha256": "14b98ad64bce753d29efc015443ab586be07863246883f8b24360003ecec2c8a",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/.cargo/config.toml",
+   "source": "engine",
+   "source_path": "engine-wasm/.cargo/config.toml",
+   "source_sha256": "5abb8f8a0fb3cb5f7743ea92eaee55879faa85189f9c75d5f2c0f9d774563713",
+   "exported_sha256": "5abb8f8a0fb3cb5f7743ea92eaee55879faa85189f9c75d5f2c0f9d774563713",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/scripts/build-site-wasm.sh",
+   "source": "engine",
+   "source_path": "engine-wasm/scripts/build-site-wasm.sh",
+   "source_sha256": "3a0b7238febf6913b8cac9dff9cbc4e95468525bd306c6dac1619688ab8c40ab",
+   "exported_sha256": "32c7a34c10bb0d17a45c164fe44d05a538afb83a116ec629313f88308ac166e2",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/lib.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/lib.rs",
+   "source_sha256": "495c031446c0118794f001c6fb7b818497495774f585b3a0562360afac6ede66",
+   "exported_sha256": "49209846680849bfe1fa917c741d3b95715376a90e584d538d74fdd6494ac11e",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/net.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/net.rs",
+   "source_sha256": "97c09d05f79006df93ee1b075c3cc3590cbca73afed498f05ed60559e2144764",
+   "exported_sha256": "97c09d05f79006df93ee1b075c3cc3590cbca73afed498f05ed60559e2144764",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/policy.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/policy.rs",
+   "source_sha256": "a51ec9a231750188667f2c68068c3c77bc1ad1a31a8d5e1694a7caff3f4b507f",
+   "exported_sha256": "c2ccf8fdad40f12d55f599300abd7c3159c7f4481f4b6236cec5f972d2d5c11d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/public.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/public.rs",
+   "source_sha256": "840c6aa90df1f84ef2f108aa960d2080c478c38e8484b0f75c3ce961550fbc5e",
+   "exported_sha256": "5680dc0dbb37fd6cf39302f605839afa5276bc94bced45865d2e6be4a7181fbf",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/search.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/search.rs",
+   "source_sha256": "10fae9ebb60d2f26c3832eabc3a655e31790de46877fa08c978880d4c561ba06",
+   "exported_sha256": "eff6f575dbf07e786a967027347a5d0cc2c9919ddf73d76ba879a47809109782",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/ui.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/ui.rs",
+   "source_sha256": "1d2210a16833458a39d6e5f460e7e7017dc96bda4b74b656d29e4984e1a91fc4",
+   "exported_sha256": "33e749eb4a7c055cb6bb8d1dd3f78d8ea41d7375cdb8b26e9575548eeec308f2",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/v3.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/v3.rs",
+   "source_sha256": "a95b13ea40682931a13276a4df9d17c1e503aabbba32e6735ac537738895b690",
+   "exported_sha256": "a95b13ea40682931a13276a4df9d17c1e503aabbba32e6735ac537738895b690",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/engine/engine-wasm/src/view.rs",
+   "source": "engine",
+   "source_path": "engine-wasm/src/view.rs",
+   "source_sha256": "bf9a426cc91992fef86b11db52d852a8a4d5c1aa2afdf4a5764c788650546f58",
+   "exported_sha256": "7d036604538abeffbcadcc9ec858a263a28b50e559bd49b705d699a2a99f18e4",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/engine/src/polytopia_bot/gpu/rules.json",
+   "source": "engine",
+   "source_path": "src/polytopia_bot/gpu/rules.json",
+   "source_sha256": "9d2fd864827f4b1e156bdde771e17fd7e324874ca622eb19044a03831ce5e9af",
+   "exported_sha256": "9d2fd864827f4b1e156bdde771e17fd7e324874ca622eb19044a03831ce5e9af",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/tools/export_browser_weights.py",
+   "source": "engine",
+   "source_path": "scripts/export_browser_weights.py",
+   "source_sha256": "9d5344cef086dc8da6c7c5905ed6cb422239fc517411a938622df1f90c5a4561",
+   "exported_sha256": "355c0b3091cf8edba57ef9030a14f40b4f5fc8a574ea1e5f4c0737f44de3ca2d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/Makefile",
+   "source": "training",
+   "source_path": "engine-cu/Makefile",
+   "source_sha256": "3d21b6c1fa429525c730b2833ab84be440ffb26924adde8e79f1e2b34fd99e0f",
+   "exported_sha256": "b0bfd21b2e2e00802b90447f25e77df1f1a0c6b4430020143e9efd1e4e9743b9",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/aquarion.h",
+   "source": "training",
+   "source_path": "engine-cu/src/aquarion.h",
+   "source_sha256": "5f78121556b4d6d3c2a9c4d5067d59b74ecd86e764a156be308661692ea5eb7b",
+   "exported_sha256": "d6e98710163d03136b8389d3f8dc013ae5cdac54ef44d7cf21d692a454f5bc95",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/capture.h",
+   "source": "training",
+   "source_path": "engine-cu/src/capture.h",
+   "source_sha256": "60a60253eb977fce5506c5b0e6ed30b60a40e12ac03ea15a5c5e28c5eed83a7f",
+   "exported_sha256": "5812a923643a137ef838fec392cecf82f0dc2916620f75864b6825584018d582",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/core.h",
+   "source": "training",
+   "source_path": "engine-cu/src/core.h",
+   "source_sha256": "08389ecc2fa5b7e46c519b54c5a55b2afe153c57fff9b5295cf07f46108fcdad",
+   "exported_sha256": "23bdeb65a258c46cf932bc027429e16f605c0961e8ea59fbf23498772da6fc88",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/cymanti.h",
+   "source": "training",
+   "source_path": "engine-cu/src/cymanti.h",
+   "source_sha256": "46206ff938cdb7a5c886b368d9216562f01d5f049a64eb44375dbd2782d691be",
+   "exported_sha256": "83f8c191b5a160a0d37cc2868345867983ee5b3e0f6829d8fe6ccd70e575bda5",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/diplomacy.h",
+   "source": "training",
+   "source_path": "engine-cu/src/diplomacy.h",
+   "source_sha256": "36d60029079eeb8dfe63870fe7b64e9e6bded69ec84bd113eaa68429c36fdbd8",
+   "exported_sha256": "bcedf451b2283fb082f44030cb7afc21d88c1e40ba3e6473daeae6e100f35a61",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/discovery.h",
+   "source": "training",
+   "source_path": "engine-cu/src/discovery.h",
+   "source_sha256": "3b2b1f9719bca38e4c2a4d3c0ee69a50ddbd02fdb7e467da39e4d853b1c1b4ca",
+   "exported_sha256": "a0df3bb796083ff39651db9b69193cf3577d60fec30a78015cadc6f95736b854",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/economy.h",
+   "source": "training",
+   "source_path": "engine-cu/src/economy.h",
+   "source_sha256": "389e91f24f3d804f3b245a29ddbef4ea635975e215006ca339b7ab24f9ebef5d",
+   "exported_sha256": "1a6b76e6eccb147d2cbddb287735f1e68eba663f12fec746dfa52576263a939d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/engine.h",
+   "source": "training",
+   "source_path": "engine-cu/src/engine.h",
+   "source_sha256": "83283b6cfa1eac692c01915fca3e1761cf537a2a1eb2056ec23b4e4b5e20f198",
+   "exported_sha256": "0121448e097f792859e588c2d5466a590a62e2cacd944f116e00a392abaca144",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/history.h",
+   "source": "training",
+   "source_path": "engine-cu/src/history.h",
+   "source_sha256": "c92cfacdc1d5153de3bff593720852c618baacdeec657b92899d0a5f4c2bedfc",
+   "exported_sha256": "c92cfacdc1d5153de3bff593720852c618baacdeec657b92899d0a5f4c2bedfc",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/infiltration.h",
+   "source": "training",
+   "source_path": "engine-cu/src/infiltration.h",
+   "source_sha256": "4d7ddb42dcf2ee0f66a2fe50ed3ab69c5de5cbcfe50aa4e5a24a29fc984867e0",
+   "exported_sha256": "cf3db0a3c88ee6caa431892da194d95ee172d9ae7303a5c5193b65066446031f",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/kernels.h",
+   "source": "training",
+   "source_path": "engine-cu/src/kernels.h",
+   "source_sha256": "ec4f0057c24f9f1225f66766e829cdb7d2f258b94bd014b55408da8204f6c995",
+   "exported_sha256": "414d94299dac37b78d1cd79c1ecdc8c8054c56514a6d0063caa93f8454d63a89",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/masks.h",
+   "source": "training",
+   "source_path": "engine-cu/src/masks.h",
+   "source_sha256": "6f0e5ab63316fa339e5524834513ec9715340794c533301408ca116db99ba6f0",
+   "exported_sha256": "4dc7bf025bd02835b5ea30942222a74bc9acb9baaf268404abb14fc69618b2c2",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/military.h",
+   "source": "training",
+   "source_path": "engine-cu/src/military.h",
+   "source_sha256": "e20f2ebdf7bf4b6ed3e1d49b58a5910543d02ab3be2b32c81ef0bbc7ecb1a8fa",
+   "exported_sha256": "6c3e67883ad8afe831247eeed679cab2e206667cdc9f79d347ae8f2aee885f54",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pathfinding.h",
+   "source": "training",
+   "source_path": "engine-cu/src/pathfinding.h",
+   "source_sha256": "f48741ad82d399528375d3d88fe11eaa0b2f98c417a3f6b02bb6ab9f93b37c52",
+   "exported_sha256": "7f3f58e437a13f22c6442782c319ea2d063f5b38fa2a5be976c38f87af433d5c",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pc.h",
+   "source": "training",
+   "source_path": "engine-cu/src/pc.h",
+   "source_sha256": "49925096ee28264d783c1a4b34b4c38bf3a7ef9a1cbd3117548bb5cc5c7f3ad6",
+   "exported_sha256": "4d91f8e5d2e43b73a76a35fadd616b95b47e0b946bd1cc7213574075aeb39524",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pc_api.h",
+   "source": "training",
+   "source_path": "engine-cu/src/pc_api.h",
+   "source_sha256": "13d4d7ab9d5d3c47c4f5adfbbacda0245787e058737be73400a48d15addb38b0",
+   "exported_sha256": "ec4d43fe101f62cee2a3d9c3d32146617329b5176e9be1ef6651e5f900b7004b",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pc_cpu.c",
+   "source": "training",
+   "source_path": "engine-cu/src/pc_cpu.c",
+   "source_sha256": "348b101dd0f049107e663b1aa3f1d1d0dbbb71cac8829b9d9587f57a353be99f",
+   "exported_sha256": "42c5534ba41bfb3172e883270ecb3286bacaae54b6e6d6ace3a2220d2b24f641",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pc_cuda.cu",
+   "source": "training",
+   "source_path": "engine-cu/src/pc_cuda.cu",
+   "source_sha256": "243a2470366241413fe0f6b1c4e9026bbac387532cd1bc09d24ecd700cd7d4a7",
+   "exported_sha256": "ac3e108b74012759bb060fbfff74aa58f9f0afe9947aa149b2e6e071ec97c409",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/pc_state_io.h",
+   "source": "training",
+   "source_path": "engine-cu/src/pc_state_io.h",
+   "source_sha256": "8bd3093bb06791dbab639de3a920b67219689d8ab992e934defc39abac584596",
+   "exported_sha256": "8bd3093bb06791dbab639de3a920b67219689d8ab992e934defc39abac584596",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/polaris.h",
+   "source": "training",
+   "source_path": "engine-cu/src/polaris.h",
+   "source_sha256": "b816056a5da4af5bf17fec83f8e48fb601613ce1fcd53630199839bd1058a288",
+   "exported_sha256": "f8286a7d4bd048b53967400a71b4d80b7fa1b59eeb8a9abd9d23651d91044107",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/rules.h",
+   "source": "training",
+   "source_path": "engine-cu/src/rules.h",
+   "source_sha256": "2f09608bea16c2febf456ada2a84428b46034213acdf7d33cd8abcc54c1e3ec1",
+   "exported_sha256": "c26c51595c4b0334b50f595b6c52d6fe50f30bc4c614fe2613052ca4216fe4dc",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/structures.h",
+   "source": "training",
+   "source_path": "engine-cu/src/structures.h",
+   "source_sha256": "9d21ad0c6dbf686e101b5f36b1762fd15209b45b9440df6a41c86dd07adac9fb",
+   "exported_sha256": "156c96bf0176c09b687e92b61c25c5c4b44036a4a32db00b19dea52e4798a0e9",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/engine-cu/src/tribes.h",
+   "source": "training",
+   "source_path": "engine-cu/src/tribes.h",
+   "source_sha256": "5ecda3ae4a1e7d58754ef4077b7e4f82afea87a24db7b0852b4fac79640876bb",
+   "exported_sha256": "3d703ea90cdca5b3b6399572a60bb8d2139cc69eeab5ac682f42b8794df952f0",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/experiments/claude_v3/gpu_arena.py",
+   "source": "training",
+   "source_path": "experiments/claude_v3/gpu_arena.py",
+   "source_sha256": "676cbbd7ff16dcb57ae5bde453f4f56bd0dc041dca8c3a233252fa7ef4bd3562",
+   "exported_sha256": "97a0c771300c105c569c9b2ca3d1b8e3de934fc553b0f9fe5c5c7f13ece1910e",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/experiments/claude_v3/stage5-t3-g99.json",
+   "source": "training",
+   "source_path": "experiments/claude_v3/stage5-t3-g99.json",
+   "source_sha256": "086ae0409c5f09c1274b55100890244d5f1112d2274835e28256e306fef782c3",
+   "exported_sha256": "086ae0409c5f09c1274b55100890244d5f1112d2274835e28256e306fef782c3",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/experiments/claude_v3/stage5-t3-g99.md",
+   "source": "training",
+   "source_path": "experiments/claude_v3/stage5-t3-g99.md",
+   "source_sha256": "5dbbb7c44896f2be0b2f63c9d0655299814095e9ab4fdd87c2adaef13a66783d",
+   "exported_sha256": "eecaf6edec1ef53c8c2fcec10585356c8691357c583c6797eafaad70e64a19ab",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/experiments/claude_v3l/flagship_harness.py",
+   "source": "training",
+   "source_path": "experiments/claude_v3l/flagship_harness.py",
+   "source_sha256": "8f122fad0a7758e7ff86dc3eac6e3771a5830d30541b7e39229e414b715f5d2e",
+   "exported_sha256": "c812107493a2917733c064efa3c0b495de341c3d3eb8c812d5b606240e0f4eae",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/ruleset.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/ruleset.py",
+   "source_sha256": "7c077d38f44a7ad5df2a7ea1ed28c3935a9b13b616fce65b52ce9a4575341a5d",
+   "exported_sha256": "43e9b2860d8ee2e904c584cc5f973a8c63754565c539b7578a72fc1875570928",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/gpu/__init__.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/gpu/__init__.py",
+   "source_sha256": "0d823b2b9571a435bb3138b266a9dd1c5437a55415e211f57f272cbd29bceff0",
+   "exported_sha256": "60fa9ceccb518e6244f8d638be7cd9847ff373476032ae2dac2cebbc646f5ab3",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/gpu/kernels.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/gpu/kernels.py",
+   "source_sha256": "813ae932d1b466c99dc552ef6fc0ec0d54556ac5fbccd448546d152071dbcfd2",
+   "exported_sha256": "1cf7b65d7dff8155af7ad6bff80ad5b3d625b29861c9d3bd9bacf373d9421b1d",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/gpu/mapgen.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/gpu/mapgen.py",
+   "source_sha256": "08d986d58beeed3307731604546195e792ba413ac00b77d2522522b86a6b50d5",
+   "exported_sha256": "015efbe24225adad2d01193896e6472180270734587246761e4e7175b2ce3154",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/gpu/rules.json",
+   "source": "training",
+   "source_path": "src/polytopia_bot/gpu/rules.json",
+   "source_sha256": "9d2fd864827f4b1e156bdde771e17fd7e324874ca622eb19044a03831ce5e9af",
+   "exported_sha256": "9d2fd864827f4b1e156bdde771e17fd7e324874ca622eb19044a03831ce5e9af",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/maps/state.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/maps/state.py",
+   "source_sha256": "dbbdaab7ce758076edad04453dc27bfee0ab1ac3b5e27c14ed5f9f35f5f3ed80",
+   "exported_sha256": "720dbe3aee74c2f666a3ab676818ff98618341ce841cbc7e86bd4404c69caca9",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/maps/stream.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/maps/stream.py",
+   "source_sha256": "fdbb30b24f2837485e7e45eb87f65a8ce51bd0f5e691f25ab26065c86bb1bf9c",
+   "exported_sha256": "41c01cfe62d6169071c5e44f47eadcfdb9af2b216d2438af693d7108f4848047",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/actions.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/actions.py",
+   "source_sha256": "53d05a22abc76425c9dd66abd3447fab6b3477168d5b6e2c6aef42ba5dcd4b75",
+   "exported_sha256": "896556cac1d76899b8581ababc58f511f24995a3c984bdc8f15f5da948242a42",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/cpu_engine.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/cpu_engine.py",
+   "source_sha256": "2a3e8bf3375dd12043f8c9757613e03f928e8575500cfeeb21485cf9c357d4b8",
+   "exported_sha256": "c5f084fffad8418f54606368caf23f7ced2185944722c361b305323bef2f027f",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/distributed.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/distributed.py",
+   "source_sha256": "0876ec683bd02fcd92d76c48ada506dd3357614e53c5524810c4393523a4dd6f",
+   "exported_sha256": "3adcc8cee8ebd5e117817e71c43cde52a70307f2bfc4b04187be7259ebed4b56",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/elo.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/elo.py",
+   "source_sha256": "bce538e44355322c50328231471a51a80d93eab852ab106d182106590914d7e1",
+   "exported_sha256": "caae1c179e58cc431d657ae882dd303ff8bf34c2c6967203033ce72305328cce",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/gpu_engine.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/gpu_engine.py",
+   "source_sha256": "30636f4d805853f3ae6be4457d2f2207aaf7b5c7e3e4c98f22814ae672d15ab1",
+   "exported_sha256": "603f91543d66f551139e014e76326c789e8f913fb2e71d4f741e7ee5cd612881",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/gpu_resident.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/gpu_resident.py",
+   "source_sha256": "489a9441fc5f463f45c2c910ef1a869a57beca11f8db37e6c7c5f402917c69ee",
+   "exported_sha256": "54a8df46543f1581dccc6ac68c240a1948219239c51c330e51c98a0738ff2f83",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/observation.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/observation.py",
+   "source_sha256": "f0a3b208381c7ff90b1efdc6f70a14ada8740ebd402269838575123dbfb3c043",
+   "exported_sha256": "972ad278d24cfe7d9b48d5ca596810fee4b90295f4d362085ce4aff42f33ee45",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/runner.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/runner.py",
+   "source_sha256": "3770be291bbf7484392bd898b3db42188e3ee009f2c2bf70209fff225fb7be9f",
+   "exported_sha256": "3770be291bbf7484392bd898b3db42188e3ee009f2c2bf70209fff225fb7be9f",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/rust_engine.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/rust_engine.py",
+   "source_sha256": "f9693e7e02e425e5cdab44227d82b4305d3e5bcb534ea6a648be2864732aaa72",
+   "exported_sha256": "f9693e7e02e425e5cdab44227d82b4305d3e5bcb534ea6a648be2864732aaa72",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/search_arena.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/search_arena.py",
+   "source_sha256": "e5625a46c43ca6b0729324ffe096fcb56f1c6f2f70cf15123d9902adf65dc00e",
+   "exported_sha256": "e5625a46c43ca6b0729324ffe096fcb56f1c6f2f70cf15123d9902adf65dc00e",
+   "modified_for_public_release": false
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/transformer_v3.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/transformer_v3.py",
+   "source_sha256": "835dcd9af3b545a7cd14bee8ff57cb548d9a369e672a26ae8903e69e3b1c6689",
+   "exported_sha256": "215128af00907034ca736dd2601ba1f45751415f854f42b95ad4cf13dfa7b539",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/rl/vector_actor.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/rl/vector_actor.py",
+   "source_sha256": "347cfe3c743f569b1b5e4124d39e919dd6a928e0cfeda66206285271b78d1963",
+   "exported_sha256": "2154b839cb0aace8275c4ec0e2278d98ca549618b4071f978c8cdc49dce291fe",
+   "modified_for_public_release": true
+  },
+  {
+   "path": "plato-t3/training/src/polytopia_bot/studio/environment.py",
+   "source": "training",
+   "source_path": "src/polytopia_bot/studio/environment.py",
+   "source_sha256": "6774626e828f76cabc7e28038c546ae1aca0eb3d0ca17acbf5aad90d00652f69",
+   "exported_sha256": "79f6649a75b91dfcddaf27b0edcc807b6a2e6968c73a38e2f909db52006a8bc0",
+   "modified_for_public_release": true
+  }
+ ],
+ "authored_or_adapted": {
+  "plato-t3/arena/arena.mjs": "Adapted from the headless runner used for the 12 November measurements: the older mixed-map board source is removed, rows carry their panel and pairing, progress is printed.",
+  "plato-t3/arena/summarize.py": "Adapted from the same runner: sides are named bot:decode instead of a fixed list of bots.",
+  "plato-t3/arena/play.py": "New for this release: builds the asset directory and game list from the published files and runs arena.mjs.",
+  "plato-t3/arena/modal_arena.py": "New for this release: optional Modal launcher for play.py. The original launcher, with its app and volume, is not published.",
+  "plato-t3/tools/bin_to_npz.py": "New for this release.",
+  "plato-t3/training/t3-harness.example.json": "Derived from a T3 qualification manifest on the training branch (experiments/claude_v3l/a32/manifest-a-t3eff1.json): trainer arguments, environment, league and learning-rate restart; paths replaced by placeholders, budget and supervision fields omitted.",
+  "plato-t3/README.md": "New for this release.",
+  "weights/plato-t3/README.md": "New for this release.",
+  "docs/plato-t3.md": "New for this release."
+ },
+ "adaptations": {
+  "weights/plato-t3/plato.json": "Map-generator description and one caveat reworded; the trainer's training-time evaluation block removed.",
+  "plato-t3/engine/**/*.rs": "Comments only: references to the game's internal class and method names rewritten as plain words; private file, line and address references, coordination tags and host paths removed. Line counts and all code outside comments are identical to the source.",
+  "plato-t3/engine/engine-wasm/scripts/build-site-wasm.sh": "Builds from this directory instead of a git archive of the private repository; bash instead of zsh; ALLOW_OTHER_RUSTC override; same flags and fixed build path.",
+  "plato-t3/tools/export_browser_weights.py": "Usage text for this repository, explicit output path, observation version 6 accepted.",
+  "plato-t3/training/**": "Comments and docstrings only, same scrub as the engine, except two error-message strings that named a person (src/polytopia_bot/rl/distributed.py, experiments/claude_v3l/flagship_harness.py). engine-cu/Makefile and experiments/claude_v3/stage5-t3-g99.md: a workstream tag removed and the note rewritten."
+ },
+ "not_exported": [
+  "T3 training checkpoint (.npz), privileged critic, optimizer state: not available where the release was prepared",
+  "full-game engine port and the map tables generated from it",
+  "opponent pool checkpoints and the production launch manifest",
+  "launch, supervision and budget layer of the T3 run (launcher.py, supervisor.py, modal_flagship.py, group.py, policy.py, make_manifest.py, stage_check.py, modal_gpu_engine.py) and the qualification reports under experiments/claude_v3l/a32",
+  "crazy_panel.py (panel against the built-in AI) and tests that depend on the full-game engine",
+  "the training branch's own engine-rs (the published engine is the later site revision)",
+  "website interface code; weights of other variants"
+ ],
+ "notes": [
+  "No game was played from the exported files for this release, and the engine was not rebuilt from the published source.",
+  "The prebuilt engine_wasm.wasm was built from the private source commit; the published source differs from it in comments only.",
+  "Strength figures in docs/plato-t3.md come from an earlier run on the same weights and engine binary."
+ ]
+}

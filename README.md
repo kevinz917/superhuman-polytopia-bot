@@ -40,7 +40,8 @@ blog post, [*Building a Superhuman Polytopia bot using self-play RL*](https://th
 - 📦 **Weights included.** The champion (2 MB, with the value head search needs) is in
   [`weights/champion/`](weights/champion/); the newer, stronger raw policy **hero-1v1** (7 MB) is in
   [`weights/hero-1v1/`](weights/hero-1v1/), and the strongest, **Plato** (12 MB, a 3.2M-parameter transformer), is in
-  [`weights/plato/`](weights/plato/). Twelve more checkpoints from the training history, with their critics, are
+  [`weights/plato/`](weights/plato/). Its latest variant, **Plato T3** (the bot the website serves, trained on board
+  sizes 11 to 20 and six map types), is in [`weights/plato-t3/`](weights/plato-t3/). Twelve more checkpoints from the training history, with their critics, are
   indexed in [`weights/README.md`](weights/README.md).
 - 🤖 **Polytopia Bench.** 13 frontier models write Rust bots with a 40-minute allowance and play them against this RL bot
   and five other opponents: 65 completed attempts and 23,400 graded games. See the [current results](benchmark/INDEX.md),
@@ -91,6 +92,21 @@ wins almost entirely by elimination and went 48–0 against a replica of the bui
 included in this repository, along with the shared critic, GPU trainer and C/CUDA simulator. Run it with
 `./scripts/studio.sh --checkpoint weights/plato/final.npz`; see the [reproduction guide](docs/plato-reproduction.md)
 and [report](docs/plato-2026-11-09.md).
+
+**Plato T3.** The latest Plato variant, trained by Jack Yuan: the same 6×128 hybrid transformer (3,243,386
+parameters, observation version 6), continued from Plato update 88,890 to update 96,070 on board sizes 11 to 20, six
+map types from a port of the real game's map generator, and opponents of every tribe, always playing Bardur. It is
+the bot the website serves as "Plato". Published: the weights in the browser format
+([`weights/plato-t3/`](weights/plato-t3/)), the prebuilt WebAssembly engine it runs on with its source, the map
+boards, a command-line runner and a source snapshot of its training line, all under [`plato-t3/`](plato-t3/). In
+one run of seat-swapped Bardur mirrors it scored **.810** against the website's previous CNN bot on classic 14×14
+boards (800 games) and **.769** against the previous Plato variant on real-map-generator boards (160 games); with
+both using the same decoding it is level with that variant on classic boards (.505, 800 games), and it **loses** to
+the older CNN on the project's earlier mixed-map boards (.366, 796 games). It was trained with legal-move masks
+computed from the true state, a known hidden-information caveat; the training checkpoint (`.npz`) is not included,
+and no games were replayed from the exported files for this release. Play it with
+`python3 plato-t3/arena/play.py --opponent weights/hero-1v1/final.npz --out runs/plato-t3/hero.json`; see
+[docs/plato-t3.md](docs/plato-t3.md).
 
 **The game.** Since 2026-10-27 every bot here trains and plays Polytopia's own rules (Steam 2.17.3, game version
 123): two Bardur tribes with fog of war and the full tech tree, cities, villages, ruins, navy, diplomacy and cloaks,
@@ -239,7 +255,8 @@ layout, rule table and map generator. See [docs/rules-alignment-2026-10-27.md](d
 | `legacy/ruleset-v2/` | the earlier research ruleset's engine and its in-browser WASM bot |
 | `scripts/` | Elo fits, run status, fixture generators, ruleset verification |
 | `tools/` | Polyfish oracle builds, Studio asset setup, clip recorder for this README |
-| `weights/` | released checkpoints: the champion, hero-1v1, Plato and 12 milestones from the 1v1 and four-player runs; index in [weights/README.md](weights/README.md) |
+| `plato-t3/` | Plato T3 (update 96,070): the browser engine it runs on (prebuilt and source), map boards, a headless runner and a training-source snapshot; see [docs/plato-t3.md](docs/plato-t3.md) |
+| `weights/` | released checkpoints: the champion, hero-1v1, Plato, Plato T3 and 12 milestones from the 1v1 and four-player runs; index in [weights/README.md](weights/README.md) |
 | `docs/` | rules, engine notes and the research notebook (run reports, sweeps, reviews, the run archive in `docs/run-archive/`); start at [docs/README.md](docs/README.md) |
 | `benchmark/` | Polytopia Bench: LLM-authored bot benchmark, harness, conversations, bots, replays and results |
 

@@ -1,0 +1,111 @@
+{
+ "_note": "Shape of a T3 training launch, taken from the T3 efficiency-qualification manifest on the source branch (a 16-GPU run with T3's inputs; its recipe file was the .98 variant, replaced here by the released stage5-t3-g99.json). It is not the production launch manifest, which is not in the source repository. Paths are placeholders; the opponent pool was empty in the qualification run and the production pool is not recorded here. Budget and supervision fields are omitted.",
+ "trainer_args": [
+  "--config",
+  "experiments/claude_v3/stage5-t3-g99.json",
+  "--parent",
+  "",
+  "--architecture",
+  "transformer-v3-p2-h4",
+  "--width",
+  "128",
+  "--blocks",
+  "6",
+  "--run-id",
+  "plato-t3-new",
+  "--run-root",
+  "runs",
+  "--seconds",
+  "10000000",
+  "--games",
+  "2048",
+  "--sets",
+  "4",
+  "--grad-accum",
+  "1",
+  "--matmul-precision",
+  "HIGHEST",
+  "--checkpoint-every",
+  "100000",
+  "--snapshot-every",
+  "100000",
+  "--jax-mem-fraction",
+  ".45",
+  "--map-table",
+  "runs/maps/table-real-{size}-2p-200000-300000.npz",
+  "--block",
+  "32"
+ ],
+ "env": {
+  "POLYTOPIA_TRANSFORMER_ATTENTION": "tokamax-triton-bfloat16",
+  "POLYTOPIA_LAYER_NORM": "tokamax-affine",
+  "POLYTOPIA_TRANSFORMER_REMAT": "0",
+  "PC_CUDA_WARP_TICK": "1",
+  "V3L_POOL_GROUP": "vmap",
+  "V3L_SIZE_GROUPS": "11:2,14:3,16:3,18:4,20:4",
+  "POLYTOPIA_V3_BASE_SIZE": "14",
+  "V3L_SIZE_GAMES": "11:6656,14:4480,16:5760,18:4480,20:3840",
+  "V3L_SIZE_QUOTA": "14:0.9013333333,16:0.65,18:0.61,20:0.61",
+  "POLYTOPIA_GEN_WIP_TRIBES": "3,5,16,17",
+  "V3L_GC": "scheduled",
+  "JAX_PERSISTENT_CACHE_ENABLE_XLA_CACHES": "none",
+  "XLA_FLAGS": "--xla_gpu_per_fusion_autotune_cache_dir=runs/.xla-autotune --xla_gpu_experimental_autotune_cache_mode=AUTOTUNE_CACHE_MODE_UPDATE",
+  "NCCL_DEBUG": "INFO",
+  "NCCL_DEBUG_SUBSYS": "INIT,NET",
+  "V3L_GC_REFREEZE": "1",
+  "V3L_GC_DEEP_EVERY": "20",
+  "V3L_VALUE_TAIL": "1024"
+ },
+ "processes": 16,
+ "nodes": 2,
+ "gpus_per_node": 8,
+ "require_net_ib": true,
+ "min_gpu_mem_mib": 122880,
+ "lr_restart": {
+  "start_update": 88890,
+  "warmup_updates": 25,
+  "from_lr": 0.0001414,
+  "peak_lr": 0.0002121,
+  "end_lr": 0.0001414,
+  "planned_updates": 6307,
+  "decay_fraction": 0.25
+ },
+ "stage5": true,
+ "stage4": {
+  "peace_sets": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "block": 32,
+  "ring_extra_steps": 24,
+  "pool_batched": true,
+  "parity_check": false,
+  "opponents": {},
+  "pool": {
+   "peace": {}
+  },
+  "historical": {
+   "peace": 0.0
+  },
+  "monitor": {
+   "window": 50,
+   "pause_window": 150,
+   "min_games": 200,
+   "warn_selfplay_capped": 0.1,
+   "warn_capped": 0.1,
+   "warn_at_peace": 0.25,
+   "warn_late": 0.1,
+   "pause_selfplay_capped": 0.3,
+   "pause_at_peace": 0.5,
+   "pause_late": 0.3
+  },
+  "terminal_rule": "cap_loss_both",
+  "league": {
+   "learner_tribe": 4,
+   "mirror_only": [],
+   "obs_version": 6
+  }
+ }
+}

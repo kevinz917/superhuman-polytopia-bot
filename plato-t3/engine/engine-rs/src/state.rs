@@ -1,0 +1,405 @@
+//! One game's state: the same fields as gpu/state.py::State, struct-of-arrays, runtime board size and seat count.
+
+/// Most seats a game can have.
+pub const MAXP: usize = 4;
+
+#[derive(Clone)]
+pub struct Tiles {
+    pub terrain: Vec<i32>,
+    pub owner: Vec<i32>,
+    pub capital: Vec<i32>,
+    pub city: Vec<i32>,
+    pub road: Vec<bool>,
+    pub structure: Vec<i32>,
+    pub resource: Vec<i32>,
+    pub explored: [Vec<bool>; MAXP],
+    pub structure_level: Vec<i32>,
+    pub structure_turn: Vec<i32>,
+    /// has route: the tile lies on a path update routes found between two routers (ports,
+    /// bridges) of one player. One flag per tile, shared by every player; recomputed only by update routes
+    /// (structures::update_routes), so it can be stale between updates as in the game.
+    pub route: Vec<bool>,
+    /// Polaris: is frozen's climate half, the tile's climate is the Polaris climate (16) on land
+    /// . Set at the start on the Polaris capital's 3x3 area, by freeze tile, cleared by
+    /// restore climate. Ice terrain (6) is frozen by itself.
+    pub polar: Vec<bool>,
+    /// Aquarion: tile effect flooded. Mapgen floods the Field/Forest tiles of the Aquarion
+    /// continent, which a layout carries as bit 8 of its terrain value (`terrain | 1 << 8`, mapgen::initial_state).
+    pub flooded: Vec<bool>,
+    /// Aquarion step 6: tile data continent (runtime only in the game), as the tribe type whose world continent the
+    /// map generator put the tile in (add climates gives every tile the continent of the seat whose
+    /// climate it takes), 0 for none. A layout carries it in bits 9-13 of its terrain value (mapgen::CONTINENT_SHIFT).
+    /// Only a Lost City reads it (its resources follow the tile's continent modifiers), and gives the tiles it
+    /// resources without one the examining tribe's new continent.
+    pub continent: Vec<i32>,
+    /// Cymanti: tile effect algae on a water tile: the Algae build (port -> algae), the
+    /// Island's trail and Spores on water. A wetland: land units walk it (Creep 10 a step, others stop), nobody embarks.
+    pub algae: Vec<bool>,
+    /// Cymanti: improvement effect decomposing (Decompose, Recycling): the improvement is refunded
+    /// and destroyed at its owner's end of turn.
+    pub decomposing: Vec<bool>,
+}
+
+#[derive(Clone)]
+pub struct Units {
+    pub owner: Vec<i32>,
+    pub kind: Vec<i32>,
+    pub health: Vec<f32>,
+    pub veteran: Vec<bool>,
+    pub moved: Vec<bool>,
+    pub attacked: Vec<bool>,
+    pub kills: Vec<i32>,
+    pub poison: Vec<bool>,
+    pub frozen: Vec<bool>,
+    pub boosted: Vec<bool>,
+    pub home: Vec<i32>,
+    pub created: Vec<i32>,
+    pub converted: Vec<bool>,
+    pub attacks_performed: Vec<i32>,
+    pub prev_x: Vec<i32>,
+    pub prev_y: Vec<i32>,
+    pub last_attack: Vec<i32>,
+    pub passenger: Vec<i32>,
+    pub invisible: Vec<bool>,
+    /// unit state direction (grid direction 0..7 = SW, W, NW, N, NE, E, SE, S; 8 none): toward the map centre at
+    /// creation, then the last step of every move and the line of every attack. try push unit starts from it.
+    pub direction: Vec<i32>,
+    /// `attacked` holds only "moved this turn without Dash" (engine-rs folds can attack's
+    /// `moved && !Dash` into `attacked`; the game's `attacked` stays false). An upgrade to a type with Dash clears it
+    /// (can attack reads the CURRENT type; military:upgrade). False after any real attack, recover, embark/disembark
+    /// or hide, and at the owner's turn start.
+    pub move_lock: Vec<bool>,
+    /// Aquarion: unit effect bubble: +1 movement; gained on a Flooded tile by an amphibious unit
+    /// (a move of a player with Waterways, a flood tile by one), lost on dry land and when attacked.
+    pub bubble: Vec<bool>,
+    /// Cymanti: unit effect swift (a Shaman's Swarm): +1 movement (with Bubble, not stacking); lost only when attacked.
+    pub swift: Vec<bool>,
+    /// Cymanti: double ready (DoubleAttack, the Phychi): given at the owner's end of turn; the first
+    /// attack consumes it and leaves `attacked` false; make exhausted removes it.
+    pub double_ready: Vec<bool>,
+    /// Cymanti step 6: unit state leader / follower as tile links: 1 + the tile of the linked
+    /// unit, 0 none. Only eat action makes them; Units:move_unit keeps the partner's link pointing at the new tile.
+    pub leader: Vec<i32>,
+    pub follower: Vec<i32>,
+}
+
+impl Units {
+    /// jax.tree.map(lambda x: x.at[i].set(0), units)
+    pub fn clear(&mut self, i: usize) {
+        self.owner[i] = 0;
+        self.kind[i] = 0;
+        self.health[i] = 0.0;
+        self.veteran[i] = false;
+        self.moved[i] = false;
+        self.attacked[i] = false;
+        self.kills[i] = 0;
+        self.poison[i] = false;
+        self.frozen[i] = false;
+        self.boosted[i] = false;
+        self.home[i] = 0;
+        self.created[i] = 0;
+        self.converted[i] = false;
+        self.attacks_performed[i] = 0;
+        self.prev_x[i] = 0;
+        self.prev_y[i] = 0;
+        self.last_attack[i] = 0;
+        self.passenger[i] = 0;
+        self.invisible[i] = false;
+        self.move_lock[i] = false;
+        self.direction[i] = 0;
+        self.bubble[i] = false;
+        self.swift[i] = false;
+        self.double_ready[i] = false;
+        self.leader[i] = 0;
+        self.follower[i] = 0;
+    }
+    /// jax.tree.map(lambda x: x.at[t].set(x[s]).at[s].set(0), units)
+    pub fn move_unit(&mut self, s: usize, t: usize) {
+        // the partners' links follow the unit (Cymanti chains)
+        if self.leader[s] > 0 {
+            let l = (self.leader[s] - 1) as usize;
+            self.follower[l] = t as i32 + 1;
+        }
+        if self.follower[s] > 0 {
+            let f = (self.follower[s] - 1) as usize;
+            self.leader[f] = t as i32 + 1;
+        }
+        macro_rules! mv {
+            ($($f:ident),*) => { $( { let v = self.$f[s]; self.$f[t] = v; } )* };
+        }
+        mv!(owner, kind, health, veteran, moved, attacked, kills, poison, frozen, boosted, home, created, converted,
+            attacks_performed, prev_x, prev_y, last_attack, passenger, invisible, direction, move_lock, bubble,
+            swift, double_ready, leader, follower);
+        self.clear(s);
+    }
+}
+
+#[derive(Clone)]
+pub struct Cities {
+    pub owner: Vec<i32>,
+    pub level: Vec<i32>,
+    pub population: Vec<i32>,
+    pub progress: Vec<i32>,
+    pub production: Vec<i32>,
+    pub border: Vec<i32>,
+    pub rewards: Vec<i32>,     // [n*9]
+    pub territory: Vec<bool>,  // [n*n], row = city tile
+    pub connected: Vec<bool>,
+    pub order: Vec<i32>,
+    pub infiltrated: Vec<i32>,
+    pub riot: Vec<bool>,
+    /// The order of the cities' pending level-up rewards (rules audit row 6): when a city's reward
+    /// becomes pending it takes 1 + the largest stamp of the pending cities; 0 = not stamped. The game suspends its
+    /// action stack at every level-up's city reward trigger, so of several pending cities it offers only the one whose
+    /// level-up ran first (economy::stamp_reward; State::reward_waits).
+    pub reward_seq: Vec<i32>,
+}
+
+#[derive(Clone)]
+pub struct Players {
+    pub stars: [i32; MAXP],
+    pub score: [i32; MAXP],
+    pub tech: [[bool; 128]; MAXP],
+    pub tech_turn: [[i32; 128]; MAXP],
+    pub known: [[bool; MAXP]; MAXP],
+    pub kills: [i32; MAXP],
+    pub casualties: [i32; MAXP],
+    pub pacifist: [i32; MAXP],
+    pub attacked: [bool; MAXP],
+    pub built: [[bool; 128]; MAXP],
+    pub killed_turn: [i32; MAXP],
+    pub resigned_turn: [i32; MAXP],
+    pub killer: [i32; MAXP],
+    pub peace: [[bool; MAXP]; MAXP],
+    pub embassy: [[bool; MAXP]; MAXP],
+    pub peace_offer: [[bool; MAXP]; MAXP],
+    /// truce_breaker[p][q] != 0: p's relation to q is in cool down (diplomacy relation state 3) after a broken peace;
+    /// the value is the breaker's id. Each side's cool down ends on its own (check diplomacy).
+    pub truce_breaker: [[i32; MAXP]; MAXP],
+    /// hostile_until[p][q]: p attacked q (modify diplomacy relations from attack); the two are at war while
+    /// turn * np + mover <= this stamp, p's next-turn serial (diplomacy::at_war). 0: never. Per pair.
+    pub hostile_until: [[i32; MAXP]; MAXP],
+    /// last peace broken turn of p's relation to q (set on both sides by break peace action).
+    pub peace_broken: [[i32; MAXP]; MAXP],
+    pub monuments: [[bool; 128]; MAXP],
+    /// Engine-internal (4-player games): 1-based order in which seats left the game (killed or resigned), 0 while
+    /// in. Two-player games never set it.
+    pub out_order: [i32; MAXP],
+    /// Each seat's tribe (tribe type: 4 Bardur; tribes.rs). Set at the start, never changes.
+    pub tribe: [i32; MAXP],
+    /// Cymanti: the Convert task's count (Rituals): convert actions on non-Nature units while the
+    /// task is started; 3 unlock Monument1 (the Altar of Peace slot).
+    pub converts: [i32; MAXP],
+}
+
+/// Turns of enemy-unit positions a seat remembers (observation version 3; history.rs).
+pub const HIST_TURNS: usize = 3;
+
+/// What one seat remembers of what it has seen (observation version 3, 2026-11-01): built only from that seat's own
+/// past views (history.rs), so it leaks nothing. Zero at reset; states saved without it start empty.
+#[derive(Clone)]
+pub struct History {
+    /// seen_unit[k][t]: a visible enemy unit stood on t at the end of this seat's turn k + 1 of its turns ago
+    pub seen_unit: [Vec<bool>; HIST_TURNS],
+    /// structure * 64 + structure_level * 2 + road of every tile explored at the end of the seat's last turn, -1 unexplored
+    pub prev_code: Vec<i32>,
+    /// an enemy structure, road or level appeared or changed here since the end of the seat's last turn
+    pub built: Vec<bool>,
+    /// a visible enemy unit stands on an enemy city tile where none stood at the end of the seat's last turn
+    pub trained: Vec<bool>,
+    /// techs the enemy must have, deduced from enemy units, structures and roads the seat has seen (with their prerequisites)
+    pub enemy_tech: u128,
+}
+
+impl History {
+    pub fn new(n: usize) -> History {
+        History { seen_unit: std::array::from_fn(|_| vec![false; n]), prev_code: vec![-1; n], built: vec![false; n],
+                  trained: vec![false; n], enemy_tech: 0 }
+    }
+    pub fn clear(&mut self) {
+        for v in self.seen_unit.iter_mut() { v.fill(false); }
+        self.prev_code.fill(-1);
+        self.built.fill(false);
+        self.trained.fill(false);
+        self.enemy_tech = 0;
+    }
+}
+
+#[derive(Clone)]
+pub struct State {
+    pub metrics: crate::telemetry::Metrics,
+    pub size: usize,
+    pub n: usize,
+    /// Seats in this game (2 or 4). Per-player arrays hold MAXP rows; rows >= np stay zero. Two-player games are
+    /// bitwise the reference engine's; more seats follow the multi-player rules in docs/four-player-*.md.
+    pub np: usize,
+    pub tiles: Tiles,
+    pub units: Units,
+    pub cities: Cities,
+    pub players: Players,
+    /// Per seat (rows >= np unused): the seat's own observation history (observation version 3).
+    pub history: [History; MAXP],
+    pub current_player: i32,
+    pub turn: i32,
+    pub version: i32,
+    pub state_version: i32,
+    pub actions: i32,
+    pub terminated: bool,
+    pub truncated: bool,
+    pub fog: bool,
+    pub reference_max_turns: i32,
+    pub core_supported: bool,
+    pub seed: u32,
+    pub initial_seed: u32,
+    /// Engine-internal (not a reference State field): structures::remember_monuments has already been applied to
+    /// exactly this state, so applying it again is a no-op. Set by core::step; any other way of changing a state
+    /// (reset, import) leaves or sets it false.
+    pub monuments_settled: bool,
+    /// Cymanti: Algae was added during the current command (spores on water, the Island's trail); core:step runs
+    /// the Build's update routes + update city connections once at the command's end. Transient: never exported.
+    pub algae_dirty: bool,
+}
+
+impl State {
+    pub fn empty(size: usize) -> State {
+        State::empty_players(size, 2)
+    }
+
+    pub fn empty_players(size: usize, np: usize) -> State {
+        assert!((2..=MAXP).contains(&np));
+        let n = size * size;
+        let z = || vec![0i32; n];
+        let b = || vec![false; n];
+        State {
+            metrics: crate::telemetry::Metrics::new(),
+            size,
+            n,
+            np,
+            tiles: Tiles {
+                terrain: z(), owner: z(), capital: z(), city: vec![-1; n], road: b(), structure: z(), resource: z(),
+                explored: [b(), b(), b(), b()], structure_level: z(), structure_turn: z(), route: b(), polar: b(), flooded: b(),
+                continent: z(), algae: b(), decomposing: b(),
+            },
+            units: Units {
+                owner: z(), kind: z(), health: vec![0.0; n], veteran: b(), moved: b(), attacked: b(), kills: z(),
+                poison: b(), frozen: b(), boosted: b(), home: z(), created: z(), converted: b(), attacks_performed: z(),
+                prev_x: z(), prev_y: z(), last_attack: z(), passenger: z(), invisible: b(), direction: z(), move_lock: b(),
+                bubble: b(),
+                swift: b(),
+                double_ready: b(),
+                leader: z(),
+                follower: z(),
+            },
+            cities: Cities {
+                owner: z(), level: z(), population: z(), progress: z(), production: z(), border: z(),
+                rewards: vec![0; n * 9], territory: vec![false; n * n], connected: b(), order: z(), infiltrated: z(), riot: b(),
+                reward_seq: z(),
+            },
+            players: Players {
+                stars: [0; MAXP], score: [0; MAXP], tech: [[false; 128]; MAXP], tech_turn: [[0; 128]; MAXP],
+                known: [[false; MAXP]; MAXP], kills: [0; MAXP], casualties: [0; MAXP], pacifist: [0; MAXP],
+                attacked: [false; MAXP], built: [[false; 128]; MAXP], killed_turn: [0; MAXP], resigned_turn: [0; MAXP],
+                killer: [0; MAXP], peace: [[false; MAXP]; MAXP], embassy: [[false; MAXP]; MAXP],
+                peace_offer: [[false; MAXP]; MAXP], truce_breaker: [[0; MAXP]; MAXP], hostile_until: [[0; MAXP]; MAXP],
+                peace_broken: [[0; MAXP]; MAXP],
+                monuments: [[false; 128]; MAXP], out_order: [0; MAXP], tribe: [crate::tribes::BARDUR; MAXP],
+                converts: [0; MAXP],
+            },
+            history: std::array::from_fn(|_| History::new(n)),
+            current_player: 1,
+            turn: 0,
+            version: 115,
+            state_version: 0,
+            actions: 0,
+            terminated: false,
+            truncated: false,
+            fog: true,
+            reference_max_turns: 45,
+            core_supported: true,
+            seed: 0,
+            initial_seed: 0,
+            monuments_settled: false,
+            algae_dirty: false,
+        }
+    }
+
+    /// Seat index of the player to move (0..np).
+    #[inline]
+    pub fn p(&self) -> usize {
+        (self.current_player - 1) as usize
+    }
+    /// jnp.clip(owner - 1, 0, np - 1)
+    #[inline]
+    pub fn pclip(&self, owner: i32) -> usize {
+        (owner - 1).clamp(0, self.np as i32 - 1) as usize
+    }
+    /// JAX gather semantics for `tech[owner - 1]`: a negative index wraps to the last row.
+    #[inline]
+    pub fn pwrap(&self, owner: i32) -> usize {
+        let np = self.np as i32;
+        let i = owner - 1;
+        (if i < 0 { i + np } else { i }).clamp(0, np - 1) as usize
+    }
+    /// Seat k (0-based) is still in the game: not killed and not resigned.
+    #[inline]
+    pub fn alive(&self, k: usize) -> bool {
+        self.players.killed_turn[k] == 0 && self.players.resigned_turn[k] == 0
+    }
+    /// Seats still in the game.
+    pub fn alive_count(&self) -> usize {
+        (0..self.np).filter(|&k| self.alive(k)).count()
+    }
+    /// `owner` is another seat's id (not neutral, not the mover's).
+    #[inline]
+    pub fn foreign(owner: i32, me: i32) -> bool {
+        owner > 0 && owner != me
+    }
+    /// is wetland: Flooded (Aquarion) or Algae (Cymanti).
+    #[inline]
+    pub fn wetland(&self, i: usize) -> bool {
+        self.tiles.flooded[i] || self.tiles.algae[i]
+    }
+    /// The unit on `i` is hidden from `viewer` (is invisible): invisible, another player's, and not a peace
+    /// partner's (peace partners see each other's hidden units).
+    #[inline]
+    pub fn hidden_from(&self, i: usize, viewer: i32) -> bool {
+        let o = self.units.owner[i];
+        self.units.invisible[i] && Self::foreign(o, viewer) && !self.players.peace[self.pclip(viewer)][self.pclip(o)]
+    }
+    #[inline]
+    pub fn territory(&self, city: usize, tile: usize) -> bool {
+        self.cities.territory[city * self.n + tile]
+    }
+    #[inline]
+    pub fn reward(&self, city: usize, k: usize) -> i32 {
+        self.cities.rewards[city * 9 + k]
+    }
+    #[inline]
+    pub fn reward_count(&self, city: usize) -> i32 {
+        self.cities.rewards[city * 9..city * 9 + 9].iter().sum()
+    }
+    /// Whether city `i`'s pending reward waits for another city's: when one action levels up
+    /// several of the mover's cities, the game runs their population actions one at a time and suspends at each
+    /// level-up's city reward trigger, so only the city whose level-up came first is offered (the oldest
+    /// `reward_seq`; an unstamped city never waits). Orders: a connection gives the connected city its population
+    /// before the capital (connect city action pushes the capital's, then the city's, last in first out), newly
+    /// connected cities from the highest tile down (perform connected city changes); a build's connections come before
+    /// its own population (build action's sub-actions); turn-start level-ups from the highest tile down.
+    pub fn reward_waits(&self, i: usize) -> bool {
+        let cp = self.current_player;
+        let seq = self.cities.reward_seq[i];
+        seq > 0 && (0..self.n).any(|j| {
+            let q = self.cities.reward_seq[j];
+            j != i && q > 0 && q < seq && self.cities.owner[j] == cp && self.reward_count(j) < self.cities.level[j] - 1
+        })
+    }
+    /// City `i` (of the mover) has a pending level-up reward.
+    #[inline]
+    pub fn reward_pending(&self, i: usize) -> bool {
+        self.cities.owner[i] == self.current_player && self.reward_count(i) < self.cities.level[i] - 1
+    }
+    pub fn pending_reward(&self) -> bool {
+        let cp = self.current_player;
+        (0..self.n).any(|i| self.cities.owner[i] == cp && self.reward_count(i) < self.cities.level[i] - 1)
+    }
+}

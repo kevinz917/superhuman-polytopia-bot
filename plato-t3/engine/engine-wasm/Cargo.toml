@@ -1,0 +1,20 @@
+[package]
+name = "engine_wasm"
+version = "0.1.0"
+edition = "2021"
+description = "engine-rs and the policy network compiled to WebAssembly for the in-browser bot (web/src/local)"
+license = "Apache-2.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+polytopia_engine_rs = { path = "../engine-rs", default-features = false }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+debug = false
